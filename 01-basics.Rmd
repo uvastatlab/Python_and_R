@@ -1,0 +1,62 @@
+# Basics 
+
+```{r,echo=FALSE}
+knitr::opts_chunk$set(comment = NA, prompt = TRUE, collapse = TRUE)
+```
+
+This chapter covers the very basics of Python and R.
+
+## Math
+
+Mathematical operators are the same except for exponents, integer division, and remainder division (modulo).
+
+#### Python {-}
+
+```{python}
+3**2
+5 // 2
+5 % 2
+```
+
+#### R {-}
+
+```{r}
+3^2
+5 %/% 2
+5 %% 2
+```
+
+In Python, the `+` operator can also be used to combine strings. See this TBD section.
+
+## Assignment
+
+Python uses `=` for assignment while R can use either `=` or `<-` for assignment. The latter "assignment arrow" is preferred in most R style guides to distinguish it between assignment and setting the value of a function argument. According to R's documentation, "The operator `<-` can be used anywhere, whereas the operator `=` is only allowed at the top level (e.g., in the complete expression typed at the command prompt) or as one of the subexpressions in a braced list of expressions." See `?assignOps`.
+
+#### Python {-}
+
+```{python}
+x = 12
+```
+
+#### R {-}
+
+```{r}
+x <- 12
+```
+
+## Printing a value
+
+To see the value of an object created via assignment, you can simply enter the object at the console and hit enter for both Python and R, though it is common in Python to explicitly use the `print` function.
+
+#### Python {-}
+
+```{python}
+x
+```
+
+#### R {-}
+
+```{r}
+x
+```
+
