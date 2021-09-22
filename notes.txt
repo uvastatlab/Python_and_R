@@ -5,6 +5,22 @@ To install packages:
 library(reticulate)
 py_install("pandas")
 
-Set up GitHub actions
+TODO
+Set up GitHub actions?
 Docker container?
+
+
+Possible chapters
+- Installing and Updating Packages
+- Data Structures
+- Data Wrangling (subset, merge, reshape)
+- Basic Graphics
+- Loops
+- String Manipulation
+- Basic statistics
+- Writing Functions
+- Linear Models
+- Generalized Linear Models
+- Notebooks and Reports
+
 
