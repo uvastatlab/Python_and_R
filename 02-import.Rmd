@@ -1,0 +1,31 @@
+# Importing Data 
+
+```{r,echo=FALSE}
+knitr::opts_chunk$set(comment = NA, prompt = TRUE, collapse = TRUE)
+```
+
+This chapter reviews importing external data into Python and R, including CSV, txt, and other structured data files. 
+
+## CSV
+
+Comma separated value (CSV) files are text files with fields separated by commas. They are useful for "rectangular" data where rows represent observations and columns represent variables or features. 
+
+#### Python {-}
+
+
+
+```{python}
+import pandas
+d = pandas.read_csv('data/dat.csv')
+```
+
+
+#### R {-}
+
+There are many ways to import a csv file. A common way is to use the base R function `read.csv`.
+
+```{r eval=FALSE}
+d <- read.csv("data/dat.csv")
+
+```
+

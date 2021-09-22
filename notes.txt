@@ -1,0 +1,10 @@
+To update to latest version of miniconda
+install_miniconda(path = miniconda_path(), update = TRUE, force = TRUE)
+
+To install packages:
+library(reticulate)
+py_install("pandas")
+
+Set up GitHub actions
+Docker container?
+

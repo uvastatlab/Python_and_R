@@ -2,3 +2,7 @@ basics
 math
 assignment
 printing-a-value
+importing-data
+csv
+python-3
+r-3
