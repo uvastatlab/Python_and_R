@@ -23,4 +23,5 @@ Possible chapters
 - Generalized Linear Models
 - Notebooks and Reports
 
-
+Miscellany
+- Style guide? (e.g., `gsub` v. `gsub()` for functions; `stringi` v. stringi for packages; etc.)
