@@ -2,8 +2,6 @@ basics
 math
 assignment
 printing-a-value
+generating-a-sequence-of-values
 importing-data
 csv
-python-3
-r-3
-generating-a-sequence-of-values
