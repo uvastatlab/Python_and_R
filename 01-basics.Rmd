@@ -60,3 +60,21 @@ x
 x
 ```
 
+## Generating a sequence of values
+
+There are multiple ways in both Python and R to generate sequences of values. In Python, one option is `arange()` from `numpy`. In R, a common approach is to use `seq()`. The sequences can be incremented by indicating a `step` argument in `arange()` or a `by` argument in `seq()`. Be aware that the start/stop interval in `arange()` is _open_, but the from/to interval in `seq()` is _closed_.
+
+#### Python {-}
+
+```{python}
+import numpy as np
+x = np.arange(start = 1, stop = 11, step = 2)
+x
+```
+
+#### R {-}
+
+```{r}
+x <- seq(from = 1, to = 11, by = 2)
+x
+```
