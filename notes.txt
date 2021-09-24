@@ -25,3 +25,6 @@ Possible chapters
 
 Miscellany
 - Style guide? (e.g., `gsub` v. `gsub()` for functions; `stringi` v. stringi for packages; etc.)
+CF: Let's do the following (as done in the bookdown book)
+-	Packages/Libraries are bolded. Eg, The pandas library, The dplyr package
+-	Functions include parentheses: eg,  `gsub()`
