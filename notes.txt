@@ -15,9 +15,9 @@ Possible chapters
 - Data Structures
 - Data Wrangling (subset, merge, reshape)
 - Basic Graphics
-- Loops
+- Loops and Apply Functions
 - String Manipulation
-- Basic statistics
+- Basic Statistics
 - Writing Functions
 - Linear Models
 - Generalized Linear Models
