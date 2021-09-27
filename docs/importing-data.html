@@ -167,6 +167,7 @@ div.csl-indent {
 <li class="chapter" data-level="1.3" data-path="basics.html"><a href="basics.html#printing-a-value"><i class="fa fa-check"></i><b>1.3</b> Printing a value</a></li>
 <li class="chapter" data-level="1.4" data-path="basics.html"><a href="basics.html#packages-and-libraries"><i class="fa fa-check"></i><b>1.4</b> Packages and Libraries</a></li>
 <li class="chapter" data-level="1.5" data-path="basics.html"><a href="basics.html#generating-a-sequence-of-values"><i class="fa fa-check"></i><b>1.5</b> Generating a sequence of values</a></li>
+<li class="chapter" data-level="1.6" data-path="basics.html"><a href="basics.html#calculating-means-and-medians"><i class="fa fa-check"></i><b>1.6</b> Calculating means and medians</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>2</b> Data Structures</a>
 <ul>
@@ -227,34 +228,25 @@ div.csl-indent {
 <div id="csv" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> CSV</h2>
 <p>Comma separated value (CSV) files are text files with fields separated by commas. They are useful for “rectangular” data where rows represent observations and columns represent variables or features.</p>
-<div id="python-6" class="section level4 unnumbered">
+<div id="python-7" class="section level4 unnumbered">
 <h4>Python</h4>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="importing-data.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> pandas</span>
-<span id="cb11-2"><a href="importing-data.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> d <span class="op">=</span> pandas.read_csv(<span class="st">&#39;data/dat.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="importing-data.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> pandas</span>
+<span id="cb13-2"><a href="importing-data.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> d <span class="op">=</span> pandas.read_csv(<span class="st">&#39;data/dat.csv&#39;</span>)</span></code></pre></div>
 </div>
-<div id="r-6" class="section level4 unnumbered">
+<div id="r-7" class="section level4 unnumbered">
 <h4>R</h4>
 <p>There are many ways to import a csv file. A common way is to use the base R function <code>read.csv()</code>.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="importing-data.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/dat.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="importing-data.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/dat.csv&quot;</span>)</span></code></pre></div>
 <p>Two packages that provide alternatives to <code>read.csv()</code> are <strong>readr</strong> and <strong>data.table</strong>. The <strong>readr</strong> function <code>read_csv()</code> returns a <a href="https://r4ds.had.co.nz/tibbles.html">tibble</a>. The <strong>data.table</strong> function <code>fread()</code> returns a <a href="https://rdatatable.gitlab.io/data.table/articles/datatable-intro.html">data.table</a>.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="importing-data.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(readr)</span>
-<span id="cb13-2"><a href="importing-data.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/dat.csv&quot;</span>)</span>
-<span id="cb13-3"><a href="importing-data.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb13-4"><a href="importing-data.html#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">library</span>(data.table)</span>
-<span id="cb13-5"><a href="importing-data.html#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;data/dat.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="importing-data.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(readr)</span>
+<span id="cb15-2"><a href="importing-data.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/dat.csv&quot;</span>)</span>
+<span id="cb15-3"><a href="importing-data.html#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb15-4"><a href="importing-data.html#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">library</span>(data.table)</span>
+<span id="cb15-5"><a href="importing-data.html#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;data/dat.csv&quot;</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="xlsxlsx-excel" class="section level2" number="3.2">
 <h2><span class="header-section-number">3.2</span> XLS/XLSX (Excel)</h2>
-<div id="python-7" class="section level4 unnumbered">
-<h4>Python</h4>
-</div>
-<div id="r-7" class="section level4 unnumbered">
-<h4>R</h4>
-</div>
-</div>
-<div id="text" class="section level2" number="3.3">
-<h2><span class="header-section-number">3.3</span> Text</h2>
 <div id="python-8" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
@@ -262,8 +254,8 @@ div.csl-indent {
 <h4>R</h4>
 </div>
 </div>
-<div id="json" class="section level2" number="3.4">
-<h2><span class="header-section-number">3.4</span> JSON</h2>
+<div id="text" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Text</h2>
 <div id="python-9" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
@@ -271,12 +263,21 @@ div.csl-indent {
 <h4>R</h4>
 </div>
 </div>
-<div id="xml" class="section level2" number="3.5">
-<h2><span class="header-section-number">3.5</span> XML</h2>
+<div id="json" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> JSON</h2>
 <div id="python-10" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
 <div id="r-10" class="section level4 unnumbered">
+<h4>R</h4>
+</div>
+</div>
+<div id="xml" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> XML</h2>
+<div id="python-11" class="section level4 unnumbered">
+<h4>Python</h4>
+</div>
+<div id="r-11" class="section level4 unnumbered">
 <h4>R</h4>
 
 </div>

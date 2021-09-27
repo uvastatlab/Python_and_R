@@ -127,3 +127,36 @@ x
 x <- seq(from = 1, to = 11, by = 2)
 x
 ```
+
+## Calculating means and medians
+
+The **NumPy** Python library has functions for calculating means and medians, and base R has functions for doing the same.
+
+#### Python {-}
+
+```{python}
+# Mean, using function from NumPy library
+import numpy as np
+x = [90, 105, 110]
+x_avg = np.mean(x)
+print(x_avg)
+
+# Median, using function from NumPy library
+x = [98, 102, 20, 22, 304]
+x_med = np.median(x)
+print(x_med)
+```
+
+#### R {-}
+
+```{r}
+# Mean, using function from base R
+x <- c(90, 105, 110)
+x_avg <- mean(x)
+x_avg
+
+# Median, using function from base R
+x <- c(98, 102, 20, 22, 304)
+x_med <- median(x)
+x_med
+```
