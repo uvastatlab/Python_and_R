@@ -1,10 +1,10 @@
-# Data Manipulation
+# Reshape, Join and Combine
 
 ```{r,echo=FALSE}
 knitr::opts_chunk$set(comment = NA, prompt = TRUE, collapse = TRUE)
 ```
 
-This chapter looks at various strategies for modifying and deriving variables in data.
+This chapter looks at various strategies for combining, reshaping and merging data.
 
 ## Create strings from numbers
 
@@ -16,15 +16,6 @@ This chapter looks at various strategies for modifying and deriving variables in
 
 
 ## Create numbers from strings
-
-
-#### Python {-}
-
-
-#### R {-}
-
-
-## Change case
 
 
 #### Python {-}

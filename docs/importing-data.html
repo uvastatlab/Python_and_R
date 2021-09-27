@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="data-structures.html"/>
-<link rel="next" href="data-wrangling.html"/>
+<link rel="next" href="data-manipulation.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -180,10 +180,16 @@ div.csl-indent {
 <li class="chapter" data-level="3.4" data-path="importing-data.html"><a href="importing-data.html#json"><i class="fa fa-check"></i><b>3.4</b> JSON</a></li>
 <li class="chapter" data-level="3.5" data-path="importing-data.html"><a href="importing-data.html#xml"><i class="fa fa-check"></i><b>3.5</b> XML</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="data-wrangling.html"><a href="data-wrangling.html"><i class="fa fa-check"></i><b>4</b> Data Wrangling</a>
+<li class="chapter" data-level="4" data-path="data-manipulation.html"><a href="data-manipulation.html"><i class="fa fa-check"></i><b>4</b> Data Manipulation</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="data-wrangling.html"><a href="data-wrangling.html#create-strings-from-numbers"><i class="fa fa-check"></i><b>4.1</b> Create strings from numbers</a></li>
-<li class="chapter" data-level="4.2" data-path="data-wrangling.html"><a href="data-wrangling.html#create-numbers-from-strings"><i class="fa fa-check"></i><b>4.2</b> Create numbers from strings</a></li>
+<li class="chapter" data-level="4.1" data-path="data-manipulation.html"><a href="data-manipulation.html#create-strings-from-numbers"><i class="fa fa-check"></i><b>4.1</b> Create strings from numbers</a></li>
+<li class="chapter" data-level="4.2" data-path="data-manipulation.html"><a href="data-manipulation.html#create-numbers-from-strings"><i class="fa fa-check"></i><b>4.2</b> Create numbers from strings</a></li>
+<li class="chapter" data-level="4.3" data-path="data-manipulation.html"><a href="data-manipulation.html#change-case"><i class="fa fa-check"></i><b>4.3</b> Change case</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="reshape-join-and-combine.html"><a href="reshape-join-and-combine.html"><i class="fa fa-check"></i><b>5</b> Reshape, Join and Combine</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="reshape-join-and-combine.html"><a href="reshape-join-and-combine.html#create-strings-from-numbers-1"><i class="fa fa-check"></i><b>5.1</b> Create strings from numbers</a></li>
+<li class="chapter" data-level="5.2" data-path="reshape-join-and-combine.html"><a href="reshape-join-and-combine.html#create-numbers-from-strings-1"><i class="fa fa-check"></i><b>5.2</b> Create numbers from strings</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -219,8 +225,14 @@ div.csl-indent {
 </div>
 <div id="r-6" class="section level4 unnumbered">
 <h4>R</h4>
-<p>There are many ways to import a csv file. A common way is to use the base R function <code>read.csv</code>.</p>
+<p>There are many ways to import a csv file. A common way is to use the base R function <code>read.csv()</code>.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="importing-data.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/dat.csv&quot;</span>)</span></code></pre></div>
+<p>Two packages that provide alternatives to <code>read.csv()</code> are <strong>readr</strong> and <strong>data.table</strong>. The <strong>readr</strong> function <code>read_csv()</code> returns a <a href="https://r4ds.had.co.nz/tibbles.html">tibble</a>. The <strong>data.table</strong> function <code>fread()</code> returns a <a href="https://rdatatable.gitlab.io/data.table/articles/datatable-intro.html">data.table</a>.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="importing-data.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(readr)</span>
+<span id="cb13-2"><a href="importing-data.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/dat.csv&quot;</span>)</span>
+<span id="cb13-3"><a href="importing-data.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb13-4"><a href="importing-data.html#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">library</span>(data.table)</span>
+<span id="cb13-5"><a href="importing-data.html#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;data/dat.csv&quot;</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="xlsxlsx-excel" class="section level2" number="3.2">
@@ -267,7 +279,7 @@ div.csl-indent {
         </div>
       </div>
 <a href="data-structures.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="data-wrangling.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="data-manipulation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

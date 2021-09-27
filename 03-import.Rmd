@@ -22,12 +22,23 @@ d = pandas.read_csv('data/dat.csv')
 
 #### R {-}
 
-There are many ways to import a csv file. A common way is to use the base R function `read.csv`.
+There are many ways to import a csv file. A common way is to use the base R function `read.csv()`.
 
 ```{r eval=FALSE}
 d <- read.csv("data/dat.csv")
 
 ```
+
+Two packages that provide alternatives to `read.csv()` are **readr** and **data.table**. The **readr** function `read_csv()` returns a [tibble](https://r4ds.had.co.nz/tibbles.html). The **data.table** function `fread()` returns a [data.table](https://rdatatable.gitlab.io/data.table/articles/datatable-intro.html). 
+
+```{r eval=FALSE, message=FALSE}
+library(readr)
+d <- read_csv("data/dat.csv")
+
+library(data.table)
+d <- fread("data/dat.csv")
+```
+
 
 ## XLS/XLSX (Excel)
 

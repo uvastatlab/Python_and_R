@@ -12,6 +12,10 @@ xlsxlsx-excel
 text
 json
 xml
-data-wrangling
+data-manipulation
 create-strings-from-numbers
 create-numbers-from-strings
+change-case
+reshape-join-and-combine
+create-strings-from-numbers-1
+create-numbers-from-strings-1
