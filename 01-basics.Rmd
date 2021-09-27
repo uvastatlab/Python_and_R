@@ -6,7 +6,7 @@ knitr::opts_chunk$set(comment = NA, prompt = TRUE, collapse = TRUE)
 
 This chapter covers the very basics of Python and R.
 
-## Math
+## Math operations
 
 Mathematical operators are the same except for exponents, integer division, and remainder division (modulo).
 
@@ -32,8 +32,6 @@ Python uses `^` for exponentiation, `%/%` for integer division, and `%%` for rem
 5 %/% 2
 5 %% 2
 ```
-
-
 
 ## Assignment
 
@@ -70,11 +68,11 @@ x
 
 ## Packages and Libraries
 
-User-created functions can be bundled and distributed as libraries (Python) and packages (R). Libraries and packages need to be installed only once. Thereafter they're "imported" (Python) or "loaded" (R) in each new session when needed.
+User-created functions can be bundled and distributed as libraries (Python) and packages (R). Libraries and packages need to be installed only once. Thereafter, they're "imported" (Python) or "loaded" (R) in each new session when needed.
 
-Libraries and packages with large user bases are often updated to add functionality and fix bugs. The updates are not automatically installed. Staying apprised of library/package updates can be challenging. Some suggestions are following developers on Twitter, signing up for newsletters, or periodically checking to see what updates are available.
+Libraries and packages with large user bases are often updated to add functionality and fix bugs. The updates are not automatically installed. Staying apprised of library/package updates can be challenging. Some suggestions for doing so are following developers on Twitter, signing up for newsletters, or periodically checking to see what updates are available.
 
-Libraries and packages often depend on other libraries and packages. These are known as "dependencies". Sometimes libraries/packages are updated to accommodate changes to other libraries/packages they depend on.
+Libraries and packages often depend on other libraries and packages. These are known as "dependencies." Sometimes, libraries/packages are updated to accommodate changes to libraries/packages they depend on.
 
 #### Python {-}
 
@@ -83,7 +81,7 @@ Libraries and packages often depend on other libraries and packages. These are k
 
 The main repository for R packages is the [Comprehensive R Archive Network](https://cran.r-project.org/) (CRAN). Another repository is [Bioconductor](https://www.bioconductor.org/), which provides tools for working with genomic data. Many packages are also distributed on [GitHub](https://github.com/).
 
-To install packages from CRAN use the `install.packages()` function. In RStudio, you can also go to Tools...Install Packages... for a dialog that will auto-complete package names as you type.
+To install packages from CRAN, use the `install.packages()` function. In RStudio, you can also go to Tools...Install Packages... for a dialog that will auto-complete package names as you type.
 
 ```{r eval=FALSE}
 # install the vcd package, a package for Visualizing Categorical Data
@@ -107,18 +105,18 @@ install.packages("devtools")
 devtools::install_github("username/packagename")
 ```
 
-Occasionally when installing or updating a package you will be asked "Do you want to install from sources the package which needs compilation?" R packages on CRAN are _compiled_ for Mac and Windows operating systems. That can take a day or two. If you try to install a package that has not been compiled then you'll get asked if you want to compile it yourself. You can usually just answer No. If you answer Yes, R will try to compile the package on your computer. This will only work if you have the required build tools on your computer. For Windows this means having [RTools](https://cran.r-project.org/bin/windows/Rtools/) installed. Mac users typically already have the necessary build tools.
+Occasionally, when installing or updating a package you will be asked "Do you want to install from sources the package which needs compilation?" R packages on CRAN are _compiled_ for Mac and Windows operating systems. That can take a day or two. If you try to install a package that has not been compiled then you'll get asked if you want to compile it yourself. You can usually just answer No. If you answer Yes, R will try to compile the package on your computer. This will only work if you have the required build tools on your computer. For Windows this means having [RTools](https://cran.r-project.org/bin/windows/Rtools/) installed. Mac users typically already have the necessary build tools.
 
 ## Generating a sequence of values
 
-There are multiple ways in both Python and R to generate sequences of values. In Python, one option is `arange()` from `numpy`. In R, a common approach is to use `seq()`. The sequences can be incremented by indicating a `step` argument in `arange()` or a `by` argument in `seq()`. Be aware that the start/stop interval in `arange()` is _open_, but the from/to interval in `seq()` is _closed_.
+There are multiple ways in both Python and R to generate sequences of values. In Python, one option is `arange()` from **NumPy**. In R, a common approach is to use `seq()`. Sequences can be incremented by indicating a `step` argument in `arange()` or a `by` argument in `seq()`. Be aware that the start/stop interval in `arange()` is _open_, but the from/to interval in `seq()` is _closed_.
 
 #### Python {-}
 
 ```{python}
 import numpy as np
 x = np.arange(start = 1, stop = 11, step = 2)
-x
+print(x)
 ```
 
 #### R {-}
@@ -126,4 +124,37 @@ x
 ```{r}
 x <- seq(from = 1, to = 11, by = 2)
 x
+```
+
+## Calculating means and medians
+
+The **NumPy** Python library has functions for calculating means and medians, and base R has functions for doing the same.
+
+#### Python {-}
+
+```{python}
+# Mean, using function from NumPy library
+import numpy as np
+x = [90, 105, 110]
+x_avg = np.mean(x)
+print(x_avg)
+
+# Median, using function from NumPy library
+x = [98, 102, 20, 22, 304]
+x_med = np.median(x)
+print(x_med)
+```
+
+#### R {-}
+
+```{r}
+# Mean, using function from base R
+x <- c(90, 105, 110)
+x_avg <- mean(x)
+x_avg
+
+# Median, using function from base R
+x <- c(98, 102, 20, 22, 304)
+x_med <- median(x)
+x_med
 ```

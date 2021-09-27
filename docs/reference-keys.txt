@@ -1,9 +1,10 @@
 basics
-math
+math-operations
 assignment
 printing-a-value
 packages-and-libraries
 generating-a-sequence-of-values
+mean-and-median
 data-structures
 vectors
 importing-data
