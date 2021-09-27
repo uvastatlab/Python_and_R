@@ -171,7 +171,8 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="2" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>2</b> Data Structures</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="data-structures.html"><a href="data-structures.html#vectors"><i class="fa fa-check"></i><b>2.1</b> Vectors</a></li>
+<li class="chapter" data-level="2.1" data-path="data-structures.html"><a href="data-structures.html#one-dimensional-data"><i class="fa fa-check"></i><b>2.1</b> One-dimensional data</a></li>
+<li class="chapter" data-level="2.2" data-path="data-structures.html"><a href="data-structures.html#two-dimensional"><i class="fa fa-check"></i><b>2.2</b> Two-dimensional</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>3</b> Importing Data</a>
 <ul>
@@ -225,13 +226,47 @@ div.csl-indent {
 <div id="data-structures" class="section level1" number="2">
 <h1><span class="header-section-number">Chapter 2</span> Data Structures</h1>
 <p>This chapter compares and contrasts data structures in Python and R.</p>
-<div id="vectors" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> Vectors</h2>
+<div id="one-dimensional-data" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> One-dimensional data</h2>
+<p>A one-dimensional data structure can be visualized as a column in a spreadsheet or as a list of values.</p>
 <div id="python-6" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
 <div id="r-6" class="section level4 unnumbered">
 <h4>R</h4>
+<p>In R a one-dimensional data structure is called a <em>vector</em>. We can create a vector using the <code>c()</code> function. A vector in R can only contain one type of data (all numbers, all strings, etc). The columns of data frames are vectors. If multiple types of data are put into a vector, the data will be coerced according to the hierarchy <code>logical</code> &lt; <code>integer</code> &lt; <code>double</code> &lt; <code>complex</code> &lt; <code>character</code>. This means if you mix, say integers and character data, all the data will be coerced to character.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="data-structures.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">43</span>, <span class="dv">55</span>)</span>
+<span id="cb13-2"><a href="data-structures.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x1</span>
+<span id="cb13-3"><a href="data-structures.html#cb13-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">23</span> <span class="dv">43</span> <span class="dv">55</span></span>
+<span id="cb13-4"><a href="data-structures.html#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># all values coerced to character</span></span>
+<span id="cb13-5"><a href="data-structures.html#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> x2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">43</span>, <span class="st">&#39;hi&#39;</span>)</span>
+<span id="cb13-6"><a href="data-structures.html#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x2</span>
+<span id="cb13-7"><a href="data-structures.html#cb13-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;23&quot;</span> <span class="st">&quot;43&quot;</span> <span class="st">&quot;hi&quot;</span></span></code></pre></div>
+</div>
+</div>
+<div id="two-dimensional" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Two-dimensional</h2>
+<p>Two-dimensional data is rectangular in nature, consisting of rows and columns. These can be the type of data you might find in a spreadsheet with a mix of data types in columns, or matrices as you might encounter in matrix algebra.</p>
+<div id="python-7" class="section level4 unnumbered">
+<h4>Python</h4>
+</div>
+<div id="r-7" class="section level4 unnumbered">
+<h4>R</h4>
+<p>Two-dimensional data structures in R include the <em>matrix</em> and <em>data frame</em>. A matrix can contain only one data type. A data frame can contain multiple vectors each of which can consist of different data types.</p>
+<p>Create a matrix with the <code>matrix()</code> function. Create a data frame with the <code>data.frame()</code> function. Most imported data comes into R as a data frame.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="data-structures.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># matrix</span></span>
+<span id="cb14-2"><a href="data-structures.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> m <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">data =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>), <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb14-3"><a href="data-structures.html#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> m</span>
+<span id="cb14-4"><a href="data-structures.html#cb14-4" aria-hidden="true" tabindex="-1"></a>     [,<span class="dv">1</span>] [,<span class="dv">2</span>]</span>
+<span id="cb14-5"><a href="data-structures.html#cb14-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>,]    <span class="dv">1</span>    <span class="dv">5</span></span>
+<span id="cb14-6"><a href="data-structures.html#cb14-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>,]    <span class="dv">3</span>    <span class="dv">7</span></span>
+<span id="cb14-7"><a href="data-structures.html#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># data frame</span></span>
+<span id="cb14-8"><a href="data-structures.html#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">name =</span> <span class="fu">c</span>(<span class="st">&quot;Rob&quot;</span>, <span class="st">&quot;Cindy&quot;</span>),</span>
+<span id="cb14-9"><a href="data-structures.html#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                 <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">35</span>, <span class="dv">37</span>))</span>
+<span id="cb14-10"><a href="data-structures.html#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d</span>
+<span id="cb14-11"><a href="data-structures.html#cb14-11" aria-hidden="true" tabindex="-1"></a>   name age</span>
+<span id="cb14-12"><a href="data-structures.html#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>   Rob  <span class="dv">35</span></span>
+<span id="cb14-13"><a href="data-structures.html#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> Cindy  <span class="dv">37</span></span></code></pre></div>
 
 </div>
 </div>

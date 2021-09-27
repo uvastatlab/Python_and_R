@@ -6,11 +6,48 @@ knitr::opts_chunk$set(comment = NA, prompt = TRUE, collapse = TRUE)
 
 This chapter compares and contrasts data structures in Python and R.
 
-## Vectors
+## One-dimensional data
 
+A one-dimensional data structure can be visualized as a column in a spreadsheet or as a list of values. 
 
 #### Python {-}
 
 
 #### R {-}
+
+In R a one-dimensional data structure is called a _vector_. We can create a vector using the `c()` function. A vector in R can only contain one type of data (all numbers, all strings, etc). The columns of data frames are vectors. If multiple types of data are put into a vector, the data will be coerced according to the hierarchy `logical` < `integer` < `double` < `complex` < `character`. This means if you mix, say integers and character data, all the data will be coerced to character. 
+
+```{r}
+x1 <- c(23, 43, 55)
+x1
+
+# all values coerced to character
+x2 <- c(23, 43, 'hi')
+x2
+```
+
+
+## Two-dimensional
+
+Two-dimensional data is rectangular in nature, consisting of rows and columns. These can be the type of data you might find in a spreadsheet with a mix of data types in columns, or matrices as you might encounter in matrix algebra.
+
+#### Python {-}
+
+
+#### R {-}
+
+Two-dimensional data structures in R include the _matrix_ and _data frame_. A matrix can contain only one data type. A data frame can contain multiple vectors each of which can consist of different data types. 
+
+Create a matrix with the `matrix()` function. Create a data frame with the `data.frame()` function. Most imported data comes into R as a data frame.
+
+```{r}
+# matrix
+m <- matrix(data = c(1,3,5,7), nrow = 2, ncol = 2)
+m
+
+# data frame
+d <- data.frame(name = c("Rob", "Cindy"),
+                age = c(35, 37))
+d
+```
 

@@ -6,7 +6,8 @@ packages-and-libraries
 generating-a-sequence-of-values
 calculating-means-and-medians
 data-structures
-vectors
+one-dimensional-data
+two-dimensional
 importing-data
 csv
 xlsxlsx-excel
