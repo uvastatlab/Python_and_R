@@ -8,11 +8,45 @@ This chapter looks at various strategies for modifying and deriving variables in
 
 ## Create strings from numbers
 
+You may have data that is numeric but that needs to be treated as a string. For example, census data often codes age ranges as groups. For example:
+
+- 1 = 0-6
+- 2 = 7-12 
+- 3 = 13-17
+
+And so on. These numbers represent groups, not a count or measure of anything.
 
 #### Python {-}
 
 
 #### R {-}
+
+The `as.character()` function takes a vector and converts it to string format.
+
+```{r}
+# create a vector of numbers
+x <- c(2, 2, 3, 4, 2, 4)
+x
+
+# convert to string
+xc <- as.character(x)
+xc
+
+```
+
+
+The `factor()` function can also be used to convert a numeric vector into a  categorical variable. The result is not exactly a string, however. A factor is made of integers with character labels. Factors are useful for character data that have a fixed set of levels (eg, "grade 1", grade 2", etc)
+
+```{r}
+# convert to factor
+xf <- factor(x)
+xf
+
+# convert to factor with labels
+xf2 <- factor(x, labels = c("grade 2", "grade 3", "grade 4"))
+xf2
+
+```
 
 
 ## Create numbers from strings

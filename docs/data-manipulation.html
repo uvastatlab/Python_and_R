@@ -226,11 +226,27 @@ div.csl-indent {
 <p>This chapter looks at various strategies for modifying and deriving variables in data.</p>
 <div id="create-strings-from-numbers" class="section level2" number="4.1">
 <h2><span class="header-section-number">4.1</span> Create strings from numbers</h2>
+<p>You may have data that is numeric but that needs to be treated as a string. For example, census data often codes age ranges as groups. For example:</p>
+<ul>
+<li>1 = 0-6</li>
+<li>2 = 7-12</li>
+<li>3 = 13-17</li>
+</ul>
+<p>And so on. These numbers represent groups, not a count or measure of anything.</p>
 <div id="python-11" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
 <div id="r-11" class="section level4 unnumbered">
 <h4>R</h4>
+<p>The <code>as.character()</code> function takes a vector and converts it to string format.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="data-manipulation.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># create a vector of numbers</span></span>
+<span id="cb1-2"><a href="data-manipulation.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
+<span id="cb1-3"><a href="data-manipulation.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x</span>
+<span id="cb1-4"><a href="data-manipulation.html#cb1-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">2</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">2</span> <span class="dv">4</span></span>
+<span id="cb1-5"><a href="data-manipulation.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># convert to string</span></span>
+<span id="cb1-6"><a href="data-manipulation.html#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> x <span class="ot">&lt;-</span> <span class="fu">as.character</span>(x)</span>
+<span id="cb1-7"><a href="data-manipulation.html#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x</span>
+<span id="cb1-8"><a href="data-manipulation.html#cb1-8" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;2&quot;</span> <span class="st">&quot;2&quot;</span> <span class="st">&quot;3&quot;</span> <span class="st">&quot;4&quot;</span> <span class="st">&quot;2&quot;</span> <span class="st">&quot;4&quot;</span></span></code></pre></div>
 </div>
 </div>
 <div id="create-numbers-from-strings" class="section level2" number="4.2">
