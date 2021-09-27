@@ -4,6 +4,7 @@ assignment
 printing-a-value
 packages-and-libraries
 generating-a-sequence-of-values
+calculating-means-and-medians
 data-structures
 vectors
 importing-data
