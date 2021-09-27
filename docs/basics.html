@@ -24,7 +24,7 @@
 <meta name="author" content="Clay Ford" />
 
 
-<meta name="date" content="2021-09-23" />
+<meta name="date" content="2021-09-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -165,7 +165,8 @@ div.csl-indent {
 <li class="chapter" data-level="1.1" data-path="basics.html"><a href="basics.html#math"><i class="fa fa-check"></i><b>1.1</b> Math</a></li>
 <li class="chapter" data-level="1.2" data-path="basics.html"><a href="basics.html#assignment"><i class="fa fa-check"></i><b>1.2</b> Assignment</a></li>
 <li class="chapter" data-level="1.3" data-path="basics.html"><a href="basics.html#printing-a-value"><i class="fa fa-check"></i><b>1.3</b> Printing a value</a></li>
-<li class="chapter" data-level="1.4" data-path="basics.html"><a href="basics.html#generating-a-sequence-of-values"><i class="fa fa-check"></i><b>1.4</b> Generating a sequence of values</a></li>
+<li class="chapter" data-level="1.4" data-path="basics.html"><a href="basics.html#packages-and-libraries"><i class="fa fa-check"></i><b>1.4</b> Packages and Libraries</a></li>
+<li class="chapter" data-level="1.5" data-path="basics.html"><a href="basics.html#generating-a-sequence-of-values"><i class="fa fa-check"></i><b>1.5</b> Generating a sequence of values</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>2</b> Importing Data</a>
 <ul>
@@ -200,6 +201,7 @@ div.csl-indent {
 <p>Mathematical operators are the same except for exponents, integer division, and remainder division (modulo).</p>
 <div id="python" class="section level4 unnumbered">
 <h4>Python</h4>
+<p>Python uses <code>**</code> for exponentiation, <code>//</code> for integer division, and <code>%</code> for remainder division.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="basics.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="dv">3</span><span class="op">**</span><span class="dv">2</span></span>
 <span id="cb1-2"><a href="basics.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dv">9</span></span>
 <span id="cb1-3"><a href="basics.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="dv">5</span> <span class="op">//</span> <span class="dv">2</span></span>
@@ -209,6 +211,7 @@ div.csl-indent {
 </div>
 <div id="r" class="section level4 unnumbered">
 <h4>R</h4>
+<p>Python uses <code>^</code> for exponentiation, <code>%/%</code> for integer division, and <code>%%</code> for remainder division.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="basics.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">3</span><span class="sc">^</span><span class="dv">2</span></span>
 <span id="cb2-2"><a href="basics.html#cb2-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">9</span></span>
 <span id="cb2-3"><a href="basics.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">%/%</span> <span class="dv">2</span></span>
@@ -232,7 +235,7 @@ div.csl-indent {
 </div>
 <div id="printing-a-value" class="section level2" number="1.3">
 <h2><span class="header-section-number">1.3</span> Printing a value</h2>
-<p>To see the value of an object created via assignment, you can simply enter the object at the console and hit enter for both Python and R, though it is common in Python to explicitly use the <code>print</code> function.</p>
+<p>To see the value of an object created via assignment, you can simply enter the object at the console and hit enter for both Python and R, though it is common in Python to explicitly use the <code>print()</code> function.</p>
 <div id="python-2" class="section level4 unnumbered">
 <h4>Python</h4>
 <div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="basics.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> x</span>
@@ -244,21 +247,51 @@ div.csl-indent {
 <span id="cb6-2"><a href="basics.html#cb6-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">12</span></span></code></pre></div>
 </div>
 </div>
-<div id="generating-a-sequence-of-values" class="section level2" number="1.4">
-<h2><span class="header-section-number">1.4</span> Generating a sequence of values</h2>
-<p>There are multiple ways in both Python and R to generate sequences of values. In Python, one option is <code>arange()</code> from <code>numpy</code>. In R, a common approach is to use <code>seq()</code>. The sequences can be incremented by indicating a <code>step</code> argument in <code>arange()</code> or a <code>by</code> argument in <code>seq()</code>. Be aware that the start/stop interval in <code>arange()</code> is <em>open</em>, but the from/to interval in <code>seq()</code> is <em>closed</em>.</p>
+<div id="packages-and-libraries" class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> Packages and Libraries</h2>
+<p>User-created functions can be bundled and distributed as libraries (Python) and packages (R). Libraries and packages need to be installed only once. Thereafter they’re “imported” (Python) or “loaded” (R) in each new session when needed.</p>
+<p>Libraries and packages with large user bases are often updated to add functionality and fix bugs. The updates are not automatically installed. Staying apprised of library/package updates can be challenging. Some suggestions are following developers on Twitter, signing up for newsletters, or periodically checking to see what updates are available.</p>
+<p>Libraries and packages often depend on other libraries and packages. These are known as “dependencies.” Sometimes libraries/packages are updated to accommodate changes to other libraries/packages they depend on.</p>
 <div id="python-3" class="section level4 unnumbered">
 <h4>Python</h4>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="basics.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb7-2"><a href="basics.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> x <span class="op">=</span> np.arange(start <span class="op">=</span> <span class="dv">1</span>, stop <span class="op">=</span> <span class="dv">11</span>, step <span class="op">=</span> <span class="dv">2</span>)</span>
-<span id="cb7-3"><a href="basics.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> x</span>
-<span id="cb7-4"><a href="basics.html#cb7-4" aria-hidden="true" tabindex="-1"></a>array([<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>])</span></code></pre></div>
 </div>
 <div id="r-3" class="section level4 unnumbered">
 <h4>R</h4>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="basics.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">11</span>, <span class="at">by =</span> <span class="dv">2</span>)</span>
-<span id="cb8-2"><a href="basics.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x</span>
-<span id="cb8-3"><a href="basics.html#cb8-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="dv">1</span>  <span class="dv">3</span>  <span class="dv">5</span>  <span class="dv">7</span>  <span class="dv">9</span> <span class="dv">11</span></span></code></pre></div>
+<p>The main repository for R packages is the <a href="https://cran.r-project.org/">Comprehensive R Archive Network</a> (CRAN). Another repository is <a href="https://www.bioconductor.org/">Bioconductor</a>, which provides tools for working with genomic data. Many packages are also distributed on <a href="https://github.com/">GitHub</a>.</p>
+<p>To install packages from CRAN use the <code>install.packages()</code> function. In RStudio, you can also go to Tools…Install Packages… for a dialog that will auto-complete package names as you type.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="basics.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># install the vcd package, a package for Visualizing Categorical Data</span></span>
+<span id="cb7-2"><a href="basics.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">install.packages</span>(<span class="st">&quot;vcd&quot;</span>)</span>
+<span id="cb7-3"><a href="basics.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb7-4"><a href="basics.html#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># load the package</span></span>
+<span id="cb7-5"><a href="basics.html#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">library</span>(vcd)</span>
+<span id="cb7-6"><a href="basics.html#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb7-7"><a href="basics.html#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># see which packages on your computer have updates available</span></span>
+<span id="cb7-8"><a href="basics.html#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">old.packages</span>()</span>
+<span id="cb7-9"><a href="basics.html#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb7-10"><a href="basics.html#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># download and install available package updates;</span></span>
+<span id="cb7-11"><a href="basics.html#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># set ask = TRUE to verify installation of each package</span></span>
+<span id="cb7-12"><a href="basics.html#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">update.packages</span>(<span class="at">ask =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p>To install R packages from GitHub use the <code>install_github()</code> function from the <strong>devtools</strong> package. You need to include the username of the repo owner followed by a forward slash and the name of the package. Typing two colons between a package and a function in the package allows you to use that function without loading the package.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="basics.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
+<span id="cb8-2"><a href="basics.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;username/packagename&quot;</span>)</span></code></pre></div>
+<p>Occasionally when installing or updating a package you will be asked “Do you want to install from sources the package which needs compilation?” R packages on CRAN are <em>compiled</em> for Mac and Windows operating systems. That can take a day or two. If you try to install a package that has not been compiled then you’ll get asked if you want to compile it yourself. You can usually just answer No. If you answer Yes, R will try to compile the package on your computer. This will only work if you have the required build tools on your computer. For Windows this means having <a href="https://cran.r-project.org/bin/windows/Rtools/">RTools</a> installed. Mac users typically already have the necessary build tools.</p>
+</div>
+</div>
+<div id="generating-a-sequence-of-values" class="section level2" number="1.5">
+<h2><span class="header-section-number">1.5</span> Generating a sequence of values</h2>
+<p>There are multiple ways in both Python and R to generate sequences of values. In Python, one option is <code>arange()</code> from <code>numpy</code>. In R, a common approach is to use <code>seq()</code>. The sequences can be incremented by indicating a <code>step</code> argument in <code>arange()</code> or a <code>by</code> argument in <code>seq()</code>. Be aware that the start/stop interval in <code>arange()</code> is <em>open</em>, but the from/to interval in <code>seq()</code> is <em>closed</em>.</p>
+<div id="python-4" class="section level4 unnumbered">
+<h4>Python</h4>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="basics.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb9-2"><a href="basics.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> x <span class="op">=</span> np.arange(start <span class="op">=</span> <span class="dv">1</span>, stop <span class="op">=</span> <span class="dv">11</span>, step <span class="op">=</span> <span class="dv">2</span>)</span>
+<span id="cb9-3"><a href="basics.html#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> x</span>
+<span id="cb9-4"><a href="basics.html#cb9-4" aria-hidden="true" tabindex="-1"></a>array([<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>])</span></code></pre></div>
+</div>
+<div id="r-4" class="section level4 unnumbered">
+<h4>R</h4>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="basics.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">11</span>, <span class="at">by =</span> <span class="dv">2</span>)</span>
+<span id="cb10-2"><a href="basics.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x</span>
+<span id="cb10-3"><a href="basics.html#cb10-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="dv">1</span>  <span class="dv">3</span>  <span class="dv">5</span>  <span class="dv">7</span>  <span class="dv">9</span> <span class="dv">11</span></span></code></pre></div>
 
 </div>
 </div>

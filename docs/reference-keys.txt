@@ -2,6 +2,7 @@ basics
 math
 assignment
 printing-a-value
+packages-and-libraries
 generating-a-sequence-of-values
 importing-data
 csv
