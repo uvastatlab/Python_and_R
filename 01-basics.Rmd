@@ -20,6 +20,8 @@ Python uses `**` for exponentiation, `//` for integer division, and `%` for rema
 5 % 2
 ```
 
+In Python, the `+` operator can also be used to combine strings. See this TBD section.
+
 #### R {-}
 
 Python uses `^` for exponentiation, `%/%` for integer division, and `%%` for remainder division.
@@ -31,7 +33,7 @@ Python uses `^` for exponentiation, `%/%` for integer division, and `%%` for rem
 5 %% 2
 ```
 
-In Python, the `+` operator can also be used to combine strings. See this TBD section.
+
 
 ## Assignment
 
