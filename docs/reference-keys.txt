@@ -16,6 +16,13 @@ data-manipulation
 create-strings-from-numbers
 create-numbers-from-strings
 change-case
-reshape-join-and-combine
-create-strings-from-numbers-1
-create-numbers-from-strings-1
+combine-reshape-and-merge
+combine-rows
+combine-columns
+reshape-wide-to-long
+reshape-long-to-wide
+mergejoin
+left-join
+right-join
+inner-join
+outer-join

@@ -1,4 +1,4 @@
-# Reshape, Join and Combine
+# Combine, Reshape and Merge
 
 ```{r,echo=FALSE}
 knitr::opts_chunk$set(comment = NA, prompt = TRUE, collapse = TRUE)
@@ -6,7 +6,7 @@ knitr::opts_chunk$set(comment = NA, prompt = TRUE, collapse = TRUE)
 
 This chapter looks at various strategies for combining, reshaping and merging data.
 
-## Create strings from numbers
+## Combine rows
 
 
 #### Python {-}
@@ -15,10 +15,50 @@ This chapter looks at various strategies for combining, reshaping and merging da
 #### R {-}
 
 
-## Create numbers from strings
+## Combine columns
 
 
 #### Python {-}
 
 
 #### R {-}
+
+
+## Reshape wide to long
+
+
+#### Python {-}
+
+
+#### R {-}
+
+
+## Reshape long to wide
+
+
+#### Python {-}
+#### R {-}
+
+
+## Merge/Join
+
+### Left Join
+
+#### Python {-}
+#### R {-}
+
+### Right Join
+
+#### Python {-}
+#### R {-}
+
+### Inner Join
+
+#### Python {-}
+#### R {-}
+
+### Outer Join
+
+#### Python {-}
+#### R {-}
+
