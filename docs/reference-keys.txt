@@ -12,3 +12,6 @@ xlsxlsx-excel
 text
 json
 xml
+data-wrangling
+create-strings-from-numbers
+create-numbers-from-strings

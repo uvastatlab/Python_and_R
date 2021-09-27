@@ -1,0 +1,24 @@
+# Data Wrangling
+
+```{r,echo=FALSE}
+knitr::opts_chunk$set(comment = NA, prompt = TRUE, collapse = TRUE)
+```
+
+This chapter looks at various strategies for modifying, subsetting, reshaping and merging data.
+
+## Create strings from numbers
+
+
+#### Python {-}
+
+
+#### R {-}
+
+
+## Create numbers from strings
+
+
+#### Python {-}
+
+
+#### R {-}
