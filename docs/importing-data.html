@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Importing Data | Python and R</title>
+  <title>Chapter 3 Importing Data | Python and R</title>
   <meta name="description" content="This book provides parallel examples in Python and R to help users of one platform more easily transition to the other." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Importing Data | Python and R" />
+  <meta property="og:title" content="Chapter 3 Importing Data | Python and R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="uvastatlab/Python_and_R" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Importing Data | Python and R" />
+  <meta name="twitter:title" content="Chapter 3 Importing Data | Python and R" />
   
   <meta name="twitter:description" content="This book provides parallel examples in Python and R to help users of one platform more easily transition to the other." />
   
@@ -31,7 +31,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="basics.html"/>
+<link rel="prev" href="data-structures.html"/>
 <link rel="next" href="references.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -168,9 +168,17 @@ div.csl-indent {
 <li class="chapter" data-level="1.4" data-path="basics.html"><a href="basics.html#packages-and-libraries"><i class="fa fa-check"></i><b>1.4</b> Packages and Libraries</a></li>
 <li class="chapter" data-level="1.5" data-path="basics.html"><a href="basics.html#generating-a-sequence-of-values"><i class="fa fa-check"></i><b>1.5</b> Generating a sequence of values</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>2</b> Importing Data</a>
+<li class="chapter" data-level="2" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>2</b> Data Structures</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="importing-data.html"><a href="importing-data.html#csv"><i class="fa fa-check"></i><b>2.1</b> CSV</a></li>
+<li class="chapter" data-level="2.1" data-path="data-structures.html"><a href="data-structures.html#vectors"><i class="fa fa-check"></i><b>2.1</b> Vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>3</b> Importing Data</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="importing-data.html"><a href="importing-data.html#csv"><i class="fa fa-check"></i><b>3.1</b> CSV</a></li>
+<li class="chapter" data-level="3.2" data-path="importing-data.html"><a href="importing-data.html#xlsxlsx-excel"><i class="fa fa-check"></i><b>3.2</b> XLS/XLSX (Excel)</a></li>
+<li class="chapter" data-level="3.3" data-path="importing-data.html"><a href="importing-data.html#text"><i class="fa fa-check"></i><b>3.3</b> Text</a></li>
+<li class="chapter" data-level="3.4" data-path="importing-data.html"><a href="importing-data.html#json"><i class="fa fa-check"></i><b>3.4</b> JSON</a></li>
+<li class="chapter" data-level="3.5" data-path="importing-data.html"><a href="importing-data.html#xml"><i class="fa fa-check"></i><b>3.5</b> XML</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -193,21 +201,57 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="importing-data" class="section level1" number="2">
-<h1><span class="header-section-number">Chapter 2</span> Importing Data</h1>
+<div id="importing-data" class="section level1" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Importing Data</h1>
 <p>This chapter reviews importing external data into Python and R, including CSV, txt, and other structured data files.</p>
-<div id="csv" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> CSV</h2>
+<div id="csv" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> CSV</h2>
 <p>Comma separated value (CSV) files are text files with fields separated by commas. They are useful for “rectangular” data where rows represent observations and columns represent variables or features.</p>
-<div id="python-5" class="section level4 unnumbered">
+<div id="python-6" class="section level4 unnumbered">
 <h4>Python</h4>
 <div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="importing-data.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> pandas</span>
 <span id="cb11-2"><a href="importing-data.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> d <span class="op">=</span> pandas.read_csv(<span class="st">&#39;data/dat.csv&#39;</span>)</span></code></pre></div>
 </div>
-<div id="r-5" class="section level4 unnumbered">
+<div id="r-6" class="section level4 unnumbered">
 <h4>R</h4>
 <p>There are many ways to import a csv file. A common way is to use the base R function <code>read.csv</code>.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="importing-data.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/dat.csv&quot;</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="xlsxlsx-excel" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> XLS/XLSX (Excel)</h2>
+<div id="python-7" class="section level4 unnumbered">
+<h4>Python</h4>
+</div>
+<div id="r-7" class="section level4 unnumbered">
+<h4>R</h4>
+</div>
+</div>
+<div id="text" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Text</h2>
+<div id="python-8" class="section level4 unnumbered">
+<h4>Python</h4>
+</div>
+<div id="r-8" class="section level4 unnumbered">
+<h4>R</h4>
+</div>
+</div>
+<div id="json" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> JSON</h2>
+<div id="python-9" class="section level4 unnumbered">
+<h4>Python</h4>
+</div>
+<div id="r-9" class="section level4 unnumbered">
+<h4>R</h4>
+</div>
+</div>
+<div id="xml" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> XML</h2>
+<div id="python-10" class="section level4 unnumbered">
+<h4>Python</h4>
+</div>
+<div id="r-10" class="section level4 unnumbered">
+<h4>R</h4>
 
 </div>
 </div>
@@ -217,7 +261,7 @@ div.csl-indent {
           </div>
         </div>
       </div>
-<a href="basics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-structures.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
@@ -249,7 +293,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/uvastatlab/Python_and_R/edit/main/02-import.Rmd",
+"link": "https://github.com/uvastatlab/Python_and_R/edit/main/03-import.Rmd",
 "text": "Edit"
 },
 "history": {

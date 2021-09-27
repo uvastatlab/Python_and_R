@@ -4,5 +4,11 @@ assignment
 printing-a-value
 packages-and-libraries
 generating-a-sequence-of-values
+data-structures
+vectors
 importing-data
 csv
+xlsxlsx-excel
+text
+json
+xml

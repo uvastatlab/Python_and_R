@@ -29,3 +29,33 @@ d <- read.csv("data/dat.csv")
 
 ```
 
+## XLS/XLSX (Excel)
+
+
+#### Python {-}
+
+#### R {-}
+
+
+## Text 
+
+
+#### Python {-}
+
+#### R {-}
+
+
+## JSON
+
+#### Python {-}
+
+#### R {-}
+
+
+## XML
+
+#### Python {-}
+
+#### R {-}
+
+

@@ -1,0 +1,16 @@
+# Data Structures 
+
+```{r,echo=FALSE}
+knitr::opts_chunk$set(comment = NA, prompt = TRUE, collapse = TRUE)
+```
+
+This chapter compares and contrasts data structures in Python and R.
+
+## Vectors
+
+
+#### Python {-}
+
+
+#### R {-}
+
