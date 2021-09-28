@@ -416,10 +416,12 @@ div.csl-indent {
 <p>Adding a new variable name after the dollar sign notation and assigning a result adds a new column.</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="data-manipulation.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># add column for Kilometer per liter</span></span>
 <span id="cb35-2"><a href="data-manipulation.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> mtcars<span class="sc">$</span>kpl <span class="ot">&lt;-</span> mtcars<span class="sc">$</span>mpg<span class="sc">/</span><span class="fl">2.352</span></span></code></pre></div>
-<p>Doing the same with an existing variable updates the values in a column.</p>
+<p>Doing the same with an <em>existing</em> variable updates the values in a column.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="data-manipulation.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># update to liters per 100 Kilometers</span></span>
+<span id="cb36-2"><a href="data-manipulation.html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> mtcars<span class="sc">$</span>kpl <span class="ot">&lt;-</span> <span class="dv">100</span><span class="sc">/</span>mtcars<span class="sc">$</span>kpl </span></code></pre></div>
 <p>To remove a variable, assign it <code>NULL</code>.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="data-manipulation.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># drop the column we just created</span></span>
-<span id="cb36-2"><a href="data-manipulation.html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> mtcars<span class="sc">$</span>kpl <span class="ot">&lt;-</span> <span class="cn">NULL</span></span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="data-manipulation.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># drop the kpl variable</span></span>
+<span id="cb37-2"><a href="data-manipulation.html#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> mtcars<span class="sc">$</span>kpl <span class="ot">&lt;-</span> <span class="cn">NULL</span></span></code></pre></div>
 </div>
 </div>
 <div id="create-strings-from-numbers" class="section level2" number="4.5">
@@ -431,30 +433,57 @@ div.csl-indent {
 <div id="r-17" class="section level4 unnumbered">
 <h4>R</h4>
 <p>The <code>as.character()</code> function takes a vector and converts it to string format.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="data-manipulation.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">head</span>(mtcars<span class="sc">$</span>am)</span>
-<span id="cb37-2"><a href="data-manipulation.html#cb37-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span></span>
-<span id="cb37-3"><a href="data-manipulation.html#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">head</span>(<span class="fu">as.character</span>(mtcars<span class="sc">$</span>am))</span>
-<span id="cb37-4"><a href="data-manipulation.html#cb37-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;1&quot;</span> <span class="st">&quot;1&quot;</span> <span class="st">&quot;1&quot;</span> <span class="st">&quot;0&quot;</span> <span class="st">&quot;0&quot;</span> <span class="st">&quot;0&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="data-manipulation.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">head</span>(mtcars<span class="sc">$</span>am)</span>
+<span id="cb38-2"><a href="data-manipulation.html#cb38-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span></span>
+<span id="cb38-3"><a href="data-manipulation.html#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">head</span>(<span class="fu">as.character</span>(mtcars<span class="sc">$</span>am))</span>
+<span id="cb38-4"><a href="data-manipulation.html#cb38-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;1&quot;</span> <span class="st">&quot;1&quot;</span> <span class="st">&quot;1&quot;</span> <span class="st">&quot;0&quot;</span> <span class="st">&quot;0&quot;</span> <span class="st">&quot;0&quot;</span></span></code></pre></div>
+<p>Note we just demonstrated conversion. To save the conversion we need to <em>assign</em> the result to the data frame.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="data-manipulation.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># add new string variable am_ch</span></span>
+<span id="cb39-2"><a href="data-manipulation.html#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> mtcars<span class="sc">$</span>am_ch <span class="ot">&lt;-</span> <span class="fu">as.character</span>(mtcars<span class="sc">$</span>am)</span>
+<span id="cb39-3"><a href="data-manipulation.html#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">head</span>(mtcars<span class="sc">$</span>am_ch)</span>
+<span id="cb39-4"><a href="data-manipulation.html#cb39-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;1&quot;</span> <span class="st">&quot;1&quot;</span> <span class="st">&quot;1&quot;</span> <span class="st">&quot;0&quot;</span> <span class="st">&quot;0&quot;</span> <span class="st">&quot;0&quot;</span></span></code></pre></div>
 <p>The <code>factor()</code> function can also be used to convert a numeric vector into a categorical variable. The result is not exactly a string, however. A factor is made of integers with character labels. Factors are useful for character data that have a fixed set of levels (eg, “grade 1,” grade 2", etc)</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="data-manipulation.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># convert to factor</span></span>
-<span id="cb38-2"><a href="data-manipulation.html#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">head</span>(mtcars<span class="sc">$</span>am)</span>
-<span id="cb38-3"><a href="data-manipulation.html#cb38-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span></span>
-<span id="cb38-4"><a href="data-manipulation.html#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">head</span>(<span class="fu">factor</span>(mtcars<span class="sc">$</span>am))</span>
-<span id="cb38-5"><a href="data-manipulation.html#cb38-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span></span>
-<span id="cb38-6"><a href="data-manipulation.html#cb38-6" aria-hidden="true" tabindex="-1"></a>Levels<span class="sc">:</span> <span class="dv">0</span> <span class="dv">1</span></span>
-<span id="cb38-7"><a href="data-manipulation.html#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># convert to factor with labels</span></span>
-<span id="cb38-8"><a href="data-manipulation.html#cb38-8" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">head</span>(<span class="fu">factor</span>(mtcars<span class="sc">$</span>am, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;automatic&quot;</span>, <span class="st">&quot;manual&quot;</span>)))</span>
-<span id="cb38-9"><a href="data-manipulation.html#cb38-9" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] manual    manual    manual    automatic automatic automatic</span>
-<span id="cb38-10"><a href="data-manipulation.html#cb38-10" aria-hidden="true" tabindex="-1"></a>Levels<span class="sc">:</span> automatic manual</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="data-manipulation.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># convert to factor</span></span>
+<span id="cb40-2"><a href="data-manipulation.html#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">head</span>(mtcars<span class="sc">$</span>am)</span>
+<span id="cb40-3"><a href="data-manipulation.html#cb40-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span></span>
+<span id="cb40-4"><a href="data-manipulation.html#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">head</span>(<span class="fu">factor</span>(mtcars<span class="sc">$</span>am))</span>
+<span id="cb40-5"><a href="data-manipulation.html#cb40-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span></span>
+<span id="cb40-6"><a href="data-manipulation.html#cb40-6" aria-hidden="true" tabindex="-1"></a>Levels<span class="sc">:</span> <span class="dv">0</span> <span class="dv">1</span></span>
+<span id="cb40-7"><a href="data-manipulation.html#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># convert to factor with labels</span></span>
+<span id="cb40-8"><a href="data-manipulation.html#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">head</span>(<span class="fu">factor</span>(mtcars<span class="sc">$</span>am, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;automatic&quot;</span>, <span class="st">&quot;manual&quot;</span>)))</span>
+<span id="cb40-9"><a href="data-manipulation.html#cb40-9" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] manual    manual    manual    automatic automatic automatic</span>
+<span id="cb40-10"><a href="data-manipulation.html#cb40-10" aria-hidden="true" tabindex="-1"></a>Levels<span class="sc">:</span> automatic manual</span></code></pre></div>
+<p>Again we just demonstrated factor conversion. To save the conversion we need to assign to the data frame.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="data-manipulation.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># create factor variable am_fac</span></span>
+<span id="cb41-2"><a href="data-manipulation.html#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> mtcars<span class="sc">$</span>am_fac <span class="ot">&lt;-</span> <span class="fu">factor</span>(mtcars<span class="sc">$</span>am, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;automatic&quot;</span>, <span class="st">&quot;manual&quot;</span>))</span>
+<span id="cb41-3"><a href="data-manipulation.html#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">head</span>(mtcars<span class="sc">$</span>am_fac)</span>
+<span id="cb41-4"><a href="data-manipulation.html#cb41-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] manual    manual    manual    automatic automatic automatic</span>
+<span id="cb41-5"><a href="data-manipulation.html#cb41-5" aria-hidden="true" tabindex="-1"></a>Levels<span class="sc">:</span> automatic manual</span></code></pre></div>
+<p>TODO: add zip code conversion using <code>str_pad()</code> (or base R option?)</p>
 </div>
 </div>
 <div id="create-numbers-from-strings" class="section level2" number="4.6">
 <h2><span class="header-section-number">4.6</span> Create numbers from strings</h2>
+<p>String variables that ought to be numbers usually have some character data in the values such as units (eg, “4 cm”). To create numbers from strings it’s important to remove any character data that cannot be converted to a number.</p>
 <div id="python-18" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
 <div id="r-18" class="section level4 unnumbered">
 <h4>R</h4>
+<p>The <code>as.numeric()</code> function will attempt to coerce strings to numeric type <em>if possible</em>. Any non-numeric values are coerced to NA.</p>
+<p>For demonstration, let’s say we have the following vector.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="data-manipulation.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> weight <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;125 lbs.&quot;</span>, <span class="st">&quot;132 lbs.&quot;</span>, <span class="st">&quot;156 lbs.&quot;</span>)</span></code></pre></div>
+<p>The <code>as.numeric()</code> function returns all NA due to presence of character data.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="data-manipulation.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">as.numeric</span>(weight)</span>
+<span id="cb43-2"><a href="data-manipulation.html#cb43-2" aria-hidden="true" tabindex="-1"></a>Warning<span class="sc">:</span> NAs introduced by coercion</span>
+<span id="cb43-3"><a href="data-manipulation.html#cb43-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">NA</span> <span class="cn">NA</span> <span class="cn">NA</span></span></code></pre></div>
+<p>There are many ways to approach this. A common approach is to first remove the characters and then use <code>as.numeric()</code>. Below we use the <code>sub</code> function to find “lbs.” and replace with nothing.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="data-manipulation.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> weightN <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;lbs.&quot;</span>, <span class="st">&quot;&quot;</span>, weight)</span>
+<span id="cb44-2"><a href="data-manipulation.html#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">as.numeric</span>(weightN)</span>
+<span id="cb44-3"><a href="data-manipulation.html#cb44-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">125</span> <span class="dv">132</span> <span class="dv">156</span></span></code></pre></div>
+<p>The <code>parse_number()</code> function in the <strong>readr</strong> package can often take care of these situations automatically.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="data-manipulation.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> readr<span class="sc">::</span><span class="fu">parse_number</span>(weight)</span>
+<span id="cb45-2"><a href="data-manipulation.html#cb45-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">125</span> <span class="dv">132</span> <span class="dv">156</span></span></code></pre></div>
 </div>
 </div>
 <div id="change-case" class="section level2" number="4.7">

@@ -156,12 +156,17 @@ Adding a new variable name after the dollar sign notation and assigning a result
 mtcars$kpl <- mtcars$mpg/2.352
 ```
 
-Doing the same with an existing variable updates the values in a column.
+Doing the same with an _existing_ variable updates the values in a column. 
+
+```{r}
+# update to liters per 100 Kilometers
+mtcars$kpl <- 100/mtcars$kpl 
+```
 
 To remove a variable, assign it `NULL`.
 
 ```{r}
-# drop the column we just created
+# drop the kpl variable
 mtcars$kpl <- NULL
 ```
 
@@ -182,6 +187,14 @@ head(mtcars$am)
 head(as.character(mtcars$am))
 ```
 
+Note we just demonstrated conversion. To save the conversion we need to _assign_ the result to the data frame.
+
+```{r}
+# add new string variable am_ch
+mtcars$am_ch <- as.character(mtcars$am)
+head(mtcars$am_ch)
+```
+
 
 The `factor()` function can also be used to convert a numeric vector into a  categorical variable. The result is not exactly a string, however. A factor is made of integers with character labels. Factors are useful for character data that have a fixed set of levels (eg, "grade 1", grade 2", etc)
 
@@ -194,14 +207,54 @@ head(factor(mtcars$am))
 head(factor(mtcars$am, labels = c("automatic", "manual")))
 ```
 
+Again we just demonstrated factor conversion. To save the conversion we need to assign to the data frame.
+
+```{r}
+# create factor variable am_fac
+mtcars$am_fac <- factor(mtcars$am, labels = c("automatic", "manual"))
+head(mtcars$am_fac)
+```
+
+
+TODO: add zip code conversion using `str_pad()` (or base R option?)
 
 ## Create numbers from strings
+
+String variables that ought to be numbers usually have some character data in the values such as units (eg, "4 cm"). To create numbers from strings it's important to remove any character data that cannot be converted to a number.
 
 
 #### Python {-}
 
 
 #### R {-}
+
+The `as.numeric()` function will attempt to coerce strings to numeric type _if possible_. Any non-numeric values are coerced to NA.
+
+For demonstration, let's say we have the following vector.
+
+```{r}
+weight <- c("125 lbs.", "132 lbs.", "156 lbs.")
+```
+
+The `as.numeric()` function returns all NA due to presence of character data.
+
+```{r}
+as.numeric(weight)
+```
+
+There are many ways to approach this. A common approach is to first remove the characters and then use `as.numeric()`. Below we use the `sub` function to find "lbs." and replace with nothing.
+
+```{r}
+weightN <- gsub("lbs.", "", weight)
+as.numeric(weightN)
+```
+
+The `parse_number()` function in the **readr** package can often take care of these situations automatically.
+
+```{r}
+readr::parse_number(weight)
+```
+
 
 
 ## Change case
