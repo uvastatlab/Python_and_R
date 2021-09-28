@@ -4,7 +4,87 @@
 knitr::opts_chunk$set(comment = NA, prompt = TRUE, collapse = TRUE)
 ```
 
-This chapter looks at various strategies for modifying and deriving variables in data.
+This chapter looks at various strategies for modifying and deriving variables in data. Unless otherwise stated, examples are for DataFrames (Python) and data frames (R) and use the mtcars data frame that is included with R.
+
+```{python}
+# Python
+import pandas
+mtcars = pandas.read_csv('data/mtcars.csv')
+```
+
+
+```{r}
+# R
+data(mtcars)
+```
+
+
+## Names of variables and their types
+
+View and inspect the names of variables and their type (numeric, string, logical, etc.) This is useful to ensure that variables have the expected type. 
+
+#### Python {-}
+
+
+#### R {-}
+
+The `str()` function in R lists the names of the variables, their type, the first few values, and the dimensions of the data frame.  
+
+```{r}
+str(mtcars)
+```
+
+To see just the names of the data frame, use the `names()` function.
+
+```{r}
+names(mtcars)
+```
+
+To see just the dimensions of the data frame, use the `dim()` function. It returns the number of rows and columns, respectively.
+
+
+```{r}
+dim(mtcars)
+```
+
+
+## Rename variables
+
+How to rename variables or "column headers".
+
+#### Python {-}
+
+
+#### R {-}
+
+Variable names can be changed by their index (ie, order of columns in the data frame). Below the second column is "cyl". We change the name to "cylinder".
+
+```{r}
+names(mtcars)[2]
+names(mtcars)[2] <- "cylinders"
+names(mtcars)
+```
+
+Variable names can also be changed by conditional match. Below we find the variable name that matches "drat" and change to "axle_ratio".
+
+```{r}
+names(mtcars)[names(mtcars) == "drat"]
+names(mtcars)[names(mtcars) == "drat"] <- "axle_ratio"
+names(mtcars)
+```
+
+More than one variable name can be changed using a vector of positions or matches.
+
+```{r}
+names(mtcars)[c(6,8)] <- c("weight", "engine")
+
+# or
+# names(mtcars)[names(mtcars) %in% c("wt", "vs")] <- c("weight", "engine")
+
+names(mtcars)
+```
+
+See also the `rename()` function in the **dplyr** package. 
 
 ## Create strings from numbers
 

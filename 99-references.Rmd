@@ -5,6 +5,6 @@
 ```{r include=FALSE}
 # automatically create a bib database for R packages
 knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'reticulate'
+  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'reticulate', 'datasets'
 ), 'packages.bib')
 ```

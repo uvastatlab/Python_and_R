@@ -15,6 +15,8 @@ text
 json
 xml
 data-manipulation
+names-of-variables-and-their-types
+rename-variables
 create-strings-from-numbers
 create-numbers-from-strings
 change-case
