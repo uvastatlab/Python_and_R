@@ -24,7 +24,7 @@
 <meta name="author" content="Clay Ford" />
 
 
-<meta name="date" content="2021-09-27" />
+<meta name="date" content="2021-09-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -235,13 +235,13 @@ div.csl-indent {
 <div id="r-6" class="section level4 unnumbered">
 <h4>R</h4>
 <p>In R a one-dimensional data structure is called a <em>vector</em>. We can create a vector using the <code>c()</code> function. A vector in R can only contain one type of data (all numbers, all strings, etc). The columns of data frames are vectors. If multiple types of data are put into a vector, the data will be coerced according to the hierarchy <code>logical</code> &lt; <code>integer</code> &lt; <code>double</code> &lt; <code>complex</code> &lt; <code>character</code>. This means if you mix, say integers and character data, all the data will be coerced to character.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="data-structures.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">43</span>, <span class="dv">55</span>)</span>
-<span id="cb13-2"><a href="data-structures.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x1</span>
-<span id="cb13-3"><a href="data-structures.html#cb13-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">23</span> <span class="dv">43</span> <span class="dv">55</span></span>
-<span id="cb13-4"><a href="data-structures.html#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># all values coerced to character</span></span>
-<span id="cb13-5"><a href="data-structures.html#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> x2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">43</span>, <span class="st">&#39;hi&#39;</span>)</span>
-<span id="cb13-6"><a href="data-structures.html#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x2</span>
-<span id="cb13-7"><a href="data-structures.html#cb13-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;23&quot;</span> <span class="st">&quot;43&quot;</span> <span class="st">&quot;hi&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="data-structures.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">43</span>, <span class="dv">55</span>)</span>
+<span id="cb15-2"><a href="data-structures.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x1</span>
+<span id="cb15-3"><a href="data-structures.html#cb15-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">23</span> <span class="dv">43</span> <span class="dv">55</span></span>
+<span id="cb15-4"><a href="data-structures.html#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># all values coerced to character</span></span>
+<span id="cb15-5"><a href="data-structures.html#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> x2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">43</span>, <span class="st">&#39;hi&#39;</span>)</span>
+<span id="cb15-6"><a href="data-structures.html#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x2</span>
+<span id="cb15-7"><a href="data-structures.html#cb15-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;23&quot;</span> <span class="st">&quot;43&quot;</span> <span class="st">&quot;hi&quot;</span></span></code></pre></div>
 </div>
 </div>
 <div id="two-dimensional" class="section level2" number="2.2">
@@ -254,19 +254,19 @@ div.csl-indent {
 <h4>R</h4>
 <p>Two-dimensional data structures in R include the <em>matrix</em> and <em>data frame</em>. A matrix can contain only one data type. A data frame can contain multiple vectors each of which can consist of different data types.</p>
 <p>Create a matrix with the <code>matrix()</code> function. Create a data frame with the <code>data.frame()</code> function. Most imported data comes into R as a data frame.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="data-structures.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># matrix</span></span>
-<span id="cb14-2"><a href="data-structures.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> m <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">data =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>), <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
-<span id="cb14-3"><a href="data-structures.html#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> m</span>
-<span id="cb14-4"><a href="data-structures.html#cb14-4" aria-hidden="true" tabindex="-1"></a>     [,<span class="dv">1</span>] [,<span class="dv">2</span>]</span>
-<span id="cb14-5"><a href="data-structures.html#cb14-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>,]    <span class="dv">1</span>    <span class="dv">5</span></span>
-<span id="cb14-6"><a href="data-structures.html#cb14-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>,]    <span class="dv">3</span>    <span class="dv">7</span></span>
-<span id="cb14-7"><a href="data-structures.html#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># data frame</span></span>
-<span id="cb14-8"><a href="data-structures.html#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">name =</span> <span class="fu">c</span>(<span class="st">&quot;Rob&quot;</span>, <span class="st">&quot;Cindy&quot;</span>),</span>
-<span id="cb14-9"><a href="data-structures.html#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                 <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">35</span>, <span class="dv">37</span>))</span>
-<span id="cb14-10"><a href="data-structures.html#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d</span>
-<span id="cb14-11"><a href="data-structures.html#cb14-11" aria-hidden="true" tabindex="-1"></a>   name age</span>
-<span id="cb14-12"><a href="data-structures.html#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>   Rob  <span class="dv">35</span></span>
-<span id="cb14-13"><a href="data-structures.html#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> Cindy  <span class="dv">37</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="data-structures.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># matrix</span></span>
+<span id="cb16-2"><a href="data-structures.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> m <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">data =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>), <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb16-3"><a href="data-structures.html#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> m</span>
+<span id="cb16-4"><a href="data-structures.html#cb16-4" aria-hidden="true" tabindex="-1"></a>     [,<span class="dv">1</span>] [,<span class="dv">2</span>]</span>
+<span id="cb16-5"><a href="data-structures.html#cb16-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>,]    <span class="dv">1</span>    <span class="dv">5</span></span>
+<span id="cb16-6"><a href="data-structures.html#cb16-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>,]    <span class="dv">3</span>    <span class="dv">7</span></span>
+<span id="cb16-7"><a href="data-structures.html#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># data frame</span></span>
+<span id="cb16-8"><a href="data-structures.html#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">name =</span> <span class="fu">c</span>(<span class="st">&quot;Rob&quot;</span>, <span class="st">&quot;Cindy&quot;</span>),</span>
+<span id="cb16-9"><a href="data-structures.html#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                 <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">35</span>, <span class="dv">37</span>))</span>
+<span id="cb16-10"><a href="data-structures.html#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d</span>
+<span id="cb16-11"><a href="data-structures.html#cb16-11" aria-hidden="true" tabindex="-1"></a>   name age</span>
+<span id="cb16-12"><a href="data-structures.html#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>   Rob  <span class="dv">35</span></span>
+<span id="cb16-13"><a href="data-structures.html#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> Cindy  <span class="dv">37</span></span></code></pre></div>
 
 </div>
 </div>
