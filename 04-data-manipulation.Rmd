@@ -47,6 +47,60 @@ To see just the dimensions of the data frame, use the `dim()` function. It retur
 dim(mtcars)
 ```
 
+## Access variables
+
+How to work with a specific column of data.
+
+#### Python {-}
+
+
+#### R {-}
+
+The dollar sign operator, `$`, provides access to a column in a data frame as a vector.
+
+```{r}
+mtcars$mpg
+```
+
+Double indexing brackets also provide access to columns as a vector.
+
+```{r}
+mtcars[["mpg"]]
+```
+
+Single indexing brackets work as well, but return a data frame instead of a vector (if used with a data frame).
+
+```{r}
+mtcars["mpg"]
+```
+
+
+Single indexing brackets also allow selection of rows when used with a comma. The syntax is `rows, columns`
+
+```{r}
+# first three rows
+mtcars[1:3, "mpg"]
+```
+
+Finally single indexing brackets allow us to select multiple columns. Request columns either by name or position using a vector.
+
+```{r}
+mtcars[c("mpg", "cyl")] 
+# same as mtcars[1:2] 
+```
+
+The `head()` and `tail()` functions return the first 6 or last 6 values. Use the `n` argument to change the number of values. They work with vectors or data frames.
+
+```{r}
+# first 6 values
+head(mtcars$mpg)
+```
+
+```{r}
+# last row of data frame
+tail(mtcars, n = 1)
+```
+
 
 ## Rename variables
 
@@ -86,15 +140,35 @@ names(mtcars)
 
 See also the `rename()` function in the **dplyr** package. 
 
+## Create, replace and remove variables
+
+We often need to create variables that are functions of other variables, or replace existing variables with an updated version.
+
+#### Python {-}
+
+
+#### R {-}
+
+Adding a new variable name after the dollar sign notation and assigning a result adds a new column.
+
+```{r}
+# add column for Kilometer per liter
+mtcars$kpl <- mtcars$mpg/2.352
+```
+
+Doing the same with an existing variable updates the values in a column.
+
+To remove a variable, assign it `NULL`.
+
+```{r}
+# drop the column we just created
+mtcars$kpl <- NULL
+```
+
+
 ## Create strings from numbers
 
-You may have data that is numeric but that needs to be treated as a string. For example, census data often codes age ranges as groups. For example:
-
-- 1 = 0-6
-- 2 = 7-12 
-- 3 = 13-17
-
-And so on. These numbers represent groups, not a count or measure of anything.
+You may have data that is numeric but that needs to be treated as a string. 
 
 #### Python {-}
 
@@ -104,14 +178,8 @@ And so on. These numbers represent groups, not a count or measure of anything.
 The `as.character()` function takes a vector and converts it to string format.
 
 ```{r}
-# create a vector of numbers
-x <- c(2, 2, 3, 4, 2, 4)
-x
-
-# convert to string
-xc <- as.character(x)
-xc
-
+head(mtcars$am)
+head(as.character(mtcars$am))
 ```
 
 
@@ -119,13 +187,11 @@ The `factor()` function can also be used to convert a numeric vector into a  cat
 
 ```{r}
 # convert to factor
-xf <- factor(x)
-xf
+head(mtcars$am)
+head(factor(mtcars$am))
 
 # convert to factor with labels
-xf2 <- factor(x, labels = c("grade 2", "grade 3", "grade 4"))
-xf2
-
+head(factor(mtcars$am, labels = c("automatic", "manual")))
 ```
 
 
