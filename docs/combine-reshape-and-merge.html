@@ -232,20 +232,57 @@ div.csl-indent {
 <p>This chapter looks at various strategies for combining, reshaping and merging data.</p>
 <div id="combine-rows" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> Combine rows</h2>
+<p>Combining rows may be thought of as “stacking” rectangular data structures.</p>
 <div id="python-20" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
 <div id="r-20" class="section level4 unnumbered">
 <h4>R</h4>
+<p>The <code>rbind()</code> function “binds” rows. It takes two or more objects. To row bind data frames the column names must match, otherwise an error is returned. If columns being stacked have differing variable types, the values will be coerced according to <code>logical</code> &lt; <code>integer</code> &lt; <code>double</code> &lt; <code>complex</code> &lt; <code>character</code>.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="combine-reshape-and-merge.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">y =</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span>
+<span id="cb51-2"><a href="combine-reshape-and-merge.html#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">y =</span> letters[<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>])</span>
+<span id="cb51-3"><a href="combine-reshape-and-merge.html#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">rbind</span>(d1, d2)</span>
+<span id="cb51-4"><a href="combine-reshape-and-merge.html#cb51-4" aria-hidden="true" tabindex="-1"></a>  x y</span>
+<span id="cb51-5"><a href="combine-reshape-and-merge.html#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">4</span> a</span>
+<span id="cb51-6"><a href="combine-reshape-and-merge.html#cb51-6" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="dv">5</span> b</span>
+<span id="cb51-7"><a href="combine-reshape-and-merge.html#cb51-7" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="dv">6</span> c</span>
+<span id="cb51-8"><a href="combine-reshape-and-merge.html#cb51-8" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="dv">3</span> d</span>
+<span id="cb51-9"><a href="combine-reshape-and-merge.html#cb51-9" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="dv">2</span> e</span>
+<span id="cb51-10"><a href="combine-reshape-and-merge.html#cb51-10" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span> <span class="dv">1</span> f</span></code></pre></div>
+<p>See also the <code>bind_rows()</code> function in the <strong>dplyr</strong> package.</p>
 </div>
 </div>
 <div id="combine-columns" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> Combine columns</h2>
+<p>Combining columns may be thought of as setting rectangular data structures next to each other.</p>
 <div id="python-21" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
 <div id="r-21" class="section level4 unnumbered">
 <h4>R</h4>
+<p>The <code>cbind()</code> function “binds” columns. It takes two or more objects. To column bind data frames the number of rows must match, otherwise the object with fewer rows will have rows “recycled” (if possible) or an error is returned.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="combine-reshape-and-merge.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">10</span><span class="sc">:</span><span class="dv">13</span>, <span class="at">y =</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>])</span>
+<span id="cb52-2"><a href="combine-reshape-and-merge.html#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">23</span>,<span class="dv">34</span>,<span class="dv">45</span>,<span class="dv">44</span>))</span>
+<span id="cb52-3"><a href="combine-reshape-and-merge.html#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">cbind</span>(d1, d2)</span>
+<span id="cb52-4"><a href="combine-reshape-and-merge.html#cb52-4" aria-hidden="true" tabindex="-1"></a>   x y  x</span>
+<span id="cb52-5"><a href="combine-reshape-and-merge.html#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">10</span> a <span class="dv">23</span></span>
+<span id="cb52-6"><a href="combine-reshape-and-merge.html#cb52-6" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="dv">11</span> b <span class="dv">34</span></span>
+<span id="cb52-7"><a href="combine-reshape-and-merge.html#cb52-7" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="dv">12</span> c <span class="dv">45</span></span>
+<span id="cb52-8"><a href="combine-reshape-and-merge.html#cb52-8" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="dv">13</span> d <span class="dv">44</span></span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="combine-reshape-and-merge.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># example of recycled rows (d1 is repeated twice)</span></span>
+<span id="cb53-2"><a href="combine-reshape-and-merge.html#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> d1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">10</span><span class="sc">:</span><span class="dv">13</span>, <span class="at">y =</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>])</span>
+<span id="cb53-3"><a href="combine-reshape-and-merge.html#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">23</span>,<span class="dv">34</span>,<span class="dv">45</span>,<span class="dv">44</span>,<span class="dv">99</span>,<span class="dv">99</span>,<span class="dv">99</span>,<span class="dv">99</span>))</span>
+<span id="cb53-4"><a href="combine-reshape-and-merge.html#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">cbind</span>(d1, d2)</span>
+<span id="cb53-5"><a href="combine-reshape-and-merge.html#cb53-5" aria-hidden="true" tabindex="-1"></a>   x y  x</span>
+<span id="cb53-6"><a href="combine-reshape-and-merge.html#cb53-6" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">10</span> a <span class="dv">23</span></span>
+<span id="cb53-7"><a href="combine-reshape-and-merge.html#cb53-7" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="dv">11</span> b <span class="dv">34</span></span>
+<span id="cb53-8"><a href="combine-reshape-and-merge.html#cb53-8" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="dv">12</span> c <span class="dv">45</span></span>
+<span id="cb53-9"><a href="combine-reshape-and-merge.html#cb53-9" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="dv">13</span> d <span class="dv">44</span></span>
+<span id="cb53-10"><a href="combine-reshape-and-merge.html#cb53-10" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="dv">10</span> a <span class="dv">99</span></span>
+<span id="cb53-11"><a href="combine-reshape-and-merge.html#cb53-11" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span> <span class="dv">11</span> b <span class="dv">99</span></span>
+<span id="cb53-12"><a href="combine-reshape-and-merge.html#cb53-12" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span> <span class="dv">12</span> c <span class="dv">99</span></span>
+<span id="cb53-13"><a href="combine-reshape-and-merge.html#cb53-13" aria-hidden="true" tabindex="-1"></a><span class="dv">8</span> <span class="dv">13</span> d <span class="dv">99</span></span></code></pre></div>
+<p>See also the <code>bind_cols()</code> function in the <strong>dplyr</strong> package.</p>
 </div>
 </div>
 <div id="reshape-wide-to-long" class="section level2" number="5.3">

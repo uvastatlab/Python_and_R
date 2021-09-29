@@ -278,6 +278,14 @@ div.csl-indent {
 <span id="cb17-11"><a href="data-structures.html#cb17-11" aria-hidden="true" tabindex="-1"></a>   name age</span>
 <span id="cb17-12"><a href="data-structures.html#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>   Rob  <span class="dv">35</span></span>
 <span id="cb17-13"><a href="data-structures.html#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> Cindy  <span class="dv">37</span></span></code></pre></div>
+<p>Values in a matrix and data frame can be accessed by position using indexing brackets. The first number(s) refers to rows, the second number(s) to columns. Leaving row or column numbers empty selects all rows or columns.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="data-structures.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># extract value in row 1, column 2</span></span>
+<span id="cb18-2"><a href="data-structures.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> m[<span class="dv">1</span>,<span class="dv">2</span>]</span>
+<span id="cb18-3"><a href="data-structures.html#cb18-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">5</span></span>
+<span id="cb18-4"><a href="data-structures.html#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># extract values in row 2</span></span>
+<span id="cb18-5"><a href="data-structures.html#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> d[<span class="dv">2</span>,]</span>
+<span id="cb18-6"><a href="data-structures.html#cb18-6" aria-hidden="true" tabindex="-1"></a>   name age</span>
+<span id="cb18-7"><a href="data-structures.html#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> Cindy  <span class="dv">37</span></span></code></pre></div>
 
 </div>
 </div>

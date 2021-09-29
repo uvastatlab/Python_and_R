@@ -8,21 +8,51 @@ This chapter looks at various strategies for combining, reshaping and merging da
 
 ## Combine rows
 
+Combining rows may be thought of as "stacking" rectangular data structures.
 
 #### Python {-}
 
 
 #### R {-}
 
+The `rbind()` function "binds" rows. It takes two or more objects. To row bind data frames the column names must match, otherwise an error is returned. If  columns being stacked have differing variable types, the values will be coerced according to `logical` < `integer` < `double` < `complex` < `character`.
+
+
+```{r}
+d1 <- data.frame(x = 4:6, y = letters[1:3])
+d2 <- data.frame(x = 3:1, y = letters[4:6])
+rbind(d1, d2)
+```
+
+See also the `bind_rows()` function in the **dplyr** package.
 
 ## Combine columns
 
+Combining columns may be thought of as setting rectangular data structures next to each other.
 
 #### Python {-}
 
 
 #### R {-}
 
+The `cbind()` function "binds" columns. It takes two or more objects. To column bind data frames the number of rows must match, otherwise the object with fewer rows will have rows "recycled" (if possible) or an error is returned.
+
+```{r}
+d1 <- data.frame(x = 10:13, y = letters[1:4])
+d2 <- data.frame(x = c(23,34,45,44))
+cbind(d1, d2)
+```
+
+
+```{r}
+# example of recycled rows (d1 is repeated twice)
+d1 <- data.frame(x = 10:13, y = letters[1:4])
+d2 <- data.frame(x = c(23,34,45,44,99,99,99,99))
+cbind(d1, d2)
+
+```
+
+See also the `bind_cols()` function in the **dplyr** package.
 
 ## Reshape wide to long
 

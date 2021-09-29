@@ -235,19 +235,19 @@ div.csl-indent {
 <p>Comma separated value (CSV) files are text files with fields separated by commas. They are useful for “rectangular” data where rows represent observations and columns represent variables or features.</p>
 <div id="python-8" class="section level4 unnumbered">
 <h4>Python</h4>
-<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="importing-data.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> pandas</span>
-<span id="cb18-2"><a href="importing-data.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> d <span class="op">=</span> pandas.read_csv(<span class="st">&#39;data/dat.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="importing-data.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> pandas</span>
+<span id="cb19-2"><a href="importing-data.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> d <span class="op">=</span> pandas.read_csv(<span class="st">&#39;data/dat.csv&#39;</span>)</span></code></pre></div>
 </div>
 <div id="r-8" class="section level4 unnumbered">
 <h4>R</h4>
 <p>There are many ways to import a csv file. A common way is to use the base R function <code>read.csv()</code>.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="importing-data.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/dat.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="importing-data.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/dat.csv&quot;</span>)</span></code></pre></div>
 <p>Two packages that provide alternatives to <code>read.csv()</code> are <strong>readr</strong> and <strong>data.table</strong>. The <strong>readr</strong> function <code>read_csv()</code> returns a <a href="https://r4ds.had.co.nz/tibbles.html">tibble</a>. The <strong>data.table</strong> function <code>fread()</code> returns a <a href="https://rdatatable.gitlab.io/data.table/articles/datatable-intro.html">data.table</a>.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="importing-data.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(readr)</span>
-<span id="cb20-2"><a href="importing-data.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/dat.csv&quot;</span>)</span>
-<span id="cb20-3"><a href="importing-data.html#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb20-4"><a href="importing-data.html#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">library</span>(data.table)</span>
-<span id="cb20-5"><a href="importing-data.html#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;data/dat.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="importing-data.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(readr)</span>
+<span id="cb21-2"><a href="importing-data.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/dat.csv&quot;</span>)</span>
+<span id="cb21-3"><a href="importing-data.html#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb21-4"><a href="importing-data.html#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">library</span>(data.table)</span>
+<span id="cb21-5"><a href="importing-data.html#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;data/dat.csv&quot;</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="xlsxlsx-excel" class="section level2" number="3.2">

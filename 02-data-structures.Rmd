@@ -62,3 +62,13 @@ d <- data.frame(name = c("Rob", "Cindy"),
 d
 ```
 
+Values in a matrix and data frame can be accessed by position using indexing brackets. The first number(s) refers to rows, the second number(s) to columns. Leaving row or column numbers empty selects all rows or columns.
+
+```{r}
+# extract value in row 1, column 2
+m[1,2]
+
+# extract values in row 2
+d[2,]
+```
+
