@@ -4,3 +4,5 @@ _bookdown_files
 .Rhistory
 .DS_Store
 **/.DS_Store
+_main.log
+_main.tex

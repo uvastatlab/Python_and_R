@@ -9,7 +9,6 @@ TODO
 Set up GitHub actions?
 Docker container?
 
-
 Possible chapters
 - Installing and Updating Packages
 - Data Structures
@@ -28,3 +27,6 @@ Miscellany
 CF: Let's do the following (as done in the bookdown book)
 -	Packages/Libraries are bolded. Eg, The pandas library, The dplyr package
 -	Functions include parentheses: eg,  `gsub()`
+- Additional style questions:
+  - Style for `# Comments`/`#comments`/`# comments`?
+  - Oxford/series commas?

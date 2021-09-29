@@ -21,10 +21,10 @@
   <meta name="twitter:description" content="This book provides parallel examples in Python and R to help users of one platform more easily transition to the other." />
   
 
-<meta name="author" content="Clay Ford" />
+<meta name="author" content="Clay Ford, Jacob Goldstein-Greenwood" />
 
 
-<meta name="date" content="2021-09-28" />
+<meta name="date" content="2021-09-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -305,15 +305,15 @@ div.csl-indent {
 <span id="cb7-10"><a href="basics.html#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># download and install available package updates;</span></span>
 <span id="cb7-11"><a href="basics.html#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># set ask = TRUE to verify installation of each package</span></span>
 <span id="cb7-12"><a href="basics.html#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">update.packages</span>(<span class="at">ask =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p>To install R packages from GitHub use the <code>install_github()</code> function from the <strong>devtools</strong> package. You need to include the username of the repo owner followed by a forward slash and the name of the package. Typing two colons between a package and a function in the package allows you to use that function without loading the package.</p>
+<p>To install R packages from GitHub, use the <code>install_github()</code> function from the <strong>devtools</strong> package. You need to include the username of the repo owner followed by a forward slash and the name of the package. Typing two colons between a package name and a function in the package allows you to use that function without loading the package.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="basics.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
 <span id="cb8-2"><a href="basics.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;username/packagename&quot;</span>)</span></code></pre></div>
-<p>Occasionally when installing or updating a package you will be asked “Do you want to install from sources the package which needs compilation?” R packages on CRAN are <em>compiled</em> for Mac and Windows operating systems. That can take a day or two. If you try to install a package that has not been compiled then you’ll get asked if you want to compile it yourself. You can usually just answer No. If you answer Yes, R will try to compile the package on your computer. This will only work if you have the required build tools on your computer. For Windows this means having <a href="https://cran.r-project.org/bin/windows/Rtools/">RTools</a> installed. Mac users typically already have the necessary build tools.</p>
+<p>Occasionally, when installing or updating a package you will be asked, “Do you want to install from sources the package which needs compilation?” R packages on CRAN are <em>compiled</em> for Mac and Windows operating systems. That can take a day or two. If you try to install a package that has not been compiled then you’ll get asked if you want to compile it yourself. You can usually just answer No. If you answer Yes, R will try to compile the package on your computer. This will only work if you have the required build tools on your computer. For Windows this means having <a href="https://cran.r-project.org/bin/windows/Rtools/">RTools</a> installed. Mac users typically already have the necessary build tools.</p>
 </div>
 </div>
 <div id="generating-a-sequence-of-values" class="section level2" number="1.5">
 <h2><span class="header-section-number">1.5</span> Generating a sequence of values</h2>
-<p>There are multiple ways in both Python and R to generate sequences of values. In Python, one option is <code>arange()</code> from <code>numpy</code>. In R, a common approach is to use <code>seq()</code>. The sequences can be incremented by indicating a <code>step</code> argument in <code>arange()</code> or a <code>by</code> argument in <code>seq()</code>. Be aware that the start/stop interval in <code>arange()</code> is <em>open</em>, but the from/to interval in <code>seq()</code> is <em>closed</em>.</p>
+<p>In Python, one option to generate a sequence of values is <code>arange()</code> from <code>numpy</code>. In R, a common approach is to use <code>seq()</code>. The sequences can be incremented by indicating a <code>step</code> argument in <code>arange()</code> or a <code>by</code> argument in <code>seq()</code>. Be aware that the <em>end</em> of the start/stop interval in <code>arange()</code> is <em>open</em>, but the from/to interval in <code>seq()</code> is <em>closed</em> (on both sides).</p>
 <div id="python-4" class="section level4 unnumbered">
 <h4>Python</h4>
 <div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="basics.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> numpy <span class="im">as</span> np</span>
