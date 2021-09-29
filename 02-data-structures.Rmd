@@ -26,6 +26,17 @@ x2 <- c(23, 43, 'hi')
 x2
 ```
 
+Values in a vector can be accessed by position using indexing brackets. 
+
+```{r}
+# extract the 2nd value
+x1[2]
+
+# extract the 2nd and 3rd value
+x1[2:3]
+
+```
+
 
 ## Two-dimensional
 

@@ -259,8 +259,28 @@ readr::parse_number(weight)
 
 ## Change case
 
+How to change the case of strings. The most common case transformations are lower case, upper case, and title case.
 
 #### Python {-}
 
 
 #### R {-}
+
+The `tolower()` and `toupper()` functions convert case to lower and upper, respectively.
+
+```{r}
+names(mtcars) <- toupper(names(mtcars))
+names(mtcars)
+```
+
+```{r}
+names(mtcars) <- tolower(names(mtcars))
+names(mtcars)
+```
+
+The **stringr** package provides a convenient title case conversion function, `str_to_title()`, which capitalizes the first letter of each string.
+
+```{r}
+stringr::str_to_title(names(mtcars))
+```
+
