@@ -109,6 +109,31 @@ devtools::install_github("username/packagename")
 
 Occasionally when installing or updating a package you will be asked "Do you want to install from sources the package which needs compilation?" R packages on CRAN are _compiled_ for Mac and Windows operating systems. That can take a day or two. If you try to install a package that has not been compiled then you'll get asked if you want to compile it yourself. You can usually just answer No. If you answer Yes, R will try to compile the package on your computer. This will only work if you have the required build tools on your computer. For Windows this means having [RTools](https://cran.r-project.org/bin/windows/Rtools/) installed. Mac users typically already have the necessary build tools.
 
+## Logic
+
+Python and R share the same operators for making comparisons: 
+
+- `==` (equals)
+- `!=` (not equal to)
+- `<` (less than)
+- `<=` (less than or equal to)
+- `>` (greater than)
+- `>=` (greater than or equal to)
+
+Likewise they share the same operators for logical AND and OR:
+
+- `&` (AND)
+- `|` (OR)
+
+However R also has `&&` and `||` operators for programming control-flow.
+
+Python and R have different operators for negation and xor (exclusive OR). 
+
+#### Python {-}
+
+#### R {-}
+
+
 ## Generating a sequence of values
 
 There are multiple ways in both Python and R to generate sequences of values. In Python, one option is `arange()` from `numpy`. In R, a common approach is to use `seq()`. The sequences can be incremented by indicating a `step` argument in `arange()` or a `by` argument in `seq()`. Be aware that the start/stop interval in `arange()` is _open_, but the from/to interval in `seq()` is _closed_.

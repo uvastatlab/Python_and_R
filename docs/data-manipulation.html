@@ -166,8 +166,9 @@ div.csl-indent {
 <li class="chapter" data-level="1.2" data-path="basics.html"><a href="basics.html#assignment"><i class="fa fa-check"></i><b>1.2</b> Assignment</a></li>
 <li class="chapter" data-level="1.3" data-path="basics.html"><a href="basics.html#printing-a-value"><i class="fa fa-check"></i><b>1.3</b> Printing a value</a></li>
 <li class="chapter" data-level="1.4" data-path="basics.html"><a href="basics.html#packages-and-libraries"><i class="fa fa-check"></i><b>1.4</b> Packages and Libraries</a></li>
-<li class="chapter" data-level="1.5" data-path="basics.html"><a href="basics.html#generating-a-sequence-of-values"><i class="fa fa-check"></i><b>1.5</b> Generating a sequence of values</a></li>
-<li class="chapter" data-level="1.6" data-path="basics.html"><a href="basics.html#calculating-means-and-medians"><i class="fa fa-check"></i><b>1.6</b> Calculating means and medians</a></li>
+<li class="chapter" data-level="1.5" data-path="basics.html"><a href="basics.html#logic"><i class="fa fa-check"></i><b>1.5</b> Logic</a></li>
+<li class="chapter" data-level="1.6" data-path="basics.html"><a href="basics.html#generating-a-sequence-of-values"><i class="fa fa-check"></i><b>1.6</b> Generating a sequence of values</a></li>
+<li class="chapter" data-level="1.7" data-path="basics.html"><a href="basics.html#calculating-means-and-medians"><i class="fa fa-check"></i><b>1.7</b> Calculating means and medians</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>2</b> Data Structures</a>
 <ul>
@@ -191,6 +192,8 @@ div.csl-indent {
 <li class="chapter" data-level="4.5" data-path="data-manipulation.html"><a href="data-manipulation.html#create-strings-from-numbers"><i class="fa fa-check"></i><b>4.5</b> Create strings from numbers</a></li>
 <li class="chapter" data-level="4.6" data-path="data-manipulation.html"><a href="data-manipulation.html#create-numbers-from-strings"><i class="fa fa-check"></i><b>4.6</b> Create numbers from strings</a></li>
 <li class="chapter" data-level="4.7" data-path="data-manipulation.html"><a href="data-manipulation.html#change-case"><i class="fa fa-check"></i><b>4.7</b> Change case</a></li>
+<li class="chapter" data-level="4.8" data-path="data-manipulation.html"><a href="data-manipulation.html#drop-duplicate-rows"><i class="fa fa-check"></i><b>4.8</b> Drop duplicate rows</a></li>
+<li class="chapter" data-level="4.9" data-path="data-manipulation.html"><a href="data-manipulation.html#randomly-sample-rows"><i class="fa fa-check"></i><b>4.9</b> Randomly sample rows</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="combine-reshape-and-merge.html"><a href="combine-reshape-and-merge.html"><i class="fa fa-check"></i><b>5</b> Combine, Reshape and Merge</a>
 <ul>
@@ -234,14 +237,16 @@ div.csl-indent {
 <span id="cb22-2"><a href="data-manipulation.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> <span class="im">import</span> pandas</span>
 <span id="cb22-3"><a href="data-manipulation.html#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> mtcars <span class="op">=</span> pandas.read_csv(<span class="st">&#39;data/mtcars.csv&#39;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="data-manipulation.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># R</span></span>
-<span id="cb23-2"><a href="data-manipulation.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">data</span>(mtcars)</span></code></pre></div>
+<span id="cb23-2"><a href="data-manipulation.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">data</span>(mtcars)</span>
+<span id="cb23-3"><a href="data-manipulation.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># drop row names to match Python version of data</span></span>
+<span id="cb23-4"><a href="data-manipulation.html#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">rownames</span>(mtcars) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span></code></pre></div>
 <div id="names-of-variables-and-their-types" class="section level2" number="4.1">
 <h2><span class="header-section-number">4.1</span> Names of variables and their types</h2>
 <p>View and inspect the names of variables and their type (numeric, string, logical, etc.) This is useful to ensure that variables have the expected type.</p>
-<div id="python-13" class="section level4 unnumbered">
+<div id="python-14" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
-<div id="r-13" class="section level4 unnumbered">
+<div id="r-14" class="section level4 unnumbered">
 <h4>R</h4>
 <p>The <code>str()</code> function in R lists the names of the variables, their type, the first few values, and the dimensions of the data frame.</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="data-manipulation.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">str</span>(mtcars)</span>
@@ -269,10 +274,10 @@ div.csl-indent {
 <div id="access-variables" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> Access variables</h2>
 <p>How to work with a specific column of data.</p>
-<div id="python-14" class="section level4 unnumbered">
+<div id="python-15" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
-<div id="r-14" class="section level4 unnumbered">
+<div id="r-15" class="section level4 unnumbered">
 <h4>R</h4>
 <p>The dollar sign operator, <code>$</code>, provides access to a column in a data frame as a vector.</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="data-manipulation.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> mtcars<span class="sc">$</span>mpg</span>
@@ -286,78 +291,78 @@ div.csl-indent {
 <span id="cb28-4"><a href="data-manipulation.html#cb28-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">31</span>] <span class="fl">15.0</span> <span class="fl">21.4</span></span></code></pre></div>
 <p>Single indexing brackets work as well, but return a data frame instead of a vector (if used with a data frame).</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="data-manipulation.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> mtcars[<span class="st">&quot;mpg&quot;</span>]</span>
-<span id="cb29-2"><a href="data-manipulation.html#cb29-2" aria-hidden="true" tabindex="-1"></a>                     mpg</span>
-<span id="cb29-3"><a href="data-manipulation.html#cb29-3" aria-hidden="true" tabindex="-1"></a>Mazda RX4           <span class="fl">21.0</span></span>
-<span id="cb29-4"><a href="data-manipulation.html#cb29-4" aria-hidden="true" tabindex="-1"></a>Mazda RX4 Wag       <span class="fl">21.0</span></span>
-<span id="cb29-5"><a href="data-manipulation.html#cb29-5" aria-hidden="true" tabindex="-1"></a>Datsun <span class="dv">710</span>          <span class="fl">22.8</span></span>
-<span id="cb29-6"><a href="data-manipulation.html#cb29-6" aria-hidden="true" tabindex="-1"></a>Hornet <span class="dv">4</span> Drive      <span class="fl">21.4</span></span>
-<span id="cb29-7"><a href="data-manipulation.html#cb29-7" aria-hidden="true" tabindex="-1"></a>Hornet Sportabout   <span class="fl">18.7</span></span>
-<span id="cb29-8"><a href="data-manipulation.html#cb29-8" aria-hidden="true" tabindex="-1"></a>Valiant             <span class="fl">18.1</span></span>
-<span id="cb29-9"><a href="data-manipulation.html#cb29-9" aria-hidden="true" tabindex="-1"></a>Duster <span class="dv">360</span>          <span class="fl">14.3</span></span>
-<span id="cb29-10"><a href="data-manipulation.html#cb29-10" aria-hidden="true" tabindex="-1"></a>Merc 240D           <span class="fl">24.4</span></span>
-<span id="cb29-11"><a href="data-manipulation.html#cb29-11" aria-hidden="true" tabindex="-1"></a>Merc <span class="dv">230</span>            <span class="fl">22.8</span></span>
-<span id="cb29-12"><a href="data-manipulation.html#cb29-12" aria-hidden="true" tabindex="-1"></a>Merc <span class="dv">280</span>            <span class="fl">19.2</span></span>
-<span id="cb29-13"><a href="data-manipulation.html#cb29-13" aria-hidden="true" tabindex="-1"></a>Merc 280C           <span class="fl">17.8</span></span>
-<span id="cb29-14"><a href="data-manipulation.html#cb29-14" aria-hidden="true" tabindex="-1"></a>Merc 450SE          <span class="fl">16.4</span></span>
-<span id="cb29-15"><a href="data-manipulation.html#cb29-15" aria-hidden="true" tabindex="-1"></a>Merc 450SL          <span class="fl">17.3</span></span>
-<span id="cb29-16"><a href="data-manipulation.html#cb29-16" aria-hidden="true" tabindex="-1"></a>Merc 450SLC         <span class="fl">15.2</span></span>
-<span id="cb29-17"><a href="data-manipulation.html#cb29-17" aria-hidden="true" tabindex="-1"></a>Cadillac Fleetwood  <span class="fl">10.4</span></span>
-<span id="cb29-18"><a href="data-manipulation.html#cb29-18" aria-hidden="true" tabindex="-1"></a>Lincoln Continental <span class="fl">10.4</span></span>
-<span id="cb29-19"><a href="data-manipulation.html#cb29-19" aria-hidden="true" tabindex="-1"></a>Chrysler Imperial   <span class="fl">14.7</span></span>
-<span id="cb29-20"><a href="data-manipulation.html#cb29-20" aria-hidden="true" tabindex="-1"></a>Fiat <span class="dv">128</span>            <span class="fl">32.4</span></span>
-<span id="cb29-21"><a href="data-manipulation.html#cb29-21" aria-hidden="true" tabindex="-1"></a>Honda Civic         <span class="fl">30.4</span></span>
-<span id="cb29-22"><a href="data-manipulation.html#cb29-22" aria-hidden="true" tabindex="-1"></a>Toyota Corolla      <span class="fl">33.9</span></span>
-<span id="cb29-23"><a href="data-manipulation.html#cb29-23" aria-hidden="true" tabindex="-1"></a>Toyota Corona       <span class="fl">21.5</span></span>
-<span id="cb29-24"><a href="data-manipulation.html#cb29-24" aria-hidden="true" tabindex="-1"></a>Dodge Challenger    <span class="fl">15.5</span></span>
-<span id="cb29-25"><a href="data-manipulation.html#cb29-25" aria-hidden="true" tabindex="-1"></a>AMC Javelin         <span class="fl">15.2</span></span>
-<span id="cb29-26"><a href="data-manipulation.html#cb29-26" aria-hidden="true" tabindex="-1"></a>Camaro Z28          <span class="fl">13.3</span></span>
-<span id="cb29-27"><a href="data-manipulation.html#cb29-27" aria-hidden="true" tabindex="-1"></a>Pontiac Firebird    <span class="fl">19.2</span></span>
-<span id="cb29-28"><a href="data-manipulation.html#cb29-28" aria-hidden="true" tabindex="-1"></a>Fiat X1<span class="dv">-9</span>           <span class="fl">27.3</span></span>
-<span id="cb29-29"><a href="data-manipulation.html#cb29-29" aria-hidden="true" tabindex="-1"></a>Porsche <span class="dv">914-2</span>       <span class="fl">26.0</span></span>
-<span id="cb29-30"><a href="data-manipulation.html#cb29-30" aria-hidden="true" tabindex="-1"></a>Lotus Europa        <span class="fl">30.4</span></span>
-<span id="cb29-31"><a href="data-manipulation.html#cb29-31" aria-hidden="true" tabindex="-1"></a>Ford Pantera L      <span class="fl">15.8</span></span>
-<span id="cb29-32"><a href="data-manipulation.html#cb29-32" aria-hidden="true" tabindex="-1"></a>Ferrari Dino        <span class="fl">19.7</span></span>
-<span id="cb29-33"><a href="data-manipulation.html#cb29-33" aria-hidden="true" tabindex="-1"></a>Maserati Bora       <span class="fl">15.0</span></span>
-<span id="cb29-34"><a href="data-manipulation.html#cb29-34" aria-hidden="true" tabindex="-1"></a>Volvo 142E          <span class="fl">21.4</span></span></code></pre></div>
+<span id="cb29-2"><a href="data-manipulation.html#cb29-2" aria-hidden="true" tabindex="-1"></a>    mpg</span>
+<span id="cb29-3"><a href="data-manipulation.html#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>  <span class="fl">21.0</span></span>
+<span id="cb29-4"><a href="data-manipulation.html#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>  <span class="fl">21.0</span></span>
+<span id="cb29-5"><a href="data-manipulation.html#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>  <span class="fl">22.8</span></span>
+<span id="cb29-6"><a href="data-manipulation.html#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>  <span class="fl">21.4</span></span>
+<span id="cb29-7"><a href="data-manipulation.html#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>  <span class="fl">18.7</span></span>
+<span id="cb29-8"><a href="data-manipulation.html#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>  <span class="fl">18.1</span></span>
+<span id="cb29-9"><a href="data-manipulation.html#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span>  <span class="fl">14.3</span></span>
+<span id="cb29-10"><a href="data-manipulation.html#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="dv">8</span>  <span class="fl">24.4</span></span>
+<span id="cb29-11"><a href="data-manipulation.html#cb29-11" aria-hidden="true" tabindex="-1"></a><span class="dv">9</span>  <span class="fl">22.8</span></span>
+<span id="cb29-12"><a href="data-manipulation.html#cb29-12" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="fl">19.2</span></span>
+<span id="cb29-13"><a href="data-manipulation.html#cb29-13" aria-hidden="true" tabindex="-1"></a><span class="dv">11</span> <span class="fl">17.8</span></span>
+<span id="cb29-14"><a href="data-manipulation.html#cb29-14" aria-hidden="true" tabindex="-1"></a><span class="dv">12</span> <span class="fl">16.4</span></span>
+<span id="cb29-15"><a href="data-manipulation.html#cb29-15" aria-hidden="true" tabindex="-1"></a><span class="dv">13</span> <span class="fl">17.3</span></span>
+<span id="cb29-16"><a href="data-manipulation.html#cb29-16" aria-hidden="true" tabindex="-1"></a><span class="dv">14</span> <span class="fl">15.2</span></span>
+<span id="cb29-17"><a href="data-manipulation.html#cb29-17" aria-hidden="true" tabindex="-1"></a><span class="dv">15</span> <span class="fl">10.4</span></span>
+<span id="cb29-18"><a href="data-manipulation.html#cb29-18" aria-hidden="true" tabindex="-1"></a><span class="dv">16</span> <span class="fl">10.4</span></span>
+<span id="cb29-19"><a href="data-manipulation.html#cb29-19" aria-hidden="true" tabindex="-1"></a><span class="dv">17</span> <span class="fl">14.7</span></span>
+<span id="cb29-20"><a href="data-manipulation.html#cb29-20" aria-hidden="true" tabindex="-1"></a><span class="dv">18</span> <span class="fl">32.4</span></span>
+<span id="cb29-21"><a href="data-manipulation.html#cb29-21" aria-hidden="true" tabindex="-1"></a><span class="dv">19</span> <span class="fl">30.4</span></span>
+<span id="cb29-22"><a href="data-manipulation.html#cb29-22" aria-hidden="true" tabindex="-1"></a><span class="dv">20</span> <span class="fl">33.9</span></span>
+<span id="cb29-23"><a href="data-manipulation.html#cb29-23" aria-hidden="true" tabindex="-1"></a><span class="dv">21</span> <span class="fl">21.5</span></span>
+<span id="cb29-24"><a href="data-manipulation.html#cb29-24" aria-hidden="true" tabindex="-1"></a><span class="dv">22</span> <span class="fl">15.5</span></span>
+<span id="cb29-25"><a href="data-manipulation.html#cb29-25" aria-hidden="true" tabindex="-1"></a><span class="dv">23</span> <span class="fl">15.2</span></span>
+<span id="cb29-26"><a href="data-manipulation.html#cb29-26" aria-hidden="true" tabindex="-1"></a><span class="dv">24</span> <span class="fl">13.3</span></span>
+<span id="cb29-27"><a href="data-manipulation.html#cb29-27" aria-hidden="true" tabindex="-1"></a><span class="dv">25</span> <span class="fl">19.2</span></span>
+<span id="cb29-28"><a href="data-manipulation.html#cb29-28" aria-hidden="true" tabindex="-1"></a><span class="dv">26</span> <span class="fl">27.3</span></span>
+<span id="cb29-29"><a href="data-manipulation.html#cb29-29" aria-hidden="true" tabindex="-1"></a><span class="dv">27</span> <span class="fl">26.0</span></span>
+<span id="cb29-30"><a href="data-manipulation.html#cb29-30" aria-hidden="true" tabindex="-1"></a><span class="dv">28</span> <span class="fl">30.4</span></span>
+<span id="cb29-31"><a href="data-manipulation.html#cb29-31" aria-hidden="true" tabindex="-1"></a><span class="dv">29</span> <span class="fl">15.8</span></span>
+<span id="cb29-32"><a href="data-manipulation.html#cb29-32" aria-hidden="true" tabindex="-1"></a><span class="dv">30</span> <span class="fl">19.7</span></span>
+<span id="cb29-33"><a href="data-manipulation.html#cb29-33" aria-hidden="true" tabindex="-1"></a><span class="dv">31</span> <span class="fl">15.0</span></span>
+<span id="cb29-34"><a href="data-manipulation.html#cb29-34" aria-hidden="true" tabindex="-1"></a><span class="dv">32</span> <span class="fl">21.4</span></span></code></pre></div>
 <p>Single indexing brackets also allow selection of rows when used with a comma. The syntax is <code>rows, columns</code></p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="data-manipulation.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># first three rows</span></span>
 <span id="cb30-2"><a href="data-manipulation.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> mtcars[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="st">&quot;mpg&quot;</span>]</span>
 <span id="cb30-3"><a href="data-manipulation.html#cb30-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">21.0</span> <span class="fl">21.0</span> <span class="fl">22.8</span></span></code></pre></div>
 <p>Finally single indexing brackets allow us to select multiple columns. Request columns either by name or position using a vector.</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="data-manipulation.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> mtcars[<span class="fu">c</span>(<span class="st">&quot;mpg&quot;</span>, <span class="st">&quot;cyl&quot;</span>)] </span>
-<span id="cb31-2"><a href="data-manipulation.html#cb31-2" aria-hidden="true" tabindex="-1"></a>                     mpg cyl</span>
-<span id="cb31-3"><a href="data-manipulation.html#cb31-3" aria-hidden="true" tabindex="-1"></a>Mazda RX4           <span class="fl">21.0</span>   <span class="dv">6</span></span>
-<span id="cb31-4"><a href="data-manipulation.html#cb31-4" aria-hidden="true" tabindex="-1"></a>Mazda RX4 Wag       <span class="fl">21.0</span>   <span class="dv">6</span></span>
-<span id="cb31-5"><a href="data-manipulation.html#cb31-5" aria-hidden="true" tabindex="-1"></a>Datsun <span class="dv">710</span>          <span class="fl">22.8</span>   <span class="dv">4</span></span>
-<span id="cb31-6"><a href="data-manipulation.html#cb31-6" aria-hidden="true" tabindex="-1"></a>Hornet <span class="dv">4</span> Drive      <span class="fl">21.4</span>   <span class="dv">6</span></span>
-<span id="cb31-7"><a href="data-manipulation.html#cb31-7" aria-hidden="true" tabindex="-1"></a>Hornet Sportabout   <span class="fl">18.7</span>   <span class="dv">8</span></span>
-<span id="cb31-8"><a href="data-manipulation.html#cb31-8" aria-hidden="true" tabindex="-1"></a>Valiant             <span class="fl">18.1</span>   <span class="dv">6</span></span>
-<span id="cb31-9"><a href="data-manipulation.html#cb31-9" aria-hidden="true" tabindex="-1"></a>Duster <span class="dv">360</span>          <span class="fl">14.3</span>   <span class="dv">8</span></span>
-<span id="cb31-10"><a href="data-manipulation.html#cb31-10" aria-hidden="true" tabindex="-1"></a>Merc 240D           <span class="fl">24.4</span>   <span class="dv">4</span></span>
-<span id="cb31-11"><a href="data-manipulation.html#cb31-11" aria-hidden="true" tabindex="-1"></a>Merc <span class="dv">230</span>            <span class="fl">22.8</span>   <span class="dv">4</span></span>
-<span id="cb31-12"><a href="data-manipulation.html#cb31-12" aria-hidden="true" tabindex="-1"></a>Merc <span class="dv">280</span>            <span class="fl">19.2</span>   <span class="dv">6</span></span>
-<span id="cb31-13"><a href="data-manipulation.html#cb31-13" aria-hidden="true" tabindex="-1"></a>Merc 280C           <span class="fl">17.8</span>   <span class="dv">6</span></span>
-<span id="cb31-14"><a href="data-manipulation.html#cb31-14" aria-hidden="true" tabindex="-1"></a>Merc 450SE          <span class="fl">16.4</span>   <span class="dv">8</span></span>
-<span id="cb31-15"><a href="data-manipulation.html#cb31-15" aria-hidden="true" tabindex="-1"></a>Merc 450SL          <span class="fl">17.3</span>   <span class="dv">8</span></span>
-<span id="cb31-16"><a href="data-manipulation.html#cb31-16" aria-hidden="true" tabindex="-1"></a>Merc 450SLC         <span class="fl">15.2</span>   <span class="dv">8</span></span>
-<span id="cb31-17"><a href="data-manipulation.html#cb31-17" aria-hidden="true" tabindex="-1"></a>Cadillac Fleetwood  <span class="fl">10.4</span>   <span class="dv">8</span></span>
-<span id="cb31-18"><a href="data-manipulation.html#cb31-18" aria-hidden="true" tabindex="-1"></a>Lincoln Continental <span class="fl">10.4</span>   <span class="dv">8</span></span>
-<span id="cb31-19"><a href="data-manipulation.html#cb31-19" aria-hidden="true" tabindex="-1"></a>Chrysler Imperial   <span class="fl">14.7</span>   <span class="dv">8</span></span>
-<span id="cb31-20"><a href="data-manipulation.html#cb31-20" aria-hidden="true" tabindex="-1"></a>Fiat <span class="dv">128</span>            <span class="fl">32.4</span>   <span class="dv">4</span></span>
-<span id="cb31-21"><a href="data-manipulation.html#cb31-21" aria-hidden="true" tabindex="-1"></a>Honda Civic         <span class="fl">30.4</span>   <span class="dv">4</span></span>
-<span id="cb31-22"><a href="data-manipulation.html#cb31-22" aria-hidden="true" tabindex="-1"></a>Toyota Corolla      <span class="fl">33.9</span>   <span class="dv">4</span></span>
-<span id="cb31-23"><a href="data-manipulation.html#cb31-23" aria-hidden="true" tabindex="-1"></a>Toyota Corona       <span class="fl">21.5</span>   <span class="dv">4</span></span>
-<span id="cb31-24"><a href="data-manipulation.html#cb31-24" aria-hidden="true" tabindex="-1"></a>Dodge Challenger    <span class="fl">15.5</span>   <span class="dv">8</span></span>
-<span id="cb31-25"><a href="data-manipulation.html#cb31-25" aria-hidden="true" tabindex="-1"></a>AMC Javelin         <span class="fl">15.2</span>   <span class="dv">8</span></span>
-<span id="cb31-26"><a href="data-manipulation.html#cb31-26" aria-hidden="true" tabindex="-1"></a>Camaro Z28          <span class="fl">13.3</span>   <span class="dv">8</span></span>
-<span id="cb31-27"><a href="data-manipulation.html#cb31-27" aria-hidden="true" tabindex="-1"></a>Pontiac Firebird    <span class="fl">19.2</span>   <span class="dv">8</span></span>
-<span id="cb31-28"><a href="data-manipulation.html#cb31-28" aria-hidden="true" tabindex="-1"></a>Fiat X1<span class="dv">-9</span>           <span class="fl">27.3</span>   <span class="dv">4</span></span>
-<span id="cb31-29"><a href="data-manipulation.html#cb31-29" aria-hidden="true" tabindex="-1"></a>Porsche <span class="dv">914-2</span>       <span class="fl">26.0</span>   <span class="dv">4</span></span>
-<span id="cb31-30"><a href="data-manipulation.html#cb31-30" aria-hidden="true" tabindex="-1"></a>Lotus Europa        <span class="fl">30.4</span>   <span class="dv">4</span></span>
-<span id="cb31-31"><a href="data-manipulation.html#cb31-31" aria-hidden="true" tabindex="-1"></a>Ford Pantera L      <span class="fl">15.8</span>   <span class="dv">8</span></span>
-<span id="cb31-32"><a href="data-manipulation.html#cb31-32" aria-hidden="true" tabindex="-1"></a>Ferrari Dino        <span class="fl">19.7</span>   <span class="dv">6</span></span>
-<span id="cb31-33"><a href="data-manipulation.html#cb31-33" aria-hidden="true" tabindex="-1"></a>Maserati Bora       <span class="fl">15.0</span>   <span class="dv">8</span></span>
-<span id="cb31-34"><a href="data-manipulation.html#cb31-34" aria-hidden="true" tabindex="-1"></a>Volvo 142E          <span class="fl">21.4</span>   <span class="dv">4</span></span>
+<span id="cb31-2"><a href="data-manipulation.html#cb31-2" aria-hidden="true" tabindex="-1"></a>    mpg cyl</span>
+<span id="cb31-3"><a href="data-manipulation.html#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>  <span class="fl">21.0</span>   <span class="dv">6</span></span>
+<span id="cb31-4"><a href="data-manipulation.html#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>  <span class="fl">21.0</span>   <span class="dv">6</span></span>
+<span id="cb31-5"><a href="data-manipulation.html#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>  <span class="fl">22.8</span>   <span class="dv">4</span></span>
+<span id="cb31-6"><a href="data-manipulation.html#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>  <span class="fl">21.4</span>   <span class="dv">6</span></span>
+<span id="cb31-7"><a href="data-manipulation.html#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>  <span class="fl">18.7</span>   <span class="dv">8</span></span>
+<span id="cb31-8"><a href="data-manipulation.html#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>  <span class="fl">18.1</span>   <span class="dv">6</span></span>
+<span id="cb31-9"><a href="data-manipulation.html#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span>  <span class="fl">14.3</span>   <span class="dv">8</span></span>
+<span id="cb31-10"><a href="data-manipulation.html#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="dv">8</span>  <span class="fl">24.4</span>   <span class="dv">4</span></span>
+<span id="cb31-11"><a href="data-manipulation.html#cb31-11" aria-hidden="true" tabindex="-1"></a><span class="dv">9</span>  <span class="fl">22.8</span>   <span class="dv">4</span></span>
+<span id="cb31-12"><a href="data-manipulation.html#cb31-12" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="fl">19.2</span>   <span class="dv">6</span></span>
+<span id="cb31-13"><a href="data-manipulation.html#cb31-13" aria-hidden="true" tabindex="-1"></a><span class="dv">11</span> <span class="fl">17.8</span>   <span class="dv">6</span></span>
+<span id="cb31-14"><a href="data-manipulation.html#cb31-14" aria-hidden="true" tabindex="-1"></a><span class="dv">12</span> <span class="fl">16.4</span>   <span class="dv">8</span></span>
+<span id="cb31-15"><a href="data-manipulation.html#cb31-15" aria-hidden="true" tabindex="-1"></a><span class="dv">13</span> <span class="fl">17.3</span>   <span class="dv">8</span></span>
+<span id="cb31-16"><a href="data-manipulation.html#cb31-16" aria-hidden="true" tabindex="-1"></a><span class="dv">14</span> <span class="fl">15.2</span>   <span class="dv">8</span></span>
+<span id="cb31-17"><a href="data-manipulation.html#cb31-17" aria-hidden="true" tabindex="-1"></a><span class="dv">15</span> <span class="fl">10.4</span>   <span class="dv">8</span></span>
+<span id="cb31-18"><a href="data-manipulation.html#cb31-18" aria-hidden="true" tabindex="-1"></a><span class="dv">16</span> <span class="fl">10.4</span>   <span class="dv">8</span></span>
+<span id="cb31-19"><a href="data-manipulation.html#cb31-19" aria-hidden="true" tabindex="-1"></a><span class="dv">17</span> <span class="fl">14.7</span>   <span class="dv">8</span></span>
+<span id="cb31-20"><a href="data-manipulation.html#cb31-20" aria-hidden="true" tabindex="-1"></a><span class="dv">18</span> <span class="fl">32.4</span>   <span class="dv">4</span></span>
+<span id="cb31-21"><a href="data-manipulation.html#cb31-21" aria-hidden="true" tabindex="-1"></a><span class="dv">19</span> <span class="fl">30.4</span>   <span class="dv">4</span></span>
+<span id="cb31-22"><a href="data-manipulation.html#cb31-22" aria-hidden="true" tabindex="-1"></a><span class="dv">20</span> <span class="fl">33.9</span>   <span class="dv">4</span></span>
+<span id="cb31-23"><a href="data-manipulation.html#cb31-23" aria-hidden="true" tabindex="-1"></a><span class="dv">21</span> <span class="fl">21.5</span>   <span class="dv">4</span></span>
+<span id="cb31-24"><a href="data-manipulation.html#cb31-24" aria-hidden="true" tabindex="-1"></a><span class="dv">22</span> <span class="fl">15.5</span>   <span class="dv">8</span></span>
+<span id="cb31-25"><a href="data-manipulation.html#cb31-25" aria-hidden="true" tabindex="-1"></a><span class="dv">23</span> <span class="fl">15.2</span>   <span class="dv">8</span></span>
+<span id="cb31-26"><a href="data-manipulation.html#cb31-26" aria-hidden="true" tabindex="-1"></a><span class="dv">24</span> <span class="fl">13.3</span>   <span class="dv">8</span></span>
+<span id="cb31-27"><a href="data-manipulation.html#cb31-27" aria-hidden="true" tabindex="-1"></a><span class="dv">25</span> <span class="fl">19.2</span>   <span class="dv">8</span></span>
+<span id="cb31-28"><a href="data-manipulation.html#cb31-28" aria-hidden="true" tabindex="-1"></a><span class="dv">26</span> <span class="fl">27.3</span>   <span class="dv">4</span></span>
+<span id="cb31-29"><a href="data-manipulation.html#cb31-29" aria-hidden="true" tabindex="-1"></a><span class="dv">27</span> <span class="fl">26.0</span>   <span class="dv">4</span></span>
+<span id="cb31-30"><a href="data-manipulation.html#cb31-30" aria-hidden="true" tabindex="-1"></a><span class="dv">28</span> <span class="fl">30.4</span>   <span class="dv">4</span></span>
+<span id="cb31-31"><a href="data-manipulation.html#cb31-31" aria-hidden="true" tabindex="-1"></a><span class="dv">29</span> <span class="fl">15.8</span>   <span class="dv">8</span></span>
+<span id="cb31-32"><a href="data-manipulation.html#cb31-32" aria-hidden="true" tabindex="-1"></a><span class="dv">30</span> <span class="fl">19.7</span>   <span class="dv">6</span></span>
+<span id="cb31-33"><a href="data-manipulation.html#cb31-33" aria-hidden="true" tabindex="-1"></a><span class="dv">31</span> <span class="fl">15.0</span>   <span class="dv">8</span></span>
+<span id="cb31-34"><a href="data-manipulation.html#cb31-34" aria-hidden="true" tabindex="-1"></a><span class="dv">32</span> <span class="fl">21.4</span>   <span class="dv">4</span></span>
 <span id="cb31-35"><a href="data-manipulation.html#cb31-35" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># same as mtcars[1:2] </span></span></code></pre></div>
 <p>The <code>head()</code> and <code>tail()</code> functions return the first 6 or last 6 values. Use the <code>n</code> argument to change the number of values. They work with vectors or data frames.</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="data-manipulation.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># first 6 values</span></span>
@@ -365,17 +370,17 @@ div.csl-indent {
 <span id="cb32-3"><a href="data-manipulation.html#cb32-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">21.0</span> <span class="fl">21.0</span> <span class="fl">22.8</span> <span class="fl">21.4</span> <span class="fl">18.7</span> <span class="fl">18.1</span></span></code></pre></div>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="data-manipulation.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># last row of data frame</span></span>
 <span id="cb33-2"><a href="data-manipulation.html#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">tail</span>(mtcars, <span class="at">n =</span> <span class="dv">1</span>)</span>
-<span id="cb33-3"><a href="data-manipulation.html#cb33-3" aria-hidden="true" tabindex="-1"></a>            mpg cyl disp  hp drat   wt qsec vs am gear carb</span>
-<span id="cb33-4"><a href="data-manipulation.html#cb33-4" aria-hidden="true" tabindex="-1"></a>Volvo 142E <span class="fl">21.4</span>   <span class="dv">4</span>  <span class="dv">121</span> <span class="dv">109</span> <span class="fl">4.11</span> <span class="fl">2.78</span> <span class="fl">18.6</span>  <span class="dv">1</span>  <span class="dv">1</span>    <span class="dv">4</span>    <span class="dv">2</span></span></code></pre></div>
+<span id="cb33-3"><a href="data-manipulation.html#cb33-3" aria-hidden="true" tabindex="-1"></a>    mpg cyl disp  hp drat   wt qsec vs am gear carb</span>
+<span id="cb33-4"><a href="data-manipulation.html#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="dv">32</span> <span class="fl">21.4</span>   <span class="dv">4</span>  <span class="dv">121</span> <span class="dv">109</span> <span class="fl">4.11</span> <span class="fl">2.78</span> <span class="fl">18.6</span>  <span class="dv">1</span>  <span class="dv">1</span>    <span class="dv">4</span>    <span class="dv">2</span></span></code></pre></div>
 </div>
 </div>
 <div id="rename-variables" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> Rename variables</h2>
 <p>How to rename variables or “column headers.”</p>
-<div id="python-15" class="section level4 unnumbered">
+<div id="python-16" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
-<div id="r-15" class="section level4 unnumbered">
+<div id="r-16" class="section level4 unnumbered">
 <h4>R</h4>
 <p>Variable names can be changed by their index (ie, order of columns in the data frame). Below the second column is “cyl.” We change the name to “cylinder.”</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="data-manipulation.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">names</span>(mtcars)[<span class="dv">2</span>]</span>
@@ -408,10 +413,10 @@ div.csl-indent {
 <div id="create-replace-and-remove-variables" class="section level2" number="4.4">
 <h2><span class="header-section-number">4.4</span> Create, replace and remove variables</h2>
 <p>We often need to create variables that are functions of other variables, or replace existing variables with an updated version.</p>
-<div id="python-16" class="section level4 unnumbered">
+<div id="python-17" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
-<div id="r-16" class="section level4 unnumbered">
+<div id="r-17" class="section level4 unnumbered">
 <h4>R</h4>
 <p>Adding a new variable name after the dollar sign notation and assigning a result adds a new column.</p>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="data-manipulation.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># add column for Kilometer per liter</span></span>
@@ -427,10 +432,10 @@ div.csl-indent {
 <div id="create-strings-from-numbers" class="section level2" number="4.5">
 <h2><span class="header-section-number">4.5</span> Create strings from numbers</h2>
 <p>You may have data that is numeric but that needs to be treated as a string.</p>
-<div id="python-17" class="section level4 unnumbered">
+<div id="python-18" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
-<div id="r-17" class="section level4 unnumbered">
+<div id="r-18" class="section level4 unnumbered">
 <h4>R</h4>
 <p>The <code>as.character()</code> function takes a vector and converts it to string format.</p>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="data-manipulation.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">head</span>(mtcars<span class="sc">$</span>am)</span>
@@ -465,10 +470,10 @@ div.csl-indent {
 <div id="create-numbers-from-strings" class="section level2" number="4.6">
 <h2><span class="header-section-number">4.6</span> Create numbers from strings</h2>
 <p>String variables that ought to be numbers usually have some character data in the values such as units (eg, “4 cm”). To create numbers from strings it’s important to remove any character data that cannot be converted to a number.</p>
-<div id="python-18" class="section level4 unnumbered">
+<div id="python-19" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
-<div id="r-18" class="section level4 unnumbered">
+<div id="r-19" class="section level4 unnumbered">
 <h4>R</h4>
 <p>The <code>as.numeric()</code> function will attempt to coerce strings to numeric type <em>if possible</em>. Any non-numeric values are coerced to NA.</p>
 <p>For demonstration, let’s say we have the following vector.</p>
@@ -489,10 +494,10 @@ div.csl-indent {
 <div id="change-case" class="section level2" number="4.7">
 <h2><span class="header-section-number">4.7</span> Change case</h2>
 <p>How to change the case of strings. The most common case transformations are lower case, upper case, and title case.</p>
-<div id="python-19" class="section level4 unnumbered">
+<div id="python-20" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
-<div id="r-19" class="section level4 unnumbered">
+<div id="r-20" class="section level4 unnumbered">
 <h4>R</h4>
 <p>The <code>tolower()</code> and <code>toupper()</code> functions convert case to lower and upper, respectively.</p>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="data-manipulation.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">names</span>(mtcars) <span class="ot">&lt;-</span> <span class="fu">toupper</span>(<span class="fu">names</span>(mtcars))</span>
@@ -510,6 +515,138 @@ div.csl-indent {
 <span id="cb50-2"><a href="data-manipulation.html#cb50-2" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] <span class="st">&quot;Mpg&quot;</span>        <span class="st">&quot;Cylinders&quot;</span>  <span class="st">&quot;Disp&quot;</span>       <span class="st">&quot;Hp&quot;</span>         <span class="st">&quot;Axle_ratio&quot;</span></span>
 <span id="cb50-3"><a href="data-manipulation.html#cb50-3" aria-hidden="true" tabindex="-1"></a> [<span class="dv">6</span>] <span class="st">&quot;Weight&quot;</span>     <span class="st">&quot;Qsec&quot;</span>       <span class="st">&quot;Engine&quot;</span>     <span class="st">&quot;Am&quot;</span>         <span class="st">&quot;Gear&quot;</span>      </span>
 <span id="cb50-4"><a href="data-manipulation.html#cb50-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">11</span>] <span class="st">&quot;Carb&quot;</span>       <span class="st">&quot;Am_ch&quot;</span>      <span class="st">&quot;Am_fac&quot;</span>    </span></code></pre></div>
+</div>
+</div>
+<div id="drop-duplicate-rows" class="section level2" number="4.8">
+<h2><span class="header-section-number">4.8</span> Drop duplicate rows</h2>
+<p>How to find and drop duplicate elements.</p>
+<div id="python-21" class="section level4 unnumbered">
+<h4>Python</h4>
+</div>
+<div id="r-21" class="section level4 unnumbered">
+<h4>R</h4>
+<p>The <code>duplicated()</code> function “determines which elements of a vector or data frame are duplicates of elements with smaller subscripts.” (from <code>?duplicated</code>)</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="data-manipulation.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># create data frame with duplicate rows</span></span>
+<span id="cb51-2"><a href="data-manipulation.html#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> mtcars2 <span class="ot">&lt;-</span> <span class="fu">rbind</span>(mtcars[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>], mtcars[<span class="dv">1</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>])</span>
+<span id="cb51-3"><a href="data-manipulation.html#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># last row is duplicate of first</span></span>
+<span id="cb51-4"><a href="data-manipulation.html#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> mtcars2</span>
+<span id="cb51-5"><a href="data-manipulation.html#cb51-5" aria-hidden="true" tabindex="-1"></a>   mpg cylinders disp  hp axle_ratio weight</span>
+<span id="cb51-6"><a href="data-manipulation.html#cb51-6" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="fl">21.0</span>         <span class="dv">6</span>  <span class="dv">160</span> <span class="dv">110</span>       <span class="fl">3.90</span>  <span class="fl">2.620</span></span>
+<span id="cb51-7"><a href="data-manipulation.html#cb51-7" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="fl">21.0</span>         <span class="dv">6</span>  <span class="dv">160</span> <span class="dv">110</span>       <span class="fl">3.90</span>  <span class="fl">2.875</span></span>
+<span id="cb51-8"><a href="data-manipulation.html#cb51-8" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="fl">22.8</span>         <span class="dv">4</span>  <span class="dv">108</span>  <span class="dv">93</span>       <span class="fl">3.85</span>  <span class="fl">2.320</span></span>
+<span id="cb51-9"><a href="data-manipulation.html#cb51-9" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="fl">21.0</span>         <span class="dv">6</span>  <span class="dv">160</span> <span class="dv">110</span>       <span class="fl">3.90</span>  <span class="fl">2.620</span></span></code></pre></div>
+<p>The <code>duplicated()</code> function returns a logical vector. TRUE indicates a row is a duplicate of a previous row.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="data-manipulation.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># last row is duplicate</span></span>
+<span id="cb52-2"><a href="data-manipulation.html#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">duplicated</span>(mtcars2)</span>
+<span id="cb52-3"><a href="data-manipulation.html#cb52-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">FALSE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span>  <span class="cn">TRUE</span></span></code></pre></div>
+<p>The TRUE/FALSE vector can be used to extract or drop duplicate rows. Since TRUE in indexing brackets will keep a row, we can use <code>!</code> to negate the logicals and keep those that are “NOT TRUE”</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="data-manipulation.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># drop the duplicate and update the data frame</span></span>
+<span id="cb53-2"><a href="data-manipulation.html#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> mtcars3 <span class="ot">&lt;-</span> mtcars2[<span class="sc">!</span><span class="fu">duplicated</span>(mtcars2),]</span>
+<span id="cb53-3"><a href="data-manipulation.html#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> mtcars3</span>
+<span id="cb53-4"><a href="data-manipulation.html#cb53-4" aria-hidden="true" tabindex="-1"></a>   mpg cylinders disp  hp axle_ratio weight</span>
+<span id="cb53-5"><a href="data-manipulation.html#cb53-5" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="fl">21.0</span>         <span class="dv">6</span>  <span class="dv">160</span> <span class="dv">110</span>       <span class="fl">3.90</span>  <span class="fl">2.620</span></span>
+<span id="cb53-6"><a href="data-manipulation.html#cb53-6" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="fl">21.0</span>         <span class="dv">6</span>  <span class="dv">160</span> <span class="dv">110</span>       <span class="fl">3.90</span>  <span class="fl">2.875</span></span>
+<span id="cb53-7"><a href="data-manipulation.html#cb53-7" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="fl">22.8</span>         <span class="dv">4</span>  <span class="dv">108</span>  <span class="dv">93</span>       <span class="fl">3.85</span>  <span class="fl">2.320</span></span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="data-manipulation.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># extract and investigate the duplicate row</span></span>
+<span id="cb54-2"><a href="data-manipulation.html#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> mtcars2[<span class="fu">duplicated</span>(mtcars2),]</span>
+<span id="cb54-3"><a href="data-manipulation.html#cb54-3" aria-hidden="true" tabindex="-1"></a>  mpg cylinders disp  hp axle_ratio weight</span>
+<span id="cb54-4"><a href="data-manipulation.html#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>  <span class="dv">21</span>         <span class="dv">6</span>  <span class="dv">160</span> <span class="dv">110</span>        <span class="fl">3.9</span>   <span class="fl">2.62</span></span></code></pre></div>
+<p>The <code>anyDuplicated()</code> function returns the row number of duplicate rows.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="data-manipulation.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">anyDuplicated</span>(mtcars2)</span>
+<span id="cb55-2"><a href="data-manipulation.html#cb55-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">4</span></span></code></pre></div>
+</div>
+</div>
+<div id="randomly-sample-rows" class="section level2" number="4.9">
+<h2><span class="header-section-number">4.9</span> Randomly sample rows</h2>
+<p>How to take a random sample of rows from a data frame. The sample is usually either a fixed size or a proportion.</p>
+<div id="python-22" class="section level4 unnumbered">
+<h4>Python</h4>
+</div>
+<div id="r-22" class="section level4 unnumbered">
+<h4>R</h4>
+<p>There are many ways to sample rows from a data frame in R. The <strong>dplyr</strong> package provides a convenience function, <code>slice_sample()</code>, for taking either a fixed sample size or a proportion.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="data-manipulation.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># sample 5 rows from mtcars</span></span>
+<span id="cb56-2"><a href="data-manipulation.html#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> dplyr<span class="sc">::</span><span class="fu">slice_sample</span>(mtcars, <span class="at">n =</span> <span class="dv">5</span>)</span>
+<span id="cb56-3"><a href="data-manipulation.html#cb56-3" aria-hidden="true" tabindex="-1"></a>   mpg cylinders  disp  hp axle_ratio weight  qsec engine am gear carb am_ch</span>
+<span id="cb56-4"><a href="data-manipulation.html#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="fl">10.4</span>         <span class="dv">8</span> <span class="fl">460.0</span> <span class="dv">215</span>       <span class="fl">3.00</span>  <span class="fl">5.424</span> <span class="fl">17.82</span>      <span class="dv">0</span>  <span class="dv">0</span>    <span class="dv">3</span>    <span class="dv">4</span>     <span class="dv">0</span></span>
+<span id="cb56-5"><a href="data-manipulation.html#cb56-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="fl">15.8</span>         <span class="dv">8</span> <span class="fl">351.0</span> <span class="dv">264</span>       <span class="fl">4.22</span>  <span class="fl">3.170</span> <span class="fl">14.50</span>      <span class="dv">0</span>  <span class="dv">1</span>    <span class="dv">5</span>    <span class="dv">4</span>     <span class="dv">1</span></span>
+<span id="cb56-6"><a href="data-manipulation.html#cb56-6" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="fl">21.0</span>         <span class="dv">6</span> <span class="fl">160.0</span> <span class="dv">110</span>       <span class="fl">3.90</span>  <span class="fl">2.875</span> <span class="fl">17.02</span>      <span class="dv">0</span>  <span class="dv">1</span>    <span class="dv">4</span>    <span class="dv">4</span>     <span class="dv">1</span></span>
+<span id="cb56-7"><a href="data-manipulation.html#cb56-7" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="fl">26.0</span>         <span class="dv">4</span> <span class="fl">120.3</span>  <span class="dv">91</span>       <span class="fl">4.43</span>  <span class="fl">2.140</span> <span class="fl">16.70</span>      <span class="dv">0</span>  <span class="dv">1</span>    <span class="dv">5</span>    <span class="dv">2</span>     <span class="dv">1</span></span>
+<span id="cb56-8"><a href="data-manipulation.html#cb56-8" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="fl">19.2</span>         <span class="dv">6</span> <span class="fl">167.6</span> <span class="dv">123</span>       <span class="fl">3.92</span>  <span class="fl">3.440</span> <span class="fl">18.30</span>      <span class="dv">1</span>  <span class="dv">0</span>    <span class="dv">4</span>    <span class="dv">4</span>     <span class="dv">0</span></span>
+<span id="cb56-9"><a href="data-manipulation.html#cb56-9" aria-hidden="true" tabindex="-1"></a>     am_fac</span>
+<span id="cb56-10"><a href="data-manipulation.html#cb56-10" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> automatic</span>
+<span id="cb56-11"><a href="data-manipulation.html#cb56-11" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>    manual</span>
+<span id="cb56-12"><a href="data-manipulation.html#cb56-12" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>    manual</span>
+<span id="cb56-13"><a href="data-manipulation.html#cb56-13" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>    manual</span>
+<span id="cb56-14"><a href="data-manipulation.html#cb56-14" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> automatic</span>
+<span id="cb56-15"><a href="data-manipulation.html#cb56-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># sample 20% of rows from mtcars</span></span>
+<span id="cb56-16"><a href="data-manipulation.html#cb56-16" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> dplyr<span class="sc">::</span><span class="fu">slice_sample</span>(mtcars, <span class="at">prop =</span> <span class="fl">0.20</span>)</span>
+<span id="cb56-17"><a href="data-manipulation.html#cb56-17" aria-hidden="true" tabindex="-1"></a>   mpg cylinders  disp  hp axle_ratio weight  qsec engine am gear carb am_ch</span>
+<span id="cb56-18"><a href="data-manipulation.html#cb56-18" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="fl">22.8</span>         <span class="dv">4</span> <span class="fl">108.0</span>  <span class="dv">93</span>       <span class="fl">3.85</span>  <span class="fl">2.320</span> <span class="fl">18.61</span>      <span class="dv">1</span>  <span class="dv">1</span>    <span class="dv">4</span>    <span class="dv">1</span>     <span class="dv">1</span></span>
+<span id="cb56-19"><a href="data-manipulation.html#cb56-19" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="fl">14.3</span>         <span class="dv">8</span> <span class="fl">360.0</span> <span class="dv">245</span>       <span class="fl">3.21</span>  <span class="fl">3.570</span> <span class="fl">15.84</span>      <span class="dv">0</span>  <span class="dv">0</span>    <span class="dv">3</span>    <span class="dv">4</span>     <span class="dv">0</span></span>
+<span id="cb56-20"><a href="data-manipulation.html#cb56-20" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="fl">24.4</span>         <span class="dv">4</span> <span class="fl">146.7</span>  <span class="dv">62</span>       <span class="fl">3.69</span>  <span class="fl">3.190</span> <span class="fl">20.00</span>      <span class="dv">1</span>  <span class="dv">0</span>    <span class="dv">4</span>    <span class="dv">2</span>     <span class="dv">0</span></span>
+<span id="cb56-21"><a href="data-manipulation.html#cb56-21" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="fl">17.8</span>         <span class="dv">6</span> <span class="fl">167.6</span> <span class="dv">123</span>       <span class="fl">3.92</span>  <span class="fl">3.440</span> <span class="fl">18.90</span>      <span class="dv">1</span>  <span class="dv">0</span>    <span class="dv">4</span>    <span class="dv">4</span>     <span class="dv">0</span></span>
+<span id="cb56-22"><a href="data-manipulation.html#cb56-22" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="fl">27.3</span>         <span class="dv">4</span>  <span class="fl">79.0</span>  <span class="dv">66</span>       <span class="fl">4.08</span>  <span class="fl">1.935</span> <span class="fl">18.90</span>      <span class="dv">1</span>  <span class="dv">1</span>    <span class="dv">4</span>    <span class="dv">1</span>     <span class="dv">1</span></span>
+<span id="cb56-23"><a href="data-manipulation.html#cb56-23" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span> <span class="fl">21.0</span>         <span class="dv">6</span> <span class="fl">160.0</span> <span class="dv">110</span>       <span class="fl">3.90</span>  <span class="fl">2.875</span> <span class="fl">17.02</span>      <span class="dv">0</span>  <span class="dv">1</span>    <span class="dv">4</span>    <span class="dv">4</span>     <span class="dv">1</span></span>
+<span id="cb56-24"><a href="data-manipulation.html#cb56-24" aria-hidden="true" tabindex="-1"></a>     am_fac</span>
+<span id="cb56-25"><a href="data-manipulation.html#cb56-25" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>    manual</span>
+<span id="cb56-26"><a href="data-manipulation.html#cb56-26" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> automatic</span>
+<span id="cb56-27"><a href="data-manipulation.html#cb56-27" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> automatic</span>
+<span id="cb56-28"><a href="data-manipulation.html#cb56-28" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> automatic</span>
+<span id="cb56-29"><a href="data-manipulation.html#cb56-29" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>    manual</span>
+<span id="cb56-30"><a href="data-manipulation.html#cb56-30" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>    manual</span></code></pre></div>
+<p>To sample with replacement, set <code>replace = TRUE</code>.</p>
+<p>The base R functions <code>sample()</code> and <code>runif()</code> can be combined to sample sizes or approximate proportions.</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="data-manipulation.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># sample 5 rows from mtcars</span></span>
+<span id="cb57-2"><a href="data-manipulation.html#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># get random row numbers</span></span>
+<span id="cb57-3"><a href="data-manipulation.html#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> i <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(mtcars), <span class="at">size =</span> <span class="dv">5</span>)</span>
+<span id="cb57-4"><a href="data-manipulation.html#cb57-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># use i to select rows</span></span>
+<span id="cb57-5"><a href="data-manipulation.html#cb57-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> mtcars[i,]</span>
+<span id="cb57-6"><a href="data-manipulation.html#cb57-6" aria-hidden="true" tabindex="-1"></a>    mpg cylinders  disp  hp axle_ratio weight  qsec engine am gear carb am_ch</span>
+<span id="cb57-7"><a href="data-manipulation.html#cb57-7" aria-hidden="true" tabindex="-1"></a><span class="dv">18</span> <span class="fl">32.4</span>         <span class="dv">4</span>  <span class="fl">78.7</span>  <span class="dv">66</span>       <span class="fl">4.08</span>  <span class="fl">2.200</span> <span class="fl">19.47</span>      <span class="dv">1</span>  <span class="dv">1</span>    <span class="dv">4</span>    <span class="dv">1</span>     <span class="dv">1</span></span>
+<span id="cb57-8"><a href="data-manipulation.html#cb57-8" aria-hidden="true" tabindex="-1"></a><span class="dv">23</span> <span class="fl">15.2</span>         <span class="dv">8</span> <span class="fl">304.0</span> <span class="dv">150</span>       <span class="fl">3.15</span>  <span class="fl">3.435</span> <span class="fl">17.30</span>      <span class="dv">0</span>  <span class="dv">0</span>    <span class="dv">3</span>    <span class="dv">2</span>     <span class="dv">0</span></span>
+<span id="cb57-9"><a href="data-manipulation.html#cb57-9" aria-hidden="true" tabindex="-1"></a><span class="dv">13</span> <span class="fl">17.3</span>         <span class="dv">8</span> <span class="fl">275.8</span> <span class="dv">180</span>       <span class="fl">3.07</span>  <span class="fl">3.730</span> <span class="fl">17.60</span>      <span class="dv">0</span>  <span class="dv">0</span>    <span class="dv">3</span>    <span class="dv">3</span>     <span class="dv">0</span></span>
+<span id="cb57-10"><a href="data-manipulation.html#cb57-10" aria-hidden="true" tabindex="-1"></a><span class="dv">24</span> <span class="fl">13.3</span>         <span class="dv">8</span> <span class="fl">350.0</span> <span class="dv">245</span>       <span class="fl">3.73</span>  <span class="fl">3.840</span> <span class="fl">15.41</span>      <span class="dv">0</span>  <span class="dv">0</span>    <span class="dv">3</span>    <span class="dv">4</span>     <span class="dv">0</span></span>
+<span id="cb57-11"><a href="data-manipulation.html#cb57-11" aria-hidden="true" tabindex="-1"></a><span class="dv">22</span> <span class="fl">15.5</span>         <span class="dv">8</span> <span class="fl">318.0</span> <span class="dv">150</span>       <span class="fl">2.76</span>  <span class="fl">3.520</span> <span class="fl">16.87</span>      <span class="dv">0</span>  <span class="dv">0</span>    <span class="dv">3</span>    <span class="dv">2</span>     <span class="dv">0</span></span>
+<span id="cb57-12"><a href="data-manipulation.html#cb57-12" aria-hidden="true" tabindex="-1"></a>      am_fac</span>
+<span id="cb57-13"><a href="data-manipulation.html#cb57-13" aria-hidden="true" tabindex="-1"></a><span class="dv">18</span>    manual</span>
+<span id="cb57-14"><a href="data-manipulation.html#cb57-14" aria-hidden="true" tabindex="-1"></a><span class="dv">23</span> automatic</span>
+<span id="cb57-15"><a href="data-manipulation.html#cb57-15" aria-hidden="true" tabindex="-1"></a><span class="dv">13</span> automatic</span>
+<span id="cb57-16"><a href="data-manipulation.html#cb57-16" aria-hidden="true" tabindex="-1"></a><span class="dv">24</span> automatic</span>
+<span id="cb57-17"><a href="data-manipulation.html#cb57-17" aria-hidden="true" tabindex="-1"></a><span class="dv">22</span> automatic</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="data-manipulation.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># sample about 20% of rows from mtcars</span></span>
+<span id="cb58-2"><a href="data-manipulation.html#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># generate random values on range of [0,1]</span></span>
+<span id="cb58-3"><a href="data-manipulation.html#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> i <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="fu">nrow</span>(mtcars))</span>
+<span id="cb58-4"><a href="data-manipulation.html#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># use i &lt; 0.20 logical vector to </span></span>
+<span id="cb58-5"><a href="data-manipulation.html#cb58-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># select rows that correspond to TRUE</span></span>
+<span id="cb58-6"><a href="data-manipulation.html#cb58-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> mtcars[i <span class="sc">&lt;</span> <span class="fl">0.20</span>,]</span>
+<span id="cb58-7"><a href="data-manipulation.html#cb58-7" aria-hidden="true" tabindex="-1"></a>    mpg cylinders  disp  hp axle_ratio weight  qsec engine am gear carb am_ch</span>
+<span id="cb58-8"><a href="data-manipulation.html#cb58-8" aria-hidden="true" tabindex="-1"></a><span class="dv">8</span>  <span class="fl">24.4</span>         <span class="dv">4</span> <span class="fl">146.7</span>  <span class="dv">62</span>       <span class="fl">3.69</span>  <span class="fl">3.190</span> <span class="fl">20.00</span>      <span class="dv">1</span>  <span class="dv">0</span>    <span class="dv">4</span>    <span class="dv">2</span>     <span class="dv">0</span></span>
+<span id="cb58-9"><a href="data-manipulation.html#cb58-9" aria-hidden="true" tabindex="-1"></a><span class="dv">16</span> <span class="fl">10.4</span>         <span class="dv">8</span> <span class="fl">460.0</span> <span class="dv">215</span>       <span class="fl">3.00</span>  <span class="fl">5.424</span> <span class="fl">17.82</span>      <span class="dv">0</span>  <span class="dv">0</span>    <span class="dv">3</span>    <span class="dv">4</span>     <span class="dv">0</span></span>
+<span id="cb58-10"><a href="data-manipulation.html#cb58-10" aria-hidden="true" tabindex="-1"></a><span class="dv">18</span> <span class="fl">32.4</span>         <span class="dv">4</span>  <span class="fl">78.7</span>  <span class="dv">66</span>       <span class="fl">4.08</span>  <span class="fl">2.200</span> <span class="fl">19.47</span>      <span class="dv">1</span>  <span class="dv">1</span>    <span class="dv">4</span>    <span class="dv">1</span>     <span class="dv">1</span></span>
+<span id="cb58-11"><a href="data-manipulation.html#cb58-11" aria-hidden="true" tabindex="-1"></a><span class="dv">19</span> <span class="fl">30.4</span>         <span class="dv">4</span>  <span class="fl">75.7</span>  <span class="dv">52</span>       <span class="fl">4.93</span>  <span class="fl">1.615</span> <span class="fl">18.52</span>      <span class="dv">1</span>  <span class="dv">1</span>    <span class="dv">4</span>    <span class="dv">2</span>     <span class="dv">1</span></span>
+<span id="cb58-12"><a href="data-manipulation.html#cb58-12" aria-hidden="true" tabindex="-1"></a><span class="dv">22</span> <span class="fl">15.5</span>         <span class="dv">8</span> <span class="fl">318.0</span> <span class="dv">150</span>       <span class="fl">2.76</span>  <span class="fl">3.520</span> <span class="fl">16.87</span>      <span class="dv">0</span>  <span class="dv">0</span>    <span class="dv">3</span>    <span class="dv">2</span>     <span class="dv">0</span></span>
+<span id="cb58-13"><a href="data-manipulation.html#cb58-13" aria-hidden="true" tabindex="-1"></a>      am_fac</span>
+<span id="cb58-14"><a href="data-manipulation.html#cb58-14" aria-hidden="true" tabindex="-1"></a><span class="dv">8</span>  automatic</span>
+<span id="cb58-15"><a href="data-manipulation.html#cb58-15" aria-hidden="true" tabindex="-1"></a><span class="dv">16</span> automatic</span>
+<span id="cb58-16"><a href="data-manipulation.html#cb58-16" aria-hidden="true" tabindex="-1"></a><span class="dv">18</span>    manual</span>
+<span id="cb58-17"><a href="data-manipulation.html#cb58-17" aria-hidden="true" tabindex="-1"></a><span class="dv">19</span>    manual</span>
+<span id="cb58-18"><a href="data-manipulation.html#cb58-18" aria-hidden="true" tabindex="-1"></a><span class="dv">22</span> automatic</span></code></pre></div>
+<p>The random sample will change every time the code is run. To always generate the same “random” sample, use the <code>set.seed()</code> function with any positive integer.</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="data-manipulation.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># always get the same random sample</span></span>
+<span id="cb59-2"><a href="data-manipulation.html#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb59-3"><a href="data-manipulation.html#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> i <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="fu">nrow</span>(mtcars))</span>
+<span id="cb59-4"><a href="data-manipulation.html#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> mtcars[i <span class="sc">&lt;</span> <span class="fl">0.20</span>,]</span>
+<span id="cb59-5"><a href="data-manipulation.html#cb59-5" aria-hidden="true" tabindex="-1"></a>    mpg cylinders  disp  hp axle_ratio weight  qsec engine am gear carb am_ch</span>
+<span id="cb59-6"><a href="data-manipulation.html#cb59-6" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>  <span class="fl">18.1</span>         <span class="dv">6</span> <span class="fl">225.0</span> <span class="dv">105</span>       <span class="fl">2.76</span>   <span class="fl">3.46</span> <span class="fl">20.22</span>      <span class="dv">1</span>  <span class="dv">0</span>    <span class="dv">3</span>    <span class="dv">1</span>     <span class="dv">0</span></span>
+<span id="cb59-7"><a href="data-manipulation.html#cb59-7" aria-hidden="true" tabindex="-1"></a><span class="dv">15</span> <span class="fl">10.4</span>         <span class="dv">8</span> <span class="fl">472.0</span> <span class="dv">205</span>       <span class="fl">2.93</span>   <span class="fl">5.25</span> <span class="fl">17.98</span>      <span class="dv">0</span>  <span class="dv">0</span>    <span class="dv">3</span>    <span class="dv">4</span>     <span class="dv">0</span></span>
+<span id="cb59-8"><a href="data-manipulation.html#cb59-8" aria-hidden="true" tabindex="-1"></a><span class="dv">18</span> <span class="fl">32.4</span>         <span class="dv">4</span>  <span class="fl">78.7</span>  <span class="dv">66</span>       <span class="fl">4.08</span>   <span class="fl">2.20</span> <span class="fl">19.47</span>      <span class="dv">1</span>  <span class="dv">1</span>    <span class="dv">4</span>    <span class="dv">1</span>     <span class="dv">1</span></span>
+<span id="cb59-9"><a href="data-manipulation.html#cb59-9" aria-hidden="true" tabindex="-1"></a><span class="dv">30</span> <span class="fl">19.7</span>         <span class="dv">6</span> <span class="fl">145.0</span> <span class="dv">175</span>       <span class="fl">3.62</span>   <span class="fl">2.77</span> <span class="fl">15.50</span>      <span class="dv">0</span>  <span class="dv">1</span>    <span class="dv">5</span>    <span class="dv">6</span>     <span class="dv">1</span></span>
+<span id="cb59-10"><a href="data-manipulation.html#cb59-10" aria-hidden="true" tabindex="-1"></a>      am_fac</span>
+<span id="cb59-11"><a href="data-manipulation.html#cb59-11" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>  automatic</span>
+<span id="cb59-12"><a href="data-manipulation.html#cb59-12" aria-hidden="true" tabindex="-1"></a><span class="dv">15</span> automatic</span>
+<span id="cb59-13"><a href="data-manipulation.html#cb59-13" aria-hidden="true" tabindex="-1"></a><span class="dv">18</span>    manual</span>
+<span id="cb59-14"><a href="data-manipulation.html#cb59-14" aria-hidden="true" tabindex="-1"></a><span class="dv">30</span>    manual</span></code></pre></div>
 
 </div>
 </div>

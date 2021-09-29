@@ -3,6 +3,7 @@ math
 assignment
 printing-a-value
 packages-and-libraries
+logic
 generating-a-sequence-of-values
 calculating-means-and-medians
 data-structures
@@ -22,6 +23,8 @@ create-replace-and-remove-variables
 create-strings-from-numbers
 create-numbers-from-strings
 change-case
+drop-duplicate-rows
+randomly-sample-rows
 combine-reshape-and-merge
 combine-rows
 combine-columns
