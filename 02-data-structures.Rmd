@@ -38,7 +38,7 @@ x1[2:3]
 ```
 
 
-## Two-dimensional
+## Two-dimensional data
 
 Two-dimensional data is rectangular in nature, consisting of rows and columns. These can be the type of data you might find in a spreadsheet with a mix of data types in columns, or matrices as you might encounter in matrix algebra.
 
@@ -52,7 +52,7 @@ Two-dimensional data structures in R include the _matrix_ and _data frame_. A ma
 Create a matrix with the `matrix()` function. Create a data frame with the `data.frame()` function. Most imported data comes into R as a data frame.
 
 ```{r}
-# matrix
+# matrix; populated down by column by default
 m <- matrix(data = c(1,3,5,7), nrow = 2, ncol = 2)
 m
 
@@ -70,5 +70,48 @@ m[1,2]
 
 # extract values in row 2
 d[2,]
+```
+
+
+## Three-dimensional and higher data
+
+Three-dimensional and higher data can be visualized as multiple rectangular structures stratified by extra variables. These are sometimes referred to as _arrays_. Analysts usually prefer two-dimensional data frames to arrays. Data frames can accommodate multidimensional data by including the additional dimensions as variables.
+
+#### Python {-}
+
+
+#### R {-}
+
+The `array()` function in R can create three-dimensional and higher data structures. Specify the dimension number and size using the `dim` argument. Below we specify 2 rows, 3 columns, and 2 strata using a vector: `c(2,3,2)`. This creates a three-dimensional data structure. The data is simply the numbers 1 through 12.
+
+```{r}
+a1 <- array(data = 1:12, dim = c(2,3,2))
+a1
+```
+
+Values in arrays can be accessed by position using indexing brackets.
+
+```{r}
+# extract value in row 1, column 2, strata 1
+a1[1,2,1]
+
+# extract column 2 in both strata
+# result is returned as matrix
+a1[,2,]
+```
+
+The dimensions can be named using the `dimnames()` function. Notice the names must be a _list_.
+
+```{r}
+dimnames(a1) <- list("X" = c("x1", "x2"), 
+                     "Y" = c("y1", "y2", "y3"), 
+                     "Z" = c("z1", "z2"))
+a1
+```
+
+The `as.data.frame.table()` function can collapse an array into a two-dimensional structure that may be easier to use with standard statistical and graphical routines. The `responseName` argument allows you to provide a suitable column name for the values in the array.
+
+```{r}
+as.data.frame.table(a1, responseName = "value")
 ```
 

@@ -8,7 +8,8 @@ generating-a-sequence-of-values
 calculating-means-and-medians
 data-structures
 one-dimensional-data
-two-dimensional
+two-dimensional-data
+three-dimensional-and-higher-data
 importing-data
 csv
 xlsxlsx-excel
