@@ -21,7 +21,7 @@
   <meta name="twitter:description" content="This book provides parallel examples in Python and R to help users of one platform more easily transition to the other." />
   
 
-<meta name="author" content="Clay Ford" />
+<meta name="author" content="Clay Ford, Jacob Goldstein-Greenwood" />
 
 
 <meta name="date" content="2021-09-29" />
@@ -341,7 +341,7 @@ div.csl-indent {
 </div>
 <div id="generating-a-sequence-of-values" class="section level2" number="1.6">
 <h2><span class="header-section-number">1.6</span> Generating a sequence of values</h2>
-<p>There are multiple ways in both Python and R to generate sequences of values. In Python, one option is <code>arange()</code> from <code>numpy</code>. In R, a common approach is to use <code>seq()</code>. The sequences can be incremented by indicating a <code>step</code> argument in <code>arange()</code> or a <code>by</code> argument in <code>seq()</code>. Be aware that the start/stop interval in <code>arange()</code> is <em>open</em>, but the from/to interval in <code>seq()</code> is <em>closed</em>.</p>
+<p>In Python, one option for generating a sequence of values is <code>arange()</code> from <code>numpy</code>. In R, a common approach is to use <code>seq()</code>. The sequences can be incremented by indicating a <code>step</code> argument in <code>arange()</code> or a <code>by</code> argument in <code>seq()</code>. Be aware that the start/stop interval in <code>arange()</code> is <em>open</em>, but the from/to interval in <code>seq()</code> is <em>closed</em>.</p>
 <div id="python-5" class="section level4 unnumbered">
 <h4>Python</h4>
 <div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="basics.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> numpy <span class="im">as</span> np</span>
