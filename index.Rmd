@@ -1,6 +1,6 @@
 --- 
 title: "Python and R"
-author: "Clay Ford, Jacob Goldstein-Greenwood"
+author: "Clay Ford, Jacob Goldstein-Greenwood, Samantha Lomuscio"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
