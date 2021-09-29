@@ -1,0 +1,1440 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\title{Python and R}
+\author{Clay Ford, Jacob Goldstein-Greenwood, Oyinkansola Adenekan}
+\date{2021-09-29}
+
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Python and R},
+  pdfauthor={Clay Ford, Jacob Goldstein-Greenwood, Oyinkansola Adenekan},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{booktabs}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[]{natbib}
+\bibliographystyle{plainnat}
+\nocite{*}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\hypertarget{welcome}{%
+\chapter*{Welcome}\label{welcome}}
+\addcontentsline{toc}{chapter}{Welcome}
+
+This book provides parallel examples in Python and R to help users of one platform more easily transition to the other.
+
+\hypertarget{basics}{%
+\chapter{Basics}\label{basics}}
+
+This chapter covers the very basics of Python and R.
+
+\hypertarget{math}{%
+\section{Math}\label{math}}
+
+Mathematical operators are the same except for exponents, integer division, and remainder division (modulo).
+
+\hypertarget{python}{%
+\subsubsection*{Python}\label{python}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+Python uses \texttt{**} for exponentiation, \texttt{//} for integer division, and \texttt{\%} for remainder division.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}} \DecValTok{3}\OperatorTok{**}\DecValTok{2}
+\DecValTok{9}
+\OperatorTok{\textgreater{}} \DecValTok{5} \OperatorTok{//} \DecValTok{2}
+\DecValTok{2}
+\OperatorTok{\textgreater{}} \DecValTok{5} \OperatorTok{\%} \DecValTok{2}
+\DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+
+In Python, the \texttt{+} operator can also be used to combine strings. See this TBD section.
+
+\hypertarget{r}{%
+\subsubsection*{R}\label{r}}
+\addcontentsline{toc}{subsubsection}{R}
+
+Python uses \texttt{\^{}} for exponentiation, \texttt{\%/\%} for integer division, and \texttt{\%\%} for remainder division.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \DecValTok{3}\SpecialCharTok{\^{}}\DecValTok{2}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{9}
+\SpecialCharTok{\textgreater{}} \DecValTok{5} \SpecialCharTok{\%/\%} \DecValTok{2}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{2}
+\SpecialCharTok{\textgreater{}} \DecValTok{5} \SpecialCharTok{\%\%} \DecValTok{2}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{assignment}{%
+\section{Assignment}\label{assignment}}
+
+Python uses \texttt{=} for assignment while R can use either \texttt{=} or \texttt{\textless{}-} for assignment. The latter ``assignment arrow'' is preferred in most R style guides to distinguish it between assignment and setting the value of a function argument. According to R's documentation, ``The operator \texttt{\textless{}-} can be used anywhere, whereas the operator \texttt{=} is only allowed at the top level (e.g., in the complete expression typed at the command prompt) or as one of the subexpressions in a braced list of expressions.'' See \texttt{?assignOps}.
+
+\hypertarget{python-1}{%
+\subsubsection*{Python}\label{python-1}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}}\NormalTok{ x }\OperatorTok{=} \DecValTok{12}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{r-1}{%
+\subsubsection*{R}\label{r-1}}
+\addcontentsline{toc}{subsubsection}{R}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}}\NormalTok{ x }\OtherTok{\textless{}{-}} \DecValTok{12}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{printing-a-value}{%
+\section{Printing a value}\label{printing-a-value}}
+
+To see the value of an object created via assignment, you can simply enter the object at the console and hit enter for both Python and R, though it is common in Python to explicitly use the \texttt{print()} function.
+
+\hypertarget{python-2}{%
+\subsubsection*{Python}\label{python-2}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}}\NormalTok{ x}
+\DecValTok{12}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{r-2}{%
+\subsubsection*{R}\label{r-2}}
+\addcontentsline{toc}{subsubsection}{R}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}}\NormalTok{ x}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{12}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{packages-and-libraries}{%
+\section{Packages and Libraries}\label{packages-and-libraries}}
+
+User-created functions can be bundled and distributed as libraries (Python) and packages (R). Libraries and packages need to be installed only once. Thereafter they're ``imported'' (Python) or ``loaded'' (R) in each new session when needed.
+
+Libraries and packages with large user bases are often updated to add functionality and fix bugs. The updates are not automatically installed. Staying apprised of library/package updates can be challenging. Some suggestions are following developers on Twitter, signing up for newsletters, or periodically checking to see what updates are available.
+
+Libraries and packages often depend on other libraries and packages. These are known as ``dependencies''. Sometimes libraries/packages are updated to accommodate changes to other libraries/packages they depend on.
+
+\hypertarget{python-3}{%
+\subsubsection*{Python}\label{python-3}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\hypertarget{r-3}{%
+\subsubsection*{R}\label{r-3}}
+\addcontentsline{toc}{subsubsection}{R}
+
+The main repository for R packages is the \href{https://cran.r-project.org/}{Comprehensive R Archive Network} (CRAN). Another repository is \href{https://www.bioconductor.org/}{Bioconductor}, which provides tools for working with genomic data. Many packages are also distributed on \href{https://github.com/}{GitHub}.
+
+To install packages from CRAN use the \texttt{install.packages()} function. In RStudio, you can also go to Tools\ldots Install Packages\ldots{} for a dialog that will auto-complete package names as you type.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\# install the vcd package, a package for Visualizing Categorical Data}
+\ErrorTok{\textgreater{}} \FunctionTok{install.packages}\NormalTok{(}\StringTok{"vcd"}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \CommentTok{\# load the package}
+\ErrorTok{\textgreater{}} \FunctionTok{library}\NormalTok{(vcd)}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \CommentTok{\# see which packages on your computer have updates available}
+\ErrorTok{\textgreater{}} \FunctionTok{old.packages}\NormalTok{()}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \CommentTok{\# download and install available package updates;}
+\ErrorTok{\textgreater{}} \CommentTok{\# set ask = TRUE to verify installation of each package}
+\ErrorTok{\textgreater{}} \FunctionTok{update.packages}\NormalTok{(}\AttributeTok{ask =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+To install R packages from GitHub use the \texttt{install\_github()} function from the \textbf{devtools} package. You need to include the username of the repo owner followed by a forward slash and the name of the package. Typing two colons between a package and a function in the package allows you to use that function without loading the package.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{install.packages}\NormalTok{(}\StringTok{"devtools"}\NormalTok{)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ devtools}\SpecialCharTok{::}\FunctionTok{install\_github}\NormalTok{(}\StringTok{"username/packagename"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Occasionally when installing or updating a package you will be asked ``Do you want to install from sources the package which needs compilation?'' R packages on CRAN are \emph{compiled} for Mac and Windows operating systems. That can take a day or two. If you try to install a package that has not been compiled then you'll get asked if you want to compile it yourself. You can usually just answer No.~If you answer Yes, R will try to compile the package on your computer. This will only work if you have the required build tools on your computer. For Windows this means having \href{https://cran.r-project.org/bin/windows/Rtools/}{RTools} installed. Mac users typically already have the necessary build tools.
+
+\hypertarget{logic}{%
+\section{Logic}\label{logic}}
+
+Python and R share the same operators for making comparisons:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{==} (equals)
+\item
+  \texttt{!=} (not equal to)
+\item
+  \texttt{\textless{}} (less than)
+\item
+  \texttt{\textless{}=} (less than or equal to)
+\item
+  \texttt{\textgreater{}} (greater than)
+\item
+  \texttt{\textgreater{}=} (greater than or equal to)
+\end{itemize}
+
+Likewise they share the same operators for logical AND and OR:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{\&} (AND)
+\item
+  \texttt{\textbar{}} (OR)
+\end{itemize}
+
+However R also has \texttt{\&\&} and \texttt{\textbar{}\textbar{}} operators for programming control-flow.
+
+Python and R have different operators for negation and xor (exclusive OR).
+
+\hypertarget{python-4}{%
+\subsubsection*{Python}\label{python-4}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\hypertarget{r-4}{%
+\subsubsection*{R}\label{r-4}}
+\addcontentsline{toc}{subsubsection}{R}
+
+\hypertarget{generating-a-sequence-of-values}{%
+\section{Generating a sequence of values}\label{generating-a-sequence-of-values}}
+
+In Python, one option for generating a sequence of values is \texttt{arange()} from \texttt{numpy}. In R, a common approach is to use \texttt{seq()}. The sequences can be incremented by indicating a \texttt{step} argument in \texttt{arange()} or a \texttt{by} argument in \texttt{seq()}. Be aware that the start/stop interval in \texttt{arange()} is \emph{open}, but the from/to interval in \texttt{seq()} is \emph{closed}.
+
+\hypertarget{python-5}{%
+\subsubsection*{Python}\label{python-5}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}} \ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\OperatorTok{+}\NormalTok{ x }\OperatorTok{=}\NormalTok{ np.arange(start }\OperatorTok{=} \DecValTok{1}\NormalTok{, stop }\OperatorTok{=} \DecValTok{11}\NormalTok{, step }\OperatorTok{=} \DecValTok{2}\NormalTok{)}
+\OperatorTok{+}\NormalTok{ x}
+\NormalTok{array([}\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{9}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{r-5}{%
+\subsubsection*{R}\label{r-5}}
+\addcontentsline{toc}{subsubsection}{R}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}}\NormalTok{ x }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\AttributeTok{from =} \DecValTok{1}\NormalTok{, }\AttributeTok{to =} \DecValTok{11}\NormalTok{, }\AttributeTok{by =} \DecValTok{2}\NormalTok{)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ x}
+\NormalTok{[}\DecValTok{1}\NormalTok{]  }\DecValTok{1}  \DecValTok{3}  \DecValTok{5}  \DecValTok{7}  \DecValTok{9} \DecValTok{11}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{calculating-means-and-medians}{%
+\section{Calculating means and medians}\label{calculating-means-and-medians}}
+
+The \textbf{NumPy} Python library has functions for calculating means and medians, and base R has functions for doing the same.
+
+\hypertarget{python-6}{%
+\subsubsection*{Python}\label{python-6}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}} \CommentTok{\# Mean, using function from NumPy library}
+\OperatorTok{+} \ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\OperatorTok{+}\NormalTok{ x }\OperatorTok{=}\NormalTok{ [}\DecValTok{90}\NormalTok{, }\DecValTok{105}\NormalTok{, }\DecValTok{110}\NormalTok{]}
+\OperatorTok{+}\NormalTok{ x\_avg }\OperatorTok{=}\NormalTok{ np.mean(x)}
+\OperatorTok{+} \BuiltInTok{print}\NormalTok{(x\_avg)}
+\FloatTok{101.66666666666667}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}} \CommentTok{\# Median, using function from NumPy library}
+\OperatorTok{+}\NormalTok{ x }\OperatorTok{=}\NormalTok{ [}\DecValTok{98}\NormalTok{, }\DecValTok{102}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{22}\NormalTok{, }\DecValTok{304}\NormalTok{]}
+\OperatorTok{+}\NormalTok{ x\_med }\OperatorTok{=}\NormalTok{ np.median(x)}
+\OperatorTok{+} \BuiltInTok{print}\NormalTok{(x\_med)}
+\FloatTok{98.0}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{r-6}{%
+\subsubsection*{R}\label{r-6}}
+\addcontentsline{toc}{subsubsection}{R}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\# Mean, using function from base R}
+\ErrorTok{\textgreater{}}\NormalTok{ x }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{90}\NormalTok{, }\DecValTok{105}\NormalTok{, }\DecValTok{110}\NormalTok{)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ x\_avg }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(x)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ x\_avg}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{101.6667}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\# Median, using function from base R}
+\ErrorTok{\textgreater{}}\NormalTok{ x }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{98}\NormalTok{, }\DecValTok{102}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{22}\NormalTok{, }\DecValTok{304}\NormalTok{)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ x\_med }\OtherTok{\textless{}{-}} \FunctionTok{median}\NormalTok{(x)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ x\_med}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{98}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{data-structures}{%
+\chapter{Data Structures}\label{data-structures}}
+
+This chapter compares and contrasts data structures in Python and R.
+
+\hypertarget{one-dimensional-data}{%
+\section{One-dimensional data}\label{one-dimensional-data}}
+
+A one-dimensional data structure can be visualized as a column in a spreadsheet or as a list of values.
+
+\hypertarget{python-7}{%
+\subsubsection*{Python}\label{python-7}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\hypertarget{r-7}{%
+\subsubsection*{R}\label{r-7}}
+\addcontentsline{toc}{subsubsection}{R}
+
+In R a one-dimensional data structure is called a \emph{vector}. We can create a vector using the \texttt{c()} function. A vector in R can only contain one type of data (all numbers, all strings, etc). The columns of data frames are vectors. If multiple types of data are put into a vector, the data will be coerced according to the hierarchy \texttt{logical} \textless{} \texttt{integer} \textless{} \texttt{double} \textless{} \texttt{complex} \textless{} \texttt{character}. This means if you mix, say integers and character data, all the data will be coerced to character.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}}\NormalTok{ x1 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{23}\NormalTok{, }\DecValTok{43}\NormalTok{, }\DecValTok{55}\NormalTok{)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ x1}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{23} \DecValTok{43} \DecValTok{55}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \CommentTok{\# all values coerced to character}
+\ErrorTok{\textgreater{}}\NormalTok{ x2 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{23}\NormalTok{, }\DecValTok{43}\NormalTok{, }\StringTok{\textquotesingle{}hi\textquotesingle{}}\NormalTok{)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ x2}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"23"} \StringTok{"43"} \StringTok{"hi"}
+\end{Highlighting}
+\end{Shaded}
+
+Values in a vector can be accessed by position using indexing brackets.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\# extract the 2nd value}
+\ErrorTok{\textgreater{}}\NormalTok{ x1[}\DecValTok{2}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{43}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \CommentTok{\# extract the 2nd and 3rd value}
+\ErrorTok{\textgreater{}}\NormalTok{ x1[}\DecValTok{2}\SpecialCharTok{:}\DecValTok{3}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{43} \DecValTok{55}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{two-dimensional}{%
+\section{Two-dimensional}\label{two-dimensional}}
+
+Two-dimensional data is rectangular in nature, consisting of rows and columns. These can be the type of data you might find in a spreadsheet with a mix of data types in columns, or matrices as you might encounter in matrix algebra.
+
+\hypertarget{python-8}{%
+\subsubsection*{Python}\label{python-8}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\hypertarget{r-8}{%
+\subsubsection*{R}\label{r-8}}
+\addcontentsline{toc}{subsubsection}{R}
+
+Two-dimensional data structures in R include the \emph{matrix} and \emph{data frame}. A matrix can contain only one data type. A data frame can contain multiple vectors each of which can consist of different data types.
+
+Create a matrix with the \texttt{matrix()} function. Create a data frame with the \texttt{data.frame()} function. Most imported data comes into R as a data frame.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\# matrix}
+\ErrorTok{\textgreater{}}\NormalTok{ m }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\AttributeTok{data =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{7}\NormalTok{), }\AttributeTok{nrow =} \DecValTok{2}\NormalTok{, }\AttributeTok{ncol =} \DecValTok{2}\NormalTok{)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ m}
+\NormalTok{     [,}\DecValTok{1}\NormalTok{] [,}\DecValTok{2}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{,]    }\DecValTok{1}    \DecValTok{5}
+\NormalTok{[}\DecValTok{2}\NormalTok{,]    }\DecValTok{3}    \DecValTok{7}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \CommentTok{\# data frame}
+\ErrorTok{\textgreater{}}\NormalTok{ d }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{name =} \FunctionTok{c}\NormalTok{(}\StringTok{"Rob"}\NormalTok{, }\StringTok{"Cindy"}\NormalTok{),}
+\SpecialCharTok{+}                 \AttributeTok{age =} \FunctionTok{c}\NormalTok{(}\DecValTok{35}\NormalTok{, }\DecValTok{37}\NormalTok{))}
+\SpecialCharTok{\textgreater{}}\NormalTok{ d}
+\NormalTok{   name age}
+\DecValTok{1}\NormalTok{   Rob  }\DecValTok{35}
+\DecValTok{2}\NormalTok{ Cindy  }\DecValTok{37}
+\end{Highlighting}
+\end{Shaded}
+
+Values in a matrix and data frame can be accessed by position using indexing brackets. The first number(s) refers to rows, the second number(s) to columns. Leaving row or column numbers empty selects all rows or columns.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\# extract value in row 1, column 2}
+\ErrorTok{\textgreater{}}\NormalTok{ m[}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{5}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \CommentTok{\# extract values in row 2}
+\ErrorTok{\textgreater{}}\NormalTok{ d[}\DecValTok{2}\NormalTok{,]}
+\NormalTok{   name age}
+\DecValTok{2}\NormalTok{ Cindy  }\DecValTok{37}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{importing-data}{%
+\chapter{Importing Data}\label{importing-data}}
+
+This chapter reviews importing external data into Python and R, including CSV, txt, and other structured data files.
+
+\hypertarget{csv}{%
+\section{CSV}\label{csv}}
+
+Comma separated value (CSV) files are text files with fields separated by commas. They are useful for ``rectangular'' data where rows represent observations and columns represent variables or features.
+
+\hypertarget{python-9}{%
+\subsubsection*{Python}\label{python-9}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}} \ImportTok{import}\NormalTok{ pandas}
+\OperatorTok{+}\NormalTok{ d }\OperatorTok{=}\NormalTok{ pandas.read\_csv(}\StringTok{\textquotesingle{}data/dat.csv\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{r-9}{%
+\subsubsection*{R}\label{r-9}}
+\addcontentsline{toc}{subsubsection}{R}
+
+There are many ways to import a csv file. A common way is to use the base R function \texttt{read.csv()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}}\NormalTok{ d }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"data/dat.csv"}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} 
+\end{Highlighting}
+\end{Shaded}
+
+Two packages that provide alternatives to \texttt{read.csv()} are \textbf{readr} and \textbf{data.table}. The \textbf{readr} function \texttt{read\_csv()} returns a \href{https://r4ds.had.co.nz/tibbles.html}{tibble}. The \textbf{data.table} function \texttt{fread()} returns a \href{https://rdatatable.gitlab.io/data.table/articles/datatable-intro.html}{data.table}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{library}\NormalTok{(readr)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ d }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"data/dat.csv"}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \FunctionTok{library}\NormalTok{(data.table)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ d }\OtherTok{\textless{}{-}} \FunctionTok{fread}\NormalTok{(}\StringTok{"data/dat.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{xlsxlsx-excel}{%
+\section{XLS/XLSX (Excel)}\label{xlsxlsx-excel}}
+
+\hypertarget{python-10}{%
+\subsubsection*{Python}\label{python-10}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\hypertarget{r-10}{%
+\subsubsection*{R}\label{r-10}}
+\addcontentsline{toc}{subsubsection}{R}
+
+\hypertarget{text}{%
+\section{Text}\label{text}}
+
+\hypertarget{python-11}{%
+\subsubsection*{Python}\label{python-11}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\hypertarget{r-11}{%
+\subsubsection*{R}\label{r-11}}
+\addcontentsline{toc}{subsubsection}{R}
+
+\hypertarget{json}{%
+\section{JSON}\label{json}}
+
+\hypertarget{python-12}{%
+\subsubsection*{Python}\label{python-12}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\hypertarget{r-12}{%
+\subsubsection*{R}\label{r-12}}
+\addcontentsline{toc}{subsubsection}{R}
+
+\hypertarget{xml}{%
+\section{XML}\label{xml}}
+
+\hypertarget{python-13}{%
+\subsubsection*{Python}\label{python-13}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\hypertarget{r-13}{%
+\subsubsection*{R}\label{r-13}}
+\addcontentsline{toc}{subsubsection}{R}
+
+\hypertarget{data-manipulation}{%
+\chapter{Data Manipulation}\label{data-manipulation}}
+
+This chapter looks at various strategies for modifying and deriving variables in data. Unless otherwise stated, examples are for DataFrames (Python) and data frames (R) and use the mtcars data frame that is included with R.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}} \CommentTok{\# Python}
+\OperatorTok{+} \ImportTok{import}\NormalTok{ pandas}
+\OperatorTok{+}\NormalTok{ mtcars }\OperatorTok{=}\NormalTok{ pandas.read\_csv(}\StringTok{\textquotesingle{}data/mtcars.csv\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\# R}
+\ErrorTok{\textgreater{}} \FunctionTok{data}\NormalTok{(mtcars)}
+\SpecialCharTok{\textgreater{}} \CommentTok{\# drop row names to match Python version of data}
+\ErrorTok{\textgreater{}} \FunctionTok{rownames}\NormalTok{(mtcars) }\OtherTok{\textless{}{-}} \ConstantTok{NULL}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{names-of-variables-and-their-types}{%
+\section{Names of variables and their types}\label{names-of-variables-and-their-types}}
+
+View and inspect the names of variables and their type (numeric, string, logical, etc.) This is useful to ensure that variables have the expected type.
+
+\hypertarget{python-14}{%
+\subsubsection*{Python}\label{python-14}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\hypertarget{r-14}{%
+\subsubsection*{R}\label{r-14}}
+\addcontentsline{toc}{subsubsection}{R}
+
+The \texttt{str()} function in R lists the names of the variables, their type, the first few values, and the dimensions of the data frame.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{str}\NormalTok{(mtcars)}
+\StringTok{\textquotesingle{}data.frame\textquotesingle{}}\SpecialCharTok{:}   \DecValTok{32}\NormalTok{ obs. of  }\DecValTok{11}\NormalTok{ variables}\SpecialCharTok{:}
+ \ErrorTok{$}\NormalTok{ mpg }\SpecialCharTok{:}\NormalTok{ num  }\DecValTok{21} \DecValTok{21} \FloatTok{22.8} \FloatTok{21.4} \FloatTok{18.7} \FloatTok{18.1} \FloatTok{14.3} \FloatTok{24.4} \FloatTok{22.8} \FloatTok{19.2}\NormalTok{ ...}
+ \SpecialCharTok{$}\NormalTok{ cyl }\SpecialCharTok{:}\NormalTok{ num  }\DecValTok{6} \DecValTok{6} \DecValTok{4} \DecValTok{6} \DecValTok{8} \DecValTok{6} \DecValTok{8} \DecValTok{4} \DecValTok{4} \DecValTok{6}\NormalTok{ ...}
+ \SpecialCharTok{$}\NormalTok{ disp}\SpecialCharTok{:}\NormalTok{ num  }\DecValTok{160} \DecValTok{160} \DecValTok{108} \DecValTok{258} \DecValTok{360}\NormalTok{ ...}
+ \SpecialCharTok{$}\NormalTok{ hp  }\SpecialCharTok{:}\NormalTok{ num  }\DecValTok{110} \DecValTok{110} \DecValTok{93} \DecValTok{110} \DecValTok{175} \DecValTok{105} \DecValTok{245} \DecValTok{62} \DecValTok{95} \DecValTok{123}\NormalTok{ ...}
+ \SpecialCharTok{$}\NormalTok{ drat}\SpecialCharTok{:}\NormalTok{ num  }\FloatTok{3.9} \FloatTok{3.9} \FloatTok{3.85} \FloatTok{3.08} \FloatTok{3.15} \FloatTok{2.76} \FloatTok{3.21} \FloatTok{3.69} \FloatTok{3.92} \FloatTok{3.92}\NormalTok{ ...}
+ \SpecialCharTok{$}\NormalTok{ wt  }\SpecialCharTok{:}\NormalTok{ num  }\FloatTok{2.62} \FloatTok{2.88} \FloatTok{2.32} \FloatTok{3.21} \FloatTok{3.44}\NormalTok{ ...}
+ \SpecialCharTok{$}\NormalTok{ qsec}\SpecialCharTok{:}\NormalTok{ num  }\FloatTok{16.5} \DecValTok{17} \FloatTok{18.6} \FloatTok{19.4} \DecValTok{17}\NormalTok{ ...}
+ \SpecialCharTok{$}\NormalTok{ vs  }\SpecialCharTok{:}\NormalTok{ num  }\DecValTok{0} \DecValTok{0} \DecValTok{1} \DecValTok{1} \DecValTok{0} \DecValTok{1} \DecValTok{0} \DecValTok{1} \DecValTok{1} \DecValTok{1}\NormalTok{ ...}
+ \SpecialCharTok{$}\NormalTok{ am  }\SpecialCharTok{:}\NormalTok{ num  }\DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{0} \DecValTok{0} \DecValTok{0} \DecValTok{0} \DecValTok{0} \DecValTok{0} \DecValTok{0}\NormalTok{ ...}
+ \SpecialCharTok{$}\NormalTok{ gear}\SpecialCharTok{:}\NormalTok{ num  }\DecValTok{4} \DecValTok{4} \DecValTok{4} \DecValTok{3} \DecValTok{3} \DecValTok{3} \DecValTok{3} \DecValTok{4} \DecValTok{4} \DecValTok{4}\NormalTok{ ...}
+ \SpecialCharTok{$}\NormalTok{ carb}\SpecialCharTok{:}\NormalTok{ num  }\DecValTok{4} \DecValTok{4} \DecValTok{1} \DecValTok{1} \DecValTok{2} \DecValTok{1} \DecValTok{4} \DecValTok{2} \DecValTok{2} \DecValTok{4}\NormalTok{ ...}
+\end{Highlighting}
+\end{Shaded}
+
+To see just the names of the data frame, use the \texttt{names()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{names}\NormalTok{(mtcars)}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] }\StringTok{"mpg"}  \StringTok{"cyl"}  \StringTok{"disp"} \StringTok{"hp"}   \StringTok{"drat"} \StringTok{"wt"}   \StringTok{"qsec"} \StringTok{"vs"}   \StringTok{"am"}   \StringTok{"gear"}
+\NormalTok{[}\DecValTok{11}\NormalTok{] }\StringTok{"carb"}
+\end{Highlighting}
+\end{Shaded}
+
+To see just the dimensions of the data frame, use the \texttt{dim()} function. It returns the number of rows and columns, respectively.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{dim}\NormalTok{(mtcars)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{32} \DecValTok{11}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{access-variables}{%
+\section{Access variables}\label{access-variables}}
+
+How to work with a specific column of data.
+
+\hypertarget{python-15}{%
+\subsubsection*{Python}\label{python-15}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\hypertarget{r-15}{%
+\subsubsection*{R}\label{r-15}}
+\addcontentsline{toc}{subsubsection}{R}
+
+The dollar sign operator, \texttt{\$}, provides access to a column in a data frame as a vector.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}}\NormalTok{ mtcars}\SpecialCharTok{$}\NormalTok{mpg}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FloatTok{21.0} \FloatTok{21.0} \FloatTok{22.8} \FloatTok{21.4} \FloatTok{18.7} \FloatTok{18.1} \FloatTok{14.3} \FloatTok{24.4} \FloatTok{22.8} \FloatTok{19.2} \FloatTok{17.8} \FloatTok{16.4} \FloatTok{17.3} \FloatTok{15.2} \FloatTok{10.4}
+\NormalTok{[}\DecValTok{16}\NormalTok{] }\FloatTok{10.4} \FloatTok{14.7} \FloatTok{32.4} \FloatTok{30.4} \FloatTok{33.9} \FloatTok{21.5} \FloatTok{15.5} \FloatTok{15.2} \FloatTok{13.3} \FloatTok{19.2} \FloatTok{27.3} \FloatTok{26.0} \FloatTok{30.4} \FloatTok{15.8} \FloatTok{19.7}
+\NormalTok{[}\DecValTok{31}\NormalTok{] }\FloatTok{15.0} \FloatTok{21.4}
+\end{Highlighting}
+\end{Shaded}
+
+Double indexing brackets also provide access to columns as a vector.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}}\NormalTok{ mtcars[[}\StringTok{"mpg"}\NormalTok{]]}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FloatTok{21.0} \FloatTok{21.0} \FloatTok{22.8} \FloatTok{21.4} \FloatTok{18.7} \FloatTok{18.1} \FloatTok{14.3} \FloatTok{24.4} \FloatTok{22.8} \FloatTok{19.2} \FloatTok{17.8} \FloatTok{16.4} \FloatTok{17.3} \FloatTok{15.2} \FloatTok{10.4}
+\NormalTok{[}\DecValTok{16}\NormalTok{] }\FloatTok{10.4} \FloatTok{14.7} \FloatTok{32.4} \FloatTok{30.4} \FloatTok{33.9} \FloatTok{21.5} \FloatTok{15.5} \FloatTok{15.2} \FloatTok{13.3} \FloatTok{19.2} \FloatTok{27.3} \FloatTok{26.0} \FloatTok{30.4} \FloatTok{15.8} \FloatTok{19.7}
+\NormalTok{[}\DecValTok{31}\NormalTok{] }\FloatTok{15.0} \FloatTok{21.4}
+\end{Highlighting}
+\end{Shaded}
+
+Single indexing brackets work as well, but return a data frame instead of a vector (if used with a data frame).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}}\NormalTok{ mtcars[}\StringTok{"mpg"}\NormalTok{]}
+\NormalTok{    mpg}
+\DecValTok{1}  \FloatTok{21.0}
+\DecValTok{2}  \FloatTok{21.0}
+\DecValTok{3}  \FloatTok{22.8}
+\DecValTok{4}  \FloatTok{21.4}
+\DecValTok{5}  \FloatTok{18.7}
+\DecValTok{6}  \FloatTok{18.1}
+\DecValTok{7}  \FloatTok{14.3}
+\DecValTok{8}  \FloatTok{24.4}
+\DecValTok{9}  \FloatTok{22.8}
+\DecValTok{10} \FloatTok{19.2}
+\DecValTok{11} \FloatTok{17.8}
+\DecValTok{12} \FloatTok{16.4}
+\DecValTok{13} \FloatTok{17.3}
+\DecValTok{14} \FloatTok{15.2}
+\DecValTok{15} \FloatTok{10.4}
+\DecValTok{16} \FloatTok{10.4}
+\DecValTok{17} \FloatTok{14.7}
+\DecValTok{18} \FloatTok{32.4}
+\DecValTok{19} \FloatTok{30.4}
+\DecValTok{20} \FloatTok{33.9}
+\DecValTok{21} \FloatTok{21.5}
+\DecValTok{22} \FloatTok{15.5}
+\DecValTok{23} \FloatTok{15.2}
+\DecValTok{24} \FloatTok{13.3}
+\DecValTok{25} \FloatTok{19.2}
+\DecValTok{26} \FloatTok{27.3}
+\DecValTok{27} \FloatTok{26.0}
+\DecValTok{28} \FloatTok{30.4}
+\DecValTok{29} \FloatTok{15.8}
+\DecValTok{30} \FloatTok{19.7}
+\DecValTok{31} \FloatTok{15.0}
+\DecValTok{32} \FloatTok{21.4}
+\end{Highlighting}
+\end{Shaded}
+
+Single indexing brackets also allow selection of rows when used with a comma. The syntax is \texttt{rows,\ columns}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\# first three rows}
+\ErrorTok{\textgreater{}}\NormalTok{ mtcars[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{, }\StringTok{"mpg"}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{21.0} \FloatTok{21.0} \FloatTok{22.8}
+\end{Highlighting}
+\end{Shaded}
+
+Finally single indexing brackets allow us to select multiple columns. Request columns either by name or position using a vector.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}}\NormalTok{ mtcars[}\FunctionTok{c}\NormalTok{(}\StringTok{"mpg"}\NormalTok{, }\StringTok{"cyl"}\NormalTok{)] }
+\NormalTok{    mpg cyl}
+\DecValTok{1}  \FloatTok{21.0}   \DecValTok{6}
+\DecValTok{2}  \FloatTok{21.0}   \DecValTok{6}
+\DecValTok{3}  \FloatTok{22.8}   \DecValTok{4}
+\DecValTok{4}  \FloatTok{21.4}   \DecValTok{6}
+\DecValTok{5}  \FloatTok{18.7}   \DecValTok{8}
+\DecValTok{6}  \FloatTok{18.1}   \DecValTok{6}
+\DecValTok{7}  \FloatTok{14.3}   \DecValTok{8}
+\DecValTok{8}  \FloatTok{24.4}   \DecValTok{4}
+\DecValTok{9}  \FloatTok{22.8}   \DecValTok{4}
+\DecValTok{10} \FloatTok{19.2}   \DecValTok{6}
+\DecValTok{11} \FloatTok{17.8}   \DecValTok{6}
+\DecValTok{12} \FloatTok{16.4}   \DecValTok{8}
+\DecValTok{13} \FloatTok{17.3}   \DecValTok{8}
+\DecValTok{14} \FloatTok{15.2}   \DecValTok{8}
+\DecValTok{15} \FloatTok{10.4}   \DecValTok{8}
+\DecValTok{16} \FloatTok{10.4}   \DecValTok{8}
+\DecValTok{17} \FloatTok{14.7}   \DecValTok{8}
+\DecValTok{18} \FloatTok{32.4}   \DecValTok{4}
+\DecValTok{19} \FloatTok{30.4}   \DecValTok{4}
+\DecValTok{20} \FloatTok{33.9}   \DecValTok{4}
+\DecValTok{21} \FloatTok{21.5}   \DecValTok{4}
+\DecValTok{22} \FloatTok{15.5}   \DecValTok{8}
+\DecValTok{23} \FloatTok{15.2}   \DecValTok{8}
+\DecValTok{24} \FloatTok{13.3}   \DecValTok{8}
+\DecValTok{25} \FloatTok{19.2}   \DecValTok{8}
+\DecValTok{26} \FloatTok{27.3}   \DecValTok{4}
+\DecValTok{27} \FloatTok{26.0}   \DecValTok{4}
+\DecValTok{28} \FloatTok{30.4}   \DecValTok{4}
+\DecValTok{29} \FloatTok{15.8}   \DecValTok{8}
+\DecValTok{30} \FloatTok{19.7}   \DecValTok{6}
+\DecValTok{31} \FloatTok{15.0}   \DecValTok{8}
+\DecValTok{32} \FloatTok{21.4}   \DecValTok{4}
+\SpecialCharTok{\textgreater{}} \CommentTok{\# same as mtcars[1:2] }
+\end{Highlighting}
+\end{Shaded}
+
+The \texttt{head()} and \texttt{tail()} functions return the first 6 or last 6 values. Use the \texttt{n} argument to change the number of values. They work with vectors or data frames.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\# first 6 values}
+\ErrorTok{\textgreater{}} \FunctionTok{head}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{mpg)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{21.0} \FloatTok{21.0} \FloatTok{22.8} \FloatTok{21.4} \FloatTok{18.7} \FloatTok{18.1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\# last row of data frame}
+\ErrorTok{\textgreater{}} \FunctionTok{tail}\NormalTok{(mtcars, }\AttributeTok{n =} \DecValTok{1}\NormalTok{)}
+\NormalTok{    mpg cyl disp  hp drat   wt qsec vs am gear carb}
+\DecValTok{32} \FloatTok{21.4}   \DecValTok{4}  \DecValTok{121} \DecValTok{109} \FloatTok{4.11} \FloatTok{2.78} \FloatTok{18.6}  \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{rename-variables}{%
+\section{Rename variables}\label{rename-variables}}
+
+How to rename variables or ``column headers''.
+
+\hypertarget{python-16}{%
+\subsubsection*{Python}\label{python-16}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\hypertarget{r-16}{%
+\subsubsection*{R}\label{r-16}}
+\addcontentsline{toc}{subsubsection}{R}
+
+Variable names can be changed by their index (ie, order of columns in the data frame). Below the second column is ``cyl''. We change the name to ``cylinder''.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{names}\NormalTok{(mtcars)[}\DecValTok{2}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"cyl"}
+\SpecialCharTok{\textgreater{}} \FunctionTok{names}\NormalTok{(mtcars)[}\DecValTok{2}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"cylinders"}
+\SpecialCharTok{\textgreater{}} \FunctionTok{names}\NormalTok{(mtcars)}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] }\StringTok{"mpg"}       \StringTok{"cylinders"} \StringTok{"disp"}      \StringTok{"hp"}        \StringTok{"drat"}      \StringTok{"wt"}       
+\NormalTok{ [}\DecValTok{7}\NormalTok{] }\StringTok{"qsec"}      \StringTok{"vs"}        \StringTok{"am"}        \StringTok{"gear"}      \StringTok{"carb"}     
+\end{Highlighting}
+\end{Shaded}
+
+Variable names can also be changed by conditional match. Below we find the variable name that matches ``drat'' and change to ``axle\_ratio''.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{names}\NormalTok{(mtcars)[}\FunctionTok{names}\NormalTok{(mtcars) }\SpecialCharTok{==} \StringTok{"drat"}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"drat"}
+\SpecialCharTok{\textgreater{}} \FunctionTok{names}\NormalTok{(mtcars)[}\FunctionTok{names}\NormalTok{(mtcars) }\SpecialCharTok{==} \StringTok{"drat"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"axle\_ratio"}
+\SpecialCharTok{\textgreater{}} \FunctionTok{names}\NormalTok{(mtcars)}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] }\StringTok{"mpg"}        \StringTok{"cylinders"}  \StringTok{"disp"}       \StringTok{"hp"}         \StringTok{"axle\_ratio"}
+\NormalTok{ [}\DecValTok{6}\NormalTok{] }\StringTok{"wt"}         \StringTok{"qsec"}       \StringTok{"vs"}         \StringTok{"am"}         \StringTok{"gear"}      
+\NormalTok{[}\DecValTok{11}\NormalTok{] }\StringTok{"carb"}      
+\end{Highlighting}
+\end{Shaded}
+
+More than one variable name can be changed using a vector of positions or matches.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{names}\NormalTok{(mtcars)[}\FunctionTok{c}\NormalTok{(}\DecValTok{6}\NormalTok{,}\DecValTok{8}\NormalTok{)] }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"weight"}\NormalTok{, }\StringTok{"engine"}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \CommentTok{\# or}
+\ErrorTok{\textgreater{}} \CommentTok{\# names(mtcars)[names(mtcars) \%in\% c("wt", "vs")] \textless{}{-} c("weight", "engine")}
+\ErrorTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \FunctionTok{names}\NormalTok{(mtcars)}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] }\StringTok{"mpg"}        \StringTok{"cylinders"}  \StringTok{"disp"}       \StringTok{"hp"}         \StringTok{"axle\_ratio"}
+\NormalTok{ [}\DecValTok{6}\NormalTok{] }\StringTok{"weight"}     \StringTok{"qsec"}       \StringTok{"engine"}     \StringTok{"am"}         \StringTok{"gear"}      
+\NormalTok{[}\DecValTok{11}\NormalTok{] }\StringTok{"carb"}      
+\end{Highlighting}
+\end{Shaded}
+
+See also the \texttt{rename()} function in the \textbf{dplyr} package.
+
+\hypertarget{create-replace-and-remove-variables}{%
+\section{Create, replace and remove variables}\label{create-replace-and-remove-variables}}
+
+We often need to create variables that are functions of other variables, or replace existing variables with an updated version.
+
+\hypertarget{python-17}{%
+\subsubsection*{Python}\label{python-17}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\hypertarget{r-17}{%
+\subsubsection*{R}\label{r-17}}
+\addcontentsline{toc}{subsubsection}{R}
+
+Adding a new variable name after the dollar sign notation and assigning a result adds a new column.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\# add column for Kilometer per liter}
+\ErrorTok{\textgreater{}}\NormalTok{ mtcars}\SpecialCharTok{$}\NormalTok{kpl }\OtherTok{\textless{}{-}}\NormalTok{ mtcars}\SpecialCharTok{$}\NormalTok{mpg}\SpecialCharTok{/}\FloatTok{2.352}
+\end{Highlighting}
+\end{Shaded}
+
+Doing the same with an \emph{existing} variable updates the values in a column.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\# update to liters per 100 Kilometers}
+\ErrorTok{\textgreater{}}\NormalTok{ mtcars}\SpecialCharTok{$}\NormalTok{kpl }\OtherTok{\textless{}{-}} \DecValTok{100}\SpecialCharTok{/}\NormalTok{mtcars}\SpecialCharTok{$}\NormalTok{kpl }
+\end{Highlighting}
+\end{Shaded}
+
+To remove a variable, assign it \texttt{NULL}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\# drop the kpl variable}
+\ErrorTok{\textgreater{}}\NormalTok{ mtcars}\SpecialCharTok{$}\NormalTok{kpl }\OtherTok{\textless{}{-}} \ConstantTok{NULL}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{create-strings-from-numbers}{%
+\section{Create strings from numbers}\label{create-strings-from-numbers}}
+
+You may have data that is numeric but that needs to be treated as a string.
+
+\hypertarget{python-18}{%
+\subsubsection*{Python}\label{python-18}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\hypertarget{r-18}{%
+\subsubsection*{R}\label{r-18}}
+\addcontentsline{toc}{subsubsection}{R}
+
+The \texttt{as.character()} function takes a vector and converts it to string format.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{head}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{am)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{0} \DecValTok{0} \DecValTok{0}
+\SpecialCharTok{\textgreater{}} \FunctionTok{head}\NormalTok{(}\FunctionTok{as.character}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{am))}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"1"} \StringTok{"1"} \StringTok{"1"} \StringTok{"0"} \StringTok{"0"} \StringTok{"0"}
+\end{Highlighting}
+\end{Shaded}
+
+Note we just demonstrated conversion. To save the conversion we need to \emph{assign} the result to the data frame.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\# add new string variable am\_ch}
+\ErrorTok{\textgreater{}}\NormalTok{ mtcars}\SpecialCharTok{$}\NormalTok{am\_ch }\OtherTok{\textless{}{-}} \FunctionTok{as.character}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{am)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{head}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{am\_ch)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"1"} \StringTok{"1"} \StringTok{"1"} \StringTok{"0"} \StringTok{"0"} \StringTok{"0"}
+\end{Highlighting}
+\end{Shaded}
+
+The \texttt{factor()} function can also be used to convert a numeric vector into a categorical variable. The result is not exactly a string, however. A factor is made of integers with character labels. Factors are useful for character data that have a fixed set of levels (eg, ``grade 1'', grade 2'', etc)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\# convert to factor}
+\ErrorTok{\textgreater{}} \FunctionTok{head}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{am)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{0} \DecValTok{0} \DecValTok{0}
+\SpecialCharTok{\textgreater{}} \FunctionTok{head}\NormalTok{(}\FunctionTok{factor}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{am))}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{0} \DecValTok{0} \DecValTok{0}
+\NormalTok{Levels}\SpecialCharTok{:} \DecValTok{0} \DecValTok{1}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \CommentTok{\# convert to factor with labels}
+\ErrorTok{\textgreater{}} \FunctionTok{head}\NormalTok{(}\FunctionTok{factor}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{am, }\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"automatic"}\NormalTok{, }\StringTok{"manual"}\NormalTok{)))}
+\NormalTok{[}\DecValTok{1}\NormalTok{] manual    manual    manual    automatic automatic automatic}
+\NormalTok{Levels}\SpecialCharTok{:}\NormalTok{ automatic manual}
+\end{Highlighting}
+\end{Shaded}
+
+Again we just demonstrated factor conversion. To save the conversion we need to assign to the data frame.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\# create factor variable am\_fac}
+\ErrorTok{\textgreater{}}\NormalTok{ mtcars}\SpecialCharTok{$}\NormalTok{am\_fac }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{am, }\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"automatic"}\NormalTok{, }\StringTok{"manual"}\NormalTok{))}
+\SpecialCharTok{\textgreater{}} \FunctionTok{head}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{am\_fac)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] manual    manual    manual    automatic automatic automatic}
+\NormalTok{Levels}\SpecialCharTok{:}\NormalTok{ automatic manual}
+\end{Highlighting}
+\end{Shaded}
+
+TODO: add zip code conversion using \texttt{str\_pad()} (or base R option?)
+
+\hypertarget{create-numbers-from-strings}{%
+\section{Create numbers from strings}\label{create-numbers-from-strings}}
+
+String variables that ought to be numbers usually have some character data in the values such as units (eg, ``4 cm''). To create numbers from strings it's important to remove any character data that cannot be converted to a number.
+
+\hypertarget{python-19}{%
+\subsubsection*{Python}\label{python-19}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\hypertarget{r-19}{%
+\subsubsection*{R}\label{r-19}}
+\addcontentsline{toc}{subsubsection}{R}
+
+The \texttt{as.numeric()} function will attempt to coerce strings to numeric type \emph{if possible}. Any non-numeric values are coerced to NA.
+
+For demonstration, let's say we have the following vector.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}}\NormalTok{ weight }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"125 lbs."}\NormalTok{, }\StringTok{"132 lbs."}\NormalTok{, }\StringTok{"156 lbs."}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The \texttt{as.numeric()} function returns all NA due to presence of character data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{as.numeric}\NormalTok{(weight)}
+\NormalTok{Warning}\SpecialCharTok{:}\NormalTok{ NAs introduced by coercion}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\ConstantTok{NA} \ConstantTok{NA} \ConstantTok{NA}
+\end{Highlighting}
+\end{Shaded}
+
+There are many ways to approach this. A common approach is to first remove the characters and then use \texttt{as.numeric()}. Below we use the \texttt{sub} function to find ``lbs.'' and replace with nothing.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}}\NormalTok{ weightN }\OtherTok{\textless{}{-}} \FunctionTok{gsub}\NormalTok{(}\StringTok{"lbs."}\NormalTok{, }\StringTok{""}\NormalTok{, weight)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{as.numeric}\NormalTok{(weightN)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{125} \DecValTok{132} \DecValTok{156}
+\end{Highlighting}
+\end{Shaded}
+
+The \texttt{parse\_number()} function in the \textbf{readr} package can often take care of these situations automatically.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}}\NormalTok{ readr}\SpecialCharTok{::}\FunctionTok{parse\_number}\NormalTok{(weight)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{125} \DecValTok{132} \DecValTok{156}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{change-case}{%
+\section{Change case}\label{change-case}}
+
+How to change the case of strings. The most common case transformations are lower case, upper case, and title case.
+
+\hypertarget{python-20}{%
+\subsubsection*{Python}\label{python-20}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\hypertarget{r-20}{%
+\subsubsection*{R}\label{r-20}}
+\addcontentsline{toc}{subsubsection}{R}
+
+The \texttt{tolower()} and \texttt{toupper()} functions convert case to lower and upper, respectively.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{names}\NormalTok{(mtcars) }\OtherTok{\textless{}{-}} \FunctionTok{toupper}\NormalTok{(}\FunctionTok{names}\NormalTok{(mtcars))}
+\SpecialCharTok{\textgreater{}} \FunctionTok{names}\NormalTok{(mtcars)}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] }\StringTok{"MPG"}        \StringTok{"CYLINDERS"}  \StringTok{"DISP"}       \StringTok{"HP"}         \StringTok{"AXLE\_RATIO"}
+\NormalTok{ [}\DecValTok{6}\NormalTok{] }\StringTok{"WEIGHT"}     \StringTok{"QSEC"}       \StringTok{"ENGINE"}     \StringTok{"AM"}         \StringTok{"GEAR"}      
+\NormalTok{[}\DecValTok{11}\NormalTok{] }\StringTok{"CARB"}       \StringTok{"AM\_CH"}      \StringTok{"AM\_FAC"}    
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{names}\NormalTok{(mtcars) }\OtherTok{\textless{}{-}} \FunctionTok{tolower}\NormalTok{(}\FunctionTok{names}\NormalTok{(mtcars))}
+\SpecialCharTok{\textgreater{}} \FunctionTok{names}\NormalTok{(mtcars)}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] }\StringTok{"mpg"}        \StringTok{"cylinders"}  \StringTok{"disp"}       \StringTok{"hp"}         \StringTok{"axle\_ratio"}
+\NormalTok{ [}\DecValTok{6}\NormalTok{] }\StringTok{"weight"}     \StringTok{"qsec"}       \StringTok{"engine"}     \StringTok{"am"}         \StringTok{"gear"}      
+\NormalTok{[}\DecValTok{11}\NormalTok{] }\StringTok{"carb"}       \StringTok{"am\_ch"}      \StringTok{"am\_fac"}    
+\end{Highlighting}
+\end{Shaded}
+
+The \textbf{stringr} package provides a convenient title case conversion function, \texttt{str\_to\_title()}, which capitalizes the first letter of each string.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}}\NormalTok{ stringr}\SpecialCharTok{::}\FunctionTok{str\_to\_title}\NormalTok{(}\FunctionTok{names}\NormalTok{(mtcars))}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] }\StringTok{"Mpg"}        \StringTok{"Cylinders"}  \StringTok{"Disp"}       \StringTok{"Hp"}         \StringTok{"Axle\_ratio"}
+\NormalTok{ [}\DecValTok{6}\NormalTok{] }\StringTok{"Weight"}     \StringTok{"Qsec"}       \StringTok{"Engine"}     \StringTok{"Am"}         \StringTok{"Gear"}      
+\NormalTok{[}\DecValTok{11}\NormalTok{] }\StringTok{"Carb"}       \StringTok{"Am\_ch"}      \StringTok{"Am\_fac"}    
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{drop-duplicate-rows}{%
+\section{Drop duplicate rows}\label{drop-duplicate-rows}}
+
+How to find and drop duplicate elements.
+
+\hypertarget{python-21}{%
+\subsubsection*{Python}\label{python-21}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\hypertarget{r-21}{%
+\subsubsection*{R}\label{r-21}}
+\addcontentsline{toc}{subsubsection}{R}
+
+The \texttt{duplicated()} function ``determines which elements of a vector or data frame are duplicates of elements with smaller subscripts''. (from \texttt{?duplicated})
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\# create data frame with duplicate rows}
+\ErrorTok{\textgreater{}}\NormalTok{ mtcars2 }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(mtcars[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{,}\DecValTok{1}\SpecialCharTok{:}\DecValTok{6}\NormalTok{], mtcars[}\DecValTok{1}\NormalTok{,}\DecValTok{1}\SpecialCharTok{:}\DecValTok{6}\NormalTok{])}
+\SpecialCharTok{\textgreater{}} \CommentTok{\# last row is duplicate of first}
+\ErrorTok{\textgreater{}}\NormalTok{ mtcars2}
+\NormalTok{   mpg cylinders disp  hp axle\_ratio weight}
+\DecValTok{1} \FloatTok{21.0}         \DecValTok{6}  \DecValTok{160} \DecValTok{110}       \FloatTok{3.90}  \FloatTok{2.620}
+\DecValTok{2} \FloatTok{21.0}         \DecValTok{6}  \DecValTok{160} \DecValTok{110}       \FloatTok{3.90}  \FloatTok{2.875}
+\DecValTok{3} \FloatTok{22.8}         \DecValTok{4}  \DecValTok{108}  \DecValTok{93}       \FloatTok{3.85}  \FloatTok{2.320}
+\DecValTok{4} \FloatTok{21.0}         \DecValTok{6}  \DecValTok{160} \DecValTok{110}       \FloatTok{3.90}  \FloatTok{2.620}
+\end{Highlighting}
+\end{Shaded}
+
+The \texttt{duplicated()} function returns a logical vector. TRUE indicates a row is a duplicate of a previous row.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\# last row is duplicate}
+\ErrorTok{\textgreater{}} \FunctionTok{duplicated}\NormalTok{(mtcars2)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\ConstantTok{FALSE} \ConstantTok{FALSE} \ConstantTok{FALSE}  \ConstantTok{TRUE}
+\end{Highlighting}
+\end{Shaded}
+
+The TRUE/FALSE vector can be used to extract or drop duplicate rows. Since TRUE in indexing brackets will keep a row, we can use \texttt{!} to negate the logicals and keep those that are ``NOT TRUE''
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\# drop the duplicate and update the data frame}
+\ErrorTok{\textgreater{}}\NormalTok{ mtcars3 }\OtherTok{\textless{}{-}}\NormalTok{ mtcars2[}\SpecialCharTok{!}\FunctionTok{duplicated}\NormalTok{(mtcars2),]}
+\SpecialCharTok{\textgreater{}}\NormalTok{ mtcars3}
+\NormalTok{   mpg cylinders disp  hp axle\_ratio weight}
+\DecValTok{1} \FloatTok{21.0}         \DecValTok{6}  \DecValTok{160} \DecValTok{110}       \FloatTok{3.90}  \FloatTok{2.620}
+\DecValTok{2} \FloatTok{21.0}         \DecValTok{6}  \DecValTok{160} \DecValTok{110}       \FloatTok{3.90}  \FloatTok{2.875}
+\DecValTok{3} \FloatTok{22.8}         \DecValTok{4}  \DecValTok{108}  \DecValTok{93}       \FloatTok{3.85}  \FloatTok{2.320}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\# extract and investigate the duplicate row}
+\ErrorTok{\textgreater{}}\NormalTok{ mtcars2[}\FunctionTok{duplicated}\NormalTok{(mtcars2),]}
+\NormalTok{  mpg cylinders disp  hp axle\_ratio weight}
+\DecValTok{4}  \DecValTok{21}         \DecValTok{6}  \DecValTok{160} \DecValTok{110}        \FloatTok{3.9}   \FloatTok{2.62}
+\end{Highlighting}
+\end{Shaded}
+
+The \texttt{anyDuplicated()} function returns the row number of duplicate rows.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{anyDuplicated}\NormalTok{(mtcars2)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{4}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{randomly-sample-rows}{%
+\section{Randomly sample rows}\label{randomly-sample-rows}}
+
+How to take a random sample of rows from a data frame. The sample is usually either a fixed size or a proportion.
+
+\hypertarget{python-22}{%
+\subsubsection*{Python}\label{python-22}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\hypertarget{r-22}{%
+\subsubsection*{R}\label{r-22}}
+\addcontentsline{toc}{subsubsection}{R}
+
+There are many ways to sample rows from a data frame in R. The \textbf{dplyr} package provides a convenience function, \texttt{slice\_sample()}, for taking either a fixed sample size or a proportion.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\# sample 5 rows from mtcars}
+\ErrorTok{\textgreater{}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{slice\_sample}\NormalTok{(mtcars, }\AttributeTok{n =} \DecValTok{5}\NormalTok{)}
+\NormalTok{   mpg cylinders  disp  hp axle\_ratio weight  qsec engine am gear carb am\_ch}
+\DecValTok{1} \FloatTok{19.2}         \DecValTok{8} \FloatTok{400.0} \DecValTok{175}       \FloatTok{3.08}  \FloatTok{3.845} \FloatTok{17.05}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{2}     \DecValTok{0}
+\DecValTok{2} \FloatTok{17.3}         \DecValTok{8} \FloatTok{275.8} \DecValTok{180}       \FloatTok{3.07}  \FloatTok{3.730} \FloatTok{17.60}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{3}     \DecValTok{0}
+\DecValTok{3} \FloatTok{19.7}         \DecValTok{6} \FloatTok{145.0} \DecValTok{175}       \FloatTok{3.62}  \FloatTok{2.770} \FloatTok{15.50}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{6}     \DecValTok{1}
+\DecValTok{4} \FloatTok{27.3}         \DecValTok{4}  \FloatTok{79.0}  \DecValTok{66}       \FloatTok{4.08}  \FloatTok{1.935} \FloatTok{18.90}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
+\DecValTok{5} \FloatTok{30.4}         \DecValTok{4}  \FloatTok{75.7}  \DecValTok{52}       \FloatTok{4.93}  \FloatTok{1.615} \FloatTok{18.52}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{2}     \DecValTok{1}
+\NormalTok{     am\_fac}
+\DecValTok{1}\NormalTok{ automatic}
+\DecValTok{2}\NormalTok{ automatic}
+\DecValTok{3}\NormalTok{    manual}
+\DecValTok{4}\NormalTok{    manual}
+\DecValTok{5}\NormalTok{    manual}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \CommentTok{\# sample 20\% of rows from mtcars}
+\ErrorTok{\textgreater{}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{slice\_sample}\NormalTok{(mtcars, }\AttributeTok{prop =} \FloatTok{0.20}\NormalTok{)}
+\NormalTok{   mpg cylinders  disp  hp axle\_ratio weight  qsec engine am gear carb am\_ch}
+\DecValTok{1} \FloatTok{19.2}         \DecValTok{8} \FloatTok{400.0} \DecValTok{175}       \FloatTok{3.08}  \FloatTok{3.845} \FloatTok{17.05}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{2}     \DecValTok{0}
+\DecValTok{2} \FloatTok{26.0}         \DecValTok{4} \FloatTok{120.3}  \DecValTok{91}       \FloatTok{4.43}  \FloatTok{2.140} \FloatTok{16.70}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{2}     \DecValTok{1}
+\DecValTok{3} \FloatTok{17.8}         \DecValTok{6} \FloatTok{167.6} \DecValTok{123}       \FloatTok{3.92}  \FloatTok{3.440} \FloatTok{18.90}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{4} \FloatTok{22.8}         \DecValTok{4} \FloatTok{140.8}  \DecValTok{95}       \FloatTok{3.92}  \FloatTok{3.150} \FloatTok{22.90}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{2}     \DecValTok{0}
+\DecValTok{5} \FloatTok{19.2}         \DecValTok{6} \FloatTok{167.6} \DecValTok{123}       \FloatTok{3.92}  \FloatTok{3.440} \FloatTok{18.30}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{6} \FloatTok{16.4}         \DecValTok{8} \FloatTok{275.8} \DecValTok{180}       \FloatTok{3.07}  \FloatTok{4.070} \FloatTok{17.40}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{3}     \DecValTok{0}
+\NormalTok{     am\_fac}
+\DecValTok{1}\NormalTok{ automatic}
+\DecValTok{2}\NormalTok{    manual}
+\DecValTok{3}\NormalTok{ automatic}
+\DecValTok{4}\NormalTok{ automatic}
+\DecValTok{5}\NormalTok{ automatic}
+\DecValTok{6}\NormalTok{ automatic}
+\end{Highlighting}
+\end{Shaded}
+
+To sample with replacement, set \texttt{replace\ =\ TRUE}.
+
+The base R functions \texttt{sample()} and \texttt{runif()} can be combined to sample sizes or approximate proportions.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\# sample 5 rows from mtcars}
+\ErrorTok{\textgreater{}} \CommentTok{\# get random row numbers}
+\ErrorTok{\textgreater{}}\NormalTok{ i }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(mtcars), }\AttributeTok{size =} \DecValTok{5}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} \CommentTok{\# use i to select rows}
+\ErrorTok{\textgreater{}}\NormalTok{ mtcars[i,]}
+\NormalTok{    mpg cylinders  disp  hp axle\_ratio weight  qsec engine am gear carb am\_ch}
+\DecValTok{13} \FloatTok{17.3}         \DecValTok{8} \FloatTok{275.8} \DecValTok{180}       \FloatTok{3.07}   \FloatTok{3.73} \FloatTok{17.60}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{3}     \DecValTok{0}
+\DecValTok{32} \FloatTok{21.4}         \DecValTok{4} \FloatTok{121.0} \DecValTok{109}       \FloatTok{4.11}   \FloatTok{2.78} \FloatTok{18.60}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{2}     \DecValTok{1}
+\DecValTok{27} \FloatTok{26.0}         \DecValTok{4} \FloatTok{120.3}  \DecValTok{91}       \FloatTok{4.43}   \FloatTok{2.14} \FloatTok{16.70}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{2}     \DecValTok{1}
+\DecValTok{18} \FloatTok{32.4}         \DecValTok{4}  \FloatTok{78.7}  \DecValTok{66}       \FloatTok{4.08}   \FloatTok{2.20} \FloatTok{19.47}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
+\DecValTok{9}  \FloatTok{22.8}         \DecValTok{4} \FloatTok{140.8}  \DecValTok{95}       \FloatTok{3.92}   \FloatTok{3.15} \FloatTok{22.90}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{2}     \DecValTok{0}
+\NormalTok{      am\_fac}
+\DecValTok{13}\NormalTok{ automatic}
+\DecValTok{32}\NormalTok{    manual}
+\DecValTok{27}\NormalTok{    manual}
+\DecValTok{18}\NormalTok{    manual}
+\DecValTok{9}\NormalTok{  automatic}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\# sample about 20\% of rows from mtcars}
+\ErrorTok{\textgreater{}} \CommentTok{\# generate random values on range of [0,1]}
+\ErrorTok{\textgreater{}}\NormalTok{ i }\OtherTok{\textless{}{-}} \FunctionTok{runif}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(mtcars))}
+\SpecialCharTok{\textgreater{}} \CommentTok{\# use i \textless{} 0.20 logical vector to }
+\ErrorTok{\textgreater{}} \CommentTok{\# select rows that correspond to TRUE}
+\ErrorTok{\textgreater{}}\NormalTok{ mtcars[i }\SpecialCharTok{\textless{}} \FloatTok{0.20}\NormalTok{,]}
+\NormalTok{    mpg cylinders  disp  hp axle\_ratio weight  qsec engine am gear carb am\_ch}
+\DecValTok{1}  \FloatTok{21.0}         \DecValTok{6} \FloatTok{160.0} \DecValTok{110}       \FloatTok{3.90}  \FloatTok{2.620} \FloatTok{16.46}      \DecValTok{0}  \DecValTok{1}    \DecValTok{4}    \DecValTok{4}     \DecValTok{1}
+\DecValTok{3}  \FloatTok{22.8}         \DecValTok{4} \FloatTok{108.0}  \DecValTok{93}       \FloatTok{3.85}  \FloatTok{2.320} \FloatTok{18.61}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
+\DecValTok{9}  \FloatTok{22.8}         \DecValTok{4} \FloatTok{140.8}  \DecValTok{95}       \FloatTok{3.92}  \FloatTok{3.150} \FloatTok{22.90}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{2}     \DecValTok{0}
+\DecValTok{10} \FloatTok{19.2}         \DecValTok{6} \FloatTok{167.6} \DecValTok{123}       \FloatTok{3.92}  \FloatTok{3.440} \FloatTok{18.30}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{17} \FloatTok{14.7}         \DecValTok{8} \FloatTok{440.0} \DecValTok{230}       \FloatTok{3.23}  \FloatTok{5.345} \FloatTok{17.42}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{20} \FloatTok{33.9}         \DecValTok{4}  \FloatTok{71.1}  \DecValTok{65}       \FloatTok{4.22}  \FloatTok{1.835} \FloatTok{19.90}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
+\DecValTok{21} \FloatTok{21.5}         \DecValTok{4} \FloatTok{120.1}  \DecValTok{97}       \FloatTok{3.70}  \FloatTok{2.465} \FloatTok{20.01}      \DecValTok{1}  \DecValTok{0}    \DecValTok{3}    \DecValTok{1}     \DecValTok{0}
+\DecValTok{22} \FloatTok{15.5}         \DecValTok{8} \FloatTok{318.0} \DecValTok{150}       \FloatTok{2.76}  \FloatTok{3.520} \FloatTok{16.87}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{2}     \DecValTok{0}
+\DecValTok{29} \FloatTok{15.8}         \DecValTok{8} \FloatTok{351.0} \DecValTok{264}       \FloatTok{4.22}  \FloatTok{3.170} \FloatTok{14.50}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{4}     \DecValTok{1}
+\DecValTok{31} \FloatTok{15.0}         \DecValTok{8} \FloatTok{301.0} \DecValTok{335}       \FloatTok{3.54}  \FloatTok{3.570} \FloatTok{14.60}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{8}     \DecValTok{1}
+\NormalTok{      am\_fac}
+\DecValTok{1}\NormalTok{     manual}
+\DecValTok{3}\NormalTok{     manual}
+\DecValTok{9}\NormalTok{  automatic}
+\DecValTok{10}\NormalTok{ automatic}
+\DecValTok{17}\NormalTok{ automatic}
+\DecValTok{20}\NormalTok{    manual}
+\DecValTok{21}\NormalTok{ automatic}
+\DecValTok{22}\NormalTok{ automatic}
+\DecValTok{29}\NormalTok{    manual}
+\DecValTok{31}\NormalTok{    manual}
+\end{Highlighting}
+\end{Shaded}
+
+The random sample will change every time the code is run. To always generate the same ``random'' sample, use the \texttt{set.seed()} function with any positive integer.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\# always get the same random sample}
+\ErrorTok{\textgreater{}} \FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ i }\OtherTok{\textless{}{-}} \FunctionTok{runif}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(mtcars))}
+\SpecialCharTok{\textgreater{}}\NormalTok{ mtcars[i }\SpecialCharTok{\textless{}} \FloatTok{0.20}\NormalTok{,]}
+\NormalTok{    mpg cylinders  disp  hp axle\_ratio weight  qsec engine am gear carb am\_ch}
+\DecValTok{6}  \FloatTok{18.1}         \DecValTok{6} \FloatTok{225.0} \DecValTok{105}       \FloatTok{2.76}   \FloatTok{3.46} \FloatTok{20.22}      \DecValTok{1}  \DecValTok{0}    \DecValTok{3}    \DecValTok{1}     \DecValTok{0}
+\DecValTok{15} \FloatTok{10.4}         \DecValTok{8} \FloatTok{472.0} \DecValTok{205}       \FloatTok{2.93}   \FloatTok{5.25} \FloatTok{17.98}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{18} \FloatTok{32.4}         \DecValTok{4}  \FloatTok{78.7}  \DecValTok{66}       \FloatTok{4.08}   \FloatTok{2.20} \FloatTok{19.47}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
+\DecValTok{30} \FloatTok{19.7}         \DecValTok{6} \FloatTok{145.0} \DecValTok{175}       \FloatTok{3.62}   \FloatTok{2.77} \FloatTok{15.50}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{6}     \DecValTok{1}
+\NormalTok{      am\_fac}
+\DecValTok{6}\NormalTok{  automatic}
+\DecValTok{15}\NormalTok{ automatic}
+\DecValTok{18}\NormalTok{    manual}
+\DecValTok{30}\NormalTok{    manual}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{combine-reshape-and-merge}{%
+\chapter{Combine, Reshape and Merge}\label{combine-reshape-and-merge}}
+
+This chapter looks at various strategies for combining, reshaping and merging data.
+
+\hypertarget{combine-rows}{%
+\section{Combine rows}\label{combine-rows}}
+
+Combining rows may be thought of as ``stacking'' rectangular data structures.
+
+\hypertarget{python-23}{%
+\subsubsection*{Python}\label{python-23}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\hypertarget{r-23}{%
+\subsubsection*{R}\label{r-23}}
+\addcontentsline{toc}{subsubsection}{R}
+
+The \texttt{rbind()} function ``binds'' rows. It takes two or more objects. To row bind data frames the column names must match, otherwise an error is returned. If columns being stacked have differing variable types, the values will be coerced according to \texttt{logical} \textless{} \texttt{integer} \textless{} \texttt{double} \textless{} \texttt{complex} \textless{} \texttt{character}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}}\NormalTok{ d1 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{x =} \DecValTok{4}\SpecialCharTok{:}\DecValTok{6}\NormalTok{, }\AttributeTok{y =}\NormalTok{ letters[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{])}
+\SpecialCharTok{\textgreater{}}\NormalTok{ d2 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{x =} \DecValTok{3}\SpecialCharTok{:}\DecValTok{1}\NormalTok{, }\AttributeTok{y =}\NormalTok{ letters[}\DecValTok{4}\SpecialCharTok{:}\DecValTok{6}\NormalTok{])}
+\SpecialCharTok{\textgreater{}} \FunctionTok{rbind}\NormalTok{(d1, d2)}
+\NormalTok{  x y}
+\DecValTok{1} \DecValTok{4}\NormalTok{ a}
+\DecValTok{2} \DecValTok{5}\NormalTok{ b}
+\DecValTok{3} \DecValTok{6}\NormalTok{ c}
+\DecValTok{4} \DecValTok{3}\NormalTok{ d}
+\DecValTok{5} \DecValTok{2}\NormalTok{ e}
+\DecValTok{6} \DecValTok{1}\NormalTok{ f}
+\end{Highlighting}
+\end{Shaded}
+
+See also the \texttt{bind\_rows()} function in the \textbf{dplyr} package.
+
+\hypertarget{combine-columns}{%
+\section{Combine columns}\label{combine-columns}}
+
+Combining columns may be thought of as setting rectangular data structures next to each other.
+
+\hypertarget{python-24}{%
+\subsubsection*{Python}\label{python-24}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\hypertarget{r-24}{%
+\subsubsection*{R}\label{r-24}}
+\addcontentsline{toc}{subsubsection}{R}
+
+The \texttt{cbind()} function ``binds'' columns. It takes two or more objects. To column bind data frames the number of rows must match, otherwise the object with fewer rows will have rows ``recycled'' (if possible) or an error is returned.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}}\NormalTok{ d1 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{x =} \DecValTok{10}\SpecialCharTok{:}\DecValTok{13}\NormalTok{, }\AttributeTok{y =}\NormalTok{ letters[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{4}\NormalTok{])}
+\SpecialCharTok{\textgreater{}}\NormalTok{ d2 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{x =} \FunctionTok{c}\NormalTok{(}\DecValTok{23}\NormalTok{,}\DecValTok{34}\NormalTok{,}\DecValTok{45}\NormalTok{,}\DecValTok{44}\NormalTok{))}
+\SpecialCharTok{\textgreater{}} \FunctionTok{cbind}\NormalTok{(d1, d2)}
+\NormalTok{   x y  x}
+\DecValTok{1} \DecValTok{10}\NormalTok{ a }\DecValTok{23}
+\DecValTok{2} \DecValTok{11}\NormalTok{ b }\DecValTok{34}
+\DecValTok{3} \DecValTok{12}\NormalTok{ c }\DecValTok{45}
+\DecValTok{4} \DecValTok{13}\NormalTok{ d }\DecValTok{44}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\# example of recycled rows (d1 is repeated twice)}
+\ErrorTok{\textgreater{}}\NormalTok{ d1 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{x =} \DecValTok{10}\SpecialCharTok{:}\DecValTok{13}\NormalTok{, }\AttributeTok{y =}\NormalTok{ letters[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{4}\NormalTok{])}
+\SpecialCharTok{\textgreater{}}\NormalTok{ d2 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{x =} \FunctionTok{c}\NormalTok{(}\DecValTok{23}\NormalTok{,}\DecValTok{34}\NormalTok{,}\DecValTok{45}\NormalTok{,}\DecValTok{44}\NormalTok{,}\DecValTok{99}\NormalTok{,}\DecValTok{99}\NormalTok{,}\DecValTok{99}\NormalTok{,}\DecValTok{99}\NormalTok{))}
+\SpecialCharTok{\textgreater{}} \FunctionTok{cbind}\NormalTok{(d1, d2)}
+\NormalTok{   x y  x}
+\DecValTok{1} \DecValTok{10}\NormalTok{ a }\DecValTok{23}
+\DecValTok{2} \DecValTok{11}\NormalTok{ b }\DecValTok{34}
+\DecValTok{3} \DecValTok{12}\NormalTok{ c }\DecValTok{45}
+\DecValTok{4} \DecValTok{13}\NormalTok{ d }\DecValTok{44}
+\DecValTok{5} \DecValTok{10}\NormalTok{ a }\DecValTok{99}
+\DecValTok{6} \DecValTok{11}\NormalTok{ b }\DecValTok{99}
+\DecValTok{7} \DecValTok{12}\NormalTok{ c }\DecValTok{99}
+\DecValTok{8} \DecValTok{13}\NormalTok{ d }\DecValTok{99}
+\end{Highlighting}
+\end{Shaded}
+
+See also the \texttt{bind\_cols()} function in the \textbf{dplyr} package.
+
+\hypertarget{reshape-wide-to-long}{%
+\section{Reshape wide to long}\label{reshape-wide-to-long}}
+
+\hypertarget{python-25}{%
+\subsubsection*{Python}\label{python-25}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\hypertarget{r-25}{%
+\subsubsection*{R}\label{r-25}}
+\addcontentsline{toc}{subsubsection}{R}
+
+\hypertarget{reshape-long-to-wide}{%
+\section{Reshape long to wide}\label{reshape-long-to-wide}}
+
+\hypertarget{python-26}{%
+\subsubsection*{Python}\label{python-26}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\hypertarget{r-26}{%
+\subsubsection*{R}\label{r-26}}
+\addcontentsline{toc}{subsubsection}{R}
+
+\hypertarget{mergejoin}{%
+\section{Merge/Join}\label{mergejoin}}
+
+\hypertarget{left-join}{%
+\subsection{Left Join}\label{left-join}}
+
+\hypertarget{python-27}{%
+\subsubsection*{Python}\label{python-27}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\hypertarget{r-27}{%
+\subsubsection*{R}\label{r-27}}
+\addcontentsline{toc}{subsubsection}{R}
+
+\hypertarget{right-join}{%
+\subsection{Right Join}\label{right-join}}
+
+\hypertarget{python-28}{%
+\subsubsection*{Python}\label{python-28}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\hypertarget{r-28}{%
+\subsubsection*{R}\label{r-28}}
+\addcontentsline{toc}{subsubsection}{R}
+
+\hypertarget{inner-join}{%
+\subsection{Inner Join}\label{inner-join}}
+
+\hypertarget{python-29}{%
+\subsubsection*{Python}\label{python-29}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\hypertarget{r-29}{%
+\subsubsection*{R}\label{r-29}}
+\addcontentsline{toc}{subsubsection}{R}
+
+\hypertarget{outer-join}{%
+\subsection{Outer Join}\label{outer-join}}
+
+\hypertarget{python-30}{%
+\subsubsection*{Python}\label{python-30}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\hypertarget{r-30}{%
+\subsubsection*{R}\label{r-30}}
+\addcontentsline{toc}{subsubsection}{R}
+
+  \bibliography{book.bib,packages.bib}
+
+\end{document}
