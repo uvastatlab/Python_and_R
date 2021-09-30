@@ -13,7 +13,6 @@ three-dimensional-and-higher-data
 importing-data
 csv
 xlsxlsx-excel
-text
 json
 xml
 data-manipulation
