@@ -2,7 +2,7 @@ basics
 math
 assignment
 printing-a-value
-packages-and-libraries
+packages
 logic
 generating-a-sequence-of-values
 calculating-means-and-medians

@@ -24,7 +24,7 @@
 <meta name="author" content="Clay Ford, Jacob Goldstein-Greenwood, Oyinkansola Adenekan" />
 
 
-<meta name="date" content="2021-09-30" />
+<meta name="date" content="2021-10-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -165,7 +165,7 @@ div.csl-indent {
 <li class="chapter" data-level="1.1" data-path="basics.html"><a href="basics.html#math"><i class="fa fa-check"></i><b>1.1</b> Math</a></li>
 <li class="chapter" data-level="1.2" data-path="basics.html"><a href="basics.html#assignment"><i class="fa fa-check"></i><b>1.2</b> Assignment</a></li>
 <li class="chapter" data-level="1.3" data-path="basics.html"><a href="basics.html#printing-a-value"><i class="fa fa-check"></i><b>1.3</b> Printing a value</a></li>
-<li class="chapter" data-level="1.4" data-path="basics.html"><a href="basics.html#packages-and-libraries"><i class="fa fa-check"></i><b>1.4</b> Packages and Libraries</a></li>
+<li class="chapter" data-level="1.4" data-path="basics.html"><a href="basics.html#packages"><i class="fa fa-check"></i><b>1.4</b> Packages</a></li>
 <li class="chapter" data-level="1.5" data-path="basics.html"><a href="basics.html#logic"><i class="fa fa-check"></i><b>1.5</b> Logic</a></li>
 <li class="chapter" data-level="1.6" data-path="basics.html"><a href="basics.html#generating-a-sequence-of-values"><i class="fa fa-check"></i><b>1.6</b> Generating a sequence of values</a></li>
 <li class="chapter" data-level="1.7" data-path="basics.html"><a href="basics.html#calculating-means-and-medians"><i class="fa fa-check"></i><b>1.7</b> Calculating means and medians</a></li>
@@ -284,11 +284,11 @@ div.csl-indent {
 <span id="cb6-2"><a href="basics.html#cb6-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">12</span></span></code></pre></div>
 </div>
 </div>
-<div id="packages-and-libraries" class="section level2" number="1.4">
-<h2><span class="header-section-number">1.4</span> Packages and Libraries</h2>
-<p>User-created functions can be bundled and distributed as libraries (Python) and packages (R). Libraries and packages need to be installed only once. Thereafter they’re “imported” (Python) or “loaded” (R) in each new session when needed.</p>
-<p>Libraries and packages with large user bases are often updated to add functionality and fix bugs. The updates are not automatically installed. Staying apprised of library/package updates can be challenging. Some suggestions are following developers on Twitter, signing up for newsletters, or periodically checking to see what updates are available.</p>
-<p>Libraries and packages often depend on other libraries and packages. These are known as “dependencies.” Sometimes libraries/packages are updated to accommodate changes to other libraries/packages they depend on.</p>
+<div id="packages" class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> Packages</h2>
+<p>User-created functions can be bundled and distributed as packages. Packages need to be installed only once. Thereafter they’re “imported” (Python) or “loaded” (R) in each new session when needed.</p>
+<p>Packages with large user bases are often updated to add functionality and fix bugs. The updates are not automatically installed. Staying apprised of library/package updates can be challenging. Some suggestions are following developers on Twitter, signing up for newsletters, or periodically checking to see what updates are available.</p>
+<p>Packages often depend on other packages. These are known as “dependencies.” Sometimes packages are updated to accommodate changes to other packages they depend on.</p>
 <div id="python-3" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
@@ -308,10 +308,10 @@ div.csl-indent {
 <span id="cb7-10"><a href="basics.html#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># download and install available package updates;</span></span>
 <span id="cb7-11"><a href="basics.html#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># set ask = TRUE to verify installation of each package</span></span>
 <span id="cb7-12"><a href="basics.html#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">update.packages</span>(<span class="at">ask =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p>To install R packages from GitHub use the <code>install_github()</code> function from the <strong>devtools</strong> package. You need to include the username of the repo owner followed by a forward slash and the name of the package. Typing two colons between a package and a function in the package allows you to use that function without loading the package.</p>
+<p>To install R packages from GitHub use the <code>install_github()</code> function from the <strong>devtools</strong> package. You need to include the username of the repo owner followed by a forward slash and the name of the package. Typing two colons between a package and a function in the package allows you to use that function without loading the package. That’s how we use the <code>install_github()</code> below.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="basics.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
 <span id="cb8-2"><a href="basics.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;username/packagename&quot;</span>)</span></code></pre></div>
-<p>Occasionally when installing or updating a package you will be asked “Do you want to install from sources the package which needs compilation?” R packages on CRAN are <em>compiled</em> for Mac and Windows operating systems. That can take a day or two. If you try to install a package that has not been compiled then you’ll get asked if you want to compile it yourself. You can usually just answer No. If you answer Yes, R will try to compile the package on your computer. This will only work if you have the required build tools on your computer. For Windows this means having <a href="https://cran.r-project.org/bin/windows/Rtools/">RTools</a> installed. Mac users typically already have the necessary build tools.</p>
+<p>Occasionally when installing package updates you will be asked “Do you want to install from sources the package which needs compilation?” R packages on CRAN are <em>compiled</em> for Mac and Windows operating systems. That can take a day or two after a package has been submitted to CRAN. If you try to install a package that has not been compiled then you’ll get asked the question above. If you click Yes, R will try to compile the package on your computer. This will only work if you have the required build tools on your computer. For Windows this means having <a href="https://cran.r-project.org/bin/windows/Rtools/">Rtools</a> installed. Mac users should already have the necessary build tools. Unless you absolutely need the latest version of a package, it’s probably fine to click No.</p>
 </div>
 </div>
 <div id="logic" class="section level2" number="1.5">

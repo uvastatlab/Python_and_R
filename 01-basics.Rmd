@@ -68,13 +68,13 @@ x
 ```
 
 
-## Packages and Libraries
+## Packages
 
-User-created functions can be bundled and distributed as libraries (Python) and packages (R). Libraries and packages need to be installed only once. Thereafter they're "imported" (Python) or "loaded" (R) in each new session when needed.
+User-created functions can be bundled and distributed as packages. Packages need to be installed only once. Thereafter they're "imported" (Python) or "loaded" (R) in each new session when needed.
 
-Libraries and packages with large user bases are often updated to add functionality and fix bugs. The updates are not automatically installed. Staying apprised of library/package updates can be challenging. Some suggestions are following developers on Twitter, signing up for newsletters, or periodically checking to see what updates are available.
+Packages with large user bases are often updated to add functionality and fix bugs. The updates are not automatically installed. Staying apprised of library/package updates can be challenging. Some suggestions are following developers on Twitter, signing up for newsletters, or periodically checking to see what updates are available.
 
-Libraries and packages often depend on other libraries and packages. These are known as "dependencies". Sometimes libraries/packages are updated to accommodate changes to other libraries/packages they depend on.
+Packages often depend on other packages. These are known as "dependencies". Sometimes packages are updated to accommodate changes to other packages they depend on.
 
 #### Python {-}
 
@@ -100,14 +100,14 @@ old.packages()
 update.packages(ask = FALSE)
 ```
 
-To install R packages from GitHub use the `install_github()` function from the **devtools** package. You need to include the username of the repo owner followed by a forward slash and the name of the package. Typing two colons between a package and a function in the package allows you to use that function without loading the package.
+To install R packages from GitHub use the `install_github()` function from the **devtools** package. You need to include the username of the repo owner followed by a forward slash and the name of the package. Typing two colons between a package and a function in the package allows you to use that function without loading the package. That's how we use the `install_github()` below.
 
 ```{r eval=FALSE}
 install.packages("devtools")
 devtools::install_github("username/packagename")
 ```
 
-Occasionally when installing or updating a package you will be asked "Do you want to install from sources the package which needs compilation?" R packages on CRAN are _compiled_ for Mac and Windows operating systems. That can take a day or two. If you try to install a package that has not been compiled then you'll get asked if you want to compile it yourself. You can usually just answer No. If you answer Yes, R will try to compile the package on your computer. This will only work if you have the required build tools on your computer. For Windows this means having [RTools](https://cran.r-project.org/bin/windows/Rtools/) installed. Mac users typically already have the necessary build tools.
+Occasionally when installing package updates you will be asked "Do you want to install from sources the package which needs compilation?" R packages on CRAN are _compiled_ for Mac and Windows operating systems. That can take a day or two after a package has been submitted to CRAN. If you try to install a package that has not been compiled then you'll get asked the question above. If you click Yes, R will try to compile the package on your computer. This will only work if you have the required build tools on your computer. For Windows this means having [Rtools](https://cran.r-project.org/bin/windows/Rtools/) installed. Mac users should already have the necessary build tools. Unless you absolutely need the latest version of a package, it's probably fine to click No.
 
 ## Logic
 
