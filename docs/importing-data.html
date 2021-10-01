@@ -21,7 +21,7 @@
   <meta name="twitter:description" content="This book provides parallel examples in Python and R to help users of one platform more easily transition to the other." />
   
 
-<meta name="author" content="Clay Ford, Jacob Goldstein-Greenwood" />
+<meta name="author" content="Clay Ford, Jacob Goldstein-Greenwood, Samantha Lomuscio" />
 
 
 <meta name="date" content="2021-09-29" />
@@ -244,7 +244,8 @@ div.csl-indent {
 <div id="r-9" class="section level4 unnumbered">
 <h4>R</h4>
 <p>There are many ways to import a csv file. A common way is to use the base R function <code>read.csv()</code>.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="importing-data.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/dat.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="importing-data.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/dat.csv&quot;</span>)</span>
+<span id="cb20-2"><a href="importing-data.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span></code></pre></div>
 <p>Two packages that provide alternatives to <code>read.csv()</code> are <strong>readr</strong> and <strong>data.table</strong>. The <strong>readr</strong> function <code>read_csv()</code> returns a <a href="https://r4ds.had.co.nz/tibbles.html">tibble</a>. The <strong>data.table</strong> function <code>fread()</code> returns a <a href="https://rdatatable.gitlab.io/data.table/articles/datatable-intro.html">data.table</a>.</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="importing-data.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(readr)</span>
 <span id="cb21-2"><a href="importing-data.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/dat.csv&quot;</span>)</span>
