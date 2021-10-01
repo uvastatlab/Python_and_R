@@ -21,10 +21,10 @@
   <meta name="twitter:description" content="This book provides parallel examples in Python and R to help users of one platform more easily transition to the other." />
   
 
-<meta name="author" content="Clay Ford, Jacob Goldstein-Greenwood, Samantha Lomuscio" />
+<meta name="author" content="Clay Ford, Jacob Goldstein-Greenwood, Oyinkansola Adenekan, Samantha Lomuscio" />
 
 
-<meta name="date" content="2021-09-29" />
+<meta name="date" content="2021-10-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -165,7 +165,7 @@ div.csl-indent {
 <li class="chapter" data-level="1.1" data-path="basics.html"><a href="basics.html#math"><i class="fa fa-check"></i><b>1.1</b> Math</a></li>
 <li class="chapter" data-level="1.2" data-path="basics.html"><a href="basics.html#assignment"><i class="fa fa-check"></i><b>1.2</b> Assignment</a></li>
 <li class="chapter" data-level="1.3" data-path="basics.html"><a href="basics.html#printing-a-value"><i class="fa fa-check"></i><b>1.3</b> Printing a value</a></li>
-<li class="chapter" data-level="1.4" data-path="basics.html"><a href="basics.html#packages-and-libraries"><i class="fa fa-check"></i><b>1.4</b> Packages and Libraries</a></li>
+<li class="chapter" data-level="1.4" data-path="basics.html"><a href="basics.html#packages"><i class="fa fa-check"></i><b>1.4</b> Packages</a></li>
 <li class="chapter" data-level="1.5" data-path="basics.html"><a href="basics.html#logic"><i class="fa fa-check"></i><b>1.5</b> Logic</a></li>
 <li class="chapter" data-level="1.6" data-path="basics.html"><a href="basics.html#generating-a-sequence-of-values"><i class="fa fa-check"></i><b>1.6</b> Generating a sequence of values</a></li>
 <li class="chapter" data-level="1.7" data-path="basics.html"><a href="basics.html#calculating-means-and-medians"><i class="fa fa-check"></i><b>1.7</b> Calculating means and medians</a></li>
@@ -173,15 +173,15 @@ div.csl-indent {
 <li class="chapter" data-level="2" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>2</b> Data Structures</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="data-structures.html"><a href="data-structures.html#one-dimensional-data"><i class="fa fa-check"></i><b>2.1</b> One-dimensional data</a></li>
-<li class="chapter" data-level="2.2" data-path="data-structures.html"><a href="data-structures.html#two-dimensional"><i class="fa fa-check"></i><b>2.2</b> Two-dimensional</a></li>
+<li class="chapter" data-level="2.2" data-path="data-structures.html"><a href="data-structures.html#two-dimensional-data"><i class="fa fa-check"></i><b>2.2</b> Two-dimensional data</a></li>
+<li class="chapter" data-level="2.3" data-path="data-structures.html"><a href="data-structures.html#three-dimensional-and-higher-data"><i class="fa fa-check"></i><b>2.3</b> Three-dimensional and higher data</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>3</b> Importing Data</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="importing-data.html"><a href="importing-data.html#csv"><i class="fa fa-check"></i><b>3.1</b> CSV</a></li>
 <li class="chapter" data-level="3.2" data-path="importing-data.html"><a href="importing-data.html#xlsxlsx-excel"><i class="fa fa-check"></i><b>3.2</b> XLS/XLSX (Excel)</a></li>
-<li class="chapter" data-level="3.3" data-path="importing-data.html"><a href="importing-data.html#text"><i class="fa fa-check"></i><b>3.3</b> Text</a></li>
-<li class="chapter" data-level="3.4" data-path="importing-data.html"><a href="importing-data.html#json"><i class="fa fa-check"></i><b>3.4</b> JSON</a></li>
-<li class="chapter" data-level="3.5" data-path="importing-data.html"><a href="importing-data.html#xml"><i class="fa fa-check"></i><b>3.5</b> XML</a></li>
+<li class="chapter" data-level="3.3" data-path="importing-data.html"><a href="importing-data.html#json"><i class="fa fa-check"></i><b>3.3</b> JSON</a></li>
+<li class="chapter" data-level="3.4" data-path="importing-data.html"><a href="importing-data.html#xml"><i class="fa fa-check"></i><b>3.4</b> XML</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="data-manipulation.html"><a href="data-manipulation.html"><i class="fa fa-check"></i><b>4</b> Data Manipulation</a>
 <ul>
@@ -260,8 +260,8 @@ div.csl-indent {
 <span id="cb16-7"><a href="data-structures.html#cb16-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">43</span> <span class="dv">55</span></span></code></pre></div>
 </div>
 </div>
-<div id="two-dimensional" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> Two-dimensional</h2>
+<div id="two-dimensional-data" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Two-dimensional data</h2>
 <p>Two-dimensional data is rectangular in nature, consisting of rows and columns. These can be the type of data you might find in a spreadsheet with a mix of data types in columns, or matrices as you might encounter in matrix algebra.</p>
 <div id="python-8" class="section level4 unnumbered">
 <h4>Python</h4>
@@ -270,7 +270,7 @@ div.csl-indent {
 <h4>R</h4>
 <p>Two-dimensional data structures in R include the <em>matrix</em> and <em>data frame</em>. A matrix can contain only one data type. A data frame can contain multiple vectors each of which can consist of different data types.</p>
 <p>Create a matrix with the <code>matrix()</code> function. Create a data frame with the <code>data.frame()</code> function. Most imported data comes into R as a data frame.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="data-structures.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># matrix</span></span>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="data-structures.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># matrix; populated down by column by default</span></span>
 <span id="cb17-2"><a href="data-structures.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> m <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">data =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>), <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
 <span id="cb17-3"><a href="data-structures.html#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> m</span>
 <span id="cb17-4"><a href="data-structures.html#cb17-4" aria-hidden="true" tabindex="-1"></a>     [,<span class="dv">1</span>] [,<span class="dv">2</span>]</span>
@@ -293,6 +293,74 @@ div.csl-indent {
 <span id="cb18-6"><a href="data-structures.html#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> d[<span class="dv">2</span>,]</span>
 <span id="cb18-7"><a href="data-structures.html#cb18-7" aria-hidden="true" tabindex="-1"></a>   name age</span>
 <span id="cb18-8"><a href="data-structures.html#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> Cindy  <span class="dv">37</span></span></code></pre></div>
+</div>
+</div>
+<div id="three-dimensional-and-higher-data" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Three-dimensional and higher data</h2>
+<p>Three-dimensional and higher data can be visualized as multiple rectangular structures stratified by extra variables. These are sometimes referred to as <em>arrays</em>. Analysts usually prefer two-dimensional data frames to arrays. Data frames can accommodate multidimensional data by including the additional dimensions as variables.</p>
+<div id="python-9" class="section level4 unnumbered">
+<h4>Python</h4>
+</div>
+<div id="r-9" class="section level4 unnumbered">
+<h4>R</h4>
+<p>The <code>array()</code> function in R can create three-dimensional and higher data structures. Specify the dimension number and size using the <code>dim</code> argument. Below we specify 2 rows, 3 columns, and 2 strata using a vector: <code>c(2,3,2)</code>. This creates a three-dimensional data structure. The data is simply the numbers 1 through 12.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="data-structures.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> a1 <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="at">data =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">dim =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">2</span>))</span>
+<span id="cb19-2"><a href="data-structures.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> a1</span>
+<span id="cb19-3"><a href="data-structures.html#cb19-3" aria-hidden="true" tabindex="-1"></a>, , <span class="dv">1</span></span>
+<span id="cb19-4"><a href="data-structures.html#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="data-structures.html#cb19-5" aria-hidden="true" tabindex="-1"></a>     [,<span class="dv">1</span>] [,<span class="dv">2</span>] [,<span class="dv">3</span>]</span>
+<span id="cb19-6"><a href="data-structures.html#cb19-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>,]    <span class="dv">1</span>    <span class="dv">3</span>    <span class="dv">5</span></span>
+<span id="cb19-7"><a href="data-structures.html#cb19-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>,]    <span class="dv">2</span>    <span class="dv">4</span>    <span class="dv">6</span></span>
+<span id="cb19-8"><a href="data-structures.html#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="data-structures.html#cb19-9" aria-hidden="true" tabindex="-1"></a>, , <span class="dv">2</span></span>
+<span id="cb19-10"><a href="data-structures.html#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-11"><a href="data-structures.html#cb19-11" aria-hidden="true" tabindex="-1"></a>     [,<span class="dv">1</span>] [,<span class="dv">2</span>] [,<span class="dv">3</span>]</span>
+<span id="cb19-12"><a href="data-structures.html#cb19-12" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>,]    <span class="dv">7</span>    <span class="dv">9</span>   <span class="dv">11</span></span>
+<span id="cb19-13"><a href="data-structures.html#cb19-13" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>,]    <span class="dv">8</span>   <span class="dv">10</span>   <span class="dv">12</span></span></code></pre></div>
+<p>Values in arrays can be accessed by position using indexing brackets.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="data-structures.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># extract value in row 1, column 2, strata 1</span></span>
+<span id="cb20-2"><a href="data-structures.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> a1[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>]</span>
+<span id="cb20-3"><a href="data-structures.html#cb20-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">3</span></span>
+<span id="cb20-4"><a href="data-structures.html#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb20-5"><a href="data-structures.html#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># extract column 2 in both strata</span></span>
+<span id="cb20-6"><a href="data-structures.html#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># result is returned as matrix</span></span>
+<span id="cb20-7"><a href="data-structures.html#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> a1[,<span class="dv">2</span>,]</span>
+<span id="cb20-8"><a href="data-structures.html#cb20-8" aria-hidden="true" tabindex="-1"></a>     [,<span class="dv">1</span>] [,<span class="dv">2</span>]</span>
+<span id="cb20-9"><a href="data-structures.html#cb20-9" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>,]    <span class="dv">3</span>    <span class="dv">9</span></span>
+<span id="cb20-10"><a href="data-structures.html#cb20-10" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>,]    <span class="dv">4</span>   <span class="dv">10</span></span></code></pre></div>
+<p>The dimensions can be named using the <code>dimnames()</code> function. Notice the names must be a <em>list</em>.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="data-structures.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">dimnames</span>(a1) <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;X&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;x1&quot;</span>, <span class="st">&quot;x2&quot;</span>), </span>
+<span id="cb21-2"><a href="data-structures.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                      <span class="st">&quot;Y&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;y1&quot;</span>, <span class="st">&quot;y2&quot;</span>, <span class="st">&quot;y3&quot;</span>), </span>
+<span id="cb21-3"><a href="data-structures.html#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                      <span class="st">&quot;Z&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;z1&quot;</span>, <span class="st">&quot;z2&quot;</span>))</span>
+<span id="cb21-4"><a href="data-structures.html#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> a1</span>
+<span id="cb21-5"><a href="data-structures.html#cb21-5" aria-hidden="true" tabindex="-1"></a>, , Z <span class="ot">=</span> z1</span>
+<span id="cb21-6"><a href="data-structures.html#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="data-structures.html#cb21-7" aria-hidden="true" tabindex="-1"></a>    Y</span>
+<span id="cb21-8"><a href="data-structures.html#cb21-8" aria-hidden="true" tabindex="-1"></a>X    y1 y2 y3</span>
+<span id="cb21-9"><a href="data-structures.html#cb21-9" aria-hidden="true" tabindex="-1"></a>  x1  <span class="dv">1</span>  <span class="dv">3</span>  <span class="dv">5</span></span>
+<span id="cb21-10"><a href="data-structures.html#cb21-10" aria-hidden="true" tabindex="-1"></a>  x2  <span class="dv">2</span>  <span class="dv">4</span>  <span class="dv">6</span></span>
+<span id="cb21-11"><a href="data-structures.html#cb21-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-12"><a href="data-structures.html#cb21-12" aria-hidden="true" tabindex="-1"></a>, , Z <span class="ot">=</span> z2</span>
+<span id="cb21-13"><a href="data-structures.html#cb21-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-14"><a href="data-structures.html#cb21-14" aria-hidden="true" tabindex="-1"></a>    Y</span>
+<span id="cb21-15"><a href="data-structures.html#cb21-15" aria-hidden="true" tabindex="-1"></a>X    y1 y2 y3</span>
+<span id="cb21-16"><a href="data-structures.html#cb21-16" aria-hidden="true" tabindex="-1"></a>  x1  <span class="dv">7</span>  <span class="dv">9</span> <span class="dv">11</span></span>
+<span id="cb21-17"><a href="data-structures.html#cb21-17" aria-hidden="true" tabindex="-1"></a>  x2  <span class="dv">8</span> <span class="dv">10</span> <span class="dv">12</span></span></code></pre></div>
+<p>The <code>as.data.frame.table()</code> function can collapse an array into a two-dimensional structure that may be easier to use with standard statistical and graphical routines. The <code>responseName</code> argument allows you to provide a suitable column name for the values in the array.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="data-structures.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">as.data.frame.table</span>(a1, <span class="at">responseName =</span> <span class="st">&quot;value&quot;</span>)</span>
+<span id="cb22-2"><a href="data-structures.html#cb22-2" aria-hidden="true" tabindex="-1"></a>    X  Y  Z value</span>
+<span id="cb22-3"><a href="data-structures.html#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>  x1 y1 z1     <span class="dv">1</span></span>
+<span id="cb22-4"><a href="data-structures.html#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>  x2 y1 z1     <span class="dv">2</span></span>
+<span id="cb22-5"><a href="data-structures.html#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>  x1 y2 z1     <span class="dv">3</span></span>
+<span id="cb22-6"><a href="data-structures.html#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>  x2 y2 z1     <span class="dv">4</span></span>
+<span id="cb22-7"><a href="data-structures.html#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>  x1 y3 z1     <span class="dv">5</span></span>
+<span id="cb22-8"><a href="data-structures.html#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>  x2 y3 z1     <span class="dv">6</span></span>
+<span id="cb22-9"><a href="data-structures.html#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span>  x1 y1 z2     <span class="dv">7</span></span>
+<span id="cb22-10"><a href="data-structures.html#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="dv">8</span>  x2 y1 z2     <span class="dv">8</span></span>
+<span id="cb22-11"><a href="data-structures.html#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="dv">9</span>  x1 y2 z2     <span class="dv">9</span></span>
+<span id="cb22-12"><a href="data-structures.html#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> x2 y2 z2    <span class="dv">10</span></span>
+<span id="cb22-13"><a href="data-structures.html#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="dv">11</span> x1 y3 z2    <span class="dv">11</span></span>
+<span id="cb22-14"><a href="data-structures.html#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="dv">12</span> x2 y3 z2    <span class="dv">12</span></span></code></pre></div>
 
 </div>
 </div>

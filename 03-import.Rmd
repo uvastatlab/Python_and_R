@@ -4,7 +4,9 @@
 knitr::opts_chunk$set(comment = NA, prompt = TRUE, collapse = TRUE)
 ```
 
-This chapter reviews importing external data into Python and R, including CSV, txt, and other structured data files. 
+This chapter reviews importing external data into Python and R, including CSV, Excel, and other structured data files. There is often more than one way to import data into Python and R. The examples below highlight one way that we frequently see used.
+
+The data we use for demonstration is New York State Math Test Results by Grade from 2006 - 2011, downloaded from [data.gov](https://catalog.data.gov/dataset/2006-2011-nys-math-test-results-by-grade-citywide-by-race-ethnicity) on September 30, 2021.
 
 ## CSV
 
@@ -16,7 +18,8 @@ Comma separated value (CSV) files are text files with fields separated by commas
 
 ```{python}
 import pandas
-d = pandas.read_csv('data/dat.csv')
+d = pandas.read_csv('data/ny_math_test.csv')
+d.loc[0:2, ["Grade", "Year", "Mean Scale Score"]]
 ```
 
 
@@ -24,49 +27,84 @@ d = pandas.read_csv('data/dat.csv')
 
 There are many ways to import a csv file. A common way is to use the base R function `read.csv()`.
 
-```{r eval=FALSE}
-d <- read.csv("data/dat.csv")
-
+```{r}
+d <- read.csv("data/ny_math_test.csv")
+d[1:3, c("Grade", "Year", "Mean.Scale.Score")]
 ```
+
+Notice the spaces in the column names have been replaced with periods. 
 
 Two packages that provide alternatives to `read.csv()` are **readr** and **data.table**. The **readr** function `read_csv()` returns a [tibble](https://r4ds.had.co.nz/tibbles.html). The **data.table** function `fread()` returns a [data.table](https://rdatatable.gitlab.io/data.table/articles/datatable-intro.html). 
-
-```{r eval=FALSE, message=FALSE}
-library(readr)
-d <- read_csv("data/dat.csv")
-
-library(data.table)
-d <- fread("data/dat.csv")
-```
 
 
 ## XLS/XLSX (Excel)
 
-
-#### Python {-}
-
-#### R {-}
-
-
-## Text 
+Excel files are native to Microsoft Excel. Prior to 2007, Excel files had an extension of XLS. With the launch of Excel 2007, the extension was changed to XLSX. Excel files can have multiple sheets of data. This needs to be accounted for when importing into Python and R.
 
 
 #### Python {-}
 
 #### R {-}
 
+**readxl** is a well-documented and actively maintained package for importing Excel files into R. The workhorse function is `read_excel()`. The `sheet` argument allows you to specify which sheet you want to import. You can specify sheet by its ordering or by its name. Since this Excel file only has one sheet we do not need to use the argument.
+
+```{r}
+# read in the 2nd sheet
+library(readxl)
+d_xls <- read_excel("data/ny_math_test.xlsx")
+d_xls[1:3, c("Grade", "Year", "Mean Scale Score")]
+```
+
+The result is a _tibble_, a [tidyverse data frame](https://tibble.tidyverse.org/). 
+
+It's worth noting we can use the `range` argument to specify a range of cells to import. For example, if the top left corner of the data was B5 and the bottom right corner of the data was J54, we could enter `range="B5:J54"` to just import that section of data.
 
 ## JSON
 
+JSON (**J**ava**S**cript **O**bject **N**otation) is a flexible format for storing data. JSON files are text and can be viewed in any text editor. Because of their flexibility JSON files can be quite complex in the way they store data. Therefore there is no one-size-fits-all for importing JSON files into Python or R.
+
+
+
 #### Python {-}
 
 #### R {-}
+
+**jsonlite** is one of several R packages available for importing JSON files into R. The `read_json()` function takes a JSON file and returns a list or data frame depending on the structure of the data file and its arguments. We set `simplifyVector = TRUE` so the data is simplified into a matrix.
+
+```{r}
+library(jsonlite)
+d_json <- read_json('data/ny_math_test.json', simplifyVector = TRUE)
+```
+
+The `d_json` object is a list with two elements: "meta" and "data". The "data" element is a matrix that contains the data of interest. The "meta" element contains the column names for the data (among much else). Notice we had to "drill down" in the list to find the column names. We assign column names to the matrix using the `colnames()` function and then convert the matrix to a data frame using the `as.data.frame()` function.  
+
+```{r}
+colnames(d_json$data) <- d_json$meta$view$columns$fieldName
+d_json <- as.data.frame(d_json$data)
+d_json[1:3,c("grade", "year", "mean_scale_score")]
+```
+
 
 
 ## XML
 
+XML (e**X**tensible **M**arkup **L**anguage) is a markup language that was designed to store data. XML files are text and can be viewed in any text editor or a web browser. Because of their flexibility XML files can be quite complex in the way they store data. Therefore there is no one-size-fits-all for importing XML files into Python or R.
+
+
 #### Python {-}
 
 #### R {-}
 
+**xml2** is a relatively small but powerful package for importing and working with XML files. The `read_xml()` function imports an XML file and returns a list of _pointers_ to XML _nodes_. There are a number of ways to proceed once you import an XML file, such as using the `xml_find_all()` function to find nodes that match an [xpath](https://www.w3schools.com/xml/xpath_intro.asp) expression. Below we take a simple approach and convert the XML nodes into a list using the `as_list()` function that is part of the **xml2** package. Once we have the XML nodes in a list, we can use the `bind_rows()` function in the **dplyr** package to create a data frame. Notice we have to drill down into the list to select the element that contains the data. After this we need to do one more thing: _unlist_ each the columns into vectors. We do this by applying the `unlist` function to each column of `d`. We save the result by assigning to `d[]`, which overwrites each element (or column) of `d` with the unlisted result. 
+
+```{r}
+library(xml2)
+d_xml <- read_xml('data/ny_math_test.xml')
+d_list <- as_list(d_xml)
+d <- dplyr::bind_rows(d_list$response$row)
+d[] <- lapply(d, unlist)
+d[1:3,c("grade", "year", "mean_scale_score")]
+```
+
+The result is a _tibble_, a [tidyverse data frame](https://tibble.tidyverse.org/). We would most likely want to proceed to converting certain columns to numeric. 
 

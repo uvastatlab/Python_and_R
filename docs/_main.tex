@@ -37,7 +37,7 @@
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
   pdftitle={Python and R},
-  pdfauthor={Clay Ford, Jacob Goldstein-Greenwood, Samantha Lomuscio},
+  pdfauthor={Clay Ford, Jacob Goldstein-Greenwood, Oyinkansola Adenekan, Samantha Lomuscio},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
@@ -116,8 +116,8 @@
 \bibliographystyle{plainnat}
 
 \title{Python and R}
-\author{Clay Ford, Jacob Goldstein-Greenwood, Samantha Lomuscio}
-\date{2021-09-29}
+\author{Clay Ford, Jacob Goldstein-Greenwood, Oyinkansola Adenekan, Samantha Lomuscio}
+\date{2021-10-01}
 
 \begin{document}
 \maketitle
@@ -230,14 +230,14 @@ To see the value of an object created via assignment, you can simply enter the o
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{packages-and-libraries}{%
-\section{Packages and Libraries}\label{packages-and-libraries}}
+\hypertarget{packages}{%
+\section{Packages}\label{packages}}
 
-User-created functions can be bundled and distributed as libraries (Python) and packages (R). Libraries and packages need to be installed only once. Thereafter they're ``imported'' (Python) or ``loaded'' (R) in each new session when needed.
+User-created functions can be bundled and distributed as packages. Packages need to be installed only once. Thereafter they're ``imported'' (Python) or ``loaded'' (R) in each new session when needed.
 
-Libraries and packages with large user bases are often updated to add functionality and fix bugs. The updates are not automatically installed. Staying apprised of library/package updates can be challenging. Some suggestions are following developers on Twitter, signing up for newsletters, or periodically checking to see what updates are available.
+Packages with large user bases are often updated to add functionality and fix bugs. The updates are not automatically installed. Staying apprised of library/package updates can be challenging. Some suggestions are following developers on Twitter, signing up for newsletters, or periodically checking to see what updates are available.
 
-Libraries and packages often depend on other libraries and packages. These are known as ``dependencies''. Sometimes libraries/packages are updated to accommodate changes to other libraries/packages they depend on.
+Packages often depend on other packages. These are known as ``dependencies''. Sometimes packages are updated to accommodate changes to other packages they depend on.
 
 \hypertarget{python-3}{%
 \subsubsection*{Python}\label{python-3}}
@@ -268,7 +268,7 @@ To install packages from CRAN use the \texttt{install.packages()} function. In R
 \end{Highlighting}
 \end{Shaded}
 
-To install R packages from GitHub use the \texttt{install\_github()} function from the \textbf{devtools} package. You need to include the username of the repo owner followed by a forward slash and the name of the package. Typing two colons between a package and a function in the package allows you to use that function without loading the package.
+To install R packages from GitHub use the \texttt{install\_github()} function from the \textbf{devtools} package. You need to include the username of the repo owner followed by a forward slash and the name of the package. Typing two colons between a package and a function in the package allows you to use that function without loading the package. That's how we use the \texttt{install\_github()} below.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -277,7 +277,7 @@ To install R packages from GitHub use the \texttt{install\_github()} function fr
 \end{Highlighting}
 \end{Shaded}
 
-Occasionally when installing or updating a package you will be asked ``Do you want to install from sources the package which needs compilation?'' R packages on CRAN are \emph{compiled} for Mac and Windows operating systems. That can take a day or two. If you try to install a package that has not been compiled then you'll get asked if you want to compile it yourself. You can usually just answer No.~If you answer Yes, R will try to compile the package on your computer. This will only work if you have the required build tools on your computer. For Windows this means having \href{https://cran.r-project.org/bin/windows/Rtools/}{RTools} installed. Mac users typically already have the necessary build tools.
+Occasionally when installing package updates you will be asked ``Do you want to install from sources the package which needs compilation?'' R packages on CRAN are \emph{compiled} for Mac and Windows operating systems. That can take a day or two after a package has been submitted to CRAN. If you try to install a package that has not been compiled then you'll get asked the question above. If you click Yes, R will try to compile the package on your computer. This will only work if you have the required build tools on your computer. For Windows this means having \href{https://cran.r-project.org/bin/windows/Rtools/}{Rtools} installed. Mac users should already have the necessary build tools. Unless you absolutely need the latest version of a package, it's probably fine to click No.
 
 \hypertarget{logic}{%
 \section{Logic}\label{logic}}
@@ -453,8 +453,8 @@ Values in a vector can be accessed by position using indexing brackets.
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{two-dimensional}{%
-\section{Two-dimensional}\label{two-dimensional}}
+\hypertarget{two-dimensional-data}{%
+\section{Two-dimensional data}\label{two-dimensional-data}}
 
 Two-dimensional data is rectangular in nature, consisting of rows and columns. These can be the type of data you might find in a spreadsheet with a mix of data types in columns, or matrices as you might encounter in matrix algebra.
 
@@ -472,7 +472,7 @@ Create a matrix with the \texttt{matrix()} function. Create a data frame with th
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\SpecialCharTok{\textgreater{}} \CommentTok{\# matrix}
+\SpecialCharTok{\textgreater{}} \CommentTok{\# matrix; populated down by column by default}
 \ErrorTok{\textgreater{}}\NormalTok{ m }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\AttributeTok{data =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{7}\NormalTok{), }\AttributeTok{nrow =} \DecValTok{2}\NormalTok{, }\AttributeTok{ncol =} \DecValTok{2}\NormalTok{)}
 \SpecialCharTok{\textgreater{}}\NormalTok{ m}
 \NormalTok{     [,}\DecValTok{1}\NormalTok{] [,}\DecValTok{2}\NormalTok{]}
@@ -504,65 +504,154 @@ Values in a matrix and data frame can be accessed by position using indexing bra
 \end{Highlighting}
 \end{Shaded}
 
+\hypertarget{three-dimensional-and-higher-data}{%
+\section{Three-dimensional and higher data}\label{three-dimensional-and-higher-data}}
+
+Three-dimensional and higher data can be visualized as multiple rectangular structures stratified by extra variables. These are sometimes referred to as \emph{arrays}. Analysts usually prefer two-dimensional data frames to arrays. Data frames can accommodate multidimensional data by including the additional dimensions as variables.
+
+\hypertarget{python-9}{%
+\subsubsection*{Python}\label{python-9}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\hypertarget{r-9}{%
+\subsubsection*{R}\label{r-9}}
+\addcontentsline{toc}{subsubsection}{R}
+
+The \texttt{array()} function in R can create three-dimensional and higher data structures. Specify the dimension number and size using the \texttt{dim} argument. Below we specify 2 rows, 3 columns, and 2 strata using a vector: \texttt{c(2,3,2)}. This creates a three-dimensional data structure. The data is simply the numbers 1 through 12.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}}\NormalTok{ a1 }\OtherTok{\textless{}{-}} \FunctionTok{array}\NormalTok{(}\AttributeTok{data =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{12}\NormalTok{, }\AttributeTok{dim =} \FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\SpecialCharTok{\textgreater{}}\NormalTok{ a1}
+\NormalTok{, , }\DecValTok{1}
+
+\NormalTok{     [,}\DecValTok{1}\NormalTok{] [,}\DecValTok{2}\NormalTok{] [,}\DecValTok{3}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{,]    }\DecValTok{1}    \DecValTok{3}    \DecValTok{5}
+\NormalTok{[}\DecValTok{2}\NormalTok{,]    }\DecValTok{2}    \DecValTok{4}    \DecValTok{6}
+
+\NormalTok{, , }\DecValTok{2}
+
+\NormalTok{     [,}\DecValTok{1}\NormalTok{] [,}\DecValTok{2}\NormalTok{] [,}\DecValTok{3}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{,]    }\DecValTok{7}    \DecValTok{9}   \DecValTok{11}
+\NormalTok{[}\DecValTok{2}\NormalTok{,]    }\DecValTok{8}   \DecValTok{10}   \DecValTok{12}
+\end{Highlighting}
+\end{Shaded}
+
+Values in arrays can be accessed by position using indexing brackets.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\# extract value in row 1, column 2, strata 1}
+\ErrorTok{\textgreater{}}\NormalTok{ a1[}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{3}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \CommentTok{\# extract column 2 in both strata}
+\ErrorTok{\textgreater{}} \CommentTok{\# result is returned as matrix}
+\ErrorTok{\textgreater{}}\NormalTok{ a1[,}\DecValTok{2}\NormalTok{,]}
+\NormalTok{     [,}\DecValTok{1}\NormalTok{] [,}\DecValTok{2}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{,]    }\DecValTok{3}    \DecValTok{9}
+\NormalTok{[}\DecValTok{2}\NormalTok{,]    }\DecValTok{4}   \DecValTok{10}
+\end{Highlighting}
+\end{Shaded}
+
+The dimensions can be named using the \texttt{dimnames()} function. Notice the names must be a \emph{list}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{dimnames}\NormalTok{(a1) }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}\StringTok{"X"} \OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"x1"}\NormalTok{, }\StringTok{"x2"}\NormalTok{), }
+\SpecialCharTok{+}                      \StringTok{"Y"} \OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"y1"}\NormalTok{, }\StringTok{"y2"}\NormalTok{, }\StringTok{"y3"}\NormalTok{), }
+\SpecialCharTok{+}                      \StringTok{"Z"} \OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"z1"}\NormalTok{, }\StringTok{"z2"}\NormalTok{))}
+\SpecialCharTok{\textgreater{}}\NormalTok{ a1}
+\NormalTok{, , Z }\OtherTok{=}\NormalTok{ z1}
+
+\NormalTok{    Y}
+\NormalTok{X    y1 y2 y3}
+\NormalTok{  x1  }\DecValTok{1}  \DecValTok{3}  \DecValTok{5}
+\NormalTok{  x2  }\DecValTok{2}  \DecValTok{4}  \DecValTok{6}
+
+\NormalTok{, , Z }\OtherTok{=}\NormalTok{ z2}
+
+\NormalTok{    Y}
+\NormalTok{X    y1 y2 y3}
+\NormalTok{  x1  }\DecValTok{7}  \DecValTok{9} \DecValTok{11}
+\NormalTok{  x2  }\DecValTok{8} \DecValTok{10} \DecValTok{12}
+\end{Highlighting}
+\end{Shaded}
+
+The \texttt{as.data.frame.table()} function can collapse an array into a two-dimensional structure that may be easier to use with standard statistical and graphical routines. The \texttt{responseName} argument allows you to provide a suitable column name for the values in the array.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{as.data.frame.table}\NormalTok{(a1, }\AttributeTok{responseName =} \StringTok{"value"}\NormalTok{)}
+\NormalTok{    X  Y  Z value}
+\DecValTok{1}\NormalTok{  x1 y1 z1     }\DecValTok{1}
+\DecValTok{2}\NormalTok{  x2 y1 z1     }\DecValTok{2}
+\DecValTok{3}\NormalTok{  x1 y2 z1     }\DecValTok{3}
+\DecValTok{4}\NormalTok{  x2 y2 z1     }\DecValTok{4}
+\DecValTok{5}\NormalTok{  x1 y3 z1     }\DecValTok{5}
+\DecValTok{6}\NormalTok{  x2 y3 z1     }\DecValTok{6}
+\DecValTok{7}\NormalTok{  x1 y1 z2     }\DecValTok{7}
+\DecValTok{8}\NormalTok{  x2 y1 z2     }\DecValTok{8}
+\DecValTok{9}\NormalTok{  x1 y2 z2     }\DecValTok{9}
+\DecValTok{10}\NormalTok{ x2 y2 z2    }\DecValTok{10}
+\DecValTok{11}\NormalTok{ x1 y3 z2    }\DecValTok{11}
+\DecValTok{12}\NormalTok{ x2 y3 z2    }\DecValTok{12}
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{importing-data}{%
 \chapter{Importing Data}\label{importing-data}}
 
-This chapter reviews importing external data into Python and R, including CSV, txt, and other structured data files.
+This chapter reviews importing external data into Python and R, including CSV, Excel, and other structured data files. There is often more than one way to import data into Python and R. The examples below highlight one way that we frequently see used.
+
+The data we use for demonstration is New York State Math Test Results by Grade from 2006 - 2011, downloaded from \href{https://catalog.data.gov/dataset/2006-2011-nys-math-test-results-by-grade-citywide-by-race-ethnicity}{data.gov} on September 30, 2021.
 
 \hypertarget{csv}{%
 \section{CSV}\label{csv}}
 
 Comma separated value (CSV) files are text files with fields separated by commas. They are useful for ``rectangular'' data where rows represent observations and columns represent variables or features.
 
-\hypertarget{python-9}{%
-\subsubsection*{Python}\label{python-9}}
+\hypertarget{python-10}{%
+\subsubsection*{Python}\label{python-10}}
 \addcontentsline{toc}{subsubsection}{Python}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \OperatorTok{\textgreater{}} \ImportTok{import}\NormalTok{ pandas}
-\OperatorTok{+}\NormalTok{ d }\OperatorTok{=}\NormalTok{ pandas.read\_csv(}\StringTok{\textquotesingle{}data/dat.csv\textquotesingle{}}\NormalTok{)}
+\OperatorTok{+}\NormalTok{ d }\OperatorTok{=}\NormalTok{ pandas.read\_csv(}\StringTok{\textquotesingle{}data/ny\_math\_test.csv\textquotesingle{}}\NormalTok{)}
+\OperatorTok{+}\NormalTok{ d.loc[}\DecValTok{0}\NormalTok{:}\DecValTok{2}\NormalTok{, [}\StringTok{"Grade"}\NormalTok{, }\StringTok{"Year"}\NormalTok{, }\StringTok{"Mean Scale Score"}\NormalTok{]]}
+\NormalTok{  Grade  Year  Mean Scale Score}
+\DecValTok{0}     \DecValTok{3}  \DecValTok{2006}               \DecValTok{700}
+\DecValTok{1}     \DecValTok{4}  \DecValTok{2006}               \DecValTok{699}
+\DecValTok{2}     \DecValTok{5}  \DecValTok{2006}               \DecValTok{691}
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{r-9}{%
-\subsubsection*{R}\label{r-9}}
+\hypertarget{r-10}{%
+\subsubsection*{R}\label{r-10}}
 \addcontentsline{toc}{subsubsection}{R}
 
 There are many ways to import a csv file. A common way is to use the base R function \texttt{read.csv()}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\SpecialCharTok{\textgreater{}}\NormalTok{ d }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"data/dat.csv"}\NormalTok{)}
-\SpecialCharTok{\textgreater{}} 
+\SpecialCharTok{\textgreater{}}\NormalTok{ d }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"data/ny\_math\_test.csv"}\NormalTok{)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ d[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{, }\FunctionTok{c}\NormalTok{(}\StringTok{"Grade"}\NormalTok{, }\StringTok{"Year"}\NormalTok{, }\StringTok{"Mean.Scale.Score"}\NormalTok{)]}
+\NormalTok{  Grade Year Mean.Scale.Score}
+\DecValTok{1}     \DecValTok{3} \DecValTok{2006}              \DecValTok{700}
+\DecValTok{2}     \DecValTok{4} \DecValTok{2006}              \DecValTok{699}
+\DecValTok{3}     \DecValTok{5} \DecValTok{2006}              \DecValTok{691}
 \end{Highlighting}
 \end{Shaded}
+
+Notice the spaces in the column names have been replaced with periods.
 
 Two packages that provide alternatives to \texttt{read.csv()} are \textbf{readr} and \textbf{data.table}. The \textbf{readr} function \texttt{read\_csv()} returns a \href{https://r4ds.had.co.nz/tibbles.html}{tibble}. The \textbf{data.table} function \texttt{fread()} returns a \href{https://rdatatable.gitlab.io/data.table/articles/datatable-intro.html}{data.table}.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\SpecialCharTok{\textgreater{}} \FunctionTok{library}\NormalTok{(readr)}
-\SpecialCharTok{\textgreater{}}\NormalTok{ d }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"data/dat.csv"}\NormalTok{)}
-\SpecialCharTok{\textgreater{}} 
-\ErrorTok{\textgreater{}} \FunctionTok{library}\NormalTok{(data.table)}
-\SpecialCharTok{\textgreater{}}\NormalTok{ d }\OtherTok{\textless{}{-}} \FunctionTok{fread}\NormalTok{(}\StringTok{"data/dat.csv"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
 
 \hypertarget{xlsxlsx-excel}{%
 \section{XLS/XLSX (Excel)}\label{xlsxlsx-excel}}
 
-\hypertarget{python-10}{%
-\subsubsection*{Python}\label{python-10}}
-\addcontentsline{toc}{subsubsection}{Python}
-
-\hypertarget{r-10}{%
-\subsubsection*{R}\label{r-10}}
-\addcontentsline{toc}{subsubsection}{R}
-
-\hypertarget{text}{%
-\section{Text}\label{text}}
+Excel files are native to Microsoft Excel. Prior to 2007, Excel files had an extension of XLS. With the launch of Excel 2007, the extension was changed to XLSX. Excel files can have multiple sheets of data. This needs to be accounted for when importing into Python and R.
 
 \hypertarget{python-11}{%
 \subsubsection*{Python}\label{python-11}}
@@ -572,8 +661,31 @@ Two packages that provide alternatives to \texttt{read.csv()} are \textbf{readr}
 \subsubsection*{R}\label{r-11}}
 \addcontentsline{toc}{subsubsection}{R}
 
+\textbf{readxl} is a well-documented and actively maintained package for importing Excel files into R. The workhorse function is \texttt{read\_excel()}. The \texttt{sheet} argument allows you to specify which sheet you want to import. You can specify sheet by its ordering or by its name. Since this Excel file only has one sheet we do not need to use the argument.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\# read in the 2nd sheet}
+\ErrorTok{\textgreater{}} \FunctionTok{library}\NormalTok{(readxl)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ d\_xls }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(}\StringTok{"data/ny\_math\_test.xlsx"}\NormalTok{)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ d\_xls[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{, }\FunctionTok{c}\NormalTok{(}\StringTok{"Grade"}\NormalTok{, }\StringTok{"Year"}\NormalTok{, }\StringTok{"Mean Scale Score"}\NormalTok{)]}
+\CommentTok{\# A tibble: 3 x 3}
+\NormalTok{  Grade  Year }\StringTok{\textasciigrave{}}\AttributeTok{Mean Scale Score}\StringTok{\textasciigrave{}}
+  \SpecialCharTok{\textless{}}\NormalTok{chr}\SpecialCharTok{\textgreater{}} \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}}              \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}}
+\DecValTok{1} \DecValTok{3}      \DecValTok{2006}                \DecValTok{700}
+\DecValTok{2} \DecValTok{4}      \DecValTok{2006}                \DecValTok{699}
+\DecValTok{3} \DecValTok{5}      \DecValTok{2006}                \DecValTok{691}
+\end{Highlighting}
+\end{Shaded}
+
+The result is a \emph{tibble}, a \href{https://tibble.tidyverse.org/}{tidyverse data frame}.
+
+It's worth noting we can use the \texttt{range} argument to specify a range of cells to import. For example, if the top left corner of the data was B5 and the bottom right corner of the data was J54, we could enter \texttt{range="B5:J54"} to just import that section of data.
+
 \hypertarget{json}{%
 \section{JSON}\label{json}}
+
+JSON (\textbf{J}ava\textbf{S}cript \textbf{O}bject \textbf{N}otation) is a flexible format for storing data. JSON files are text and can be viewed in any text editor. Because of their flexibility JSON files can be quite complex in the way they store data. Therefore there is no one-size-fits-all for importing JSON files into Python or R.
 
 \hypertarget{python-12}{%
 \subsubsection*{Python}\label{python-12}}
@@ -583,8 +695,33 @@ Two packages that provide alternatives to \texttt{read.csv()} are \textbf{readr}
 \subsubsection*{R}\label{r-12}}
 \addcontentsline{toc}{subsubsection}{R}
 
+\textbf{jsonlite} is one of several R packages available for importing JSON files into R. The \texttt{read\_json()} function takes a JSON file and returns a list or data frame depending on the structure of the data file and its arguments. We set \texttt{simplifyVector\ =\ TRUE} so the data is simplified into a matrix.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{library}\NormalTok{(jsonlite)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ d\_json }\OtherTok{\textless{}{-}} \FunctionTok{read\_json}\NormalTok{(}\StringTok{\textquotesingle{}data/ny\_math\_test.json\textquotesingle{}}\NormalTok{, }\AttributeTok{simplifyVector =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The \texttt{d\_json} object is a list with two elements: ``meta'' and ``data''. The ``data'' element is a matrix that contains the data of interest. The ``meta'' element contains the column names for the data (among much else). Notice we had to ``drill down'' in the list to find the column names. We assign column names to the matrix using the \texttt{colnames()} function and then convert the matrix to a data frame using the \texttt{as.data.frame()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{colnames}\NormalTok{(d\_json}\SpecialCharTok{$}\NormalTok{data) }\OtherTok{\textless{}{-}}\NormalTok{ d\_json}\SpecialCharTok{$}\NormalTok{meta}\SpecialCharTok{$}\NormalTok{view}\SpecialCharTok{$}\NormalTok{columns}\SpecialCharTok{$}\NormalTok{fieldName}
+\SpecialCharTok{\textgreater{}}\NormalTok{ d\_json }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(d\_json}\SpecialCharTok{$}\NormalTok{data)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ d\_json[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{,}\FunctionTok{c}\NormalTok{(}\StringTok{"grade"}\NormalTok{, }\StringTok{"year"}\NormalTok{, }\StringTok{"mean\_scale\_score"}\NormalTok{)]}
+\NormalTok{  grade year mean\_scale\_score}
+\DecValTok{1}     \DecValTok{3} \DecValTok{2006}              \DecValTok{700}
+\DecValTok{2}     \DecValTok{4} \DecValTok{2006}              \DecValTok{699}
+\DecValTok{3}     \DecValTok{5} \DecValTok{2006}              \DecValTok{691}
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{xml}{%
 \section{XML}\label{xml}}
+
+XML (e\textbf{X}tensible \textbf{M}arkup \textbf{L}anguage) is a markup language that was designed to store data. XML files are text and can be viewed in any text editor or a web browser. Because of their flexibility XML files can be quite complex in the way they store data. Therefore there is no one-size-fits-all for importing XML files into Python or R.
 
 \hypertarget{python-13}{%
 \subsubsection*{Python}\label{python-13}}
@@ -593,6 +730,27 @@ Two packages that provide alternatives to \texttt{read.csv()} are \textbf{readr}
 \hypertarget{r-13}{%
 \subsubsection*{R}\label{r-13}}
 \addcontentsline{toc}{subsubsection}{R}
+
+\textbf{xml2} is a relatively small but powerful package for importing and working with XML files. The \texttt{read\_xml()} function imports an XML file and returns a list of \emph{pointers} to XML \emph{nodes}. There are a number of ways to proceed once you import an XML file, such as using the \texttt{xml\_find\_all()} function to find nodes that match an \href{https://www.w3schools.com/xml/xpath_intro.asp}{xpath} expression. Below we take a simple approach and convert the XML nodes into a list using the \texttt{as\_list()} function that is part of the \textbf{xml2} package. Once we have the XML nodes in a list, we can use the \texttt{bind\_rows()} function in the \textbf{dplyr} package to create a data frame. Notice we have to drill down into the list to select the element that contains the data. After this we need to do one more thing: \emph{unlist} each the columns into vectors. We do this by applying the \texttt{unlist} function to each column of \texttt{d}. We save the result by assigning to \texttt{d{[}{]}}, which overwrites each element (or column) of \texttt{d} with the unlisted result.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{library}\NormalTok{(xml2)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ d\_xml }\OtherTok{\textless{}{-}} \FunctionTok{read\_xml}\NormalTok{(}\StringTok{\textquotesingle{}data/ny\_math\_test.xml\textquotesingle{}}\NormalTok{)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ d\_list }\OtherTok{\textless{}{-}} \FunctionTok{as\_list}\NormalTok{(d\_xml)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ d }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{bind\_rows}\NormalTok{(d\_list}\SpecialCharTok{$}\NormalTok{response}\SpecialCharTok{$}\NormalTok{row)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ d[] }\OtherTok{\textless{}{-}} \FunctionTok{lapply}\NormalTok{(d, unlist)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ d[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{,}\FunctionTok{c}\NormalTok{(}\StringTok{"grade"}\NormalTok{, }\StringTok{"year"}\NormalTok{, }\StringTok{"mean\_scale\_score"}\NormalTok{)]}
+\CommentTok{\# A tibble: 3 x 3}
+\NormalTok{  grade year  mean\_scale\_score}
+  \SpecialCharTok{\textless{}}\NormalTok{chr}\SpecialCharTok{\textgreater{}} \ErrorTok{\textless{}}\NormalTok{chr}\SpecialCharTok{\textgreater{}} \ErrorTok{\textless{}}\NormalTok{chr}\SpecialCharTok{\textgreater{}}           
+\DecValTok{1} \DecValTok{3}     \DecValTok{2006}  \DecValTok{700}             
+\DecValTok{2} \DecValTok{4}     \DecValTok{2006}  \DecValTok{699}             
+\DecValTok{3} \DecValTok{5}     \DecValTok{2006}  \DecValTok{691}             
+\end{Highlighting}
+\end{Shaded}
+
+The result is a \emph{tibble}, a \href{https://tibble.tidyverse.org/}{tidyverse data frame}. We would most likely want to proceed to converting certain columns to numeric.
 
 \hypertarget{data-manipulation}{%
 \chapter{Data Manipulation}\label{data-manipulation}}
@@ -1169,34 +1327,34 @@ There are many ways to sample rows from a data frame in R. The \textbf{dplyr} pa
 \SpecialCharTok{\textgreater{}} \CommentTok{\# sample 5 rows from mtcars}
 \ErrorTok{\textgreater{}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{slice\_sample}\NormalTok{(mtcars, }\AttributeTok{n =} \DecValTok{5}\NormalTok{)}
 \NormalTok{   mpg cylinders  disp  hp axle\_ratio weight  qsec engine am gear carb am\_ch}
-\DecValTok{1} \FloatTok{22.8}         \DecValTok{4} \FloatTok{140.8}  \DecValTok{95}       \FloatTok{3.92}  \FloatTok{3.150} \FloatTok{22.90}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{2}     \DecValTok{0}
-\DecValTok{2} \FloatTok{21.4}         \DecValTok{6} \FloatTok{258.0} \DecValTok{110}       \FloatTok{3.08}  \FloatTok{3.215} \FloatTok{19.44}      \DecValTok{1}  \DecValTok{0}    \DecValTok{3}    \DecValTok{1}     \DecValTok{0}
-\DecValTok{3} \FloatTok{17.3}         \DecValTok{8} \FloatTok{275.8} \DecValTok{180}       \FloatTok{3.07}  \FloatTok{3.730} \FloatTok{17.60}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{3}     \DecValTok{0}
-\DecValTok{4} \FloatTok{15.0}         \DecValTok{8} \FloatTok{301.0} \DecValTok{335}       \FloatTok{3.54}  \FloatTok{3.570} \FloatTok{14.60}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{8}     \DecValTok{1}
-\DecValTok{5} \FloatTok{19.2}         \DecValTok{8} \FloatTok{400.0} \DecValTok{175}       \FloatTok{3.08}  \FloatTok{3.845} \FloatTok{17.05}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{2}     \DecValTok{0}
+\DecValTok{1} \FloatTok{19.2}         \DecValTok{8} \FloatTok{400.0} \DecValTok{175}       \FloatTok{3.08}  \FloatTok{3.845} \FloatTok{17.05}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{2}     \DecValTok{0}
+\DecValTok{2} \FloatTok{21.0}         \DecValTok{6} \FloatTok{160.0} \DecValTok{110}       \FloatTok{3.90}  \FloatTok{2.875} \FloatTok{17.02}      \DecValTok{0}  \DecValTok{1}    \DecValTok{4}    \DecValTok{4}     \DecValTok{1}
+\DecValTok{3} \FloatTok{22.8}         \DecValTok{4} \FloatTok{140.8}  \DecValTok{95}       \FloatTok{3.92}  \FloatTok{3.150} \FloatTok{22.90}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{2}     \DecValTok{0}
+\DecValTok{4} \FloatTok{17.8}         \DecValTok{6} \FloatTok{167.6} \DecValTok{123}       \FloatTok{3.92}  \FloatTok{3.440} \FloatTok{18.90}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{5} \FloatTok{10.4}         \DecValTok{8} \FloatTok{460.0} \DecValTok{215}       \FloatTok{3.00}  \FloatTok{5.424} \FloatTok{17.82}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
 \NormalTok{     am\_fac}
 \DecValTok{1}\NormalTok{ automatic}
-\DecValTok{2}\NormalTok{ automatic}
+\DecValTok{2}\NormalTok{    manual}
 \DecValTok{3}\NormalTok{ automatic}
-\DecValTok{4}\NormalTok{    manual}
+\DecValTok{4}\NormalTok{ automatic}
 \DecValTok{5}\NormalTok{ automatic}
 \SpecialCharTok{\textgreater{}} 
 \ErrorTok{\textgreater{}} \CommentTok{\# sample 20\% of rows from mtcars}
 \ErrorTok{\textgreater{}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{slice\_sample}\NormalTok{(mtcars, }\AttributeTok{prop =} \FloatTok{0.20}\NormalTok{)}
 \NormalTok{   mpg cylinders  disp  hp axle\_ratio weight  qsec engine am gear carb am\_ch}
-\DecValTok{1} \FloatTok{24.4}         \DecValTok{4} \FloatTok{146.7}  \DecValTok{62}       \FloatTok{3.69}  \FloatTok{3.190} \FloatTok{20.00}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{2}     \DecValTok{0}
-\DecValTok{2} \FloatTok{19.2}         \DecValTok{6} \FloatTok{167.6} \DecValTok{123}       \FloatTok{3.92}  \FloatTok{3.440} \FloatTok{18.30}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{4}     \DecValTok{0}
-\DecValTok{3} \FloatTok{10.4}         \DecValTok{8} \FloatTok{472.0} \DecValTok{205}       \FloatTok{2.93}  \FloatTok{5.250} \FloatTok{17.98}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
-\DecValTok{4} \FloatTok{26.0}         \DecValTok{4} \FloatTok{120.3}  \DecValTok{91}       \FloatTok{4.43}  \FloatTok{2.140} \FloatTok{16.70}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{2}     \DecValTok{1}
-\DecValTok{5} \FloatTok{30.4}         \DecValTok{4}  \FloatTok{95.1} \DecValTok{113}       \FloatTok{3.77}  \FloatTok{1.513} \FloatTok{16.90}      \DecValTok{1}  \DecValTok{1}    \DecValTok{5}    \DecValTok{2}     \DecValTok{1}
-\DecValTok{6} \FloatTok{18.1}         \DecValTok{6} \FloatTok{225.0} \DecValTok{105}       \FloatTok{2.76}  \FloatTok{3.460} \FloatTok{20.22}      \DecValTok{1}  \DecValTok{0}    \DecValTok{3}    \DecValTok{1}     \DecValTok{0}
+\DecValTok{1} \FloatTok{19.2}         \DecValTok{6} \FloatTok{167.6} \DecValTok{123}       \FloatTok{3.92}  \FloatTok{3.440} \FloatTok{18.30}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{2} \FloatTok{30.4}         \DecValTok{4}  \FloatTok{75.7}  \DecValTok{52}       \FloatTok{4.93}  \FloatTok{1.615} \FloatTok{18.52}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{2}     \DecValTok{1}
+\DecValTok{3} \FloatTok{16.4}         \DecValTok{8} \FloatTok{275.8} \DecValTok{180}       \FloatTok{3.07}  \FloatTok{4.070} \FloatTok{17.40}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{3}     \DecValTok{0}
+\DecValTok{4} \FloatTok{10.4}         \DecValTok{8} \FloatTok{460.0} \DecValTok{215}       \FloatTok{3.00}  \FloatTok{5.424} \FloatTok{17.82}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{5} \FloatTok{21.4}         \DecValTok{6} \FloatTok{258.0} \DecValTok{110}       \FloatTok{3.08}  \FloatTok{3.215} \FloatTok{19.44}      \DecValTok{1}  \DecValTok{0}    \DecValTok{3}    \DecValTok{1}     \DecValTok{0}
+\DecValTok{6} \FloatTok{26.0}         \DecValTok{4} \FloatTok{120.3}  \DecValTok{91}       \FloatTok{4.43}  \FloatTok{2.140} \FloatTok{16.70}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{2}     \DecValTok{1}
 \NormalTok{     am\_fac}
 \DecValTok{1}\NormalTok{ automatic}
-\DecValTok{2}\NormalTok{ automatic}
+\DecValTok{2}\NormalTok{    manual}
 \DecValTok{3}\NormalTok{ automatic}
-\DecValTok{4}\NormalTok{    manual}
-\DecValTok{5}\NormalTok{    manual}
-\DecValTok{6}\NormalTok{ automatic}
+\DecValTok{4}\NormalTok{ automatic}
+\DecValTok{5}\NormalTok{ automatic}
+\DecValTok{6}\NormalTok{    manual}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1212,17 +1370,17 @@ The base R functions \texttt{sample()} and \texttt{runif()} can be combined to s
 \SpecialCharTok{\textgreater{}} \CommentTok{\# use i to select rows}
 \ErrorTok{\textgreater{}}\NormalTok{ mtcars[i,]}
 \NormalTok{    mpg cylinders  disp  hp axle\_ratio weight  qsec engine am gear carb am\_ch}
-\DecValTok{17} \FloatTok{14.7}         \DecValTok{8} \FloatTok{440.0} \DecValTok{230}       \FloatTok{3.23}  \FloatTok{5.345} \FloatTok{17.42}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{31} \FloatTok{15.0}         \DecValTok{8} \FloatTok{301.0} \DecValTok{335}       \FloatTok{3.54}  \FloatTok{3.570} \FloatTok{14.60}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{8}     \DecValTok{1}
 \DecValTok{7}  \FloatTok{14.3}         \DecValTok{8} \FloatTok{360.0} \DecValTok{245}       \FloatTok{3.21}  \FloatTok{3.570} \FloatTok{15.84}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{16} \FloatTok{10.4}         \DecValTok{8} \FloatTok{460.0} \DecValTok{215}       \FloatTok{3.00}  \FloatTok{5.424} \FloatTok{17.82}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{30} \FloatTok{19.7}         \DecValTok{6} \FloatTok{145.0} \DecValTok{175}       \FloatTok{3.62}  \FloatTok{2.770} \FloatTok{15.50}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{6}     \DecValTok{1}
 \DecValTok{20} \FloatTok{33.9}         \DecValTok{4}  \FloatTok{71.1}  \DecValTok{65}       \FloatTok{4.22}  \FloatTok{1.835} \FloatTok{19.90}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
-\DecValTok{21} \FloatTok{21.5}         \DecValTok{4} \FloatTok{120.1}  \DecValTok{97}       \FloatTok{3.70}  \FloatTok{2.465} \FloatTok{20.01}      \DecValTok{1}  \DecValTok{0}    \DecValTok{3}    \DecValTok{1}     \DecValTok{0}
-\DecValTok{28} \FloatTok{30.4}         \DecValTok{4}  \FloatTok{95.1} \DecValTok{113}       \FloatTok{3.77}  \FloatTok{1.513} \FloatTok{16.90}      \DecValTok{1}  \DecValTok{1}    \DecValTok{5}    \DecValTok{2}     \DecValTok{1}
 \NormalTok{      am\_fac}
-\DecValTok{17}\NormalTok{ automatic}
+\DecValTok{31}\NormalTok{    manual}
 \DecValTok{7}\NormalTok{  automatic}
+\DecValTok{16}\NormalTok{ automatic}
+\DecValTok{30}\NormalTok{    manual}
 \DecValTok{20}\NormalTok{    manual}
-\DecValTok{21}\NormalTok{ automatic}
-\DecValTok{28}\NormalTok{    manual}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1235,19 +1393,19 @@ The base R functions \texttt{sample()} and \texttt{runif()} can be combined to s
 \ErrorTok{\textgreater{}} \CommentTok{\# select rows that correspond to TRUE}
 \ErrorTok{\textgreater{}}\NormalTok{ mtcars[i }\SpecialCharTok{\textless{}} \FloatTok{0.20}\NormalTok{,]}
 \NormalTok{    mpg cylinders  disp  hp axle\_ratio weight  qsec engine am gear carb am\_ch}
-\DecValTok{1}  \FloatTok{21.0}         \DecValTok{6} \FloatTok{160.0} \DecValTok{110}       \FloatTok{3.90}  \FloatTok{2.620} \FloatTok{16.46}      \DecValTok{0}  \DecValTok{1}    \DecValTok{4}    \DecValTok{4}     \DecValTok{1}
-\DecValTok{10} \FloatTok{19.2}         \DecValTok{6} \FloatTok{167.6} \DecValTok{123}       \FloatTok{3.92}  \FloatTok{3.440} \FloatTok{18.30}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{4}     \DecValTok{0}
-\DecValTok{19} \FloatTok{30.4}         \DecValTok{4}  \FloatTok{75.7}  \DecValTok{52}       \FloatTok{4.93}  \FloatTok{1.615} \FloatTok{18.52}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{2}     \DecValTok{1}
-\DecValTok{20} \FloatTok{33.9}         \DecValTok{4}  \FloatTok{71.1}  \DecValTok{65}       \FloatTok{4.22}  \FloatTok{1.835} \FloatTok{19.90}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
-\DecValTok{24} \FloatTok{13.3}         \DecValTok{8} \FloatTok{350.0} \DecValTok{245}       \FloatTok{3.73}  \FloatTok{3.840} \FloatTok{15.41}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{2}  \FloatTok{21.0}         \DecValTok{6} \FloatTok{160.0} \DecValTok{110}       \FloatTok{3.90}  \FloatTok{2.875} \FloatTok{17.02}      \DecValTok{0}  \DecValTok{1}    \DecValTok{4}    \DecValTok{4}     \DecValTok{1}
+\DecValTok{5}  \FloatTok{18.7}         \DecValTok{8} \FloatTok{360.0} \DecValTok{175}       \FloatTok{3.15}  \FloatTok{3.440} \FloatTok{17.02}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{2}     \DecValTok{0}
+\DecValTok{7}  \FloatTok{14.3}         \DecValTok{8} \FloatTok{360.0} \DecValTok{245}       \FloatTok{3.21}  \FloatTok{3.570} \FloatTok{15.84}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{27} \FloatTok{26.0}         \DecValTok{4} \FloatTok{120.3}  \DecValTok{91}       \FloatTok{4.43}  \FloatTok{2.140} \FloatTok{16.70}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{2}     \DecValTok{1}
+\DecValTok{28} \FloatTok{30.4}         \DecValTok{4}  \FloatTok{95.1} \DecValTok{113}       \FloatTok{3.77}  \FloatTok{1.513} \FloatTok{16.90}      \DecValTok{1}  \DecValTok{1}    \DecValTok{5}    \DecValTok{2}     \DecValTok{1}
 \DecValTok{29} \FloatTok{15.8}         \DecValTok{8} \FloatTok{351.0} \DecValTok{264}       \FloatTok{4.22}  \FloatTok{3.170} \FloatTok{14.50}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{4}     \DecValTok{1}
 \DecValTok{30} \FloatTok{19.7}         \DecValTok{6} \FloatTok{145.0} \DecValTok{175}       \FloatTok{3.62}  \FloatTok{2.770} \FloatTok{15.50}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{6}     \DecValTok{1}
 \NormalTok{      am\_fac}
-\DecValTok{1}\NormalTok{     manual}
-\DecValTok{10}\NormalTok{ automatic}
-\DecValTok{19}\NormalTok{    manual}
-\DecValTok{20}\NormalTok{    manual}
-\DecValTok{24}\NormalTok{ automatic}
+\DecValTok{2}\NormalTok{     manual}
+\DecValTok{5}\NormalTok{  automatic}
+\DecValTok{7}\NormalTok{  automatic}
+\DecValTok{27}\NormalTok{    manual}
+\DecValTok{28}\NormalTok{    manual}
 \DecValTok{29}\NormalTok{    manual}
 \DecValTok{30}\NormalTok{    manual}
 \end{Highlighting}

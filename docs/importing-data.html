@@ -21,10 +21,10 @@
   <meta name="twitter:description" content="This book provides parallel examples in Python and R to help users of one platform more easily transition to the other." />
   
 
-<meta name="author" content="Clay Ford, Jacob Goldstein-Greenwood, Samantha Lomuscio" />
+<meta name="author" content="Clay Ford, Jacob Goldstein-Greenwood, Oyinkansola Adenekan, Samantha Lomuscio" />
 
 
-<meta name="date" content="2021-09-29" />
+<meta name="date" content="2021-10-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -165,7 +165,7 @@ div.csl-indent {
 <li class="chapter" data-level="1.1" data-path="basics.html"><a href="basics.html#math"><i class="fa fa-check"></i><b>1.1</b> Math</a></li>
 <li class="chapter" data-level="1.2" data-path="basics.html"><a href="basics.html#assignment"><i class="fa fa-check"></i><b>1.2</b> Assignment</a></li>
 <li class="chapter" data-level="1.3" data-path="basics.html"><a href="basics.html#printing-a-value"><i class="fa fa-check"></i><b>1.3</b> Printing a value</a></li>
-<li class="chapter" data-level="1.4" data-path="basics.html"><a href="basics.html#packages-and-libraries"><i class="fa fa-check"></i><b>1.4</b> Packages and Libraries</a></li>
+<li class="chapter" data-level="1.4" data-path="basics.html"><a href="basics.html#packages"><i class="fa fa-check"></i><b>1.4</b> Packages</a></li>
 <li class="chapter" data-level="1.5" data-path="basics.html"><a href="basics.html#logic"><i class="fa fa-check"></i><b>1.5</b> Logic</a></li>
 <li class="chapter" data-level="1.6" data-path="basics.html"><a href="basics.html#generating-a-sequence-of-values"><i class="fa fa-check"></i><b>1.6</b> Generating a sequence of values</a></li>
 <li class="chapter" data-level="1.7" data-path="basics.html"><a href="basics.html#calculating-means-and-medians"><i class="fa fa-check"></i><b>1.7</b> Calculating means and medians</a></li>
@@ -173,15 +173,15 @@ div.csl-indent {
 <li class="chapter" data-level="2" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>2</b> Data Structures</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="data-structures.html"><a href="data-structures.html#one-dimensional-data"><i class="fa fa-check"></i><b>2.1</b> One-dimensional data</a></li>
-<li class="chapter" data-level="2.2" data-path="data-structures.html"><a href="data-structures.html#two-dimensional"><i class="fa fa-check"></i><b>2.2</b> Two-dimensional</a></li>
+<li class="chapter" data-level="2.2" data-path="data-structures.html"><a href="data-structures.html#two-dimensional-data"><i class="fa fa-check"></i><b>2.2</b> Two-dimensional data</a></li>
+<li class="chapter" data-level="2.3" data-path="data-structures.html"><a href="data-structures.html#three-dimensional-and-higher-data"><i class="fa fa-check"></i><b>2.3</b> Three-dimensional and higher data</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>3</b> Importing Data</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="importing-data.html"><a href="importing-data.html#csv"><i class="fa fa-check"></i><b>3.1</b> CSV</a></li>
 <li class="chapter" data-level="3.2" data-path="importing-data.html"><a href="importing-data.html#xlsxlsx-excel"><i class="fa fa-check"></i><b>3.2</b> XLS/XLSX (Excel)</a></li>
-<li class="chapter" data-level="3.3" data-path="importing-data.html"><a href="importing-data.html#text"><i class="fa fa-check"></i><b>3.3</b> Text</a></li>
-<li class="chapter" data-level="3.4" data-path="importing-data.html"><a href="importing-data.html#json"><i class="fa fa-check"></i><b>3.4</b> JSON</a></li>
-<li class="chapter" data-level="3.5" data-path="importing-data.html"><a href="importing-data.html#xml"><i class="fa fa-check"></i><b>3.5</b> XML</a></li>
+<li class="chapter" data-level="3.3" data-path="importing-data.html"><a href="importing-data.html#json"><i class="fa fa-check"></i><b>3.3</b> JSON</a></li>
+<li class="chapter" data-level="3.4" data-path="importing-data.html"><a href="importing-data.html#xml"><i class="fa fa-check"></i><b>3.4</b> XML</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="data-manipulation.html"><a href="data-manipulation.html"><i class="fa fa-check"></i><b>4</b> Data Manipulation</a>
 <ul>
@@ -232,62 +232,100 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="importing-data" class="section level1" number="3">
 <h1><span class="header-section-number">Chapter 3</span> Importing Data</h1>
-<p>This chapter reviews importing external data into Python and R, including CSV, txt, and other structured data files.</p>
+<p>This chapter reviews importing external data into Python and R, including CSV, Excel, and other structured data files. There is often more than one way to import data into Python and R. The examples below highlight one way that we frequently see used.</p>
+<p>The data we use for demonstration is New York State Math Test Results by Grade from 2006 - 2011, downloaded from <a href="https://catalog.data.gov/dataset/2006-2011-nys-math-test-results-by-grade-citywide-by-race-ethnicity">data.gov</a> on September 30, 2021.</p>
 <div id="csv" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> CSV</h2>
 <p>Comma separated value (CSV) files are text files with fields separated by commas. They are useful for “rectangular” data where rows represent observations and columns represent variables or features.</p>
-<div id="python-9" class="section level4 unnumbered">
+<div id="python-10" class="section level4 unnumbered">
 <h4>Python</h4>
-<div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="importing-data.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> pandas</span>
-<span id="cb19-2"><a href="importing-data.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> d <span class="op">=</span> pandas.read_csv(<span class="st">&#39;data/dat.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="importing-data.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> pandas</span>
+<span id="cb23-2"><a href="importing-data.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> d <span class="op">=</span> pandas.read_csv(<span class="st">&#39;data/ny_math_test.csv&#39;</span>)</span>
+<span id="cb23-3"><a href="importing-data.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> d.loc[<span class="dv">0</span>:<span class="dv">2</span>, [<span class="st">&quot;Grade&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Mean Scale Score&quot;</span>]]</span>
+<span id="cb23-4"><a href="importing-data.html#cb23-4" aria-hidden="true" tabindex="-1"></a>  Grade  Year  Mean Scale Score</span>
+<span id="cb23-5"><a href="importing-data.html#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span>     <span class="dv">3</span>  <span class="dv">2006</span>               <span class="dv">700</span></span>
+<span id="cb23-6"><a href="importing-data.html#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>     <span class="dv">4</span>  <span class="dv">2006</span>               <span class="dv">699</span></span>
+<span id="cb23-7"><a href="importing-data.html#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>     <span class="dv">5</span>  <span class="dv">2006</span>               <span class="dv">691</span></span></code></pre></div>
 </div>
-<div id="r-9" class="section level4 unnumbered">
+<div id="r-10" class="section level4 unnumbered">
 <h4>R</h4>
 <p>There are many ways to import a csv file. A common way is to use the base R function <code>read.csv()</code>.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="importing-data.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/dat.csv&quot;</span>)</span>
-<span id="cb20-2"><a href="importing-data.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="importing-data.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/ny_math_test.csv&quot;</span>)</span>
+<span id="cb24-2"><a href="importing-data.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="fu">c</span>(<span class="st">&quot;Grade&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Mean.Scale.Score&quot;</span>)]</span>
+<span id="cb24-3"><a href="importing-data.html#cb24-3" aria-hidden="true" tabindex="-1"></a>  Grade Year Mean.Scale.Score</span>
+<span id="cb24-4"><a href="importing-data.html#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>     <span class="dv">3</span> <span class="dv">2006</span>              <span class="dv">700</span></span>
+<span id="cb24-5"><a href="importing-data.html#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>     <span class="dv">4</span> <span class="dv">2006</span>              <span class="dv">699</span></span>
+<span id="cb24-6"><a href="importing-data.html#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>     <span class="dv">5</span> <span class="dv">2006</span>              <span class="dv">691</span></span></code></pre></div>
+<p>Notice the spaces in the column names have been replaced with periods.</p>
 <p>Two packages that provide alternatives to <code>read.csv()</code> are <strong>readr</strong> and <strong>data.table</strong>. The <strong>readr</strong> function <code>read_csv()</code> returns a <a href="https://r4ds.had.co.nz/tibbles.html">tibble</a>. The <strong>data.table</strong> function <code>fread()</code> returns a <a href="https://rdatatable.gitlab.io/data.table/articles/datatable-intro.html">data.table</a>.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="importing-data.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(readr)</span>
-<span id="cb21-2"><a href="importing-data.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/dat.csv&quot;</span>)</span>
-<span id="cb21-3"><a href="importing-data.html#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb21-4"><a href="importing-data.html#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">library</span>(data.table)</span>
-<span id="cb21-5"><a href="importing-data.html#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;data/dat.csv&quot;</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="xlsxlsx-excel" class="section level2" number="3.2">
 <h2><span class="header-section-number">3.2</span> XLS/XLSX (Excel)</h2>
-<div id="python-10" class="section level4 unnumbered">
-<h4>Python</h4>
-</div>
-<div id="r-10" class="section level4 unnumbered">
-<h4>R</h4>
-</div>
-</div>
-<div id="text" class="section level2" number="3.3">
-<h2><span class="header-section-number">3.3</span> Text</h2>
+<p>Excel files are native to Microsoft Excel. Prior to 2007, Excel files had an extension of XLS. With the launch of Excel 2007, the extension was changed to XLSX. Excel files can have multiple sheets of data. This needs to be accounted for when importing into Python and R.</p>
 <div id="python-11" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
 <div id="r-11" class="section level4 unnumbered">
 <h4>R</h4>
+<p><strong>readxl</strong> is a well-documented and actively maintained package for importing Excel files into R. The workhorse function is <code>read_excel()</code>. The <code>sheet</code> argument allows you to specify which sheet you want to import. You can specify sheet by its ordering or by its name. Since this Excel file only has one sheet we do not need to use the argument.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="importing-data.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># read in the 2nd sheet</span></span>
+<span id="cb25-2"><a href="importing-data.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">library</span>(readxl)</span>
+<span id="cb25-3"><a href="importing-data.html#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d_xls <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/ny_math_test.xlsx&quot;</span>)</span>
+<span id="cb25-4"><a href="importing-data.html#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d_xls[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="fu">c</span>(<span class="st">&quot;Grade&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Mean Scale Score&quot;</span>)]</span>
+<span id="cb25-5"><a href="importing-data.html#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 3 × 3</span></span>
+<span id="cb25-6"><a href="importing-data.html#cb25-6" aria-hidden="true" tabindex="-1"></a>  Grade  Year <span class="st">`</span><span class="at">Mean Scale Score</span><span class="st">`</span></span>
+<span id="cb25-7"><a href="importing-data.html#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="sc">&lt;</span>chr<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>              <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb25-8"><a href="importing-data.html#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">3</span>      <span class="dv">2006</span>                <span class="dv">700</span></span>
+<span id="cb25-9"><a href="importing-data.html#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="dv">4</span>      <span class="dv">2006</span>                <span class="dv">699</span></span>
+<span id="cb25-10"><a href="importing-data.html#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="dv">5</span>      <span class="dv">2006</span>                <span class="dv">691</span></span></code></pre></div>
+<p>The result is a <em>tibble</em>, a <a href="https://tibble.tidyverse.org/">tidyverse data frame</a>.</p>
+<p>It’s worth noting we can use the <code>range</code> argument to specify a range of cells to import. For example, if the top left corner of the data was B5 and the bottom right corner of the data was J54, we could enter <code>range="B5:J54"</code> to just import that section of data.</p>
 </div>
 </div>
-<div id="json" class="section level2" number="3.4">
-<h2><span class="header-section-number">3.4</span> JSON</h2>
+<div id="json" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> JSON</h2>
+<p>JSON (<strong>J</strong>ava<strong>S</strong>cript <strong>O</strong>bject <strong>N</strong>otation) is a flexible format for storing data. JSON files are text and can be viewed in any text editor. Because of their flexibility JSON files can be quite complex in the way they store data. Therefore there is no one-size-fits-all for importing JSON files into Python or R.</p>
 <div id="python-12" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
 <div id="r-12" class="section level4 unnumbered">
 <h4>R</h4>
+<p><strong>jsonlite</strong> is one of several R packages available for importing JSON files into R. The <code>read_json()</code> function takes a JSON file and returns a list or data frame depending on the structure of the data file and its arguments. We set <code>simplifyVector = TRUE</code> so the data is simplified into a matrix.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="importing-data.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(jsonlite)</span>
+<span id="cb26-2"><a href="importing-data.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d_json <span class="ot">&lt;-</span> <span class="fu">read_json</span>(<span class="st">&#39;data/ny_math_test.json&#39;</span>, <span class="at">simplifyVector =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>The <code>d_json</code> object is a list with two elements: “meta” and “data.” The “data” element is a matrix that contains the data of interest. The “meta” element contains the column names for the data (among much else). Notice we had to “drill down” in the list to find the column names. We assign column names to the matrix using the <code>colnames()</code> function and then convert the matrix to a data frame using the <code>as.data.frame()</code> function.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="importing-data.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">colnames</span>(d_json<span class="sc">$</span>data) <span class="ot">&lt;-</span> d_json<span class="sc">$</span>meta<span class="sc">$</span>view<span class="sc">$</span>columns<span class="sc">$</span>fieldName</span>
+<span id="cb27-2"><a href="importing-data.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d_json <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(d_json<span class="sc">$</span>data)</span>
+<span id="cb27-3"><a href="importing-data.html#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d_json[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="fu">c</span>(<span class="st">&quot;grade&quot;</span>, <span class="st">&quot;year&quot;</span>, <span class="st">&quot;mean_scale_score&quot;</span>)]</span>
+<span id="cb27-4"><a href="importing-data.html#cb27-4" aria-hidden="true" tabindex="-1"></a>  grade year mean_scale_score</span>
+<span id="cb27-5"><a href="importing-data.html#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>     <span class="dv">3</span> <span class="dv">2006</span>              <span class="dv">700</span></span>
+<span id="cb27-6"><a href="importing-data.html#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>     <span class="dv">4</span> <span class="dv">2006</span>              <span class="dv">699</span></span>
+<span id="cb27-7"><a href="importing-data.html#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>     <span class="dv">5</span> <span class="dv">2006</span>              <span class="dv">691</span></span></code></pre></div>
 </div>
 </div>
-<div id="xml" class="section level2" number="3.5">
-<h2><span class="header-section-number">3.5</span> XML</h2>
+<div id="xml" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> XML</h2>
+<p>XML (e<strong>X</strong>tensible <strong>M</strong>arkup <strong>L</strong>anguage) is a markup language that was designed to store data. XML files are text and can be viewed in any text editor or a web browser. Because of their flexibility XML files can be quite complex in the way they store data. Therefore there is no one-size-fits-all for importing XML files into Python or R.</p>
 <div id="python-13" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
 <div id="r-13" class="section level4 unnumbered">
 <h4>R</h4>
+<p><strong>xml2</strong> is a relatively small but powerful package for importing and working with XML files. The <code>read_xml()</code> function imports an XML file and returns a list of <em>pointers</em> to XML <em>nodes</em>. There are a number of ways to proceed once you import an XML file, such as using the <code>xml_find_all()</code> function to find nodes that match an <a href="https://www.w3schools.com/xml/xpath_intro.asp">xpath</a> expression. Below we take a simple approach and convert the XML nodes into a list using the <code>as_list()</code> function that is part of the <strong>xml2</strong> package. Once we have the XML nodes in a list, we can use the <code>bind_rows()</code> function in the <strong>dplyr</strong> package to create a data frame. Notice we have to drill down into the list to select the element that contains the data. After this we need to do one more thing: <em>unlist</em> each the columns into vectors. We do this by applying the <code>unlist</code> function to each column of <code>d</code>. We save the result by assigning to <code>d[]</code>, which overwrites each element (or column) of <code>d</code> with the unlisted result.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="importing-data.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(xml2)</span>
+<span id="cb28-2"><a href="importing-data.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d_xml <span class="ot">&lt;-</span> <span class="fu">read_xml</span>(<span class="st">&#39;data/ny_math_test.xml&#39;</span>)</span>
+<span id="cb28-3"><a href="importing-data.html#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d_list <span class="ot">&lt;-</span> <span class="fu">as_list</span>(d_xml)</span>
+<span id="cb28-4"><a href="importing-data.html#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">bind_rows</span>(d_list<span class="sc">$</span>response<span class="sc">$</span>row)</span>
+<span id="cb28-5"><a href="importing-data.html#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d[] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(d, unlist)</span>
+<span id="cb28-6"><a href="importing-data.html#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="fu">c</span>(<span class="st">&quot;grade&quot;</span>, <span class="st">&quot;year&quot;</span>, <span class="st">&quot;mean_scale_score&quot;</span>)]</span>
+<span id="cb28-7"><a href="importing-data.html#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 3 × 3</span></span>
+<span id="cb28-8"><a href="importing-data.html#cb28-8" aria-hidden="true" tabindex="-1"></a>  grade year  mean_scale_score</span>
+<span id="cb28-9"><a href="importing-data.html#cb28-9" aria-hidden="true" tabindex="-1"></a>  <span class="sc">&lt;</span>chr<span class="sc">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span>           </span>
+<span id="cb28-10"><a href="importing-data.html#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">3</span>     <span class="dv">2006</span>  <span class="dv">700</span>             </span>
+<span id="cb28-11"><a href="importing-data.html#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="dv">4</span>     <span class="dv">2006</span>  <span class="dv">699</span>             </span>
+<span id="cb28-12"><a href="importing-data.html#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="dv">5</span>     <span class="dv">2006</span>  <span class="dv">691</span>             </span></code></pre></div>
+<p>The result is a <em>tibble</em>, a <a href="https://tibble.tidyverse.org/">tidyverse data frame</a>. We would most likely want to proceed to converting certain columns to numeric.</p>
 
 </div>
 </div>
