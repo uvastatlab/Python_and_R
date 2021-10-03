@@ -24,7 +24,7 @@
 <meta name="author" content="Clay Ford, Jacob Goldstein-Greenwood, Oyinkansola Adenekan, Samantha Lomuscio" />
 
 
-<meta name="date" content="2021-10-01" />
+<meta name="date" content="2021-10-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -232,7 +232,7 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="combine-reshape-and-merge" class="section level1" number="5">
 <h1><span class="header-section-number">Chapter 5</span> Combine, Reshape and Merge</h1>
-<p>This chapter looks at various strategies for combining, reshaping and merging data.</p>
+<p>This chapter looks at various strategies for combining, reshaping, and merging data.</p>
 <div id="combine-rows" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> Combine rows</h2>
 <p>Combining rows may be thought of as “stacking” rectangular data structures.</p>
@@ -241,7 +241,7 @@ div.csl-indent {
 </div>
 <div id="r-23" class="section level4 unnumbered">
 <h4>R</h4>
-<p>The <code>rbind()</code> function “binds” rows. It takes two or more objects. To row bind data frames the column names must match, otherwise an error is returned. If columns being stacked have differing variable types, the values will be coerced according to <code>logical</code> &lt; <code>integer</code> &lt; <code>double</code> &lt; <code>complex</code> &lt; <code>character</code>.</p>
+<p>The <code>rbind()</code> function “binds” rows. It takes two or more objects. To row bind data frames the column names must match, otherwise an error is returned. If columns being stacked have differing variable types, the values will be coerced according to <code>logical</code> &lt; <code>integer</code> &lt; <code>double</code> &lt; <code>complex</code> &lt; <code>character</code>. (E.g., if you stack a set of rows with type <code>logical</code> in column <em>J</em> on a set of rows with type <code>character</code> in column <em>J</em>, the output will have column <em>J</em> as type <code>character</code>.)</p>
 <div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="combine-reshape-and-merge.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">y =</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span>
 <span id="cb67-2"><a href="combine-reshape-and-merge.html#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">y =</span> letters[<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>])</span>
 <span id="cb67-3"><a href="combine-reshape-and-merge.html#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">rbind</span>(d1, d2)</span>
@@ -263,7 +263,7 @@ div.csl-indent {
 </div>
 <div id="r-24" class="section level4 unnumbered">
 <h4>R</h4>
-<p>The <code>cbind()</code> function “binds” columns. It takes two or more objects. To column bind data frames the number of rows must match, otherwise the object with fewer rows will have rows “recycled” (if possible) or an error is returned.</p>
+<p>The <code>cbind()</code> function “binds” columns. It takes two or more objects. To column bind data frames, the number of rows must match; otherwise, the object with fewer rows will have rows “recycled” (if possible) or an error will be returned.</p>
 <div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="combine-reshape-and-merge.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">10</span><span class="sc">:</span><span class="dv">13</span>, <span class="at">y =</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>])</span>
 <span id="cb68-2"><a href="combine-reshape-and-merge.html#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">23</span>,<span class="dv">34</span>,<span class="dv">45</span>,<span class="dv">44</span>))</span>
 <span id="cb68-3"><a href="combine-reshape-and-merge.html#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">cbind</span>(d1, d2)</span>
@@ -290,11 +290,122 @@ div.csl-indent {
 </div>
 <div id="reshape-wide-to-long" class="section level2" number="5.3">
 <h2><span class="header-section-number">5.3</span> Reshape wide to long</h2>
+<p>The next two sections discuss how to reshape data from wide–&gt;long and long–&gt;wide. “Wide” data are data structured such that multiple values associated with a given unit (e.g., a person, a product, etc.) are placed in the same row. For example:</p>
+<pre><code>   name time_1_score time_2_score time_3_score
+1 larry            3            0            6
+2   moe            6            3            3
+3 curly            2            1            1</code></pre>
+<p><em>Long</em> data, conversely, are data structured such that all values are contained in one column, with another column identifying the what value is given in any particular row, e.g.:</p>
+<pre><code>     id   time score
+1 larry time_1     3
+2 larry time_2     0
+3 larry time_3     6
+4   moe time_1     6
+5   moe time_2     3
+6   moe time_3     3
+7 curly time_1     2
+8 curly time_2     1
+9 curly time_3     1</code></pre>
+<p>Shifting between these two data formats is often useful—necessarily, really—for implementing a particular statistical technique or representing data with a particular visualization.</p>
 <div id="python-25" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
 <div id="r-25" class="section level4 unnumbered">
 <h4>R</h4>
+<p>In base R, the <code>reshape()</code> function can take data from wide–&gt;long or long–&gt;wide. The <strong>tidyverse</strong> also provides functions for doing so—<code>pivot_longer()</code> and <code>pivot_wider()</code>—and those functions have a degree of intuitiveness and usability that may make them the go-to reshaping tools for many R users. We give examples below using base R and <strong>tidyr</strong>.</p>
+<p>To convert data from wide to long using <code>reshape()</code>, the user specifies <em>id</em> variable(s), which uniquely identify each row and will therefore be repeated in long output. The user also specifies the <em>varying</em> columns, which contain the repeated measurements that are to be lengthened such that all the values will be placed in the same column in the long data. The <code>v.names</code> argument indicates the desired name of the column containing the values in the long data, and the <code>timevar</code> argument indicates the desired name of the column that identifies each value in the long data.</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="combine-reshape-and-merge.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">set.seed</span>(<span class="dv">10</span>)</span>
+<span id="cb72-2"><a href="combine-reshape-and-merge.html#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> df_wide <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">id =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>),</span>
+<span id="cb72-3"><a href="combine-reshape-and-merge.html#cb72-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                       <span class="at">sex =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&#39;m&#39;</span>, <span class="st">&#39;f&#39;</span>), <span class="dv">3</span>, <span class="at">replace =</span> T),</span>
+<span id="cb72-4"><a href="combine-reshape-and-merge.html#cb72-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                       <span class="at">wk1 =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="dv">3</span>, <span class="at">replace =</span> T),</span>
+<span id="cb72-5"><a href="combine-reshape-and-merge.html#cb72-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                       <span class="at">wk2 =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="dv">3</span>, <span class="at">replace =</span> T),</span>
+<span id="cb72-6"><a href="combine-reshape-and-merge.html#cb72-6" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                       <span class="at">wk3 =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="dv">3</span>, <span class="at">replace =</span> T))</span>
+<span id="cb72-7"><a href="combine-reshape-and-merge.html#cb72-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> df_wide</span>
+<span id="cb72-8"><a href="combine-reshape-and-merge.html#cb72-8" aria-hidden="true" tabindex="-1"></a>  id sex wk1 wk2 wk3</span>
+<span id="cb72-9"><a href="combine-reshape-and-merge.html#cb72-9" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>  <span class="dv">1</span>   m  <span class="dv">16</span>   <span class="dv">7</span>  <span class="dv">15</span></span>
+<span id="cb72-10"><a href="combine-reshape-and-merge.html#cb72-10" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>  <span class="dv">2</span>   m  <span class="dv">12</span>  <span class="dv">19</span>  <span class="dv">10</span></span>
+<span id="cb72-11"><a href="combine-reshape-and-merge.html#cb72-11" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>  <span class="dv">3</span>   f   <span class="dv">8</span>  <span class="dv">15</span>   <span class="dv">7</span></span>
+<span id="cb72-12"><a href="combine-reshape-and-merge.html#cb72-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> df_long <span class="ot">&lt;-</span> <span class="fu">reshape</span>(df_wide,</span>
+<span id="cb72-13"><a href="combine-reshape-and-merge.html#cb72-13" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                    <span class="at">direction =</span> <span class="st">&#39;long&#39;</span>,</span>
+<span id="cb72-14"><a href="combine-reshape-and-merge.html#cb72-14" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                    <span class="at">idvar =</span> <span class="fu">c</span>(<span class="st">&#39;id&#39;</span>, <span class="st">&#39;sex&#39;</span>),</span>
+<span id="cb72-15"><a href="combine-reshape-and-merge.html#cb72-15" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                    <span class="at">varying =</span> <span class="fu">c</span>(<span class="st">&#39;wk1&#39;</span>, <span class="st">&#39;wk2&#39;</span>, <span class="st">&#39;wk3&#39;</span>),</span>
+<span id="cb72-16"><a href="combine-reshape-and-merge.html#cb72-16" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                    <span class="at">v.names =</span> <span class="st">&#39;weekly_val&#39;</span>,</span>
+<span id="cb72-17"><a href="combine-reshape-and-merge.html#cb72-17" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                    <span class="at">timevar =</span> <span class="st">&#39;week&#39;</span>)</span>
+<span id="cb72-18"><a href="combine-reshape-and-merge.html#cb72-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> df_long</span>
+<span id="cb72-19"><a href="combine-reshape-and-merge.html#cb72-19" aria-hidden="true" tabindex="-1"></a>      id sex week weekly_val</span>
+<span id="cb72-20"><a href="combine-reshape-and-merge.html#cb72-20" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span>m<span class="fl">.1</span>  <span class="dv">1</span>   m    <span class="dv">1</span>         <span class="dv">16</span></span>
+<span id="cb72-21"><a href="combine-reshape-and-merge.html#cb72-21" aria-hidden="true" tabindex="-1"></a><span class="fl">2.</span>m<span class="fl">.1</span>  <span class="dv">2</span>   m    <span class="dv">1</span>         <span class="dv">12</span></span>
+<span id="cb72-22"><a href="combine-reshape-and-merge.html#cb72-22" aria-hidden="true" tabindex="-1"></a><span class="fl">3.</span>f<span class="fl">.1</span>  <span class="dv">3</span>   f    <span class="dv">1</span>          <span class="dv">8</span></span>
+<span id="cb72-23"><a href="combine-reshape-and-merge.html#cb72-23" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span>m<span class="fl">.2</span>  <span class="dv">1</span>   m    <span class="dv">2</span>          <span class="dv">7</span></span>
+<span id="cb72-24"><a href="combine-reshape-and-merge.html#cb72-24" aria-hidden="true" tabindex="-1"></a><span class="fl">2.</span>m<span class="fl">.2</span>  <span class="dv">2</span>   m    <span class="dv">2</span>         <span class="dv">19</span></span>
+<span id="cb72-25"><a href="combine-reshape-and-merge.html#cb72-25" aria-hidden="true" tabindex="-1"></a><span class="fl">3.</span>f<span class="fl">.2</span>  <span class="dv">3</span>   f    <span class="dv">2</span>         <span class="dv">15</span></span>
+<span id="cb72-26"><a href="combine-reshape-and-merge.html#cb72-26" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span>m<span class="fl">.3</span>  <span class="dv">1</span>   m    <span class="dv">3</span>         <span class="dv">15</span></span>
+<span id="cb72-27"><a href="combine-reshape-and-merge.html#cb72-27" aria-hidden="true" tabindex="-1"></a><span class="fl">2.</span>m<span class="fl">.3</span>  <span class="dv">2</span>   m    <span class="dv">3</span>         <span class="dv">10</span></span>
+<span id="cb72-28"><a href="combine-reshape-and-merge.html#cb72-28" aria-hidden="true" tabindex="-1"></a><span class="fl">3.</span>f<span class="fl">.3</span>  <span class="dv">3</span>   f    <span class="dv">3</span>          <span class="dv">7</span></span></code></pre></div>
+<p>For taking data from wide to long using the <strong>tidyverse</strong>, use <code>pivot_longer()</code>:</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="combine-reshape-and-merge.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(tidyr)</span>
+<span id="cb73-2"><a href="combine-reshape-and-merge.html#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> df_long <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(df_wide,</span>
+<span id="cb73-3"><a href="combine-reshape-and-merge.html#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                         <span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(<span class="st">&#39;id&#39;</span>, <span class="st">&#39;sex&#39;</span>),</span>
+<span id="cb73-4"><a href="combine-reshape-and-merge.html#cb73-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                         <span class="at">names_to =</span> <span class="st">&#39;week&#39;</span>,</span>
+<span id="cb73-5"><a href="combine-reshape-and-merge.html#cb73-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                         <span class="at">values_to =</span> <span class="st">&#39;weekly_val&#39;</span>)</span>
+<span id="cb73-6"><a href="combine-reshape-and-merge.html#cb73-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> df_long</span>
+<span id="cb73-7"><a href="combine-reshape-and-merge.html#cb73-7" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 9 × 4</span></span>
+<span id="cb73-8"><a href="combine-reshape-and-merge.html#cb73-8" aria-hidden="true" tabindex="-1"></a>     id sex   week  weekly_val</span>
+<span id="cb73-9"><a href="combine-reshape-and-merge.html#cb73-9" aria-hidden="true" tabindex="-1"></a>  <span class="sc">&lt;</span>int<span class="sc">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span>      <span class="er">&lt;</span>int<span class="sc">&gt;</span></span>
+<span id="cb73-10"><a href="combine-reshape-and-merge.html#cb73-10" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>     <span class="dv">1</span> m     wk1           <span class="dv">16</span></span>
+<span id="cb73-11"><a href="combine-reshape-and-merge.html#cb73-11" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>     <span class="dv">1</span> m     wk2            <span class="dv">7</span></span>
+<span id="cb73-12"><a href="combine-reshape-and-merge.html#cb73-12" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>     <span class="dv">1</span> m     wk3           <span class="dv">15</span></span>
+<span id="cb73-13"><a href="combine-reshape-and-merge.html#cb73-13" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>     <span class="dv">2</span> m     wk1           <span class="dv">12</span></span>
+<span id="cb73-14"><a href="combine-reshape-and-merge.html#cb73-14" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>     <span class="dv">2</span> m     wk2           <span class="dv">19</span></span>
+<span id="cb73-15"><a href="combine-reshape-and-merge.html#cb73-15" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>     <span class="dv">2</span> m     wk3           <span class="dv">10</span></span>
+<span id="cb73-16"><a href="combine-reshape-and-merge.html#cb73-16" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span>     <span class="dv">3</span> f     wk1            <span class="dv">8</span></span>
+<span id="cb73-17"><a href="combine-reshape-and-merge.html#cb73-17" aria-hidden="true" tabindex="-1"></a><span class="dv">8</span>     <span class="dv">3</span> f     wk2           <span class="dv">15</span></span>
+<span id="cb73-18"><a href="combine-reshape-and-merge.html#cb73-18" aria-hidden="true" tabindex="-1"></a><span class="dv">9</span>     <span class="dv">3</span> f     wk3            <span class="dv">7</span></span></code></pre></div>
+<p><code>pivot_longer</code> is particular useful (a) when dealing with data that contain multiple different sets of repeated measures that need to be lengthened (e.g., monthly height measurements and monthly weight measurements in each row) and (b) when column names and/or column values in the long data need to be extracted from column names of the <em>wide</em> data using regular expressions. For example:</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="combine-reshape-and-merge.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> animals_wide <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">animal =</span> <span class="fu">c</span>(<span class="st">&#39;dolphin&#39;</span>, <span class="st">&#39;porcupine&#39;</span>, <span class="st">&#39;rabbit&#39;</span>),</span>
+<span id="cb74-2"><a href="combine-reshape-and-merge.html#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                            <span class="at">loves_water =</span> <span class="fu">c</span>(T, F, F),</span>
+<span id="cb74-3"><a href="combine-reshape-and-merge.html#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                            <span class="at">ABC_1 =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>),</span>
+<span id="cb74-4"><a href="combine-reshape-and-merge.html#cb74-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                            <span class="at">ABC_2 =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">2</span>),</span>
+<span id="cb74-5"><a href="combine-reshape-and-merge.html#cb74-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                            <span class="at">XYZ_1 =</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">5</span>),</span>
+<span id="cb74-6"><a href="combine-reshape-and-merge.html#cb74-6" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                            <span class="at">XYZ_2 =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb74-7"><a href="combine-reshape-and-merge.html#cb74-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb74-8"><a href="combine-reshape-and-merge.html#cb74-8" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># Long data will contain one column for each measure (ABC and XYZ)</span></span>
+<span id="cb74-9"><a href="combine-reshape-and-merge.html#cb74-9" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> animals_long <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(animals_wide,</span>
+<span id="cb74-10"><a href="combine-reshape-and-merge.html#cb74-10" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                              <span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(<span class="st">&#39;animal&#39;</span>, <span class="st">&#39;loves_water&#39;</span>),</span>
+<span id="cb74-11"><a href="combine-reshape-and-merge.html#cb74-11" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                              <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">&#39;.value&#39;</span>, <span class="st">&#39;measure_num&#39;</span>), <span class="co"># &quot;.value&quot; serves as placeholder for values that will be extracted from wide column names</span></span>
+<span id="cb74-12"><a href="combine-reshape-and-merge.html#cb74-12" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                              <span class="at">names_pattern =</span> <span class="st">&#39;(.+)_(.)&#39;</span>)</span>
+<span id="cb74-13"><a href="combine-reshape-and-merge.html#cb74-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> animals_long</span>
+<span id="cb74-14"><a href="combine-reshape-and-merge.html#cb74-14" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 6 × 5</span></span>
+<span id="cb74-15"><a href="combine-reshape-and-merge.html#cb74-15" aria-hidden="true" tabindex="-1"></a>  animal    loves_water measure_num   ABC   XYZ</span>
+<span id="cb74-16"><a href="combine-reshape-and-merge.html#cb74-16" aria-hidden="true" tabindex="-1"></a>  <span class="sc">&lt;</span>chr<span class="sc">&gt;</span>     <span class="er">&lt;</span>lgl<span class="sc">&gt;</span>       <span class="er">&lt;</span>chr<span class="sc">&gt;</span>       <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb74-17"><a href="combine-reshape-and-merge.html#cb74-17" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> dolphin   <span class="cn">TRUE</span>        <span class="dv">1</span>               <span class="dv">1</span>     <span class="dv">6</span></span>
+<span id="cb74-18"><a href="combine-reshape-and-merge.html#cb74-18" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> dolphin   <span class="cn">TRUE</span>        <span class="dv">2</span>               <span class="dv">5</span>     <span class="dv">2</span></span>
+<span id="cb74-19"><a href="combine-reshape-and-merge.html#cb74-19" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> porcupine <span class="cn">FALSE</span>       <span class="dv">1</span>               <span class="dv">4</span>     <span class="dv">3</span></span>
+<span id="cb74-20"><a href="combine-reshape-and-merge.html#cb74-20" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> porcupine <span class="cn">FALSE</span>       <span class="dv">2</span>               <span class="dv">5</span>     <span class="dv">1</span></span>
+<span id="cb74-21"><a href="combine-reshape-and-merge.html#cb74-21" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> rabbit    <span class="cn">FALSE</span>       <span class="dv">1</span>               <span class="dv">2</span>     <span class="dv">5</span></span>
+<span id="cb74-22"><a href="combine-reshape-and-merge.html#cb74-22" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span> rabbit    <span class="cn">FALSE</span>       <span class="dv">2</span>               <span class="dv">2</span>     <span class="dv">2</span></span>
+<span id="cb74-23"><a href="combine-reshape-and-merge.html#cb74-23" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># Long data will contain one column containing values for both measures together (ABC and XYZ)</span></span>
+<span id="cb74-24"><a href="combine-reshape-and-merge.html#cb74-24" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> animals_long <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(animals_wide,</span>
+<span id="cb74-25"><a href="combine-reshape-and-merge.html#cb74-25" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                              <span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(<span class="st">&#39;animal&#39;</span>, <span class="st">&#39;loves_water&#39;</span>),</span>
+<span id="cb74-26"><a href="combine-reshape-and-merge.html#cb74-26" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                              <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">&#39;measure&#39;</span>, <span class="st">&#39;measure_num&#39;</span>),</span>
+<span id="cb74-27"><a href="combine-reshape-and-merge.html#cb74-27" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                              <span class="at">names_pattern =</span> <span class="st">&#39;(.+)_(.)&#39;</span>,</span>
+<span id="cb74-28"><a href="combine-reshape-and-merge.html#cb74-28" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                              <span class="at">values_to =</span> <span class="st">&#39;measure_val&#39;</span>)</span>
+<span id="cb74-29"><a href="combine-reshape-and-merge.html#cb74-29" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> animals_long</span>
+<span id="cb74-30"><a href="combine-reshape-and-merge.html#cb74-30" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 12 × 5</span></span>
+<span id="cb74-31"><a href="combine-reshape-and-merge.html#cb74-31" aria-hidden="true" tabindex="-1"></a>   animal    loves_water measure measure_num measure_val</span>
+<span id="cb74-32"><a href="combine-reshape-and-merge.html#cb74-32" aria-hidden="true" tabindex="-1"></a>   <span class="sc">&lt;</span>chr<span class="sc">&gt;</span>     <span class="er">&lt;</span>lgl<span class="sc">&gt;</span>       <span class="er">&lt;</span>chr<span class="sc">&gt;</span>   <span class="er">&lt;</span>chr<span class="sc">&gt;</span>             <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb74-33"><a href="combine-reshape-and-merge.html#cb74-33" aria-hidden="true" tabindex="-1"></a> <span class="dv">1</span> dolphin   <span class="cn">TRUE</span>        ABC     <span class="dv">1</span>                     <span class="dv">1</span></span>
+<span id="cb74-34"><a href="combine-reshape-and-merge.html#cb74-34" aria-hidden="true" tabindex="-1"></a> <span class="dv">2</span> dolphin   <span class="cn">TRUE</span>        ABC     <span class="dv">2</span>                     <span class="dv">5</span></span>
+<span id="cb74-35"><a href="combine-reshape-and-merge.html#cb74-35" aria-hidden="true" tabindex="-1"></a> <span class="dv">3</span> dolphin   <span class="cn">TRUE</span>        XYZ     <span class="dv">1</span>                     <span class="dv">6</span></span>
+<span id="cb74-36"><a href="combine-reshape-and-merge.html#cb74-36" aria-hidden="true" tabindex="-1"></a> <span class="dv">4</span> dolphin   <span class="cn">TRUE</span>        XYZ     <span class="dv">2</span>                     <span class="dv">2</span></span>
+<span id="cb74-37"><a href="combine-reshape-and-merge.html#cb74-37" aria-hidden="true" tabindex="-1"></a> <span class="dv">5</span> porcupine <span class="cn">FALSE</span>       ABC     <span class="dv">1</span>                     <span class="dv">4</span></span>
+<span id="cb74-38"><a href="combine-reshape-and-merge.html#cb74-38" aria-hidden="true" tabindex="-1"></a> <span class="dv">6</span> porcupine <span class="cn">FALSE</span>       ABC     <span class="dv">2</span>                     <span class="dv">5</span></span>
+<span id="cb74-39"><a href="combine-reshape-and-merge.html#cb74-39" aria-hidden="true" tabindex="-1"></a> <span class="dv">7</span> porcupine <span class="cn">FALSE</span>       XYZ     <span class="dv">1</span>                     <span class="dv">3</span></span>
+<span id="cb74-40"><a href="combine-reshape-and-merge.html#cb74-40" aria-hidden="true" tabindex="-1"></a> <span class="dv">8</span> porcupine <span class="cn">FALSE</span>       XYZ     <span class="dv">2</span>                     <span class="dv">1</span></span>
+<span id="cb74-41"><a href="combine-reshape-and-merge.html#cb74-41" aria-hidden="true" tabindex="-1"></a> <span class="dv">9</span> rabbit    <span class="cn">FALSE</span>       ABC     <span class="dv">1</span>                     <span class="dv">2</span></span>
+<span id="cb74-42"><a href="combine-reshape-and-merge.html#cb74-42" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> rabbit    <span class="cn">FALSE</span>       ABC     <span class="dv">2</span>                     <span class="dv">2</span></span>
+<span id="cb74-43"><a href="combine-reshape-and-merge.html#cb74-43" aria-hidden="true" tabindex="-1"></a><span class="dv">11</span> rabbit    <span class="cn">FALSE</span>       XYZ     <span class="dv">1</span>                     <span class="dv">5</span></span>
+<span id="cb74-44"><a href="combine-reshape-and-merge.html#cb74-44" aria-hidden="true" tabindex="-1"></a><span class="dv">12</span> rabbit    <span class="cn">FALSE</span>       XYZ     <span class="dv">2</span>                     <span class="dv">2</span></span></code></pre></div>
 </div>
 </div>
 <div id="reshape-long-to-wide" class="section level2" number="5.4">

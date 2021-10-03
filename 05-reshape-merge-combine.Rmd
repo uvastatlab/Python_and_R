@@ -4,7 +4,7 @@
 knitr::opts_chunk$set(comment = NA, prompt = TRUE, collapse = TRUE)
 ```
 
-This chapter looks at various strategies for combining, reshaping and merging data.
+This chapter looks at various strategies for combining, reshaping, and merging data.
 
 ## Combine rows
 
@@ -15,8 +15,7 @@ Combining rows may be thought of as "stacking" rectangular data structures.
 
 #### R {-}
 
-The `rbind()` function "binds" rows. It takes two or more objects. To row bind data frames the column names must match, otherwise an error is returned. If  columns being stacked have differing variable types, the values will be coerced according to `logical` < `integer` < `double` < `complex` < `character`.
-
+The `rbind()` function "binds" rows. It takes two or more objects. To row bind data frames the column names must match, otherwise an error is returned. If  columns being stacked have differing variable types, the values will be coerced according to `logical` < `integer` < `double` < `complex` < `character`. (E.g., if you stack a set of rows with type `logical` in column _J_ on a set of rows with type `character` in column _J_, the output will have column _J_ as type `character`.)
 
 ```{r}
 d1 <- data.frame(x = 4:6, y = letters[1:3])
@@ -35,7 +34,7 @@ Combining columns may be thought of as setting rectangular data structures next 
 
 #### R {-}
 
-The `cbind()` function "binds" columns. It takes two or more objects. To column bind data frames the number of rows must match, otherwise the object with fewer rows will have rows "recycled" (if possible) or an error is returned.
+The `cbind()` function "binds" columns. It takes two or more objects. To column bind data frames, the number of rows must match; otherwise, the object with fewer rows will have rows "recycled" (if possible) or an error will be returned.
 
 ```{r}
 d1 <- data.frame(x = 10:13, y = letters[1:4])
@@ -43,25 +42,100 @@ d2 <- data.frame(x = c(23,34,45,44))
 cbind(d1, d2)
 ```
 
-
 ```{r}
 # example of recycled rows (d1 is repeated twice)
 d1 <- data.frame(x = 10:13, y = letters[1:4])
 d2 <- data.frame(x = c(23,34,45,44,99,99,99,99))
 cbind(d1, d2)
-
 ```
 
 See also the `bind_cols()` function in the **dplyr** package.
 
 ## Reshape wide to long
 
+The next two sections discuss how to reshape data from wide-->long and long-->wide. "Wide" data are data structured such that multiple values associated with a given unit (e.g., a person, a product, etc.) are placed in the same row. For example:
+  
+```{r, echo = F}
+temp <- data.frame(name = c('larry', 'moe', 'curly'),
+                   time_1_score = c(3, 6, 2),
+                   time_2_score = c(0, 3, 1),
+                   time_3_score = c(6, 3, 1))
+temp
+```
+
+_Long_ data, conversely, are data structured such that all values are contained in one column, with another column identifying the what value is given in any particular row, e.g.:
+  
+```{r, echo = F}
+temp <- data.frame(id = rep(c('larry', 'moe', 'curly'), each = 3),
+                   time = rep(c('time_1', 'time_2', 'time_3'), times = 3),
+                   score = c(3, 0, 6, 6, 3, 3, 2, 1, 1))
+temp
+```
+
+Shifting between these two data formats is often useful---necessarily, really---for implementing a particular statistical technique or representing data with a particular visualization.
 
 #### Python {-}
 
-
 #### R {-}
 
+In base R, the `reshape()` function can take data from wide-->long or long-->wide. The **tidyverse** also provides functions for doing so---`pivot_longer()` and `pivot_wider()`---and those functions have a degree of intuitiveness and usability that may make them the go-to reshaping tools for many R users. We give examples below using base R and **tidyr**.
+
+To convert data from wide to long using `reshape()`, the user specifies _id_ variable(s), which uniquely identify each row and will therefore be repeated in long output. The user also specifies the _varying_ columns, which contain the repeated measurements that are to be lengthened such that all the values will be placed in the same column in the long data. The `v.names` argument indicates the desired name of the column containing the values in the long data, and the `timevar` argument indicates the desired name of the column that identifies each value in the long data.
+
+```{r}
+set.seed(10)
+df_wide <- data.frame(id = rep(1:3),
+                      sex = sample(c('m', 'f'), 3, replace = T),
+                      wk1 = sample(1:20, 3, replace = T),
+                      wk2 = sample(1:20, 3, replace = T),
+                      wk3 = sample(1:20, 3, replace = T))
+df_wide
+
+df_long <- reshape(df_wide,
+                   direction = 'long',
+                   idvar = c('id', 'sex'),
+                   varying = c('wk1', 'wk2', 'wk3'),
+                   v.names = 'weekly_val',
+                   timevar = 'week')
+df_long
+```
+
+For taking data from wide to long using the **tidyverse**, use `pivot_longer()`:
+  
+```{r}
+library(tidyr)
+df_long <- pivot_longer(df_wide,
+                        cols = -c('id', 'sex'),
+                        names_to = 'week',
+                        values_to = 'weekly_val')
+df_long
+```
+
+`pivot_longer` is particular useful (a) when dealing with data that contain multiple different sets of repeated measures that need to be lengthened (e.g., monthly height measurements and monthly weight measurements in each row) and (b) when column names and/or column values in the long data need to be extracted from column names of the *wide* data using regular expressions. For example:
+  
+```{r}
+animals_wide <- data.frame(animal = c('dolphin', 'porcupine', 'rabbit'),
+                           loves_water = c(T, F, F),
+                           ABC_1 = c(1, 4, 2),
+                           ABC_2 = c(5, 5, 2),
+                           XYZ_1 = c(6, 3, 5),
+                           XYZ_2 = c(2, 1, 2))
+
+# Long data will contain one column for each measure (ABC and XYZ)
+animals_long <- pivot_longer(animals_wide,
+                             cols = -c('animal', 'loves_water'),
+                             names_to = c('.value', 'measure_num'), # ".value" serves as placeholder for values that will be extracted from wide column names
+                             names_pattern = '(.+)_(.)')
+animals_long
+
+# Long data will contain one column containing values for both measures together (ABC and XYZ)
+animals_long <- pivot_longer(animals_wide,
+                             cols = -c('animal', 'loves_water'),
+                             names_to = c('measure', 'measure_num'),
+                             names_pattern = '(.+)_(.)',
+                             values_to = 'measure_val')
+animals_long
+```
 
 ## Reshape long to wide
 
@@ -91,4 +165,3 @@ See also the `bind_cols()` function in the **dplyr** package.
 
 #### Python {-}
 #### R {-}
-
