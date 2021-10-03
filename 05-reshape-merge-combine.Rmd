@@ -120,6 +120,7 @@ animals_wide <- data.frame(animal = c('dolphin', 'porcupine', 'rabbit'),
                            ABC_2 = c(5, 5, 2),
                            XYZ_1 = c(6, 3, 5),
                            XYZ_2 = c(2, 1, 2))
+animals_wide
 
 # Long data will contain one column for each measure (ABC and XYZ)
 animals_long <- pivot_longer(animals_wide,
