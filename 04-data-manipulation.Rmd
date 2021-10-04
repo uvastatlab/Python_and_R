@@ -27,6 +27,21 @@ View and inspect the names of variables and their type (numeric, string, logical
 
 #### Python {-}
 
+The `.info()` function in pandas lists information on the DataFrame.
+
+
+Setting the argument `verbose` to `True` prints the name of the columns, their length excluding `NULL` values, and their data type (`dtype`) in a table. The function lists the unique data types in the DataFrame, and it prints how much memory the DataFrame takes up.
+
+```{python}
+mtcars.info(verbose=True)
+```
+
+By default, the `verbose` argument is set to `False`. Then, the function lists the unique data types in the DataFrame, and it prints how much memory the DataFrame takes up. This setting excludes the table describing each column.
+
+```{python}
+mtcars.info()
+```
+
 
 #### R {-}
 
@@ -54,7 +69,41 @@ dim(mtcars)
 How to work with a specific column of data.
 
 #### Python {-}
+The period operator `.` provides access to a column in a DataFrame as a vector. This returns pandas series. A pandas series can do everything a numpy array can do.
 
+```{python}
+mtcars.mpg
+```
+
+Indexing also provides access to columns as a pandas Series. Single and double quotations both work.
+
+```{python}
+mtcars['mpg']
+```
+
+Operations on numpy arrays are faster than operations on pandas series. But using pandas series should be fine, in terms of performance, in many cases. This is important for large data sets on which many operations are performed. The `.values` function returns a numpy array.
+
+```{python}
+mtcars['mpg'].values
+```
+
+Double indexing returns a pandas DataFrame, instead of a numpy array or pandas series.
+
+```{python}
+mtcars[['mpg']]
+```
+
+The `head()` and `tail()` functions return the first 5 or last 5 values. Use the `n` argument to change the number of values. This function works on numpy array, pandas series and pandas DataFrames.
+
+```{python}
+# first 6 values
+mtcars.mpg.head()
+```
+
+```{python}
+# last row of DataFrame
+mtcars.tail(n=1)
+```
 
 #### R {-}
 

@@ -4,10 +4,14 @@
 %
 \documentclass[
 ]{book}
+\title{Python and R}
+\author{Clay Ford, Jacob Goldstein-Greenwood, Oyinkansola Adenekan, Samantha Lomuscio}
+\date{2021-10-04}
+
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
-\usepackage{ifxetex,ifluatex}
-\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+\usepackage{iftex}
+\ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
@@ -109,15 +113,12 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{5}
 \usepackage{booktabs}
-\ifluatex
+\ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
 \usepackage[]{natbib}
 \bibliographystyle{plainnat}
-
-\title{Python and R}
-\author{Clay Ford, Jacob Goldstein-Greenwood, Oyinkansola Adenekan, Samantha Lomuscio}
-\date{2021-10-01}
+\nocite{*}
 
 \begin{document}
 \maketitle
@@ -1106,7 +1107,7 @@ Note we just demonstrated conversion. To save the conversion we need to \emph{as
 \end{Highlighting}
 \end{Shaded}
 
-The \texttt{factor()} function can also be used to convert a numeric vector into a categorical variable. The result is not exactly a string, however. A factor is made of integers with character labels. Factors are useful for character data that have a fixed set of levels (eg, ``grade 1'', grade 2", etc)
+The \texttt{factor()} function can also be used to convert a numeric vector into a categorical variable. The result is not exactly a string, however. A factor is made of integers with character labels. Factors are useful for character data that have a fixed set of levels (eg, ``grade 1'', grade 2'', etc)
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1327,34 +1328,34 @@ There are many ways to sample rows from a data frame in R. The \textbf{dplyr} pa
 \SpecialCharTok{\textgreater{}} \CommentTok{\# sample 5 rows from mtcars}
 \ErrorTok{\textgreater{}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{slice\_sample}\NormalTok{(mtcars, }\AttributeTok{n =} \DecValTok{5}\NormalTok{)}
 \NormalTok{   mpg cylinders  disp  hp axle\_ratio weight  qsec engine am gear carb am\_ch}
-\DecValTok{1} \FloatTok{19.2}         \DecValTok{8} \FloatTok{400.0} \DecValTok{175}       \FloatTok{3.08}  \FloatTok{3.845} \FloatTok{17.05}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{2}     \DecValTok{0}
-\DecValTok{2} \FloatTok{21.0}         \DecValTok{6} \FloatTok{160.0} \DecValTok{110}       \FloatTok{3.90}  \FloatTok{2.875} \FloatTok{17.02}      \DecValTok{0}  \DecValTok{1}    \DecValTok{4}    \DecValTok{4}     \DecValTok{1}
-\DecValTok{3} \FloatTok{22.8}         \DecValTok{4} \FloatTok{140.8}  \DecValTok{95}       \FloatTok{3.92}  \FloatTok{3.150} \FloatTok{22.90}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{2}     \DecValTok{0}
-\DecValTok{4} \FloatTok{17.8}         \DecValTok{6} \FloatTok{167.6} \DecValTok{123}       \FloatTok{3.92}  \FloatTok{3.440} \FloatTok{18.90}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{4}     \DecValTok{0}
-\DecValTok{5} \FloatTok{10.4}         \DecValTok{8} \FloatTok{460.0} \DecValTok{215}       \FloatTok{3.00}  \FloatTok{5.424} \FloatTok{17.82}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{1} \FloatTok{21.0}         \DecValTok{6} \FloatTok{160.0} \DecValTok{110}       \FloatTok{3.90}  \FloatTok{2.875} \FloatTok{17.02}      \DecValTok{0}  \DecValTok{1}    \DecValTok{4}    \DecValTok{4}     \DecValTok{1}
+\DecValTok{2} \FloatTok{17.3}         \DecValTok{8} \FloatTok{275.8} \DecValTok{180}       \FloatTok{3.07}  \FloatTok{3.730} \FloatTok{17.60}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{3}     \DecValTok{0}
+\DecValTok{3} \FloatTok{16.4}         \DecValTok{8} \FloatTok{275.8} \DecValTok{180}       \FloatTok{3.07}  \FloatTok{4.070} \FloatTok{17.40}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{3}     \DecValTok{0}
+\DecValTok{4} \FloatTok{26.0}         \DecValTok{4} \FloatTok{120.3}  \DecValTok{91}       \FloatTok{4.43}  \FloatTok{2.140} \FloatTok{16.70}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{2}     \DecValTok{1}
+\DecValTok{5} \FloatTok{17.8}         \DecValTok{6} \FloatTok{167.6} \DecValTok{123}       \FloatTok{3.92}  \FloatTok{3.440} \FloatTok{18.90}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{4}     \DecValTok{0}
 \NormalTok{     am\_fac}
-\DecValTok{1}\NormalTok{ automatic}
-\DecValTok{2}\NormalTok{    manual}
+\DecValTok{1}\NormalTok{    manual}
+\DecValTok{2}\NormalTok{ automatic}
 \DecValTok{3}\NormalTok{ automatic}
-\DecValTok{4}\NormalTok{ automatic}
+\DecValTok{4}\NormalTok{    manual}
 \DecValTok{5}\NormalTok{ automatic}
 \SpecialCharTok{\textgreater{}} 
 \ErrorTok{\textgreater{}} \CommentTok{\# sample 20\% of rows from mtcars}
 \ErrorTok{\textgreater{}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{slice\_sample}\NormalTok{(mtcars, }\AttributeTok{prop =} \FloatTok{0.20}\NormalTok{)}
 \NormalTok{   mpg cylinders  disp  hp axle\_ratio weight  qsec engine am gear carb am\_ch}
-\DecValTok{1} \FloatTok{19.2}         \DecValTok{6} \FloatTok{167.6} \DecValTok{123}       \FloatTok{3.92}  \FloatTok{3.440} \FloatTok{18.30}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{4}     \DecValTok{0}
-\DecValTok{2} \FloatTok{30.4}         \DecValTok{4}  \FloatTok{75.7}  \DecValTok{52}       \FloatTok{4.93}  \FloatTok{1.615} \FloatTok{18.52}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{2}     \DecValTok{1}
-\DecValTok{3} \FloatTok{16.4}         \DecValTok{8} \FloatTok{275.8} \DecValTok{180}       \FloatTok{3.07}  \FloatTok{4.070} \FloatTok{17.40}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{3}     \DecValTok{0}
-\DecValTok{4} \FloatTok{10.4}         \DecValTok{8} \FloatTok{460.0} \DecValTok{215}       \FloatTok{3.00}  \FloatTok{5.424} \FloatTok{17.82}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
-\DecValTok{5} \FloatTok{21.4}         \DecValTok{6} \FloatTok{258.0} \DecValTok{110}       \FloatTok{3.08}  \FloatTok{3.215} \FloatTok{19.44}      \DecValTok{1}  \DecValTok{0}    \DecValTok{3}    \DecValTok{1}     \DecValTok{0}
-\DecValTok{6} \FloatTok{26.0}         \DecValTok{4} \FloatTok{120.3}  \DecValTok{91}       \FloatTok{4.43}  \FloatTok{2.140} \FloatTok{16.70}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{2}     \DecValTok{1}
+\DecValTok{1} \FloatTok{15.8}         \DecValTok{8} \FloatTok{351.0} \DecValTok{264}       \FloatTok{4.22}  \FloatTok{3.170} \FloatTok{14.50}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{4}     \DecValTok{1}
+\DecValTok{2} \FloatTok{30.4}         \DecValTok{4}  \FloatTok{95.1} \DecValTok{113}       \FloatTok{3.77}  \FloatTok{1.513} \FloatTok{16.90}      \DecValTok{1}  \DecValTok{1}    \DecValTok{5}    \DecValTok{2}     \DecValTok{1}
+\DecValTok{3} \FloatTok{22.8}         \DecValTok{4} \FloatTok{108.0}  \DecValTok{93}       \FloatTok{3.85}  \FloatTok{2.320} \FloatTok{18.61}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
+\DecValTok{4} \FloatTok{19.2}         \DecValTok{8} \FloatTok{400.0} \DecValTok{175}       \FloatTok{3.08}  \FloatTok{3.845} \FloatTok{17.05}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{2}     \DecValTok{0}
+\DecValTok{5} \FloatTok{10.4}         \DecValTok{8} \FloatTok{460.0} \DecValTok{215}       \FloatTok{3.00}  \FloatTok{5.424} \FloatTok{17.82}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{6} \FloatTok{15.5}         \DecValTok{8} \FloatTok{318.0} \DecValTok{150}       \FloatTok{2.76}  \FloatTok{3.520} \FloatTok{16.87}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{2}     \DecValTok{0}
 \NormalTok{     am\_fac}
-\DecValTok{1}\NormalTok{ automatic}
+\DecValTok{1}\NormalTok{    manual}
 \DecValTok{2}\NormalTok{    manual}
-\DecValTok{3}\NormalTok{ automatic}
+\DecValTok{3}\NormalTok{    manual}
 \DecValTok{4}\NormalTok{ automatic}
 \DecValTok{5}\NormalTok{ automatic}
-\DecValTok{6}\NormalTok{    manual}
+\DecValTok{6}\NormalTok{ automatic}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1369,18 +1370,18 @@ The base R functions \texttt{sample()} and \texttt{runif()} can be combined to s
 \ErrorTok{\textgreater{}}\NormalTok{ i }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(mtcars), }\AttributeTok{size =} \DecValTok{5}\NormalTok{)}
 \SpecialCharTok{\textgreater{}} \CommentTok{\# use i to select rows}
 \ErrorTok{\textgreater{}}\NormalTok{ mtcars[i,]}
-\NormalTok{    mpg cylinders  disp  hp axle\_ratio weight  qsec engine am gear carb am\_ch}
-\DecValTok{31} \FloatTok{15.0}         \DecValTok{8} \FloatTok{301.0} \DecValTok{335}       \FloatTok{3.54}  \FloatTok{3.570} \FloatTok{14.60}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{8}     \DecValTok{1}
-\DecValTok{7}  \FloatTok{14.3}         \DecValTok{8} \FloatTok{360.0} \DecValTok{245}       \FloatTok{3.21}  \FloatTok{3.570} \FloatTok{15.84}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
-\DecValTok{16} \FloatTok{10.4}         \DecValTok{8} \FloatTok{460.0} \DecValTok{215}       \FloatTok{3.00}  \FloatTok{5.424} \FloatTok{17.82}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
-\DecValTok{30} \FloatTok{19.7}         \DecValTok{6} \FloatTok{145.0} \DecValTok{175}       \FloatTok{3.62}  \FloatTok{2.770} \FloatTok{15.50}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{6}     \DecValTok{1}
-\DecValTok{20} \FloatTok{33.9}         \DecValTok{4}  \FloatTok{71.1}  \DecValTok{65}       \FloatTok{4.22}  \FloatTok{1.835} \FloatTok{19.90}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
+\NormalTok{    mpg cylinders disp  hp axle\_ratio weight  qsec engine am gear carb am\_ch}
+\DecValTok{17} \FloatTok{14.7}         \DecValTok{8}  \DecValTok{440} \DecValTok{230}       \FloatTok{3.23}  \FloatTok{5.345} \FloatTok{17.42}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{24} \FloatTok{13.3}         \DecValTok{8}  \DecValTok{350} \DecValTok{245}       \FloatTok{3.73}  \FloatTok{3.840} \FloatTok{15.41}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{5}  \FloatTok{18.7}         \DecValTok{8}  \DecValTok{360} \DecValTok{175}       \FloatTok{3.15}  \FloatTok{3.440} \FloatTok{17.02}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{2}     \DecValTok{0}
+\DecValTok{2}  \FloatTok{21.0}         \DecValTok{6}  \DecValTok{160} \DecValTok{110}       \FloatTok{3.90}  \FloatTok{2.875} \FloatTok{17.02}      \DecValTok{0}  \DecValTok{1}    \DecValTok{4}    \DecValTok{4}     \DecValTok{1}
+\DecValTok{26} \FloatTok{27.3}         \DecValTok{4}   \DecValTok{79}  \DecValTok{66}       \FloatTok{4.08}  \FloatTok{1.935} \FloatTok{18.90}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
 \NormalTok{      am\_fac}
-\DecValTok{31}\NormalTok{    manual}
-\DecValTok{7}\NormalTok{  automatic}
-\DecValTok{16}\NormalTok{ automatic}
-\DecValTok{30}\NormalTok{    manual}
-\DecValTok{20}\NormalTok{    manual}
+\DecValTok{17}\NormalTok{ automatic}
+\DecValTok{24}\NormalTok{ automatic}
+\DecValTok{5}\NormalTok{  automatic}
+\DecValTok{2}\NormalTok{     manual}
+\DecValTok{26}\NormalTok{    manual}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1393,21 +1394,17 @@ The base R functions \texttt{sample()} and \texttt{runif()} can be combined to s
 \ErrorTok{\textgreater{}} \CommentTok{\# select rows that correspond to TRUE}
 \ErrorTok{\textgreater{}}\NormalTok{ mtcars[i }\SpecialCharTok{\textless{}} \FloatTok{0.20}\NormalTok{,]}
 \NormalTok{    mpg cylinders  disp  hp axle\_ratio weight  qsec engine am gear carb am\_ch}
-\DecValTok{2}  \FloatTok{21.0}         \DecValTok{6} \FloatTok{160.0} \DecValTok{110}       \FloatTok{3.90}  \FloatTok{2.875} \FloatTok{17.02}      \DecValTok{0}  \DecValTok{1}    \DecValTok{4}    \DecValTok{4}     \DecValTok{1}
-\DecValTok{5}  \FloatTok{18.7}         \DecValTok{8} \FloatTok{360.0} \DecValTok{175}       \FloatTok{3.15}  \FloatTok{3.440} \FloatTok{17.02}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{2}     \DecValTok{0}
-\DecValTok{7}  \FloatTok{14.3}         \DecValTok{8} \FloatTok{360.0} \DecValTok{245}       \FloatTok{3.21}  \FloatTok{3.570} \FloatTok{15.84}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
-\DecValTok{27} \FloatTok{26.0}         \DecValTok{4} \FloatTok{120.3}  \DecValTok{91}       \FloatTok{4.43}  \FloatTok{2.140} \FloatTok{16.70}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{2}     \DecValTok{1}
-\DecValTok{28} \FloatTok{30.4}         \DecValTok{4}  \FloatTok{95.1} \DecValTok{113}       \FloatTok{3.77}  \FloatTok{1.513} \FloatTok{16.90}      \DecValTok{1}  \DecValTok{1}    \DecValTok{5}    \DecValTok{2}     \DecValTok{1}
-\DecValTok{29} \FloatTok{15.8}         \DecValTok{8} \FloatTok{351.0} \DecValTok{264}       \FloatTok{4.22}  \FloatTok{3.170} \FloatTok{14.50}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{4}     \DecValTok{1}
-\DecValTok{30} \FloatTok{19.7}         \DecValTok{6} \FloatTok{145.0} \DecValTok{175}       \FloatTok{3.62}  \FloatTok{2.770} \FloatTok{15.50}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{6}     \DecValTok{1}
+\DecValTok{12} \FloatTok{16.4}         \DecValTok{8} \FloatTok{275.8} \DecValTok{180}       \FloatTok{3.07}  \FloatTok{4.070} \FloatTok{17.40}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{3}     \DecValTok{0}
+\DecValTok{13} \FloatTok{17.3}         \DecValTok{8} \FloatTok{275.8} \DecValTok{180}       \FloatTok{3.07}  \FloatTok{3.730} \FloatTok{17.60}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{3}     \DecValTok{0}
+\DecValTok{17} \FloatTok{14.7}         \DecValTok{8} \FloatTok{440.0} \DecValTok{230}       \FloatTok{3.23}  \FloatTok{5.345} \FloatTok{17.42}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{18} \FloatTok{32.4}         \DecValTok{4}  \FloatTok{78.7}  \DecValTok{66}       \FloatTok{4.08}  \FloatTok{2.200} \FloatTok{19.47}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
+\DecValTok{19} \FloatTok{30.4}         \DecValTok{4}  \FloatTok{75.7}  \DecValTok{52}       \FloatTok{4.93}  \FloatTok{1.615} \FloatTok{18.52}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{2}     \DecValTok{1}
 \NormalTok{      am\_fac}
-\DecValTok{2}\NormalTok{     manual}
-\DecValTok{5}\NormalTok{  automatic}
-\DecValTok{7}\NormalTok{  automatic}
-\DecValTok{27}\NormalTok{    manual}
-\DecValTok{28}\NormalTok{    manual}
-\DecValTok{29}\NormalTok{    manual}
-\DecValTok{30}\NormalTok{    manual}
+\DecValTok{12}\NormalTok{ automatic}
+\DecValTok{13}\NormalTok{ automatic}
+\DecValTok{17}\NormalTok{ automatic}
+\DecValTok{18}\NormalTok{    manual}
+\DecValTok{19}\NormalTok{    manual}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1435,7 +1432,7 @@ The random sample will change every time the code is run. To always generate the
 \hypertarget{combine-reshape-and-merge}{%
 \chapter{Combine, Reshape and Merge}\label{combine-reshape-and-merge}}
 
-This chapter looks at various strategies for combining, reshaping and merging data.
+This chapter looks at various strategies for combining, reshaping, and merging data.
 
 \hypertarget{combine-rows}{%
 \section{Combine rows}\label{combine-rows}}
@@ -1450,7 +1447,7 @@ Combining rows may be thought of as ``stacking'' rectangular data structures.
 \subsubsection*{R}\label{r-23}}
 \addcontentsline{toc}{subsubsection}{R}
 
-The \texttt{rbind()} function ``binds'' rows. It takes two or more objects. To row bind data frames the column names must match, otherwise an error is returned. If columns being stacked have differing variable types, the values will be coerced according to \texttt{logical} \textless{} \texttt{integer} \textless{} \texttt{double} \textless{} \texttt{complex} \textless{} \texttt{character}.
+The \texttt{rbind()} function ``binds'' rows. It takes two or more objects. To row bind data frames the column names must match, otherwise an error is returned. If columns being stacked have differing variable types, the values will be coerced according to \texttt{logical} \textless{} \texttt{integer} \textless{} \texttt{double} \textless{} \texttt{complex} \textless{} \texttt{character}. (E.g., if you stack a set of rows with type \texttt{logical} in column \emph{J} on a set of rows with type \texttt{character} in column \emph{J}, the output will have column \emph{J} as type \texttt{character}.)
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1482,7 +1479,7 @@ Combining columns may be thought of as setting rectangular data structures next 
 \subsubsection*{R}\label{r-24}}
 \addcontentsline{toc}{subsubsection}{R}
 
-The \texttt{cbind()} function ``binds'' columns. It takes two or more objects. To column bind data frames the number of rows must match, otherwise the object with fewer rows will have rows ``recycled'' (if possible) or an error is returned.
+The \texttt{cbind()} function ``binds'' columns. It takes two or more objects. To column bind data frames, the number of rows must match; otherwise, the object with fewer rows will have rows ``recycled'' (if possible) or an error will be returned.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1520,6 +1517,32 @@ See also the \texttt{bind\_cols()} function in the \textbf{dplyr} package.
 \hypertarget{reshape-wide-to-long}{%
 \section{Reshape wide to long}\label{reshape-wide-to-long}}
 
+The next two sections discuss how to reshape data from wide to long and from long to wide. ``Wide'' data are data structured such that multiple values associated with a given unit (e.g., a person, a cell culture, etc.) are placed in the same row:
+
+\begin{verbatim}
+   name time_1_score time_2_score time_3_score
+1 larry            3            0            6
+2   moe            6            3            3
+3 curly            2            1            1
+\end{verbatim}
+
+\emph{Long} data, conversely, are data structured such that all values are contained in one column, with another column identifying what value is given in any particular row (e.g., ``time 1,'' ``time 2,'' etc.):
+
+\begin{verbatim}
+     id time score
+1 larry    1     3
+2 larry    2     0
+3 larry    3     6
+4   moe    1     6
+5   moe    2     3
+6   moe    3     3
+7 curly    1     2
+8 curly    2     1
+9 curly    3     1
+\end{verbatim}
+
+Shifting between these two data formats is often useful---necessarily, really---for implementing statistical techniques or representing data with particular visualizations.
+
 \hypertarget{python-25}{%
 \subsubsection*{Python}\label{python-25}}
 \addcontentsline{toc}{subsubsection}{Python}
@@ -1528,8 +1551,229 @@ See also the \texttt{bind\_cols()} function in the \textbf{dplyr} package.
 \subsubsection*{R}\label{r-25}}
 \addcontentsline{toc}{subsubsection}{R}
 
+In base R, the \texttt{reshape()} function can take data from wide to long or long to wide. The \textbf{tidyverse} also provides functions for doing so: \texttt{pivot\_longer()} and \texttt{pivot\_wider()}. The \textbf{tidyverse} functions have a degree of intuitiveness and usability that may make them the go-to reshaping tools for many R users. We give examples below using base R and \textbf{tidyverse}.
+
+For example, say we begin with a wide data frame, \texttt{df\_wide}, that looks like this:
+
+\begin{verbatim}
+  id sex wk1 wk2 wk3
+1  1   m  16   7  15
+2  2   m  12  19  10
+3  3   f   8  15   7
+\end{verbatim}
+
+To convert a data frame from wide to long using \texttt{reshape()}, the user must specify the argument \texttt{direction\ =\ \textquotesingle{}long\textquotesingle{}}. The user also declares an \texttt{idvar} argument, which specifies variable(s) that uniquely identify each row and will therefore be repeated in long output (\texttt{id} and \texttt{sex}); a \texttt{varying} argument, which specifies the repeated measurements that are to be lengthened (\texttt{wk1}, \texttt{wk2}, and \texttt{wk3}); as well as \texttt{v.names} and \texttt{timevar} arguments, which respectively indicate the desired names of (1) the column containing the values in the long data (\texttt{weekly\_val}) and (2) the column that identifies each value in the long data (\texttt{week}).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}}\NormalTok{ df\_long }\OtherTok{\textless{}{-}} \FunctionTok{reshape}\NormalTok{(df\_wide,}
+\SpecialCharTok{+}                         \AttributeTok{direction =} \StringTok{\textquotesingle{}long\textquotesingle{}}\NormalTok{,}
+\SpecialCharTok{+}                         \AttributeTok{idvar =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}id\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}sex\textquotesingle{}}\NormalTok{),}
+\SpecialCharTok{+}                         \AttributeTok{varying =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}wk1\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}wk2\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}wk3\textquotesingle{}}\NormalTok{),}
+\SpecialCharTok{+}                         \AttributeTok{v.names =} \StringTok{\textquotesingle{}weekly\_val\textquotesingle{}}\NormalTok{,}
+\SpecialCharTok{+}                         \AttributeTok{timevar =} \StringTok{\textquotesingle{}week\textquotesingle{}}\NormalTok{)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ df\_long}
+\NormalTok{      id sex week weekly\_val}
+\FloatTok{1.}\NormalTok{m}\FloatTok{.1}  \DecValTok{1}\NormalTok{   m    }\DecValTok{1}         \DecValTok{16}
+\FloatTok{2.}\NormalTok{m}\FloatTok{.1}  \DecValTok{2}\NormalTok{   m    }\DecValTok{1}         \DecValTok{12}
+\FloatTok{3.}\NormalTok{f}\FloatTok{.1}  \DecValTok{3}\NormalTok{   f    }\DecValTok{1}          \DecValTok{8}
+\FloatTok{1.}\NormalTok{m}\FloatTok{.2}  \DecValTok{1}\NormalTok{   m    }\DecValTok{2}          \DecValTok{7}
+\FloatTok{2.}\NormalTok{m}\FloatTok{.2}  \DecValTok{2}\NormalTok{   m    }\DecValTok{2}         \DecValTok{19}
+\FloatTok{3.}\NormalTok{f}\FloatTok{.2}  \DecValTok{3}\NormalTok{   f    }\DecValTok{2}         \DecValTok{15}
+\FloatTok{1.}\NormalTok{m}\FloatTok{.3}  \DecValTok{1}\NormalTok{   m    }\DecValTok{3}         \DecValTok{15}
+\FloatTok{2.}\NormalTok{m}\FloatTok{.3}  \DecValTok{2}\NormalTok{   m    }\DecValTok{3}         \DecValTok{10}
+\FloatTok{3.}\NormalTok{f}\FloatTok{.3}  \DecValTok{3}\NormalTok{   f    }\DecValTok{3}          \DecValTok{7}
+\end{Highlighting}
+\end{Shaded}
+
+The \textbf{tidyverse} function for taking data from wide to long is \texttt{pivot\_longer()}. To recreate the output of the \texttt{reshape()} function above using \texttt{pivot\_longer()}, a user would write:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{library}\NormalTok{(tidyverse)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ df\_long\_PL }\OtherTok{\textless{}{-}} \FunctionTok{pivot\_longer}\NormalTok{(df\_wide,}
+\SpecialCharTok{+}                              \AttributeTok{cols =} \SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}id\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}sex\textquotesingle{}}\NormalTok{),}
+\SpecialCharTok{+}                              \AttributeTok{names\_to =} \StringTok{\textquotesingle{}week\textquotesingle{}}\NormalTok{,}
+\SpecialCharTok{+}                              \AttributeTok{values\_to =} \StringTok{\textquotesingle{}weekly\_val\textquotesingle{}}\NormalTok{)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ df\_long\_PL}
+\CommentTok{\# A tibble: 9 x 4}
+\NormalTok{     id sex   week  weekly\_val}
+  \SpecialCharTok{\textless{}}\NormalTok{int}\SpecialCharTok{\textgreater{}} \ErrorTok{\textless{}}\NormalTok{chr}\SpecialCharTok{\textgreater{}} \ErrorTok{\textless{}}\NormalTok{chr}\SpecialCharTok{\textgreater{}}      \ErrorTok{\textless{}}\NormalTok{int}\SpecialCharTok{\textgreater{}}
+\DecValTok{1}     \DecValTok{1}\NormalTok{ m     wk1           }\DecValTok{16}
+\DecValTok{2}     \DecValTok{1}\NormalTok{ m     wk2            }\DecValTok{7}
+\DecValTok{3}     \DecValTok{1}\NormalTok{ m     wk3           }\DecValTok{15}
+\DecValTok{4}     \DecValTok{2}\NormalTok{ m     wk1           }\DecValTok{12}
+\DecValTok{5}     \DecValTok{2}\NormalTok{ m     wk2           }\DecValTok{19}
+\DecValTok{6}     \DecValTok{2}\NormalTok{ m     wk3           }\DecValTok{10}
+\DecValTok{7}     \DecValTok{3}\NormalTok{ f     wk1            }\DecValTok{8}
+\DecValTok{8}     \DecValTok{3}\NormalTok{ f     wk2           }\DecValTok{15}
+\DecValTok{9}     \DecValTok{3}\NormalTok{ f     wk3            }\DecValTok{7}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{pivot\_longer()} is particularly useful (a) when dealing with wide data that contain multiple different sets of repeated measures that need to be lengthened separately (e.g., two monthly height measurements and two monthly weight measurements in each row) and/or (b) when column names and/or column values in the long data need to be extracted from column names of the \emph{wide} data using regular expressions. For example, say we begin with a wide data frame, \texttt{animals\_wide}, that looks like this:
+
+\begin{verbatim}
+     animal loves_water ABC_1 ABC_2 XYZ_1 XYZ_2
+1   dolphin        TRUE     1     5     6     2
+2 porcupine       FALSE     4     5     3     1
+3    rabbit       FALSE     2     2     5     2
+\end{verbatim}
+
+\texttt{pivot\_longer()} could be used to convert this data frame to a long format in a couple of different ways:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\# Long data will contain one column for each measure (ABC and XYZ)}
+\ErrorTok{\textgreater{}}\NormalTok{ animals\_long\_1 }\OtherTok{\textless{}{-}} \FunctionTok{pivot\_longer}\NormalTok{(animals\_wide,}
+\SpecialCharTok{+}                              \AttributeTok{cols =} \SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}animal\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}loves\_water\textquotesingle{}}\NormalTok{),}
+\SpecialCharTok{+}                              \CommentTok{\# ".value" serves as placeholder for values that will be extracted from wide column names}
+\SpecialCharTok{+}                              \AttributeTok{names\_to =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}.value\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}measure\_num\textquotesingle{}}\NormalTok{), }
+\SpecialCharTok{+}                              \AttributeTok{names\_pattern =} \StringTok{\textquotesingle{}(.+)\_(.)\textquotesingle{}}\NormalTok{)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ animals\_long\_1}
+\CommentTok{\# A tibble: 6 x 5}
+\NormalTok{  animal    loves\_water measure\_num   ABC   XYZ}
+  \SpecialCharTok{\textless{}}\NormalTok{chr}\SpecialCharTok{\textgreater{}}     \ErrorTok{\textless{}}\NormalTok{lgl}\SpecialCharTok{\textgreater{}}       \ErrorTok{\textless{}}\NormalTok{chr}\SpecialCharTok{\textgreater{}}       \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}} \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}}
+\DecValTok{1}\NormalTok{ dolphin   }\ConstantTok{TRUE}        \DecValTok{1}               \DecValTok{1}     \DecValTok{6}
+\DecValTok{2}\NormalTok{ dolphin   }\ConstantTok{TRUE}        \DecValTok{2}               \DecValTok{5}     \DecValTok{2}
+\DecValTok{3}\NormalTok{ porcupine }\ConstantTok{FALSE}       \DecValTok{1}               \DecValTok{4}     \DecValTok{3}
+\DecValTok{4}\NormalTok{ porcupine }\ConstantTok{FALSE}       \DecValTok{2}               \DecValTok{5}     \DecValTok{1}
+\DecValTok{5}\NormalTok{ rabbit    }\ConstantTok{FALSE}       \DecValTok{1}               \DecValTok{2}     \DecValTok{5}
+\DecValTok{6}\NormalTok{ rabbit    }\ConstantTok{FALSE}       \DecValTok{2}               \DecValTok{2}     \DecValTok{2}
+\SpecialCharTok{\textgreater{}} \CommentTok{\# Long data will contain one column containing values for both measures together (ABC and XYZ)}
+\ErrorTok{\textgreater{}}\NormalTok{ animals\_long\_2 }\OtherTok{\textless{}{-}} \FunctionTok{pivot\_longer}\NormalTok{(animals\_wide,}
+\SpecialCharTok{+}                                \AttributeTok{cols =} \SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}animal\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}loves\_water\textquotesingle{}}\NormalTok{),}
+\SpecialCharTok{+}                                \AttributeTok{names\_to =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}measure\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}measure\_num\textquotesingle{}}\NormalTok{),}
+\SpecialCharTok{+}                                \AttributeTok{names\_pattern =} \StringTok{\textquotesingle{}(.+)\_(.)\textquotesingle{}}\NormalTok{,}
+\SpecialCharTok{+}                                \AttributeTok{values\_to =} \StringTok{\textquotesingle{}measure\_val\textquotesingle{}}\NormalTok{)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ animals\_long\_2}
+\CommentTok{\# A tibble: 12 x 5}
+\NormalTok{   animal    loves\_water measure measure\_num measure\_val}
+   \SpecialCharTok{\textless{}}\NormalTok{chr}\SpecialCharTok{\textgreater{}}     \ErrorTok{\textless{}}\NormalTok{lgl}\SpecialCharTok{\textgreater{}}       \ErrorTok{\textless{}}\NormalTok{chr}\SpecialCharTok{\textgreater{}}   \ErrorTok{\textless{}}\NormalTok{chr}\SpecialCharTok{\textgreater{}}             \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}}
+ \DecValTok{1}\NormalTok{ dolphin   }\ConstantTok{TRUE}\NormalTok{        ABC     }\DecValTok{1}                     \DecValTok{1}
+ \DecValTok{2}\NormalTok{ dolphin   }\ConstantTok{TRUE}\NormalTok{        ABC     }\DecValTok{2}                     \DecValTok{5}
+ \DecValTok{3}\NormalTok{ dolphin   }\ConstantTok{TRUE}\NormalTok{        XYZ     }\DecValTok{1}                     \DecValTok{6}
+ \DecValTok{4}\NormalTok{ dolphin   }\ConstantTok{TRUE}\NormalTok{        XYZ     }\DecValTok{2}                     \DecValTok{2}
+ \DecValTok{5}\NormalTok{ porcupine }\ConstantTok{FALSE}\NormalTok{       ABC     }\DecValTok{1}                     \DecValTok{4}
+ \DecValTok{6}\NormalTok{ porcupine }\ConstantTok{FALSE}\NormalTok{       ABC     }\DecValTok{2}                     \DecValTok{5}
+ \DecValTok{7}\NormalTok{ porcupine }\ConstantTok{FALSE}\NormalTok{       XYZ     }\DecValTok{1}                     \DecValTok{3}
+ \DecValTok{8}\NormalTok{ porcupine }\ConstantTok{FALSE}\NormalTok{       XYZ     }\DecValTok{2}                     \DecValTok{1}
+ \DecValTok{9}\NormalTok{ rabbit    }\ConstantTok{FALSE}\NormalTok{       ABC     }\DecValTok{1}                     \DecValTok{2}
+\DecValTok{10}\NormalTok{ rabbit    }\ConstantTok{FALSE}\NormalTok{       ABC     }\DecValTok{2}                     \DecValTok{2}
+\DecValTok{11}\NormalTok{ rabbit    }\ConstantTok{FALSE}\NormalTok{       XYZ     }\DecValTok{1}                     \DecValTok{5}
+\DecValTok{12}\NormalTok{ rabbit    }\ConstantTok{FALSE}\NormalTok{       XYZ     }\DecValTok{2}                     \DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{reshape-long-to-wide}{%
 \section{Reshape long to wide}\label{reshape-long-to-wide}}
+
+To take data from long to wide using the \texttt{reshape()} function, the user specifies \texttt{direction\ =\ \textquotesingle{}wide\textquotesingle{}}. The user also provides \texttt{idvar}, \texttt{v.names}, and \texttt{timevar} arguments, which serve the same purpose as they do when \texttt{reshape()} is used to lengthen data: \texttt{idvar} specifies the variable(s) that uniquely ``group'' values together that will be displayed in the same row in the wide data; \texttt{v.names} indicates the variable that contains the values that are to be widened; and \texttt{timevar} refers to the column in the long data that identifies each value's context (its time point, its measurement location, etc.). The contents of the \texttt{timevar} column are used to generate the widened column names, as demonstrated below.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}}\NormalTok{ df\_long}
+\NormalTok{      id sex week weekly\_val}
+\FloatTok{1.}\NormalTok{m}\FloatTok{.1}  \DecValTok{1}\NormalTok{   m    }\DecValTok{1}         \DecValTok{16}
+\FloatTok{2.}\NormalTok{m}\FloatTok{.1}  \DecValTok{2}\NormalTok{   m    }\DecValTok{1}         \DecValTok{12}
+\FloatTok{3.}\NormalTok{f}\FloatTok{.1}  \DecValTok{3}\NormalTok{   f    }\DecValTok{1}          \DecValTok{8}
+\FloatTok{1.}\NormalTok{m}\FloatTok{.2}  \DecValTok{1}\NormalTok{   m    }\DecValTok{2}          \DecValTok{7}
+\FloatTok{2.}\NormalTok{m}\FloatTok{.2}  \DecValTok{2}\NormalTok{   m    }\DecValTok{2}         \DecValTok{19}
+\FloatTok{3.}\NormalTok{f}\FloatTok{.2}  \DecValTok{3}\NormalTok{   f    }\DecValTok{2}         \DecValTok{15}
+\FloatTok{1.}\NormalTok{m}\FloatTok{.3}  \DecValTok{1}\NormalTok{   m    }\DecValTok{3}         \DecValTok{15}
+\FloatTok{2.}\NormalTok{m}\FloatTok{.3}  \DecValTok{2}\NormalTok{   m    }\DecValTok{3}         \DecValTok{10}
+\FloatTok{3.}\NormalTok{f}\FloatTok{.3}  \DecValTok{3}\NormalTok{   f    }\DecValTok{3}          \DecValTok{7}
+\SpecialCharTok{\textgreater{}}\NormalTok{ df\_wide }\OtherTok{\textless{}{-}} \FunctionTok{reshape}\NormalTok{(df\_long,}
+\SpecialCharTok{+}                    \AttributeTok{direction =} \StringTok{\textquotesingle{}wide\textquotesingle{}}\NormalTok{,}
+\SpecialCharTok{+}                    \AttributeTok{idvar =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}id\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}sex\textquotesingle{}}\NormalTok{),}
+\SpecialCharTok{+}                    \AttributeTok{v.names =} \StringTok{\textquotesingle{}weekly\_val\textquotesingle{}}\NormalTok{,}
+\SpecialCharTok{+}                    \AttributeTok{timevar =} \StringTok{\textquotesingle{}week\textquotesingle{}}\NormalTok{,}
+\SpecialCharTok{+}                    \AttributeTok{sep =} \StringTok{\textquotesingle{}...\textquotesingle{}}\NormalTok{) }\CommentTok{\# the \textasciigrave{}sep\textasciigrave{} argument allows a user to specify how the contents of \textasciigrave{}timevar\textasciigrave{} should be joined with the \textasciigrave{}v.names\textasciigrave{} variable to form wide column names}
+\SpecialCharTok{\textgreater{}}\NormalTok{ df\_wide}
+\NormalTok{      id sex weekly\_val...}\DecValTok{1}\NormalTok{ weekly\_val...}\DecValTok{2}\NormalTok{ weekly\_val...}\DecValTok{3}
+\FloatTok{1.}\NormalTok{m}\FloatTok{.1}  \DecValTok{1}\NormalTok{   m             }\DecValTok{16}              \DecValTok{7}             \DecValTok{15}
+\FloatTok{2.}\NormalTok{m}\FloatTok{.1}  \DecValTok{2}\NormalTok{   m             }\DecValTok{12}             \DecValTok{19}             \DecValTok{10}
+\FloatTok{3.}\NormalTok{f}\FloatTok{.1}  \DecValTok{3}\NormalTok{   f              }\DecValTok{8}             \DecValTok{15}              \DecValTok{7}
+\end{Highlighting}
+\end{Shaded}
+
+The \textbf{tidyverse} function for taking data from long to wide is \texttt{pivot\_wider()}. To recreate the output of the \texttt{reshape()} function above using \texttt{pivot\_longer()}, a user would write:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{library}\NormalTok{(tidyverse)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ df\_wide\_PW }\OtherTok{\textless{}{-}} \FunctionTok{pivot\_wider}\NormalTok{(df\_long,}
+\SpecialCharTok{+}                           \AttributeTok{id\_cols =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}id\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}sex\textquotesingle{}}\NormalTok{),}
+\SpecialCharTok{+}                           \AttributeTok{values\_from =} \StringTok{\textquotesingle{}weekly\_val\textquotesingle{}}\NormalTok{,}
+\SpecialCharTok{+}                           \AttributeTok{names\_from =} \StringTok{\textquotesingle{}week\textquotesingle{}}\NormalTok{)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ df\_wide\_PW}
+\CommentTok{\# A tibble: 3 x 5}
+\NormalTok{     id sex     }\StringTok{\textasciigrave{}}\AttributeTok{1}\StringTok{\textasciigrave{}}   \StringTok{\textasciigrave{}}\AttributeTok{2}\StringTok{\textasciigrave{}}   \StringTok{\textasciigrave{}}\AttributeTok{3}\StringTok{\textasciigrave{}}
+  \SpecialCharTok{\textless{}}\NormalTok{int}\SpecialCharTok{\textgreater{}} \ErrorTok{\textless{}}\NormalTok{chr}\SpecialCharTok{\textgreater{}} \ErrorTok{\textless{}}\NormalTok{int}\SpecialCharTok{\textgreater{}} \ErrorTok{\textless{}}\NormalTok{int}\SpecialCharTok{\textgreater{}} \ErrorTok{\textless{}}\NormalTok{int}\SpecialCharTok{\textgreater{}}
+\DecValTok{1}     \DecValTok{1}\NormalTok{ m        }\DecValTok{16}     \DecValTok{7}    \DecValTok{15}
+\DecValTok{2}     \DecValTok{2}\NormalTok{ m        }\DecValTok{12}    \DecValTok{19}    \DecValTok{10}
+\DecValTok{3}     \DecValTok{3}\NormalTok{ f         }\DecValTok{8}    \DecValTok{15}     \DecValTok{7}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{pivot\_wider()} offers a lot of usability when trying to reshape more-complicated long data structures:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\# Convert long data with one column for each measure (ABC and XYZ) into wide format}
+\ErrorTok{\textgreater{}}\NormalTok{ animals\_long\_1}
+\CommentTok{\# A tibble: 6 x 5}
+\NormalTok{  animal    loves\_water measure\_num   ABC   XYZ}
+  \SpecialCharTok{\textless{}}\NormalTok{chr}\SpecialCharTok{\textgreater{}}     \ErrorTok{\textless{}}\NormalTok{lgl}\SpecialCharTok{\textgreater{}}       \ErrorTok{\textless{}}\NormalTok{chr}\SpecialCharTok{\textgreater{}}       \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}} \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}}
+\DecValTok{1}\NormalTok{ dolphin   }\ConstantTok{TRUE}        \DecValTok{1}               \DecValTok{1}     \DecValTok{6}
+\DecValTok{2}\NormalTok{ dolphin   }\ConstantTok{TRUE}        \DecValTok{2}               \DecValTok{5}     \DecValTok{2}
+\DecValTok{3}\NormalTok{ porcupine }\ConstantTok{FALSE}       \DecValTok{1}               \DecValTok{4}     \DecValTok{3}
+\DecValTok{4}\NormalTok{ porcupine }\ConstantTok{FALSE}       \DecValTok{2}               \DecValTok{5}     \DecValTok{1}
+\DecValTok{5}\NormalTok{ rabbit    }\ConstantTok{FALSE}       \DecValTok{1}               \DecValTok{2}     \DecValTok{5}
+\DecValTok{6}\NormalTok{ rabbit    }\ConstantTok{FALSE}       \DecValTok{2}               \DecValTok{2}     \DecValTok{2}
+\SpecialCharTok{\textgreater{}}\NormalTok{ animals\_wide }\OtherTok{\textless{}{-}} \FunctionTok{pivot\_wider}\NormalTok{(animals\_long\_1,}
+\SpecialCharTok{+}                             \AttributeTok{id\_cols =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}animal\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}loves\_water\textquotesingle{}}\NormalTok{),}
+\SpecialCharTok{+}                             \AttributeTok{values\_from =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}ABC\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}XYZ\textquotesingle{}}\NormalTok{),}
+\SpecialCharTok{+}                             \AttributeTok{names\_from =} \StringTok{\textquotesingle{}measure\_num\textquotesingle{}}\NormalTok{,}
+\SpecialCharTok{+}                             \AttributeTok{names\_sep =} \StringTok{\textquotesingle{}\_\textquotesingle{}}\NormalTok{)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ animals\_wide}
+\CommentTok{\# A tibble: 3 x 6}
+\NormalTok{  animal    loves\_water ABC\_1 ABC\_2 XYZ\_1 XYZ\_2}
+  \SpecialCharTok{\textless{}}\NormalTok{chr}\SpecialCharTok{\textgreater{}}     \ErrorTok{\textless{}}\NormalTok{lgl}\SpecialCharTok{\textgreater{}}       \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}} \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}} \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}} \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}}
+\DecValTok{1}\NormalTok{ dolphin   }\ConstantTok{TRUE}            \DecValTok{1}     \DecValTok{5}     \DecValTok{6}     \DecValTok{2}
+\DecValTok{2}\NormalTok{ porcupine }\ConstantTok{FALSE}           \DecValTok{4}     \DecValTok{5}     \DecValTok{3}     \DecValTok{1}
+\DecValTok{3}\NormalTok{ rabbit    }\ConstantTok{FALSE}           \DecValTok{2}     \DecValTok{2}     \DecValTok{5}     \DecValTok{2}
+\SpecialCharTok{\textgreater{}} \CommentTok{\# Convert long data with one column containing values for both measures together (ABC and XYZ) into wide format}
+\ErrorTok{\textgreater{}}\NormalTok{ animals\_long\_2}
+\CommentTok{\# A tibble: 12 x 5}
+\NormalTok{   animal    loves\_water measure measure\_num measure\_val}
+   \SpecialCharTok{\textless{}}\NormalTok{chr}\SpecialCharTok{\textgreater{}}     \ErrorTok{\textless{}}\NormalTok{lgl}\SpecialCharTok{\textgreater{}}       \ErrorTok{\textless{}}\NormalTok{chr}\SpecialCharTok{\textgreater{}}   \ErrorTok{\textless{}}\NormalTok{chr}\SpecialCharTok{\textgreater{}}             \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}}
+ \DecValTok{1}\NormalTok{ dolphin   }\ConstantTok{TRUE}\NormalTok{        ABC     }\DecValTok{1}                     \DecValTok{1}
+ \DecValTok{2}\NormalTok{ dolphin   }\ConstantTok{TRUE}\NormalTok{        ABC     }\DecValTok{2}                     \DecValTok{5}
+ \DecValTok{3}\NormalTok{ dolphin   }\ConstantTok{TRUE}\NormalTok{        XYZ     }\DecValTok{1}                     \DecValTok{6}
+ \DecValTok{4}\NormalTok{ dolphin   }\ConstantTok{TRUE}\NormalTok{        XYZ     }\DecValTok{2}                     \DecValTok{2}
+ \DecValTok{5}\NormalTok{ porcupine }\ConstantTok{FALSE}\NormalTok{       ABC     }\DecValTok{1}                     \DecValTok{4}
+ \DecValTok{6}\NormalTok{ porcupine }\ConstantTok{FALSE}\NormalTok{       ABC     }\DecValTok{2}                     \DecValTok{5}
+ \DecValTok{7}\NormalTok{ porcupine }\ConstantTok{FALSE}\NormalTok{       XYZ     }\DecValTok{1}                     \DecValTok{3}
+ \DecValTok{8}\NormalTok{ porcupine }\ConstantTok{FALSE}\NormalTok{       XYZ     }\DecValTok{2}                     \DecValTok{1}
+ \DecValTok{9}\NormalTok{ rabbit    }\ConstantTok{FALSE}\NormalTok{       ABC     }\DecValTok{1}                     \DecValTok{2}
+\DecValTok{10}\NormalTok{ rabbit    }\ConstantTok{FALSE}\NormalTok{       ABC     }\DecValTok{2}                     \DecValTok{2}
+\DecValTok{11}\NormalTok{ rabbit    }\ConstantTok{FALSE}\NormalTok{       XYZ     }\DecValTok{1}                     \DecValTok{5}
+\DecValTok{12}\NormalTok{ rabbit    }\ConstantTok{FALSE}\NormalTok{       XYZ     }\DecValTok{2}                     \DecValTok{2}
+\SpecialCharTok{\textgreater{}}\NormalTok{ animals\_wide }\OtherTok{\textless{}{-}} \FunctionTok{pivot\_wider}\NormalTok{(animals\_long\_2,}
+\SpecialCharTok{+}                             \AttributeTok{id\_cols =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}animal\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}loves\_water\textquotesingle{}}\NormalTok{),}
+\SpecialCharTok{+}                             \AttributeTok{values\_from =} \StringTok{\textquotesingle{}measure\_val\textquotesingle{}}\NormalTok{,}
+\SpecialCharTok{+}                             \AttributeTok{names\_from =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}measure\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}measure\_num\textquotesingle{}}\NormalTok{),}
+\SpecialCharTok{+}                             \AttributeTok{names\_sep =} \StringTok{\textquotesingle{}\_\textquotesingle{}}\NormalTok{)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ animals\_wide}
+\CommentTok{\# A tibble: 3 x 6}
+\NormalTok{  animal    loves\_water ABC\_1 ABC\_2 XYZ\_1 XYZ\_2}
+  \SpecialCharTok{\textless{}}\NormalTok{chr}\SpecialCharTok{\textgreater{}}     \ErrorTok{\textless{}}\NormalTok{lgl}\SpecialCharTok{\textgreater{}}       \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}} \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}} \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}} \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}}
+\DecValTok{1}\NormalTok{ dolphin   }\ConstantTok{TRUE}            \DecValTok{1}     \DecValTok{5}     \DecValTok{6}     \DecValTok{2}
+\DecValTok{2}\NormalTok{ porcupine }\ConstantTok{FALSE}           \DecValTok{4}     \DecValTok{5}     \DecValTok{3}     \DecValTok{1}
+\DecValTok{3}\NormalTok{ rabbit    }\ConstantTok{FALSE}           \DecValTok{2}     \DecValTok{2}     \DecValTok{5}     \DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{python-26}{%
 \subsubsection*{Python}\label{python-26}}
