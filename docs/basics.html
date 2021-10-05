@@ -344,7 +344,7 @@ div.csl-indent {
 </div>
 <div id="generating-a-sequence-of-values" class="section level2" number="1.6">
 <h2><span class="header-section-number">1.6</span> Generating a sequence of values</h2>
-<p>In Python, one option for generating a sequence of values is <code>arange()</code> from <code>numpy</code>. In R, a common approach is to use <code>seq()</code>. The sequences can be incremented by indicating a <code>step</code> argument in <code>arange()</code> or a <code>by</code> argument in <code>seq()</code>. Be aware that the start/stop interval in <code>arange()</code> is <em>open</em>, but the from/to interval in <code>seq()</code> is <em>closed</em>.</p>
+<p>In Python, one option for generating a sequence of values is <code>arange()</code> from <strong>NumPy</strong>. In R, a common approach is to use <code>seq()</code>. The sequences can be incremented by indicating a <code>step</code> argument in <code>arange()</code> or a <code>by</code> argument in <code>seq()</code>. Be aware that the end of the start/stop interval in <code>arange()</code> is <em>open</em>, but the from/to interval in <code>seq()</code> is <em>closed</em>.</p>
 <div id="python-5" class="section level4 unnumbered">
 <h4>Python</h4>
 <div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="basics.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -364,30 +364,30 @@ div.csl-indent {
 <p>The <strong>NumPy</strong> Python library has functions for calculating means and medians, and base R has functions for doing the same.</p>
 <div id="python-6" class="section level4 unnumbered">
 <h4>Python</h4>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="basics.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="co"># Mean, using function from NumPy library</span></span>
-<span id="cb11-2"><a href="basics.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> <span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb11-3"><a href="basics.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> x <span class="op">=</span> [<span class="dv">90</span>, <span class="dv">105</span>, <span class="dv">110</span>]</span>
-<span id="cb11-4"><a href="basics.html#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> x_avg <span class="op">=</span> np.mean(x)</span>
-<span id="cb11-5"><a href="basics.html#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> <span class="bu">print</span>(x_avg)</span>
-<span id="cb11-6"><a href="basics.html#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fl">101.66666666666667</span></span></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="basics.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="co"># Median, using function from NumPy library</span></span>
-<span id="cb12-2"><a href="basics.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> x <span class="op">=</span> [<span class="dv">98</span>, <span class="dv">102</span>, <span class="dv">20</span>, <span class="dv">22</span>, <span class="dv">304</span>]</span>
-<span id="cb12-3"><a href="basics.html#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> x_med <span class="op">=</span> np.median(x)</span>
-<span id="cb12-4"><a href="basics.html#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> <span class="bu">print</span>(x_med)</span>
-<span id="cb12-5"><a href="basics.html#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fl">98.0</span></span></code></pre></div>
+<p>Mean, using function from <strong>NumPy</strong> library</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="basics.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb11-2"><a href="basics.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> x <span class="op">=</span> [<span class="dv">90</span>, <span class="dv">105</span>, <span class="dv">110</span>]</span>
+<span id="cb11-3"><a href="basics.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> x_avg <span class="op">=</span> np.mean(x)</span>
+<span id="cb11-4"><a href="basics.html#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> <span class="bu">print</span>(x_avg)</span>
+<span id="cb11-5"><a href="basics.html#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fl">101.66666666666667</span></span></code></pre></div>
+<p>Median, using function from <strong>NumPy</strong> library</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="basics.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> x <span class="op">=</span> [<span class="dv">98</span>, <span class="dv">102</span>, <span class="dv">20</span>, <span class="dv">22</span>, <span class="dv">304</span>]</span>
+<span id="cb12-2"><a href="basics.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> x_med <span class="op">=</span> np.median(x)</span>
+<span id="cb12-3"><a href="basics.html#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> <span class="bu">print</span>(x_med)</span>
+<span id="cb12-4"><a href="basics.html#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fl">98.0</span></span></code></pre></div>
 </div>
 <div id="r-6" class="section level4 unnumbered">
 <h4>R</h4>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="basics.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># Mean, using function from base R</span></span>
-<span id="cb13-2"><a href="basics.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">105</span>, <span class="dv">110</span>)</span>
-<span id="cb13-3"><a href="basics.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x_avg <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
-<span id="cb13-4"><a href="basics.html#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x_avg</span>
-<span id="cb13-5"><a href="basics.html#cb13-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">101.6667</span></span></code></pre></div>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="basics.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># Median, using function from base R</span></span>
-<span id="cb14-2"><a href="basics.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">98</span>, <span class="dv">102</span>, <span class="dv">20</span>, <span class="dv">22</span>, <span class="dv">304</span>)</span>
-<span id="cb14-3"><a href="basics.html#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x_med <span class="ot">&lt;-</span> <span class="fu">median</span>(x)</span>
-<span id="cb14-4"><a href="basics.html#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x_med</span>
-<span id="cb14-5"><a href="basics.html#cb14-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">98</span></span></code></pre></div>
+<p>Mean, using function from base R</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="basics.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">105</span>, <span class="dv">110</span>)</span>
+<span id="cb13-2"><a href="basics.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x_avg <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="cb13-3"><a href="basics.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x_avg</span>
+<span id="cb13-4"><a href="basics.html#cb13-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">101.6667</span></span></code></pre></div>
+<p>Median, using function from base R</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="basics.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">98</span>, <span class="dv">102</span>, <span class="dv">20</span>, <span class="dv">22</span>, <span class="dv">304</span>)</span>
+<span id="cb14-2"><a href="basics.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x_med <span class="ot">&lt;-</span> <span class="fu">median</span>(x)</span>
+<span id="cb14-3"><a href="basics.html#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x_med</span>
+<span id="cb14-4"><a href="basics.html#cb14-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">98</span></span></code></pre></div>
 
 </div>
 </div>

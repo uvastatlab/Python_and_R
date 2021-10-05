@@ -133,10 +133,9 @@ Python and R have different operators for negation and xor (exclusive OR).
 
 #### R {-}
 
-
 ## Generating a sequence of values
 
-In Python, one option for generating a sequence of values is `arange()` from `numpy`. In R, a common approach is to use `seq()`. The sequences can be incremented by indicating a `step` argument in `arange()` or a `by` argument in `seq()`. Be aware that the start/stop interval in `arange()` is _open_, but the from/to interval in `seq()` is _closed_.
+In Python, one option for generating a sequence of values is `arange()` from **NumPy**. In R, a common approach is to use `seq()`. The sequences can be incremented by indicating a `step` argument in `arange()` or a `by` argument in `seq()`. Be aware that the end of the start/stop interval in `arange()` is _open_, but the from/to interval in `seq()` is _closed_.
 
 #### Python {-}
 
@@ -159,16 +158,18 @@ The **NumPy** Python library has functions for calculating means and medians, an
 
 #### Python {-}
 
+Mean, using function from **NumPy** library
+
 ```{python}
-# Mean, using function from NumPy library
 import numpy as np
 x = [90, 105, 110]
 x_avg = np.mean(x)
 print(x_avg)
 ```
 
+Median, using function from **NumPy** library
+
 ```{python}
-# Median, using function from NumPy library
 x = [98, 102, 20, 22, 304]
 x_med = np.median(x)
 print(x_med)
@@ -176,15 +177,17 @@ print(x_med)
 
 #### R {-}
 
+Mean, using function from base R
+
 ```{r}
-# Mean, using function from base R
 x <- c(90, 105, 110)
 x_avg <- mean(x)
 x_avg
 ```
 
+Median, using function from base R
+
 ```{r}
-# Median, using function from base R
 x <- c(98, 102, 20, 22, 304)
 x_med <- median(x)
 x_med

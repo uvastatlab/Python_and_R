@@ -244,7 +244,7 @@ div.csl-indent {
 </div>
 <div id="r-7" class="section level4 unnumbered">
 <h4>R</h4>
-<p>In R a one-dimensional data structure is called a <em>vector</em>. We can create a vector using the <code>c()</code> function. A vector in R can only contain one type of data (all numbers, all strings, etc). The columns of data frames are vectors. If multiple types of data are put into a vector, the data will be coerced according to the hierarchy <code>logical</code> &lt; <code>integer</code> &lt; <code>double</code> &lt; <code>complex</code> &lt; <code>character</code>. This means if you mix, say integers and character data, all the data will be coerced to character.</p>
+<p>In R a one-dimensional data structure is called a <em>vector</em>. We can create a vector using the <code>c()</code> function. A vector in R can only contain one type of data (all numbers, all strings, etc). The columns of data frames are vectors. If multiple types of data are put into a vector, the data will be coerced according to the hierarchy <code>logical</code> &lt; <code>integer</code> &lt; <code>double</code> &lt; <code>complex</code> &lt; <code>character</code>. This means if you mix, say, integers and character data, all the data will be coerced to character.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="data-structures.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">43</span>, <span class="dv">55</span>)</span>
 <span id="cb15-2"><a href="data-structures.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x1</span>
 <span id="cb15-3"><a href="data-structures.html#cb15-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">23</span> <span class="dv">43</span> <span class="dv">55</span></span>
@@ -263,7 +263,7 @@ div.csl-indent {
 </div>
 <div id="two-dimensional-data" class="section level2" number="2.2">
 <h2><span class="header-section-number">2.2</span> Two-dimensional data</h2>
-<p>Two-dimensional data is rectangular in nature, consisting of rows and columns. These can be the type of data you might find in a spreadsheet with a mix of data types in columns, or matrices as you might encounter in matrix algebra.</p>
+<p>Two-dimensional data are rectangular in nature, consisting of rows and columns. These can be the type of data you might find in a spreadsheet with a mix of data types in columns; they can also be matrices as you might encounter in matrix algebra.</p>
 <div id="python-8" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
@@ -284,7 +284,7 @@ div.csl-indent {
 <span id="cb17-11"><a href="data-structures.html#cb17-11" aria-hidden="true" tabindex="-1"></a>   name age</span>
 <span id="cb17-12"><a href="data-structures.html#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>   Rob  <span class="dv">35</span></span>
 <span id="cb17-13"><a href="data-structures.html#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> Cindy  <span class="dv">37</span></span></code></pre></div>
-<p>Values in a matrix and data frame can be accessed by position using indexing brackets. The first number(s) refers to rows, the second number(s) to columns. Leaving row or column numbers empty selects all rows or columns.</p>
+<p>Values in a matrix and data frame can be accessed by position using indexing brackets. The first number(s) refers to rows; the second number(s) refers to columns. Leaving row or column numbers empty selects all rows or columns.</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="data-structures.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># extract value in row 1, column 2</span></span>
 <span id="cb18-2"><a href="data-structures.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> m[<span class="dv">1</span>,<span class="dv">2</span>]</span>
 <span id="cb18-3"><a href="data-structures.html#cb18-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">5</span></span>
@@ -302,7 +302,7 @@ div.csl-indent {
 </div>
 <div id="r-9" class="section level4 unnumbered">
 <h4>R</h4>
-<p>The <code>array()</code> function in R can create three-dimensional and higher data structures. Specify the dimension number and size using the <code>dim</code> argument. Below we specify 2 rows, 3 columns, and 2 strata using a vector: <code>c(2,3,2)</code>. This creates a three-dimensional data structure. The data is simply the numbers 1 through 12.</p>
+<p>The <code>array()</code> function in R can create three-dimensional and higher data structures. Specify the dimension number and size using the <code>dim</code> argument. Below we specify 2 rows, 3 columns, and 2 strata using a vector: <code>c(2,3,2)</code>. This creates a three-dimensional data structure. The data are simply the numbers 1 through 12.</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="data-structures.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> a1 <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="at">data =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">dim =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">2</span>))</span>
 <span id="cb19-2"><a href="data-structures.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> a1</span>
 <span id="cb19-3"><a href="data-structures.html#cb19-3" aria-hidden="true" tabindex="-1"></a>, , <span class="dv">1</span></span>
