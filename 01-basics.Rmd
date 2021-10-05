@@ -26,14 +26,11 @@ In Python, the `+` operator can also be used to combine strings. See this TBD se
 
 Python uses `^` for exponentiation, `%/%` for integer division, and `%%` for remainder division.
 
-
 ```{r}
 3^2
 5 %/% 2
 5 %% 2
 ```
-
-
 
 ## Assignment
 
@@ -67,7 +64,6 @@ x
 x
 ```
 
-
 ## Packages
 
 User-created functions can be bundled and distributed as packages. Packages need to be installed only once. Thereafter they're "imported" (Python) or "loaded" (R) in each new session when needed.
@@ -77,7 +73,6 @@ Packages with large user bases are often updated to add functionality and fix bu
 Packages often depend on other packages. These are known as "dependencies". Sometimes packages are updated to accommodate changes to other packages they depend on.
 
 #### Python {-}
-
 
 #### R {-}
 
@@ -135,7 +130,7 @@ Python and R have different operators for negation and xor (exclusive OR).
 
 ## Generating a sequence of values
 
-In Python, one option for generating a sequence of values is `arange()` from **NumPy**. In R, a common approach is to use `seq()`. The sequences can be incremented by indicating a `step` argument in `arange()` or a `by` argument in `seq()`. Be aware that the end of the start/stop interval in `arange()` is _open_, but the from/to interval in `seq()` is _closed_.
+In Python, one option for generating a sequence of values is `arange()` from **NumPy**. In R, a common approach is to use `seq()`. The sequences can be incremented by indicating a `step` argument in `arange()` or a `by` argument in `seq()`. Be aware that the end of the start/stop interval in `arange()` is _open_, but both sides of the from/to interval in `seq()` are _closed_.
 
 #### Python {-}
 
