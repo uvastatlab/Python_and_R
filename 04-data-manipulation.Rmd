@@ -159,6 +159,28 @@ How to rename variables or "column headers".
 
 #### Python {-}
 
+Column names can be chnaged using the function `.rename()`. Below, we change the column names "cyl" and "wt" to "cylinder" and "WT", respectively.
+
+```{python}
+mtcars.rename(columns={"cyl":"cylinder", "wt":"WT"})
+```
+
+Alternatively, column names can be changed by replacing the vector of column names with a new vector. Below, we create a vector of columns that replaces "drat" with "axle_ratio" using conditional match and indexing and "disp" with "DISP" using indexing.
+
+```{python}
+column_names = mtcars.columns.values
+
+# using conditional match
+column_names[column_names == "drat"] = "axle_ratio"
+
+# using indexing
+column_names[2] = "DISP"
+
+mtcars.columns = column_names
+mtcars.columns
+```
+
+You can 
 
 #### R {-}
 
@@ -196,6 +218,32 @@ See also the `rename()` function in the **dplyr** package.
 We often need to create variables that are functions of other variables, or replace existing variables with an updated version.
 
 #### Python {-}
+Adding a new variable using the indexing notation and assigning a result adds a new column.
+
+```{python}
+# add column for Kilometer per liter
+mtcars['kpl'] = mtcars.mpg/2.352
+```
+
+Doing the same with an _existing_ column name updates the values in a column.
+
+```{python}
+# update to liters per 100 Kilometers
+mtcars['kpl'] = 100/mtcars.kpl 
+```
+
+Alternatively, the `.` notation can be used to update the values in a column.
+```{python}
+# update to liters per 50 Kilometers
+mtcars.kpl = 50/mtcars.kpl 
+```
+
+To remove a column, use the `.drop()` function.
+
+```{python}
+# drop the kpl variable
+mtcars.drop(columns=['kpl'])
+```
 
 
 #### R {-}
