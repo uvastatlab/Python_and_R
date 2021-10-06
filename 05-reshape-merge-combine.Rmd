@@ -51,36 +51,33 @@ cbind(d1, d2)
 
 See also the `bind_cols()` function in the **dplyr** package.
 
-## Reshape wide to long
+## Reshaping data
 
-The next two sections discuss how to reshape data from wide to long and from long to wide. "Wide" data are data structured such that multiple values associated with a given unit (e.g., a person, a cell culture, etc.) are placed in the same row:
+The next two sections discuss how to reshape data from wide to long and from long to wide. "Wide" data are structured such that multiple values associated with a given unit (e.g., a person, a cell culture, etc.) are placed in the same row:
   
 ```{r, echo = F}
-temp <- data.frame(name = c('larry', 'moe', 'curly'),
-                   time_1_score = c(3, 6, 2),
-                   time_2_score = c(0, 3, 1),
-                   time_3_score = c(6, 3, 1))
+temp <- data.frame(name = c('larry', 'moe', 'curly'), time_1_score = c(3, 6, 2), time_2_score = c(0, 3, 1))
 temp
 ```
 
-_Long_ data, conversely, are data structured such that all values are contained in one column, with another column identifying what value is given in any particular row (e.g., "time 1," "time 2," etc.):
+_Long_ data, conversely, are structured such that all values are contained in one column, with another column identifying what value is given in any particular row ("time 1," "time 2," etc.):
 
 ```{r, echo = F}
-temp <- data.frame(id = rep(c('larry', 'moe', 'curly'), each = 3),
-                   time = rep(1:3, times = 3),
-                   score = c(3, 0, 6, 6, 3, 3, 2, 1, 1))
+temp <- data.frame(id = rep(c('larry', 'moe', 'curly'), each = 2), time = rep(1:2, times = 3), score = c(3, 0, 6, 3, 2, 1))
 temp
 ```
 
-Shifting between these two data formats is often useful---necessarily, really---for implementing statistical techniques or representing data with particular visualizations.
+Shifting between these two data formats is often necessary for implementing certain statistical techniques or representing data with particular visualizations.
+
+### Wide to long
 
 #### Python {-}
 
 #### R {-}
 
-In base R, the `reshape()` function can take data from wide to long or long to wide. The **tidyverse** also provides functions for doing so: `pivot_longer()` and `pivot_wider()`. The **tidyverse** functions have a degree of intuitiveness and usability that may make them the go-to reshaping tools for many R users. We give examples below using base R and **tidyverse**.
+In base R, the `reshape()` function can take data from wide to long or long to wide. The **tidyverse** also provides reshaping functions: `pivot_longer()` and `pivot_wider()`. The **tidyverse** functions have a degree of intuitiveness and usability that may make them the go-to reshaping tools for many R users. We give examples below using both base R and **tidyverse**.
 
-For example, say we begin with a wide data frame, `df_wide`, that looks like this:
+Say we begin with a wide data frame, `df_wide`, that looks like this:
 ```{r, echo = F}
 set.seed(10)
 df_wide <- data.frame(id = rep(1:3),
@@ -91,111 +88,126 @@ df_wide <- data.frame(id = rep(1:3),
 df_wide
 ```
 
-To convert a data frame from wide to long using `reshape()`, the user must specify the argument `direction = 'long'`. The user also declares an `idvar` argument, which specifies variable(s) that uniquely identify each row and will therefore be repeated in long output (`id` and `sex`); a `varying` argument, which specifies the repeated measurements that are to be lengthened (`wk1`, `wk2`, and `wk3`); as well as `v.names` and `timevar` arguments, which respectively indicate the desired names of (1) the column containing the values in the long data (`weekly_val`) and (2) the column that identifies each value in the long data (`week`).
+To lengthen a data frame using `reshape()`, a user provides arguments specifying the columns that identify values' origins (person, cell culture, etc.), the columns containing values to be lengthened, and the desired names for output columns in long data:
 
 ```{r}
 df_long <- reshape(df_wide,
                         direction = 'long',
-                        idvar = c('id', 'sex'),
-                        varying = c('wk1', 'wk2', 'wk3'),
-                        v.names = 'weekly_val',
-                        timevar = 'week')
+                        idvar = c('id', 'sex'), # column(s) that uniquely identifies/y each row
+                        varying = c('wk1', 'wk2', 'wk3'), # variables that contain the values to be lengthened
+                        v.names = 'val', # desired name of column in long data that will contain values
+                        timevar = 'week') # desired name of column in long data that will identify each value's context
 df_long
 ```
 
-The **tidyverse** function for taking data from wide to long is `pivot_longer()`. To recreate the output of the `reshape()` function above using `pivot_longer()`, a user would write:
+The **tidyverse** function for taking data from wide to long is `pivot_longer()`. To lengthen `df_wide` using `pivot_longer()`, a user would write:
   
 ```{r, message = F}
 library(tidyverse)
 df_long_PL <- pivot_longer(df_wide,
-                             cols = -c('id', 'sex'),
-                             names_to = 'week',
-                             values_to = 'weekly_val')
+                             cols = -c('id', 'sex'), # columns that contain the values to be lengthened (can use -c() to negate variables)
+                             names_to = 'week', # desired name of column in long data that will identify each value's context
+                             values_to = 'val') # desired name of column in long data that will contain values
 df_long_PL
 ```
 
-`pivot_longer()` is particularly useful (a) when dealing with wide data that contain multiple different sets of repeated measures that need to be lengthened separately (e.g., two monthly height measurements and two monthly weight measurements in each row) and/or (b) when column names and/or column values in the long data need to be extracted from column names of the *wide* data using regular expressions. For example, say we begin with a wide data frame, `animals_wide`, that looks like this:
-  
+`pivot_longer()` is particularly useful (a) when dealing with wide data that contain multiple sets of repeated measures in each row that need to be lengthened separately (e.g., two monthly height measurements and two monthly weight measurements for each person) and (b) when column names and/or column values in the long data need to be extracted from column names of the wide data using regular expressions.
+
+For example, say we begin with a wide data frame, `animals_wide`, in which every row contains two values for each of two different measures:
+
 ```{r, echo = F}
 library(tidyverse)
-animals_wide <- data.frame(animal = c('dolphin', 'porcupine', 'rabbit'),
-                           loves_water = c(T, F, F),
-                           ABC_1 = c(1, 4, 2),
-                           ABC_2 = c(5, 5, 2),
-                           XYZ_1 = c(6, 3, 5),
-                           XYZ_2 = c(2, 1, 2))
+animals_wide <- data.frame(animal = c('dolphin', 'porcupine', 'capybara'),
+                           lives_in_water = c(T, F, F),
+                           jan_playfulness = c(6, 3.5, 4.0),
+                           feb_playfulness = c(5.5, 4.5, 5.0),
+                           jan_excitement = c(7.0, 3.5, 4.0),
+                           feb_excitement = c(7.0, 3.5, 4.0))
 animals_wide
 ```
 
-`pivot_longer()` could be used to convert this data frame to a long format in a couple of different ways:
+`pivot_longer()` can be used to convert this data frame to a long format where there is one column for each of the measures, playfulness and excitement:
 
 ```{r}
-# Long data will contain one column for each measure (ABC and XYZ)
 animals_long_1 <- pivot_longer(animals_wide,
-                             cols = -c('animal', 'loves_water'),
-                             # ".value" serves as placeholder for values that will be extracted from wide column names
-                             names_to = c('.value', 'measure_num'), 
-                             names_pattern = '(.+)_(.)')
+                             cols = -c('animal', 'lives_in_water'),
+                             names_to = c('month', '.value'), # ".value" is placeholder for strings that will be extracted from wide column names 
+                             names_pattern = '(.+)_(.+)') # specify structure of wide column names with regex from which long column names will be extracted
 animals_long_1
-# Long data will contain one column containing values for both measures together (ABC and XYZ)
+```
+
+Alternatively, `pivot_longer()` can be used to convert this data frame to a long format where there is one column containing all the playfulness and excitement values:
+
+```{r}
 animals_long_2 <- pivot_longer(animals_wide,
-                               cols = -c('animal', 'loves_water'),
-                               names_to = c('measure', 'measure_num'),
-                               names_pattern = '(.+)_(.)',
-                               values_to = 'measure_val')
+                               cols = -c('animal', 'lives_in_water'),
+                               names_to = c('month', 'measure'),
+                               names_pattern = '(.+)_(.+)',
+                               values_to = 'val')
 animals_long_2
 ```
 
-## Reshape long to wide
+### Long to wide
 
-To take data from long to wide using the `reshape()` function, the user specifies `direction = 'wide'`. The user also provides `idvar`, `v.names`, and `timevar` arguments, which serve the same purpose as they do when `reshape()` is used to lengthen data: `idvar` specifies the variable(s) that uniquely "group" values together that will be displayed in the same row in the wide data; `v.names` indicates the variable that contains the values that are to be widened; and `timevar` refers to the column in the long data that identifies each value's context (its time point, its measurement location, etc.). The contents of the `timevar` column are used to generate the widened column names, as demonstrated below.
+#### Python {-}
+
+#### R {-}
+
+Say we begin with a long data frame, `df_long`, that looks like this:
 
 ```{r}
 df_long
+```
+
+To take data from long to wide with base R's `reshape()`, a user would write:
+
+```{r}
 df_wide <- reshape(df_long,
                    direction = 'wide',
-                   idvar = c('id', 'sex'),
-                   v.names = 'weekly_val',
-                   timevar = 'week',
-                   sep = '...') # the `sep` argument allows a user to specify how the contents of `timevar` should be joined with the `v.names` variable to form wide column names
+                   idvar = c('id', 'sex'), # column(s) that determine which rows should be grouped together in the wide data
+                   v.names = 'val', # column containing values to widen
+                   timevar = 'week', # column from which resulting wide column names are pulled
+                   sep = '_') # the `sep` argument allows a user to specify how the contents of `timevar` should be joined with the name of the `v.names` variable to form wide column names
 df_wide
 ```
 
-The **tidyverse** function for taking data from long to wide is `pivot_wider()`. To recreate the output of the `reshape()` function above using `pivot_longer()`, a user would write:
+The **tidyverse** function for taking data from long to wide is `pivot_wider()`. To widen `df_long` using `pivot_longer()`, a user would write:
 
 ```{r}
 library(tidyverse)
 df_wide_PW <- pivot_wider(df_long,
                           id_cols = c('id', 'sex'),
-                          values_from = 'weekly_val',
-                          names_from = 'week')
+                          values_from = 'val',
+                          names_from = 'week',
+                          names_prefix = 'week_') # `names_prefix` specifies a string to paste in front of the contents of 'week' in the resulting wide column names
 df_wide_PW
 ```
 
-`pivot_wider()` offers a lot of usability when trying to reshape more-complicated long data structures:
+`pivot_wider()` offers a lot of usability when widening relatively complicated long data structures. For example, say we want to widen both of the long versions of the animals data frame created above.
+
+To widen the version of the long data that has a column for each of the measures (playfulness and excitement):
 
 ```{r}
-# Convert long data with one column for each measure (ABC and XYZ) into wide format
 animals_long_1
 animals_wide <- pivot_wider(animals_long_1,
-                            id_cols = c('animal', 'loves_water'),
-                            values_from = c('ABC', 'XYZ'),
-                            names_from = 'measure_num',
-                            names_sep = '_')
-animals_wide
-# Convert long data with one column containing values for both measures together (ABC and XYZ) into wide format
-animals_long_2
-animals_wide <- pivot_wider(animals_long_2,
-                            id_cols = c('animal', 'loves_water'),
-                            values_from = 'measure_val',
-                            names_from = c('measure', 'measure_num'),
-                            names_sep = '_')
+                            id_cols = c('animal', 'lives_in_water'),
+                            values_from = c('playfulness', 'excitement'),
+                            names_from = 'month',
+                            names_glue = '{month}_{.value}') # `names_glue` allow for customization of wide column names based
 animals_wide
 ```
 
-#### Python {-}
-#### R {-}
+To widen the version of the long data that has one column containing all the values of playfulness and excitement together:
 
+```{r}
+animals_long_2
+animals_wide <- pivot_wider(animals_long_2,
+                            id_cols = c('animal', 'lives_in_water'),
+                            values_from = 'val',
+                            names_from = c('month', 'measure'),
+                            names_sep = '_')
+animals_wide
+```
 
 ## Merge/Join
 
