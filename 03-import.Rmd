@@ -17,8 +17,8 @@ Comma separated value (CSV) files are text files with fields separated by commas
 
 
 ```{python}
-import pandas
-d = pandas.read_csv('data/ny_math_test.csv')
+import pandas as pd
+d = pd.read_csv('data/ny_math_test.csv')
 d.loc[0:2, ["Grade", "Year", "Mean Scale Score"]]
 ```
 
@@ -44,12 +44,21 @@ Excel files are native to Microsoft Excel. Prior to 2007, Excel files had an ext
 
 #### Python {-}
 
+
+
+```{python}
+import pandas as pd  
+d = pd.read_excel('data/ny_math_test.xlsx')  
+d.loc[0:2, ["Grade", "Year", "Mean Scale Score"]]  
+
+```
+
+
 #### R {-}
 
 **readxl** is a well-documented and actively maintained package for importing Excel files into R. The workhorse function is `read_excel()`. The `sheet` argument allows you to specify which sheet you want to import. You can specify sheet by its ordering or by its name. Since this Excel file only has one sheet we do not need to use the argument.
 
 ```{r}
-# read in the 2nd sheet
 library(readxl)
 d_xls <- read_excel("data/ny_math_test.xlsx")
 d_xls[1:3, c("Grade", "Year", "Mean Scale Score")]
@@ -61,11 +70,30 @@ It's worth noting we can use the `range` argument to specify a range of cells to
 
 ## JSON
 
-JSON (**J**ava**S**cript **O**bject **N**otation) is a flexible format for storing data. JSON files are text and can be viewed in any text editor. Because of their flexibility JSON files can be quite complex in the way they store data. Therefore there is no one-size-fits-all for importing JSON files into Python or R.
+JSON (**J**ava**S**cript **O**bject **N**otation) is a flexible format for storing data. JSON files are text and can be viewed in any text editor. Because of their flexibility JSON files can be quite complex in the way they store data. Therefore there is no one-size-fits-all method for importing JSON files into Python or R.
 
 
 
 #### Python {-}
+
+```{python}
+import json
+# load data using Python JSON module
+with open('data/ny_math_test.json','r') as f:
+    data = json.loads(f.read())
+
+import pandas as pd  
+d_json = pd.json_normalize(data, record_path =['data'])
+
+# add column names
+names = list()
+for i in range(23): 
+  names.append(data['meta']['view']['columns'][i]['name'])
+d_json.columns = names
+
+d_json.loc[0:2, ["Grade", "Year", "Mean Scale Score"]]  
+```
+
 
 #### R {-}
 
