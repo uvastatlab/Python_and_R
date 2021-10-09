@@ -211,22 +211,98 @@ animals_wide
 
 ## Merge/Join
 
+The merge/join examples below all make use of the following sample data frames:
+```{r, echo = F}
+# initialize join data
+x <- data.frame(merge_var = c('a', 'b', 'c'), val_x = c(12, 94, 92))
+y <- data.frame(merge_var = c('c', 'd', 'e'), val_y = c(78, 32, 30))
+```
+```{python, echo = F}
+x = r.x
+y = r.y
+```
+```{r}
+# x
+x
+# y
+y
+```
+
 ### Left Join
 
+A left join of _x_ and _y_ keeps all rows of _x_ and merges rows of _y_ into _x_ where possible based on the merge criterion:
+
+```{r, echo = F}
+knitr::include_graphics('images/left_join.png')
+```
+
 #### Python {-}
+```{python}
+import pandas as pd
+pd.merge(x, y, how = 'left')
+```
 #### R {-}
+```{r}
+# all.x = T results in a left join
+merge(x, y, by = 'merge_var', all.x = T)
+```
 
 ### Right Join
 
+A right join of _x_ and _y_ keeps all rows of _y_ and merges rows of _x_ into _y_ where possible based on the merge criterion:
+
+```{r, echo = F}
+knitr::include_graphics('images/right_join.png')
+```
+
 #### Python {-}
+```{python}
+import pandas as pd
+pd.merge(x, y, how = 'right')
+```
 #### R {-}
+```{r}
+# all.y = T results in a right join
+merge(x, y, by = 'merge_var', all.y = T)
+```
 
 ### Inner Join
 
+An inner join of _x_ and _y_ returns merged rows for which a match can be on the merge criterion _in both tables_:
+
+```{r, echo = F}
+knitr::include_graphics('images/inner_join.png')
+```
+
 #### Python {-}
+```{python}
+import pandas as pd
+pd.merge(x, y, how = 'inner')
+```
 #### R {-}
+```{r}
+# by default, merge() executes an inner join
+# (more specifically, a natural join, which is a kind of
+# inner join in which the merge-criterion column is not
+# repeated, despite being initially present in both tables)
+merge(x, y, by = 'merge_var')
+```
 
 ### Outer Join
 
+An outer join of _x_ and _y_ keeps all rows from both tables, merging rows where possible based on the merge criterion:
+
+```{r, echo = F}
+knitr::include_graphics('images/outer_join.png')
+```
+
 #### Python {-}
+```{python}
+import pandas as pd
+pd.merge(x, y, how = 'outer')
+```
 #### R {-}
+```{r}
+# all = T (or all.x = T AND all.y = T) results in an outer join
+merge(x, y, by = 'merge_var', all = T)
+```
