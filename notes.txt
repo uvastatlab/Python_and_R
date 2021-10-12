@@ -24,8 +24,8 @@ Possible chapters
 - Notebooks and Reports
 
 Miscellany
-- Style guide? (e.g., `gsub` v. `gsub()` for functions; `stringi` v. stringi for packages; etc.)
-CF: Let's do the following (as done in the bookdown book)
--	Packages/Libraries are bolded. Eg, The pandas library, The dplyr package
--	Functions include parentheses: eg,  `gsub()`
-- comment style?
+- Thoughts on Oxford/series commas?
+
+Style guide notes:
+- **bold** packages/libraries, e.g., **pandas** and **dplyr**
+- function names include parentheses; `gsub()`

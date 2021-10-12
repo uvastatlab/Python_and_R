@@ -46,7 +46,7 @@ Excel files are native to Microsoft Excel. Prior to 2007, Excel files had an ext
 
 
 
-```{python}
+```{python, eval = F}
 import pandas as pd  
 d = pd.read_excel('data/ny_math_test.xlsx')  
 d.loc[0:2, ["Grade", "Year", "Mean Scale Score"]]  

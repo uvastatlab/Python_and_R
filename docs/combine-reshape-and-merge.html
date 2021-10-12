@@ -511,40 +511,112 @@ div.csl-indent {
 </div>
 <div id="mergejoin" class="section level2" number="5.4">
 <h2><span class="header-section-number">5.4</span> Merge/Join</h2>
+<p>The merge/join examples below all make use of the following sample data frames:</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="combine-reshape-and-merge.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># x</span></span>
+<span id="cb99-2"><a href="combine-reshape-and-merge.html#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> x</span>
+<span id="cb99-3"><a href="combine-reshape-and-merge.html#cb99-3" aria-hidden="true" tabindex="-1"></a>  merge_var val_x</span>
+<span id="cb99-4"><a href="combine-reshape-and-merge.html#cb99-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>         a    <span class="dv">12</span></span>
+<span id="cb99-5"><a href="combine-reshape-and-merge.html#cb99-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>         b    <span class="dv">94</span></span>
+<span id="cb99-6"><a href="combine-reshape-and-merge.html#cb99-6" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>         c    <span class="dv">92</span></span>
+<span id="cb99-7"><a href="combine-reshape-and-merge.html#cb99-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># y</span></span>
+<span id="cb99-8"><a href="combine-reshape-and-merge.html#cb99-8" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> y</span>
+<span id="cb99-9"><a href="combine-reshape-and-merge.html#cb99-9" aria-hidden="true" tabindex="-1"></a>  merge_var val_y</span>
+<span id="cb99-10"><a href="combine-reshape-and-merge.html#cb99-10" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>         c    <span class="dv">78</span></span>
+<span id="cb99-11"><a href="combine-reshape-and-merge.html#cb99-11" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>         d    <span class="dv">32</span></span>
+<span id="cb99-12"><a href="combine-reshape-and-merge.html#cb99-12" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>         e    <span class="dv">30</span></span></code></pre></div>
 <div id="left-join" class="section level3" number="5.4.1">
 <h3><span class="header-section-number">5.4.1</span> Left Join</h3>
+<p>A left join of <em>x</em> and <em>y</em> keeps all rows of <em>x</em> and merges rows of <em>y</em> into <em>x</em> where possible based on the merge criterion:</p>
+<p><img src="images/left_join.png" width="621" /></p>
 <div id="python-27" class="section level4 unnumbered">
 <h4>Python</h4>
+<div class="sourceCode" id="cb100"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb100-1"><a href="combine-reshape-and-merge.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb100-2"><a href="combine-reshape-and-merge.html#cb100-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> pd.merge(x, y, how <span class="op">=</span> <span class="st">&#39;left&#39;</span>)</span>
+<span id="cb100-3"><a href="combine-reshape-and-merge.html#cb100-3" aria-hidden="true" tabindex="-1"></a>  merge_var  val_x  val_y</span>
+<span id="cb100-4"><a href="combine-reshape-and-merge.html#cb100-4" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span>         a   <span class="fl">12.0</span>    NaN</span>
+<span id="cb100-5"><a href="combine-reshape-and-merge.html#cb100-5" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>         b   <span class="fl">94.0</span>    NaN</span>
+<span id="cb100-6"><a href="combine-reshape-and-merge.html#cb100-6" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>         c   <span class="fl">92.0</span>   <span class="fl">78.0</span></span></code></pre></div>
 </div>
 <div id="r-27" class="section level4 unnumbered">
 <h4>R</h4>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="combine-reshape-and-merge.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># all.x = T results in a left join</span></span>
+<span id="cb101-2"><a href="combine-reshape-and-merge.html#cb101-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">merge</span>(x, y, <span class="at">by =</span> <span class="st">&#39;merge_var&#39;</span>, <span class="at">all.x =</span> T)</span>
+<span id="cb101-3"><a href="combine-reshape-and-merge.html#cb101-3" aria-hidden="true" tabindex="-1"></a>  merge_var val_x val_y</span>
+<span id="cb101-4"><a href="combine-reshape-and-merge.html#cb101-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>         a    <span class="dv">12</span>    <span class="cn">NA</span></span>
+<span id="cb101-5"><a href="combine-reshape-and-merge.html#cb101-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>         b    <span class="dv">94</span>    <span class="cn">NA</span></span>
+<span id="cb101-6"><a href="combine-reshape-and-merge.html#cb101-6" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>         c    <span class="dv">92</span>    <span class="dv">78</span></span></code></pre></div>
 </div>
 </div>
 <div id="right-join" class="section level3" number="5.4.2">
 <h3><span class="header-section-number">5.4.2</span> Right Join</h3>
+<p>A right join of <em>x</em> and <em>y</em> keeps all rows of <em>y</em> and merges rows of <em>x</em> into <em>y</em> where possible based on the merge criterion:</p>
+<p><img src="images/right_join.png" width="621" /></p>
 <div id="python-28" class="section level4 unnumbered">
 <h4>Python</h4>
+<div class="sourceCode" id="cb102"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb102-1"><a href="combine-reshape-and-merge.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb102-2"><a href="combine-reshape-and-merge.html#cb102-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> pd.merge(x, y, how <span class="op">=</span> <span class="st">&#39;right&#39;</span>)</span>
+<span id="cb102-3"><a href="combine-reshape-and-merge.html#cb102-3" aria-hidden="true" tabindex="-1"></a>  merge_var  val_x  val_y</span>
+<span id="cb102-4"><a href="combine-reshape-and-merge.html#cb102-4" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span>         c   <span class="fl">92.0</span>   <span class="fl">78.0</span></span>
+<span id="cb102-5"><a href="combine-reshape-and-merge.html#cb102-5" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>         d    NaN   <span class="fl">32.0</span></span>
+<span id="cb102-6"><a href="combine-reshape-and-merge.html#cb102-6" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>         e    NaN   <span class="fl">30.0</span></span></code></pre></div>
 </div>
 <div id="r-28" class="section level4 unnumbered">
 <h4>R</h4>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="combine-reshape-and-merge.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># all.y = T results in a right join</span></span>
+<span id="cb103-2"><a href="combine-reshape-and-merge.html#cb103-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">merge</span>(x, y, <span class="at">by =</span> <span class="st">&#39;merge_var&#39;</span>, <span class="at">all.y =</span> T)</span>
+<span id="cb103-3"><a href="combine-reshape-and-merge.html#cb103-3" aria-hidden="true" tabindex="-1"></a>  merge_var val_x val_y</span>
+<span id="cb103-4"><a href="combine-reshape-and-merge.html#cb103-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>         c    <span class="dv">92</span>    <span class="dv">78</span></span>
+<span id="cb103-5"><a href="combine-reshape-and-merge.html#cb103-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>         d    <span class="cn">NA</span>    <span class="dv">32</span></span>
+<span id="cb103-6"><a href="combine-reshape-and-merge.html#cb103-6" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>         e    <span class="cn">NA</span>    <span class="dv">30</span></span></code></pre></div>
 </div>
 </div>
 <div id="inner-join" class="section level3" number="5.4.3">
 <h3><span class="header-section-number">5.4.3</span> Inner Join</h3>
+<p>An inner join of <em>x</em> and <em>y</em> returns merged rows for which a match can be on the merge criterion <em>in both tables</em>:</p>
+<p><img src="images/inner_join.png" width="621" /></p>
 <div id="python-29" class="section level4 unnumbered">
 <h4>Python</h4>
+<div class="sourceCode" id="cb104"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb104-1"><a href="combine-reshape-and-merge.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb104-2"><a href="combine-reshape-and-merge.html#cb104-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> pd.merge(x, y, how <span class="op">=</span> <span class="st">&#39;inner&#39;</span>)</span>
+<span id="cb104-3"><a href="combine-reshape-and-merge.html#cb104-3" aria-hidden="true" tabindex="-1"></a>  merge_var  val_x  val_y</span>
+<span id="cb104-4"><a href="combine-reshape-and-merge.html#cb104-4" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span>         c   <span class="fl">92.0</span>   <span class="fl">78.0</span></span></code></pre></div>
 </div>
 <div id="r-29" class="section level4 unnumbered">
 <h4>R</h4>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="combine-reshape-and-merge.html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># by default, merge() executes an inner join</span></span>
+<span id="cb105-2"><a href="combine-reshape-and-merge.html#cb105-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># (more specifically, a natural join, which is a kind of</span></span>
+<span id="cb105-3"><a href="combine-reshape-and-merge.html#cb105-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># inner join in which the merge-criterion column is not</span></span>
+<span id="cb105-4"><a href="combine-reshape-and-merge.html#cb105-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># repeated, despite being initially present in both tables)</span></span>
+<span id="cb105-5"><a href="combine-reshape-and-merge.html#cb105-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">merge</span>(x, y, <span class="at">by =</span> <span class="st">&#39;merge_var&#39;</span>)</span>
+<span id="cb105-6"><a href="combine-reshape-and-merge.html#cb105-6" aria-hidden="true" tabindex="-1"></a>  merge_var val_x val_y</span>
+<span id="cb105-7"><a href="combine-reshape-and-merge.html#cb105-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>         c    <span class="dv">92</span>    <span class="dv">78</span></span></code></pre></div>
 </div>
 </div>
 <div id="outer-join" class="section level3" number="5.4.4">
 <h3><span class="header-section-number">5.4.4</span> Outer Join</h3>
+<p>An outer join of <em>x</em> and <em>y</em> keeps all rows from both tables, merging rows where possible based on the merge criterion:</p>
+<p><img src="images/outer_join.png" width="621" /></p>
 <div id="python-30" class="section level4 unnumbered">
 <h4>Python</h4>
+<div class="sourceCode" id="cb106"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb106-1"><a href="combine-reshape-and-merge.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb106-2"><a href="combine-reshape-and-merge.html#cb106-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> pd.merge(x, y, how <span class="op">=</span> <span class="st">&#39;outer&#39;</span>)</span>
+<span id="cb106-3"><a href="combine-reshape-and-merge.html#cb106-3" aria-hidden="true" tabindex="-1"></a>  merge_var  val_x  val_y</span>
+<span id="cb106-4"><a href="combine-reshape-and-merge.html#cb106-4" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span>         a   <span class="fl">12.0</span>    NaN</span>
+<span id="cb106-5"><a href="combine-reshape-and-merge.html#cb106-5" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>         b   <span class="fl">94.0</span>    NaN</span>
+<span id="cb106-6"><a href="combine-reshape-and-merge.html#cb106-6" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>         c   <span class="fl">92.0</span>   <span class="fl">78.0</span></span>
+<span id="cb106-7"><a href="combine-reshape-and-merge.html#cb106-7" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>         d    NaN   <span class="fl">32.0</span></span>
+<span id="cb106-8"><a href="combine-reshape-and-merge.html#cb106-8" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>         e    NaN   <span class="fl">30.0</span></span></code></pre></div>
 </div>
 <div id="r-30" class="section level4 unnumbered">
 <h4>R</h4>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="combine-reshape-and-merge.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># all = T (or all.x = T AND all.y = T) results in an outer join</span></span>
+<span id="cb107-2"><a href="combine-reshape-and-merge.html#cb107-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">merge</span>(x, y, <span class="at">by =</span> <span class="st">&#39;merge_var&#39;</span>, <span class="at">all =</span> T)</span>
+<span id="cb107-3"><a href="combine-reshape-and-merge.html#cb107-3" aria-hidden="true" tabindex="-1"></a>  merge_var val_x val_y</span>
+<span id="cb107-4"><a href="combine-reshape-and-merge.html#cb107-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>         a    <span class="dv">12</span>    <span class="cn">NA</span></span>
+<span id="cb107-5"><a href="combine-reshape-and-merge.html#cb107-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>         b    <span class="dv">94</span>    <span class="cn">NA</span></span>
+<span id="cb107-6"><a href="combine-reshape-and-merge.html#cb107-6" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>         c    <span class="dv">92</span>    <span class="dv">78</span></span>
+<span id="cb107-7"><a href="combine-reshape-and-merge.html#cb107-7" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>         d    <span class="cn">NA</span>    <span class="dv">32</span></span>
+<span id="cb107-8"><a href="combine-reshape-and-merge.html#cb107-8" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>         e    <span class="cn">NA</span>    <span class="dv">30</span></span></code></pre></div>
 
 </div>
 </div>
