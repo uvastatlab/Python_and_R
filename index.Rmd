@@ -16,7 +16,7 @@ nocite: |
 
 # Welcome {-}
 
-This book provides parallel examples in Python and R to help users of one platform more easily learn how the other platform "works".
+This book provides parallel examples in Python and R to help users of one platform more easily learn how the other platform "works" when it comes to data analysis.
 
 ```{r echo = F, eval = F}
 # To activate [a conda] environment, use
