@@ -1,0 +1,27 @@
+# Aggregation and Group Operations
+
+```{r,echo=FALSE}
+knitr::opts_chunk$set(comment = NA, prompt = TRUE, collapse = TRUE)
+```
+
+This chapter looks at manipulating and summarizing data by groups.
+
+## Cross tabulation
+
+Computing frequencies per group.
+
+#### Python {-}
+
+
+#### R {-}
+
+
+## Group summaries
+
+Computing statistical summaries per group.
+
+#### Python {-}
+
+
+#### R {-}
+

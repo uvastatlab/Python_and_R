@@ -36,3 +36,14 @@ left-join
 right-join
 inner-join
 outer-join
+aggregation-and-group-operations
+cross-tabulation
+group-summaries
+basic-plotting-and-visualization
+histograms
+scatterplot
+statistical-inference-and-modeling
+comparing-group-means
+simple-linear-regression
+multiple-regression
+logistic-regression

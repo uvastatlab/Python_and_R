@@ -16,9 +16,9 @@ nocite: |
 
 # Welcome {-}
 
-This book provides parallel examples in Python and R to help users of one platform more easily transition to the other.
+This book provides parallel examples in Python and R to help users of one platform more easily learn how the other platform "works".
 
-```{r, echo = F, eval = F}
+```{r echo = F, eval = F}
 # To activate [a conda] environment, use
 #
 #     $ conda activate r-reticulate
@@ -27,3 +27,7 @@ This book provides parallel examples in Python and R to help users of one platfo
 #
 #     $ conda deactivate
 ```
+
+
+
+

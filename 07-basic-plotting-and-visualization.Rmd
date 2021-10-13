@@ -1,0 +1,27 @@
+# Basic Plotting and Visualization
+
+```{r,echo=FALSE}
+knitr::opts_chunk$set(comment = NA, prompt = TRUE, collapse = TRUE)
+```
+
+This chapter looks at creating basic visualizations to explore and better understand data.
+
+## Histograms
+
+Visualizing the distribution of numeric data.
+
+#### Python {-}
+
+
+#### R {-}
+
+
+## Scatterplot
+
+Visualizing the relationship between two numeric variables.
+
+#### Python {-}
+
+
+#### R {-}
+
