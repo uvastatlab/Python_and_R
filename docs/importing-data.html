@@ -287,8 +287,7 @@ div.csl-indent {
 <h4>Python</h4>
 <div class="sourceCode" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="importing-data.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> pandas <span class="im">as</span> pd  </span>
 <span id="cb25-2"><a href="importing-data.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> d <span class="op">=</span> pd.read_excel(<span class="st">&#39;data/ny_math_test.xlsx&#39;</span>)  </span>
-<span id="cb25-3"><a href="importing-data.html#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> d.loc[<span class="dv">0</span>:<span class="dv">2</span>, [<span class="st">&quot;Grade&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Mean Scale Score&quot;</span>]]  </span>
-<span id="cb25-4"><a href="importing-data.html#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> </span></code></pre></div>
+<span id="cb25-3"><a href="importing-data.html#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> d.loc[<span class="dv">0</span>:<span class="dv">2</span>, [<span class="st">&quot;Grade&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Mean Scale Score&quot;</span>]]  </span></code></pre></div>
 </div>
 <div id="r-11" class="section level4 unnumbered">
 <h4>R</h4>
@@ -296,7 +295,7 @@ div.csl-indent {
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="importing-data.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(readxl)</span>
 <span id="cb26-2"><a href="importing-data.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d_xls <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/ny_math_test.xlsx&quot;</span>)</span>
 <span id="cb26-3"><a href="importing-data.html#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d_xls[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="fu">c</span>(<span class="st">&quot;Grade&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Mean Scale Score&quot;</span>)]</span>
-<span id="cb26-4"><a href="importing-data.html#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 3 x 3</span></span>
+<span id="cb26-4"><a href="importing-data.html#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 3 × 3</span></span>
 <span id="cb26-5"><a href="importing-data.html#cb26-5" aria-hidden="true" tabindex="-1"></a>  Grade  Year <span class="st">`</span><span class="at">Mean Scale Score</span><span class="st">`</span></span>
 <span id="cb26-6"><a href="importing-data.html#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="sc">&lt;</span>chr<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>              <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
 <span id="cb26-7"><a href="importing-data.html#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">3</span>      <span class="dv">2006</span>                <span class="dv">700</span></span>
@@ -364,6 +363,7 @@ div.csl-indent {
 <div id="r-13" class="section level4 unnumbered">
 <h4>R</h4>
 <p><strong>xml2</strong> is a relatively small but powerful package for importing and working with XML files. The <code>read_xml()</code> function imports an XML file and returns a list of <em>pointers</em> to XML <em>nodes</em>. There are a number of ways to proceed once you import an XML file, such as using the <code>xml_find_all()</code> function to find nodes that match an <a href="https://www.w3schools.com/xml/xpath_intro.asp">xpath</a> expression. Below we take a simple approach and convert the XML nodes into a list using the <code>as_list()</code> function that is part of the <strong>xml2</strong> package. Once we have the XML nodes in a list, we can use the <code>bind_rows()</code> function in the <strong>dplyr</strong> package to create a data frame. Notice we have to drill down into the list to select the element that contains the data. After this we need to do one more thing: <em>unlist</em> each the columns into vectors. We do this by applying the <code>unlist</code> function to each column of <code>d</code>. We save the result by assigning to <code>d[]</code>, which overwrites each element (or column) of <code>d</code> with the unlisted result.</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="importing-data.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(xml2)</span>
 <span id="cb31-2"><a href="importing-data.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d_xml <span class="ot">&lt;-</span> <span class="fu">read_xml</span>(<span class="st">&#39;data/ny_math_test.xml&#39;</span>)</span>
 <span id="cb31-3"><a href="importing-data.html#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d_list <span class="ot">&lt;-</span> <span class="fu">as_list</span>(d_xml)</span>
@@ -376,6 +376,20 @@ div.csl-indent {
 <span id="cb31-10"><a href="importing-data.html#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">3</span>     <span class="dv">2006</span>  <span class="dv">700</span>             </span>
 <span id="cb31-11"><a href="importing-data.html#cb31-11" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="dv">4</span>     <span class="dv">2006</span>  <span class="dv">699</span>             </span>
 <span id="cb31-12"><a href="importing-data.html#cb31-12" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="dv">5</span>     <span class="dv">2006</span>  <span class="dv">691</span>             </span></code></pre></div>
+=======
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="importing-data.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(xml2)</span>
+<span id="cb30-2"><a href="importing-data.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d_xml <span class="ot">&lt;-</span> <span class="fu">read_xml</span>(<span class="st">&#39;data/ny_math_test.xml&#39;</span>)</span>
+<span id="cb30-3"><a href="importing-data.html#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d_list <span class="ot">&lt;-</span> <span class="fu">as_list</span>(d_xml)</span>
+<span id="cb30-4"><a href="importing-data.html#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">bind_rows</span>(d_list<span class="sc">$</span>response<span class="sc">$</span>row)</span>
+<span id="cb30-5"><a href="importing-data.html#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d[] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(d, unlist)</span>
+<span id="cb30-6"><a href="importing-data.html#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="fu">c</span>(<span class="st">&quot;grade&quot;</span>, <span class="st">&quot;year&quot;</span>, <span class="st">&quot;mean_scale_score&quot;</span>)]</span>
+<span id="cb30-7"><a href="importing-data.html#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 3 × 3</span></span>
+<span id="cb30-8"><a href="importing-data.html#cb30-8" aria-hidden="true" tabindex="-1"></a>  grade year  mean_scale_score</span>
+<span id="cb30-9"><a href="importing-data.html#cb30-9" aria-hidden="true" tabindex="-1"></a>  <span class="sc">&lt;</span>chr<span class="sc">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span>           </span>
+<span id="cb30-10"><a href="importing-data.html#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">3</span>     <span class="dv">2006</span>  <span class="dv">700</span>             </span>
+<span id="cb30-11"><a href="importing-data.html#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="dv">4</span>     <span class="dv">2006</span>  <span class="dv">699</span>             </span>
+<span id="cb30-12"><a href="importing-data.html#cb30-12" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="dv">5</span>     <span class="dv">2006</span>  <span class="dv">691</span>             </span></code></pre></div>
+>>>>>>> 3013261b9dd7265436ace68591136ed6f289483f
 <p>The result is a <em>tibble</em>, a <a href="https://tibble.tidyverse.org/">tidyverse data frame</a>. We would most likely want to proceed to converting certain columns to numeric.</p>
 
 </div>
