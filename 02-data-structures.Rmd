@@ -12,6 +12,12 @@ A one-dimensional data structure can be visualized as a column in a spreadsheet 
 
 #### Python {-}
 
+This is an array 
+```{python}
+import numpy as np
+np.array([1,2,3])
+```
+
 
 #### R {-}
 
