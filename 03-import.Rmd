@@ -121,6 +121,16 @@ XML (e**X**tensible **M**arkup **L**anguage) is a markup language that was desig
 
 #### Python {-}
 
+The **pandas** library provides the `read_xml` function for importing XML files. The `ny_math_test.xml` file identifies records with nodes named "row". The 168 rows are nested in one node also called "row". Therefore we use the `xpath` argument to specify that we want to elect all row elements that are descendant of the single row element.
+
+```{python}
+import pandas as pd
+d_xml = pd.read_xml('data/ny_math_test.xml', xpath="row//row")
+
+d_xml.loc[0:2, ["grade", "year", "mean_scale_score"]]  
+```
+
+
 #### R {-}
 
 **xml2** is a relatively small but powerful package for importing and working with XML files. The `read_xml()` function imports an XML file and returns a list of _pointers_ to XML _nodes_. There are a number of ways to proceed once you import an XML file, such as using the `xml_find_all()` function to find nodes that match an [xpath](https://www.w3schools.com/xml/xpath_intro.asp) expression. Below we take a simple approach and convert the XML nodes into a list using the `as_list()` function that is part of the **xml2** package. Once we have the XML nodes in a list, we can use the `bind_rows()` function in the **dplyr** package to create a data frame. Notice we have to drill down into the list to select the element that contains the data. After this we need to do one more thing: _unlist_ each the columns into vectors. We do this by applying the `unlist` function to each column of `d`. We save the result by assigning to `d[]`, which overwrites each element (or column) of `d` with the unlisted result. 

@@ -5,6 +5,9 @@ To install packages:
 library(reticulate)
 py_install("pandas")
 
+Update 10/15/2021 re: installing python packages
+CF: I need use pip install at command line to get packages, not py_install()
+
 TODO
 Set up GitHub actions?
 Docker container?
