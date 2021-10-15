@@ -26,14 +26,11 @@ In Python, the `+` operator can also be used to combine strings. See this TBD se
 
 Python uses `^` for exponentiation, `%/%` for integer division, and `%%` for remainder division.
 
-
 ```{r}
 3^2
 5 %/% 2
 5 %% 2
 ```
-
-
 
 ## Assignment
 
@@ -67,17 +64,15 @@ x
 x
 ```
 
-
 ## Packages
 
 User-created functions can be bundled and distributed as packages. Packages need to be installed only once. Thereafter they're "imported" (Python) or "loaded" (R) in each new session when needed.
 
 Packages with large user bases are often updated to add functionality and fix bugs. The updates are not automatically installed. Staying apprised of library/package updates can be challenging. Some suggestions are following developers on Twitter, signing up for newsletters, or periodically checking to see what updates are available.
 
-Packages often depend on other packages. These are known as "dependencies". Sometimes packages are updated to accommodate changes to other packages they depend on.
+Packages often depend on other packages. These are known as "dependencies." Sometimes packages are updated to accommodate changes to other packages they depend on.
 
 #### Python {-}
-
 
 #### R {-}
 
@@ -107,7 +102,7 @@ install.packages("devtools")
 devtools::install_github("username/packagename")
 ```
 
-Occasionally when installing package updates you will be asked "Do you want to install from sources the package which needs compilation?" R packages on CRAN are _compiled_ for Mac and Windows operating systems. That can take a day or two after a package has been submitted to CRAN. If you try to install a package that has not been compiled then you'll get asked the question above. If you click Yes, R will try to compile the package on your computer. This will only work if you have the required build tools on your computer. For Windows this means having [Rtools](https://cran.r-project.org/bin/windows/Rtools/) installed. Mac users should already have the necessary build tools. Unless you absolutely need the latest version of a package, it's probably fine to click No.
+Occasionally when installing package updates you will be asked "Do you want to install from sources the package which needs compilation?" R packages on CRAN are _compiled_ for Mac and Windows operating systems. That can take a day or two after a package has been submitted to CRAN. If you try to install a package that has not been compiled then you'll get asked the question above. If you click _Yes_, R will try to compile the package on your computer. This will only work if you have the required build tools on your computer. For Windows this means having [Rtools](https://cran.r-project.org/bin/windows/Rtools/) installed. Mac users should already have the necessary build tools. Unless you absolutely need the latest version of a package, it's probably fine to click _No_.
 
 ## Logic
 
@@ -133,10 +128,9 @@ Python and R have different operators for negation and xor (exclusive OR).
 
 #### R {-}
 
-
 ## Generating a sequence of values
 
-In Python, one option for generating a sequence of values is `arange()` from `numpy`. In R, a common approach is to use `seq()`. The sequences can be incremented by indicating a `step` argument in `arange()` or a `by` argument in `seq()`. Be aware that the start/stop interval in `arange()` is _open_, but the from/to interval in `seq()` is _closed_.
+In Python, one option for generating a sequence of values is `arange()` from **NumPy**. In R, a common approach is to use `seq()`. The sequences can be incremented by indicating a `step` argument in `arange()` or a `by` argument in `seq()`. Be aware that the end of the start/stop interval in `arange()` is _open_, but both sides of the from/to interval in `seq()` are _closed_.
 
 #### Python {-}
 
@@ -159,16 +153,18 @@ The **NumPy** Python library has functions for calculating means and medians, an
 
 #### Python {-}
 
+Mean, using function from **NumPy** library
+
 ```{python}
-# Mean, using function from NumPy library
 import numpy as np
 x = [90, 105, 110]
 x_avg = np.mean(x)
 print(x_avg)
 ```
 
+Median, using function from **NumPy** library
+
 ```{python}
-# Median, using function from NumPy library
 x = [98, 102, 20, 22, 304]
 x_med = np.median(x)
 print(x_med)
@@ -176,15 +172,17 @@ print(x_med)
 
 #### R {-}
 
+Mean, using function from base R
+
 ```{r}
-# Mean, using function from base R
 x <- c(90, 105, 110)
 x_avg <- mean(x)
 x_avg
 ```
 
+Median, using function from base R
+
 ```{r}
-# Median, using function from base R
 x <- c(98, 102, 20, 22, 304)
 x_med <- median(x)
 x_med

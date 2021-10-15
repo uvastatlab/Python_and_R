@@ -1,0 +1,46 @@
+# Statistical Inference and Modeling
+
+```{r,echo=FALSE}
+knitr::opts_chunk$set(comment = NA, prompt = TRUE, collapse = TRUE)
+```
+
+This chapter looks at performing and interpreting common statistical analyses. 
+
+## Comparing group means
+
+Comparing the means of two or more groups to see if or how they differ. Two means can be analyzed with a t test. Three or more can be analyzed with ANOVA. Both the t test and ANOVA are special cases of a linear model.
+
+#### Python {-}
+
+
+#### R {-}
+
+
+## Simple linear regression
+
+Analyzing if or how the variability a numeric variable depends on another numeric variable.
+
+#### Python {-}
+
+
+#### R {-}
+
+
+## Multiple regression
+
+Analyzing if or how the variability a numeric variable depends on multiple numeric variables.
+
+#### Python {-}
+
+
+#### R {-}
+
+
+## Logistic regression
+
+Analyzing if or how the variability of a binary variable depends on one or more predictor variables.
+
+#### Python {-}
+
+
+#### R {-}

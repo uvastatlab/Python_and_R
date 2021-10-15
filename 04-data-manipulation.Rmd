@@ -27,6 +27,21 @@ View and inspect the names of variables and their type (numeric, string, logical
 
 #### Python {-}
 
+The `.info()` function in pandas lists information on the DataFrame.
+
+
+Setting the argument `verbose` to `True` prints the name of the columns, their length excluding `NULL` values, and their data type (`dtype`) in a table. The function lists the unique data types in the DataFrame, and it prints how much memory the DataFrame takes up.
+
+```{python}
+mtcars.info(verbose=True)
+```
+
+By default, the `verbose` argument is set to `False`. Then, the function lists the unique data types in the DataFrame, and it prints how much memory the DataFrame takes up. This setting excludes the table describing each column.
+
+```{python}
+mtcars.info()
+```
+
 
 #### R {-}
 
@@ -54,7 +69,41 @@ dim(mtcars)
 How to work with a specific column of data.
 
 #### Python {-}
+The period operator `.` provides access to a column in a DataFrame as a vector. This returns pandas series. A pandas series can do everything a numpy array can do.
 
+```{python}
+mtcars.mpg
+```
+
+Indexing also provides access to columns as a pandas Series. Single and double quotations both work.
+
+```{python}
+mtcars['mpg']
+```
+
+Operations on numpy arrays are faster than operations on pandas series. But using pandas series should be fine, in terms of performance, in many cases. This is important for large data sets on which many operations are performed. The `.values` function returns a numpy array.
+
+```{python}
+mtcars['mpg'].values
+```
+
+Double indexing returns a pandas DataFrame, instead of a numpy array or pandas series.
+
+```{python}
+mtcars[['mpg']]
+```
+
+The `head()` and `tail()` functions return the first 5 or last 5 values. Use the `n` argument to change the number of values. This function works on numpy array, pandas series and pandas DataFrames.
+
+```{python}
+# first 6 values
+mtcars.mpg.head()
+```
+
+```{python}
+# last row of DataFrame
+mtcars.tail(n=1)
+```
 
 #### R {-}
 
@@ -110,6 +159,28 @@ How to rename variables or "column headers".
 
 #### Python {-}
 
+Column names can be chnaged using the function `.rename()`. Below, we change the column names "cyl" and "wt" to "cylinder" and "WT", respectively.
+
+```{python}
+mtcars.rename(columns={"cyl":"cylinder", "wt":"WT"})
+```
+
+Alternatively, column names can be changed by replacing the vector of column names with a new vector. Below, we create a vector of columns that replaces "drat" with "axle_ratio" using conditional match and indexing and "disp" with "DISP" using indexing.
+
+```{python}
+column_names = mtcars.columns.values
+
+# using conditional match
+column_names[column_names == "drat"] = "axle_ratio"
+
+# using indexing
+column_names[2] = "DISP"
+
+mtcars.columns = column_names
+mtcars.columns
+```
+
+You can 
 
 #### R {-}
 
@@ -147,6 +218,32 @@ See also the `rename()` function in the **dplyr** package.
 We often need to create variables that are functions of other variables, or replace existing variables with an updated version.
 
 #### Python {-}
+Adding a new variable using the indexing notation and assigning a result adds a new column.
+
+```{python}
+# add column for Kilometer per liter
+mtcars['kpl'] = mtcars.mpg/2.352
+```
+
+Doing the same with an _existing_ column name updates the values in a column.
+
+```{python}
+# update to liters per 100 Kilometers
+mtcars['kpl'] = 100/mtcars.kpl 
+```
+
+Alternatively, the `.` notation can be used to update the values in a column.
+```{python}
+# update to liters per 50 Kilometers
+mtcars.kpl = 50/mtcars.kpl 
+```
+
+To remove a column, use the `.drop()` function.
+
+```{python}
+# drop the kpl variable
+mtcars.drop(columns=['kpl'])
+```
 
 
 #### R {-}

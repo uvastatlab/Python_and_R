@@ -1,0 +1,57 @@
+# Aggregation and Group Operations
+
+```{r,echo=FALSE}
+knitr::opts_chunk$set(comment = NA, prompt = TRUE, collapse = TRUE)
+```
+
+This chapter looks at manipulating and summarizing data by groups.
+
+## Cross tabulation
+
+Cross tabulation is the process of determining frequencies per group (or values based on frequencies, like proportions), with groups delineated by one or more variables (e.g., nationality and sex).
+
+The Python and R examples of cross tabulation below both make use of the following dataset, `dat`:
+
+```{r, echo = F}
+set.seed(100)
+dat <- data.frame(nationality = c('Canadian', 'French', 'French', 'Egyptian', 'Canadian'),
+                  sex = c('m', 'f', 'f', 'm', 'f'))
+```
+```{python, echo = F}
+dat = r.dat
+```
+```{r}
+dat
+```
+
+#### Python {-}
+
+The **pandas** package contains a `crosstab()` function for cross tabulation with two or more variables. The `groupby()`, also in **pandas**, facilitates cross tabulation by one or more variables when used in combination with `count()`.
+
+```{python}
+import pandas as pd
+pd.crosstab(dat.nationality, dat.sex)
+dat.groupby(by = 'nationality').nationality.count()
+dat.groupby(by = ['nationality', 'sex']).nationality.count()
+# Or: dat.groupby(by = ['nationality', 'sex']).sex.count()
+```
+
+#### R {-}
+
+The `table()` function performs cross tabulation in R. A user can enter a single grouping variable or enter multiple grouping variables separated by a comma(s). The `xtabs()` function also computes cross-tabs; a user enters the variables to be used for grouping in formula notation.
+
+```{r}
+table(dat$nationality)
+table(dat$nationality, dat$sex)
+xtabs(formula = ~nationality + sex, data = dat)
+```
+
+## Group summaries
+
+Computing statistical summaries per group.
+
+#### Python {-}
+
+
+#### R {-}
+

@@ -21,7 +21,7 @@ np.array([1,2,3])
 
 #### R {-}
 
-In R a one-dimensional data structure is called a _vector_. We can create a vector using the `c()` function. A vector in R can only contain one type of data (all numbers, all strings, etc). The columns of data frames are vectors. If multiple types of data are put into a vector, the data will be coerced according to the hierarchy `logical` < `integer` < `double` < `complex` < `character`. This means if you mix, say integers and character data, all the data will be coerced to character. 
+In R a one-dimensional data structure is called a _vector_. We can create a vector using the `c()` function. A vector in R can only contain one type of data (all numbers, all strings, etc). The columns of data frames are vectors. If multiple types of data are put into a vector, the data will be coerced according to the hierarchy `logical` < `integer` < `double` < `complex` < `character`. This means if you mix, say, integers and character data, all the data will be coerced to character. 
 
 ```{r}
 x1 <- c(23, 43, 55)
@@ -46,7 +46,7 @@ x1[2:3]
 
 ## Two-dimensional data
 
-Two-dimensional data is rectangular in nature, consisting of rows and columns. These can be the type of data you might find in a spreadsheet with a mix of data types in columns, or matrices as you might encounter in matrix algebra.
+Two-dimensional data are rectangular in nature, consisting of rows and columns. These can be the type of data you might find in a spreadsheet with a mix of data types in columns; they can also be matrices as you might encounter in matrix algebra.
 
 #### Python {-}
 
@@ -68,7 +68,7 @@ d <- data.frame(name = c("Rob", "Cindy"),
 d
 ```
 
-Values in a matrix and data frame can be accessed by position using indexing brackets. The first number(s) refers to rows, the second number(s) to columns. Leaving row or column numbers empty selects all rows or columns.
+Values in a matrix and data frame can be accessed by position using indexing brackets. The first number(s) refers to rows; the second number(s) refers to columns. Leaving row or column numbers empty selects all rows or columns.
 
 ```{r}
 # extract value in row 1, column 2
@@ -88,7 +88,7 @@ Three-dimensional and higher data can be visualized as multiple rectangular stru
 
 #### R {-}
 
-The `array()` function in R can create three-dimensional and higher data structures. Specify the dimension number and size using the `dim` argument. Below we specify 2 rows, 3 columns, and 2 strata using a vector: `c(2,3,2)`. This creates a three-dimensional data structure. The data is simply the numbers 1 through 12.
+The `array()` function in R can create three-dimensional and higher data structures. Specify the dimension number and size using the `dim` argument. Below we specify 2 rows, 3 columns, and 2 strata using a vector: `c(2,3,2)`. This creates a three-dimensional data structure. The data are simply the numbers 1 through 12.
 
 ```{r}
 a1 <- array(data = 1:12, dim = c(2,3,2))
@@ -120,4 +120,3 @@ The `as.data.frame.table()` function can collapse an array into a two-dimensiona
 ```{r}
 as.data.frame.table(a1, responseName = "value")
 ```
-

@@ -5,6 +5,9 @@ To install packages:
 library(reticulate)
 py_install("pandas")
 
+Update 10/15/2021 re: installing python packages
+CF: I need use pip install at command line to get packages, not py_install()
+
 TODO
 Set up GitHub actions?
 Docker container?
@@ -24,8 +27,8 @@ Possible chapters
 - Notebooks and Reports
 
 Miscellany
-- Style guide? (e.g., `gsub` v. `gsub()` for functions; `stringi` v. stringi for packages; etc.)
-CF: Let's do the following (as done in the bookdown book)
--	Packages/Libraries are bolded. Eg, The pandas library, The dplyr package
--	Functions include parentheses: eg,  `gsub()`
-- comment style?
+- Thoughts on Oxford/series commas?
+
+Style guide notes:
+- **bold** packages/libraries, e.g., **pandas** and **dplyr**
+- function names include parentheses; `gsub()`
