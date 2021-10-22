@@ -52,6 +52,29 @@ Computing statistical summaries per group.
 
 #### Python {-}
 
-
 #### R {-}
 
+The `aggregate()` function allows a user to easily generate by-group statistical summaries based on one or more grouping variables. Grouping variables can be declared as a list in the function's `by` argument. Alternatively, the grouping variables (and the variable to be summarized) can be passed to `aggregate()` in formula notation: `var_to_be_aggregated ~ grouping_var_1 + ... + grouping_var_N`. The summarizing function (e.g., `mean()`; `median()`; etc.) is declared in the `FUN` argument.
+
+```{r}
+# One grouping variable
+aggregate(x = mtcars$mpg, by = list(mtcars$cyl), FUN = mean) # Calculating mean of `mpg` in each `cyl` group
+# Two or more grouping variables
+aggregate(x = mtcars$mpg, by = list(mtcars$cyl, mtcars$vs), FUN = max) # Calculating max of `mpg` in each `cyl`*`vs` group
+```
+```{r, eval = F}
+# Or, specify the variable to summarize and the grouping variables in formula notation
+aggregate(mpg ~ cyl, data = mtcars, FUN = mean)
+aggregate(mpg ~ cyl + vs, data = mtcars, FUN = max)
+```
+
+The **tidyverse** also offers a summarizing function, `summarize()` (or `summarise()`, for the Britons), which is in the **dplyr** package. After grouping a data frame/tibble (with, e.g., **dplyr**'s `group_by()` function), a user passes it to `summarize()`, specifying in the function call how the summary statistic should be calculated.
+
+```{r}
+library(dplyr)
+mtcars %>% group_by(cyl, vs) %>% summarize(avg_mpg = mean(mpg))
+# A benefit of `summarize()` is that it allows a user to specify relatively complicated
+# summary calculations without needing to write an external function
+mtcars %>% group_by(cyl, vs) %>% summarize(avg_mpg = mean(mpg),
+                                           complicated_summary_calculation = min(mpg)^0.5 * mean(wt)^0.5 + mean(disp)^(1/mean(hp)))
+```
