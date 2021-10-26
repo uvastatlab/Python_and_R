@@ -91,9 +91,19 @@ The **tidyverse** also offers a summarizing function, `summarize()` (or `summari
 
 ```{r}
 library(dplyr)
-mtcars %>% group_by(cyl, vs) %>% summarize(avg_mpg = mean(mpg))
-# A benefit of `summarize()` is that it allows a user to specify relatively complicated
-# summary calculations without needing to write an external function
-mtcars %>% group_by(cyl, vs) %>% summarize(avg_mpg = mean(mpg),
-                                           complicated_summary_calculation = min(mpg)^0.5 * mean(wt)^0.5 + mean(disp)^(1/mean(hp)))
+mtcars %>% 
+  group_by(cyl, vs) %>% 
+  summarize(avg_mpg = mean(mpg))
+```
+
+A benefit of `summarize()` is that it allows a user to specify relatively complicated summary calculations without needing to write an external function.
+
+```{r}
+mtcars %>% 
+  group_by(cyl, vs) %>% 
+  summarize(avg_mpg = mean(mpg),
+            complicated_summary_calculation = 
+              min(mpg)^0.5 * 
+              mean(wt)^0.5 + 
+              mean(disp)^(1/mean(hp)))
 ```
