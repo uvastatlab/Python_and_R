@@ -4,10 +4,6 @@
 %
 \documentclass[
 ]{book}
-\title{Python and R}
-\author{Clay Ford, Jacob Goldstein-Greenwood, Oyinkansola Adenekan, Samantha Lomuscio}
-\date{2021-10-06}
-
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
 \usepackage{iftex}
@@ -120,6 +116,10 @@
 \bibliographystyle{plainnat}
 \nocite{*}
 
+\title{Python and R}
+\author{Clay Ford, Jacob Goldstein-Greenwood, Oyinkansola Adenekan, Samantha Lomuscio}
+\date{2021-10-26}
+
 \begin{document}
 \maketitle
 
@@ -131,7 +131,7 @@
 \chapter*{Welcome}\label{welcome}}
 \addcontentsline{toc}{chapter}{Welcome}
 
-This book provides parallel examples in Python and R to help users of one platform more easily transition to the other.
+This book provides parallel examples in Python and R to help users of one platform more easily learn how the other platform ``works'' when it comes to data analysis.
 
 \hypertarget{basics}{%
 \chapter{Basics}\label{basics}}
@@ -620,10 +620,12 @@ Comma separated value (CSV) files are text files with fields separated by commas
 \subsubsection*{Python}\label{python-10}}
 \addcontentsline{toc}{subsubsection}{Python}
 
+The \textbf{pandas} function \texttt{read\_csv()} is a common approach to importing CSV files into Python.
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\OperatorTok{\textgreater{}} \ImportTok{import}\NormalTok{ pandas}
-\OperatorTok{+}\NormalTok{ d }\OperatorTok{=}\NormalTok{ pandas.read\_csv(}\StringTok{\textquotesingle{}data/ny\_math\_test.csv\textquotesingle{}}\NormalTok{)}
+\OperatorTok{\textgreater{}} \ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd}
+\OperatorTok{+}\NormalTok{ d }\OperatorTok{=}\NormalTok{ pd.read\_csv(}\StringTok{\textquotesingle{}data/ny\_math\_test.csv\textquotesingle{}}\NormalTok{)}
 \OperatorTok{+}\NormalTok{ d.loc[}\DecValTok{0}\NormalTok{:}\DecValTok{2}\NormalTok{, [}\StringTok{"Grade"}\NormalTok{, }\StringTok{"Year"}\NormalTok{, }\StringTok{"Mean Scale Score"}\NormalTok{]]}
 \NormalTok{  Grade  Year  Mean Scale Score}
 \DecValTok{0}     \DecValTok{3}  \DecValTok{2006}               \DecValTok{700}
@@ -662,6 +664,17 @@ Excel files are native to Microsoft Excel. Prior to 2007, Excel files had an ext
 \subsubsection*{Python}\label{python-11}}
 \addcontentsline{toc}{subsubsection}{Python}
 
+The \textbf{pandas} function \texttt{read\_excel()} is a common approach to importing Excel files into Python. The \texttt{sheet\_name} argument allows you to specify which sheet you want to import. You can specify sheet by its (zero-indexed) ordering or by its name. Since this Excel file only has one sheet we do not need to use the argument. In addition, specifying \texttt{sheet\_name=None} will read in all sheets and return a dict data structure where the \emph{key} is the sheet name and the \emph{value} is a DataFrame.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}} \ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd  }
+\OperatorTok{\textgreater{}}\NormalTok{ d }\OperatorTok{=}\NormalTok{ pd.read\_excel(}\StringTok{\textquotesingle{}data/ny\_math\_test.xlsx\textquotesingle{}}\NormalTok{)  }
+\OperatorTok{\textgreater{}}\NormalTok{ d.loc[}\DecValTok{0}\NormalTok{:}\DecValTok{2}\NormalTok{, [}\StringTok{"Grade"}\NormalTok{, }\StringTok{"Year"}\NormalTok{, }\StringTok{"Mean Scale Score"}\NormalTok{]]  }
+\OperatorTok{\textgreater{}} 
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{r-11}{%
 \subsubsection*{R}\label{r-11}}
 \addcontentsline{toc}{subsubsection}{R}
@@ -670,8 +683,7 @@ Excel files are native to Microsoft Excel. Prior to 2007, Excel files had an ext
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\SpecialCharTok{\textgreater{}} \CommentTok{\# read in the 2nd sheet}
-\ErrorTok{\textgreater{}} \FunctionTok{library}\NormalTok{(readxl)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{library}\NormalTok{(readxl)}
 \SpecialCharTok{\textgreater{}}\NormalTok{ d\_xls }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(}\StringTok{"data/ny\_math\_test.xlsx"}\NormalTok{)}
 \SpecialCharTok{\textgreater{}}\NormalTok{ d\_xls[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{, }\FunctionTok{c}\NormalTok{(}\StringTok{"Grade"}\NormalTok{, }\StringTok{"Year"}\NormalTok{, }\StringTok{"Mean Scale Score"}\NormalTok{)]}
 \CommentTok{\# A tibble: 3 x 3}
@@ -690,11 +702,43 @@ It's worth noting we can use the \texttt{range} argument to specify a range of c
 \hypertarget{json}{%
 \section{JSON}\label{json}}
 
-JSON (\textbf{J}ava\textbf{S}cript \textbf{O}bject \textbf{N}otation) is a flexible format for storing data. JSON files are text and can be viewed in any text editor. Because of their flexibility JSON files can be quite complex in the way they store data. Therefore there is no one-size-fits-all for importing JSON files into Python or R.
+JSON (\textbf{J}ava\textbf{S}cript \textbf{O}bject \textbf{N}otation) is a flexible format for storing data. JSON files are text and can be viewed in any text editor. Because of their flexibility JSON files can be quite complex in the way they store data. Therefore there is no one-size-fits-all method for importing JSON files into Python or R.
 
 \hypertarget{python-12}{%
 \subsubsection*{Python}\label{python-12}}
 \addcontentsline{toc}{subsubsection}{Python}
+
+Below is one approach to importing our ``ny\_math\_test.json'' example file. We first import Python's built-in \textbf{json} package and use its \texttt{loads()} function to read in the lines of the json file. The file is accessed using the \texttt{open} function and its associated \texttt{read} method.
+
+Next we use the \textbf{pandas} function \texttt{json\_normalize()} to convert the `data' structure of the json data into a DataFrame.
+
+Finally we add column names to the DataFrame.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}} \ImportTok{import}\NormalTok{ json}
+\OperatorTok{+} \CommentTok{\# load data using Python JSON module}
+\OperatorTok{+} \ControlFlowTok{with} \BuiltInTok{open}\NormalTok{(}\StringTok{\textquotesingle{}data/ny\_math\_test.json\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}r\textquotesingle{}}\NormalTok{) }\ImportTok{as}\NormalTok{ f:}
+\OperatorTok{+}\NormalTok{     data }\OperatorTok{=}\NormalTok{ json.loads(f.read())}
+\OperatorTok{+} 
+\OperatorTok{+} \ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd  }
+\OperatorTok{+}\NormalTok{ d\_json }\OperatorTok{=}\NormalTok{ pd.json\_normalize(data, record\_path }\OperatorTok{=}\NormalTok{[}\StringTok{\textquotesingle{}data\textquotesingle{}}\NormalTok{])}
+\OperatorTok{+} 
+\OperatorTok{+} \CommentTok{\# add column names}
+\OperatorTok{+}\NormalTok{ names }\OperatorTok{=} \BuiltInTok{list}\NormalTok{()}
+\OperatorTok{+} \ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(}\DecValTok{23}\NormalTok{): }
+\OperatorTok{+}\NormalTok{   names.append(data[}\StringTok{\textquotesingle{}meta\textquotesingle{}}\NormalTok{][}\StringTok{\textquotesingle{}view\textquotesingle{}}\NormalTok{][}\StringTok{\textquotesingle{}columns\textquotesingle{}}\NormalTok{][i][}\StringTok{\textquotesingle{}name\textquotesingle{}}\NormalTok{])}
+\OperatorTok{+}\NormalTok{ d\_json.columns }\OperatorTok{=}\NormalTok{ names}
+\OperatorTok{+} 
+\OperatorTok{+}\NormalTok{ d\_json.loc[}\DecValTok{0}\NormalTok{:}\DecValTok{2}\NormalTok{, [}\StringTok{"Grade"}\NormalTok{, }\StringTok{"Year"}\NormalTok{, }\StringTok{"Mean Scale Score"}\NormalTok{]]  }
+\NormalTok{  Grade  Year Mean Scale Score}
+\DecValTok{0}     \DecValTok{3}  \DecValTok{2006}              \DecValTok{700}
+\DecValTok{1}     \DecValTok{4}  \DecValTok{2006}              \DecValTok{699}
+\DecValTok{2}     \DecValTok{5}  \DecValTok{2006}              \DecValTok{691}
+\end{Highlighting}
+\end{Shaded}
+
+Again, this is just one approach that assumes we want a DataFrame.
 
 \hypertarget{r-12}{%
 \subsubsection*{R}\label{r-12}}
@@ -731,6 +775,21 @@ XML (e\textbf{X}tensible \textbf{M}arkup \textbf{L}anguage) is a markup language
 \hypertarget{python-13}{%
 \subsubsection*{Python}\label{python-13}}
 \addcontentsline{toc}{subsubsection}{Python}
+
+The \textbf{pandas} library provides the \texttt{read\_xml} function for importing XML files. The \texttt{ny\_math\_test.xml} file identifies records with nodes named ``row''. The 168 rows are nested in one node also called ``row''. Therefore we use the \texttt{xpath} argument to specify that we want to elect all row elements that are descendant of the single row element.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}} \ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd}
+\OperatorTok{+}\NormalTok{ d\_xml }\OperatorTok{=}\NormalTok{ pd.read\_xml(}\StringTok{\textquotesingle{}data/ny\_math\_test.xml\textquotesingle{}}\NormalTok{, xpath}\OperatorTok{=}\StringTok{"row//row"}\NormalTok{)}
+\OperatorTok{+} 
+\OperatorTok{+}\NormalTok{ d\_xml.loc[}\DecValTok{0}\NormalTok{:}\DecValTok{2}\NormalTok{, [}\StringTok{"grade"}\NormalTok{, }\StringTok{"year"}\NormalTok{, }\StringTok{"mean\_scale\_score"}\NormalTok{]]  }
+\NormalTok{  grade  year  mean\_scale\_score}
+\DecValTok{0}     \DecValTok{3}  \DecValTok{2006}               \DecValTok{700}
+\DecValTok{1}     \DecValTok{4}  \DecValTok{2006}               \DecValTok{699}
+\DecValTok{2}     \DecValTok{5}  \DecValTok{2006}               \DecValTok{691}
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{r-13}{%
 \subsubsection*{R}\label{r-13}}
@@ -1429,6 +1488,16 @@ You may have data that is numeric but that needs to be treated as a string.
 \subsubsection*{Python}\label{python-18}}
 \addcontentsline{toc}{subsubsection}{Python}
 
+You can change the data type of a column in a DataFrame using the \texttt{astype} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}}\NormalTok{ mtcars[}\StringTok{\textquotesingle{}am\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ mtcars[}\StringTok{\textquotesingle{}am\textquotesingle{}}\NormalTok{].astype(}\BuiltInTok{str}\NormalTok{)}
+\OperatorTok{+} \BuiltInTok{type}\NormalTok{(mtcars.am[}\DecValTok{0}\NormalTok{]) }\CommentTok{\# check the type of the first item in \textquotesingle{}am\textquotesingle{} column}
+\OperatorTok{\textless{}}\KeywordTok{class} \StringTok{\textquotesingle{}str\textquotesingle{}}\OperatorTok{\textgreater{}}
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{r-18}{%
 \subsubsection*{R}\label{r-18}}
 \addcontentsline{toc}{subsubsection}{R}
@@ -1495,6 +1564,48 @@ String variables that ought to be numbers usually have some character data in th
 \hypertarget{python-19}{%
 \subsubsection*{Python}\label{python-19}}
 \addcontentsline{toc}{subsubsection}{Python}
+
+The \texttt{astype(float)} or \texttt{astype(int)} function will coerce strings to numerical representation.
+
+For demonstration, let's say we have the following numpy array.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}} \ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\OperatorTok{+}\NormalTok{ weight }\OperatorTok{=}\NormalTok{ np.array([}\StringTok{"125 lbs."}\NormalTok{, }\StringTok{"132 lbs."}\NormalTok{, }\StringTok{"156 lbs."}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+The \texttt{astype(float)} function throws an error due to the presence of strings. The \texttt{astype()} function is for numpy arrays.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}} \ControlFlowTok{try}\NormalTok{:}
+\OperatorTok{+}\NormalTok{   weight.astype(}\BuiltInTok{float}\NormalTok{)}
+\OperatorTok{+} \ControlFlowTok{except} \PreprocessorTok{ValueError}\NormalTok{:}
+\OperatorTok{+}   \BuiltInTok{print}\NormalTok{(}\StringTok{"ValueError: could not convert string to float: \textquotesingle{}125 lbs.\textquotesingle{}"}\NormalTok{)}
+\PreprocessorTok{ValueError}\NormalTok{: could }\KeywordTok{not}\NormalTok{ convert string to }\BuiltInTok{float}\NormalTok{: }\StringTok{\textquotesingle{}125 lbs.\textquotesingle{}}
+\end{Highlighting}
+\end{Shaded}
+
+One way to approach this is to first remove the strings from the objects and then use \texttt{astype(float)}. Below we use the \texttt{strip()} function to find '' lbs.'' using a list comprehension.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}} \CommentTok{\# [] indicates a list in python}
+\OperatorTok{+} \CommentTok{\# np.array() changes the list back into an array}
+\OperatorTok{+}\NormalTok{ weight }\OperatorTok{=}\NormalTok{ np.array([w.strip(}\StringTok{" lbs."}\NormalTok{) }\ControlFlowTok{for}\NormalTok{ w }\KeywordTok{in}\NormalTok{ weight])}
+\end{Highlighting}
+\end{Shaded}
+
+Now we can use the \texttt{astype()} function to change the elements in weight from \texttt{str} to \texttt{float}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}}\NormalTok{ weight.astype(}\BuiltInTok{float}\NormalTok{)}
+\NormalTok{array([}\FloatTok{125.}\NormalTok{, }\FloatTok{132.}\NormalTok{, }\FloatTok{156.}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{r-19}{%
 \subsubsection*{R}\label{r-19}}
@@ -1676,34 +1787,34 @@ There are many ways to sample rows from a data frame in R. The \textbf{dplyr} pa
 \SpecialCharTok{\textgreater{}} \CommentTok{\# sample 5 rows from mtcars}
 \ErrorTok{\textgreater{}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{slice\_sample}\NormalTok{(mtcars, }\AttributeTok{n =} \DecValTok{5}\NormalTok{)}
 \NormalTok{   mpg cylinders  disp  hp axle\_ratio weight  qsec engine am gear carb am\_ch}
-\DecValTok{1} \FloatTok{32.4}         \DecValTok{4}  \FloatTok{78.7}  \DecValTok{66}       \FloatTok{4.08}  \FloatTok{2.200} \FloatTok{19.47}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
-\DecValTok{2} \FloatTok{22.8}         \DecValTok{4} \FloatTok{140.8}  \DecValTok{95}       \FloatTok{3.92}  \FloatTok{3.150} \FloatTok{22.90}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{2}     \DecValTok{0}
-\DecValTok{3} \FloatTok{24.4}         \DecValTok{4} \FloatTok{146.7}  \DecValTok{62}       \FloatTok{3.69}  \FloatTok{3.190} \FloatTok{20.00}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{2}     \DecValTok{0}
-\DecValTok{4} \FloatTok{21.4}         \DecValTok{6} \FloatTok{258.0} \DecValTok{110}       \FloatTok{3.08}  \FloatTok{3.215} \FloatTok{19.44}      \DecValTok{1}  \DecValTok{0}    \DecValTok{3}    \DecValTok{1}     \DecValTok{0}
-\DecValTok{5} \FloatTok{33.9}         \DecValTok{4}  \FloatTok{71.1}  \DecValTok{65}       \FloatTok{4.22}  \FloatTok{1.835} \FloatTok{19.90}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
+\DecValTok{1} \FloatTok{17.3}         \DecValTok{8} \FloatTok{275.8} \DecValTok{180}       \FloatTok{3.07}   \FloatTok{3.73} \FloatTok{17.60}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{3}     \DecValTok{0}
+\DecValTok{2} \FloatTok{16.4}         \DecValTok{8} \FloatTok{275.8} \DecValTok{180}       \FloatTok{3.07}   \FloatTok{4.07} \FloatTok{17.40}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{3}     \DecValTok{0}
+\DecValTok{3} \FloatTok{21.4}         \DecValTok{4} \FloatTok{121.0} \DecValTok{109}       \FloatTok{4.11}   \FloatTok{2.78} \FloatTok{18.60}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{2}     \DecValTok{1}
+\DecValTok{4} \FloatTok{26.0}         \DecValTok{4} \FloatTok{120.3}  \DecValTok{91}       \FloatTok{4.43}   \FloatTok{2.14} \FloatTok{16.70}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{2}     \DecValTok{1}
+\DecValTok{5} \FloatTok{18.7}         \DecValTok{8} \FloatTok{360.0} \DecValTok{175}       \FloatTok{3.15}   \FloatTok{3.44} \FloatTok{17.02}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{2}     \DecValTok{0}
 \NormalTok{     am\_fac}
-\DecValTok{1}\NormalTok{    manual}
+\DecValTok{1}\NormalTok{ automatic}
 \DecValTok{2}\NormalTok{ automatic}
-\DecValTok{3}\NormalTok{ automatic}
-\DecValTok{4}\NormalTok{ automatic}
-\DecValTok{5}\NormalTok{    manual}
+\DecValTok{3}\NormalTok{    manual}
+\DecValTok{4}\NormalTok{    manual}
+\DecValTok{5}\NormalTok{ automatic}
 \SpecialCharTok{\textgreater{}} 
 \ErrorTok{\textgreater{}} \CommentTok{\# sample 20\% of rows from mtcars}
 \ErrorTok{\textgreater{}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{slice\_sample}\NormalTok{(mtcars, }\AttributeTok{prop =} \FloatTok{0.20}\NormalTok{)}
 \NormalTok{   mpg cylinders  disp  hp axle\_ratio weight  qsec engine am gear carb am\_ch}
-\DecValTok{1} \FloatTok{22.8}         \DecValTok{4} \FloatTok{108.0}  \DecValTok{93}       \FloatTok{3.85}   \FloatTok{2.32} \FloatTok{18.61}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
-\DecValTok{2} \FloatTok{13.3}         \DecValTok{8} \FloatTok{350.0} \DecValTok{245}       \FloatTok{3.73}   \FloatTok{3.84} \FloatTok{15.41}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
-\DecValTok{3} \FloatTok{18.1}         \DecValTok{6} \FloatTok{225.0} \DecValTok{105}       \FloatTok{2.76}   \FloatTok{3.46} \FloatTok{20.22}      \DecValTok{1}  \DecValTok{0}    \DecValTok{3}    \DecValTok{1}     \DecValTok{0}
-\DecValTok{4} \FloatTok{21.0}         \DecValTok{6} \FloatTok{160.0} \DecValTok{110}       \FloatTok{3.90}   \FloatTok{2.62} \FloatTok{16.46}      \DecValTok{0}  \DecValTok{1}    \DecValTok{4}    \DecValTok{4}     \DecValTok{1}
-\DecValTok{5} \FloatTok{15.5}         \DecValTok{8} \FloatTok{318.0} \DecValTok{150}       \FloatTok{2.76}   \FloatTok{3.52} \FloatTok{16.87}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{2}     \DecValTok{0}
-\DecValTok{6} \FloatTok{17.8}         \DecValTok{6} \FloatTok{167.6} \DecValTok{123}       \FloatTok{3.92}   \FloatTok{3.44} \FloatTok{18.90}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{1} \FloatTok{21.4}         \DecValTok{4} \FloatTok{121.0} \DecValTok{109}       \FloatTok{4.11}  \FloatTok{2.780} \FloatTok{18.60}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{2}     \DecValTok{1}
+\DecValTok{2} \FloatTok{33.9}         \DecValTok{4}  \FloatTok{71.1}  \DecValTok{65}       \FloatTok{4.22}  \FloatTok{1.835} \FloatTok{19.90}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
+\DecValTok{3} \FloatTok{19.2}         \DecValTok{6} \FloatTok{167.6} \DecValTok{123}       \FloatTok{3.92}  \FloatTok{3.440} \FloatTok{18.30}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{4} \FloatTok{13.3}         \DecValTok{8} \FloatTok{350.0} \DecValTok{245}       \FloatTok{3.73}  \FloatTok{3.840} \FloatTok{15.41}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{5} \FloatTok{10.4}         \DecValTok{8} \FloatTok{460.0} \DecValTok{215}       \FloatTok{3.00}  \FloatTok{5.424} \FloatTok{17.82}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{6} \FloatTok{32.4}         \DecValTok{4}  \FloatTok{78.7}  \DecValTok{66}       \FloatTok{4.08}  \FloatTok{2.200} \FloatTok{19.47}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
 \NormalTok{     am\_fac}
 \DecValTok{1}\NormalTok{    manual}
-\DecValTok{2}\NormalTok{ automatic}
+\DecValTok{2}\NormalTok{    manual}
 \DecValTok{3}\NormalTok{ automatic}
-\DecValTok{4}\NormalTok{    manual}
+\DecValTok{4}\NormalTok{ automatic}
 \DecValTok{5}\NormalTok{ automatic}
-\DecValTok{6}\NormalTok{ automatic}
+\DecValTok{6}\NormalTok{    manual}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1719,17 +1830,17 @@ The base R functions \texttt{sample()} and \texttt{runif()} can be combined to s
 \SpecialCharTok{\textgreater{}} \CommentTok{\# use i to select rows}
 \ErrorTok{\textgreater{}}\NormalTok{ mtcars[i,]}
 \NormalTok{    mpg cylinders  disp  hp axle\_ratio weight  qsec engine am gear carb am\_ch}
-\DecValTok{27} \FloatTok{26.0}         \DecValTok{4} \FloatTok{120.3}  \DecValTok{91}       \FloatTok{4.43}  \FloatTok{2.140} \FloatTok{16.70}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{2}     \DecValTok{1}
-\DecValTok{30} \FloatTok{19.7}         \DecValTok{6} \FloatTok{145.0} \DecValTok{175}       \FloatTok{3.62}  \FloatTok{2.770} \FloatTok{15.50}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{6}     \DecValTok{1}
-\DecValTok{26} \FloatTok{27.3}         \DecValTok{4}  \FloatTok{79.0}  \DecValTok{66}       \FloatTok{4.08}  \FloatTok{1.935} \FloatTok{18.90}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
-\DecValTok{2}  \FloatTok{21.0}         \DecValTok{6} \FloatTok{160.0} \DecValTok{110}       \FloatTok{3.90}  \FloatTok{2.875} \FloatTok{17.02}      \DecValTok{0}  \DecValTok{1}    \DecValTok{4}    \DecValTok{4}     \DecValTok{1}
-\DecValTok{3}  \FloatTok{22.8}         \DecValTok{4} \FloatTok{108.0}  \DecValTok{93}       \FloatTok{3.85}  \FloatTok{2.320} \FloatTok{18.61}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
-\NormalTok{   am\_fac}
-\DecValTok{27}\NormalTok{ manual}
-\DecValTok{30}\NormalTok{ manual}
-\DecValTok{26}\NormalTok{ manual}
-\DecValTok{2}\NormalTok{  manual}
-\DecValTok{3}\NormalTok{  manual}
+\DecValTok{18} \FloatTok{32.4}         \DecValTok{4}  \FloatTok{78.7}  \DecValTok{66}       \FloatTok{4.08}  \FloatTok{2.200} \FloatTok{19.47}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
+\DecValTok{11} \FloatTok{17.8}         \DecValTok{6} \FloatTok{167.6} \DecValTok{123}       \FloatTok{3.92}  \FloatTok{3.440} \FloatTok{18.90}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{12} \FloatTok{16.4}         \DecValTok{8} \FloatTok{275.8} \DecValTok{180}       \FloatTok{3.07}  \FloatTok{4.070} \FloatTok{17.40}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{3}     \DecValTok{0}
+\DecValTok{7}  \FloatTok{14.3}         \DecValTok{8} \FloatTok{360.0} \DecValTok{245}       \FloatTok{3.21}  \FloatTok{3.570} \FloatTok{15.84}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{17} \FloatTok{14.7}         \DecValTok{8} \FloatTok{440.0} \DecValTok{230}       \FloatTok{3.23}  \FloatTok{5.345} \FloatTok{17.42}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
+\NormalTok{      am\_fac}
+\DecValTok{18}\NormalTok{    manual}
+\DecValTok{11}\NormalTok{ automatic}
+\DecValTok{12}\NormalTok{ automatic}
+\DecValTok{7}\NormalTok{  automatic}
+\DecValTok{17}\NormalTok{ automatic}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1742,23 +1853,17 @@ The base R functions \texttt{sample()} and \texttt{runif()} can be combined to s
 \ErrorTok{\textgreater{}} \CommentTok{\# select rows that correspond to TRUE}
 \ErrorTok{\textgreater{}}\NormalTok{ mtcars[i }\SpecialCharTok{\textless{}} \FloatTok{0.20}\NormalTok{,]}
 \NormalTok{    mpg cylinders  disp  hp axle\_ratio weight  qsec engine am gear carb am\_ch}
-\DecValTok{3}  \FloatTok{22.8}         \DecValTok{4} \FloatTok{108.0}  \DecValTok{93}       \FloatTok{3.85}  \FloatTok{2.320} \FloatTok{18.61}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
-\DecValTok{8}  \FloatTok{24.4}         \DecValTok{4} \FloatTok{146.7}  \DecValTok{62}       \FloatTok{3.69}  \FloatTok{3.190} \FloatTok{20.00}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{2}     \DecValTok{0}
-\DecValTok{16} \FloatTok{10.4}         \DecValTok{8} \FloatTok{460.0} \DecValTok{215}       \FloatTok{3.00}  \FloatTok{5.424} \FloatTok{17.82}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
-\DecValTok{17} \FloatTok{14.7}         \DecValTok{8} \FloatTok{440.0} \DecValTok{230}       \FloatTok{3.23}  \FloatTok{5.345} \FloatTok{17.42}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
-\DecValTok{20} \FloatTok{33.9}         \DecValTok{4}  \FloatTok{71.1}  \DecValTok{65}       \FloatTok{4.22}  \FloatTok{1.835} \FloatTok{19.90}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
-\DecValTok{23} \FloatTok{15.2}         \DecValTok{8} \FloatTok{304.0} \DecValTok{150}       \FloatTok{3.15}  \FloatTok{3.435} \FloatTok{17.30}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{2}     \DecValTok{0}
-\DecValTok{25} \FloatTok{19.2}         \DecValTok{8} \FloatTok{400.0} \DecValTok{175}       \FloatTok{3.08}  \FloatTok{3.845} \FloatTok{17.05}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{2}     \DecValTok{0}
-\DecValTok{32} \FloatTok{21.4}         \DecValTok{4} \FloatTok{121.0} \DecValTok{109}       \FloatTok{4.11}  \FloatTok{2.780} \FloatTok{18.60}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{2}     \DecValTok{1}
+\DecValTok{5}  \FloatTok{18.7}         \DecValTok{8} \FloatTok{360.0} \DecValTok{175}       \FloatTok{3.15}  \FloatTok{3.440} \FloatTok{17.02}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{2}     \DecValTok{0}
+\DecValTok{11} \FloatTok{17.8}         \DecValTok{6} \FloatTok{167.6} \DecValTok{123}       \FloatTok{3.92}  \FloatTok{3.440} \FloatTok{18.90}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{21} \FloatTok{21.5}         \DecValTok{4} \FloatTok{120.1}  \DecValTok{97}       \FloatTok{3.70}  \FloatTok{2.465} \FloatTok{20.01}      \DecValTok{1}  \DecValTok{0}    \DecValTok{3}    \DecValTok{1}     \DecValTok{0}
+\DecValTok{28} \FloatTok{30.4}         \DecValTok{4}  \FloatTok{95.1} \DecValTok{113}       \FloatTok{3.77}  \FloatTok{1.513} \FloatTok{16.90}      \DecValTok{1}  \DecValTok{1}    \DecValTok{5}    \DecValTok{2}     \DecValTok{1}
+\DecValTok{30} \FloatTok{19.7}         \DecValTok{6} \FloatTok{145.0} \DecValTok{175}       \FloatTok{3.62}  \FloatTok{2.770} \FloatTok{15.50}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{6}     \DecValTok{1}
 \NormalTok{      am\_fac}
-\DecValTok{3}\NormalTok{     manual}
-\DecValTok{8}\NormalTok{  automatic}
-\DecValTok{16}\NormalTok{ automatic}
-\DecValTok{17}\NormalTok{ automatic}
-\DecValTok{20}\NormalTok{    manual}
-\DecValTok{23}\NormalTok{ automatic}
-\DecValTok{25}\NormalTok{ automatic}
-\DecValTok{32}\NormalTok{    manual}
+\DecValTok{5}\NormalTok{  automatic}
+\DecValTok{11}\NormalTok{ automatic}
+\DecValTok{21}\NormalTok{ automatic}
+\DecValTok{28}\NormalTok{    manual}
+\DecValTok{30}\NormalTok{    manual}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2167,48 +2272,446 @@ To widen the version of the long data that has one column containing all the val
 \hypertarget{mergejoin}{%
 \section{Merge/Join}\label{mergejoin}}
 
+The merge/join examples below all make use of the following sample data frames:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\# x}
+\ErrorTok{\textgreater{}}\NormalTok{ x}
+\NormalTok{  merge\_var val\_x}
+\DecValTok{1}\NormalTok{         a    }\DecValTok{12}
+\DecValTok{2}\NormalTok{         b    }\DecValTok{94}
+\DecValTok{3}\NormalTok{         c    }\DecValTok{92}
+\SpecialCharTok{\textgreater{}} \CommentTok{\# y}
+\ErrorTok{\textgreater{}}\NormalTok{ y}
+\NormalTok{  merge\_var val\_y}
+\DecValTok{1}\NormalTok{         c    }\DecValTok{78}
+\DecValTok{2}\NormalTok{         d    }\DecValTok{32}
+\DecValTok{3}\NormalTok{         e    }\DecValTok{30}
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{left-join}{%
 \subsection{Left Join}\label{left-join}}
+
+A left join of \emph{x} and \emph{y} keeps all rows of \emph{x} and merges rows of \emph{y} into \emph{x} where possible based on the merge criterion:
+
+\includegraphics[width=17.25in]{images/left_join}
 
 \hypertarget{python-27}{%
 \subsubsection*{Python}\label{python-27}}
 \addcontentsline{toc}{subsubsection}{Python}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}} \ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd}
+\OperatorTok{+}\NormalTok{ pd.merge(x, y, how }\OperatorTok{=} \StringTok{\textquotesingle{}left\textquotesingle{}}\NormalTok{)}
+\NormalTok{  merge\_var  val\_x  val\_y}
+\DecValTok{0}\NormalTok{         a   }\FloatTok{12.0}\NormalTok{    NaN}
+\DecValTok{1}\NormalTok{         b   }\FloatTok{94.0}\NormalTok{    NaN}
+\DecValTok{2}\NormalTok{         c   }\FloatTok{92.0}   \FloatTok{78.0}
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{r-27}{%
 \subsubsection*{R}\label{r-27}}
 \addcontentsline{toc}{subsubsection}{R}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\# all.x = T results in a left join}
+\ErrorTok{\textgreater{}} \FunctionTok{merge}\NormalTok{(x, y, }\AttributeTok{by =} \StringTok{\textquotesingle{}merge\_var\textquotesingle{}}\NormalTok{, }\AttributeTok{all.x =}\NormalTok{ T)}
+\NormalTok{  merge\_var val\_x val\_y}
+\DecValTok{1}\NormalTok{         a    }\DecValTok{12}    \ConstantTok{NA}
+\DecValTok{2}\NormalTok{         b    }\DecValTok{94}    \ConstantTok{NA}
+\DecValTok{3}\NormalTok{         c    }\DecValTok{92}    \DecValTok{78}
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{right-join}{%
 \subsection{Right Join}\label{right-join}}
+
+A right join of \emph{x} and \emph{y} keeps all rows of \emph{y} and merges rows of \emph{x} into \emph{y} where possible based on the merge criterion:
+
+\includegraphics[width=17.25in]{images/right_join}
 
 \hypertarget{python-28}{%
 \subsubsection*{Python}\label{python-28}}
 \addcontentsline{toc}{subsubsection}{Python}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}} \ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd}
+\OperatorTok{+}\NormalTok{ pd.merge(x, y, how }\OperatorTok{=} \StringTok{\textquotesingle{}right\textquotesingle{}}\NormalTok{)}
+\NormalTok{  merge\_var  val\_x  val\_y}
+\DecValTok{0}\NormalTok{         c   }\FloatTok{92.0}   \FloatTok{78.0}
+\DecValTok{1}\NormalTok{         d    NaN   }\FloatTok{32.0}
+\DecValTok{2}\NormalTok{         e    NaN   }\FloatTok{30.0}
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{r-28}{%
 \subsubsection*{R}\label{r-28}}
 \addcontentsline{toc}{subsubsection}{R}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\# all.y = T results in a right join}
+\ErrorTok{\textgreater{}} \FunctionTok{merge}\NormalTok{(x, y, }\AttributeTok{by =} \StringTok{\textquotesingle{}merge\_var\textquotesingle{}}\NormalTok{, }\AttributeTok{all.y =}\NormalTok{ T)}
+\NormalTok{  merge\_var val\_x val\_y}
+\DecValTok{1}\NormalTok{         c    }\DecValTok{92}    \DecValTok{78}
+\DecValTok{2}\NormalTok{         d    }\ConstantTok{NA}    \DecValTok{32}
+\DecValTok{3}\NormalTok{         e    }\ConstantTok{NA}    \DecValTok{30}
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{inner-join}{%
 \subsection{Inner Join}\label{inner-join}}
+
+An inner join of \emph{x} and \emph{y} returns merged rows for which a match can be on the merge criterion \emph{in both tables}:
+
+\includegraphics[width=17.25in]{images/inner_join}
 
 \hypertarget{python-29}{%
 \subsubsection*{Python}\label{python-29}}
 \addcontentsline{toc}{subsubsection}{Python}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}} \ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd}
+\OperatorTok{+}\NormalTok{ pd.merge(x, y, how }\OperatorTok{=} \StringTok{\textquotesingle{}inner\textquotesingle{}}\NormalTok{)}
+\NormalTok{  merge\_var  val\_x  val\_y}
+\DecValTok{0}\NormalTok{         c   }\FloatTok{92.0}   \FloatTok{78.0}
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{r-29}{%
 \subsubsection*{R}\label{r-29}}
 \addcontentsline{toc}{subsubsection}{R}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\# by default, merge() executes an inner join}
+\ErrorTok{\textgreater{}} \CommentTok{\# (more specifically, a natural join, which is a kind of}
+\ErrorTok{\textgreater{}} \CommentTok{\# inner join in which the merge{-}criterion column is not}
+\ErrorTok{\textgreater{}} \CommentTok{\# repeated, despite being initially present in both tables)}
+\ErrorTok{\textgreater{}} \FunctionTok{merge}\NormalTok{(x, y, }\AttributeTok{by =} \StringTok{\textquotesingle{}merge\_var\textquotesingle{}}\NormalTok{)}
+\NormalTok{  merge\_var val\_x val\_y}
+\DecValTok{1}\NormalTok{         c    }\DecValTok{92}    \DecValTok{78}
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{outer-join}{%
 \subsection{Outer Join}\label{outer-join}}
+
+An outer join of \emph{x} and \emph{y} keeps all rows from both tables, merging rows where possible based on the merge criterion:
+
+\includegraphics[width=17.25in]{images/outer_join}
 
 \hypertarget{python-30}{%
 \subsubsection*{Python}\label{python-30}}
 \addcontentsline{toc}{subsubsection}{Python}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}} \ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd}
+\OperatorTok{+}\NormalTok{ pd.merge(x, y, how }\OperatorTok{=} \StringTok{\textquotesingle{}outer\textquotesingle{}}\NormalTok{)}
+\NormalTok{  merge\_var  val\_x  val\_y}
+\DecValTok{0}\NormalTok{         a   }\FloatTok{12.0}\NormalTok{    NaN}
+\DecValTok{1}\NormalTok{         b   }\FloatTok{94.0}\NormalTok{    NaN}
+\DecValTok{2}\NormalTok{         c   }\FloatTok{92.0}   \FloatTok{78.0}
+\DecValTok{3}\NormalTok{         d    NaN   }\FloatTok{32.0}
+\DecValTok{4}\NormalTok{         e    NaN   }\FloatTok{30.0}
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{r-30}{%
 \subsubsection*{R}\label{r-30}}
+\addcontentsline{toc}{subsubsection}{R}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\# all = T (or all.x = T AND all.y = T) results in an outer join}
+\ErrorTok{\textgreater{}} \FunctionTok{merge}\NormalTok{(x, y, }\AttributeTok{by =} \StringTok{\textquotesingle{}merge\_var\textquotesingle{}}\NormalTok{, }\AttributeTok{all =}\NormalTok{ T)}
+\NormalTok{  merge\_var val\_x val\_y}
+\DecValTok{1}\NormalTok{         a    }\DecValTok{12}    \ConstantTok{NA}
+\DecValTok{2}\NormalTok{         b    }\DecValTok{94}    \ConstantTok{NA}
+\DecValTok{3}\NormalTok{         c    }\DecValTok{92}    \DecValTok{78}
+\DecValTok{4}\NormalTok{         d    }\ConstantTok{NA}    \DecValTok{32}
+\DecValTok{5}\NormalTok{         e    }\ConstantTok{NA}    \DecValTok{30}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{aggregation-and-group-operations}{%
+\chapter{Aggregation and Group Operations}\label{aggregation-and-group-operations}}
+
+This chapter looks at manipulating and summarizing data by groups.
+
+\hypertarget{cross-tabulation}{%
+\section{Cross tabulation}\label{cross-tabulation}}
+
+Cross tabulation is the process of determining frequencies per group (or values based on frequencies, like proportions), with groups delineated by one or more variables (e.g., nationality and sex).
+
+The Python and R examples of cross tabulation below both make use of the following dataset, \texttt{dat}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}}\NormalTok{ dat}
+\NormalTok{  nationality sex}
+\DecValTok{1}\NormalTok{    Canadian   m}
+\DecValTok{2}\NormalTok{      French   f}
+\DecValTok{3}\NormalTok{      French   f}
+\DecValTok{4}\NormalTok{    Egyptian   m}
+\DecValTok{5}\NormalTok{    Canadian   f}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{python-31}{%
+\subsubsection*{Python}\label{python-31}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+The \textbf{pandas} package contains a \texttt{crosstab()} function for cross tabulation with two or more variables. The \texttt{groupby()}, also in \textbf{pandas}, facilitates cross tabulation by one or more variables when used in combination with \texttt{count()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}} \ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd}
+\OperatorTok{+}\NormalTok{ pd.crosstab(dat.nationality, dat.sex)}
+\NormalTok{sex          f  m}
+\NormalTok{nationality      }
+\NormalTok{Canadian     }\DecValTok{1}  \DecValTok{1}
+\NormalTok{Egyptian     }\DecValTok{0}  \DecValTok{1}
+\NormalTok{French       }\DecValTok{2}  \DecValTok{0}
+\OperatorTok{\textgreater{}}\NormalTok{ dat.groupby(by }\OperatorTok{=} \StringTok{\textquotesingle{}nationality\textquotesingle{}}\NormalTok{).nationality.count()}
+\NormalTok{nationality}
+\NormalTok{Canadian    }\DecValTok{2}
+\NormalTok{Egyptian    }\DecValTok{1}
+\NormalTok{French      }\DecValTok{2}
+\NormalTok{Name: nationality, dtype: int64}
+\OperatorTok{\textgreater{}}\NormalTok{ dat.groupby(by }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}nationality\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}sex\textquotesingle{}}\NormalTok{]).nationality.count()}
+\OperatorTok{+} \CommentTok{\# Or: dat.groupby(by = [\textquotesingle{}nationality\textquotesingle{}, \textquotesingle{}sex\textquotesingle{}]).sex.count()}
+\NormalTok{nationality  sex}
+\NormalTok{Canadian     f      }\DecValTok{1}
+\NormalTok{             m      }\DecValTok{1}
+\NormalTok{Egyptian     m      }\DecValTok{1}
+\NormalTok{French       f      }\DecValTok{2}
+\NormalTok{Name: nationality, dtype: int64}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{r-31}{%
+\subsubsection*{R}\label{r-31}}
+\addcontentsline{toc}{subsubsection}{R}
+
+The \texttt{table()} function performs cross tabulation in R. A user can enter a single grouping variable or enter multiple grouping variables separated by a comma(s). The \texttt{xtabs()} function also computes cross-tabs; a user enters the variables to be used for grouping in formula notation.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{table}\NormalTok{(dat}\SpecialCharTok{$}\NormalTok{nationality)}
+
+\NormalTok{Canadian Egyptian   French }
+       \DecValTok{2}        \DecValTok{1}        \DecValTok{2} 
+\SpecialCharTok{\textgreater{}} \FunctionTok{table}\NormalTok{(dat}\SpecialCharTok{$}\NormalTok{nationality, dat}\SpecialCharTok{$}\NormalTok{sex)}
+          
+\NormalTok{           f m}
+\NormalTok{  Canadian }\DecValTok{1} \DecValTok{1}
+\NormalTok{  Egyptian }\DecValTok{0} \DecValTok{1}
+\NormalTok{  French   }\DecValTok{2} \DecValTok{0}
+\SpecialCharTok{\textgreater{}} \FunctionTok{xtabs}\NormalTok{(}\AttributeTok{formula =} \SpecialCharTok{\textasciitilde{}}\NormalTok{nationality }\SpecialCharTok{+}\NormalTok{ sex, }\AttributeTok{data =}\NormalTok{ dat)}
+\NormalTok{           sex}
+\NormalTok{nationality f m}
+\NormalTok{   Canadian }\DecValTok{1} \DecValTok{1}
+\NormalTok{   Egyptian }\DecValTok{0} \DecValTok{1}
+\NormalTok{   French   }\DecValTok{2} \DecValTok{0}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{group-summaries}{%
+\section{Group summaries}\label{group-summaries}}
+
+Computing statistical summaries per group.
+
+\hypertarget{python-32}{%
+\subsubsection*{Python}\label{python-32}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\hypertarget{r-32}{%
+\subsubsection*{R}\label{r-32}}
+\addcontentsline{toc}{subsubsection}{R}
+
+The \texttt{aggregate()} function allows a user to easily generate by-group statistical summaries based on one or more grouping variables. Grouping variables can be declared as a list in the function's \texttt{by} argument. Alternatively, the grouping variables (and the variable to be summarized) can be passed to \texttt{aggregate()} in formula notation: \texttt{var\_to\_be\_aggregated\ \textasciitilde{}\ grouping\_var\_1\ +\ ...\ +\ grouping\_var\_N}. The summarizing function (e.g., \texttt{mean()}; \texttt{median()}; etc.) is declared in the \texttt{FUN} argument.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\# One grouping variable}
+\ErrorTok{\textgreater{}} \CommentTok{\# Calculating mean of \textasciigrave{}mpg\textasciigrave{} in each \textasciigrave{}cyl\textasciigrave{} group}
+\ErrorTok{\textgreater{}} \FunctionTok{aggregate}\NormalTok{(}\AttributeTok{x =}\NormalTok{ mtcars}\SpecialCharTok{$}\NormalTok{mpg, }
+\SpecialCharTok{+}           \AttributeTok{by =} \FunctionTok{list}\NormalTok{(}\AttributeTok{cyl =}\NormalTok{ mtcars}\SpecialCharTok{$}\NormalTok{cyl), }
+\SpecialCharTok{+}           \AttributeTok{FUN =} \StringTok{"mean"}\NormalTok{) }
+\NormalTok{  cyl        x}
+\DecValTok{1}   \DecValTok{4} \FloatTok{26.66364}
+\DecValTok{2}   \DecValTok{6} \FloatTok{19.74286}
+\DecValTok{3}   \DecValTok{8} \FloatTok{15.10000}
+\end{Highlighting}
+\end{Shaded}
+
+Adding \texttt{drop=FALSE} ensures all combinations of levels are returned if no data exist at that combination. Below the final row is \texttt{NA} since there are no 8 cylinder cars with a ``straight'' engine (vs = 1).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\# Two or more grouping variables}
+\ErrorTok{\textgreater{}} \CommentTok{\# Calculating max of \textasciigrave{}mpg\textasciigrave{} in each \textasciigrave{}cyl\textasciigrave{}*\textasciigrave{}vs\textasciigrave{} group}
+\ErrorTok{\textgreater{}} \FunctionTok{aggregate}\NormalTok{(}\AttributeTok{x =}\NormalTok{ mtcars}\SpecialCharTok{$}\NormalTok{mpg, }
+\SpecialCharTok{+}           \AttributeTok{by =} \FunctionTok{list}\NormalTok{(}\AttributeTok{cyl =}\NormalTok{ mtcars}\SpecialCharTok{$}\NormalTok{cyl, }\AttributeTok{vs =}\NormalTok{ mtcars}\SpecialCharTok{$}\NormalTok{vs), }
+\SpecialCharTok{+}           \AttributeTok{FUN =} \StringTok{"max"}\NormalTok{, }\AttributeTok{drop =} \ConstantTok{FALSE}\NormalTok{) }
+\NormalTok{  cyl vs    x}
+\DecValTok{1}   \DecValTok{4}  \DecValTok{0} \FloatTok{26.0}
+\DecValTok{2}   \DecValTok{6}  \DecValTok{0} \FloatTok{21.0}
+\DecValTok{3}   \DecValTok{8}  \DecValTok{0} \FloatTok{19.2}
+\DecValTok{4}   \DecValTok{4}  \DecValTok{1} \FloatTok{33.9}
+\DecValTok{5}   \DecValTok{6}  \DecValTok{1} \FloatTok{21.4}
+\DecValTok{6}   \DecValTok{8}  \DecValTok{1}   \ConstantTok{NA}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\# Or, specify the variable to summarize and the grouping variables in formula notation}
+\ErrorTok{\textgreater{}} \FunctionTok{aggregate}\NormalTok{(mpg }\SpecialCharTok{\textasciitilde{}}\NormalTok{ cyl, }\AttributeTok{data =}\NormalTok{ mtcars, }\AttributeTok{FUN =}\NormalTok{ mean)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{aggregate}\NormalTok{(mpg }\SpecialCharTok{\textasciitilde{}}\NormalTok{ cyl }\SpecialCharTok{+}\NormalTok{ vs, }\AttributeTok{data =}\NormalTok{ mtcars, }\AttributeTok{FUN =}\NormalTok{ max)}
+\end{Highlighting}
+\end{Shaded}
+
+The \textbf{tidyverse} also offers a summarizing function, \texttt{summarize()} (or \texttt{summarise()}, for the Britons), which is in the \textbf{dplyr} package. After grouping a data frame/tibble (with, e.g., \textbf{dplyr}'s \texttt{group\_by()} function), a user passes it to \texttt{summarize()}, specifying in the function call how the summary statistic should be calculated.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{library}\NormalTok{(dplyr)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ mtcars }\SpecialCharTok{\%\textgreater{}\%} 
+\SpecialCharTok{+}   \FunctionTok{group\_by}\NormalTok{(cyl, vs) }\SpecialCharTok{\%\textgreater{}\%} 
+\SpecialCharTok{+}   \FunctionTok{summarize}\NormalTok{(}\AttributeTok{avg\_mpg =} \FunctionTok{mean}\NormalTok{(mpg))}
+\StringTok{\textasciigrave{}}\AttributeTok{summarise()}\StringTok{\textasciigrave{}}\NormalTok{ has grouped output by }\StringTok{\textquotesingle{}cyl\textquotesingle{}}\NormalTok{. You can override using the }\StringTok{\textasciigrave{}}\AttributeTok{.groups}\StringTok{\textasciigrave{}}\NormalTok{ argument.}
+\CommentTok{\# A tibble: 5 x 3}
+\CommentTok{\# Groups:   cyl [3]}
+\NormalTok{    cyl    vs avg\_mpg}
+  \SpecialCharTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}} \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}}   \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}}
+\DecValTok{1}     \DecValTok{4}     \DecValTok{0}    \DecValTok{26}  
+\DecValTok{2}     \DecValTok{4}     \DecValTok{1}    \FloatTok{26.7}
+\DecValTok{3}     \DecValTok{6}     \DecValTok{0}    \FloatTok{20.6}
+\DecValTok{4}     \DecValTok{6}     \DecValTok{1}    \FloatTok{19.1}
+\DecValTok{5}     \DecValTok{8}     \DecValTok{0}    \FloatTok{15.1}
+\end{Highlighting}
+\end{Shaded}
+
+A benefit of \texttt{summarize()} is that it allows a user to specify relatively complicated summary calculations without needing to write an external function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}}\NormalTok{ mtcars }\SpecialCharTok{\%\textgreater{}\%} 
+\SpecialCharTok{+}   \FunctionTok{group\_by}\NormalTok{(cyl, vs) }\SpecialCharTok{\%\textgreater{}\%} 
+\SpecialCharTok{+}   \FunctionTok{summarize}\NormalTok{(}\AttributeTok{avg\_mpg =} \FunctionTok{mean}\NormalTok{(mpg),}
+\SpecialCharTok{+}             \AttributeTok{complicated\_summary\_calculation =} 
+\SpecialCharTok{+}               \FunctionTok{min}\NormalTok{(mpg)}\SpecialCharTok{\^{}}\FloatTok{0.5} \SpecialCharTok{*} 
+\SpecialCharTok{+}               \FunctionTok{mean}\NormalTok{(wt)}\SpecialCharTok{\^{}}\FloatTok{0.5} \SpecialCharTok{+} 
+\SpecialCharTok{+}               \FunctionTok{mean}\NormalTok{(disp)}\SpecialCharTok{\^{}}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\FunctionTok{mean}\NormalTok{(hp)))}
+\StringTok{\textasciigrave{}}\AttributeTok{summarise()}\StringTok{\textasciigrave{}}\NormalTok{ has grouped output by }\StringTok{\textquotesingle{}cyl\textquotesingle{}}\NormalTok{. You can override using the }\StringTok{\textasciigrave{}}\AttributeTok{.groups}\StringTok{\textasciigrave{}}\NormalTok{ argument.}
+\CommentTok{\# A tibble: 5 x 4}
+\CommentTok{\# Groups:   cyl [3]}
+\NormalTok{    cyl    vs avg\_mpg complicated\_summary\_calculation}
+  \SpecialCharTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}} \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}}   \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}}                           \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}}
+\DecValTok{1}     \DecValTok{4}     \DecValTok{0}    \DecValTok{26}                              \FloatTok{8.51}
+\DecValTok{2}     \DecValTok{4}     \DecValTok{1}    \FloatTok{26.7}                            \FloatTok{8.07}
+\DecValTok{3}     \DecValTok{6}     \DecValTok{0}    \FloatTok{20.6}                            \FloatTok{8.41}
+\DecValTok{4}     \DecValTok{6}     \DecValTok{1}    \FloatTok{19.1}                            \FloatTok{8.81}
+\DecValTok{5}     \DecValTok{8}     \DecValTok{0}    \FloatTok{15.1}                            \FloatTok{7.48}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{basic-plotting-and-visualization}{%
+\chapter{Basic Plotting and Visualization}\label{basic-plotting-and-visualization}}
+
+This chapter looks at creating basic visualizations to explore and better understand data.
+
+\hypertarget{histograms}{%
+\section{Histograms}\label{histograms}}
+
+Visualizing the distribution of numeric data.
+
+\hypertarget{python-33}{%
+\subsubsection*{Python}\label{python-33}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\hypertarget{r-33}{%
+\subsubsection*{R}\label{r-33}}
+\addcontentsline{toc}{subsubsection}{R}
+
+\hypertarget{scatterplot}{%
+\section{Scatterplot}\label{scatterplot}}
+
+Visualizing the relationship between two numeric variables.
+
+\hypertarget{python-34}{%
+\subsubsection*{Python}\label{python-34}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\hypertarget{r-34}{%
+\subsubsection*{R}\label{r-34}}
+\addcontentsline{toc}{subsubsection}{R}
+
+\hypertarget{statistical-inference-and-modeling}{%
+\chapter{Statistical Inference and Modeling}\label{statistical-inference-and-modeling}}
+
+This chapter looks at performing and interpreting common statistical analyses.
+
+\hypertarget{comparing-group-means}{%
+\section{Comparing group means}\label{comparing-group-means}}
+
+Comparing the means of two or more groups to see if or how they differ. Two means can be analyzed with a t test. Three or more can be analyzed with ANOVA. Both the t test and ANOVA are special cases of a linear model.
+
+\hypertarget{python-35}{%
+\subsubsection*{Python}\label{python-35}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\hypertarget{r-35}{%
+\subsubsection*{R}\label{r-35}}
+\addcontentsline{toc}{subsubsection}{R}
+
+\hypertarget{simple-linear-regression}{%
+\section{Simple linear regression}\label{simple-linear-regression}}
+
+Analyzing if or how the variability a numeric variable depends on another numeric variable.
+
+\hypertarget{python-36}{%
+\subsubsection*{Python}\label{python-36}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\hypertarget{r-36}{%
+\subsubsection*{R}\label{r-36}}
+\addcontentsline{toc}{subsubsection}{R}
+
+\hypertarget{multiple-regression}{%
+\section{Multiple regression}\label{multiple-regression}}
+
+Analyzing if or how the variability a numeric variable depends on multiple numeric variables.
+
+\hypertarget{python-37}{%
+\subsubsection*{Python}\label{python-37}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\hypertarget{r-37}{%
+\subsubsection*{R}\label{r-37}}
+\addcontentsline{toc}{subsubsection}{R}
+
+\hypertarget{logistic-regression}{%
+\section{Logistic regression}\label{logistic-regression}}
+
+Analyzing if or how the variability of a binary variable depends on one or more predictor variables.
+
+\hypertarget{python-38}{%
+\subsubsection*{Python}\label{python-38}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\hypertarget{r-38}{%
+\subsubsection*{R}\label{r-38}}
 \addcontentsline{toc}{subsubsection}{R}
 
   \bibliography{book.bib,packages.bib}
