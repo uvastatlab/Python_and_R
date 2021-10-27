@@ -169,6 +169,7 @@ div.csl-indent {
 <li class="chapter" data-level="1.5" data-path="basics.html"><a href="basics.html#logic"><i class="fa fa-check"></i><b>1.5</b> Logic</a></li>
 <li class="chapter" data-level="1.6" data-path="basics.html"><a href="basics.html#generating-a-sequence-of-values"><i class="fa fa-check"></i><b>1.6</b> Generating a sequence of values</a></li>
 <li class="chapter" data-level="1.7" data-path="basics.html"><a href="basics.html#calculating-means-and-medians"><i class="fa fa-check"></i><b>1.7</b> Calculating means and medians</a></li>
+<li class="chapter" data-level="1.8" data-path="basics.html"><a href="basics.html#writing-your-own-functions"><i class="fa fa-check"></i><b>1.8</b> Writing your own functions</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>2</b> Data Structures</a>
 <ul>
@@ -261,10 +262,10 @@ div.csl-indent {
 <div id="combine-rows" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> Combine rows</h2>
 <p>Combining rows may be thought of as “stacking” rectangular data structures.</p>
-<div id="python-23" class="section level4 unnumbered">
+<div id="python-24" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
-<div id="r-23" class="section level4 unnumbered">
+<div id="r-24" class="section level4 unnumbered">
 <h4>R</h4>
 <p>The <code>rbind()</code> function “binds” rows. It takes two or more objects. To row bind data frames the column names must match, otherwise an error is returned. If columns being stacked have differing variable types, the values will be coerced according to <code>logical</code> &lt; <code>integer</code> &lt; <code>double</code> &lt; <code>complex</code> &lt; <code>character</code>. (E.g., if you stack a set of rows with type <code>logical</code> in column <em>J</em> on a set of rows with type <code>character</code> in column <em>J</em>, the output will have column <em>J</em> as type <code>character</code>.)</p>
 <div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="combine-reshape-and-merge.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">y =</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span>
@@ -283,10 +284,10 @@ div.csl-indent {
 <div id="combine-columns" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> Combine columns</h2>
 <p>Combining columns may be thought of as setting rectangular data structures next to each other.</p>
-<div id="python-24" class="section level4 unnumbered">
+<div id="python-25" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
-<div id="r-24" class="section level4 unnumbered">
+<div id="r-25" class="section level4 unnumbered">
 <h4>R</h4>
 <p>The <code>cbind()</code> function “binds” columns. It takes two or more objects. To column bind data frames, the number of rows must match; otherwise, the object with fewer rows will have rows “recycled” (if possible) or an error will be returned.</p>
 <div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="combine-reshape-and-merge.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">10</span><span class="sc">:</span><span class="dv">13</span>, <span class="at">y =</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>])</span>
@@ -331,10 +332,10 @@ div.csl-indent {
 <p>Shifting between these two data formats is often necessary for implementing certain statistical techniques or representing data with particular visualizations.</p>
 <div id="wide-to-long" class="section level3" number="5.3.1">
 <h3><span class="header-section-number">5.3.1</span> Wide to long</h3>
-<div id="python-25" class="section level4 unnumbered">
+<div id="python-26" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
-<div id="r-25" class="section level4 unnumbered">
+<div id="r-26" class="section level4 unnumbered">
 <h4>R</h4>
 <p>In base R, the <code>reshape()</code> function can take data from wide to long or long to wide. The <strong>tidyverse</strong> also provides reshaping functions: <code>pivot_longer()</code> and <code>pivot_wider()</code>. The <strong>tidyverse</strong> functions have a degree of intuitiveness and usability that may make them the go-to reshaping tools for many R users. We give examples below using both base R and <strong>tidyverse</strong>.</p>
 <p>Say we begin with a wide data frame, <code>df_wide</code>, that looks like this:</p>
@@ -430,10 +431,10 @@ div.csl-indent {
 </div>
 <div id="long-to-wide" class="section level3" number="5.3.2">
 <h3><span class="header-section-number">5.3.2</span> Long to wide</h3>
-<div id="python-26" class="section level4 unnumbered">
+<div id="python-27" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
-<div id="r-26" class="section level4 unnumbered">
+<div id="r-27" class="section level4 unnumbered">
 <h4>R</h4>
 <p>Say we begin with a long data frame, <code>df_long</code>, that looks like this:</p>
 <div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="combine-reshape-and-merge.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> df_long</span>
@@ -550,7 +551,7 @@ div.csl-indent {
 <h3><span class="header-section-number">5.4.1</span> Left Join</h3>
 <p>A left join of <em>x</em> and <em>y</em> keeps all rows of <em>x</em> and merges rows of <em>y</em> into <em>x</em> where possible based on the merge criterion:</p>
 <p><img src="images/left_join.png" width="621" /></p>
-<div id="python-27" class="section level4 unnumbered">
+<div id="python-28" class="section level4 unnumbered">
 <h4>Python</h4>
 <div class="sourceCode" id="cb106"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb106-1"><a href="combine-reshape-and-merge.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb106-2"><a href="combine-reshape-and-merge.html#cb106-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> pd.merge(x, y, how <span class="op">=</span> <span class="st">&#39;left&#39;</span>)</span>
@@ -559,7 +560,7 @@ div.csl-indent {
 <span id="cb106-5"><a href="combine-reshape-and-merge.html#cb106-5" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>         b   <span class="fl">94.0</span>    NaN</span>
 <span id="cb106-6"><a href="combine-reshape-and-merge.html#cb106-6" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>         c   <span class="fl">92.0</span>   <span class="fl">78.0</span></span></code></pre></div>
 </div>
-<div id="r-27" class="section level4 unnumbered">
+<div id="r-28" class="section level4 unnumbered">
 <h4>R</h4>
 <div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="combine-reshape-and-merge.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># all.x = T results in a left join</span></span>
 <span id="cb107-2"><a href="combine-reshape-and-merge.html#cb107-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">merge</span>(x, y, <span class="at">by =</span> <span class="st">&#39;merge_var&#39;</span>, <span class="at">all.x =</span> T)</span>
@@ -573,7 +574,7 @@ div.csl-indent {
 <h3><span class="header-section-number">5.4.2</span> Right Join</h3>
 <p>A right join of <em>x</em> and <em>y</em> keeps all rows of <em>y</em> and merges rows of <em>x</em> into <em>y</em> where possible based on the merge criterion:</p>
 <p><img src="images/right_join.png" width="621" /></p>
-<div id="python-28" class="section level4 unnumbered">
+<div id="python-29" class="section level4 unnumbered">
 <h4>Python</h4>
 <div class="sourceCode" id="cb108"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb108-1"><a href="combine-reshape-and-merge.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb108-2"><a href="combine-reshape-and-merge.html#cb108-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> pd.merge(x, y, how <span class="op">=</span> <span class="st">&#39;right&#39;</span>)</span>
@@ -582,7 +583,7 @@ div.csl-indent {
 <span id="cb108-5"><a href="combine-reshape-and-merge.html#cb108-5" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>         d    NaN   <span class="fl">32.0</span></span>
 <span id="cb108-6"><a href="combine-reshape-and-merge.html#cb108-6" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>         e    NaN   <span class="fl">30.0</span></span></code></pre></div>
 </div>
-<div id="r-28" class="section level4 unnumbered">
+<div id="r-29" class="section level4 unnumbered">
 <h4>R</h4>
 <div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="combine-reshape-and-merge.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># all.y = T results in a right join</span></span>
 <span id="cb109-2"><a href="combine-reshape-and-merge.html#cb109-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">merge</span>(x, y, <span class="at">by =</span> <span class="st">&#39;merge_var&#39;</span>, <span class="at">all.y =</span> T)</span>
@@ -596,14 +597,14 @@ div.csl-indent {
 <h3><span class="header-section-number">5.4.3</span> Inner Join</h3>
 <p>An inner join of <em>x</em> and <em>y</em> returns merged rows for which a match can be on the merge criterion <em>in both tables</em>:</p>
 <p><img src="images/inner_join.png" width="621" /></p>
-<div id="python-29" class="section level4 unnumbered">
+<div id="python-30" class="section level4 unnumbered">
 <h4>Python</h4>
 <div class="sourceCode" id="cb110"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb110-1"><a href="combine-reshape-and-merge.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb110-2"><a href="combine-reshape-and-merge.html#cb110-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> pd.merge(x, y, how <span class="op">=</span> <span class="st">&#39;inner&#39;</span>)</span>
 <span id="cb110-3"><a href="combine-reshape-and-merge.html#cb110-3" aria-hidden="true" tabindex="-1"></a>  merge_var  val_x  val_y</span>
 <span id="cb110-4"><a href="combine-reshape-and-merge.html#cb110-4" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span>         c   <span class="fl">92.0</span>   <span class="fl">78.0</span></span></code></pre></div>
 </div>
-<div id="r-29" class="section level4 unnumbered">
+<div id="r-30" class="section level4 unnumbered">
 <h4>R</h4>
 <div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="combine-reshape-and-merge.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># by default, merge() executes an inner join</span></span>
 <span id="cb111-2"><a href="combine-reshape-and-merge.html#cb111-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># (more specifically, a natural join, which is a kind of</span></span>
@@ -618,7 +619,7 @@ div.csl-indent {
 <h3><span class="header-section-number">5.4.4</span> Outer Join</h3>
 <p>An outer join of <em>x</em> and <em>y</em> keeps all rows from both tables, merging rows where possible based on the merge criterion:</p>
 <p><img src="images/outer_join.png" width="621" /></p>
-<div id="python-30" class="section level4 unnumbered">
+<div id="python-31" class="section level4 unnumbered">
 <h4>Python</h4>
 <div class="sourceCode" id="cb112"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb112-1"><a href="combine-reshape-and-merge.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb112-2"><a href="combine-reshape-and-merge.html#cb112-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> pd.merge(x, y, how <span class="op">=</span> <span class="st">&#39;outer&#39;</span>)</span>
@@ -629,7 +630,7 @@ div.csl-indent {
 <span id="cb112-7"><a href="combine-reshape-and-merge.html#cb112-7" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>         d    NaN   <span class="fl">32.0</span></span>
 <span id="cb112-8"><a href="combine-reshape-and-merge.html#cb112-8" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>         e    NaN   <span class="fl">30.0</span></span></code></pre></div>
 </div>
-<div id="r-30" class="section level4 unnumbered">
+<div id="r-31" class="section level4 unnumbered">
 <h4>R</h4>
 <div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="combine-reshape-and-merge.html#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># all = T (or all.x = T AND all.y = T) results in an outer join</span></span>
 <span id="cb113-2"><a href="combine-reshape-and-merge.html#cb113-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">merge</span>(x, y, <span class="at">by =</span> <span class="st">&#39;merge_var&#39;</span>, <span class="at">all =</span> T)</span>

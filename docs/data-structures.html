@@ -169,6 +169,7 @@ div.csl-indent {
 <li class="chapter" data-level="1.5" data-path="basics.html"><a href="basics.html#logic"><i class="fa fa-check"></i><b>1.5</b> Logic</a></li>
 <li class="chapter" data-level="1.6" data-path="basics.html"><a href="basics.html#generating-a-sequence-of-values"><i class="fa fa-check"></i><b>1.6</b> Generating a sequence of values</a></li>
 <li class="chapter" data-level="1.7" data-path="basics.html"><a href="basics.html#calculating-means-and-medians"><i class="fa fa-check"></i><b>1.7</b> Calculating means and medians</a></li>
+<li class="chapter" data-level="1.8" data-path="basics.html"><a href="basics.html#writing-your-own-functions"><i class="fa fa-check"></i><b>1.8</b> Writing your own functions</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>2</b> Data Structures</a>
 <ul>
@@ -261,10 +262,10 @@ div.csl-indent {
 <div id="one-dimensional-data" class="section level2" number="2.1">
 <h2><span class="header-section-number">2.1</span> One-dimensional data</h2>
 <p>A one-dimensional data structure can be visualized as a column in a spreadsheet or as a list of values.</p>
-<div id="python-7" class="section level4 unnumbered">
+<div id="python-8" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
-<div id="r-7" class="section level4 unnumbered">
+<div id="r-8" class="section level4 unnumbered">
 <h4>R</h4>
 <p>In R a one-dimensional data structure is called a <em>vector</em>. We can create a vector using the <code>c()</code> function. A vector in R can only contain one type of data (all numbers, all strings, etc). The columns of data frames are vectors. If multiple types of data are put into a vector, the data will be coerced according to the hierarchy <code>logical</code> &lt; <code>integer</code> &lt; <code>double</code> &lt; <code>complex</code> &lt; <code>character</code>. This means if you mix, say, integers and character data, all the data will be coerced to character.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="data-structures.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">43</span>, <span class="dv">55</span>)</span>
@@ -288,10 +289,10 @@ div.csl-indent {
 <div id="two-dimensional-data" class="section level2" number="2.2">
 <h2><span class="header-section-number">2.2</span> Two-dimensional data</h2>
 <p>Two-dimensional data are rectangular in nature, consisting of rows and columns. These can be the type of data you might find in a spreadsheet with a mix of data types in columns; they can also be matrices as you might encounter in matrix algebra.</p>
-<div id="python-8" class="section level4 unnumbered">
+<div id="python-9" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
-<div id="r-8" class="section level4 unnumbered">
+<div id="r-9" class="section level4 unnumbered">
 <h4>R</h4>
 <p>Two-dimensional data structures in R include the <em>matrix</em> and <em>data frame</em>. A matrix can contain only one data type. A data frame can contain multiple vectors each of which can consist of different data types.</p>
 <p>Create a matrix with the <code>matrix()</code> function. Create a data frame with the <code>data.frame()</code> function. Most imported data comes into R as a data frame.</p>
@@ -323,10 +324,10 @@ div.csl-indent {
 <div id="three-dimensional-and-higher-data" class="section level2" number="2.3">
 <h2><span class="header-section-number">2.3</span> Three-dimensional and higher data</h2>
 <p>Three-dimensional and higher data can be visualized as multiple rectangular structures stratified by extra variables. These are sometimes referred to as <em>arrays</em>. Analysts usually prefer two-dimensional data frames to arrays. Data frames can accommodate multidimensional data by including the additional dimensions as variables.</p>
-<div id="python-9" class="section level4 unnumbered">
+<div id="python-10" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
-<div id="r-9" class="section level4 unnumbered">
+<div id="r-10" class="section level4 unnumbered">
 <h4>R</h4>
 <p>The <code>array()</code> function in R can create three-dimensional and higher data structures. Specify the dimension number and size using the <code>dim</code> argument. Below we specify 2 rows, 3 columns, and 2 strata using a vector: <code>c(2,3,2)</code>. This creates a three-dimensional data structure. The data are simply the numbers 1 through 12.</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="data-structures.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> a1 <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="at">data =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">dim =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">2</span>))</span>

@@ -6,6 +6,7 @@ packages
 logic
 generating-a-sequence-of-values
 calculating-means-and-medians
+writing-your-own-functions
 data-structures
 one-dimensional-data
 two-dimensional-data

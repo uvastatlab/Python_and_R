@@ -169,6 +169,7 @@ div.csl-indent {
 <li class="chapter" data-level="1.5" data-path="basics.html"><a href="basics.html#logic"><i class="fa fa-check"></i><b>1.5</b> Logic</a></li>
 <li class="chapter" data-level="1.6" data-path="basics.html"><a href="basics.html#generating-a-sequence-of-values"><i class="fa fa-check"></i><b>1.6</b> Generating a sequence of values</a></li>
 <li class="chapter" data-level="1.7" data-path="basics.html"><a href="basics.html#calculating-means-and-medians"><i class="fa fa-check"></i><b>1.7</b> Calculating means and medians</a></li>
+<li class="chapter" data-level="1.8" data-path="basics.html"><a href="basics.html#writing-your-own-functions"><i class="fa fa-check"></i><b>1.8</b> Writing your own functions</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>2</b> Data Structures</a>
 <ul>
@@ -269,7 +270,7 @@ div.csl-indent {
 <span id="cb114-5"><a href="aggregation-and-group-operations.html#cb114-5" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>      French   f</span>
 <span id="cb114-6"><a href="aggregation-and-group-operations.html#cb114-6" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>    Egyptian   m</span>
 <span id="cb114-7"><a href="aggregation-and-group-operations.html#cb114-7" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>    Canadian   f</span></code></pre></div>
-<div id="python-31" class="section level4 unnumbered">
+<div id="python-32" class="section level4 unnumbered">
 <h4>Python</h4>
 <p>The <strong>pandas</strong> package contains a <code>crosstab()</code> function for cross tabulation with two or more variables. The <code>groupby()</code>, also in <strong>pandas</strong>, facilitates cross tabulation by one or more variables when used in combination with <code>count()</code>.</p>
 <div class="sourceCode" id="cb115"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb115-1"><a href="aggregation-and-group-operations.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -294,7 +295,7 @@ div.csl-indent {
 <span id="cb115-20"><a href="aggregation-and-group-operations.html#cb115-20" aria-hidden="true" tabindex="-1"></a>French       f      <span class="dv">2</span></span>
 <span id="cb115-21"><a href="aggregation-and-group-operations.html#cb115-21" aria-hidden="true" tabindex="-1"></a>Name: nationality, dtype: int64</span></code></pre></div>
 </div>
-<div id="r-31" class="section level4 unnumbered">
+<div id="r-32" class="section level4 unnumbered">
 <h4>R</h4>
 <p>The <code>table()</code> function performs cross tabulation in R. A user can enter a single grouping variable or enter multiple grouping variables separated by a comma(s). The <code>xtabs()</code> function also computes cross-tabs; a user enters the variables to be used for grouping in formula notation.</p>
 <div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="aggregation-and-group-operations.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">table</span>(dat<span class="sc">$</span>nationality)</span>
@@ -318,10 +319,10 @@ div.csl-indent {
 <div id="group-summaries" class="section level2" number="6.2">
 <h2><span class="header-section-number">6.2</span> Group summaries</h2>
 <p>Computing statistical summaries per group.</p>
-<div id="python-32" class="section level4 unnumbered">
+<div id="python-33" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
-<div id="r-32" class="section level4 unnumbered">
+<div id="r-33" class="section level4 unnumbered">
 <h4>R</h4>
 <p>The <code>aggregate()</code> function allows a user to easily generate by-group statistical summaries based on one or more grouping variables. Grouping variables can be declared as a list in the function’s <code>by</code> argument. Alternatively, the grouping variables (and the variable to be summarized) can be passed to <code>aggregate()</code> in formula notation: <code>var_to_be_aggregated ~ grouping_var_1 + ... + grouping_var_N</code>. The summarizing function (e.g., <code>mean()</code>; <code>median()</code>; etc.) is declared in the <code>FUN</code> argument.</p>
 <div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="aggregation-and-group-operations.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># One grouping variable</span></span>
@@ -388,10 +389,10 @@ div.csl-indent {
 <h2><span class="header-section-number">6.3</span> Centering and Scaling</h2>
 <p><em>Centering</em> refers to re-scaling a column or vector of values such that their mean is 0. This is sometimes performed to aid interpretation of linear model coefficients.</p>
 <p><em>Scaling</em> refers to re-scaling a column or vector of values such that their mean is 0 and their standard deviation is 1. This is sometimes performed to put multiple variables on the same scale and is often recommended for procedures such as principal components analysis (PCA).</p>
-<div id="python-33" class="section level4 unnumbered">
+<div id="python-34" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
-<div id="r-33" class="section level4 unnumbered">
+<div id="r-34" class="section level4 unnumbered">
 <h4>R</h4>
 
 </div>
