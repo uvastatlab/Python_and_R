@@ -42,7 +42,11 @@ group-summaries
 centering-and-scaling
 basic-plotting-and-visualization
 histograms
+barplots
 scatterplot
+stripcharts
+boxplots
+conditional-or-faceted-plots
 statistical-inference-and-modeling
 comparing-group-means
 simple-linear-regression
