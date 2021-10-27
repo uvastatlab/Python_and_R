@@ -39,6 +39,7 @@ outer-join
 aggregation-and-group-operations
 cross-tabulation
 group-summaries
+centering-and-scaling
 basic-plotting-and-visualization
 histograms
 scatterplot

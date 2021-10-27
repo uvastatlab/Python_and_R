@@ -107,3 +107,13 @@ mtcars %>%
               mean(wt)^0.5 + 
               mean(disp)^(1/mean(hp)))
 ```
+
+## Centering and Scaling
+
+_Centering_ refers to re-scaling a column or vector of values such that their mean is 0. This is sometimes performed to aid interpretation of linear model coefficients. 
+
+_Scaling_ refers to re-scaling a column or vector of values such that their mean is 0 and their standard deviation is 1. This is sometimes performed to put multiple variables on the same scale and is often recommended for procedures such as principal components analysis (PCA).
+
+#### Python {-}
+
+#### R {-}
