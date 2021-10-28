@@ -12,15 +12,42 @@ A one-dimensional data structure can be visualized as a column in a spreadsheet 
 
 #### Python {-}
 
-There are many ways to organize one-dimensional data in Python. Two of the most common one-imensional data structures are lists and numpy arrays. 
+There are many ways to organize one-dimensional data in Python. The of the most common one-dimensional data structures are lists, numpy arrays, and pandas Series. All three are ordered and mutable, and can contain data of different types. 
 
-Lists are
-This is an array 
+Lists in Python do not need to be explicitly declared, they are indicated by the use of square brackets:
 ```{python}
-import numpy as np
-np.array([1,2,3])
+l = [1,2,3,'hello']
 ```
 
+Numpy arrays, on the other hand, need to be declared using the `numpy.array()` function and the `numpy` package needs to be imported. 
+```{python}
+import numpy as np
+arr = np.array([1,2,3,'hello'])
+print(arr)
+```
+
+Pandas Series also need to be declared using the `pandas.Series()` function. Like `numpy`, the `pandas`package must be imported as well. The pandas package is built on numpy, so we can input data into a pandas Series using a numpy array. 
+```{python}
+import pandas as pd 
+import numpy as np
+
+data1 = np.array([1,2,3,"hello"])
+ser1 = pd.Series(data2)
+print(ser1)
+```
+
+We can change the indices of the Series to have values other than the traditional 0, 1, 2, etc. to whatever we like using the `index` attribute within the `Series` function. We can then use our own specified indices to select and index our data.
+
+```{python}
+import pandas as pd 
+import numpy as np
+
+data2 = np.array([1,2,3,"hello"])
+ser2 = pd.Series(data2, index=['a','b','c','d'])
+print(ser2)
+```
+
+One thing to note is that mathematical operations cannot be carried out on lists, but can be carried out on numpy arrays and pandas Series. In general, lists are better for short data sets that you will not be operating on mathematically. Numpy arrays and pandas Series are better for long data sets, and for data sets that will be operated on mathematically. 
 
 #### R {-}
 

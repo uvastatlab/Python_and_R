@@ -224,6 +224,13 @@ x_med <- median(x)
 x_med
 ```
 
+## Writing your own functions
+
+
+#### Python {-}
+
+#### R {-}
+
 <!--chapter:end:01-basics.Rmd-->
 
 # Data Structures 
@@ -240,15 +247,42 @@ A one-dimensional data structure can be visualized as a column in a spreadsheet 
 
 #### Python {-}
 
-There are many ways to organize one-dimensional data in Python. Two of the most common one-imensional data structures are lists and numpy arrays. 
+There are many ways to organize one-dimensional data in Python. The of the most common one-dimensional data structures are lists, numpy arrays, and pandas Series. All three are ordered and mutable, and can contain data of different types. 
 
-Lists are
-This is an array 
+Lists in Python do not need to be explicitly declared, they are indicated by the use of square brackets:
 ```{python}
-import numpy as np
-np.array([1,2,3])
+l = [1,2,3,'hello']
 ```
 
+Numpy arrays, on the other hand, need to be declared using the `numpy.array()` function and the `numpy` package needs to be imported. 
+```{python}
+import numpy as np
+arr = np.array([1,2,3,'hello'])
+print(arr)
+```
+
+Pandas Series also need to be declared using the `pandas.Series()` function. Like `numpy`, the `pandas`package must be imported as well. The pandas package is built on numpy, so we can input data into a pandas Series using a numpy array. 
+```{python}
+import pandas as pd 
+import numpy as np
+
+data1 = np.array([1,2,3,"hello"])
+ser1 = pd.Series(data2)
+print(ser1)
+```
+
+We can change the indices of the Series to have values other than the traditional 0, 1, 2, etc. to whatever we like using the `index` attribute within the `Series` function. We can then use our own specified indices to select and index our data.
+
+```{python}
+import pandas as pd 
+import numpy as np
+
+data2 = np.array([1,2,3,"hello"])
+ser2 = pd.Series(data2, index=['a','b','c','d'])
+print(ser2)
+```
+
+One thing to note is that mathematical operations cannot be carried out on lists, but can be carried out on numpy arrays and pandas Series. In general, lists are better for short data sets that you will not be operating on mathematically. Numpy arrays and pandas Series are better for long data sets, and for data sets that will be operated on mathematically. 
 
 #### R {-}
 
@@ -352,6 +386,7 @@ The `as.data.frame.table()` function can collapse an array into a two-dimensiona
 as.data.frame.table(a1, responseName = "value")
 ```
 
+
 <!--chapter:end:02-data-structures.Rmd-->
 
 # Importing Data 
@@ -370,7 +405,7 @@ Comma separated value (CSV) files are text files with fields separated by commas
 
 #### Python {-}
 
-
+The **pandas** function `read_csv()` is a common approach to importing CSV files into Python.
 
 ```{python}
 import pandas as pd
@@ -400,7 +435,7 @@ Excel files are native to Microsoft Excel. Prior to 2007, Excel files had an ext
 
 #### Python {-}
 
-
+The **pandas** function `read_excel()` is a common approach to importing Excel files into Python. The `sheet_name` argument allows you to specify which sheet you want to import. You can specify sheet by its (zero-indexed) ordering or by its name. Since this Excel file only has one sheet we do not need to use the argument. In addition, specifying `sheet_name=None` will read in all sheets and return a dict data structure where the _key_ is the sheet name and the _value_ is a DataFrame.
 
 ```{python, eval = F}
 import pandas as pd  
@@ -432,6 +467,12 @@ JSON (**J**ava**S**cript **O**bject **N**otation) is a flexible format for stori
 
 #### Python {-}
 
+Below is one approach to importing our "ny_math_test.json" example file. We first import Python's built-in **json** package and use its `loads()` function to read in the lines of the json file. The file is accessed using the `open` function and its associated `read` method. 
+
+Next we use the **pandas** function `json_normalize()` to convert the 'data' structure of the json data into a DataFrame.
+
+Finally we add column names to the DataFrame.
+
 ```{python}
 import json
 # load data using Python JSON module
@@ -450,6 +491,7 @@ d_json.columns = names
 d_json.loc[0:2, ["Grade", "Year", "Mean Scale Score"]]  
 ```
 
+Again, this is just one approach that assumes we want a DataFrame. 
 
 #### R {-}
 
@@ -782,7 +824,12 @@ mtcars$kpl <- NULL
 You may have data that is numeric but that needs to be treated as a string. 
 
 #### Python {-}
+You can change the data type of a column in a DataFrame using the `astype` function.
 
+```{python}
+mtcars['am'] = mtcars['am'].astype(str)
+type(mtcars.am[0]) # check the type of the first item in 'am' column
+```
 
 #### R {-}
 
@@ -830,7 +877,38 @@ String variables that ought to be numbers usually have some character data in th
 
 
 #### Python {-}
+The `astype(float)` or `astype(int)` function will coerce strings to numerical representation.
 
+For demonstration, let's say we have the following numpy array.
+
+```{python}
+import numpy as np
+weight = np.array(["125 lbs.", "132 lbs.", "156 lbs."])
+```
+
+The `astype(float)` function throws an error due to the presence of strings. The `astype()` function is for numpy arrays.
+
+```{python}
+try:
+  weight.astype(float)
+except ValueError:
+  print("ValueError: could not convert string to float: '125 lbs.'")
+```
+
+One way to approach this is to first remove the strings from the objects and then use `astype(float)`. Below we use the `strip()` function to find " lbs." using a list comprehension.
+
+
+```{python}
+# [] indicates a list in python
+# np.array() changes the list back into an array
+weight = np.array([w.strip(" lbs.") for w in weight])
+```
+
+Now we can use the `astype()` function to change the elements in weight from `str` to `float`.
+
+```{python}
+weight.astype(float)
+```
 
 #### R {-}
 
@@ -1357,12 +1435,31 @@ Computing statistical summaries per group.
 
 The `aggregate()` function allows a user to easily generate by-group statistical summaries based on one or more grouping variables. Grouping variables can be declared as a list in the function's `by` argument. Alternatively, the grouping variables (and the variable to be summarized) can be passed to `aggregate()` in formula notation: `var_to_be_aggregated ~ grouping_var_1 + ... + grouping_var_N`. The summarizing function (e.g., `mean()`; `median()`; etc.) is declared in the `FUN` argument.
 
-```{r}
-# One grouping variable
-aggregate(x = mtcars$mpg, by = list(mtcars$cyl), FUN = mean) # Calculating mean of `mpg` in each `cyl` group
-# Two or more grouping variables
-aggregate(x = mtcars$mpg, by = list(mtcars$cyl, mtcars$vs), FUN = max) # Calculating max of `mpg` in each `cyl`*`vs` group
+```{r echo=FALSE}
+rm(mtcars)
+data("mtcars")
 ```
+
+
+```{r agg1}
+# One grouping variable
+# Calculating mean of `mpg` in each `cyl` group
+aggregate(x = mtcars$mpg, 
+          by = list(cyl = mtcars$cyl), 
+          FUN = "mean") 
+```
+
+Adding `drop=FALSE` ensures all combinations of levels are returned if no data exist at that combination. Below the final row is `NA` since there are no 8 cylinder cars with a "straight" engine (vs = 1).
+
+```{r agg2}
+# Two or more grouping variables
+# Calculating max of `mpg` in each `cyl`*`vs` group
+aggregate(x = mtcars$mpg, 
+          by = list(cyl = mtcars$cyl, vs = mtcars$vs), 
+          FUN = "max", drop = FALSE) 
+```
+
+
 ```{r, eval = F}
 # Or, specify the variable to summarize and the grouping variables in formula notation
 aggregate(mpg ~ cyl, data = mtcars, FUN = mean)
@@ -1373,12 +1470,32 @@ The **tidyverse** also offers a summarizing function, `summarize()` (or `summari
 
 ```{r}
 library(dplyr)
-mtcars %>% group_by(cyl, vs) %>% summarize(avg_mpg = mean(mpg))
-# A benefit of `summarize()` is that it allows a user to specify relatively complicated
-# summary calculations without needing to write an external function
-mtcars %>% group_by(cyl, vs) %>% summarize(avg_mpg = mean(mpg),
-                                           complicated_summary_calculation = min(mpg)^0.5 * mean(wt)^0.5 + mean(disp)^(1/mean(hp)))
+mtcars %>% 
+  group_by(cyl, vs) %>% 
+  summarize(avg_mpg = mean(mpg))
 ```
+
+A benefit of `summarize()` is that it allows a user to specify relatively complicated summary calculations without needing to write an external function.
+
+```{r}
+mtcars %>% 
+  group_by(cyl, vs) %>% 
+  summarize(avg_mpg = mean(mpg),
+            complicated_summary_calculation = 
+              min(mpg)^0.5 * 
+              mean(wt)^0.5 + 
+              mean(disp)^(1/mean(hp)))
+```
+
+## Centering and Scaling
+
+_Centering_ refers to re-scaling a column or vector of values such that their mean is 0. This is sometimes performed to aid interpretation of linear model coefficients. 
+
+_Scaling_ refers to re-scaling a column or vector of values such that their mean is 0 and their standard deviation is 1. This is sometimes performed to put multiple variables on the same scale and is often recommended for procedures such as principal components analysis (PCA).
+
+#### Python {-}
+
+#### R {-}
 
 <!--chapter:end:06-aggregation-and_group_operations.Rmd-->
 
@@ -1388,11 +1505,20 @@ mtcars %>% group_by(cyl, vs) %>% summarize(avg_mpg = mean(mpg),
 knitr::opts_chunk$set(comment = NA, prompt = TRUE, collapse = TRUE)
 ```
 
-This chapter looks at creating basic visualizations to explore and better understand data.
+This chapter looks at creating basic plots to explore and better understand data. Visualization in Python and R is a gigantic and evolving topic. We don't pretend to present a comprehensive comparison. 
 
 ## Histograms
 
 Visualizing the distribution of numeric data.
+
+#### Python {-}
+
+
+#### R {-}
+
+## Barplots
+
+Visualizing the distribution of categorical data.
 
 #### Python {-}
 
@@ -1408,6 +1534,31 @@ Visualizing the relationship between two numeric variables.
 
 
 #### R {-}
+
+
+## Stripcharts
+
+Visualizing the relationship between a numeric variable and a categorical variable.
+
+#### Python {-}
+
+
+#### R {-}
+
+
+## Boxplots
+
+Visualizing the relationship between a numeric variable and a categorical variable via 5 number summaries.
+
+#### Python {-}
+
+
+#### R {-}
+
+
+## Conditional or Faceted plots
+
+Two or more plots of subsets of data. 
 
 
 <!--chapter:end:07-basic-plotting-and-visualization.Rmd-->
