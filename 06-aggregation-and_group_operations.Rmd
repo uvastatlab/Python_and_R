@@ -56,12 +56,31 @@ Computing statistical summaries per group.
 
 The `aggregate()` function allows a user to easily generate by-group statistical summaries based on one or more grouping variables. Grouping variables can be declared as a list in the function's `by` argument. Alternatively, the grouping variables (and the variable to be summarized) can be passed to `aggregate()` in formula notation: `var_to_be_aggregated ~ grouping_var_1 + ... + grouping_var_N`. The summarizing function (e.g., `mean()`; `median()`; etc.) is declared in the `FUN` argument.
 
-```{r}
-# One grouping variable
-aggregate(x = mtcars$mpg, by = list(mtcars$cyl), FUN = mean) # Calculating mean of `mpg` in each `cyl` group
-# Two or more grouping variables
-aggregate(x = mtcars$mpg, by = list(mtcars$cyl, mtcars$vs), FUN = max) # Calculating max of `mpg` in each `cyl`*`vs` group
+```{r echo=FALSE}
+rm(mtcars)
+data("mtcars")
 ```
+
+
+```{r agg1}
+# One grouping variable
+# Calculating mean of `mpg` in each `cyl` group
+aggregate(x = mtcars$mpg, 
+          by = list(cyl = mtcars$cyl), 
+          FUN = "mean") 
+```
+
+Adding `drop=FALSE` ensures all combinations of levels are returned if no data exist at that combination. Below the final row is `NA` since there are no 8 cylinder cars with a "straight" engine (vs = 1).
+
+```{r agg2}
+# Two or more grouping variables
+# Calculating max of `mpg` in each `cyl`*`vs` group
+aggregate(x = mtcars$mpg, 
+          by = list(cyl = mtcars$cyl, vs = mtcars$vs), 
+          FUN = "max", drop = FALSE) 
+```
+
+
 ```{r, eval = F}
 # Or, specify the variable to summarize and the grouping variables in formula notation
 aggregate(mpg ~ cyl, data = mtcars, FUN = mean)
@@ -72,9 +91,29 @@ The **tidyverse** also offers a summarizing function, `summarize()` (or `summari
 
 ```{r}
 library(dplyr)
-mtcars %>% group_by(cyl, vs) %>% summarize(avg_mpg = mean(mpg))
-# A benefit of `summarize()` is that it allows a user to specify relatively complicated
-# summary calculations without needing to write an external function
-mtcars %>% group_by(cyl, vs) %>% summarize(avg_mpg = mean(mpg),
-                                           complicated_summary_calculation = min(mpg)^0.5 * mean(wt)^0.5 + mean(disp)^(1/mean(hp)))
+mtcars %>% 
+  group_by(cyl, vs) %>% 
+  summarize(avg_mpg = mean(mpg))
 ```
+
+A benefit of `summarize()` is that it allows a user to specify relatively complicated summary calculations without needing to write an external function.
+
+```{r}
+mtcars %>% 
+  group_by(cyl, vs) %>% 
+  summarize(avg_mpg = mean(mpg),
+            complicated_summary_calculation = 
+              min(mpg)^0.5 * 
+              mean(wt)^0.5 + 
+              mean(disp)^(1/mean(hp)))
+```
+
+## Centering and Scaling
+
+_Centering_ refers to re-scaling a column or vector of values such that their mean is 0. This is sometimes performed to aid interpretation of linear model coefficients. 
+
+_Scaling_ refers to re-scaling a column or vector of values such that their mean is 0 and their standard deviation is 1. This is sometimes performed to put multiple variables on the same scale and is often recommended for procedures such as principal components analysis (PCA).
+
+#### Python {-}
+
+#### R {-}

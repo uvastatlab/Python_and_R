@@ -275,7 +275,12 @@ mtcars$kpl <- NULL
 You may have data that is numeric but that needs to be treated as a string. 
 
 #### Python {-}
+You can change the data type of a column in a DataFrame using the `astype` function.
 
+```{python}
+mtcars['am'] = mtcars['am'].astype(str)
+type(mtcars.am[0]) # check the type of the first item in 'am' column
+```
 
 #### R {-}
 
@@ -323,7 +328,38 @@ String variables that ought to be numbers usually have some character data in th
 
 
 #### Python {-}
+The `astype(float)` or `astype(int)` function will coerce strings to numerical representation.
 
+For demonstration, let's say we have the following numpy array.
+
+```{python}
+import numpy as np
+weight = np.array(["125 lbs.", "132 lbs.", "156 lbs."])
+```
+
+The `astype(float)` function throws an error due to the presence of strings. The `astype()` function is for numpy arrays.
+
+```{python}
+try:
+  weight.astype(float)
+except ValueError:
+  print("ValueError: could not convert string to float: '125 lbs.'")
+```
+
+One way to approach this is to first remove the strings from the objects and then use `astype(float)`. Below we use the `strip()` function to find " lbs." using a list comprehension.
+
+
+```{python}
+# [] indicates a list in python
+# np.array() changes the list back into an array
+weight = np.array([w.strip(" lbs.") for w in weight])
+```
+
+Now we can use the `astype()` function to change the elements in weight from `str` to `float`.
+
+```{python}
+weight.astype(float)
+```
 
 #### R {-}
 

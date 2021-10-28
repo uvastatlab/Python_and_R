@@ -123,3 +123,4 @@ The `as.data.frame.table()` function can collapse an array into a two-dimensiona
 ```{r}
 as.data.frame.table(a1, responseName = "value")
 ```
+

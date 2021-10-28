@@ -187,3 +187,10 @@ x <- c(98, 102, 20, 22, 304)
 x_med <- median(x)
 x_med
 ```
+
+## Writing your own functions
+
+
+#### Python {-}
+
+#### R {-}

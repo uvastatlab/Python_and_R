@@ -24,7 +24,7 @@
 <meta name="author" content="Clay Ford, Jacob Goldstein-Greenwood, Oyinkansola Adenekan, Samantha Lomuscio" />
 
 
-<meta name="date" content="2021-10-20" />
+<meta name="date" content="2021-10-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -169,6 +169,7 @@ div.csl-indent {
 <li class="chapter" data-level="1.5" data-path="basics.html"><a href="basics.html#logic"><i class="fa fa-check"></i><b>1.5</b> Logic</a></li>
 <li class="chapter" data-level="1.6" data-path="basics.html"><a href="basics.html#generating-a-sequence-of-values"><i class="fa fa-check"></i><b>1.6</b> Generating a sequence of values</a></li>
 <li class="chapter" data-level="1.7" data-path="basics.html"><a href="basics.html#calculating-means-and-medians"><i class="fa fa-check"></i><b>1.7</b> Calculating means and medians</a></li>
+<li class="chapter" data-level="1.8" data-path="basics.html"><a href="basics.html#writing-your-own-functions"><i class="fa fa-check"></i><b>1.8</b> Writing your own functions</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>2</b> Data Structures</a>
 <ul>
@@ -216,11 +217,16 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="6.1" data-path="aggregation-and-group-operations.html"><a href="aggregation-and-group-operations.html#cross-tabulation"><i class="fa fa-check"></i><b>6.1</b> Cross tabulation</a></li>
 <li class="chapter" data-level="6.2" data-path="aggregation-and-group-operations.html"><a href="aggregation-and-group-operations.html#group-summaries"><i class="fa fa-check"></i><b>6.2</b> Group summaries</a></li>
+<li class="chapter" data-level="6.3" data-path="aggregation-and-group-operations.html"><a href="aggregation-and-group-operations.html#centering-and-scaling"><i class="fa fa-check"></i><b>6.3</b> Centering and Scaling</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="basic-plotting-and-visualization.html"><a href="basic-plotting-and-visualization.html"><i class="fa fa-check"></i><b>7</b> Basic Plotting and Visualization</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="basic-plotting-and-visualization.html"><a href="basic-plotting-and-visualization.html#histograms"><i class="fa fa-check"></i><b>7.1</b> Histograms</a></li>
-<li class="chapter" data-level="7.2" data-path="basic-plotting-and-visualization.html"><a href="basic-plotting-and-visualization.html#scatterplot"><i class="fa fa-check"></i><b>7.2</b> Scatterplot</a></li>
+<li class="chapter" data-level="7.2" data-path="basic-plotting-and-visualization.html"><a href="basic-plotting-and-visualization.html#barplots"><i class="fa fa-check"></i><b>7.2</b> Barplots</a></li>
+<li class="chapter" data-level="7.3" data-path="basic-plotting-and-visualization.html"><a href="basic-plotting-and-visualization.html#scatterplot"><i class="fa fa-check"></i><b>7.3</b> Scatterplot</a></li>
+<li class="chapter" data-level="7.4" data-path="basic-plotting-and-visualization.html"><a href="basic-plotting-and-visualization.html#stripcharts"><i class="fa fa-check"></i><b>7.4</b> Stripcharts</a></li>
+<li class="chapter" data-level="7.5" data-path="basic-plotting-and-visualization.html"><a href="basic-plotting-and-visualization.html#boxplots"><i class="fa fa-check"></i><b>7.5</b> Boxplots</a></li>
+<li class="chapter" data-level="7.6" data-path="basic-plotting-and-visualization.html"><a href="basic-plotting-and-visualization.html#conditional-or-faceted-plots"><i class="fa fa-check"></i><b>7.6</b> Conditional or Faceted plots</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="statistical-inference-and-modeling.html"><a href="statistical-inference-and-modeling.html"><i class="fa fa-check"></i><b>8</b> Statistical Inference and Modeling</a>
 <ul>
@@ -257,8 +263,9 @@ div.csl-indent {
 <div id="csv" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> CSV</h2>
 <p>Comma separated value (CSV) files are text files with fields separated by commas. They are useful for “rectangular” data where rows represent observations and columns represent variables or features.</p>
-<div id="python-10" class="section level4 unnumbered">
+<div id="python-11" class="section level4 unnumbered">
 <h4>Python</h4>
+<p>The <strong>pandas</strong> function <code>read_csv()</code> is a common approach to importing CSV files into Python.</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="importing-data.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb23-2"><a href="importing-data.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> d <span class="op">=</span> pd.read_csv(<span class="st">&#39;data/ny_math_test.csv&#39;</span>)</span>
 <span id="cb23-3"><a href="importing-data.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> d.loc[<span class="dv">0</span>:<span class="dv">2</span>, [<span class="st">&quot;Grade&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Mean Scale Score&quot;</span>]]</span>
@@ -267,7 +274,7 @@ div.csl-indent {
 <span id="cb23-6"><a href="importing-data.html#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>     <span class="dv">4</span>  <span class="dv">2006</span>               <span class="dv">699</span></span>
 <span id="cb23-7"><a href="importing-data.html#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>     <span class="dv">5</span>  <span class="dv">2006</span>               <span class="dv">691</span></span></code></pre></div>
 </div>
-<div id="r-10" class="section level4 unnumbered">
+<div id="r-11" class="section level4 unnumbered">
 <h4>R</h4>
 <p>There are many ways to import a csv file. A common way is to use the base R function <code>read.csv()</code>.</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="importing-data.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/ny_math_test.csv&quot;</span>)</span>
@@ -283,14 +290,15 @@ div.csl-indent {
 <div id="xlsxlsx-excel" class="section level2" number="3.2">
 <h2><span class="header-section-number">3.2</span> XLS/XLSX (Excel)</h2>
 <p>Excel files are native to Microsoft Excel. Prior to 2007, Excel files had an extension of XLS. With the launch of Excel 2007, the extension was changed to XLSX. Excel files can have multiple sheets of data. This needs to be accounted for when importing into Python and R.</p>
-<div id="python-11" class="section level4 unnumbered">
+<div id="python-12" class="section level4 unnumbered">
 <h4>Python</h4>
+<p>The <strong>pandas</strong> function <code>read_excel()</code> is a common approach to importing Excel files into Python. The <code>sheet_name</code> argument allows you to specify which sheet you want to import. You can specify sheet by its (zero-indexed) ordering or by its name. Since this Excel file only has one sheet we do not need to use the argument. In addition, specifying <code>sheet_name=None</code> will read in all sheets and return a dict data structure where the <em>key</em> is the sheet name and the <em>value</em> is a DataFrame.</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="importing-data.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> pandas <span class="im">as</span> pd  </span>
 <span id="cb25-2"><a href="importing-data.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> d <span class="op">=</span> pd.read_excel(<span class="st">&#39;data/ny_math_test.xlsx&#39;</span>)  </span>
 <span id="cb25-3"><a href="importing-data.html#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> d.loc[<span class="dv">0</span>:<span class="dv">2</span>, [<span class="st">&quot;Grade&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Mean Scale Score&quot;</span>]]  </span>
 <span id="cb25-4"><a href="importing-data.html#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> </span></code></pre></div>
 </div>
-<div id="r-11" class="section level4 unnumbered">
+<div id="r-12" class="section level4 unnumbered">
 <h4>R</h4>
 <p><strong>readxl</strong> is a well-documented and actively maintained package for importing Excel files into R. The workhorse function is <code>read_excel()</code>. The <code>sheet</code> argument allows you to specify which sheet you want to import. You can specify sheet by its ordering or by its name. Since this Excel file only has one sheet we do not need to use the argument.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="importing-data.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(readxl)</span>
@@ -309,8 +317,11 @@ div.csl-indent {
 <div id="json" class="section level2" number="3.3">
 <h2><span class="header-section-number">3.3</span> JSON</h2>
 <p>JSON (<strong>J</strong>ava<strong>S</strong>cript <strong>O</strong>bject <strong>N</strong>otation) is a flexible format for storing data. JSON files are text and can be viewed in any text editor. Because of their flexibility JSON files can be quite complex in the way they store data. Therefore there is no one-size-fits-all method for importing JSON files into Python or R.</p>
-<div id="python-12" class="section level4 unnumbered">
+<div id="python-13" class="section level4 unnumbered">
 <h4>Python</h4>
+<p>Below is one approach to importing our “ny_math_test.json” example file. We first import Python’s built-in <strong>json</strong> package and use its <code>loads()</code> function to read in the lines of the json file. The file is accessed using the <code>open</code> function and its associated <code>read</code> method.</p>
+<p>Next we use the <strong>pandas</strong> function <code>json_normalize()</code> to convert the ‘data’ structure of the json data into a DataFrame.</p>
+<p>Finally we add column names to the DataFrame.</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="importing-data.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> json</span>
 <span id="cb27-2"><a href="importing-data.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> <span class="co"># load data using Python JSON module</span></span>
 <span id="cb27-3"><a href="importing-data.html#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> <span class="cf">with</span> <span class="bu">open</span>(<span class="st">&#39;data/ny_math_test.json&#39;</span>,<span class="st">&#39;r&#39;</span>) <span class="im">as</span> f:</span>
@@ -330,8 +341,9 @@ div.csl-indent {
 <span id="cb27-17"><a href="importing-data.html#cb27-17" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span>     <span class="dv">3</span>  <span class="dv">2006</span>              <span class="dv">700</span></span>
 <span id="cb27-18"><a href="importing-data.html#cb27-18" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>     <span class="dv">4</span>  <span class="dv">2006</span>              <span class="dv">699</span></span>
 <span id="cb27-19"><a href="importing-data.html#cb27-19" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>     <span class="dv">5</span>  <span class="dv">2006</span>              <span class="dv">691</span></span></code></pre></div>
+<p>Again, this is just one approach that assumes we want a DataFrame.</p>
 </div>
-<div id="r-12" class="section level4 unnumbered">
+<div id="r-13" class="section level4 unnumbered">
 <h4>R</h4>
 <p><strong>jsonlite</strong> is one of several R packages available for importing JSON files into R. The <code>read_json()</code> function takes a JSON file and returns a list or data frame depending on the structure of the data file and its arguments. We set <code>simplifyVector = TRUE</code> so the data is simplified into a matrix.</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="importing-data.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(jsonlite)</span>
@@ -349,7 +361,7 @@ div.csl-indent {
 <div id="xml" class="section level2" number="3.4">
 <h2><span class="header-section-number">3.4</span> XML</h2>
 <p>XML (e<strong>X</strong>tensible <strong>M</strong>arkup <strong>L</strong>anguage) is a markup language that was designed to store data. XML files are text and can be viewed in any text editor or a web browser. Because of their flexibility XML files can be quite complex in the way they store data. Therefore there is no one-size-fits-all for importing XML files into Python or R.</p>
-<div id="python-13" class="section level4 unnumbered">
+<div id="python-14" class="section level4 unnumbered">
 <h4>Python</h4>
 <p>The <strong>pandas</strong> library provides the <code>read_xml</code> function for importing XML files. The <code>ny_math_test.xml</code> file identifies records with nodes named “row.” The 168 rows are nested in one node also called “row.” Therefore we use the <code>xpath</code> argument to specify that we want to elect all row elements that are descendant of the single row element.</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="importing-data.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -361,7 +373,7 @@ div.csl-indent {
 <span id="cb30-7"><a href="importing-data.html#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>     <span class="dv">4</span>  <span class="dv">2006</span>               <span class="dv">699</span></span>
 <span id="cb30-8"><a href="importing-data.html#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>     <span class="dv">5</span>  <span class="dv">2006</span>               <span class="dv">691</span></span></code></pre></div>
 </div>
-<div id="r-13" class="section level4 unnumbered">
+<div id="r-14" class="section level4 unnumbered">
 <h4>R</h4>
 <p><strong>xml2</strong> is a relatively small but powerful package for importing and working with XML files. The <code>read_xml()</code> function imports an XML file and returns a list of <em>pointers</em> to XML <em>nodes</em>. There are a number of ways to proceed once you import an XML file, such as using the <code>xml_find_all()</code> function to find nodes that match an <a href="https://www.w3schools.com/xml/xpath_intro.asp">xpath</a> expression. Below we take a simple approach and convert the XML nodes into a list using the <code>as_list()</code> function that is part of the <strong>xml2</strong> package. Once we have the XML nodes in a list, we can use the <code>bind_rows()</code> function in the <strong>dplyr</strong> package to create a data frame. Notice we have to drill down into the list to select the element that contains the data. After this we need to do one more thing: <em>unlist</em> each the columns into vectors. We do this by applying the <code>unlist</code> function to each column of <code>d</code>. We save the result by assigning to <code>d[]</code>, which overwrites each element (or column) of <code>d</code> with the unlisted result.</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="importing-data.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(xml2)</span>

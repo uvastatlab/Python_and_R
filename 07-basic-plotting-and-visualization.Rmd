@@ -4,11 +4,20 @@
 knitr::opts_chunk$set(comment = NA, prompt = TRUE, collapse = TRUE)
 ```
 
-This chapter looks at creating basic visualizations to explore and better understand data.
+This chapter looks at creating basic plots to explore and better understand data. Visualization in Python and R is a gigantic and evolving topic. We don't pretend to present a comprehensive comparison. 
 
 ## Histograms
 
 Visualizing the distribution of numeric data.
+
+#### Python {-}
+
+
+#### R {-}
+
+## Barplots
+
+Visualizing the distribution of categorical data.
 
 #### Python {-}
 
@@ -24,4 +33,29 @@ Visualizing the relationship between two numeric variables.
 
 
 #### R {-}
+
+
+## Stripcharts
+
+Visualizing the relationship between a numeric variable and a categorical variable.
+
+#### Python {-}
+
+
+#### R {-}
+
+
+## Boxplots
+
+Visualizing the relationship between a numeric variable and a categorical variable via 5 number summaries.
+
+#### Python {-}
+
+
+#### R {-}
+
+
+## Conditional or Faceted plots
+
+Two or more plots of subsets of data. 
 
