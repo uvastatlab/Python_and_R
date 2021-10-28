@@ -15,11 +15,13 @@ A one-dimensional data structure can be visualized as a column in a spreadsheet 
 There are many ways to organize one-dimensional data in Python. The of the most common one-dimensional data structures are lists, numpy arrays, and pandas Series. All three are ordered and mutable, and can contain data of different types. 
 
 Lists in Python do not need to be explicitly declared, they are indicated by the use of square brackets:
+
 ```{python}
 l = [1,2,3,'hello']
 ```
 
 Numpy arrays, on the other hand, need to be declared using the `numpy.array()` function and the `numpy` package needs to be imported. 
+
 ```{python}
 import numpy as np
 arr = np.array([1,2,3,'hello'])
@@ -27,6 +29,7 @@ print(arr)
 ```
 
 Pandas Series also need to be declared using the `pandas.Series()` function. Like `numpy`, the `pandas`package must be imported as well. The pandas package is built on numpy, so we can input data into a pandas Series using a numpy array. 
+
 ```{python}
 import pandas as pd 
 import numpy as np
@@ -79,7 +82,53 @@ x1[2:3]
 Two-dimensional data are rectangular in nature, consisting of rows and columns. These can be the type of data you might find in a spreadsheet with a mix of data types in columns; they can also be matrices as you might encounter in matrix algebra.
 
 #### Python {-}
+In Python, two common two-dimensional data structures include the _numpy array_ and the _pandas DataFrame_. 
 
+A two-dimensional numpy array is made in a similar way to the one-dimensional array using the `numpy.array` function. 
+
+```{python}
+import numpy as np
+
+arr2d = np.array([[1,2,3,"hello"],[4,5,6,"world"]])
+print(arr2d)
+```
+
+A pandas DataFrame is made using the `pandas.DataFrame` function in a similar way to the pandas Series. 
+
+```{python}
+import pandas as pd
+import numpy as np
+
+data = np.array([[1,2,3,"hello"],[4,5,6,"world"]])
+df = pd.DataFrame(data)
+print(df)
+```
+
+Like the pandas Series, we can change the indices and the column names of the DataFrame and can use those to select and index our data. 
+
+We change the indices again using the `index` attribute in the `pandas.DataFrame` function:
+
+```{python}
+import pandas as pd
+import numpy as np
+
+data = np.array([[1,2,3,"hello"],[4,5,6,"world"]])
+df = pd.DataFrame(data, index=["a","b"])
+print(df)
+```
+
+We can change the column names using the `columns` attribute in the `pandas.DataFrame` function:
+
+```{python}
+import pandas as pd
+import numpy as np
+
+data = np.array([[1,2,3,"hello"],[4,5,6,"world"]])
+df = pd.DataFrame(data, index=["a","b"], columns=["column 1","column 2", "column 3", "column 4"])
+print(df)
+```
+
+One thing to note is that numpy arrays can actually have N dimensions, whereas pandas DataFrames can only have two. Numpy arrays will be the better choice for data with more than two dimensions. 
 
 #### R {-}
 
