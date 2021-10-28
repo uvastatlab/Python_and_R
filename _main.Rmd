@@ -249,37 +249,93 @@ A one-dimensional data structure can be visualized as a column in a spreadsheet 
 
 There are many ways to organize one-dimensional data in Python. The of the most common one-dimensional data structures are lists, numpy arrays, and pandas Series. All three are ordered and mutable, and can contain data of different types. 
 
-Lists in Python do not need to be explicitly declared, they are indicated by the use of square brackets:
+Lists in Python do not need to be explicitly declared, they are indicated by the use of square brackets.
+
 ```{python}
 l = [1,2,3,'hello']
 ```
 
+Values in lists can be accessed by using square brackets. Python indexing begins at 0, so to extract the first element, we would use the index 0. Python also allows for negative indexing, using an index of -1 will return the last value in the list. Indexing a range in Python is not inclusive of the last index. 
+
+```{python}
+# extract first element
+l[0]
+
+#extract last element
+l[-1]
+
+# extract 2nd and 3rd elements
+l[1:3]
+
+```
+
 Numpy arrays, on the other hand, need to be declared using the `numpy.array()` function and the `numpy` package needs to be imported. 
+
 ```{python}
 import numpy as np
+
 arr = np.array([1,2,3,'hello'])
 print(arr)
 ```
 
-Pandas Series also need to be declared using the `pandas.Series()` function. Like `numpy`, the `pandas`package must be imported as well. The pandas package is built on numpy, so we can input data into a pandas Series using a numpy array. 
-```{python}
-import pandas as pd 
-import numpy as np
+Accessing data in a numpy array is the same as indexing a list. 
 
-data1 = np.array([1,2,3,"hello"])
-ser1 = pd.Series(data2)
-print(ser1)
+```{python}
+# extract first element 
+arr[0]
+
+# extract last element
+arr[-1]
+
+# extract 2nd and 3rd elements
+arr[1:3]
 ```
 
-We can change the indices of the Series to have values other than the traditional 0, 1, 2, etc. to whatever we like using the `index` attribute within the `Series` function. We can then use our own specified indices to select and index our data.
+Pandas Series also need to be declared using the `pandas.Series()` function. Like `numpy`, the `pandas`package must be imported as well. The pandas package is built on numpy, so we can input data into a pandas Series using a numpy array. We can extract data from the Series by using the index similar to indexing a list and numpy array.
 
 ```{python}
 import pandas as pd 
 import numpy as np
 
-data2 = np.array([1,2,3,"hello"])
-ser2 = pd.Series(data2, index=['a','b','c','d'])
+data = np.array([1,2,3,"hello"])
+ser1 = pd.Series(data)
+print(ser1)
+
+# extract first element 
+ser1[0]
+
+# extract last element 
+ser1[-1]
+
+# extract 2nd and 3rd elements 
+ser1[1:3]
+```
+
+We can relabel the indices of the Series to whatever we like using the `index` attribute within the `Series` function. 
+
+```{python}
+import pandas as pd 
+import numpy as np
+
+ser2 = pd.Series(data, index=['a','b','c','d'])
 print(ser2)
+```
+
+We can then use our own specified indices to select and index our data. Indexing with our labels can be done in two ways. One similar to indexing arrays and lists with square brackets using the `.loc` function, and the other follows this form: `Series.label_name`.
+
+```{python}
+
+# extract element in row b
+ser2.loc["b"]
+
+# extract elements from row b to the end
+ser2.loc["b":]
+
+# extract element in row "d"
+ser2.d
+
+# extract element in row "b"
+ser2.b
 ```
 
 One thing to note is that mathematical operations cannot be carried out on lists, but can be carried out on numpy arrays and pandas Series. In general, lists are better for short data sets that you will not be operating on mathematically. Numpy arrays and pandas Series are better for long data sets, and for data sets that will be operated on mathematically. 
@@ -314,7 +370,82 @@ x1[2:3]
 Two-dimensional data are rectangular in nature, consisting of rows and columns. These can be the type of data you might find in a spreadsheet with a mix of data types in columns; they can also be matrices as you might encounter in matrix algebra.
 
 #### Python {-}
+In Python, two common two-dimensional data structures include the _numpy array_ and the _pandas DataFrame_. 
 
+A two-dimensional numpy array is made in a similar way to the one-dimensional array using the `numpy.array` function. 
+
+```{python}
+import numpy as np
+
+arr2d = np.array([[1,2,3,"hello"],[4,5,6,"world"]])
+print(arr2d)
+```
+
+Selecting data for a two-dimensional numpy array follows the same form as indexing a one-dimensional array. 
+
+```{python}
+import numpy as np
+
+# extract first element 
+arr2d[0,0]
+
+# extract last element 
+arr2d[-1, -1]
+
+# extract 2nd and 3rd columns
+arr2d[:,1:3]
+
+```
+
+A pandas DataFrame is made using the `pandas.DataFrame` function in a similar way to the pandas Series. 
+
+```{python}
+import pandas as pd
+import numpy as np
+
+data = np.array([[1,2,3,"hello"],[4,5,6,"world"]])
+df = pd.DataFrame(data)
+print(df)
+```
+
+Selecting data from a DataFrame is similar to that of the Series. 
+
+```{python}
+# extract first element 
+df.loc[0,0]
+
+# extract column 1
+df.loc[0]
+
+# extract row 1
+df.loc[0,0]
+```
+
+Like the pandas Series, we can change the indices and the column names of the DataFrame and can use those to select and index our data. 
+
+We change the indices again using the `index` attribute in the `pandas.DataFrame` function:
+
+```{python}
+import pandas as pd
+import numpy as np
+
+data = np.array([[1,2,3,"hello"],[4,5,6,"world"]])
+df = pd.DataFrame(data, index=["a","b"])
+print(df)
+```
+
+We can change the column names using the `columns` attribute in the `pandas.DataFrame` function:
+
+```{python}
+import pandas as pd
+import numpy as np
+
+data = np.array([[1,2,3,"hello"],[4,5,6,"world"]])
+df = pd.DataFrame(data, index=["a","b"], columns=["column 1","column 2", "column 3", "column 4"])
+print(df)
+```
+
+One thing to note is that numpy arrays can actually have N dimensions, whereas pandas DataFrames can only have two. Numpy arrays will be the better choice for data with more than two dimensions. 
 
 #### R {-}
 
