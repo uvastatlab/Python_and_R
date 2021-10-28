@@ -12,6 +12,9 @@ A one-dimensional data structure can be visualized as a column in a spreadsheet 
 
 #### Python {-}
 
+There are many ways to organize one-dimensional data in Python. Two of the most common one-imensional data structures are lists and numpy arrays. 
+
+Lists are
 This is an array 
 ```{python}
 import numpy as np
