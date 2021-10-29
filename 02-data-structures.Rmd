@@ -34,7 +34,7 @@ l[1:3]
 
 ```
 
-Numpy arrays, on the other hand, need to be declared using the `numpy.array()` function and the `numpy` package needs to be imported. 
+Numpy arrays, on the other hand, need to be declared using the `numpy.array()` function and the **numpy** package needs to be imported. 
 
 ```{python}
 import numpy as np
@@ -56,7 +56,7 @@ arr[-1]
 arr[1:3]
 ```
 
-Pandas Series also need to be declared using the `pandas.Series()` function. Like `numpy`, the `pandas`package must be imported as well. The pandas package is built on numpy, so we can input data into a pandas Series using a numpy array. We can extract data from the Series by using the index similar to indexing a list and numpy array. Indexing a range 
+Pandas Series also need to be declared using the `pandas.Series()` function. Like **numpy**, the **pandas** package must be imported as well. The pandas package is built on numpy, so we can input data into a pandas Series using a numpy array. We can extract data from the Series by using the index similar to indexing a list and numpy array. 
 
 ```{python}
 import pandas as pd 
@@ -69,13 +69,16 @@ print(ser1)
 # extract first element 
 ser1[0]
 
-# extract last element 
-ser1[-1]
-
-
 # extract 2nd and 3rd elements 
 ser1[1:3]
 ```
+
+To extract the last element of a pandas Series using `-1`, we need to use the `iloc` function.
+
+```{python}
+ser1.iloc[-1]
+```
+
 
 We can relabel the indices of the Series to whatever we like using the `index` attribute within the `Series` function. 
 
