@@ -24,7 +24,7 @@
 <meta name="author" content="Clay Ford, Jacob Goldstein-Greenwood, Oyinkansola Adenekan, Samantha Lomuscio" />
 
 
-<meta name="date" content="2021-10-29" />
+<meta name="date" content="2021-11-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -295,8 +295,7 @@ div.csl-indent {
 <p>The <strong>pandas</strong> function <code>read_excel()</code> is a common approach to importing Excel files into Python. The <code>sheet_name</code> argument allows you to specify which sheet you want to import. You can specify sheet by its (zero-indexed) ordering or by its name. Since this Excel file only has one sheet we do not need to use the argument. In addition, specifying <code>sheet_name=None</code> will read in all sheets and return a dict data structure where the <em>key</em> is the sheet name and the <em>value</em> is a DataFrame.</p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="importing-data.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> pandas <span class="im">as</span> pd  </span>
 <span id="cb39-2"><a href="importing-data.html#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> d <span class="op">=</span> pd.read_excel(<span class="st">&#39;data/ny_math_test.xlsx&#39;</span>)  </span>
-<span id="cb39-3"><a href="importing-data.html#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> d.loc[<span class="dv">0</span>:<span class="dv">2</span>, [<span class="st">&quot;Grade&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Mean Scale Score&quot;</span>]]  </span>
-<span id="cb39-4"><a href="importing-data.html#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> </span></code></pre></div>
+<span id="cb39-3"><a href="importing-data.html#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> d.loc[<span class="dv">0</span>:<span class="dv">2</span>, [<span class="st">&quot;Grade&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Mean Scale Score&quot;</span>]]  </span></code></pre></div>
 </div>
 <div id="r-12" class="section level4 unnumbered">
 <h4>R</h4>
@@ -304,7 +303,7 @@ div.csl-indent {
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="importing-data.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(readxl)</span>
 <span id="cb40-2"><a href="importing-data.html#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d_xls <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/ny_math_test.xlsx&quot;</span>)</span>
 <span id="cb40-3"><a href="importing-data.html#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d_xls[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="fu">c</span>(<span class="st">&quot;Grade&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Mean Scale Score&quot;</span>)]</span>
-<span id="cb40-4"><a href="importing-data.html#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 3 x 3</span></span>
+<span id="cb40-4"><a href="importing-data.html#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 3 × 3</span></span>
 <span id="cb40-5"><a href="importing-data.html#cb40-5" aria-hidden="true" tabindex="-1"></a>  Grade  Year <span class="st">`</span><span class="at">Mean Scale Score</span><span class="st">`</span></span>
 <span id="cb40-6"><a href="importing-data.html#cb40-6" aria-hidden="true" tabindex="-1"></a>  <span class="sc">&lt;</span>chr<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>              <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
 <span id="cb40-7"><a href="importing-data.html#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">3</span>      <span class="dv">2006</span>                <span class="dv">700</span></span>
@@ -365,13 +364,9 @@ div.csl-indent {
 <h4>Python</h4>
 <p>The <strong>pandas</strong> library provides the <code>read_xml</code> function for importing XML files. The <code>ny_math_test.xml</code> file identifies records with nodes named “row.” The 168 rows are nested in one node also called “row.” Therefore we use the <code>xpath</code> argument to specify that we want to elect all row elements that are descendant of the single row element.</p>
 <div class="sourceCode" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="importing-data.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb44-2"><a href="importing-data.html#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> d_xml <span class="op">=</span> pd.read_xml(<span class="st">&#39;data/ny_math_test.xml&#39;</span>, xpath<span class="op">=</span><span class="st">&quot;row//row&quot;</span>)</span>
-<span id="cb44-3"><a href="importing-data.html#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> </span>
-<span id="cb44-4"><a href="importing-data.html#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> d_xml.loc[<span class="dv">0</span>:<span class="dv">2</span>, [<span class="st">&quot;grade&quot;</span>, <span class="st">&quot;year&quot;</span>, <span class="st">&quot;mean_scale_score&quot;</span>]]  </span>
-<span id="cb44-5"><a href="importing-data.html#cb44-5" aria-hidden="true" tabindex="-1"></a>  grade  year  mean_scale_score</span>
-<span id="cb44-6"><a href="importing-data.html#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span>     <span class="dv">3</span>  <span class="dv">2006</span>               <span class="dv">700</span></span>
-<span id="cb44-7"><a href="importing-data.html#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>     <span class="dv">4</span>  <span class="dv">2006</span>               <span class="dv">699</span></span>
-<span id="cb44-8"><a href="importing-data.html#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>     <span class="dv">5</span>  <span class="dv">2006</span>               <span class="dv">691</span></span></code></pre></div>
+<span id="cb44-2"><a href="importing-data.html#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> d_xml <span class="op">=</span> pd.read_xml(<span class="st">&#39;data/ny_math_test.xml&#39;</span>, xpath<span class="op">=</span><span class="st">&quot;row//row&quot;</span>)</span>
+<span id="cb44-3"><a href="importing-data.html#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> </span>
+<span id="cb44-4"><a href="importing-data.html#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> d_xml.loc[<span class="dv">0</span>:<span class="dv">2</span>, [<span class="st">&quot;grade&quot;</span>, <span class="st">&quot;year&quot;</span>, <span class="st">&quot;mean_scale_score&quot;</span>]]  </span></code></pre></div>
 </div>
 <div id="r-14" class="section level4 unnumbered">
 <h4>R</h4>
@@ -382,7 +377,7 @@ div.csl-indent {
 <span id="cb45-4"><a href="importing-data.html#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">bind_rows</span>(d_list<span class="sc">$</span>response<span class="sc">$</span>row)</span>
 <span id="cb45-5"><a href="importing-data.html#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d[] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(d, unlist)</span>
 <span id="cb45-6"><a href="importing-data.html#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="fu">c</span>(<span class="st">&quot;grade&quot;</span>, <span class="st">&quot;year&quot;</span>, <span class="st">&quot;mean_scale_score&quot;</span>)]</span>
-<span id="cb45-7"><a href="importing-data.html#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 3 x 3</span></span>
+<span id="cb45-7"><a href="importing-data.html#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 3 × 3</span></span>
 <span id="cb45-8"><a href="importing-data.html#cb45-8" aria-hidden="true" tabindex="-1"></a>  grade year  mean_scale_score</span>
 <span id="cb45-9"><a href="importing-data.html#cb45-9" aria-hidden="true" tabindex="-1"></a>  <span class="sc">&lt;</span>chr<span class="sc">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span>           </span>
 <span id="cb45-10"><a href="importing-data.html#cb45-10" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">3</span>     <span class="dv">2006</span>  <span class="dv">700</span>             </span>

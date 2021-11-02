@@ -24,7 +24,7 @@
 <meta name="author" content="Clay Ford, Jacob Goldstein-Greenwood, Oyinkansola Adenekan, Samantha Lomuscio" />
 
 
-<meta name="date" content="2021-10-29" />
+<meta name="date" content="2021-11-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -356,7 +356,7 @@ div.csl-indent {
 <span id="cb134-3"><a href="aggregation-and-group-operations.html#cb134-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">group_by</span>(cyl, vs) <span class="sc">%&gt;%</span> </span>
 <span id="cb134-4"><a href="aggregation-and-group-operations.html#cb134-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">summarize</span>(<span class="at">avg_mpg =</span> <span class="fu">mean</span>(mpg))</span>
 <span id="cb134-5"><a href="aggregation-and-group-operations.html#cb134-5" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">summarise()</span><span class="st">`</span> has grouped output by <span class="st">&#39;cyl&#39;</span>. You can override using the <span class="st">`</span><span class="at">.groups</span><span class="st">`</span> argument.</span>
-<span id="cb134-6"><a href="aggregation-and-group-operations.html#cb134-6" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 5 x 3</span></span>
+<span id="cb134-6"><a href="aggregation-and-group-operations.html#cb134-6" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 5 × 3</span></span>
 <span id="cb134-7"><a href="aggregation-and-group-operations.html#cb134-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Groups:   cyl [3]</span></span>
 <span id="cb134-8"><a href="aggregation-and-group-operations.html#cb134-8" aria-hidden="true" tabindex="-1"></a>    cyl    vs avg_mpg</span>
 <span id="cb134-9"><a href="aggregation-and-group-operations.html#cb134-9" aria-hidden="true" tabindex="-1"></a>  <span class="sc">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>   <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
@@ -374,7 +374,7 @@ div.csl-indent {
 <span id="cb135-6"><a href="aggregation-and-group-operations.html#cb135-6" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>               <span class="fu">mean</span>(wt)<span class="sc">^</span><span class="fl">0.5</span> <span class="sc">+</span> </span>
 <span id="cb135-7"><a href="aggregation-and-group-operations.html#cb135-7" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>               <span class="fu">mean</span>(disp)<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="fu">mean</span>(hp)))</span>
 <span id="cb135-8"><a href="aggregation-and-group-operations.html#cb135-8" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">summarise()</span><span class="st">`</span> has grouped output by <span class="st">&#39;cyl&#39;</span>. You can override using the <span class="st">`</span><span class="at">.groups</span><span class="st">`</span> argument.</span>
-<span id="cb135-9"><a href="aggregation-and-group-operations.html#cb135-9" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 5 x 4</span></span>
+<span id="cb135-9"><a href="aggregation-and-group-operations.html#cb135-9" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 5 × 4</span></span>
 <span id="cb135-10"><a href="aggregation-and-group-operations.html#cb135-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Groups:   cyl [3]</span></span>
 <span id="cb135-11"><a href="aggregation-and-group-operations.html#cb135-11" aria-hidden="true" tabindex="-1"></a>    cyl    vs avg_mpg complicated_summary_calculation</span>
 <span id="cb135-12"><a href="aggregation-and-group-operations.html#cb135-12" aria-hidden="true" tabindex="-1"></a>  <span class="sc">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>   <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>                           <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
@@ -387,13 +387,24 @@ div.csl-indent {
 </div>
 <div id="centering-and-scaling" class="section level2" number="6.3">
 <h2><span class="header-section-number">6.3</span> Centering and Scaling</h2>
-<p><em>Centering</em> refers to re-scaling a column or vector of values such that their mean is 0. This is sometimes performed to aid interpretation of linear model coefficients.</p>
-<p><em>Scaling</em> refers to re-scaling a column or vector of values such that their mean is 0 and their standard deviation is 1. This is sometimes performed to put multiple variables on the same scale and is often recommended for procedures such as principal components analysis (PCA).</p>
+<p><em>Centering</em> refers to rescaling a column or vector of values such that their mean is 0. This is sometimes performed to aid interpretation of linear model coefficients.</p>
+<p><em>Scaling</em> refers to rescaling a column or vector of values such that their mean is 0 and their standard deviation is 1. This is sometimes performed to put multiple variables on the same scale and is often recommended for procedures such as principal components analysis (PCA).</p>
 <div id="python-34" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
 <div id="r-34" class="section level4 unnumbered">
 <h4>R</h4>
+<p>The <code>scale()</code> function can both center and scale variables.</p>
+<p>To center a variable (without scaling it), call <code>scale()</code> with the <code>center</code> argument set to <code>TRUE</code> and the <code>scale</code> argument set to <code>FALSE</code>. The variable’s mean will be subtracted off of each of the variable values. (Note: If desired, the <code>center</code> argument can be set to a numeric value instead of <code>TRUE</code>/<code>FALSE</code>; in that case, each variable value will have the argument value subtracted off of it.)</p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="aggregation-and-group-operations.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> centered_mpg <span class="ot">&lt;-</span> <span class="fu">scale</span>(mtcars<span class="sc">$</span>mpg, <span class="at">center =</span> T, <span class="at">scale =</span> F)</span>
+<span id="cb136-2"><a href="aggregation-and-group-operations.html#cb136-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">mean</span>(centered_mpg)</span>
+<span id="cb136-3"><a href="aggregation-and-group-operations.html#cb136-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">4.440892e-16</span></span></code></pre></div>
+<p>To scale a variable (while also centering it), call <code>scale()</code> with the <code>center</code> and <code>scale</code> arguments set to <code>TRUE</code> (these are the default argument values). The variable’s mean will be subtracted off of each of the variable values, and each value will then be divided by the variable’s standard deviation. (Note: As with the <code>center</code> argument, the <code>scale</code> argument can also be set to a numeric value instead of <code>TRUE</code>/<code>FALSE</code>; in that case, the divisor will be the argument value instead of the standard deviation.)</p>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="aggregation-and-group-operations.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> scaled_mpg <span class="ot">&lt;-</span> <span class="fu">scale</span>(mtcars<span class="sc">$</span>mpg, <span class="at">center =</span> T, <span class="at">scale =</span> T)</span>
+<span id="cb137-2"><a href="aggregation-and-group-operations.html#cb137-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">mean</span>(scaled_mpg)</span>
+<span id="cb137-3"><a href="aggregation-and-group-operations.html#cb137-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">7.112366e-17</span></span>
+<span id="cb137-4"><a href="aggregation-and-group-operations.html#cb137-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">sd</span>(scaled_mpg)</span>
+<span id="cb137-5"><a href="aggregation-and-group-operations.html#cb137-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">1</span></span></code></pre></div>
 
 </div>
 </div>
