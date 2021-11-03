@@ -398,6 +398,15 @@ How to change the case of strings. The most common case transformations are lowe
 
 #### Python {-}
 
+The `lower()`, `upper()`, and `title()` functions convert case to lower, upper, and title, respectively. We can use a list comprehension to apply these functions to each word in a list.
+
+```{python}
+col_names = [col.upper() for col in mtcars.columns]
+mtcars.columns = col_names
+```
+
+The `title` function changes all fo the
+col_names = [col.upper() for col in mtcars.columns]
 
 #### R {-}
 
@@ -470,6 +479,23 @@ How to take a random sample of rows from a data frame. The sample is usually eit
 
 #### Python {-}
 
+The pandas package provide a function for taking a sample, of fixed size or a proportion. 
+
+To sample with replacement, set `replace = TRUE`.
+
+The random sample will change every time the code is run. To always generate the same "random" sample, set `random_state` to any positive integer.
+```{python}
+# sample 5 rows from mtcars
+mtcars.sample(n=5, replace=True)
+
+# sample 20% of rows from mtcars
+mtcars.sample(frac = 0.20, random_state=1)
+```
+
+The numpy function `random.choice`()` can be used to sample from a DataFrame.
+
+```{python}
+```
 
 #### R {-}
 

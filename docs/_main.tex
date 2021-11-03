@@ -118,7 +118,7 @@
 
 \title{Python and R}
 \author{Clay Ford, Jacob Goldstein-Greenwood, Oyinkansola Adenekan, Samantha Lomuscio}
-\date{2021-10-26}
+\date{2021-11-03}
 
 \begin{document}
 \maketitle
@@ -411,6 +411,17 @@ Median, using function from base R
 \end{Highlighting}
 \end{Shaded}
 
+\hypertarget{writing-your-own-functions}{%
+\section{Writing your own functions}\label{writing-your-own-functions}}
+
+\hypertarget{python-7}{%
+\subsubsection*{Python}\label{python-7}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\hypertarget{r-7}{%
+\subsubsection*{R}\label{r-7}}
+\addcontentsline{toc}{subsubsection}{R}
+
 \hypertarget{data-structures}{%
 \chapter{Data Structures}\label{data-structures}}
 
@@ -421,12 +432,152 @@ This chapter compares and contrasts data structures in Python and R.
 
 A one-dimensional data structure can be visualized as a column in a spreadsheet or as a list of values.
 
-\hypertarget{python-7}{%
-\subsubsection*{Python}\label{python-7}}
+\hypertarget{python-8}{%
+\subsubsection*{Python}\label{python-8}}
 \addcontentsline{toc}{subsubsection}{Python}
 
-\hypertarget{r-7}{%
-\subsubsection*{R}\label{r-7}}
+There are many ways to organize one-dimensional data in Python. The of the most common one-dimensional data structures are lists, numpy arrays, and pandas Series. All three are ordered and mutable, and can contain data of different types.
+
+Lists in Python do not need to be explicitly declared, they are indicated by the use of square brackets.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}}\NormalTok{ l }\OperatorTok{=}\NormalTok{ [}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\StringTok{\textquotesingle{}hello\textquotesingle{}}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+Values in lists can be accessed by using square brackets. Python indexing begins at 0, so to extract the first element, we would use the index 0. Python also allows for negative indexing, using an index of -1 will return the last value in the list. Indexing a range in Python is not inclusive of the last index.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}} \CommentTok{\# extract first element}
+\OperatorTok{+}\NormalTok{ l[}\DecValTok{0}\NormalTok{]}
+\OperatorTok{+} 
+\OperatorTok{+} \CommentTok{\#extract last element}
+\DecValTok{1}
+\OperatorTok{\textgreater{}}\NormalTok{ l[}\OperatorTok{{-}}\DecValTok{1}\NormalTok{]}
+\OperatorTok{+} 
+\OperatorTok{+} \CommentTok{\# extract 2nd and 3rd elements}
+\CommentTok{\textquotesingle{}hello\textquotesingle{}}
+\OperatorTok{\textgreater{}}\NormalTok{ l[}\DecValTok{1}\NormalTok{:}\DecValTok{3}\NormalTok{]}
+\NormalTok{[}\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+Numpy arrays, on the other hand, need to be declared using the \texttt{numpy.array()} function and the \textbf{numpy} package needs to be imported.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}} \ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\OperatorTok{+} 
+\OperatorTok{+}\NormalTok{ arr }\OperatorTok{=}\NormalTok{ np.array([}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\StringTok{\textquotesingle{}hello\textquotesingle{}}\NormalTok{])}
+\OperatorTok{+} \BuiltInTok{print}\NormalTok{(arr)}
+\NormalTok{[}\StringTok{\textquotesingle{}1\textquotesingle{}} \StringTok{\textquotesingle{}2\textquotesingle{}} \StringTok{\textquotesingle{}3\textquotesingle{}} \StringTok{\textquotesingle{}hello\textquotesingle{}}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+Accessing data in a numpy array is the same as indexing a list.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}} \CommentTok{\# extract first element }
+\OperatorTok{+}\NormalTok{ arr[}\DecValTok{0}\NormalTok{]}
+\OperatorTok{+} 
+\OperatorTok{+} \CommentTok{\# extract last element}
+\CommentTok{\textquotesingle{}1\textquotesingle{}}
+\OperatorTok{\textgreater{}}\NormalTok{ arr[}\OperatorTok{{-}}\DecValTok{1}\NormalTok{]}
+\OperatorTok{+} 
+\OperatorTok{+} \CommentTok{\# extract 2nd and 3rd elements}
+\CommentTok{\textquotesingle{}hello\textquotesingle{}}
+\OperatorTok{\textgreater{}}\NormalTok{ arr[}\DecValTok{1}\NormalTok{:}\DecValTok{3}\NormalTok{]}
+\NormalTok{array([}\StringTok{\textquotesingle{}2\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}3\textquotesingle{}}\NormalTok{], dtype}\OperatorTok{=}\StringTok{\textquotesingle{}\textless{}U11\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Pandas Series also need to be declared using the \texttt{pandas.Series()} function. Like \textbf{numpy}, the \textbf{pandas} package must be imported as well. The pandas package is built on numpy, so we can input data into a pandas Series using a numpy array. We can extract data from the Series by using the index similar to indexing a list and numpy array.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}} \ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd }
+\OperatorTok{+} \ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\OperatorTok{+} 
+\OperatorTok{+}\NormalTok{ data }\OperatorTok{=}\NormalTok{ np.array([}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\StringTok{"hello"}\NormalTok{])}
+\OperatorTok{+}\NormalTok{ ser1 }\OperatorTok{=}\NormalTok{ pd.Series(data)}
+\OperatorTok{+} \BuiltInTok{print}\NormalTok{(ser1)}
+\OperatorTok{+} 
+\OperatorTok{+} \CommentTok{\# extract first element }
+\DecValTok{0}        \DecValTok{1}
+\DecValTok{1}        \DecValTok{2}
+\DecValTok{2}        \DecValTok{3}
+\DecValTok{3}\NormalTok{    hello}
+\NormalTok{dtype: }\BuiltInTok{object}
+\OperatorTok{\textgreater{}}\NormalTok{ ser1[}\DecValTok{0}\NormalTok{]}
+\OperatorTok{+} 
+\OperatorTok{+} \CommentTok{\# extract 2nd and 3rd elements }
+\CommentTok{\textquotesingle{}1\textquotesingle{}}
+\OperatorTok{\textgreater{}}\NormalTok{ ser1[}\DecValTok{1}\NormalTok{:}\DecValTok{3}\NormalTok{]}
+\DecValTok{1}    \DecValTok{2}
+\DecValTok{2}    \DecValTok{3}
+\NormalTok{dtype: }\BuiltInTok{object}
+\end{Highlighting}
+\end{Shaded}
+
+To extract the last element of a pandas Series using \texttt{-1}, we need to use the \texttt{iloc} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}}\NormalTok{ ser1.iloc[}\OperatorTok{{-}}\DecValTok{1}\NormalTok{]}
+\CommentTok{\textquotesingle{}hello\textquotesingle{}}
+\end{Highlighting}
+\end{Shaded}
+
+We can relabel the indices of the Series to whatever we like using the \texttt{index} attribute within the \texttt{Series} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}} \ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd }
+\OperatorTok{+} \ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\OperatorTok{+} 
+\OperatorTok{+}\NormalTok{ ser2 }\OperatorTok{=}\NormalTok{ pd.Series(data, index}\OperatorTok{=}\NormalTok{[}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}d\textquotesingle{}}\NormalTok{])}
+\OperatorTok{+} \BuiltInTok{print}\NormalTok{(ser2)}
+\NormalTok{a        }\DecValTok{1}
+\NormalTok{b        }\DecValTok{2}
+\NormalTok{c        }\DecValTok{3}
+\NormalTok{d    hello}
+\NormalTok{dtype: }\BuiltInTok{object}
+\end{Highlighting}
+\end{Shaded}
+
+We can then use our own specified indices to select and index our data. Indexing with our labels can be done in two ways. One similar to indexing arrays and lists with square brackets using the \texttt{.loc} function, and the other follows this form: \texttt{Series.label\_name}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}} 
+\OperatorTok{+} \CommentTok{\# extract element in row b}
+\OperatorTok{+}\NormalTok{ ser2.loc[}\StringTok{"b"}\NormalTok{]}
+\OperatorTok{+} 
+\OperatorTok{+} \CommentTok{\# extract elements from row b to the end}
+\CommentTok{\textquotesingle{}2\textquotesingle{}}
+\OperatorTok{\textgreater{}}\NormalTok{ ser2.loc[}\StringTok{"b"}\NormalTok{:]}
+\OperatorTok{+} 
+\OperatorTok{+} \CommentTok{\# extract element in row "d"}
+\NormalTok{b        }\DecValTok{2}
+\NormalTok{c        }\DecValTok{3}
+\NormalTok{d    hello}
+\NormalTok{dtype: }\BuiltInTok{object}
+\OperatorTok{\textgreater{}}\NormalTok{ ser2.d}
+\OperatorTok{+} 
+\OperatorTok{+} \CommentTok{\# extract element in row "b"}
+\CommentTok{\textquotesingle{}hello\textquotesingle{}}
+\OperatorTok{\textgreater{}}\NormalTok{ ser2.b}
+\CommentTok{\textquotesingle{}2\textquotesingle{}}
+\end{Highlighting}
+\end{Shaded}
+
+One thing to note is that mathematical operations cannot be carried out on lists, but can be carried out on numpy arrays and pandas Series. In general, lists are better for short data sets that you will not be operating on mathematically. Numpy arrays and pandas Series are better for long data sets, and for data sets that will be operated on mathematically.
+
+\hypertarget{r-8}{%
+\subsubsection*{R}\label{r-8}}
 \addcontentsline{toc}{subsubsection}{R}
 
 In R a one-dimensional data structure is called a \emph{vector}. We can create a vector using the \texttt{c()} function. A vector in R can only contain one type of data (all numbers, all strings, etc). The columns of data frames are vectors. If multiple types of data are put into a vector, the data will be coerced according to the hierarchy \texttt{logical} \textless{} \texttt{integer} \textless{} \texttt{double} \textless{} \texttt{complex} \textless{} \texttt{character}. This means if you mix, say, integers and character data, all the data will be coerced to character.
@@ -463,12 +614,122 @@ Values in a vector can be accessed by position using indexing brackets.
 
 Two-dimensional data are rectangular in nature, consisting of rows and columns. These can be the type of data you might find in a spreadsheet with a mix of data types in columns; they can also be matrices as you might encounter in matrix algebra.
 
-\hypertarget{python-8}{%
-\subsubsection*{Python}\label{python-8}}
+\hypertarget{python-9}{%
+\subsubsection*{Python}\label{python-9}}
 \addcontentsline{toc}{subsubsection}{Python}
 
-\hypertarget{r-8}{%
-\subsubsection*{R}\label{r-8}}
+In Python, two common two-dimensional data structures include the \emph{numpy array} and the \emph{pandas DataFrame}.
+
+A two-dimensional numpy array is made in a similar way to the one-dimensional array using the \texttt{numpy.array} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}} \ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\OperatorTok{+} 
+\OperatorTok{+}\NormalTok{ arr2d }\OperatorTok{=}\NormalTok{ np.array([[}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\StringTok{"hello"}\NormalTok{],[}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{,}\StringTok{"world"}\NormalTok{]])}
+\OperatorTok{+} \BuiltInTok{print}\NormalTok{(arr2d)}
+\NormalTok{[[}\StringTok{\textquotesingle{}1\textquotesingle{}} \StringTok{\textquotesingle{}2\textquotesingle{}} \StringTok{\textquotesingle{}3\textquotesingle{}} \StringTok{\textquotesingle{}hello\textquotesingle{}}\NormalTok{]}
+\NormalTok{ [}\StringTok{\textquotesingle{}4\textquotesingle{}} \StringTok{\textquotesingle{}5\textquotesingle{}} \StringTok{\textquotesingle{}6\textquotesingle{}} \StringTok{\textquotesingle{}world\textquotesingle{}}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+Selecting data for a two-dimensional numpy array follows the same form as indexing a one-dimensional array.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}} \ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\OperatorTok{+} 
+\OperatorTok{+} \CommentTok{\# extract first element }
+\OperatorTok{+}\NormalTok{ arr2d[}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{]}
+\OperatorTok{+} 
+\OperatorTok{+} \CommentTok{\# extract last element }
+\CommentTok{\textquotesingle{}1\textquotesingle{}}
+\OperatorTok{\textgreater{}}\NormalTok{ arr2d[}\OperatorTok{{-}}\DecValTok{1}\NormalTok{, }\OperatorTok{{-}}\DecValTok{1}\NormalTok{]}
+\OperatorTok{+} 
+\OperatorTok{+} \CommentTok{\# extract 2nd and 3rd columns}
+\CommentTok{\textquotesingle{}world\textquotesingle{}}
+\OperatorTok{\textgreater{}}\NormalTok{ arr2d[:,}\DecValTok{1}\NormalTok{:}\DecValTok{3}\NormalTok{]}
+\NormalTok{array([[}\StringTok{\textquotesingle{}2\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}3\textquotesingle{}}\NormalTok{],}
+\NormalTok{       [}\StringTok{\textquotesingle{}5\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}6\textquotesingle{}}\NormalTok{]], dtype}\OperatorTok{=}\StringTok{\textquotesingle{}\textless{}U11\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+A pandas DataFrame is made using the \texttt{pandas.DataFrame} function in a similar way to the pandas Series.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}} \ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd}
+\OperatorTok{+} \ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\OperatorTok{+} 
+\OperatorTok{+}\NormalTok{ data }\OperatorTok{=}\NormalTok{ np.array([[}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\StringTok{"hello"}\NormalTok{],[}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{,}\StringTok{"world"}\NormalTok{]])}
+\OperatorTok{+}\NormalTok{ df }\OperatorTok{=}\NormalTok{ pd.DataFrame(data)}
+\OperatorTok{+} \BuiltInTok{print}\NormalTok{(df)}
+   \DecValTok{0}  \DecValTok{1}  \DecValTok{2}      \DecValTok{3}
+\DecValTok{0}  \DecValTok{1}  \DecValTok{2}  \DecValTok{3}\NormalTok{  hello}
+\DecValTok{1}  \DecValTok{4}  \DecValTok{5}  \DecValTok{6}\NormalTok{  world}
+\end{Highlighting}
+\end{Shaded}
+
+Selecting data from a DataFrame is similar to that of the Series.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}} \CommentTok{\# extract first element }
+\OperatorTok{+}\NormalTok{ df.loc[}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{]}
+\OperatorTok{+} 
+\OperatorTok{+} \CommentTok{\# extract column 1}
+\CommentTok{\textquotesingle{}1\textquotesingle{}}
+\OperatorTok{\textgreater{}}\NormalTok{ df.loc[}\DecValTok{0}\NormalTok{]}
+\OperatorTok{+} 
+\OperatorTok{+} \CommentTok{\# extract row 1}
+\DecValTok{0}        \DecValTok{1}
+\DecValTok{1}        \DecValTok{2}
+\DecValTok{2}        \DecValTok{3}
+\DecValTok{3}\NormalTok{    hello}
+\NormalTok{Name: }\DecValTok{0}\NormalTok{, dtype: }\BuiltInTok{object}
+\OperatorTok{\textgreater{}}\NormalTok{ df.loc[}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{]}
+\CommentTok{\textquotesingle{}1\textquotesingle{}}
+\end{Highlighting}
+\end{Shaded}
+
+Like the pandas Series, we can change the indices and the column names of the DataFrame and can use those to select and index our data.
+
+We change the indices again using the \texttt{index} attribute in the \texttt{pandas.DataFrame} function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}} \ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd}
+\OperatorTok{+} \ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\OperatorTok{+} 
+\OperatorTok{+}\NormalTok{ data }\OperatorTok{=}\NormalTok{ np.array([[}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\StringTok{"hello"}\NormalTok{],[}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{,}\StringTok{"world"}\NormalTok{]])}
+\OperatorTok{+}\NormalTok{ df }\OperatorTok{=}\NormalTok{ pd.DataFrame(data, index}\OperatorTok{=}\NormalTok{[}\StringTok{"a"}\NormalTok{,}\StringTok{"b"}\NormalTok{])}
+\OperatorTok{+} \BuiltInTok{print}\NormalTok{(df)}
+   \DecValTok{0}  \DecValTok{1}  \DecValTok{2}      \DecValTok{3}
+\NormalTok{a  }\DecValTok{1}  \DecValTok{2}  \DecValTok{3}\NormalTok{  hello}
+\NormalTok{b  }\DecValTok{4}  \DecValTok{5}  \DecValTok{6}\NormalTok{  world}
+\end{Highlighting}
+\end{Shaded}
+
+We can change the column names using the \texttt{columns} attribute in the \texttt{pandas.DataFrame} function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}} \ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd}
+\OperatorTok{+} \ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\OperatorTok{+} 
+\OperatorTok{+}\NormalTok{ data }\OperatorTok{=}\NormalTok{ np.array([[}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\StringTok{"hello"}\NormalTok{],[}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{,}\StringTok{"world"}\NormalTok{]])}
+\OperatorTok{+}\NormalTok{ df }\OperatorTok{=}\NormalTok{ pd.DataFrame(data, index}\OperatorTok{=}\NormalTok{[}\StringTok{"a"}\NormalTok{,}\StringTok{"b"}\NormalTok{], columns}\OperatorTok{=}\NormalTok{[}\StringTok{"column 1"}\NormalTok{,}\StringTok{"column 2"}\NormalTok{, }\StringTok{"column 3"}\NormalTok{, }\StringTok{"column 4"}\NormalTok{])}
+\OperatorTok{+} \BuiltInTok{print}\NormalTok{(df)}
+\NormalTok{  column }\DecValTok{1}\NormalTok{ column }\DecValTok{2}\NormalTok{ column }\DecValTok{3}\NormalTok{ column }\DecValTok{4}
+\NormalTok{a        }\DecValTok{1}        \DecValTok{2}        \DecValTok{3}\NormalTok{    hello}
+\NormalTok{b        }\DecValTok{4}        \DecValTok{5}        \DecValTok{6}\NormalTok{    world}
+\end{Highlighting}
+\end{Shaded}
+
+One thing to note is that numpy arrays can actually have N dimensions, whereas pandas DataFrames can only have two. Numpy arrays will be the better choice for data with more than two dimensions.
+
+\hypertarget{r-9}{%
+\subsubsection*{R}\label{r-9}}
 \addcontentsline{toc}{subsubsection}{R}
 
 Two-dimensional data structures in R include the \emph{matrix} and \emph{data frame}. A matrix can contain only one data type. A data frame can contain multiple vectors each of which can consist of different data types.
@@ -514,12 +775,12 @@ Values in a matrix and data frame can be accessed by position using indexing bra
 
 Three-dimensional and higher data can be visualized as multiple rectangular structures stratified by extra variables. These are sometimes referred to as \emph{arrays}. Analysts usually prefer two-dimensional data frames to arrays. Data frames can accommodate multidimensional data by including the additional dimensions as variables.
 
-\hypertarget{python-9}{%
-\subsubsection*{Python}\label{python-9}}
+\hypertarget{python-10}{%
+\subsubsection*{Python}\label{python-10}}
 \addcontentsline{toc}{subsubsection}{Python}
 
-\hypertarget{r-9}{%
-\subsubsection*{R}\label{r-9}}
+\hypertarget{r-10}{%
+\subsubsection*{R}\label{r-10}}
 \addcontentsline{toc}{subsubsection}{R}
 
 The \texttt{array()} function in R can create three-dimensional and higher data structures. Specify the dimension number and size using the \texttt{dim} argument. Below we specify 2 rows, 3 columns, and 2 strata using a vector: \texttt{c(2,3,2)}. This creates a three-dimensional data structure. The data are simply the numbers 1 through 12.
@@ -616,8 +877,8 @@ The data we use for demonstration is New York State Math Test Results by Grade f
 
 Comma separated value (CSV) files are text files with fields separated by commas. They are useful for ``rectangular'' data where rows represent observations and columns represent variables or features.
 
-\hypertarget{python-10}{%
-\subsubsection*{Python}\label{python-10}}
+\hypertarget{python-11}{%
+\subsubsection*{Python}\label{python-11}}
 \addcontentsline{toc}{subsubsection}{Python}
 
 The \textbf{pandas} function \texttt{read\_csv()} is a common approach to importing CSV files into Python.
@@ -634,8 +895,8 @@ The \textbf{pandas} function \texttt{read\_csv()} is a common approach to import
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{r-10}{%
-\subsubsection*{R}\label{r-10}}
+\hypertarget{r-11}{%
+\subsubsection*{R}\label{r-11}}
 \addcontentsline{toc}{subsubsection}{R}
 
 There are many ways to import a csv file. A common way is to use the base R function \texttt{read.csv()}.
@@ -660,8 +921,8 @@ Two packages that provide alternatives to \texttt{read.csv()} are \textbf{readr}
 
 Excel files are native to Microsoft Excel. Prior to 2007, Excel files had an extension of XLS. With the launch of Excel 2007, the extension was changed to XLSX. Excel files can have multiple sheets of data. This needs to be accounted for when importing into Python and R.
 
-\hypertarget{python-11}{%
-\subsubsection*{Python}\label{python-11}}
+\hypertarget{python-12}{%
+\subsubsection*{Python}\label{python-12}}
 \addcontentsline{toc}{subsubsection}{Python}
 
 The \textbf{pandas} function \texttt{read\_excel()} is a common approach to importing Excel files into Python. The \texttt{sheet\_name} argument allows you to specify which sheet you want to import. You can specify sheet by its (zero-indexed) ordering or by its name. Since this Excel file only has one sheet we do not need to use the argument. In addition, specifying \texttt{sheet\_name=None} will read in all sheets and return a dict data structure where the \emph{key} is the sheet name and the \emph{value} is a DataFrame.
@@ -675,8 +936,8 @@ The \textbf{pandas} function \texttt{read\_excel()} is a common approach to impo
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{r-11}{%
-\subsubsection*{R}\label{r-11}}
+\hypertarget{r-12}{%
+\subsubsection*{R}\label{r-12}}
 \addcontentsline{toc}{subsubsection}{R}
 
 \textbf{readxl} is a well-documented and actively maintained package for importing Excel files into R. The workhorse function is \texttt{read\_excel()}. The \texttt{sheet} argument allows you to specify which sheet you want to import. You can specify sheet by its ordering or by its name. Since this Excel file only has one sheet we do not need to use the argument.
@@ -704,8 +965,8 @@ It's worth noting we can use the \texttt{range} argument to specify a range of c
 
 JSON (\textbf{J}ava\textbf{S}cript \textbf{O}bject \textbf{N}otation) is a flexible format for storing data. JSON files are text and can be viewed in any text editor. Because of their flexibility JSON files can be quite complex in the way they store data. Therefore there is no one-size-fits-all method for importing JSON files into Python or R.
 
-\hypertarget{python-12}{%
-\subsubsection*{Python}\label{python-12}}
+\hypertarget{python-13}{%
+\subsubsection*{Python}\label{python-13}}
 \addcontentsline{toc}{subsubsection}{Python}
 
 Below is one approach to importing our ``ny\_math\_test.json'' example file. We first import Python's built-in \textbf{json} package and use its \texttt{loads()} function to read in the lines of the json file. The file is accessed using the \texttt{open} function and its associated \texttt{read} method.
@@ -740,8 +1001,8 @@ Finally we add column names to the DataFrame.
 
 Again, this is just one approach that assumes we want a DataFrame.
 
-\hypertarget{r-12}{%
-\subsubsection*{R}\label{r-12}}
+\hypertarget{r-13}{%
+\subsubsection*{R}\label{r-13}}
 \addcontentsline{toc}{subsubsection}{R}
 
 \textbf{jsonlite} is one of several R packages available for importing JSON files into R. The \texttt{read\_json()} function takes a JSON file and returns a list or data frame depending on the structure of the data file and its arguments. We set \texttt{simplifyVector\ =\ TRUE} so the data is simplified into a matrix.
@@ -772,8 +1033,8 @@ The \texttt{d\_json} object is a list with two elements: ``meta'' and ``data''. 
 
 XML (e\textbf{X}tensible \textbf{M}arkup \textbf{L}anguage) is a markup language that was designed to store data. XML files are text and can be viewed in any text editor or a web browser. Because of their flexibility XML files can be quite complex in the way they store data. Therefore there is no one-size-fits-all for importing XML files into Python or R.
 
-\hypertarget{python-13}{%
-\subsubsection*{Python}\label{python-13}}
+\hypertarget{python-14}{%
+\subsubsection*{Python}\label{python-14}}
 \addcontentsline{toc}{subsubsection}{Python}
 
 The \textbf{pandas} library provides the \texttt{read\_xml} function for importing XML files. The \texttt{ny\_math\_test.xml} file identifies records with nodes named ``row''. The 168 rows are nested in one node also called ``row''. Therefore we use the \texttt{xpath} argument to specify that we want to elect all row elements that are descendant of the single row element.
@@ -791,8 +1052,8 @@ The \textbf{pandas} library provides the \texttt{read\_xml} function for importi
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{r-13}{%
-\subsubsection*{R}\label{r-13}}
+\hypertarget{r-14}{%
+\subsubsection*{R}\label{r-14}}
 \addcontentsline{toc}{subsubsection}{R}
 
 \textbf{xml2} is a relatively small but powerful package for importing and working with XML files. The \texttt{read\_xml()} function imports an XML file and returns a list of \emph{pointers} to XML \emph{nodes}. There are a number of ways to proceed once you import an XML file, such as using the \texttt{xml\_find\_all()} function to find nodes that match an \href{https://www.w3schools.com/xml/xpath_intro.asp}{xpath} expression. Below we take a simple approach and convert the XML nodes into a list using the \texttt{as\_list()} function that is part of the \textbf{xml2} package. Once we have the XML nodes in a list, we can use the \texttt{bind\_rows()} function in the \textbf{dplyr} package to create a data frame. Notice we have to drill down into the list to select the element that contains the data. After this we need to do one more thing: \emph{unlist} each the columns into vectors. We do this by applying the \texttt{unlist} function to each column of \texttt{d}. We save the result by assigning to \texttt{d{[}{]}}, which overwrites each element (or column) of \texttt{d} with the unlisted result.
@@ -843,8 +1104,8 @@ This chapter looks at various strategies for modifying and deriving variables in
 
 View and inspect the names of variables and their type (numeric, string, logical, etc.) This is useful to ensure that variables have the expected type.
 
-\hypertarget{python-14}{%
-\subsubsection*{Python}\label{python-14}}
+\hypertarget{python-15}{%
+\subsubsection*{Python}\label{python-15}}
 \addcontentsline{toc}{subsubsection}{Python}
 
 The \texttt{.info()} function in pandas lists information on the DataFrame.
@@ -901,8 +1162,8 @@ By default, the \texttt{verbose} argument is set to \texttt{False}. Then, the fu
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{r-14}{%
-\subsubsection*{R}\label{r-14}}
+\hypertarget{r-15}{%
+\subsubsection*{R}\label{r-15}}
 \addcontentsline{toc}{subsubsection}{R}
 
 The \texttt{str()} function in R lists the names of the variables, their type, the first few values, and the dimensions of the data frame.
@@ -949,8 +1210,8 @@ To see just the dimensions of the data frame, use the \texttt{dim()} function. I
 
 How to work with a specific column of data.
 
-\hypertarget{python-15}{%
-\subsubsection*{Python}\label{python-15}}
+\hypertarget{python-16}{%
+\subsubsection*{Python}\label{python-16}}
 \addcontentsline{toc}{subsubsection}{Python}
 
 The period operator \texttt{.} provides access to a column in a DataFrame as a vector. This returns pandas series. A pandas series can do everything a numpy array can do.
@@ -1111,8 +1372,8 @@ The \texttt{head()} and \texttt{tail()} functions return the first 5 or last 5 v
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{r-15}{%
-\subsubsection*{R}\label{r-15}}
+\hypertarget{r-16}{%
+\subsubsection*{R}\label{r-16}}
 \addcontentsline{toc}{subsubsection}{R}
 
 The dollar sign operator, \texttt{\$}, provides access to a column in a data frame as a vector.
@@ -1254,8 +1515,8 @@ The \texttt{head()} and \texttt{tail()} functions return the first 6 or last 6 v
 
 How to rename variables or ``column headers''.
 
-\hypertarget{python-16}{%
-\subsubsection*{Python}\label{python-16}}
+\hypertarget{python-17}{%
+\subsubsection*{Python}\label{python-17}}
 \addcontentsline{toc}{subsubsection}{Python}
 
 Column names can be chnaged using the function \texttt{.rename()}. Below, we change the column names ``cyl'' and ``wt'' to ``cylinder'' and ``WT'', respectively.
@@ -1321,8 +1582,8 @@ Alternatively, column names can be changed by replacing the vector of column nam
 
 You can
 
-\hypertarget{r-16}{%
-\subsubsection*{R}\label{r-16}}
+\hypertarget{r-17}{%
+\subsubsection*{R}\label{r-17}}
 \addcontentsline{toc}{subsubsection}{R}
 
 Variable names can be changed by their index (ie, order of columns in the data frame). Below the second column is ``cyl''. We change the name to ``cylinder''.
@@ -1375,8 +1636,8 @@ See also the \texttt{rename()} function in the \textbf{dplyr} package.
 
 We often need to create variables that are functions of other variables, or replace existing variables with an updated version.
 
-\hypertarget{python-17}{%
-\subsubsection*{Python}\label{python-17}}
+\hypertarget{python-18}{%
+\subsubsection*{Python}\label{python-18}}
 \addcontentsline{toc}{subsubsection}{Python}
 
 Adding a new variable using the indexing notation and assigning a result adds a new column.
@@ -1448,8 +1709,8 @@ To remove a column, use the \texttt{.drop()} function.
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{r-17}{%
-\subsubsection*{R}\label{r-17}}
+\hypertarget{r-18}{%
+\subsubsection*{R}\label{r-18}}
 \addcontentsline{toc}{subsubsection}{R}
 
 Adding a new variable name after the dollar sign notation and assigning a result adds a new column.
@@ -1484,8 +1745,8 @@ To remove a variable, assign it \texttt{NULL}.
 
 You may have data that is numeric but that needs to be treated as a string.
 
-\hypertarget{python-18}{%
-\subsubsection*{Python}\label{python-18}}
+\hypertarget{python-19}{%
+\subsubsection*{Python}\label{python-19}}
 \addcontentsline{toc}{subsubsection}{Python}
 
 You can change the data type of a column in a DataFrame using the \texttt{astype} function.
@@ -1498,8 +1759,8 @@ You can change the data type of a column in a DataFrame using the \texttt{astype
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{r-18}{%
-\subsubsection*{R}\label{r-18}}
+\hypertarget{r-19}{%
+\subsubsection*{R}\label{r-19}}
 \addcontentsline{toc}{subsubsection}{R}
 
 The \texttt{as.character()} function takes a vector and converts it to string format.
@@ -1561,8 +1822,8 @@ TODO: add zip code conversion using \texttt{str\_pad()} (or base R option?)
 
 String variables that ought to be numbers usually have some character data in the values such as units (eg, ``4 cm''). To create numbers from strings it's important to remove any character data that cannot be converted to a number.
 
-\hypertarget{python-19}{%
-\subsubsection*{Python}\label{python-19}}
+\hypertarget{python-20}{%
+\subsubsection*{Python}\label{python-20}}
 \addcontentsline{toc}{subsubsection}{Python}
 
 The \texttt{astype(float)} or \texttt{astype(int)} function will coerce strings to numerical representation.
@@ -1607,8 +1868,8 @@ Now we can use the \texttt{astype()} function to change the elements in weight f
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{r-19}{%
-\subsubsection*{R}\label{r-19}}
+\hypertarget{r-20}{%
+\subsubsection*{R}\label{r-20}}
 \addcontentsline{toc}{subsubsection}{R}
 
 The \texttt{as.numeric()} function will attempt to coerce strings to numeric type \emph{if possible}. Any non-numeric values are coerced to NA.
@@ -1655,12 +1916,24 @@ The \texttt{parse\_number()} function in the \textbf{readr} package can often ta
 
 How to change the case of strings. The most common case transformations are lower case, upper case, and title case.
 
-\hypertarget{python-20}{%
-\subsubsection*{Python}\label{python-20}}
+\hypertarget{python-21}{%
+\subsubsection*{Python}\label{python-21}}
 \addcontentsline{toc}{subsubsection}{Python}
 
-\hypertarget{r-20}{%
-\subsubsection*{R}\label{r-20}}
+The \texttt{lower()}, \texttt{upper()}, and \texttt{title()} functions convert case to lower, upper, and title, respectively. We can use a list comprehension to apply these functions to each word in a list.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}}\NormalTok{ col\_names }\OperatorTok{=}\NormalTok{ [col.upper() }\ControlFlowTok{for}\NormalTok{ col }\KeywordTok{in}\NormalTok{ mtcars.columns]}
+\OperatorTok{+}\NormalTok{ mtcars.columns }\OperatorTok{=}\NormalTok{ col\_names}
+\end{Highlighting}
+\end{Shaded}
+
+The \texttt{title} function changes all fo the
+col\_names = {[}col.upper() for col in mtcars.columns{]}
+
+\hypertarget{r-21}{%
+\subsubsection*{R}\label{r-21}}
 \addcontentsline{toc}{subsubsection}{R}
 
 The \texttt{tolower()} and \texttt{toupper()} functions convert case to lower and upper, respectively.
@@ -1701,12 +1974,12 @@ The \textbf{stringr} package provides a convenient title case conversion functio
 
 How to find and drop duplicate elements.
 
-\hypertarget{python-21}{%
-\subsubsection*{Python}\label{python-21}}
+\hypertarget{python-22}{%
+\subsubsection*{Python}\label{python-22}}
 \addcontentsline{toc}{subsubsection}{Python}
 
-\hypertarget{r-21}{%
-\subsubsection*{R}\label{r-21}}
+\hypertarget{r-22}{%
+\subsubsection*{R}\label{r-22}}
 \addcontentsline{toc}{subsubsection}{R}
 
 The \texttt{duplicated()} function ``determines which elements of a vector or data frame are duplicates of elements with smaller subscripts''. (from \texttt{?duplicated})
@@ -1772,12 +2045,45 @@ The \texttt{anyDuplicated()} function returns the row number of duplicate rows.
 
 How to take a random sample of rows from a data frame. The sample is usually either a fixed size or a proportion.
 
-\hypertarget{python-22}{%
-\subsubsection*{Python}\label{python-22}}
+\hypertarget{python-23}{%
+\subsubsection*{Python}\label{python-23}}
 \addcontentsline{toc}{subsubsection}{Python}
 
-\hypertarget{r-22}{%
-\subsubsection*{R}\label{r-22}}
+The pandas package provide a function for taking a sample, of fixed size or a proportion.
+
+To sample with replacement, set \texttt{replace\ =\ TRUE}.
+
+The random sample will change every time the code is run. To always generate the same ``random'' sample, set \texttt{random\_state} to any positive integer.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}} \CommentTok{\# sample 5 rows from mtcars}
+\OperatorTok{+}\NormalTok{ mtcars.sample(n}\OperatorTok{=}\DecValTok{5}\NormalTok{, replace}\OperatorTok{=}\VariableTok{True}\NormalTok{)}
+\OperatorTok{+} 
+\OperatorTok{+} \CommentTok{\# sample 20\% of rows from mtcars}
+\NormalTok{    MPG  CYL   DISP   HP  AXLE\_RATIO     WT   QSEC  VS AM  GEAR  CARB       KPL}
+\DecValTok{4}  \FloatTok{18.7}    \DecValTok{8}  \FloatTok{360.0}  \DecValTok{175}        \FloatTok{3.15}  \FloatTok{3.440}  \FloatTok{17.02}   \DecValTok{0}  \DecValTok{0}     \DecValTok{3}     \DecValTok{2}  \FloatTok{3.975340}
+\DecValTok{0}  \FloatTok{21.0}    \DecValTok{6}  \FloatTok{160.0}  \DecValTok{110}        \FloatTok{3.90}  \FloatTok{2.620}  \FloatTok{16.46}   \DecValTok{0}  \DecValTok{1}     \DecValTok{4}     \DecValTok{4}  \FloatTok{4.464286}
+\DecValTok{6}  \FloatTok{14.3}    \DecValTok{8}  \FloatTok{360.0}  \DecValTok{245}        \FloatTok{3.21}  \FloatTok{3.570}  \FloatTok{15.84}   \DecValTok{0}  \DecValTok{0}     \DecValTok{3}     \DecValTok{4}  \FloatTok{3.039966}
+\DecValTok{0}  \FloatTok{21.0}    \DecValTok{6}  \FloatTok{160.0}  \DecValTok{110}        \FloatTok{3.90}  \FloatTok{2.620}  \FloatTok{16.46}   \DecValTok{0}  \DecValTok{1}     \DecValTok{4}     \DecValTok{4}  \FloatTok{4.464286}
+\DecValTok{3}  \FloatTok{21.4}    \DecValTok{6}  \FloatTok{258.0}  \DecValTok{110}        \FloatTok{3.08}  \FloatTok{3.215}  \FloatTok{19.44}   \DecValTok{1}  \DecValTok{0}     \DecValTok{3}     \DecValTok{1}  \FloatTok{4.549320}
+\OperatorTok{\textgreater{}}\NormalTok{ mtcars.sample(frac }\OperatorTok{=} \FloatTok{0.20}\NormalTok{, random\_state}\OperatorTok{=}\DecValTok{1}\NormalTok{)}
+\NormalTok{     MPG  CYL   DISP   HP  AXLE\_RATIO  ...  VS  AM  GEAR CARB       KPL}
+\DecValTok{27}  \FloatTok{30.4}    \DecValTok{4}   \FloatTok{95.1}  \DecValTok{113}        \FloatTok{3.77}\NormalTok{  ...   }\DecValTok{1}   \DecValTok{1}     \DecValTok{5}    \DecValTok{2}  \FloatTok{6.462585}
+\DecValTok{3}   \FloatTok{21.4}    \DecValTok{6}  \FloatTok{258.0}  \DecValTok{110}        \FloatTok{3.08}\NormalTok{  ...   }\DecValTok{1}   \DecValTok{0}     \DecValTok{3}    \DecValTok{1}  \FloatTok{4.549320}
+\DecValTok{22}  \FloatTok{15.2}    \DecValTok{8}  \FloatTok{304.0}  \DecValTok{150}        \FloatTok{3.15}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{0}     \DecValTok{3}    \DecValTok{2}  \FloatTok{3.231293}
+\DecValTok{18}  \FloatTok{30.4}    \DecValTok{4}   \FloatTok{75.7}   \DecValTok{52}        \FloatTok{4.93}\NormalTok{  ...   }\DecValTok{1}   \DecValTok{1}     \DecValTok{4}    \DecValTok{2}  \FloatTok{6.462585}
+\DecValTok{23}  \FloatTok{13.3}    \DecValTok{8}  \FloatTok{350.0}  \DecValTok{245}        \FloatTok{3.73}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{0}     \DecValTok{3}    \DecValTok{4}  \FloatTok{2.827381}
+\DecValTok{17}  \FloatTok{32.4}    \DecValTok{4}   \FloatTok{78.7}   \DecValTok{66}        \FloatTok{4.08}\NormalTok{  ...   }\DecValTok{1}   \DecValTok{1}     \DecValTok{4}    \DecValTok{1}  \FloatTok{6.887755}
+
+\NormalTok{[}\DecValTok{6}\NormalTok{ rows x }\DecValTok{12}\NormalTok{ columns]}
+\end{Highlighting}
+\end{Shaded}
+
+The numpy function \texttt{random.choice}()` can be used to sample from a DataFrame.
+
+\hypertarget{r-23}{%
+\subsubsection*{R}\label{r-23}}
 \addcontentsline{toc}{subsubsection}{R}
 
 There are many ways to sample rows from a data frame in R. The \textbf{dplyr} package provides a convenience function, \texttt{slice\_sample()}, for taking either a fixed sample size or a proportion.
@@ -1787,14 +2093,14 @@ There are many ways to sample rows from a data frame in R. The \textbf{dplyr} pa
 \SpecialCharTok{\textgreater{}} \CommentTok{\# sample 5 rows from mtcars}
 \ErrorTok{\textgreater{}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{slice\_sample}\NormalTok{(mtcars, }\AttributeTok{n =} \DecValTok{5}\NormalTok{)}
 \NormalTok{   mpg cylinders  disp  hp axle\_ratio weight  qsec engine am gear carb am\_ch}
-\DecValTok{1} \FloatTok{17.3}         \DecValTok{8} \FloatTok{275.8} \DecValTok{180}       \FloatTok{3.07}   \FloatTok{3.73} \FloatTok{17.60}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{3}     \DecValTok{0}
-\DecValTok{2} \FloatTok{16.4}         \DecValTok{8} \FloatTok{275.8} \DecValTok{180}       \FloatTok{3.07}   \FloatTok{4.07} \FloatTok{17.40}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{3}     \DecValTok{0}
-\DecValTok{3} \FloatTok{21.4}         \DecValTok{4} \FloatTok{121.0} \DecValTok{109}       \FloatTok{4.11}   \FloatTok{2.78} \FloatTok{18.60}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{2}     \DecValTok{1}
-\DecValTok{4} \FloatTok{26.0}         \DecValTok{4} \FloatTok{120.3}  \DecValTok{91}       \FloatTok{4.43}   \FloatTok{2.14} \FloatTok{16.70}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{2}     \DecValTok{1}
-\DecValTok{5} \FloatTok{18.7}         \DecValTok{8} \FloatTok{360.0} \DecValTok{175}       \FloatTok{3.15}   \FloatTok{3.44} \FloatTok{17.02}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{2}     \DecValTok{0}
+\DecValTok{1} \FloatTok{15.0}         \DecValTok{8} \FloatTok{301.0} \DecValTok{335}       \FloatTok{3.54}  \FloatTok{3.570} \FloatTok{14.60}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{8}     \DecValTok{1}
+\DecValTok{2} \FloatTok{22.8}         \DecValTok{4} \FloatTok{108.0}  \DecValTok{93}       \FloatTok{3.85}  \FloatTok{2.320} \FloatTok{18.61}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
+\DecValTok{3} \FloatTok{32.4}         \DecValTok{4}  \FloatTok{78.7}  \DecValTok{66}       \FloatTok{4.08}  \FloatTok{2.200} \FloatTok{19.47}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
+\DecValTok{4} \FloatTok{26.0}         \DecValTok{4} \FloatTok{120.3}  \DecValTok{91}       \FloatTok{4.43}  \FloatTok{2.140} \FloatTok{16.70}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{2}     \DecValTok{1}
+\DecValTok{5} \FloatTok{21.5}         \DecValTok{4} \FloatTok{120.1}  \DecValTok{97}       \FloatTok{3.70}  \FloatTok{2.465} \FloatTok{20.01}      \DecValTok{1}  \DecValTok{0}    \DecValTok{3}    \DecValTok{1}     \DecValTok{0}
 \NormalTok{     am\_fac}
-\DecValTok{1}\NormalTok{ automatic}
-\DecValTok{2}\NormalTok{ automatic}
+\DecValTok{1}\NormalTok{    manual}
+\DecValTok{2}\NormalTok{    manual}
 \DecValTok{3}\NormalTok{    manual}
 \DecValTok{4}\NormalTok{    manual}
 \DecValTok{5}\NormalTok{ automatic}
@@ -1802,19 +2108,19 @@ There are many ways to sample rows from a data frame in R. The \textbf{dplyr} pa
 \ErrorTok{\textgreater{}} \CommentTok{\# sample 20\% of rows from mtcars}
 \ErrorTok{\textgreater{}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{slice\_sample}\NormalTok{(mtcars, }\AttributeTok{prop =} \FloatTok{0.20}\NormalTok{)}
 \NormalTok{   mpg cylinders  disp  hp axle\_ratio weight  qsec engine am gear carb am\_ch}
-\DecValTok{1} \FloatTok{21.4}         \DecValTok{4} \FloatTok{121.0} \DecValTok{109}       \FloatTok{4.11}  \FloatTok{2.780} \FloatTok{18.60}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{2}     \DecValTok{1}
-\DecValTok{2} \FloatTok{33.9}         \DecValTok{4}  \FloatTok{71.1}  \DecValTok{65}       \FloatTok{4.22}  \FloatTok{1.835} \FloatTok{19.90}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
-\DecValTok{3} \FloatTok{19.2}         \DecValTok{6} \FloatTok{167.6} \DecValTok{123}       \FloatTok{3.92}  \FloatTok{3.440} \FloatTok{18.30}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{4}     \DecValTok{0}
-\DecValTok{4} \FloatTok{13.3}         \DecValTok{8} \FloatTok{350.0} \DecValTok{245}       \FloatTok{3.73}  \FloatTok{3.840} \FloatTok{15.41}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
-\DecValTok{5} \FloatTok{10.4}         \DecValTok{8} \FloatTok{460.0} \DecValTok{215}       \FloatTok{3.00}  \FloatTok{5.424} \FloatTok{17.82}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
-\DecValTok{6} \FloatTok{32.4}         \DecValTok{4}  \FloatTok{78.7}  \DecValTok{66}       \FloatTok{4.08}  \FloatTok{2.200} \FloatTok{19.47}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
+\DecValTok{1} \FloatTok{17.3}         \DecValTok{8} \FloatTok{275.8} \DecValTok{180}       \FloatTok{3.07}  \FloatTok{3.730} \FloatTok{17.60}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{3}     \DecValTok{0}
+\DecValTok{2} \FloatTok{26.0}         \DecValTok{4} \FloatTok{120.3}  \DecValTok{91}       \FloatTok{4.43}  \FloatTok{2.140} \FloatTok{16.70}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{2}     \DecValTok{1}
+\DecValTok{3} \FloatTok{18.7}         \DecValTok{8} \FloatTok{360.0} \DecValTok{175}       \FloatTok{3.15}  \FloatTok{3.440} \FloatTok{17.02}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{2}     \DecValTok{0}
+\DecValTok{4} \FloatTok{21.5}         \DecValTok{4} \FloatTok{120.1}  \DecValTok{97}       \FloatTok{3.70}  \FloatTok{2.465} \FloatTok{20.01}      \DecValTok{1}  \DecValTok{0}    \DecValTok{3}    \DecValTok{1}     \DecValTok{0}
+\DecValTok{5} \FloatTok{18.1}         \DecValTok{6} \FloatTok{225.0} \DecValTok{105}       \FloatTok{2.76}  \FloatTok{3.460} \FloatTok{20.22}      \DecValTok{1}  \DecValTok{0}    \DecValTok{3}    \DecValTok{1}     \DecValTok{0}
+\DecValTok{6} \FloatTok{13.3}         \DecValTok{8} \FloatTok{350.0} \DecValTok{245}       \FloatTok{3.73}  \FloatTok{3.840} \FloatTok{15.41}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
 \NormalTok{     am\_fac}
-\DecValTok{1}\NormalTok{    manual}
+\DecValTok{1}\NormalTok{ automatic}
 \DecValTok{2}\NormalTok{    manual}
 \DecValTok{3}\NormalTok{ automatic}
 \DecValTok{4}\NormalTok{ automatic}
 \DecValTok{5}\NormalTok{ automatic}
-\DecValTok{6}\NormalTok{    manual}
+\DecValTok{6}\NormalTok{ automatic}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1830,17 +2136,17 @@ The base R functions \texttt{sample()} and \texttt{runif()} can be combined to s
 \SpecialCharTok{\textgreater{}} \CommentTok{\# use i to select rows}
 \ErrorTok{\textgreater{}}\NormalTok{ mtcars[i,]}
 \NormalTok{    mpg cylinders  disp  hp axle\_ratio weight  qsec engine am gear carb am\_ch}
-\DecValTok{18} \FloatTok{32.4}         \DecValTok{4}  \FloatTok{78.7}  \DecValTok{66}       \FloatTok{4.08}  \FloatTok{2.200} \FloatTok{19.47}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
-\DecValTok{11} \FloatTok{17.8}         \DecValTok{6} \FloatTok{167.6} \DecValTok{123}       \FloatTok{3.92}  \FloatTok{3.440} \FloatTok{18.90}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{4}     \DecValTok{0}
-\DecValTok{12} \FloatTok{16.4}         \DecValTok{8} \FloatTok{275.8} \DecValTok{180}       \FloatTok{3.07}  \FloatTok{4.070} \FloatTok{17.40}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{3}     \DecValTok{0}
-\DecValTok{7}  \FloatTok{14.3}         \DecValTok{8} \FloatTok{360.0} \DecValTok{245}       \FloatTok{3.21}  \FloatTok{3.570} \FloatTok{15.84}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
-\DecValTok{17} \FloatTok{14.7}         \DecValTok{8} \FloatTok{440.0} \DecValTok{230}       \FloatTok{3.23}  \FloatTok{5.345} \FloatTok{17.42}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{7}  \FloatTok{14.3}         \DecValTok{8} \FloatTok{360.0} \DecValTok{245}       \FloatTok{3.21}   \FloatTok{3.57} \FloatTok{15.84}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{11} \FloatTok{17.8}         \DecValTok{6} \FloatTok{167.6} \DecValTok{123}       \FloatTok{3.92}   \FloatTok{3.44} \FloatTok{18.90}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{24} \FloatTok{13.3}         \DecValTok{8} \FloatTok{350.0} \DecValTok{245}       \FloatTok{3.73}   \FloatTok{3.84} \FloatTok{15.41}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{14} \FloatTok{15.2}         \DecValTok{8} \FloatTok{275.8} \DecValTok{180}       \FloatTok{3.07}   \FloatTok{3.78} \FloatTok{18.00}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{3}     \DecValTok{0}
+\DecValTok{12} \FloatTok{16.4}         \DecValTok{8} \FloatTok{275.8} \DecValTok{180}       \FloatTok{3.07}   \FloatTok{4.07} \FloatTok{17.40}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{3}     \DecValTok{0}
 \NormalTok{      am\_fac}
-\DecValTok{18}\NormalTok{    manual}
-\DecValTok{11}\NormalTok{ automatic}
-\DecValTok{12}\NormalTok{ automatic}
 \DecValTok{7}\NormalTok{  automatic}
-\DecValTok{17}\NormalTok{ automatic}
+\DecValTok{11}\NormalTok{ automatic}
+\DecValTok{24}\NormalTok{ automatic}
+\DecValTok{14}\NormalTok{ automatic}
+\DecValTok{12}\NormalTok{ automatic}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1853,17 +2159,19 @@ The base R functions \texttt{sample()} and \texttt{runif()} can be combined to s
 \ErrorTok{\textgreater{}} \CommentTok{\# select rows that correspond to TRUE}
 \ErrorTok{\textgreater{}}\NormalTok{ mtcars[i }\SpecialCharTok{\textless{}} \FloatTok{0.20}\NormalTok{,]}
 \NormalTok{    mpg cylinders  disp  hp axle\_ratio weight  qsec engine am gear carb am\_ch}
-\DecValTok{5}  \FloatTok{18.7}         \DecValTok{8} \FloatTok{360.0} \DecValTok{175}       \FloatTok{3.15}  \FloatTok{3.440} \FloatTok{17.02}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{2}     \DecValTok{0}
-\DecValTok{11} \FloatTok{17.8}         \DecValTok{6} \FloatTok{167.6} \DecValTok{123}       \FloatTok{3.92}  \FloatTok{3.440} \FloatTok{18.90}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{4}     \DecValTok{0}
-\DecValTok{21} \FloatTok{21.5}         \DecValTok{4} \FloatTok{120.1}  \DecValTok{97}       \FloatTok{3.70}  \FloatTok{2.465} \FloatTok{20.01}      \DecValTok{1}  \DecValTok{0}    \DecValTok{3}    \DecValTok{1}     \DecValTok{0}
-\DecValTok{28} \FloatTok{30.4}         \DecValTok{4}  \FloatTok{95.1} \DecValTok{113}       \FloatTok{3.77}  \FloatTok{1.513} \FloatTok{16.90}      \DecValTok{1}  \DecValTok{1}    \DecValTok{5}    \DecValTok{2}     \DecValTok{1}
+\DecValTok{6}  \FloatTok{18.1}         \DecValTok{6} \FloatTok{225.0} \DecValTok{105}       \FloatTok{2.76}  \FloatTok{3.460} \FloatTok{20.22}      \DecValTok{1}  \DecValTok{0}    \DecValTok{3}    \DecValTok{1}     \DecValTok{0}
+\DecValTok{14} \FloatTok{15.2}         \DecValTok{8} \FloatTok{275.8} \DecValTok{180}       \FloatTok{3.07}  \FloatTok{3.780} \FloatTok{18.00}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{3}     \DecValTok{0}
+\DecValTok{15} \FloatTok{10.4}         \DecValTok{8} \FloatTok{472.0} \DecValTok{205}       \FloatTok{2.93}  \FloatTok{5.250} \FloatTok{17.98}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{20} \FloatTok{33.9}         \DecValTok{4}  \FloatTok{71.1}  \DecValTok{65}       \FloatTok{4.22}  \FloatTok{1.835} \FloatTok{19.90}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
 \DecValTok{30} \FloatTok{19.7}         \DecValTok{6} \FloatTok{145.0} \DecValTok{175}       \FloatTok{3.62}  \FloatTok{2.770} \FloatTok{15.50}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{6}     \DecValTok{1}
+\DecValTok{32} \FloatTok{21.4}         \DecValTok{4} \FloatTok{121.0} \DecValTok{109}       \FloatTok{4.11}  \FloatTok{2.780} \FloatTok{18.60}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{2}     \DecValTok{1}
 \NormalTok{      am\_fac}
-\DecValTok{5}\NormalTok{  automatic}
-\DecValTok{11}\NormalTok{ automatic}
-\DecValTok{21}\NormalTok{ automatic}
-\DecValTok{28}\NormalTok{    manual}
+\DecValTok{6}\NormalTok{  automatic}
+\DecValTok{14}\NormalTok{ automatic}
+\DecValTok{15}\NormalTok{ automatic}
+\DecValTok{20}\NormalTok{    manual}
 \DecValTok{30}\NormalTok{    manual}
+\DecValTok{32}\NormalTok{    manual}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1898,12 +2206,12 @@ This chapter looks at various strategies for combining, reshaping, and merging d
 
 Combining rows may be thought of as ``stacking'' rectangular data structures.
 
-\hypertarget{python-23}{%
-\subsubsection*{Python}\label{python-23}}
+\hypertarget{python-24}{%
+\subsubsection*{Python}\label{python-24}}
 \addcontentsline{toc}{subsubsection}{Python}
 
-\hypertarget{r-23}{%
-\subsubsection*{R}\label{r-23}}
+\hypertarget{r-24}{%
+\subsubsection*{R}\label{r-24}}
 \addcontentsline{toc}{subsubsection}{R}
 
 The \texttt{rbind()} function ``binds'' rows. It takes two or more objects. To row bind data frames the column names must match, otherwise an error is returned. If columns being stacked have differing variable types, the values will be coerced according to \texttt{logical} \textless{} \texttt{integer} \textless{} \texttt{double} \textless{} \texttt{complex} \textless{} \texttt{character}. (E.g., if you stack a set of rows with type \texttt{logical} in column \emph{J} on a set of rows with type \texttt{character} in column \emph{J}, the output will have column \emph{J} as type \texttt{character}.)
@@ -1930,12 +2238,12 @@ See also the \texttt{bind\_rows()} function in the \textbf{dplyr} package.
 
 Combining columns may be thought of as setting rectangular data structures next to each other.
 
-\hypertarget{python-24}{%
-\subsubsection*{Python}\label{python-24}}
+\hypertarget{python-25}{%
+\subsubsection*{Python}\label{python-25}}
 \addcontentsline{toc}{subsubsection}{Python}
 
-\hypertarget{r-24}{%
-\subsubsection*{R}\label{r-24}}
+\hypertarget{r-25}{%
+\subsubsection*{R}\label{r-25}}
 \addcontentsline{toc}{subsubsection}{R}
 
 The \texttt{cbind()} function ``binds'' columns. It takes two or more objects. To column bind data frames, the number of rows must match; otherwise, the object with fewer rows will have rows ``recycled'' (if possible) or an error will be returned.
@@ -2002,12 +2310,12 @@ Shifting between these two data formats is often necessary for implementing cert
 \hypertarget{wide-to-long}{%
 \subsection{Wide to long}\label{wide-to-long}}
 
-\hypertarget{python-25}{%
-\subsubsection*{Python}\label{python-25}}
+\hypertarget{python-26}{%
+\subsubsection*{Python}\label{python-26}}
 \addcontentsline{toc}{subsubsection}{Python}
 
-\hypertarget{r-25}{%
-\subsubsection*{R}\label{r-25}}
+\hypertarget{r-26}{%
+\subsubsection*{R}\label{r-26}}
 \addcontentsline{toc}{subsubsection}{R}
 
 In base R, the \texttt{reshape()} function can take data from wide to long or long to wide. The \textbf{tidyverse} also provides reshaping functions: \texttt{pivot\_longer()} and \texttt{pivot\_wider()}. The \textbf{tidyverse} functions have a degree of intuitiveness and usability that may make them the go-to reshaping tools for many R users. We give examples below using both base R and \textbf{tidyverse}.
@@ -2137,12 +2445,12 @@ Alternatively, \texttt{pivot\_longer()} can be used to convert this data frame t
 \hypertarget{long-to-wide}{%
 \subsection{Long to wide}\label{long-to-wide}}
 
-\hypertarget{python-26}{%
-\subsubsection*{Python}\label{python-26}}
+\hypertarget{python-27}{%
+\subsubsection*{Python}\label{python-27}}
 \addcontentsline{toc}{subsubsection}{Python}
 
-\hypertarget{r-26}{%
-\subsubsection*{R}\label{r-26}}
+\hypertarget{r-27}{%
+\subsubsection*{R}\label{r-27}}
 \addcontentsline{toc}{subsubsection}{R}
 
 Say we begin with a long data frame, \texttt{df\_long}, that looks like this:
@@ -2298,8 +2606,8 @@ A left join of \emph{x} and \emph{y} keeps all rows of \emph{x} and merges rows 
 
 \includegraphics[width=17.25in]{images/left_join}
 
-\hypertarget{python-27}{%
-\subsubsection*{Python}\label{python-27}}
+\hypertarget{python-28}{%
+\subsubsection*{Python}\label{python-28}}
 \addcontentsline{toc}{subsubsection}{Python}
 
 \begin{Shaded}
@@ -2313,8 +2621,8 @@ A left join of \emph{x} and \emph{y} keeps all rows of \emph{x} and merges rows 
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{r-27}{%
-\subsubsection*{R}\label{r-27}}
+\hypertarget{r-28}{%
+\subsubsection*{R}\label{r-28}}
 \addcontentsline{toc}{subsubsection}{R}
 
 \begin{Shaded}
@@ -2335,8 +2643,8 @@ A right join of \emph{x} and \emph{y} keeps all rows of \emph{y} and merges rows
 
 \includegraphics[width=17.25in]{images/right_join}
 
-\hypertarget{python-28}{%
-\subsubsection*{Python}\label{python-28}}
+\hypertarget{python-29}{%
+\subsubsection*{Python}\label{python-29}}
 \addcontentsline{toc}{subsubsection}{Python}
 
 \begin{Shaded}
@@ -2350,8 +2658,8 @@ A right join of \emph{x} and \emph{y} keeps all rows of \emph{y} and merges rows
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{r-28}{%
-\subsubsection*{R}\label{r-28}}
+\hypertarget{r-29}{%
+\subsubsection*{R}\label{r-29}}
 \addcontentsline{toc}{subsubsection}{R}
 
 \begin{Shaded}
@@ -2372,8 +2680,8 @@ An inner join of \emph{x} and \emph{y} returns merged rows for which a match can
 
 \includegraphics[width=17.25in]{images/inner_join}
 
-\hypertarget{python-29}{%
-\subsubsection*{Python}\label{python-29}}
+\hypertarget{python-30}{%
+\subsubsection*{Python}\label{python-30}}
 \addcontentsline{toc}{subsubsection}{Python}
 
 \begin{Shaded}
@@ -2385,8 +2693,8 @@ An inner join of \emph{x} and \emph{y} returns merged rows for which a match can
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{r-29}{%
-\subsubsection*{R}\label{r-29}}
+\hypertarget{r-30}{%
+\subsubsection*{R}\label{r-30}}
 \addcontentsline{toc}{subsubsection}{R}
 
 \begin{Shaded}
@@ -2408,8 +2716,8 @@ An outer join of \emph{x} and \emph{y} keeps all rows from both tables, merging 
 
 \includegraphics[width=17.25in]{images/outer_join}
 
-\hypertarget{python-30}{%
-\subsubsection*{Python}\label{python-30}}
+\hypertarget{python-31}{%
+\subsubsection*{Python}\label{python-31}}
 \addcontentsline{toc}{subsubsection}{Python}
 
 \begin{Shaded}
@@ -2425,8 +2733,8 @@ An outer join of \emph{x} and \emph{y} keeps all rows from both tables, merging 
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{r-30}{%
-\subsubsection*{R}\label{r-30}}
+\hypertarget{r-31}{%
+\subsubsection*{R}\label{r-31}}
 \addcontentsline{toc}{subsubsection}{R}
 
 \begin{Shaded}
@@ -2466,8 +2774,8 @@ The Python and R examples of cross tabulation below both make use of the followi
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{python-31}{%
-\subsubsection*{Python}\label{python-31}}
+\hypertarget{python-32}{%
+\subsubsection*{Python}\label{python-32}}
 \addcontentsline{toc}{subsubsection}{Python}
 
 The \textbf{pandas} package contains a \texttt{crosstab()} function for cross tabulation with two or more variables. The \texttt{groupby()}, also in \textbf{pandas}, facilitates cross tabulation by one or more variables when used in combination with \texttt{count()}.
@@ -2498,8 +2806,8 @@ The \textbf{pandas} package contains a \texttt{crosstab()} function for cross ta
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{r-31}{%
-\subsubsection*{R}\label{r-31}}
+\hypertarget{r-32}{%
+\subsubsection*{R}\label{r-32}}
 \addcontentsline{toc}{subsubsection}{R}
 
 The \texttt{table()} function performs cross tabulation in R. A user can enter a single grouping variable or enter multiple grouping variables separated by a comma(s). The \texttt{xtabs()} function also computes cross-tabs; a user enters the variables to be used for grouping in formula notation.
@@ -2530,12 +2838,12 @@ The \texttt{table()} function performs cross tabulation in R. A user can enter a
 
 Computing statistical summaries per group.
 
-\hypertarget{python-32}{%
-\subsubsection*{Python}\label{python-32}}
+\hypertarget{python-33}{%
+\subsubsection*{Python}\label{python-33}}
 \addcontentsline{toc}{subsubsection}{Python}
 
-\hypertarget{r-32}{%
-\subsubsection*{R}\label{r-32}}
+\hypertarget{r-33}{%
+\subsubsection*{R}\label{r-33}}
 \addcontentsline{toc}{subsubsection}{R}
 
 The \texttt{aggregate()} function allows a user to easily generate by-group statistical summaries based on one or more grouping variables. Grouping variables can be declared as a list in the function's \texttt{by} argument. Alternatively, the grouping variables (and the variable to be summarized) can be passed to \texttt{aggregate()} in formula notation: \texttt{var\_to\_be\_aggregated\ \textasciitilde{}\ grouping\_var\_1\ +\ ...\ +\ grouping\_var\_N}. The summarizing function (e.g., \texttt{mean()}; \texttt{median()}; etc.) is declared in the \texttt{FUN} argument.
@@ -2626,28 +2934,12 @@ A benefit of \texttt{summarize()} is that it allows a user to specify relatively
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{basic-plotting-and-visualization}{%
-\chapter{Basic Plotting and Visualization}\label{basic-plotting-and-visualization}}
+\hypertarget{centering-and-scaling}{%
+\section{Centering and Scaling}\label{centering-and-scaling}}
 
-This chapter looks at creating basic visualizations to explore and better understand data.
+\emph{Centering} refers to rescaling a column or vector of values such that their mean is 0. This is sometimes performed to aid interpretation of linear model coefficients.
 
-\hypertarget{histograms}{%
-\section{Histograms}\label{histograms}}
-
-Visualizing the distribution of numeric data.
-
-\hypertarget{python-33}{%
-\subsubsection*{Python}\label{python-33}}
-\addcontentsline{toc}{subsubsection}{Python}
-
-\hypertarget{r-33}{%
-\subsubsection*{R}\label{r-33}}
-\addcontentsline{toc}{subsubsection}{R}
-
-\hypertarget{scatterplot}{%
-\section{Scatterplot}\label{scatterplot}}
-
-Visualizing the relationship between two numeric variables.
+\emph{Scaling} refers to rescaling a column or vector of values such that their mean is 0 and their standard deviation is 1. This is sometimes performed to put multiple variables on the same scale and is often recommended for procedures such as principal components analysis (PCA).
 
 \hypertarget{python-34}{%
 \subsubsection*{Python}\label{python-34}}
@@ -2656,6 +2948,105 @@ Visualizing the relationship between two numeric variables.
 \hypertarget{r-34}{%
 \subsubsection*{R}\label{r-34}}
 \addcontentsline{toc}{subsubsection}{R}
+
+The \texttt{scale()} function can both center and scale variables.
+
+To center a variable (without scaling it), call \texttt{scale()} with the \texttt{center} argument set to \texttt{TRUE} and the \texttt{scale} argument set to \texttt{FALSE}. The variable's mean will be subtracted off of each of the variable values. (Note: If desired, the \texttt{center} argument can be set to a numeric value instead of \texttt{TRUE}/\texttt{FALSE}; in that case, each variable value will have the argument value subtracted off of it.)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}}\NormalTok{ centered\_mpg }\OtherTok{\textless{}{-}} \FunctionTok{scale}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{mpg, }\AttributeTok{center =}\NormalTok{ T, }\AttributeTok{scale =}\NormalTok{ F)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{mean}\NormalTok{(centered\_mpg)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{4.440892e{-}16}
+\end{Highlighting}
+\end{Shaded}
+
+To scale a variable (while also centering it), call \texttt{scale()} with the \texttt{center} and \texttt{scale} arguments set to \texttt{TRUE} (these are the default argument values). The variable's mean will be subtracted off of each of the variable values, and each value will then be divided by the variable's standard deviation. (Note: As with the \texttt{center} argument, the \texttt{scale} argument can also be set to a numeric value instead of \texttt{TRUE}/\texttt{FALSE}; in that case, the divisor will be the argument value instead of the standard deviation.)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}}\NormalTok{ scaled\_mpg }\OtherTok{\textless{}{-}} \FunctionTok{scale}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{mpg, }\AttributeTok{center =}\NormalTok{ T, }\AttributeTok{scale =}\NormalTok{ T)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{mean}\NormalTok{(scaled\_mpg)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{7.112366e{-}17}
+\SpecialCharTok{\textgreater{}} \FunctionTok{sd}\NormalTok{(scaled\_mpg)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{basic-plotting-and-visualization}{%
+\chapter{Basic Plotting and Visualization}\label{basic-plotting-and-visualization}}
+
+This chapter looks at creating basic plots to explore and better understand data. Visualization in Python and R is a gigantic and evolving topic. We don't pretend to present a comprehensive comparison.
+
+\hypertarget{histograms}{%
+\section{Histograms}\label{histograms}}
+
+Visualizing the distribution of numeric data.
+
+\hypertarget{python-35}{%
+\subsubsection*{Python}\label{python-35}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\hypertarget{r-35}{%
+\subsubsection*{R}\label{r-35}}
+\addcontentsline{toc}{subsubsection}{R}
+
+\hypertarget{barplots}{%
+\section{Barplots}\label{barplots}}
+
+Visualizing the distribution of categorical data.
+
+\hypertarget{python-36}{%
+\subsubsection*{Python}\label{python-36}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\hypertarget{r-36}{%
+\subsubsection*{R}\label{r-36}}
+\addcontentsline{toc}{subsubsection}{R}
+
+\hypertarget{scatterplot}{%
+\section{Scatterplot}\label{scatterplot}}
+
+Visualizing the relationship between two numeric variables.
+
+\hypertarget{python-37}{%
+\subsubsection*{Python}\label{python-37}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\hypertarget{r-37}{%
+\subsubsection*{R}\label{r-37}}
+\addcontentsline{toc}{subsubsection}{R}
+
+\hypertarget{stripcharts}{%
+\section{Stripcharts}\label{stripcharts}}
+
+Visualizing the relationship between a numeric variable and a categorical variable.
+
+\hypertarget{python-38}{%
+\subsubsection*{Python}\label{python-38}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\hypertarget{r-38}{%
+\subsubsection*{R}\label{r-38}}
+\addcontentsline{toc}{subsubsection}{R}
+
+\hypertarget{boxplots}{%
+\section{Boxplots}\label{boxplots}}
+
+Visualizing the relationship between a numeric variable and a categorical variable via 5 number summaries.
+
+\hypertarget{python-39}{%
+\subsubsection*{Python}\label{python-39}}
+\addcontentsline{toc}{subsubsection}{Python}
+
+\hypertarget{r-39}{%
+\subsubsection*{R}\label{r-39}}
+\addcontentsline{toc}{subsubsection}{R}
+
+\hypertarget{conditional-or-faceted-plots}{%
+\section{Conditional or Faceted plots}\label{conditional-or-faceted-plots}}
+
+Two or more plots of subsets of data.
 
 \hypertarget{statistical-inference-and-modeling}{%
 \chapter{Statistical Inference and Modeling}\label{statistical-inference-and-modeling}}
@@ -2667,12 +3058,12 @@ This chapter looks at performing and interpreting common statistical analyses.
 
 Comparing the means of two or more groups to see if or how they differ. Two means can be analyzed with a t test. Three or more can be analyzed with ANOVA. Both the t test and ANOVA are special cases of a linear model.
 
-\hypertarget{python-35}{%
-\subsubsection*{Python}\label{python-35}}
+\hypertarget{python-40}{%
+\subsubsection*{Python}\label{python-40}}
 \addcontentsline{toc}{subsubsection}{Python}
 
-\hypertarget{r-35}{%
-\subsubsection*{R}\label{r-35}}
+\hypertarget{r-40}{%
+\subsubsection*{R}\label{r-40}}
 \addcontentsline{toc}{subsubsection}{R}
 
 \hypertarget{simple-linear-regression}{%
@@ -2680,12 +3071,12 @@ Comparing the means of two or more groups to see if or how they differ. Two mean
 
 Analyzing if or how the variability a numeric variable depends on another numeric variable.
 
-\hypertarget{python-36}{%
-\subsubsection*{Python}\label{python-36}}
+\hypertarget{python-41}{%
+\subsubsection*{Python}\label{python-41}}
 \addcontentsline{toc}{subsubsection}{Python}
 
-\hypertarget{r-36}{%
-\subsubsection*{R}\label{r-36}}
+\hypertarget{r-41}{%
+\subsubsection*{R}\label{r-41}}
 \addcontentsline{toc}{subsubsection}{R}
 
 \hypertarget{multiple-regression}{%
@@ -2693,12 +3084,12 @@ Analyzing if or how the variability a numeric variable depends on another numeri
 
 Analyzing if or how the variability a numeric variable depends on multiple numeric variables.
 
-\hypertarget{python-37}{%
-\subsubsection*{Python}\label{python-37}}
+\hypertarget{python-42}{%
+\subsubsection*{Python}\label{python-42}}
 \addcontentsline{toc}{subsubsection}{Python}
 
-\hypertarget{r-37}{%
-\subsubsection*{R}\label{r-37}}
+\hypertarget{r-42}{%
+\subsubsection*{R}\label{r-42}}
 \addcontentsline{toc}{subsubsection}{R}
 
 \hypertarget{logistic-regression}{%
@@ -2706,12 +3097,12 @@ Analyzing if or how the variability a numeric variable depends on multiple numer
 
 Analyzing if or how the variability of a binary variable depends on one or more predictor variables.
 
-\hypertarget{python-38}{%
-\subsubsection*{Python}\label{python-38}}
+\hypertarget{python-43}{%
+\subsubsection*{Python}\label{python-43}}
 \addcontentsline{toc}{subsubsection}{Python}
 
-\hypertarget{r-38}{%
-\subsubsection*{R}\label{r-38}}
+\hypertarget{r-43}{%
+\subsubsection*{R}\label{r-43}}
 \addcontentsline{toc}{subsubsection}{R}
 
   \bibliography{book.bib,packages.bib}
