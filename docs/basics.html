@@ -415,11 +415,49 @@ div.csl-indent {
 </div>
 <div id="writing-your-own-functions" class="section level2" number="1.8">
 <h2><span class="header-section-number">1.8</span> Writing your own functions</h2>
+<p>Python and R allow and encourage users to create their own functions. Functions can be created, named, and stored in memory and used throughout a session. Or they can be created on-the-fly “anonymously” and used once.</p>
 <div id="python-7" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
 <div id="r-7" class="section level4 unnumbered">
 <h4>R</h4>
+<p>Functions in R can be created and named using <code>function()</code>. Add arguments inside the parentheses. Longer functions with multiple lines can be wrapped in curly braces <code>{}</code>.</p>
+<p>Below we create a function to calculate the standard error of a mean (SEM) and name it <code>sem</code>. It takes one argument: <code>x</code>, a vector of numbers. Both the function name and argument name(s) can be whatever we like, as long as they follow <a href="https://cran.r-project.org/doc/manuals/r-release/R-intro.html#R-commands_003b-case-sensitivity-etc">R’s naming conventions</a>.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="basics.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> sem <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb15-2"><a href="basics.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   s <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span>
+<span id="cb15-3"><a href="basics.html#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   n <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
+<span id="cb15-4"><a href="basics.html#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   s<span class="sc">/</span><span class="fu">sqrt</span>(n)</span>
+<span id="cb15-5"><a href="basics.html#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> }</span></code></pre></div>
+<p>Now we can try it out on some test data.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="basics.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">9</span>,<span class="dv">6</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">7</span>)</span>
+<span id="cb16-2"><a href="basics.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">sem</span>(d)</span>
+<span id="cb16-3"><a href="basics.html#cb16-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.7412036</span></span></code></pre></div>
+<p>Functions that will be used on different data and/or by different users often need built-in error-checking to return informative error messages. This simple example checks if the data are not numeric and returns a special error message.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="basics.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> sem <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb17-2"><a href="basics.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.numeric</span>(x)) <span class="fu">stop</span>(<span class="st">&quot;x must be numeric&quot;</span>)</span>
+<span id="cb17-3"><a href="basics.html#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   s <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span>
+<span id="cb17-4"><a href="basics.html#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   n <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
+<span id="cb17-5"><a href="basics.html#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   s<span class="sc">/</span><span class="fu">sqrt</span>(n)</span>
+<span id="cb17-6"><a href="basics.html#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> }</span>
+<span id="cb17-7"><a href="basics.html#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">sem</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="st">&quot;a&quot;</span>))</span>
+<span id="cb17-8"><a href="basics.html#cb17-8" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">sem</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="st">&quot;a&quot;</span>))<span class="sc">:</span> x must be numeric</span></code></pre></div>
+<p>R functions can also return more than one result. Below we return a list that holds the mean and SEM, but we could also return a vector, a data frame, or other data structure. Notice we also add an additional argument, <code>...</code>, known as the three dots argument. This allows us to pass arguments for <code>sd</code> and <code>mean</code> directly through our own function. Below we pass through <code>na.rm = TRUE</code> to drop missing values.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="basics.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> sem <span class="ot">&lt;-</span> <span class="cf">function</span>(x, ...){</span>
+<span id="cb18-2"><a href="basics.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.numeric</span>(x)) <span class="fu">stop</span>(<span class="st">&quot;x must be numeric&quot;</span>)</span>
+<span id="cb18-3"><a href="basics.html#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   s <span class="ot">&lt;-</span> <span class="fu">sd</span>(x, ...)</span>
+<span id="cb18-4"><a href="basics.html#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   n <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
+<span id="cb18-5"><a href="basics.html#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   se <span class="ot">&lt;-</span> s<span class="sc">/</span><span class="fu">sqrt</span>(n)</span>
+<span id="cb18-6"><a href="basics.html#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(x, ...)</span>
+<span id="cb18-7"><a href="basics.html#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">list</span>(<span class="at">mean =</span> mean, <span class="at">SEM =</span> se)</span>
+<span id="cb18-8"><a href="basics.html#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> }</span>
+<span id="cb18-9"><a href="basics.html#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb18-10"><a href="basics.html#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="cn">NA</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">6</span>)</span>
+<span id="cb18-11"><a href="basics.html#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">sem</span>(d, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb18-12"><a href="basics.html#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>mean</span>
+<span id="cb18-13"><a href="basics.html#cb18-13" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">5.125</span></span>
+<span id="cb18-14"><a href="basics.html#cb18-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-15"><a href="basics.html#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>SEM</span>
+<span id="cb18-16"><a href="basics.html#cb18-16" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.7855339</span></span></code></pre></div>
 
 </div>
 </div>

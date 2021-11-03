@@ -190,7 +190,58 @@ x_med
 
 ## Writing your own functions
 
+Python and R allow and encourage users to create their own functions. Functions can be created, named, and stored in memory and used throughout a session. Or they can be created on-the-fly "anonymously" and used once.
 
 #### Python {-}
 
 #### R {-}
+
+Functions in R can be created and named using `function()`. Add arguments inside the parentheses. Longer functions with multiple lines can be wrapped in curly braces `{}`.
+
+Below we create a function to calculate the standard error of a mean (SEM) and name it `sem`. It takes one argument: `x`, a vector of numbers. Both the function name and argument name(s) can be whatever we like, as long as they follow [R's naming conventions](https://cran.r-project.org/doc/manuals/r-release/R-intro.html#R-commands_003b-case-sensitivity-etc).
+
+```{r}
+sem <- function(x){
+  s <- sd(x)
+  n <- length(x)
+  s/sqrt(n)
+}
+
+```
+
+Now we can try it out on some test data.
+
+```{r}
+d <- c(3,4,4,7,9,6,2,5,7)
+sem(d)
+```
+
+Functions that will be used on different data and/or by different users often need built-in error-checking to return informative error messages. This simple example checks if the data are not numeric and returns a special error message.
+
+```{r error=TRUE}
+sem <- function(x){
+  if(!is.numeric(x)) stop("x must be numeric")
+  s <- sd(x)
+  n <- length(x)
+  s/sqrt(n)
+}
+sem(c(1, 4, 6, "a"))
+```
+
+R functions can also return more than one result. Below we return a list that holds the mean and SEM, but we could also return a vector, a data frame, or other data structure. Notice we also add an additional argument, `...`, known as the three dots argument. This allows us to pass arguments for `sd` and `mean` directly through our own function. Below we pass through `na.rm = TRUE` to drop missing values.
+ 
+
+```{r}
+sem <- function(x, ...){
+  if(!is.numeric(x)) stop("x must be numeric")
+  s <- sd(x, ...)
+  n <- length(x)
+  se <- s/sqrt(n)
+  mean <- mean(x, ...)
+  list(mean = mean, SEM = se)
+}
+
+d <- c(1, 4, 6, 8, NA, 4, 4, 8, 6)
+sem(d, na.rm = TRUE)
+```
+
