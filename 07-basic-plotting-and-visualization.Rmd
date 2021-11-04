@@ -6,7 +6,7 @@ knitr::opts_chunk$set(comment = NA, prompt = TRUE, collapse = TRUE)
 
 This chapter looks at creating basic plots to explore and better understand data. Visualization in Python and R is a gigantic and evolving topic. We don't pretend to present a comprehensive comparison. 
 
-The plots below make use of the **palmerpenguins** data set, which contains various measurements for 344 penguins across three islands in the Antarctic Palmer Archipelago. The data were collected by [Kristen Gorman](https://www.uaf.edu/cfos/people/faculty/detail/kristen-gorman.php) and colleagues, and they were made available under a CC0 public domain license by Allison Horst, Alison Hill, and Kristen Gorman.
+The plots below make use of the [**palmerpenguins**](https://allisonhorst.github.io/palmerpenguins/) data set, which contains various measurements for 344 penguins across three islands in the Antarctic Palmer Archipelago. The data were collected by [Kristen Gorman](https://www.uaf.edu/cfos/people/faculty/detail/kristen-gorman.php) and colleagues, and they were made available under a [CC0 public domain license](https://creativecommons.org/share-your-work/public-domain/cc0/) by Allison Horst, Alison Hill, and Kristen Gorman.
 
 For the R sections below, we provide code showing how to make each plot using base R and using **ggplot2**.
 
