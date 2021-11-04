@@ -245,3 +245,25 @@ d <- c(1, 4, 6, 8, NA, 4, 4, 8, 6)
 sem(d, na.rm = TRUE)
 ```
 
+Functions can also be created on-the-fly as "anonymous" functions. This simply means the functions are not saved as objects in memory. These are often used with R's family of `apply` functions. As before, the functions can be created with `function()`. We can also use the backslash `\` as a shorthand for `function()`. We demonstrate both below with a data frame.
+
+```{r}
+# generate some example data
+d <- data.frame(x1 = c(3, 5, 7, 1, 5, 4),
+                x2 = c(6, 9, 8, 9, 2, 5),
+                x3 = c(1, 9, 9, 7, 8, 4))
+d
+```
+
+Now find the standard error of the mean for the three columns using an anonymous function with `lapply`. The "l" means the result will be a list. We apply the function to each column of the data frame.
+
+```{r}
+lapply(d, function(x)sd(x)/sqrt(length(x)))
+```
+
+We can also use the backslash as a shorthand for `function()`.
+
+```{r}
+lapply(d, \(x)sd(x)/sqrt(length(x)))
+```
+
