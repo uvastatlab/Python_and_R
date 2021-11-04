@@ -176,6 +176,7 @@ div.csl-indent {
 <li class="chapter" data-level="2.1" data-path="data-structures.html"><a href="data-structures.html#one-dimensional-data"><i class="fa fa-check"></i><b>2.1</b> One-dimensional data</a></li>
 <li class="chapter" data-level="2.2" data-path="data-structures.html"><a href="data-structures.html#two-dimensional-data"><i class="fa fa-check"></i><b>2.2</b> Two-dimensional data</a></li>
 <li class="chapter" data-level="2.3" data-path="data-structures.html"><a href="data-structures.html#three-dimensional-and-higher-data"><i class="fa fa-check"></i><b>2.3</b> Three-dimensional and higher data</a></li>
+<li class="chapter" data-level="2.4" data-path="data-structures.html"><a href="data-structures.html#general-data-structures"><i class="fa fa-check"></i><b>2.4</b> General data structures</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>3</b> Importing Data</a>
 <ul>
@@ -366,7 +367,7 @@ div.csl-indent {
 <span id="cb30-6"><a href="data-structures.html#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> x2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">43</span>, <span class="st">&#39;hi&#39;</span>)</span>
 <span id="cb30-7"><a href="data-structures.html#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x2</span>
 <span id="cb30-8"><a href="data-structures.html#cb30-8" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;23&quot;</span> <span class="st">&quot;43&quot;</span> <span class="st">&quot;hi&quot;</span></span></code></pre></div>
-<p>Values in a vector can be accessed by position using indexing brackets.</p>
+<p>Values in a vector can be accessed by position using indexing brackets. R indexes elements of a vector starting at 1. Index values are inclusive. For example, <code>2:3</code> selects the second and third elements.</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="data-structures.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># extract the 2nd value</span></span>
 <span id="cb31-2"><a href="data-structures.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> x1[<span class="dv">2</span>]</span>
 <span id="cb31-3"><a href="data-structures.html#cb31-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">43</span></span>
@@ -490,7 +491,8 @@ div.csl-indent {
 </div>
 <div id="r-10" class="section level4 unnumbered">
 <h4>R</h4>
-<p>The <code>array()</code> function in R can create three-dimensional and higher data structures. Specify the dimension number and size using the <code>dim</code> argument. Below we specify 2 rows, 3 columns, and 2 strata using a vector: <code>c(2,3,2)</code>. This creates a three-dimensional data structure. The data are simply the numbers 1 through 12.</p>
+<p>The <code>array()</code> function in R can create three-dimensional and higher data structures. Arrays are like vectors and matrices in that they can only contain one data type. In fact matrices and arrays are sometimes described as vectors with instructions on how to layout the data.</p>
+<p>We can specify the dimension number and size using the <code>dim</code> argument. Below we specify 2 rows, 3 columns, and 2 strata using a vector: <code>c(2,3,2)</code>. This creates a three-dimensional data structure. The data in the example are simply the numbers 1 through 12.</p>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="data-structures.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> a1 <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="at">data =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">dim =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">2</span>))</span>
 <span id="cb40-2"><a href="data-structures.html#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> a1</span>
 <span id="cb40-3"><a href="data-structures.html#cb40-3" aria-hidden="true" tabindex="-1"></a>, , <span class="dv">1</span></span>
@@ -548,6 +550,66 @@ div.csl-indent {
 <span id="cb43-12"><a href="data-structures.html#cb43-12" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> x2 y2 z2    <span class="dv">10</span></span>
 <span id="cb43-13"><a href="data-structures.html#cb43-13" aria-hidden="true" tabindex="-1"></a><span class="dv">11</span> x1 y3 z2    <span class="dv">11</span></span>
 <span id="cb43-14"><a href="data-structures.html#cb43-14" aria-hidden="true" tabindex="-1"></a><span class="dv">12</span> x2 y3 z2    <span class="dv">12</span></span></code></pre></div>
+</div>
+</div>
+<div id="general-data-structures" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> General data structures</h2>
+<p>Both R and Python provide general “catch-all” data structures that can contain any number, shape, and type of data.</p>
+<div id="python-11" class="section level4 unnumbered">
+<h4>Python</h4>
+</div>
+<div id="r-11" class="section level4 unnumbered">
+<h4>R</h4>
+<p>The most general data structure in R is the <em>list</em>. A list is an ordered collection of objects, which are referred to as the <em>components</em>. The components can be vectors, matrices, arrays, data frames, and other lists. The components are always numbered but can also have names. The results of statistical functions are often returned as lists.</p>
+<p>We can create lists with the <code>list()</code> function. The list below contains three components: a vector named “x,” a matrix named “y,” and a data frame named “z.” Notice the <code>m</code> and <code>d</code> objects were created in the two-dimensional data section earlier in this chapter.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="data-structures.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> l <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),</span>
+<span id="cb44-2"><a href="data-structures.html#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>           <span class="at">y =</span> m,</span>
+<span id="cb44-3"><a href="data-structures.html#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>           <span class="at">z =</span> d)</span>
+<span id="cb44-4"><a href="data-structures.html#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> l</span>
+<span id="cb44-5"><a href="data-structures.html#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>x</span>
+<span id="cb44-6"><a href="data-structures.html#cb44-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span></span>
+<span id="cb44-7"><a href="data-structures.html#cb44-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-8"><a href="data-structures.html#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>y</span>
+<span id="cb44-9"><a href="data-structures.html#cb44-9" aria-hidden="true" tabindex="-1"></a>     [,<span class="dv">1</span>] [,<span class="dv">2</span>]</span>
+<span id="cb44-10"><a href="data-structures.html#cb44-10" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>,]    <span class="dv">1</span>    <span class="dv">5</span></span>
+<span id="cb44-11"><a href="data-structures.html#cb44-11" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>,]    <span class="dv">3</span>    <span class="dv">7</span></span>
+<span id="cb44-12"><a href="data-structures.html#cb44-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-13"><a href="data-structures.html#cb44-13" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>z</span>
+<span id="cb44-14"><a href="data-structures.html#cb44-14" aria-hidden="true" tabindex="-1"></a>   name age</span>
+<span id="cb44-15"><a href="data-structures.html#cb44-15" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>   Rob  <span class="dv">35</span></span>
+<span id="cb44-16"><a href="data-structures.html#cb44-16" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> Cindy  <span class="dv">37</span></span></code></pre></div>
+<p>We can refer to list components by their order number or name (if present). To use order number, use indexing brackets. Single brackets returns a list. Double brackets return the component itself.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="data-structures.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># second element returned as list</span></span>
+<span id="cb45-2"><a href="data-structures.html#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> l[<span class="dv">2</span>]</span>
+<span id="cb45-3"><a href="data-structures.html#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>y</span>
+<span id="cb45-4"><a href="data-structures.html#cb45-4" aria-hidden="true" tabindex="-1"></a>     [,<span class="dv">1</span>] [,<span class="dv">2</span>]</span>
+<span id="cb45-5"><a href="data-structures.html#cb45-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>,]    <span class="dv">1</span>    <span class="dv">5</span></span>
+<span id="cb45-6"><a href="data-structures.html#cb45-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>,]    <span class="dv">3</span>    <span class="dv">7</span></span>
+<span id="cb45-7"><a href="data-structures.html#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb45-8"><a href="data-structures.html#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># second element returned as itself (matrix)</span></span>
+<span id="cb45-9"><a href="data-structures.html#cb45-9" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> l[[<span class="dv">2</span>]]</span>
+<span id="cb45-10"><a href="data-structures.html#cb45-10" aria-hidden="true" tabindex="-1"></a>     [,<span class="dv">1</span>] [,<span class="dv">2</span>]</span>
+<span id="cb45-11"><a href="data-structures.html#cb45-11" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>,]    <span class="dv">1</span>    <span class="dv">5</span></span>
+<span id="cb45-12"><a href="data-structures.html#cb45-12" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>,]    <span class="dv">3</span>    <span class="dv">7</span></span></code></pre></div>
+<p>Use the <code>$</code> operator to refer to components by name. This returns the component itself.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="data-structures.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> l<span class="sc">$</span>y</span>
+<span id="cb46-2"><a href="data-structures.html#cb46-2" aria-hidden="true" tabindex="-1"></a>     [,<span class="dv">1</span>] [,<span class="dv">2</span>]</span>
+<span id="cb46-3"><a href="data-structures.html#cb46-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>,]    <span class="dv">1</span>    <span class="dv">5</span></span>
+<span id="cb46-4"><a href="data-structures.html#cb46-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>,]    <span class="dv">3</span>    <span class="dv">7</span></span></code></pre></div>
+<p>Finally it is worth noting that a data frame is a special case of a list consisting of components with the same length. The <code>is.list()</code> function returns TRUE if an object is a list and FALSE otherwise.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="data-structures.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># object d is data frame</span></span>
+<span id="cb47-2"><a href="data-structures.html#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> d</span>
+<span id="cb47-3"><a href="data-structures.html#cb47-3" aria-hidden="true" tabindex="-1"></a>   name age</span>
+<span id="cb47-4"><a href="data-structures.html#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>   Rob  <span class="dv">35</span></span>
+<span id="cb47-5"><a href="data-structures.html#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> Cindy  <span class="dv">37</span></span>
+<span id="cb47-6"><a href="data-structures.html#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">str</span>(d)</span>
+<span id="cb47-7"><a href="data-structures.html#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;data.frame&#39;</span><span class="sc">:</span>   <span class="dv">2</span> obs. of  <span class="dv">2</span> variables<span class="sc">:</span></span>
+<span id="cb47-8"><a href="data-structures.html#cb47-8" aria-hidden="true" tabindex="-1"></a> <span class="er">$</span> name<span class="sc">:</span> chr  <span class="st">&quot;Rob&quot;</span> <span class="st">&quot;Cindy&quot;</span></span>
+<span id="cb47-9"><a href="data-structures.html#cb47-9" aria-hidden="true" tabindex="-1"></a> <span class="sc">$</span> age <span class="sc">:</span> num  <span class="dv">35</span> <span class="dv">37</span></span>
+<span id="cb47-10"><a href="data-structures.html#cb47-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb47-11"><a href="data-structures.html#cb47-11" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># but a data frame is a list</span></span>
+<span id="cb47-12"><a href="data-structures.html#cb47-12" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">is.list</span>(d)</span>
+<span id="cb47-13"><a href="data-structures.html#cb47-13" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">TRUE</span></span></code></pre></div>
 
 </div>
 </div>

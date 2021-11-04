@@ -122,7 +122,7 @@ x2 <- c(23, 43, 'hi')
 x2
 ```
 
-Values in a vector can be accessed by position using indexing brackets. 
+Values in a vector can be accessed by position using indexing brackets. R indexes elements of a vector starting at 1. Index values are inclusive. For example, `2:3` selects the second and third elements.
 
 ```{r}
 # extract the 2nd value
@@ -132,6 +132,7 @@ x1[2]
 x1[2:3]
 
 ```
+
 
 
 ## Two-dimensional data
@@ -253,7 +254,9 @@ Three-dimensional and higher data can be visualized as multiple rectangular stru
 
 #### R {-}
 
-The `array()` function in R can create three-dimensional and higher data structures. Specify the dimension number and size using the `dim` argument. Below we specify 2 rows, 3 columns, and 2 strata using a vector: `c(2,3,2)`. This creates a three-dimensional data structure. The data are simply the numbers 1 through 12.
+The `array()` function in R can create three-dimensional and higher data structures. Arrays are like vectors and matrices in that they can only contain one data type. In fact matrices and arrays are sometimes described as vectors with instructions on how to layout the data.
+
+We can specify the dimension number and size using the `dim` argument. Below we specify 2 rows, 3 columns, and 2 strata using a vector: `c(2,3,2)`. This creates a three-dimensional data structure. The data in the example are simply the numbers 1 through 12.
 
 ```{r}
 a1 <- array(data = 1:12, dim = c(2,3,2))
@@ -284,5 +287,52 @@ The `as.data.frame.table()` function can collapse an array into a two-dimensiona
 
 ```{r}
 as.data.frame.table(a1, responseName = "value")
+```
+
+## General data structures
+
+Both R and Python provide general "catch-all" data structures that can contain any number, shape, and type of data. 
+
+#### Python {-}
+
+
+#### R {-}
+
+The most general data structure in R is the _list_. A list is an ordered collection of objects, which are referred to as the _components_. The components can be vectors, matrices, arrays, data frames, and other lists. The components are always numbered but can also have names. The results of statistical functions are often returned as lists.
+
+We can create lists with the `list()` function. The list below contains three components: a vector named "x", a matrix named "y", and a data frame named "z". Notice the `m` and `d` objects were created in the two-dimensional data section earlier in this chapter.
+
+```{r}
+l <- list(x = c(1,2,3),
+          y = m,
+          z = d)
+l
+```
+
+We can refer to list components by their order number or name (if present). To use order number, use indexing brackets. Single brackets returns a list. Double brackets return the component itself.
+
+```{r}
+# second element returned as list
+l[2]
+
+# second element returned as itself (matrix)
+l[[2]]
+```
+
+Use the `$` operator to refer to components by name. This returns the component itself.
+
+```{r}
+l$y
+```
+
+Finally it is worth noting that a data frame is a special case of a list consisting of components with the same length. The `is.list()` function returns TRUE if an object is a list and FALSE otherwise.
+
+```{r}
+# object d is data frame
+d
+str(d)
+
+# but a data frame is a list
+is.list(d)
 ```
 
