@@ -398,15 +398,12 @@ How to change the case of strings. The most common case transformations are lowe
 
 #### Python {-}
 
-The `lower()`, `upper()`, and `title()` functions convert case to lower, upper, and title, respectively. We can use a list comprehension to apply these functions to each word in a list.
+The `lower()`, `upper()`, and `title()` functions convert case to lower, upper, and title, respectively. We can use a list comprehension to apply these functions to each string in a list.
 
 ```{python}
 col_names = [col.upper() for col in mtcars.columns]
 mtcars.columns = col_names
 ```
-
-The `title` function changes all fo the
-col_names = [col.upper() for col in mtcars.columns]
 
 #### R {-}
 
@@ -434,6 +431,17 @@ How to find and drop duplicate elements.
 
 #### Python {-}
 
+The `duplicated()` function determines which rows of a DataFrame are duplicates of previous rows.
+
+```{python}
+# create DataFrame with duplicate rows
+import pandas as pd
+#mtcars_2 = mtcars.iloc[1:3,1:6]
+mtcars2 = pd.concat([mtcars.iloc[0:3,0:6], mtcars.iloc[0,0:6]])
+# last row is duplicate of first
+mtcars2
+mtcars.columns
+```
 
 #### R {-}
 
@@ -492,9 +500,26 @@ mtcars.sample(n=5, replace=True)
 mtcars.sample(frac = 0.20, random_state=1)
 ```
 
-The numpy function `random.choice`()` can be used to sample from a DataFrame.
+The numpy function `random.choice()` in combination with the `iloc()` function can be used to sample from a DataFrame. The `iloc()` function is used to access rows and columns by index. 
 
 ```{python}
+# import the numpy package
+import numpy as np
+
+# create a random sample of size 5 with replacement
+sample = np.random.choice(len(mtcars), (5,), replace=True)
+mtcars.loc[sample,]
+```
+
+The random sample will change every time the code is run. To always generate the same "random" sample, use the `random.seed()` function with any positive integer.
+
+```{python}
+# setting seed to always get same random sample
+np.random.seed(123)
+
+# create a random sample of size 5 with replacement
+sample = np.random.choice(len(mtcars), (5,), replace=True)
+mtcars.loc[sample,]
 ```
 
 #### R {-}
