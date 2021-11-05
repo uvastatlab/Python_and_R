@@ -287,6 +287,13 @@ arr3d[1, :, 0]
 arr3d[0, 1, 2]
 ```
 
+The three-dimensional arrays can be converted to two-dimensional arrays again using the `reshape` function: 
+
+```{python}
+arr3d_2d = arr3d.reshape(4,3)
+arr3d_2d
+```
+
 #### R {-}
 
 The `array()` function in R can create three-dimensional and higher data structures. Arrays are like vectors and matrices in that they can only contain one data type. In fact matrices and arrays are sometimes described as vectors with instructions on how to layout the data.
