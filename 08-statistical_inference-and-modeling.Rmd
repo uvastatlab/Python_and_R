@@ -15,25 +15,25 @@ Comparing the means of two or more groups to see if or how they differ. Two mean
 
 #### R {-}
 
+## Comparing group proportions
 
-## Simple linear regression
+Comparing the proportions of two or more groups to see if or how they differ. 
 
-Analyzing if or how the variability a numeric variable depends on another numeric variable.
 
 #### Python {-}
 
 
 #### R {-}
 
+## linear modeling
 
-## Multiple regression
-
-Analyzing if or how the variability a numeric variable depends on multiple numeric variables.
+Analyzing if or how the variability a numeric variable depends on one or more predictor variables.
 
 #### Python {-}
 
 
 #### R {-}
+
 
 
 ## Logistic regression

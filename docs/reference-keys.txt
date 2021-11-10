@@ -51,6 +51,6 @@ boxplots
 conditional-or-faceted-plots
 statistical-inference-and-modeling
 comparing-group-means
-simple-linear-regression
-multiple-regression
+comparing-group-proportions
+linear-modeling
 logistic-regression
