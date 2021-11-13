@@ -24,7 +24,7 @@
 <meta name="author" content="Clay Ford, Jacob Goldstein-Greenwood, Oyinkansola Adenekan, Samantha Lomuscio" />
 
 
-<meta name="date" content="2021-11-04" />
+<meta name="date" content="2021-11-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -232,8 +232,8 @@ div.csl-indent {
 <li class="chapter" data-level="8" data-path="statistical-inference-and-modeling.html"><a href="statistical-inference-and-modeling.html"><i class="fa fa-check"></i><b>8</b> Statistical Inference and Modeling</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="statistical-inference-and-modeling.html"><a href="statistical-inference-and-modeling.html#comparing-group-means"><i class="fa fa-check"></i><b>8.1</b> Comparing group means</a></li>
-<li class="chapter" data-level="8.2" data-path="statistical-inference-and-modeling.html"><a href="statistical-inference-and-modeling.html#simple-linear-regression"><i class="fa fa-check"></i><b>8.2</b> Simple linear regression</a></li>
-<li class="chapter" data-level="8.3" data-path="statistical-inference-and-modeling.html"><a href="statistical-inference-and-modeling.html#multiple-regression"><i class="fa fa-check"></i><b>8.3</b> Multiple regression</a></li>
+<li class="chapter" data-level="8.2" data-path="statistical-inference-and-modeling.html"><a href="statistical-inference-and-modeling.html#comparing-group-proportions"><i class="fa fa-check"></i><b>8.2</b> Comparing group proportions</a></li>
+<li class="chapter" data-level="8.3" data-path="statistical-inference-and-modeling.html"><a href="statistical-inference-and-modeling.html#linear-modeling"><i class="fa fa-check"></i><b>8.3</b> linear modeling</a></li>
 <li class="chapter" data-level="8.4" data-path="statistical-inference-and-modeling.html"><a href="statistical-inference-and-modeling.html#logistic-regression"><i class="fa fa-check"></i><b>8.4</b> Logistic regression</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -419,79 +419,90 @@ div.csl-indent {
 <p>Python and R allow and encourage users to create their own functions. Functions can be created, named, and stored in memory and used throughout a session. Or they can be created on-the-fly “anonymously” and used once.</p>
 <div id="python-7" class="section level4 unnumbered">
 <h4>Python</h4>
+<p>Functions in Python are defined by using the <code>def</code> keyword followed by the name we choose for our function with its arguments inside parentheses. We must include a <code>return()</code> statement after the body of our function to indicate the end of the function. The return statement takes an optional argument in it’s parenthesis that will be the output of the function. Here we create a function to calculate the standard error of a mean (SEM) and call it <code>SEM</code>.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="basics.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="kw">def</span> SEM(x):</span>
+<span id="cb15-2"><a href="basics.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span>   <span class="im">import</span> numpy <span class="im">as</span> np <span class="co"># import statement included inside the function to ensure it&#39;s always imported</span></span>
+<span id="cb15-3"><a href="basics.html#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span>   s <span class="op">=</span> x.std(ddof<span class="op">=</span><span class="dv">1</span>) <span class="co"># find standard deviation of the input array, specify delta degrees of freedom as 1 (makes denominator n-1 not n)</span></span>
+<span id="cb15-4"><a href="basics.html#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="op">+</span>   n <span class="op">=</span> x.shape[<span class="dv">0</span>] <span class="co"># extract the length of the input array (x.shape returns a numpy array, so here we extract the value in the array)</span></span>
+<span id="cb15-5"><a href="basics.html#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="op">+</span>   sem <span class="op">=</span> s <span class="op">/</span> np.sqrt(n) <span class="co"># calculate the SEM</span></span>
+<span id="cb15-6"><a href="basics.html#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="op">+</span>   <span class="cf">return</span>(sem) <span class="co"># return the calculated SEM value</span></span></code></pre></div>
+<p>Now let’s try our function out on some test data.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="basics.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> d <span class="op">=</span> np.array([<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">9</span>,<span class="dv">6</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">7</span>])</span>
+<span id="cb16-2"><a href="basics.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> SEM(d)</span>
+<span id="cb16-3"><a href="basics.html#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fl">0.7412035591181296</span></span></code></pre></div>
 </div>
 <div id="r-7" class="section level4 unnumbered">
 <h4>R</h4>
 <p>Functions in R can be created and named using <code>function()</code>. Add arguments inside the parentheses. Longer functions with multiple lines can be wrapped in curly braces <code>{}</code>.</p>
 <p>Below we create a function to calculate the standard error of a mean (SEM) and name it <code>sem</code>. It takes one argument: <code>x</code>, a vector of numbers. Both the function name and argument name(s) can be whatever we like, as long as they follow <a href="https://cran.r-project.org/doc/manuals/r-release/R-intro.html#R-commands_003b-case-sensitivity-etc">R’s naming conventions</a>.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="basics.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> sem <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb15-2"><a href="basics.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   s <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span>
-<span id="cb15-3"><a href="basics.html#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   n <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
-<span id="cb15-4"><a href="basics.html#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   s<span class="sc">/</span><span class="fu">sqrt</span>(n)</span>
-<span id="cb15-5"><a href="basics.html#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> }</span></code></pre></div>
-<p>Now we can try it out on some test data.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="basics.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">9</span>,<span class="dv">6</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">7</span>)</span>
-<span id="cb16-2"><a href="basics.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">sem</span>(d)</span>
-<span id="cb16-3"><a href="basics.html#cb16-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.7412036</span></span></code></pre></div>
-<p>Functions that will be used on different data and/or by different users often need built-in error-checking to return informative error messages. This simple example checks if the data are not numeric and returns a special error message.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="basics.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> sem <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb17-2"><a href="basics.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.numeric</span>(x)) <span class="fu">stop</span>(<span class="st">&quot;x must be numeric&quot;</span>)</span>
-<span id="cb17-3"><a href="basics.html#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   s <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span>
-<span id="cb17-4"><a href="basics.html#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   n <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
-<span id="cb17-5"><a href="basics.html#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   s<span class="sc">/</span><span class="fu">sqrt</span>(n)</span>
-<span id="cb17-6"><a href="basics.html#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> }</span>
-<span id="cb17-7"><a href="basics.html#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">sem</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="st">&quot;a&quot;</span>))</span>
-<span id="cb17-8"><a href="basics.html#cb17-8" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">sem</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="st">&quot;a&quot;</span>))<span class="sc">:</span> x must be numeric</span></code></pre></div>
+<span id="cb17-2"><a href="basics.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   s <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span>
+<span id="cb17-3"><a href="basics.html#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   n <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
+<span id="cb17-4"><a href="basics.html#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   s<span class="sc">/</span><span class="fu">sqrt</span>(n)</span>
+<span id="cb17-5"><a href="basics.html#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> }</span></code></pre></div>
+<p>Now we can try it out on some test data.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="basics.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">9</span>,<span class="dv">6</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">7</span>)</span>
+<span id="cb18-2"><a href="basics.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">sem</span>(d)</span>
+<span id="cb18-3"><a href="basics.html#cb18-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.7412036</span></span></code></pre></div>
+<p>Functions that will be used on different data and/or by different users often need built-in error-checking to return informative error messages. This simple example checks if the data are not numeric and returns a special error message.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="basics.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> sem <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb19-2"><a href="basics.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.numeric</span>(x)) <span class="fu">stop</span>(<span class="st">&quot;x must be numeric&quot;</span>)</span>
+<span id="cb19-3"><a href="basics.html#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   s <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span>
+<span id="cb19-4"><a href="basics.html#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   n <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
+<span id="cb19-5"><a href="basics.html#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   s<span class="sc">/</span><span class="fu">sqrt</span>(n)</span>
+<span id="cb19-6"><a href="basics.html#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> }</span>
+<span id="cb19-7"><a href="basics.html#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">sem</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="st">&quot;a&quot;</span>))</span>
+<span id="cb19-8"><a href="basics.html#cb19-8" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">sem</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="st">&quot;a&quot;</span>))<span class="sc">:</span> x must be numeric</span></code></pre></div>
 <p>R functions can also return more than one result. Below we return a list that holds the mean and SEM, but we could also return a vector, a data frame, or other data structure. Notice we also add an additional argument, <code>...</code>, known as the three dots argument. This allows us to pass arguments for <code>sd</code> and <code>mean</code> directly through our own function. Below we pass through <code>na.rm = TRUE</code> to drop missing values.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="basics.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> sem <span class="ot">&lt;-</span> <span class="cf">function</span>(x, ...){</span>
-<span id="cb18-2"><a href="basics.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.numeric</span>(x)) <span class="fu">stop</span>(<span class="st">&quot;x must be numeric&quot;</span>)</span>
-<span id="cb18-3"><a href="basics.html#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   s <span class="ot">&lt;-</span> <span class="fu">sd</span>(x, ...)</span>
-<span id="cb18-4"><a href="basics.html#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   n <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
-<span id="cb18-5"><a href="basics.html#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   se <span class="ot">&lt;-</span> s<span class="sc">/</span><span class="fu">sqrt</span>(n)</span>
-<span id="cb18-6"><a href="basics.html#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(x, ...)</span>
-<span id="cb18-7"><a href="basics.html#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">list</span>(<span class="at">mean =</span> mean, <span class="at">SEM =</span> se)</span>
-<span id="cb18-8"><a href="basics.html#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> }</span>
-<span id="cb18-9"><a href="basics.html#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb18-10"><a href="basics.html#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="cn">NA</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">6</span>)</span>
-<span id="cb18-11"><a href="basics.html#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">sem</span>(d, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb18-12"><a href="basics.html#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>mean</span>
-<span id="cb18-13"><a href="basics.html#cb18-13" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">5.125</span></span>
-<span id="cb18-14"><a href="basics.html#cb18-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-15"><a href="basics.html#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>SEM</span>
-<span id="cb18-16"><a href="basics.html#cb18-16" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.7855339</span></span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="basics.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> sem <span class="ot">&lt;-</span> <span class="cf">function</span>(x, ...){</span>
+<span id="cb20-2"><a href="basics.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.numeric</span>(x)) <span class="fu">stop</span>(<span class="st">&quot;x must be numeric&quot;</span>)</span>
+<span id="cb20-3"><a href="basics.html#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   s <span class="ot">&lt;-</span> <span class="fu">sd</span>(x, ...)</span>
+<span id="cb20-4"><a href="basics.html#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   n <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
+<span id="cb20-5"><a href="basics.html#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   se <span class="ot">&lt;-</span> s<span class="sc">/</span><span class="fu">sqrt</span>(n)</span>
+<span id="cb20-6"><a href="basics.html#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(x, ...)</span>
+<span id="cb20-7"><a href="basics.html#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">list</span>(<span class="at">mean =</span> mean, <span class="at">SEM =</span> se)</span>
+<span id="cb20-8"><a href="basics.html#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> }</span>
+<span id="cb20-9"><a href="basics.html#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb20-10"><a href="basics.html#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="cn">NA</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">6</span>)</span>
+<span id="cb20-11"><a href="basics.html#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">sem</span>(d, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb20-12"><a href="basics.html#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>mean</span>
+<span id="cb20-13"><a href="basics.html#cb20-13" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">5.125</span></span>
+<span id="cb20-14"><a href="basics.html#cb20-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-15"><a href="basics.html#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>SEM</span>
+<span id="cb20-16"><a href="basics.html#cb20-16" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.7855339</span></span></code></pre></div>
 <p>Functions can also be created on-the-fly as “anonymous” functions. This simply means the functions are not saved as objects in memory. These are often used with R’s family of <code>apply</code> functions. As before, the functions can be created with <code>function()</code>. We can also use the backslash <code>\</code> as a shorthand for <code>function()</code>. We demonstrate both below with a data frame.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="basics.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># generate some example data</span></span>
-<span id="cb19-2"><a href="basics.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x1 =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">4</span>),</span>
-<span id="cb19-3"><a href="basics.html#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                 <span class="at">x2 =</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">9</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">2</span>, <span class="dv">5</span>),</span>
-<span id="cb19-4"><a href="basics.html#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                 <span class="at">x3 =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">9</span>, <span class="dv">9</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">4</span>))</span>
-<span id="cb19-5"><a href="basics.html#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d</span>
-<span id="cb19-6"><a href="basics.html#cb19-6" aria-hidden="true" tabindex="-1"></a>  x1 x2 x3</span>
-<span id="cb19-7"><a href="basics.html#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>  <span class="dv">3</span>  <span class="dv">6</span>  <span class="dv">1</span></span>
-<span id="cb19-8"><a href="basics.html#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>  <span class="dv">5</span>  <span class="dv">9</span>  <span class="dv">9</span></span>
-<span id="cb19-9"><a href="basics.html#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>  <span class="dv">7</span>  <span class="dv">8</span>  <span class="dv">9</span></span>
-<span id="cb19-10"><a href="basics.html#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>  <span class="dv">1</span>  <span class="dv">9</span>  <span class="dv">7</span></span>
-<span id="cb19-11"><a href="basics.html#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>  <span class="dv">5</span>  <span class="dv">2</span>  <span class="dv">8</span></span>
-<span id="cb19-12"><a href="basics.html#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>  <span class="dv">4</span>  <span class="dv">5</span>  <span class="dv">4</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="basics.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># generate some example data</span></span>
+<span id="cb21-2"><a href="basics.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x1 =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">4</span>),</span>
+<span id="cb21-3"><a href="basics.html#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                 <span class="at">x2 =</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">9</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">2</span>, <span class="dv">5</span>),</span>
+<span id="cb21-4"><a href="basics.html#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                 <span class="at">x3 =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">9</span>, <span class="dv">9</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">4</span>))</span>
+<span id="cb21-5"><a href="basics.html#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d</span>
+<span id="cb21-6"><a href="basics.html#cb21-6" aria-hidden="true" tabindex="-1"></a>  x1 x2 x3</span>
+<span id="cb21-7"><a href="basics.html#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>  <span class="dv">3</span>  <span class="dv">6</span>  <span class="dv">1</span></span>
+<span id="cb21-8"><a href="basics.html#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>  <span class="dv">5</span>  <span class="dv">9</span>  <span class="dv">9</span></span>
+<span id="cb21-9"><a href="basics.html#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>  <span class="dv">7</span>  <span class="dv">8</span>  <span class="dv">9</span></span>
+<span id="cb21-10"><a href="basics.html#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>  <span class="dv">1</span>  <span class="dv">9</span>  <span class="dv">7</span></span>
+<span id="cb21-11"><a href="basics.html#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>  <span class="dv">5</span>  <span class="dv">2</span>  <span class="dv">8</span></span>
+<span id="cb21-12"><a href="basics.html#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>  <span class="dv">4</span>  <span class="dv">5</span>  <span class="dv">4</span></span></code></pre></div>
 <p>Now find the standard error of the mean for the three columns using an anonymous function with <code>lapply</code>. The “l” means the result will be a list. We apply the function to each column of the data frame.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="basics.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">lapply</span>(d, <span class="cf">function</span>(x)<span class="fu">sd</span>(x)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(x)))</span>
-<span id="cb20-2"><a href="basics.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>x1</span>
-<span id="cb20-3"><a href="basics.html#cb20-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.8333333</span></span>
-<span id="cb20-4"><a href="basics.html#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-5"><a href="basics.html#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>x2</span>
-<span id="cb20-6"><a href="basics.html#cb20-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">1.118034</span></span>
-<span id="cb20-7"><a href="basics.html#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-8"><a href="basics.html#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>x3</span>
-<span id="cb20-9"><a href="basics.html#cb20-9" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">1.308094</span></span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="basics.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">lapply</span>(d, <span class="cf">function</span>(x)<span class="fu">sd</span>(x)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(x)))</span>
+<span id="cb22-2"><a href="basics.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>x1</span>
+<span id="cb22-3"><a href="basics.html#cb22-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.8333333</span></span>
+<span id="cb22-4"><a href="basics.html#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="basics.html#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>x2</span>
+<span id="cb22-6"><a href="basics.html#cb22-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">1.118034</span></span>
+<span id="cb22-7"><a href="basics.html#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="basics.html#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>x3</span>
+<span id="cb22-9"><a href="basics.html#cb22-9" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">1.308094</span></span></code></pre></div>
 <p>We can also use the backslash as a shorthand for <code>function()</code>.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="basics.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">lapply</span>(d, \(x)<span class="fu">sd</span>(x)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(x)))</span>
-<span id="cb21-2"><a href="basics.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>x1</span>
-<span id="cb21-3"><a href="basics.html#cb21-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.8333333</span></span>
-<span id="cb21-4"><a href="basics.html#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-5"><a href="basics.html#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>x2</span>
-<span id="cb21-6"><a href="basics.html#cb21-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">1.118034</span></span>
-<span id="cb21-7"><a href="basics.html#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-8"><a href="basics.html#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>x3</span>
-<span id="cb21-9"><a href="basics.html#cb21-9" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">1.308094</span></span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="basics.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">lapply</span>(d, \(x)<span class="fu">sd</span>(x)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(x)))</span>
+<span id="cb23-2"><a href="basics.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>x1</span>
+<span id="cb23-3"><a href="basics.html#cb23-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.8333333</span></span>
+<span id="cb23-4"><a href="basics.html#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="basics.html#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>x2</span>
+<span id="cb23-6"><a href="basics.html#cb23-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">1.118034</span></span>
+<span id="cb23-7"><a href="basics.html#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="basics.html#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>x3</span>
+<span id="cb23-9"><a href="basics.html#cb23-9" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">1.308094</span></span></code></pre></div>
 
 </div>
 </div>

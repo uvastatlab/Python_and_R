@@ -194,6 +194,26 @@ Python and R allow and encourage users to create their own functions. Functions 
 
 #### Python {-}
 
+Functions in Python are defined by using the `def` keyword followed by the name we choose for our function with its arguments inside parentheses. We must include a `return()` statement after the body of our function to indicate the end of the function. The return statement takes an optional argument in it's parenthesis that will be the output of the function. Here we create a function to calculate the standard error of a mean (SEM) and call it `SEM`. 
+
+```{python}
+def SEM(x):
+  import numpy as np # import statement included inside the function to ensure it's always imported
+  s = x.std(ddof=1) # find standard deviation of the input array, specify delta degrees of freedom as 1 (makes denominator n-1 not n)
+  n = x.shape[0] # extract the length of the input array (x.shape returns a numpy array, so here we extract the value in the array)
+  sem = s / np.sqrt(n) # calculate the SEM
+  return(sem) # return the calculated SEM value
+```
+
+Now let's try our function out on some test data.
+
+```{python}
+d = np.array([3,4,4,7,9,6,2,5,7])
+SEM(d)
+```
+
+
+
 #### R {-}
 
 Functions in R can be created and named using `function()`. Add arguments inside the parentheses. Longer functions with multiple lines can be wrapped in curly braces `{}`.
