@@ -130,7 +130,7 @@ XML (e**X**tensible **M**arkup **L**anguage) is a markup language that was desig
 
 The **pandas** library provides the `read_xml` function for importing XML files. The `ny_math_test.xml` file identifies records with nodes named "row". The 168 rows are nested in one node also called "row". Therefore we use the `xpath` argument to specify that we want to elect all row elements that are descendant of the single row element.
 
-```{python}
+```{python, eval = F}
 import pandas as pd
 d_xml = pd.read_xml('data/ny_math_test.xml', xpath="row//row")
 

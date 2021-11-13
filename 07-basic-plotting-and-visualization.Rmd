@@ -6,14 +6,38 @@ knitr::opts_chunk$set(comment = NA, prompt = TRUE, collapse = TRUE)
 
 This chapter looks at creating basic plots to explore and better understand data. Visualization in Python and R is a gigantic and evolving topic. We don't pretend to present a comprehensive comparison. 
 
+The plots below make use of the **palmerpenguins** data set, which contains various measurements for 344 penguins across three islands in the Antarctic Palmer Archipelago. The data were collected by [Kristen Gorman](https://www.uaf.edu/cfos/people/faculty/detail/kristen-gorman.php) and colleagues, and they were made available under a CC0 public domain license by Allison Horst, Alison Hill, and Kristen Gorman.
+
+For the R sections below, we provide code showing how to make each plot using base R and using **ggplot2**.
+
+```{r, echo = F}
+library(palmerpenguins)
+```
+```{python, echo = F}
+penguins = r.penguins
+```
+
+Here's a glimpse at the data set:
+```{r}
+head(penguins)
+```
+
 ## Histograms
 
 Visualizing the distribution of numeric data.
 
 #### Python {-}
 
-
 #### R {-}
+```{r}
+hist(penguins$bill_length_mm, breaks = 25, col = 'lightblue', xlim = c(30, 60),
+     main = 'Penguin Bill Lengths', xlab = 'Bill Length (mm)', ylab = 'Count')
+```
+```{r, warning = F}
+ggplot(penguins, aes(x = bill_length_mm)) +
+  geom_histogram(fill = 'lightblue', color = 'black', bins = 25) +
+  xlim(30, 60) + labs(title = 'Penguin Bill Lengths', x = 'Bill Length (mm)', y = 'Count')
+```
 
 ## Barplots
 
@@ -21,9 +45,27 @@ Visualizing the distribution of categorical data.
 
 #### Python {-}
 
-
 #### R {-}
-
+To form barplots, we'll first take the **penguins** data set and...
+```{r}
+flippers <- aggregate(penguins$flipper_length_mm, by = list(penguins$species), function(x) mean(x, na.rm = T))
+colnames(flippers) <- c('species', 'avg_flipper_length')
+```
+```{r}
+penguin_plot <- barplot(flippers$avg_flipper_length, names.arg = flippers$species,
+        col = c('lightblue', 'cornflowerblue', 'darkslateblue'),
+        main = 'Average Flipper Length by Species', xlab = 'Species', ylab = 'Length (mm)',
+        ylim = c(0, 250))
+text(x = penguin_plot, y = flippers$avg_flipper_length*1.1, labels = round(flippers$avg_flipper_length, digits = 2))
+```
+```{r, warning = F}
+ggplot(flippers, aes(x = species, y = avg_flipper_length)) +
+  geom_bar(aes(fill = species), stat = 'identity') +
+  scale_fill_manual(values = c('lightblue', 'cornflowerblue', 'darkslateblue')) +
+  labs(title = 'Average Flipper Length by Species', x = 'Species', y = 'Length (mm)') +
+  theme(legend.position = 'none') + ylim(0, 250) +
+  geom_text(aes(label = round(avg_flipper_length, digits = 2), vjust = -0.5))
+```
 
 ## Scatterplot
 
@@ -33,7 +75,15 @@ Visualizing the relationship between two numeric variables.
 
 
 #### R {-}
-
+```{r}
+plot(penguins$body_mass_g, penguins$flipper_length_mm, col = 'navy', pch = 20,
+     main = 'Scatterplot of Body Mass and Flipper Length', xlab = 'Body Mass (g)', ylab = 'Flipper Length (mm)')
+```
+```{r, warning = F}
+ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +
+  geom_point(color = 'navy') +
+  labs(title = 'Scatterplot of Body Mass and Flipper Length', x = 'Body Mass (g)', y = 'Flipper Length (mm)')
+```
 
 ## Stripcharts
 
@@ -53,7 +103,17 @@ Visualizing the relationship between a numeric variable and a categorical variab
 
 
 #### R {-}
-
+```{r}
+boxplot(penguins$bill_depth_mm ~ penguins$island, col = c('lightblue', 'cornflowerblue', 'darkslateblue'),
+        main = 'Boxplot of Bill Depth by Island', xlab = 'Island', ylab = 'Bill Depth (mm)')
+```
+```{r, warning = F}
+ggplot(penguins, aes(x = island, y = bill_depth_mm)) +
+  geom_boxplot(aes(fill = island), color = 'navy') +
+  scale_fill_manual(values = c('lightblue', 'cornflowerblue', 'darkslateblue')) +
+  labs(title = 'Boxplot of Bill Depth by Island', x = 'Island', y = 'Bill Depth (mm)') +
+  theme(legend.position = 'none')
+```
 
 ## Conditional or Faceted plots
 
