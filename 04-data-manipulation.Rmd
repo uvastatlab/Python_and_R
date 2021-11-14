@@ -431,17 +431,23 @@ How to find and drop duplicate elements.
 
 #### Python {-}
 
-The `duplicated()` function determines which rows of a DataFrame are duplicates of previous rows.
+The `duplicated()` function determines which rows of a DataFrame are duplicates of previous rows. 
+
+First, we create a DataFrame with a duplicate row by using the pandas `concat()` function. `concat()` combines DataFrames by rows or columns, row by default.
 
 ```{python}
 # create DataFrame with duplicate rows
 import pandas as pd
-#mtcars_2 = mtcars.iloc[1:3,1:6]
-mtcars2 = pd.concat([mtcars.iloc[0:3,0:6], mtcars.iloc[0,0:6]])
-# last row is duplicate of first
-mtcars2
-mtcars.columns
+mtcars2 = pd.concat([mtcars.iloc[0:3,0:6], mtcars.iloc[0:1,0:6]])
 ```
+
+The `duplicated()` function returns a logical vector. TRUE indicates a row is a duplicate of a previous row.
+
+```{python}
+# create DataFrame with duplicate rows
+mtcars2.duplicated()
+```
+
 
 #### R {-}
 
