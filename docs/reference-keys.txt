@@ -49,7 +49,7 @@ barplots
 scatterplot
 stripcharts
 boxplots
-conditional-or-faceted-plots
+facet-plots
 statistical-inference-and-modeling
 comparing-group-means
 comparing-group-proportions

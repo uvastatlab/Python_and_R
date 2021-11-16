@@ -228,7 +228,7 @@ div.csl-indent {
 <li class="chapter" data-level="7.3" data-path="basic-plotting-and-visualization.html"><a href="basic-plotting-and-visualization.html#scatterplot"><i class="fa fa-check"></i><b>7.3</b> Scatterplot</a></li>
 <li class="chapter" data-level="7.4" data-path="basic-plotting-and-visualization.html"><a href="basic-plotting-and-visualization.html#stripcharts"><i class="fa fa-check"></i><b>7.4</b> Stripcharts</a></li>
 <li class="chapter" data-level="7.5" data-path="basic-plotting-and-visualization.html"><a href="basic-plotting-and-visualization.html#boxplots"><i class="fa fa-check"></i><b>7.5</b> Boxplots</a></li>
-<li class="chapter" data-level="7.6" data-path="basic-plotting-and-visualization.html"><a href="basic-plotting-and-visualization.html#conditional-or-faceted-plots"><i class="fa fa-check"></i><b>7.6</b> Conditional or Faceted plots</a></li>
+<li class="chapter" data-level="7.6" data-path="basic-plotting-and-visualization.html"><a href="basic-plotting-and-visualization.html#facet-plots"><i class="fa fa-check"></i><b>7.6</b> Facet plots</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="statistical-inference-and-modeling.html"><a href="statistical-inference-and-modeling.html"><i class="fa fa-check"></i><b>8</b> Statistical Inference and Modeling</a>
 <ul>
@@ -298,7 +298,7 @@ div.csl-indent {
 <span id="cb27-8"><a href="data-structures.html#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> <span class="co"># extract 2nd and 3rd elements</span></span>
 <span id="cb27-9"><a href="data-structures.html#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;hello&#39;</span></span>
 <span id="cb27-10"><a href="data-structures.html#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> arr[<span class="dv">1</span>:<span class="dv">3</span>]</span>
-<span id="cb27-11"><a href="data-structures.html#cb27-11" aria-hidden="true" tabindex="-1"></a>array([<span class="st">&#39;2&#39;</span>, <span class="st">&#39;3&#39;</span>], dtype<span class="op">=</span><span class="st">&#39;&lt;U11&#39;</span>)</span></code></pre></div>
+<span id="cb27-11"><a href="data-structures.html#cb27-11" aria-hidden="true" tabindex="-1"></a>array([<span class="st">&#39;2&#39;</span>, <span class="st">&#39;3&#39;</span>], dtype<span class="op">=</span><span class="st">&#39;&lt;U21&#39;</span>)</span></code></pre></div>
 <p>Pandas Series also need to be declared using the <code>pandas.Series()</code> function. Like <strong>numpy</strong>, the <strong>pandas</strong> package must be imported as well. The pandas package is built on numpy, so we can input data into a pandas Series using a numpy array. We can extract data from the Series by using the index similar to indexing a list and numpy array.</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="data-structures.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> pandas <span class="im">as</span> pd </span>
 <span id="cb28-2"><a href="data-structures.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> <span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -405,7 +405,7 @@ div.csl-indent {
 <span id="cb35-11"><a href="data-structures.html#cb35-11" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;world&#39;</span></span>
 <span id="cb35-12"><a href="data-structures.html#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> arr2d[:,<span class="dv">1</span>:<span class="dv">3</span>]</span>
 <span id="cb35-13"><a href="data-structures.html#cb35-13" aria-hidden="true" tabindex="-1"></a>array([[<span class="st">&#39;2&#39;</span>, <span class="st">&#39;3&#39;</span>],</span>
-<span id="cb35-14"><a href="data-structures.html#cb35-14" aria-hidden="true" tabindex="-1"></a>       [<span class="st">&#39;5&#39;</span>, <span class="st">&#39;6&#39;</span>]], dtype<span class="op">=</span><span class="st">&#39;&lt;U11&#39;</span>)</span></code></pre></div>
+<span id="cb35-14"><a href="data-structures.html#cb35-14" aria-hidden="true" tabindex="-1"></a>       [<span class="st">&#39;5&#39;</span>, <span class="st">&#39;6&#39;</span>]], dtype<span class="op">=</span><span class="st">&#39;&lt;U21&#39;</span>)</span></code></pre></div>
 <p>A pandas DataFrame is made using the <code>pandas.DataFrame</code> function in a similar way to the pandas Series.</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="data-structures.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb36-2"><a href="data-structures.html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> <span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -604,7 +604,7 @@ div.csl-indent {
 <div id="r-11" class="section level4 unnumbered">
 <h4>R</h4>
 <p>The most general data structure in R is the <em>list</em>. A list is an ordered collection of objects, which are referred to as the <em>components</em>. The components can be vectors, matrices, arrays, data frames, and other lists. The components are always numbered but can also have names. The results of statistical functions are often returned as lists.</p>
-<p>We can create lists with the <code>list()</code> function. The list below contains three components: a vector named “x”, a matrix named “y”, and a data frame named “z”. Notice the <code>m</code> and <code>d</code> objects were created in the two-dimensional data section earlier in this chapter.</p>
+<p>We can create lists with the <code>list()</code> function. The list below contains three components: a vector named “x,” a matrix named “y,” and a data frame named “z.” Notice the <code>m</code> and <code>d</code> objects were created in the two-dimensional data section earlier in this chapter.</p>
 <div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="data-structures.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> l <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),</span>
 <span id="cb51-2"><a href="data-structures.html#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>           <span class="at">y =</span> m,</span>
 <span id="cb51-3"><a href="data-structures.html#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>           <span class="at">z =</span> d)</span>

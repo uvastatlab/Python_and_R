@@ -228,7 +228,7 @@ div.csl-indent {
 <li class="chapter" data-level="7.3" data-path="basic-plotting-and-visualization.html"><a href="basic-plotting-and-visualization.html#scatterplot"><i class="fa fa-check"></i><b>7.3</b> Scatterplot</a></li>
 <li class="chapter" data-level="7.4" data-path="basic-plotting-and-visualization.html"><a href="basic-plotting-and-visualization.html#stripcharts"><i class="fa fa-check"></i><b>7.4</b> Stripcharts</a></li>
 <li class="chapter" data-level="7.5" data-path="basic-plotting-and-visualization.html"><a href="basic-plotting-and-visualization.html#boxplots"><i class="fa fa-check"></i><b>7.5</b> Boxplots</a></li>
-<li class="chapter" data-level="7.6" data-path="basic-plotting-and-visualization.html"><a href="basic-plotting-and-visualization.html#conditional-or-faceted-plots"><i class="fa fa-check"></i><b>7.6</b> Conditional or Faceted plots</a></li>
+<li class="chapter" data-level="7.6" data-path="basic-plotting-and-visualization.html"><a href="basic-plotting-and-visualization.html#facet-plots"><i class="fa fa-check"></i><b>7.6</b> Facet plots</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="statistical-inference-and-modeling.html"><a href="statistical-inference-and-modeling.html"><i class="fa fa-check"></i><b>8</b> Statistical Inference and Modeling</a>
 <ul>
@@ -358,7 +358,7 @@ div.csl-indent {
 <span id="cb162-3"><a href="aggregation-and-group-operations.html#cb162-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">group_by</span>(cyl, vs) <span class="sc">%&gt;%</span> </span>
 <span id="cb162-4"><a href="aggregation-and-group-operations.html#cb162-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">summarize</span>(<span class="at">avg_mpg =</span> <span class="fu">mean</span>(mpg))</span>
 <span id="cb162-5"><a href="aggregation-and-group-operations.html#cb162-5" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">summarise()</span><span class="st">`</span> has grouped output by <span class="st">&#39;cyl&#39;</span>. You can override using the <span class="st">`</span><span class="at">.groups</span><span class="st">`</span> argument.</span>
-<span id="cb162-6"><a href="aggregation-and-group-operations.html#cb162-6" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 5 x 3</span></span>
+<span id="cb162-6"><a href="aggregation-and-group-operations.html#cb162-6" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 5 × 3</span></span>
 <span id="cb162-7"><a href="aggregation-and-group-operations.html#cb162-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Groups:   cyl [3]</span></span>
 <span id="cb162-8"><a href="aggregation-and-group-operations.html#cb162-8" aria-hidden="true" tabindex="-1"></a>    cyl    vs avg_mpg</span>
 <span id="cb162-9"><a href="aggregation-and-group-operations.html#cb162-9" aria-hidden="true" tabindex="-1"></a>  <span class="sc">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>   <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
@@ -376,7 +376,7 @@ div.csl-indent {
 <span id="cb163-6"><a href="aggregation-and-group-operations.html#cb163-6" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>               <span class="fu">mean</span>(wt)<span class="sc">^</span><span class="fl">0.5</span> <span class="sc">+</span> </span>
 <span id="cb163-7"><a href="aggregation-and-group-operations.html#cb163-7" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>               <span class="fu">mean</span>(disp)<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="fu">mean</span>(hp)))</span>
 <span id="cb163-8"><a href="aggregation-and-group-operations.html#cb163-8" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">summarise()</span><span class="st">`</span> has grouped output by <span class="st">&#39;cyl&#39;</span>. You can override using the <span class="st">`</span><span class="at">.groups</span><span class="st">`</span> argument.</span>
-<span id="cb163-9"><a href="aggregation-and-group-operations.html#cb163-9" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 5 x 4</span></span>
+<span id="cb163-9"><a href="aggregation-and-group-operations.html#cb163-9" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 5 × 4</span></span>
 <span id="cb163-10"><a href="aggregation-and-group-operations.html#cb163-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Groups:   cyl [3]</span></span>
 <span id="cb163-11"><a href="aggregation-and-group-operations.html#cb163-11" aria-hidden="true" tabindex="-1"></a>    cyl    vs avg_mpg complicated_summary_calculation</span>
 <span id="cb163-12"><a href="aggregation-and-group-operations.html#cb163-12" aria-hidden="true" tabindex="-1"></a>  <span class="sc">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>   <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>                           <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>

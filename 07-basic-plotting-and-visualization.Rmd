@@ -4,11 +4,11 @@
 knitr::opts_chunk$set(comment = NA, prompt = TRUE, collapse = TRUE)
 ```
 
-This chapter looks at creating basic plots to explore and better understand data. Visualization in Python and R is a gigantic and evolving topic. We don't pretend to present a comprehensive comparison. 
+This chapter looks at creating basic plots to explore and understand data. Visualization in Python and R is a gigantic and evolving topic. We don't pretend to present a comprehensive comparison. 
 
 The plots below make use of the [**palmerpenguins**](https://allisonhorst.github.io/palmerpenguins/) data set, which contains various measurements for 344 penguins across three islands in the Antarctic Palmer Archipelago. The data were collected by [Kristen Gorman](https://www.uaf.edu/cfos/people/faculty/detail/kristen-gorman.php) and colleagues, and they were made available under a [CC0 public domain license](https://creativecommons.org/share-your-work/public-domain/cc0/) by Allison Horst, Alison Hill, and Kristen Gorman.
 
-For the R sections below, we provide code showing how to make each plot using base R and using **ggplot2**.
+For the R sections below, we discuss how to generate plots using base R and using **ggplot2**.
 
 ```{r, echo = F}
 library(palmerpenguins)
@@ -29,10 +29,13 @@ Visualizing the distribution of numeric data.
 #### Python {-}
 
 #### R {-}
+Base R's `hist()` function generates histograms, and features of the histogram---like the bar color, number of bins/breaks, and so on---can be easily customized as below.
 ```{r}
 hist(penguins$bill_length_mm, breaks = 25, col = 'lightblue', xlim = c(30, 60),
      main = 'Penguin Bill Lengths', xlab = 'Bill Length (mm)', ylab = 'Count')
 ```
+
+The **ggplot2** method for generating histograms follows the standard **ggplot2** syntax: Initialize a plot with `ggplot()`, and then add layers thereto, specifying aesthetic properties along the way. Here, the layer to add is `geom_histogram()`.
 ```{r, warning = F}
 ggplot(penguins, aes(x = bill_length_mm)) +
   geom_histogram(fill = 'lightblue', color = 'black', bins = 25) +
@@ -46,25 +49,27 @@ Visualizing the distribution of categorical data.
 #### Python {-}
 
 #### R {-}
-To form barplots, we'll first take the **penguins** data set and...
+To form barplots, we'll first take the **penguins** data set and create a summary data frame containing the statistics we're looking to plot. Here, that's simply the sample size of each species in the data set.
 ```{r}
-flippers <- aggregate(penguins$flipper_length_mm, by = list(penguins$species), function(x) mean(x, na.rm = T))
-colnames(flippers) <- c('species', 'avg_flipper_length')
+species_counts <- as.data.frame(xtabs(~ species, data = penguins))
+species_counts
 ```
+
+We can plot those values using the `barplot()` function in base R, specifying arguments along the way to customize the title/axis labeling, bar colors, and range of the y axis. To add values above the bars, we can follow `barplot()` with a `text()` call as below.
 ```{r}
-penguin_plot <- barplot(flippers$avg_flipper_length, names.arg = flippers$species,
-        col = c('lightblue', 'cornflowerblue', 'darkslateblue'),
-        main = 'Average Flipper Length by Species', xlab = 'Species', ylab = 'Length (mm)',
-        ylim = c(0, 250))
-text(x = penguin_plot, y = flippers$avg_flipper_length*1.1, labels = round(flippers$avg_flipper_length, digits = 2))
+penguin_plot <- barplot(Freq ~ species, data = species_counts, col = c('lightblue', 'cornflowerblue', 'darkslateblue'),
+                        main = 'Species Sample Size', xlab = 'Species', ylab = 'Count', ylim = c(0, 200))
+text(x = penguin_plot, y = species_counts$Freq + 10, labels = species_counts$Freq)
 ```
+
+To recreate the barplot above with **ggplot2**, one can add a `geom_bar()` layer to a plot initialized with `ggplot()`.
 ```{r, warning = F}
-ggplot(flippers, aes(x = species, y = avg_flipper_length)) +
+ggplot(species_counts, aes(x = species, y = Freq)) +
   geom_bar(aes(fill = species), stat = 'identity') +
-  scale_fill_manual(values = c('lightblue', 'cornflowerblue', 'darkslateblue')) +
-  labs(title = 'Average Flipper Length by Species', x = 'Species', y = 'Length (mm)') +
-  theme(legend.position = 'none') + ylim(0, 250) +
-  geom_text(aes(label = round(avg_flipper_length, digits = 2), vjust = -0.5))
+  scale_fill_manual(values = c('lightblue', 'cornflowerblue', 'darkslateblue')) + # scale_fill_manual() is used here for bar-color customization
+  labs(title = 'Species Sample Size', x = 'Species', y = 'Count') +
+  theme(legend.position = 'none') + ylim(0, 200) +
+  geom_text(aes(label = Freq, vjust = -0.5)) # geom_text() is used here to add counts above the bars
 ```
 
 ## Scatterplot
@@ -75,10 +80,13 @@ Visualizing the relationship between two numeric variables.
 
 
 #### R {-}
+Scatterplots can be generated in base R with the `plot()` function. The `pch` argument below modifies the point shape (e.g., 20 = solid circle; 24 = unfilled triangle; etc.)
 ```{r}
 plot(penguins$body_mass_g, penguins$flipper_length_mm, col = 'navy', pch = 20,
      main = 'Scatterplot of Body Mass and Flipper Length', xlab = 'Body Mass (g)', ylab = 'Flipper Length (mm)')
 ```
+
+To generate a scatterplot with **ggplot2**, initialize a plot with `ggplot()`, then add a layer of points with `geom_point()`.
 ```{r, warning = F}
 ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +
   geom_point(color = 'navy') +
@@ -97,25 +105,52 @@ Visualizing the relationship between a numeric variable and a categorical variab
 
 ## Boxplots
 
-Visualizing the relationship between a numeric variable and a categorical variable via 5 number summaries.
+Visualizing the relationship between a numeric variable and a categorical variable via five-number summaries.
 
 #### Python {-}
 
-
 #### R {-}
+The `boxplot()` function in base R generates boxplots, and a user specifies the grouping variable and the numeric variable to be plotted in formula notation: `y ~ grouping_var`.
 ```{r}
-boxplot(penguins$bill_depth_mm ~ penguins$island, col = c('lightblue', 'cornflowerblue', 'darkslateblue'),
+boxplot(bill_depth_mm ~ island, data = penguins, col = c('lightblue', 'cornflowerblue', 'darkslateblue'),
         main = 'Boxplot of Bill Depth by Island', xlab = 'Island', ylab = 'Bill Depth (mm)')
 ```
+
+To generate a boxplot with **ggplot2**, add a `geom_boxplot()` layer to a plot initialized with `ggplot()`.
 ```{r, warning = F}
 ggplot(penguins, aes(x = island, y = bill_depth_mm)) +
   geom_boxplot(aes(fill = island), color = 'navy') +
-  scale_fill_manual(values = c('lightblue', 'cornflowerblue', 'darkslateblue')) +
+  scale_fill_manual(values = c('lightblue', 'cornflowerblue', 'darkslateblue')) + # scale_fill_manual() is used to manually specify group colors
   labs(title = 'Boxplot of Bill Depth by Island', x = 'Island', y = 'Bill Depth (mm)') +
   theme(legend.position = 'none')
 ```
 
-## Conditional or Faceted plots
+## Facet plots
 
-Two or more plots of subsets of data. 
+Facet plots (also called trellis plots, lattice plots, and conditional plots) are comprised of multiple smaller plots, where each subplot contains a subset of the overall data, with subsets defined by one or more faceting variable.
 
+#### Python {-}
+
+#### R {-}
+
+**ggplot2** provides a intuitive and easy-to-use method for generating facet plots: A user specifies the aesthetics of the plot using standard **ggplot2** syntax (i.e., as a series of added layers) and then adds an additional call, `facet_wrap()` (or `facet_grid()`; differences are discussed below), specifying the faceting variable(s) to split up the plots by.
+```{r, warning = F}
+ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(color = 'navy') +
+  geom_smooth(method = 'lm', se = F, color = 'salmon') + # Add basic least-squares line
+  facet_wrap(~species) # Use formula notation, a character vector, or vars() to specify faceting variables; e.g., ~species, c('species'), or vars(species)
+```
+
+The number of rows and columns can be manually specified with `nrow` and `ncol` arguments in `facet_wrap()`. By default, the x and y axes of all facet plots will be on the same scale. The axis ranges can be set to vary freely by adding `scales = 'free'` as an argument (or, alternatively, `'free_x'` or `'free_y'` to free just the x or y axes.)
+
+Both `facet_wrap()` and `facet_grid()` can be used for faceting. When faceting based on multiple variables (e.g., species and sex), `facet_wrap()` will drop group combinations for which there are no data points, whereas `facet_grid()` will generate a plot for all possible group combinations:
+```{r, warning = F}
+ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(color = 'navy') +
+  geom_smooth(method = 'lm', se = F, color = 'salmon') +
+  facet_wrap(vars(species, sex))
+ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(color = 'navy') +
+  geom_smooth(method = 'lm', se = F, color = 'salmon') +
+  facet_grid(rows = vars(sex), cols = vars(species)) # Note that facet_grid() has separate `rows` and `cols` arguments for specifying faceting variables
+```
