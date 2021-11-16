@@ -199,8 +199,8 @@ Functions in Python are defined by using the `def` keyword followed by the name 
 ```{python}
 def SEM(x):
   import numpy as np # import statement included inside the function to ensure it's always imported
-  s = x.std(ddof=1) # find standard deviation of the input array, specify delta degrees of freedom as 1 (makes denominator n-1 not n)
-  n = x.shape[0] # extract the length of the input array (x.shape returns a numpy array, so here we extract the value in the array)
+  s = x.std(ddof=1) # find standard deviation of the data, specify delta degrees of freedom as 1 (makes denominator n-1 not n)
+  n = x.shape[0] # extract the length of the input array
   sem = s / np.sqrt(n) # calculate the SEM
   return(sem) # return the calculated SEM value
 ```
@@ -212,7 +212,37 @@ d = np.array([3,4,4,7,9,6,2,5,7])
 SEM(d)
 ```
 
+Oftentimes functions have built-in error-checking that return messages describing the error. Here we show a simple error-check to ensure that the argument passed to our function is a number. 
 
+```{python}
+def SEM(x):
+  import numpy as np
+  
+  if np.issubdtype(x.dtype,np.number)==False:
+    raise ValueError("Data must be numeric")
+  
+  s = x.std(ddof=1) 
+  n = x.shape[0] 
+  sem = s / np.sqrt(n) 
+  return(sem) 
+```
+
+Python functions can return more than one result. It will output the results into a `tuple`. At tuple is a data structure very similar to a list, but it is immutable - we cannot change the order of the entries. Here we make our function return both the mean and the SEM of our data. 
+
+```{python}
+def SEM(x):
+  import numpy as np
+  
+  if np.issubdtype(x.dtype,np.number)==False:
+    raise ValueError("Data must be numeric")
+  
+  s = x.std(ddof=1) 
+  n = x.shape[0] 
+  sem = s / np.sqrt(n) 
+  
+  m = np.mean(x)
+  return(sem,m) 
+```
 
 #### R {-}
 
