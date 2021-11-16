@@ -178,12 +178,13 @@ div.csl-indent {
 <li class="chapter" data-level="2.3" data-path="data-structures.html"><a href="data-structures.html#three-dimensional-and-higher-data"><i class="fa fa-check"></i><b>2.3</b> Three-dimensional and higher data</a></li>
 <li class="chapter" data-level="2.4" data-path="data-structures.html"><a href="data-structures.html#general-data-structures"><i class="fa fa-check"></i><b>2.4</b> General data structures</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>3</b> Importing Data</a>
+<li class="chapter" data-level="3" data-path="importing-export-and-save-data.html"><a href="importing-export-and-save-data.html"><i class="fa fa-check"></i><b>3</b> Importing, Export, and Save Data</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="importing-data.html"><a href="importing-data.html#csv"><i class="fa fa-check"></i><b>3.1</b> CSV</a></li>
-<li class="chapter" data-level="3.2" data-path="importing-data.html"><a href="importing-data.html#xlsxlsx-excel"><i class="fa fa-check"></i><b>3.2</b> XLS/XLSX (Excel)</a></li>
-<li class="chapter" data-level="3.3" data-path="importing-data.html"><a href="importing-data.html#json"><i class="fa fa-check"></i><b>3.3</b> JSON</a></li>
-<li class="chapter" data-level="3.4" data-path="importing-data.html"><a href="importing-data.html#xml"><i class="fa fa-check"></i><b>3.4</b> XML</a></li>
+<li class="chapter" data-level="3.1" data-path="importing-export-and-save-data.html"><a href="importing-export-and-save-data.html#csv"><i class="fa fa-check"></i><b>3.1</b> CSV</a></li>
+<li class="chapter" data-level="3.2" data-path="importing-export-and-save-data.html"><a href="importing-export-and-save-data.html#xlsxlsx-excel"><i class="fa fa-check"></i><b>3.2</b> XLS/XLSX (Excel)</a></li>
+<li class="chapter" data-level="3.3" data-path="importing-export-and-save-data.html"><a href="importing-export-and-save-data.html#json"><i class="fa fa-check"></i><b>3.3</b> JSON</a></li>
+<li class="chapter" data-level="3.4" data-path="importing-export-and-save-data.html"><a href="importing-export-and-save-data.html#xml"><i class="fa fa-check"></i><b>3.4</b> XML</a></li>
+<li class="chapter" data-level="3.5" data-path="importing-export-and-save-data.html"><a href="importing-export-and-save-data.html#exportingwritingsaving-data-and-variables"><i class="fa fa-check"></i><b>3.5</b> Exporting/Writing/Saving data and variables</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="data-manipulation.html"><a href="data-manipulation.html"><i class="fa fa-check"></i><b>4</b> Data Manipulation</a>
 <ul>
@@ -264,148 +265,148 @@ div.csl-indent {
 <h2><span class="header-section-number">6.1</span> Cross tabulation</h2>
 <p>Cross tabulation is the process of determining frequencies per group (or values based on frequencies, like proportions), with groups delineated by one or more variables (e.g., nationality and sex).</p>
 <p>The Python and R examples of cross tabulation below both make use of the following dataset, <code>dat</code>:</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="aggregation-and-group-operations.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> dat</span>
-<span id="cb152-2"><a href="aggregation-and-group-operations.html#cb152-2" aria-hidden="true" tabindex="-1"></a>  nationality sex</span>
-<span id="cb152-3"><a href="aggregation-and-group-operations.html#cb152-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>    Canadian   m</span>
-<span id="cb152-4"><a href="aggregation-and-group-operations.html#cb152-4" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>      French   f</span>
-<span id="cb152-5"><a href="aggregation-and-group-operations.html#cb152-5" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>      French   f</span>
-<span id="cb152-6"><a href="aggregation-and-group-operations.html#cb152-6" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>    Egyptian   m</span>
-<span id="cb152-7"><a href="aggregation-and-group-operations.html#cb152-7" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>    Canadian   f</span></code></pre></div>
-<div id="python-33" class="section level4 unnumbered">
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="aggregation-and-group-operations.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> dat</span>
+<span id="cb156-2"><a href="aggregation-and-group-operations.html#cb156-2" aria-hidden="true" tabindex="-1"></a>  nationality sex</span>
+<span id="cb156-3"><a href="aggregation-and-group-operations.html#cb156-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>    Canadian   m</span>
+<span id="cb156-4"><a href="aggregation-and-group-operations.html#cb156-4" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>      French   f</span>
+<span id="cb156-5"><a href="aggregation-and-group-operations.html#cb156-5" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>      French   f</span>
+<span id="cb156-6"><a href="aggregation-and-group-operations.html#cb156-6" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>    Egyptian   m</span>
+<span id="cb156-7"><a href="aggregation-and-group-operations.html#cb156-7" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>    Canadian   f</span></code></pre></div>
+<div id="python-34" class="section level4 unnumbered">
 <h4>Python</h4>
 <p>The <strong>pandas</strong> package contains a <code>crosstab()</code> function for cross tabulation with two or more variables. The <code>groupby()</code>, also in <strong>pandas</strong>, facilitates cross tabulation by one or more variables when used in combination with <code>count()</code>.</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb153-1"><a href="aggregation-and-group-operations.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb153-2"><a href="aggregation-and-group-operations.html#cb153-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> pd.crosstab(dat.nationality, dat.sex)</span>
-<span id="cb153-3"><a href="aggregation-and-group-operations.html#cb153-3" aria-hidden="true" tabindex="-1"></a>sex          f  m</span>
-<span id="cb153-4"><a href="aggregation-and-group-operations.html#cb153-4" aria-hidden="true" tabindex="-1"></a>nationality      </span>
-<span id="cb153-5"><a href="aggregation-and-group-operations.html#cb153-5" aria-hidden="true" tabindex="-1"></a>Canadian     <span class="dv">1</span>  <span class="dv">1</span></span>
-<span id="cb153-6"><a href="aggregation-and-group-operations.html#cb153-6" aria-hidden="true" tabindex="-1"></a>Egyptian     <span class="dv">0</span>  <span class="dv">1</span></span>
-<span id="cb153-7"><a href="aggregation-and-group-operations.html#cb153-7" aria-hidden="true" tabindex="-1"></a>French       <span class="dv">2</span>  <span class="dv">0</span></span>
-<span id="cb153-8"><a href="aggregation-and-group-operations.html#cb153-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> dat.groupby(by <span class="op">=</span> <span class="st">&#39;nationality&#39;</span>).nationality.count()</span>
-<span id="cb153-9"><a href="aggregation-and-group-operations.html#cb153-9" aria-hidden="true" tabindex="-1"></a>nationality</span>
-<span id="cb153-10"><a href="aggregation-and-group-operations.html#cb153-10" aria-hidden="true" tabindex="-1"></a>Canadian    <span class="dv">2</span></span>
-<span id="cb153-11"><a href="aggregation-and-group-operations.html#cb153-11" aria-hidden="true" tabindex="-1"></a>Egyptian    <span class="dv">1</span></span>
-<span id="cb153-12"><a href="aggregation-and-group-operations.html#cb153-12" aria-hidden="true" tabindex="-1"></a>French      <span class="dv">2</span></span>
-<span id="cb153-13"><a href="aggregation-and-group-operations.html#cb153-13" aria-hidden="true" tabindex="-1"></a>Name: nationality, dtype: int64</span>
-<span id="cb153-14"><a href="aggregation-and-group-operations.html#cb153-14" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> dat.groupby(by <span class="op">=</span> [<span class="st">&#39;nationality&#39;</span>, <span class="st">&#39;sex&#39;</span>]).nationality.count()</span>
-<span id="cb153-15"><a href="aggregation-and-group-operations.html#cb153-15" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> <span class="co"># Or: dat.groupby(by = [&#39;nationality&#39;, &#39;sex&#39;]).sex.count()</span></span>
-<span id="cb153-16"><a href="aggregation-and-group-operations.html#cb153-16" aria-hidden="true" tabindex="-1"></a>nationality  sex</span>
-<span id="cb153-17"><a href="aggregation-and-group-operations.html#cb153-17" aria-hidden="true" tabindex="-1"></a>Canadian     f      <span class="dv">1</span></span>
-<span id="cb153-18"><a href="aggregation-and-group-operations.html#cb153-18" aria-hidden="true" tabindex="-1"></a>             m      <span class="dv">1</span></span>
-<span id="cb153-19"><a href="aggregation-and-group-operations.html#cb153-19" aria-hidden="true" tabindex="-1"></a>Egyptian     m      <span class="dv">1</span></span>
-<span id="cb153-20"><a href="aggregation-and-group-operations.html#cb153-20" aria-hidden="true" tabindex="-1"></a>French       f      <span class="dv">2</span></span>
-<span id="cb153-21"><a href="aggregation-and-group-operations.html#cb153-21" aria-hidden="true" tabindex="-1"></a>Name: nationality, dtype: int64</span></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb157-1"><a href="aggregation-and-group-operations.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb157-2"><a href="aggregation-and-group-operations.html#cb157-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> pd.crosstab(dat.nationality, dat.sex)</span>
+<span id="cb157-3"><a href="aggregation-and-group-operations.html#cb157-3" aria-hidden="true" tabindex="-1"></a>sex          f  m</span>
+<span id="cb157-4"><a href="aggregation-and-group-operations.html#cb157-4" aria-hidden="true" tabindex="-1"></a>nationality      </span>
+<span id="cb157-5"><a href="aggregation-and-group-operations.html#cb157-5" aria-hidden="true" tabindex="-1"></a>Canadian     <span class="dv">1</span>  <span class="dv">1</span></span>
+<span id="cb157-6"><a href="aggregation-and-group-operations.html#cb157-6" aria-hidden="true" tabindex="-1"></a>Egyptian     <span class="dv">0</span>  <span class="dv">1</span></span>
+<span id="cb157-7"><a href="aggregation-and-group-operations.html#cb157-7" aria-hidden="true" tabindex="-1"></a>French       <span class="dv">2</span>  <span class="dv">0</span></span>
+<span id="cb157-8"><a href="aggregation-and-group-operations.html#cb157-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> dat.groupby(by <span class="op">=</span> <span class="st">&#39;nationality&#39;</span>).nationality.count()</span>
+<span id="cb157-9"><a href="aggregation-and-group-operations.html#cb157-9" aria-hidden="true" tabindex="-1"></a>nationality</span>
+<span id="cb157-10"><a href="aggregation-and-group-operations.html#cb157-10" aria-hidden="true" tabindex="-1"></a>Canadian    <span class="dv">2</span></span>
+<span id="cb157-11"><a href="aggregation-and-group-operations.html#cb157-11" aria-hidden="true" tabindex="-1"></a>Egyptian    <span class="dv">1</span></span>
+<span id="cb157-12"><a href="aggregation-and-group-operations.html#cb157-12" aria-hidden="true" tabindex="-1"></a>French      <span class="dv">2</span></span>
+<span id="cb157-13"><a href="aggregation-and-group-operations.html#cb157-13" aria-hidden="true" tabindex="-1"></a>Name: nationality, dtype: int64</span>
+<span id="cb157-14"><a href="aggregation-and-group-operations.html#cb157-14" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> dat.groupby(by <span class="op">=</span> [<span class="st">&#39;nationality&#39;</span>, <span class="st">&#39;sex&#39;</span>]).nationality.count()</span>
+<span id="cb157-15"><a href="aggregation-and-group-operations.html#cb157-15" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> <span class="co"># Or: dat.groupby(by = [&#39;nationality&#39;, &#39;sex&#39;]).sex.count()</span></span>
+<span id="cb157-16"><a href="aggregation-and-group-operations.html#cb157-16" aria-hidden="true" tabindex="-1"></a>nationality  sex</span>
+<span id="cb157-17"><a href="aggregation-and-group-operations.html#cb157-17" aria-hidden="true" tabindex="-1"></a>Canadian     f      <span class="dv">1</span></span>
+<span id="cb157-18"><a href="aggregation-and-group-operations.html#cb157-18" aria-hidden="true" tabindex="-1"></a>             m      <span class="dv">1</span></span>
+<span id="cb157-19"><a href="aggregation-and-group-operations.html#cb157-19" aria-hidden="true" tabindex="-1"></a>Egyptian     m      <span class="dv">1</span></span>
+<span id="cb157-20"><a href="aggregation-and-group-operations.html#cb157-20" aria-hidden="true" tabindex="-1"></a>French       f      <span class="dv">2</span></span>
+<span id="cb157-21"><a href="aggregation-and-group-operations.html#cb157-21" aria-hidden="true" tabindex="-1"></a>Name: nationality, dtype: int64</span></code></pre></div>
 </div>
-<div id="r-33" class="section level4 unnumbered">
+<div id="r-34" class="section level4 unnumbered">
 <h4>R</h4>
 <p>The <code>table()</code> function performs cross tabulation in R. A user can enter a single grouping variable or enter multiple grouping variables separated by a comma(s). The <code>xtabs()</code> function also computes cross-tabs; a user enters the variables to be used for grouping in formula notation.</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="aggregation-and-group-operations.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">table</span>(dat<span class="sc">$</span>nationality)</span>
-<span id="cb154-2"><a href="aggregation-and-group-operations.html#cb154-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb154-3"><a href="aggregation-and-group-operations.html#cb154-3" aria-hidden="true" tabindex="-1"></a>Canadian Egyptian   French </span>
-<span id="cb154-4"><a href="aggregation-and-group-operations.html#cb154-4" aria-hidden="true" tabindex="-1"></a>       <span class="dv">2</span>        <span class="dv">1</span>        <span class="dv">2</span> </span>
-<span id="cb154-5"><a href="aggregation-and-group-operations.html#cb154-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">table</span>(dat<span class="sc">$</span>nationality, dat<span class="sc">$</span>sex)</span>
-<span id="cb154-6"><a href="aggregation-and-group-operations.html#cb154-6" aria-hidden="true" tabindex="-1"></a>          </span>
-<span id="cb154-7"><a href="aggregation-and-group-operations.html#cb154-7" aria-hidden="true" tabindex="-1"></a>           f m</span>
-<span id="cb154-8"><a href="aggregation-and-group-operations.html#cb154-8" aria-hidden="true" tabindex="-1"></a>  Canadian <span class="dv">1</span> <span class="dv">1</span></span>
-<span id="cb154-9"><a href="aggregation-and-group-operations.html#cb154-9" aria-hidden="true" tabindex="-1"></a>  Egyptian <span class="dv">0</span> <span class="dv">1</span></span>
-<span id="cb154-10"><a href="aggregation-and-group-operations.html#cb154-10" aria-hidden="true" tabindex="-1"></a>  French   <span class="dv">2</span> <span class="dv">0</span></span>
-<span id="cb154-11"><a href="aggregation-and-group-operations.html#cb154-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">xtabs</span>(<span class="at">formula =</span> <span class="sc">~</span>nationality <span class="sc">+</span> sex, <span class="at">data =</span> dat)</span>
-<span id="cb154-12"><a href="aggregation-and-group-operations.html#cb154-12" aria-hidden="true" tabindex="-1"></a>           sex</span>
-<span id="cb154-13"><a href="aggregation-and-group-operations.html#cb154-13" aria-hidden="true" tabindex="-1"></a>nationality f m</span>
-<span id="cb154-14"><a href="aggregation-and-group-operations.html#cb154-14" aria-hidden="true" tabindex="-1"></a>   Canadian <span class="dv">1</span> <span class="dv">1</span></span>
-<span id="cb154-15"><a href="aggregation-and-group-operations.html#cb154-15" aria-hidden="true" tabindex="-1"></a>   Egyptian <span class="dv">0</span> <span class="dv">1</span></span>
-<span id="cb154-16"><a href="aggregation-and-group-operations.html#cb154-16" aria-hidden="true" tabindex="-1"></a>   French   <span class="dv">2</span> <span class="dv">0</span></span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="aggregation-and-group-operations.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">table</span>(dat<span class="sc">$</span>nationality)</span>
+<span id="cb158-2"><a href="aggregation-and-group-operations.html#cb158-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb158-3"><a href="aggregation-and-group-operations.html#cb158-3" aria-hidden="true" tabindex="-1"></a>Canadian Egyptian   French </span>
+<span id="cb158-4"><a href="aggregation-and-group-operations.html#cb158-4" aria-hidden="true" tabindex="-1"></a>       <span class="dv">2</span>        <span class="dv">1</span>        <span class="dv">2</span> </span>
+<span id="cb158-5"><a href="aggregation-and-group-operations.html#cb158-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">table</span>(dat<span class="sc">$</span>nationality, dat<span class="sc">$</span>sex)</span>
+<span id="cb158-6"><a href="aggregation-and-group-operations.html#cb158-6" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb158-7"><a href="aggregation-and-group-operations.html#cb158-7" aria-hidden="true" tabindex="-1"></a>           f m</span>
+<span id="cb158-8"><a href="aggregation-and-group-operations.html#cb158-8" aria-hidden="true" tabindex="-1"></a>  Canadian <span class="dv">1</span> <span class="dv">1</span></span>
+<span id="cb158-9"><a href="aggregation-and-group-operations.html#cb158-9" aria-hidden="true" tabindex="-1"></a>  Egyptian <span class="dv">0</span> <span class="dv">1</span></span>
+<span id="cb158-10"><a href="aggregation-and-group-operations.html#cb158-10" aria-hidden="true" tabindex="-1"></a>  French   <span class="dv">2</span> <span class="dv">0</span></span>
+<span id="cb158-11"><a href="aggregation-and-group-operations.html#cb158-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">xtabs</span>(<span class="at">formula =</span> <span class="sc">~</span>nationality <span class="sc">+</span> sex, <span class="at">data =</span> dat)</span>
+<span id="cb158-12"><a href="aggregation-and-group-operations.html#cb158-12" aria-hidden="true" tabindex="-1"></a>           sex</span>
+<span id="cb158-13"><a href="aggregation-and-group-operations.html#cb158-13" aria-hidden="true" tabindex="-1"></a>nationality f m</span>
+<span id="cb158-14"><a href="aggregation-and-group-operations.html#cb158-14" aria-hidden="true" tabindex="-1"></a>   Canadian <span class="dv">1</span> <span class="dv">1</span></span>
+<span id="cb158-15"><a href="aggregation-and-group-operations.html#cb158-15" aria-hidden="true" tabindex="-1"></a>   Egyptian <span class="dv">0</span> <span class="dv">1</span></span>
+<span id="cb158-16"><a href="aggregation-and-group-operations.html#cb158-16" aria-hidden="true" tabindex="-1"></a>   French   <span class="dv">2</span> <span class="dv">0</span></span></code></pre></div>
 </div>
 </div>
 <div id="group-summaries" class="section level2" number="6.2">
 <h2><span class="header-section-number">6.2</span> Group summaries</h2>
 <p>Computing statistical summaries per group.</p>
-<div id="python-34" class="section level4 unnumbered">
+<div id="python-35" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
-<div id="r-34" class="section level4 unnumbered">
+<div id="r-35" class="section level4 unnumbered">
 <h4>R</h4>
 <p>The <code>aggregate()</code> function allows a user to easily generate by-group statistical summaries based on one or more grouping variables. Grouping variables can be declared as a list in the function’s <code>by</code> argument. Alternatively, the grouping variables (and the variable to be summarized) can be passed to <code>aggregate()</code> in formula notation: <code>var_to_be_aggregated ~ grouping_var_1 + ... + grouping_var_N</code>. The summarizing function (e.g., <code>mean()</code>; <code>median()</code>; etc.) is declared in the <code>FUN</code> argument.</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="aggregation-and-group-operations.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># One grouping variable</span></span>
-<span id="cb155-2"><a href="aggregation-and-group-operations.html#cb155-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># Calculating mean of `mpg` in each `cyl` group</span></span>
-<span id="cb155-3"><a href="aggregation-and-group-operations.html#cb155-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">aggregate</span>(<span class="at">x =</span> mtcars<span class="sc">$</span>mpg, </span>
-<span id="cb155-4"><a href="aggregation-and-group-operations.html#cb155-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>           <span class="at">by =</span> <span class="fu">list</span>(<span class="at">cyl =</span> mtcars<span class="sc">$</span>cyl), </span>
-<span id="cb155-5"><a href="aggregation-and-group-operations.html#cb155-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>           <span class="at">FUN =</span> <span class="st">&quot;mean&quot;</span>) </span>
-<span id="cb155-6"><a href="aggregation-and-group-operations.html#cb155-6" aria-hidden="true" tabindex="-1"></a>  cyl        x</span>
-<span id="cb155-7"><a href="aggregation-and-group-operations.html#cb155-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>   <span class="dv">4</span> <span class="fl">26.66364</span></span>
-<span id="cb155-8"><a href="aggregation-and-group-operations.html#cb155-8" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>   <span class="dv">6</span> <span class="fl">19.74286</span></span>
-<span id="cb155-9"><a href="aggregation-and-group-operations.html#cb155-9" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>   <span class="dv">8</span> <span class="fl">15.10000</span></span></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="aggregation-and-group-operations.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># One grouping variable</span></span>
+<span id="cb159-2"><a href="aggregation-and-group-operations.html#cb159-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># Calculating mean of `mpg` in each `cyl` group</span></span>
+<span id="cb159-3"><a href="aggregation-and-group-operations.html#cb159-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">aggregate</span>(<span class="at">x =</span> mtcars<span class="sc">$</span>mpg, </span>
+<span id="cb159-4"><a href="aggregation-and-group-operations.html#cb159-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>           <span class="at">by =</span> <span class="fu">list</span>(<span class="at">cyl =</span> mtcars<span class="sc">$</span>cyl), </span>
+<span id="cb159-5"><a href="aggregation-and-group-operations.html#cb159-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>           <span class="at">FUN =</span> <span class="st">&quot;mean&quot;</span>) </span>
+<span id="cb159-6"><a href="aggregation-and-group-operations.html#cb159-6" aria-hidden="true" tabindex="-1"></a>  cyl        x</span>
+<span id="cb159-7"><a href="aggregation-and-group-operations.html#cb159-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>   <span class="dv">4</span> <span class="fl">26.66364</span></span>
+<span id="cb159-8"><a href="aggregation-and-group-operations.html#cb159-8" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>   <span class="dv">6</span> <span class="fl">19.74286</span></span>
+<span id="cb159-9"><a href="aggregation-and-group-operations.html#cb159-9" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>   <span class="dv">8</span> <span class="fl">15.10000</span></span></code></pre></div>
 <p>Adding <code>drop=FALSE</code> ensures all combinations of levels are returned if no data exist at that combination. Below the final row is <code>NA</code> since there are no 8 cylinder cars with a “straight” engine (vs = 1).</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="aggregation-and-group-operations.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># Two or more grouping variables</span></span>
-<span id="cb156-2"><a href="aggregation-and-group-operations.html#cb156-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># Calculating max of `mpg` in each `cyl`*`vs` group</span></span>
-<span id="cb156-3"><a href="aggregation-and-group-operations.html#cb156-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">aggregate</span>(<span class="at">x =</span> mtcars<span class="sc">$</span>mpg, </span>
-<span id="cb156-4"><a href="aggregation-and-group-operations.html#cb156-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>           <span class="at">by =</span> <span class="fu">list</span>(<span class="at">cyl =</span> mtcars<span class="sc">$</span>cyl, <span class="at">vs =</span> mtcars<span class="sc">$</span>vs), </span>
-<span id="cb156-5"><a href="aggregation-and-group-operations.html#cb156-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>           <span class="at">FUN =</span> <span class="st">&quot;max&quot;</span>, <span class="at">drop =</span> <span class="cn">FALSE</span>) </span>
-<span id="cb156-6"><a href="aggregation-and-group-operations.html#cb156-6" aria-hidden="true" tabindex="-1"></a>  cyl vs    x</span>
-<span id="cb156-7"><a href="aggregation-and-group-operations.html#cb156-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>   <span class="dv">4</span>  <span class="dv">0</span> <span class="fl">26.0</span></span>
-<span id="cb156-8"><a href="aggregation-and-group-operations.html#cb156-8" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>   <span class="dv">6</span>  <span class="dv">0</span> <span class="fl">21.0</span></span>
-<span id="cb156-9"><a href="aggregation-and-group-operations.html#cb156-9" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>   <span class="dv">8</span>  <span class="dv">0</span> <span class="fl">19.2</span></span>
-<span id="cb156-10"><a href="aggregation-and-group-operations.html#cb156-10" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>   <span class="dv">4</span>  <span class="dv">1</span> <span class="fl">33.9</span></span>
-<span id="cb156-11"><a href="aggregation-and-group-operations.html#cb156-11" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>   <span class="dv">6</span>  <span class="dv">1</span> <span class="fl">21.4</span></span>
-<span id="cb156-12"><a href="aggregation-and-group-operations.html#cb156-12" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>   <span class="dv">8</span>  <span class="dv">1</span>   <span class="cn">NA</span></span></code></pre></div>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="aggregation-and-group-operations.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># Or, specify the variable to summarize and the grouping variables in formula notation</span></span>
-<span id="cb157-2"><a href="aggregation-and-group-operations.html#cb157-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">aggregate</span>(mpg <span class="sc">~</span> cyl, <span class="at">data =</span> mtcars, <span class="at">FUN =</span> mean)</span>
-<span id="cb157-3"><a href="aggregation-and-group-operations.html#cb157-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">aggregate</span>(mpg <span class="sc">~</span> cyl <span class="sc">+</span> vs, <span class="at">data =</span> mtcars, <span class="at">FUN =</span> max)</span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="aggregation-and-group-operations.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># Two or more grouping variables</span></span>
+<span id="cb160-2"><a href="aggregation-and-group-operations.html#cb160-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># Calculating max of `mpg` in each `cyl`*`vs` group</span></span>
+<span id="cb160-3"><a href="aggregation-and-group-operations.html#cb160-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">aggregate</span>(<span class="at">x =</span> mtcars<span class="sc">$</span>mpg, </span>
+<span id="cb160-4"><a href="aggregation-and-group-operations.html#cb160-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>           <span class="at">by =</span> <span class="fu">list</span>(<span class="at">cyl =</span> mtcars<span class="sc">$</span>cyl, <span class="at">vs =</span> mtcars<span class="sc">$</span>vs), </span>
+<span id="cb160-5"><a href="aggregation-and-group-operations.html#cb160-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>           <span class="at">FUN =</span> <span class="st">&quot;max&quot;</span>, <span class="at">drop =</span> <span class="cn">FALSE</span>) </span>
+<span id="cb160-6"><a href="aggregation-and-group-operations.html#cb160-6" aria-hidden="true" tabindex="-1"></a>  cyl vs    x</span>
+<span id="cb160-7"><a href="aggregation-and-group-operations.html#cb160-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>   <span class="dv">4</span>  <span class="dv">0</span> <span class="fl">26.0</span></span>
+<span id="cb160-8"><a href="aggregation-and-group-operations.html#cb160-8" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>   <span class="dv">6</span>  <span class="dv">0</span> <span class="fl">21.0</span></span>
+<span id="cb160-9"><a href="aggregation-and-group-operations.html#cb160-9" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>   <span class="dv">8</span>  <span class="dv">0</span> <span class="fl">19.2</span></span>
+<span id="cb160-10"><a href="aggregation-and-group-operations.html#cb160-10" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>   <span class="dv">4</span>  <span class="dv">1</span> <span class="fl">33.9</span></span>
+<span id="cb160-11"><a href="aggregation-and-group-operations.html#cb160-11" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>   <span class="dv">6</span>  <span class="dv">1</span> <span class="fl">21.4</span></span>
+<span id="cb160-12"><a href="aggregation-and-group-operations.html#cb160-12" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>   <span class="dv">8</span>  <span class="dv">1</span>   <span class="cn">NA</span></span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="aggregation-and-group-operations.html#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># Or, specify the variable to summarize and the grouping variables in formula notation</span></span>
+<span id="cb161-2"><a href="aggregation-and-group-operations.html#cb161-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">aggregate</span>(mpg <span class="sc">~</span> cyl, <span class="at">data =</span> mtcars, <span class="at">FUN =</span> mean)</span>
+<span id="cb161-3"><a href="aggregation-and-group-operations.html#cb161-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">aggregate</span>(mpg <span class="sc">~</span> cyl <span class="sc">+</span> vs, <span class="at">data =</span> mtcars, <span class="at">FUN =</span> max)</span></code></pre></div>
 <p>The <strong>tidyverse</strong> also offers a summarizing function, <code>summarize()</code> (or <code>summarise()</code>, for the Britons), which is in the <strong>dplyr</strong> package. After grouping a data frame/tibble (with, e.g., <strong>dplyr</strong>’s <code>group_by()</code> function), a user passes it to <code>summarize()</code>, specifying in the function call how the summary statistic should be calculated.</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="aggregation-and-group-operations.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(dplyr)</span>
-<span id="cb158-2"><a href="aggregation-and-group-operations.html#cb158-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> mtcars <span class="sc">%&gt;%</span> </span>
-<span id="cb158-3"><a href="aggregation-and-group-operations.html#cb158-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">group_by</span>(cyl, vs) <span class="sc">%&gt;%</span> </span>
-<span id="cb158-4"><a href="aggregation-and-group-operations.html#cb158-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">summarize</span>(<span class="at">avg_mpg =</span> <span class="fu">mean</span>(mpg))</span>
-<span id="cb158-5"><a href="aggregation-and-group-operations.html#cb158-5" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">summarise()</span><span class="st">`</span> has grouped output by <span class="st">&#39;cyl&#39;</span>. You can override using the <span class="st">`</span><span class="at">.groups</span><span class="st">`</span> argument.</span>
-<span id="cb158-6"><a href="aggregation-and-group-operations.html#cb158-6" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 5 x 3</span></span>
-<span id="cb158-7"><a href="aggregation-and-group-operations.html#cb158-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Groups:   cyl [3]</span></span>
-<span id="cb158-8"><a href="aggregation-and-group-operations.html#cb158-8" aria-hidden="true" tabindex="-1"></a>    cyl    vs avg_mpg</span>
-<span id="cb158-9"><a href="aggregation-and-group-operations.html#cb158-9" aria-hidden="true" tabindex="-1"></a>  <span class="sc">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>   <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
-<span id="cb158-10"><a href="aggregation-and-group-operations.html#cb158-10" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>     <span class="dv">4</span>     <span class="dv">0</span>    <span class="dv">26</span>  </span>
-<span id="cb158-11"><a href="aggregation-and-group-operations.html#cb158-11" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>     <span class="dv">4</span>     <span class="dv">1</span>    <span class="fl">26.7</span></span>
-<span id="cb158-12"><a href="aggregation-and-group-operations.html#cb158-12" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>     <span class="dv">6</span>     <span class="dv">0</span>    <span class="fl">20.6</span></span>
-<span id="cb158-13"><a href="aggregation-and-group-operations.html#cb158-13" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>     <span class="dv">6</span>     <span class="dv">1</span>    <span class="fl">19.1</span></span>
-<span id="cb158-14"><a href="aggregation-and-group-operations.html#cb158-14" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>     <span class="dv">8</span>     <span class="dv">0</span>    <span class="fl">15.1</span></span></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="aggregation-and-group-operations.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(dplyr)</span>
+<span id="cb162-2"><a href="aggregation-and-group-operations.html#cb162-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> mtcars <span class="sc">%&gt;%</span> </span>
+<span id="cb162-3"><a href="aggregation-and-group-operations.html#cb162-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">group_by</span>(cyl, vs) <span class="sc">%&gt;%</span> </span>
+<span id="cb162-4"><a href="aggregation-and-group-operations.html#cb162-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">summarize</span>(<span class="at">avg_mpg =</span> <span class="fu">mean</span>(mpg))</span>
+<span id="cb162-5"><a href="aggregation-and-group-operations.html#cb162-5" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">summarise()</span><span class="st">`</span> has grouped output by <span class="st">&#39;cyl&#39;</span>. You can override using the <span class="st">`</span><span class="at">.groups</span><span class="st">`</span> argument.</span>
+<span id="cb162-6"><a href="aggregation-and-group-operations.html#cb162-6" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 5 x 3</span></span>
+<span id="cb162-7"><a href="aggregation-and-group-operations.html#cb162-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Groups:   cyl [3]</span></span>
+<span id="cb162-8"><a href="aggregation-and-group-operations.html#cb162-8" aria-hidden="true" tabindex="-1"></a>    cyl    vs avg_mpg</span>
+<span id="cb162-9"><a href="aggregation-and-group-operations.html#cb162-9" aria-hidden="true" tabindex="-1"></a>  <span class="sc">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>   <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb162-10"><a href="aggregation-and-group-operations.html#cb162-10" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>     <span class="dv">4</span>     <span class="dv">0</span>    <span class="dv">26</span>  </span>
+<span id="cb162-11"><a href="aggregation-and-group-operations.html#cb162-11" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>     <span class="dv">4</span>     <span class="dv">1</span>    <span class="fl">26.7</span></span>
+<span id="cb162-12"><a href="aggregation-and-group-operations.html#cb162-12" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>     <span class="dv">6</span>     <span class="dv">0</span>    <span class="fl">20.6</span></span>
+<span id="cb162-13"><a href="aggregation-and-group-operations.html#cb162-13" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>     <span class="dv">6</span>     <span class="dv">1</span>    <span class="fl">19.1</span></span>
+<span id="cb162-14"><a href="aggregation-and-group-operations.html#cb162-14" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>     <span class="dv">8</span>     <span class="dv">0</span>    <span class="fl">15.1</span></span></code></pre></div>
 <p>A benefit of <code>summarize()</code> is that it allows a user to specify relatively complicated summary calculations without needing to write an external function.</p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="aggregation-and-group-operations.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> mtcars <span class="sc">%&gt;%</span> </span>
-<span id="cb159-2"><a href="aggregation-and-group-operations.html#cb159-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">group_by</span>(cyl, vs) <span class="sc">%&gt;%</span> </span>
-<span id="cb159-3"><a href="aggregation-and-group-operations.html#cb159-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">summarize</span>(<span class="at">avg_mpg =</span> <span class="fu">mean</span>(mpg),</span>
-<span id="cb159-4"><a href="aggregation-and-group-operations.html#cb159-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>             <span class="at">complicated_summary_calculation =</span> </span>
-<span id="cb159-5"><a href="aggregation-and-group-operations.html#cb159-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>               <span class="fu">min</span>(mpg)<span class="sc">^</span><span class="fl">0.5</span> <span class="sc">*</span> </span>
-<span id="cb159-6"><a href="aggregation-and-group-operations.html#cb159-6" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>               <span class="fu">mean</span>(wt)<span class="sc">^</span><span class="fl">0.5</span> <span class="sc">+</span> </span>
-<span id="cb159-7"><a href="aggregation-and-group-operations.html#cb159-7" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>               <span class="fu">mean</span>(disp)<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="fu">mean</span>(hp)))</span>
-<span id="cb159-8"><a href="aggregation-and-group-operations.html#cb159-8" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">summarise()</span><span class="st">`</span> has grouped output by <span class="st">&#39;cyl&#39;</span>. You can override using the <span class="st">`</span><span class="at">.groups</span><span class="st">`</span> argument.</span>
-<span id="cb159-9"><a href="aggregation-and-group-operations.html#cb159-9" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 5 x 4</span></span>
-<span id="cb159-10"><a href="aggregation-and-group-operations.html#cb159-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Groups:   cyl [3]</span></span>
-<span id="cb159-11"><a href="aggregation-and-group-operations.html#cb159-11" aria-hidden="true" tabindex="-1"></a>    cyl    vs avg_mpg complicated_summary_calculation</span>
-<span id="cb159-12"><a href="aggregation-and-group-operations.html#cb159-12" aria-hidden="true" tabindex="-1"></a>  <span class="sc">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>   <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>                           <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
-<span id="cb159-13"><a href="aggregation-and-group-operations.html#cb159-13" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>     <span class="dv">4</span>     <span class="dv">0</span>    <span class="dv">26</span>                              <span class="fl">8.51</span></span>
-<span id="cb159-14"><a href="aggregation-and-group-operations.html#cb159-14" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>     <span class="dv">4</span>     <span class="dv">1</span>    <span class="fl">26.7</span>                            <span class="fl">8.07</span></span>
-<span id="cb159-15"><a href="aggregation-and-group-operations.html#cb159-15" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>     <span class="dv">6</span>     <span class="dv">0</span>    <span class="fl">20.6</span>                            <span class="fl">8.41</span></span>
-<span id="cb159-16"><a href="aggregation-and-group-operations.html#cb159-16" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>     <span class="dv">6</span>     <span class="dv">1</span>    <span class="fl">19.1</span>                            <span class="fl">8.81</span></span>
-<span id="cb159-17"><a href="aggregation-and-group-operations.html#cb159-17" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>     <span class="dv">8</span>     <span class="dv">0</span>    <span class="fl">15.1</span>                            <span class="fl">7.48</span></span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="aggregation-and-group-operations.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> mtcars <span class="sc">%&gt;%</span> </span>
+<span id="cb163-2"><a href="aggregation-and-group-operations.html#cb163-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">group_by</span>(cyl, vs) <span class="sc">%&gt;%</span> </span>
+<span id="cb163-3"><a href="aggregation-and-group-operations.html#cb163-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">summarize</span>(<span class="at">avg_mpg =</span> <span class="fu">mean</span>(mpg),</span>
+<span id="cb163-4"><a href="aggregation-and-group-operations.html#cb163-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>             <span class="at">complicated_summary_calculation =</span> </span>
+<span id="cb163-5"><a href="aggregation-and-group-operations.html#cb163-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>               <span class="fu">min</span>(mpg)<span class="sc">^</span><span class="fl">0.5</span> <span class="sc">*</span> </span>
+<span id="cb163-6"><a href="aggregation-and-group-operations.html#cb163-6" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>               <span class="fu">mean</span>(wt)<span class="sc">^</span><span class="fl">0.5</span> <span class="sc">+</span> </span>
+<span id="cb163-7"><a href="aggregation-and-group-operations.html#cb163-7" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>               <span class="fu">mean</span>(disp)<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="fu">mean</span>(hp)))</span>
+<span id="cb163-8"><a href="aggregation-and-group-operations.html#cb163-8" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">summarise()</span><span class="st">`</span> has grouped output by <span class="st">&#39;cyl&#39;</span>. You can override using the <span class="st">`</span><span class="at">.groups</span><span class="st">`</span> argument.</span>
+<span id="cb163-9"><a href="aggregation-and-group-operations.html#cb163-9" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 5 x 4</span></span>
+<span id="cb163-10"><a href="aggregation-and-group-operations.html#cb163-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Groups:   cyl [3]</span></span>
+<span id="cb163-11"><a href="aggregation-and-group-operations.html#cb163-11" aria-hidden="true" tabindex="-1"></a>    cyl    vs avg_mpg complicated_summary_calculation</span>
+<span id="cb163-12"><a href="aggregation-and-group-operations.html#cb163-12" aria-hidden="true" tabindex="-1"></a>  <span class="sc">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>   <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>                           <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb163-13"><a href="aggregation-and-group-operations.html#cb163-13" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>     <span class="dv">4</span>     <span class="dv">0</span>    <span class="dv">26</span>                              <span class="fl">8.51</span></span>
+<span id="cb163-14"><a href="aggregation-and-group-operations.html#cb163-14" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>     <span class="dv">4</span>     <span class="dv">1</span>    <span class="fl">26.7</span>                            <span class="fl">8.07</span></span>
+<span id="cb163-15"><a href="aggregation-and-group-operations.html#cb163-15" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>     <span class="dv">6</span>     <span class="dv">0</span>    <span class="fl">20.6</span>                            <span class="fl">8.41</span></span>
+<span id="cb163-16"><a href="aggregation-and-group-operations.html#cb163-16" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>     <span class="dv">6</span>     <span class="dv">1</span>    <span class="fl">19.1</span>                            <span class="fl">8.81</span></span>
+<span id="cb163-17"><a href="aggregation-and-group-operations.html#cb163-17" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>     <span class="dv">8</span>     <span class="dv">0</span>    <span class="fl">15.1</span>                            <span class="fl">7.48</span></span></code></pre></div>
 </div>
 </div>
 <div id="centering-and-scaling" class="section level2" number="6.3">
 <h2><span class="header-section-number">6.3</span> Centering and Scaling</h2>
 <p><em>Centering</em> refers to rescaling a column or vector of values such that their mean is 0. This is sometimes performed to aid interpretation of linear model coefficients.</p>
 <p><em>Scaling</em> refers to rescaling a column or vector of values such that their mean is 0 and their standard deviation is 1. This is sometimes performed to put multiple variables on the same scale and is often recommended for procedures such as principal components analysis (PCA).</p>
-<div id="python-35" class="section level4 unnumbered">
+<div id="python-36" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
-<div id="r-35" class="section level4 unnumbered">
+<div id="r-36" class="section level4 unnumbered">
 <h4>R</h4>
 <p>The <code>scale()</code> function can both center and scale variables.</p>
 <p>To center a variable (without scaling it), call <code>scale()</code> with the <code>center</code> argument set to <code>TRUE</code> and the <code>scale</code> argument set to <code>FALSE</code>. The variable’s mean will be subtracted off of each of the variable values. (Note: If desired, the <code>center</code> argument can be set to a numeric value instead of <code>TRUE</code>/<code>FALSE</code>; in that case, each variable value will have the argument value subtracted off of it.)</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="aggregation-and-group-operations.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> centered_mpg <span class="ot">&lt;-</span> <span class="fu">scale</span>(mtcars<span class="sc">$</span>mpg, <span class="at">center =</span> T, <span class="at">scale =</span> F)</span>
-<span id="cb160-2"><a href="aggregation-and-group-operations.html#cb160-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">mean</span>(centered_mpg)</span>
-<span id="cb160-3"><a href="aggregation-and-group-operations.html#cb160-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">4.440892e-16</span></span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="aggregation-and-group-operations.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> centered_mpg <span class="ot">&lt;-</span> <span class="fu">scale</span>(mtcars<span class="sc">$</span>mpg, <span class="at">center =</span> T, <span class="at">scale =</span> F)</span>
+<span id="cb164-2"><a href="aggregation-and-group-operations.html#cb164-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">mean</span>(centered_mpg)</span>
+<span id="cb164-3"><a href="aggregation-and-group-operations.html#cb164-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">4.440892e-16</span></span></code></pre></div>
 <p>To scale a variable (while also centering it), call <code>scale()</code> with the <code>center</code> and <code>scale</code> arguments set to <code>TRUE</code> (these are the default argument values). The variable’s mean will be subtracted off of each of the variable values, and each value will then be divided by the variable’s standard deviation. (Note: As with the <code>center</code> argument, the <code>scale</code> argument can also be set to a numeric value instead of <code>TRUE</code>/<code>FALSE</code>; in that case, the divisor will be the argument value instead of the standard deviation.)</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="aggregation-and-group-operations.html#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> scaled_mpg <span class="ot">&lt;-</span> <span class="fu">scale</span>(mtcars<span class="sc">$</span>mpg, <span class="at">center =</span> T, <span class="at">scale =</span> T)</span>
-<span id="cb161-2"><a href="aggregation-and-group-operations.html#cb161-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">mean</span>(scaled_mpg)</span>
-<span id="cb161-3"><a href="aggregation-and-group-operations.html#cb161-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">7.112366e-17</span></span>
-<span id="cb161-4"><a href="aggregation-and-group-operations.html#cb161-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">sd</span>(scaled_mpg)</span>
-<span id="cb161-5"><a href="aggregation-and-group-operations.html#cb161-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="aggregation-and-group-operations.html#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> scaled_mpg <span class="ot">&lt;-</span> <span class="fu">scale</span>(mtcars<span class="sc">$</span>mpg, <span class="at">center =</span> T, <span class="at">scale =</span> T)</span>
+<span id="cb165-2"><a href="aggregation-and-group-operations.html#cb165-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">mean</span>(scaled_mpg)</span>
+<span id="cb165-3"><a href="aggregation-and-group-operations.html#cb165-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">7.112366e-17</span></span>
+<span id="cb165-4"><a href="aggregation-and-group-operations.html#cb165-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">sd</span>(scaled_mpg)</span>
+<span id="cb165-5"><a href="aggregation-and-group-operations.html#cb165-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">1</span></span></code></pre></div>
 
 </div>
 </div>

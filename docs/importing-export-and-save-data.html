@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Importing Data | Python and R</title>
+  <title>Chapter 3 Importing, Export, and Save Data | Python and R</title>
   <meta name="description" content="This book provides parallel examples in Python and R to help users of one platform more easily transition to the other." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Importing Data | Python and R" />
+  <meta property="og:title" content="Chapter 3 Importing, Export, and Save Data | Python and R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="uvastatlab/Python_and_R" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Importing Data | Python and R" />
+  <meta name="twitter:title" content="Chapter 3 Importing, Export, and Save Data | Python and R" />
   
   <meta name="twitter:description" content="This book provides parallel examples in Python and R to help users of one platform more easily transition to the other." />
   
@@ -178,12 +178,13 @@ div.csl-indent {
 <li class="chapter" data-level="2.3" data-path="data-structures.html"><a href="data-structures.html#three-dimensional-and-higher-data"><i class="fa fa-check"></i><b>2.3</b> Three-dimensional and higher data</a></li>
 <li class="chapter" data-level="2.4" data-path="data-structures.html"><a href="data-structures.html#general-data-structures"><i class="fa fa-check"></i><b>2.4</b> General data structures</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>3</b> Importing Data</a>
+<li class="chapter" data-level="3" data-path="importing-export-and-save-data.html"><a href="importing-export-and-save-data.html"><i class="fa fa-check"></i><b>3</b> Importing, Export, and Save Data</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="importing-data.html"><a href="importing-data.html#csv"><i class="fa fa-check"></i><b>3.1</b> CSV</a></li>
-<li class="chapter" data-level="3.2" data-path="importing-data.html"><a href="importing-data.html#xlsxlsx-excel"><i class="fa fa-check"></i><b>3.2</b> XLS/XLSX (Excel)</a></li>
-<li class="chapter" data-level="3.3" data-path="importing-data.html"><a href="importing-data.html#json"><i class="fa fa-check"></i><b>3.3</b> JSON</a></li>
-<li class="chapter" data-level="3.4" data-path="importing-data.html"><a href="importing-data.html#xml"><i class="fa fa-check"></i><b>3.4</b> XML</a></li>
+<li class="chapter" data-level="3.1" data-path="importing-export-and-save-data.html"><a href="importing-export-and-save-data.html#csv"><i class="fa fa-check"></i><b>3.1</b> CSV</a></li>
+<li class="chapter" data-level="3.2" data-path="importing-export-and-save-data.html"><a href="importing-export-and-save-data.html#xlsxlsx-excel"><i class="fa fa-check"></i><b>3.2</b> XLS/XLSX (Excel)</a></li>
+<li class="chapter" data-level="3.3" data-path="importing-export-and-save-data.html"><a href="importing-export-and-save-data.html#json"><i class="fa fa-check"></i><b>3.3</b> JSON</a></li>
+<li class="chapter" data-level="3.4" data-path="importing-export-and-save-data.html"><a href="importing-export-and-save-data.html#xml"><i class="fa fa-check"></i><b>3.4</b> XML</a></li>
+<li class="chapter" data-level="3.5" data-path="importing-export-and-save-data.html"><a href="importing-export-and-save-data.html#exportingwritingsaving-data-and-variables"><i class="fa fa-check"></i><b>3.5</b> Exporting/Writing/Saving data and variables</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="data-manipulation.html"><a href="data-manipulation.html"><i class="fa fa-check"></i><b>4</b> Data Manipulation</a>
 <ul>
@@ -257,8 +258,8 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="importing-data" class="section level1" number="3">
-<h1><span class="header-section-number">Chapter 3</span> Importing Data</h1>
+<div id="importing-export-and-save-data" class="section level1" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Importing, Export, and Save Data</h1>
 <p>This chapter reviews importing external data into Python and R, including CSV, Excel, and other structured data files. There is often more than one way to import data into Python and R. The examples below highlight one way that we frequently see used.</p>
 <p>The data we use for demonstration is New York State Math Test Results by Grade from 2006 - 2011, downloaded from <a href="https://catalog.data.gov/dataset/2006-2011-nys-math-test-results-by-grade-citywide-by-race-ethnicity">data.gov</a> on September 30, 2021.</p>
 <div id="csv" class="section level2" number="3.1">
@@ -267,23 +268,23 @@ div.csl-indent {
 <div id="python-12" class="section level4 unnumbered">
 <h4>Python</h4>
 <p>The <strong>pandas</strong> function <code>read_csv()</code> is a common approach to importing CSV files into Python.</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb55-1"><a href="importing-data.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb55-2"><a href="importing-data.html#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> d <span class="op">=</span> pd.read_csv(<span class="st">&#39;data/ny_math_test.csv&#39;</span>)</span>
-<span id="cb55-3"><a href="importing-data.html#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> d.loc[<span class="dv">0</span>:<span class="dv">2</span>, [<span class="st">&quot;Grade&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Mean Scale Score&quot;</span>]]</span>
-<span id="cb55-4"><a href="importing-data.html#cb55-4" aria-hidden="true" tabindex="-1"></a>  Grade  Year  Mean Scale Score</span>
-<span id="cb55-5"><a href="importing-data.html#cb55-5" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span>     <span class="dv">3</span>  <span class="dv">2006</span>               <span class="dv">700</span></span>
-<span id="cb55-6"><a href="importing-data.html#cb55-6" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>     <span class="dv">4</span>  <span class="dv">2006</span>               <span class="dv">699</span></span>
-<span id="cb55-7"><a href="importing-data.html#cb55-7" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>     <span class="dv">5</span>  <span class="dv">2006</span>               <span class="dv">691</span></span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb55-1"><a href="importing-export-and-save-data.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb55-2"><a href="importing-export-and-save-data.html#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> d <span class="op">=</span> pd.read_csv(<span class="st">&#39;data/ny_math_test.csv&#39;</span>)</span>
+<span id="cb55-3"><a href="importing-export-and-save-data.html#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> d.loc[<span class="dv">0</span>:<span class="dv">2</span>, [<span class="st">&quot;Grade&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Mean Scale Score&quot;</span>]]</span>
+<span id="cb55-4"><a href="importing-export-and-save-data.html#cb55-4" aria-hidden="true" tabindex="-1"></a>  Grade  Year  Mean Scale Score</span>
+<span id="cb55-5"><a href="importing-export-and-save-data.html#cb55-5" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span>     <span class="dv">3</span>  <span class="dv">2006</span>               <span class="dv">700</span></span>
+<span id="cb55-6"><a href="importing-export-and-save-data.html#cb55-6" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>     <span class="dv">4</span>  <span class="dv">2006</span>               <span class="dv">699</span></span>
+<span id="cb55-7"><a href="importing-export-and-save-data.html#cb55-7" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>     <span class="dv">5</span>  <span class="dv">2006</span>               <span class="dv">691</span></span></code></pre></div>
 </div>
 <div id="r-12" class="section level4 unnumbered">
 <h4>R</h4>
 <p>There are many ways to import a csv file. A common way is to use the base R function <code>read.csv()</code>.</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="importing-data.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/ny_math_test.csv&quot;</span>)</span>
-<span id="cb56-2"><a href="importing-data.html#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="fu">c</span>(<span class="st">&quot;Grade&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Mean.Scale.Score&quot;</span>)]</span>
-<span id="cb56-3"><a href="importing-data.html#cb56-3" aria-hidden="true" tabindex="-1"></a>  Grade Year Mean.Scale.Score</span>
-<span id="cb56-4"><a href="importing-data.html#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>     <span class="dv">3</span> <span class="dv">2006</span>              <span class="dv">700</span></span>
-<span id="cb56-5"><a href="importing-data.html#cb56-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>     <span class="dv">4</span> <span class="dv">2006</span>              <span class="dv">699</span></span>
-<span id="cb56-6"><a href="importing-data.html#cb56-6" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>     <span class="dv">5</span> <span class="dv">2006</span>              <span class="dv">691</span></span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="importing-export-and-save-data.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/ny_math_test.csv&quot;</span>)</span>
+<span id="cb56-2"><a href="importing-export-and-save-data.html#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="fu">c</span>(<span class="st">&quot;Grade&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Mean.Scale.Score&quot;</span>)]</span>
+<span id="cb56-3"><a href="importing-export-and-save-data.html#cb56-3" aria-hidden="true" tabindex="-1"></a>  Grade Year Mean.Scale.Score</span>
+<span id="cb56-4"><a href="importing-export-and-save-data.html#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>     <span class="dv">3</span> <span class="dv">2006</span>              <span class="dv">700</span></span>
+<span id="cb56-5"><a href="importing-export-and-save-data.html#cb56-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>     <span class="dv">4</span> <span class="dv">2006</span>              <span class="dv">699</span></span>
+<span id="cb56-6"><a href="importing-export-and-save-data.html#cb56-6" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>     <span class="dv">5</span> <span class="dv">2006</span>              <span class="dv">691</span></span></code></pre></div>
 <p>Notice the spaces in the column names have been replaced with periods.</p>
 <p>Two packages that provide alternatives to <code>read.csv()</code> are <strong>readr</strong> and <strong>data.table</strong>. The <strong>readr</strong> function <code>read_csv()</code> returns a <a href="https://r4ds.had.co.nz/tibbles.html">tibble</a>. The <strong>data.table</strong> function <code>fread()</code> returns a <a href="https://rdatatable.gitlab.io/data.table/articles/datatable-intro.html">data.table</a>.</p>
 </div>
@@ -294,23 +295,23 @@ div.csl-indent {
 <div id="python-13" class="section level4 unnumbered">
 <h4>Python</h4>
 <p>The <strong>pandas</strong> function <code>read_excel()</code> is a common approach to importing Excel files into Python. The <code>sheet_name</code> argument allows you to specify which sheet you want to import. You can specify sheet by its (zero-indexed) ordering or by its name. Since this Excel file only has one sheet we do not need to use the argument. In addition, specifying <code>sheet_name=None</code> will read in all sheets and return a dict data structure where the <em>key</em> is the sheet name and the <em>value</em> is a DataFrame.</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb57-1"><a href="importing-data.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> pandas <span class="im">as</span> pd  </span>
-<span id="cb57-2"><a href="importing-data.html#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> d <span class="op">=</span> pd.read_excel(<span class="st">&#39;data/ny_math_test.xlsx&#39;</span>)  </span>
-<span id="cb57-3"><a href="importing-data.html#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> d.loc[<span class="dv">0</span>:<span class="dv">2</span>, [<span class="st">&quot;Grade&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Mean Scale Score&quot;</span>]]  </span>
-<span id="cb57-4"><a href="importing-data.html#cb57-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> </span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb57-1"><a href="importing-export-and-save-data.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> pandas <span class="im">as</span> pd  </span>
+<span id="cb57-2"><a href="importing-export-and-save-data.html#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> d <span class="op">=</span> pd.read_excel(<span class="st">&#39;data/ny_math_test.xlsx&#39;</span>)  </span>
+<span id="cb57-3"><a href="importing-export-and-save-data.html#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> d.loc[<span class="dv">0</span>:<span class="dv">2</span>, [<span class="st">&quot;Grade&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Mean Scale Score&quot;</span>]]  </span>
+<span id="cb57-4"><a href="importing-export-and-save-data.html#cb57-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> </span></code></pre></div>
 </div>
 <div id="r-13" class="section level4 unnumbered">
 <h4>R</h4>
 <p><strong>readxl</strong> is a well-documented and actively maintained package for importing Excel files into R. The workhorse function is <code>read_excel()</code>. The <code>sheet</code> argument allows you to specify which sheet you want to import. You can specify sheet by its ordering or by its name. Since this Excel file only has one sheet we do not need to use the argument.</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="importing-data.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(readxl)</span>
-<span id="cb58-2"><a href="importing-data.html#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d_xls <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/ny_math_test.xlsx&quot;</span>)</span>
-<span id="cb58-3"><a href="importing-data.html#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d_xls[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="fu">c</span>(<span class="st">&quot;Grade&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Mean Scale Score&quot;</span>)]</span>
-<span id="cb58-4"><a href="importing-data.html#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 3 x 3</span></span>
-<span id="cb58-5"><a href="importing-data.html#cb58-5" aria-hidden="true" tabindex="-1"></a>  Grade  Year <span class="st">`</span><span class="at">Mean Scale Score</span><span class="st">`</span></span>
-<span id="cb58-6"><a href="importing-data.html#cb58-6" aria-hidden="true" tabindex="-1"></a>  <span class="sc">&lt;</span>chr<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>              <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
-<span id="cb58-7"><a href="importing-data.html#cb58-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">3</span>      <span class="dv">2006</span>                <span class="dv">700</span></span>
-<span id="cb58-8"><a href="importing-data.html#cb58-8" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="dv">4</span>      <span class="dv">2006</span>                <span class="dv">699</span></span>
-<span id="cb58-9"><a href="importing-data.html#cb58-9" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="dv">5</span>      <span class="dv">2006</span>                <span class="dv">691</span></span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="importing-export-and-save-data.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(readxl)</span>
+<span id="cb58-2"><a href="importing-export-and-save-data.html#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d_xls <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/ny_math_test.xlsx&quot;</span>)</span>
+<span id="cb58-3"><a href="importing-export-and-save-data.html#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d_xls[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="fu">c</span>(<span class="st">&quot;Grade&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Mean Scale Score&quot;</span>)]</span>
+<span id="cb58-4"><a href="importing-export-and-save-data.html#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 3 x 3</span></span>
+<span id="cb58-5"><a href="importing-export-and-save-data.html#cb58-5" aria-hidden="true" tabindex="-1"></a>  Grade  Year <span class="st">`</span><span class="at">Mean Scale Score</span><span class="st">`</span></span>
+<span id="cb58-6"><a href="importing-export-and-save-data.html#cb58-6" aria-hidden="true" tabindex="-1"></a>  <span class="sc">&lt;</span>chr<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>              <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb58-7"><a href="importing-export-and-save-data.html#cb58-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">3</span>      <span class="dv">2006</span>                <span class="dv">700</span></span>
+<span id="cb58-8"><a href="importing-export-and-save-data.html#cb58-8" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="dv">4</span>      <span class="dv">2006</span>                <span class="dv">699</span></span>
+<span id="cb58-9"><a href="importing-export-and-save-data.html#cb58-9" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="dv">5</span>      <span class="dv">2006</span>                <span class="dv">691</span></span></code></pre></div>
 <p>The result is a <em>tibble</em>, a <a href="https://tibble.tidyverse.org/">tidyverse data frame</a>.</p>
 <p>It’s worth noting we can use the <code>range</code> argument to specify a range of cells to import. For example, if the top left corner of the data was B5 and the bottom right corner of the data was J54, we could enter <code>range="B5:J54"</code> to just import that section of data.</p>
 </div>
@@ -323,40 +324,40 @@ div.csl-indent {
 <p>Below is one approach to importing our “ny_math_test.json” example file. We first import Python’s built-in <strong>json</strong> package and use its <code>loads()</code> function to read in the lines of the json file. The file is accessed using the <code>open</code> function and its associated <code>read</code> method.</p>
 <p>Next we use the <strong>pandas</strong> function <code>json_normalize()</code> to convert the ‘data’ structure of the json data into a DataFrame.</p>
 <p>Finally we add column names to the DataFrame.</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb59-1"><a href="importing-data.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> json</span>
-<span id="cb59-2"><a href="importing-data.html#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> <span class="co"># load data using Python JSON module</span></span>
-<span id="cb59-3"><a href="importing-data.html#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> <span class="cf">with</span> <span class="bu">open</span>(<span class="st">&#39;data/ny_math_test.json&#39;</span>,<span class="st">&#39;r&#39;</span>) <span class="im">as</span> f:</span>
-<span id="cb59-4"><a href="importing-data.html#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="op">+</span>     data <span class="op">=</span> json.loads(f.read())</span>
-<span id="cb59-5"><a href="importing-data.html#cb59-5" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> </span>
-<span id="cb59-6"><a href="importing-data.html#cb59-6" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> <span class="im">import</span> pandas <span class="im">as</span> pd  </span>
-<span id="cb59-7"><a href="importing-data.html#cb59-7" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> d_json <span class="op">=</span> pd.json_normalize(data, record_path <span class="op">=</span>[<span class="st">&#39;data&#39;</span>])</span>
-<span id="cb59-8"><a href="importing-data.html#cb59-8" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> </span>
-<span id="cb59-9"><a href="importing-data.html#cb59-9" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> <span class="co"># add column names</span></span>
-<span id="cb59-10"><a href="importing-data.html#cb59-10" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> names <span class="op">=</span> <span class="bu">list</span>()</span>
-<span id="cb59-11"><a href="importing-data.html#cb59-11" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">23</span>): </span>
-<span id="cb59-12"><a href="importing-data.html#cb59-12" aria-hidden="true" tabindex="-1"></a><span class="op">+</span>   names.append(data[<span class="st">&#39;meta&#39;</span>][<span class="st">&#39;view&#39;</span>][<span class="st">&#39;columns&#39;</span>][i][<span class="st">&#39;name&#39;</span>])</span>
-<span id="cb59-13"><a href="importing-data.html#cb59-13" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> d_json.columns <span class="op">=</span> names</span>
-<span id="cb59-14"><a href="importing-data.html#cb59-14" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> </span>
-<span id="cb59-15"><a href="importing-data.html#cb59-15" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> d_json.loc[<span class="dv">0</span>:<span class="dv">2</span>, [<span class="st">&quot;Grade&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Mean Scale Score&quot;</span>]]  </span>
-<span id="cb59-16"><a href="importing-data.html#cb59-16" aria-hidden="true" tabindex="-1"></a>  Grade  Year Mean Scale Score</span>
-<span id="cb59-17"><a href="importing-data.html#cb59-17" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span>     <span class="dv">3</span>  <span class="dv">2006</span>              <span class="dv">700</span></span>
-<span id="cb59-18"><a href="importing-data.html#cb59-18" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>     <span class="dv">4</span>  <span class="dv">2006</span>              <span class="dv">699</span></span>
-<span id="cb59-19"><a href="importing-data.html#cb59-19" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>     <span class="dv">5</span>  <span class="dv">2006</span>              <span class="dv">691</span></span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb59-1"><a href="importing-export-and-save-data.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> json</span>
+<span id="cb59-2"><a href="importing-export-and-save-data.html#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> <span class="co"># load data using Python JSON module</span></span>
+<span id="cb59-3"><a href="importing-export-and-save-data.html#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> <span class="cf">with</span> <span class="bu">open</span>(<span class="st">&#39;data/ny_math_test.json&#39;</span>,<span class="st">&#39;r&#39;</span>) <span class="im">as</span> f:</span>
+<span id="cb59-4"><a href="importing-export-and-save-data.html#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="op">+</span>     data <span class="op">=</span> json.loads(f.read())</span>
+<span id="cb59-5"><a href="importing-export-and-save-data.html#cb59-5" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> </span>
+<span id="cb59-6"><a href="importing-export-and-save-data.html#cb59-6" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> <span class="im">import</span> pandas <span class="im">as</span> pd  </span>
+<span id="cb59-7"><a href="importing-export-and-save-data.html#cb59-7" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> d_json <span class="op">=</span> pd.json_normalize(data, record_path <span class="op">=</span>[<span class="st">&#39;data&#39;</span>])</span>
+<span id="cb59-8"><a href="importing-export-and-save-data.html#cb59-8" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> </span>
+<span id="cb59-9"><a href="importing-export-and-save-data.html#cb59-9" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> <span class="co"># add column names</span></span>
+<span id="cb59-10"><a href="importing-export-and-save-data.html#cb59-10" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> names <span class="op">=</span> <span class="bu">list</span>()</span>
+<span id="cb59-11"><a href="importing-export-and-save-data.html#cb59-11" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">23</span>): </span>
+<span id="cb59-12"><a href="importing-export-and-save-data.html#cb59-12" aria-hidden="true" tabindex="-1"></a><span class="op">+</span>   names.append(data[<span class="st">&#39;meta&#39;</span>][<span class="st">&#39;view&#39;</span>][<span class="st">&#39;columns&#39;</span>][i][<span class="st">&#39;name&#39;</span>])</span>
+<span id="cb59-13"><a href="importing-export-and-save-data.html#cb59-13" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> d_json.columns <span class="op">=</span> names</span>
+<span id="cb59-14"><a href="importing-export-and-save-data.html#cb59-14" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> </span>
+<span id="cb59-15"><a href="importing-export-and-save-data.html#cb59-15" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> d_json.loc[<span class="dv">0</span>:<span class="dv">2</span>, [<span class="st">&quot;Grade&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Mean Scale Score&quot;</span>]]  </span>
+<span id="cb59-16"><a href="importing-export-and-save-data.html#cb59-16" aria-hidden="true" tabindex="-1"></a>  Grade  Year Mean Scale Score</span>
+<span id="cb59-17"><a href="importing-export-and-save-data.html#cb59-17" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span>     <span class="dv">3</span>  <span class="dv">2006</span>              <span class="dv">700</span></span>
+<span id="cb59-18"><a href="importing-export-and-save-data.html#cb59-18" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>     <span class="dv">4</span>  <span class="dv">2006</span>              <span class="dv">699</span></span>
+<span id="cb59-19"><a href="importing-export-and-save-data.html#cb59-19" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>     <span class="dv">5</span>  <span class="dv">2006</span>              <span class="dv">691</span></span></code></pre></div>
 <p>Again, this is just one approach that assumes we want a DataFrame.</p>
 </div>
 <div id="r-14" class="section level4 unnumbered">
 <h4>R</h4>
 <p><strong>jsonlite</strong> is one of several R packages available for importing JSON files into R. The <code>read_json()</code> function takes a JSON file and returns a list or data frame depending on the structure of the data file and its arguments. We set <code>simplifyVector = TRUE</code> so the data is simplified into a matrix.</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="importing-data.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(jsonlite)</span>
-<span id="cb60-2"><a href="importing-data.html#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d_json <span class="ot">&lt;-</span> <span class="fu">read_json</span>(<span class="st">&#39;data/ny_math_test.json&#39;</span>, <span class="at">simplifyVector =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="importing-export-and-save-data.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(jsonlite)</span>
+<span id="cb60-2"><a href="importing-export-and-save-data.html#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d_json <span class="ot">&lt;-</span> <span class="fu">read_json</span>(<span class="st">&#39;data/ny_math_test.json&#39;</span>, <span class="at">simplifyVector =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>The <code>d_json</code> object is a list with two elements: “meta” and “data”. The “data” element is a matrix that contains the data of interest. The “meta” element contains the column names for the data (among much else). Notice we had to “drill down” in the list to find the column names. We assign column names to the matrix using the <code>colnames()</code> function and then convert the matrix to a data frame using the <code>as.data.frame()</code> function.</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="importing-data.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">colnames</span>(d_json<span class="sc">$</span>data) <span class="ot">&lt;-</span> d_json<span class="sc">$</span>meta<span class="sc">$</span>view<span class="sc">$</span>columns<span class="sc">$</span>fieldName</span>
-<span id="cb61-2"><a href="importing-data.html#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d_json <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(d_json<span class="sc">$</span>data)</span>
-<span id="cb61-3"><a href="importing-data.html#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d_json[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="fu">c</span>(<span class="st">&quot;grade&quot;</span>, <span class="st">&quot;year&quot;</span>, <span class="st">&quot;mean_scale_score&quot;</span>)]</span>
-<span id="cb61-4"><a href="importing-data.html#cb61-4" aria-hidden="true" tabindex="-1"></a>  grade year mean_scale_score</span>
-<span id="cb61-5"><a href="importing-data.html#cb61-5" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>     <span class="dv">3</span> <span class="dv">2006</span>              <span class="dv">700</span></span>
-<span id="cb61-6"><a href="importing-data.html#cb61-6" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>     <span class="dv">4</span> <span class="dv">2006</span>              <span class="dv">699</span></span>
-<span id="cb61-7"><a href="importing-data.html#cb61-7" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>     <span class="dv">5</span> <span class="dv">2006</span>              <span class="dv">691</span></span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="importing-export-and-save-data.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">colnames</span>(d_json<span class="sc">$</span>data) <span class="ot">&lt;-</span> d_json<span class="sc">$</span>meta<span class="sc">$</span>view<span class="sc">$</span>columns<span class="sc">$</span>fieldName</span>
+<span id="cb61-2"><a href="importing-export-and-save-data.html#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d_json <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(d_json<span class="sc">$</span>data)</span>
+<span id="cb61-3"><a href="importing-export-and-save-data.html#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d_json[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="fu">c</span>(<span class="st">&quot;grade&quot;</span>, <span class="st">&quot;year&quot;</span>, <span class="st">&quot;mean_scale_score&quot;</span>)]</span>
+<span id="cb61-4"><a href="importing-export-and-save-data.html#cb61-4" aria-hidden="true" tabindex="-1"></a>  grade year mean_scale_score</span>
+<span id="cb61-5"><a href="importing-export-and-save-data.html#cb61-5" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>     <span class="dv">3</span> <span class="dv">2006</span>              <span class="dv">700</span></span>
+<span id="cb61-6"><a href="importing-export-and-save-data.html#cb61-6" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>     <span class="dv">4</span> <span class="dv">2006</span>              <span class="dv">699</span></span>
+<span id="cb61-7"><a href="importing-export-and-save-data.html#cb61-7" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>     <span class="dv">5</span> <span class="dv">2006</span>              <span class="dv">691</span></span></code></pre></div>
 </div>
 </div>
 <div id="xml" class="section level2" number="3.4">
@@ -365,31 +366,60 @@ div.csl-indent {
 <div id="python-15" class="section level4 unnumbered">
 <h4>Python</h4>
 <p>The <strong>pandas</strong> library provides the <code>read_xml</code> function for importing XML files. The <code>ny_math_test.xml</code> file identifies records with nodes named “row”. The 168 rows are nested in one node also called “row”. Therefore we use the <code>xpath</code> argument to specify that we want to elect all row elements that are descendant of the single row element.</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb62-1"><a href="importing-data.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb62-2"><a href="importing-data.html#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> d_xml <span class="op">=</span> pd.read_xml(<span class="st">&#39;data/ny_math_test.xml&#39;</span>, xpath<span class="op">=</span><span class="st">&quot;row//row&quot;</span>)</span>
-<span id="cb62-3"><a href="importing-data.html#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> </span>
-<span id="cb62-4"><a href="importing-data.html#cb62-4" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> d_xml.loc[<span class="dv">0</span>:<span class="dv">2</span>, [<span class="st">&quot;grade&quot;</span>, <span class="st">&quot;year&quot;</span>, <span class="st">&quot;mean_scale_score&quot;</span>]]  </span>
-<span id="cb62-5"><a href="importing-data.html#cb62-5" aria-hidden="true" tabindex="-1"></a>  grade  year  mean_scale_score</span>
-<span id="cb62-6"><a href="importing-data.html#cb62-6" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span>     <span class="dv">3</span>  <span class="dv">2006</span>               <span class="dv">700</span></span>
-<span id="cb62-7"><a href="importing-data.html#cb62-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>     <span class="dv">4</span>  <span class="dv">2006</span>               <span class="dv">699</span></span>
-<span id="cb62-8"><a href="importing-data.html#cb62-8" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>     <span class="dv">5</span>  <span class="dv">2006</span>               <span class="dv">691</span></span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb62-1"><a href="importing-export-and-save-data.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb62-2"><a href="importing-export-and-save-data.html#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> d_xml <span class="op">=</span> pd.read_xml(<span class="st">&#39;data/ny_math_test.xml&#39;</span>, xpath<span class="op">=</span><span class="st">&quot;row//row&quot;</span>)</span>
+<span id="cb62-3"><a href="importing-export-and-save-data.html#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> </span>
+<span id="cb62-4"><a href="importing-export-and-save-data.html#cb62-4" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> d_xml.loc[<span class="dv">0</span>:<span class="dv">2</span>, [<span class="st">&quot;grade&quot;</span>, <span class="st">&quot;year&quot;</span>, <span class="st">&quot;mean_scale_score&quot;</span>]]  </span>
+<span id="cb62-5"><a href="importing-export-and-save-data.html#cb62-5" aria-hidden="true" tabindex="-1"></a>  grade  year  mean_scale_score</span>
+<span id="cb62-6"><a href="importing-export-and-save-data.html#cb62-6" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span>     <span class="dv">3</span>  <span class="dv">2006</span>               <span class="dv">700</span></span>
+<span id="cb62-7"><a href="importing-export-and-save-data.html#cb62-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>     <span class="dv">4</span>  <span class="dv">2006</span>               <span class="dv">699</span></span>
+<span id="cb62-8"><a href="importing-export-and-save-data.html#cb62-8" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>     <span class="dv">5</span>  <span class="dv">2006</span>               <span class="dv">691</span></span></code></pre></div>
 </div>
 <div id="r-15" class="section level4 unnumbered">
 <h4>R</h4>
 <p><strong>xml2</strong> is a relatively small but powerful package for importing and working with XML files. The <code>read_xml()</code> function imports an XML file and returns a list of <em>pointers</em> to XML <em>nodes</em>. There are a number of ways to proceed once you import an XML file, such as using the <code>xml_find_all()</code> function to find nodes that match an <a href="https://www.w3schools.com/xml/xpath_intro.asp">xpath</a> expression. Below we take a simple approach and convert the XML nodes into a list using the <code>as_list()</code> function that is part of the <strong>xml2</strong> package. Once we have the XML nodes in a list, we can use the <code>bind_rows()</code> function in the <strong>dplyr</strong> package to create a data frame. Notice we have to drill down into the list to select the element that contains the data. After this we need to do one more thing: <em>unlist</em> each the columns into vectors. We do this by applying the <code>unlist</code> function to each column of <code>d</code>. We save the result by assigning to <code>d[]</code>, which overwrites each element (or column) of <code>d</code> with the unlisted result.</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="importing-data.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(xml2)</span>
-<span id="cb63-2"><a href="importing-data.html#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d_xml <span class="ot">&lt;-</span> <span class="fu">read_xml</span>(<span class="st">&#39;data/ny_math_test.xml&#39;</span>)</span>
-<span id="cb63-3"><a href="importing-data.html#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d_list <span class="ot">&lt;-</span> <span class="fu">as_list</span>(d_xml)</span>
-<span id="cb63-4"><a href="importing-data.html#cb63-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">bind_rows</span>(d_list<span class="sc">$</span>response<span class="sc">$</span>row)</span>
-<span id="cb63-5"><a href="importing-data.html#cb63-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d[] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(d, unlist)</span>
-<span id="cb63-6"><a href="importing-data.html#cb63-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="fu">c</span>(<span class="st">&quot;grade&quot;</span>, <span class="st">&quot;year&quot;</span>, <span class="st">&quot;mean_scale_score&quot;</span>)]</span>
-<span id="cb63-7"><a href="importing-data.html#cb63-7" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 3 x 3</span></span>
-<span id="cb63-8"><a href="importing-data.html#cb63-8" aria-hidden="true" tabindex="-1"></a>  grade year  mean_scale_score</span>
-<span id="cb63-9"><a href="importing-data.html#cb63-9" aria-hidden="true" tabindex="-1"></a>  <span class="sc">&lt;</span>chr<span class="sc">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span>           </span>
-<span id="cb63-10"><a href="importing-data.html#cb63-10" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">3</span>     <span class="dv">2006</span>  <span class="dv">700</span>             </span>
-<span id="cb63-11"><a href="importing-data.html#cb63-11" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="dv">4</span>     <span class="dv">2006</span>  <span class="dv">699</span>             </span>
-<span id="cb63-12"><a href="importing-data.html#cb63-12" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="dv">5</span>     <span class="dv">2006</span>  <span class="dv">691</span>             </span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="importing-export-and-save-data.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(xml2)</span>
+<span id="cb63-2"><a href="importing-export-and-save-data.html#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d_xml <span class="ot">&lt;-</span> <span class="fu">read_xml</span>(<span class="st">&#39;data/ny_math_test.xml&#39;</span>)</span>
+<span id="cb63-3"><a href="importing-export-and-save-data.html#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d_list <span class="ot">&lt;-</span> <span class="fu">as_list</span>(d_xml)</span>
+<span id="cb63-4"><a href="importing-export-and-save-data.html#cb63-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">bind_rows</span>(d_list<span class="sc">$</span>response<span class="sc">$</span>row)</span>
+<span id="cb63-5"><a href="importing-export-and-save-data.html#cb63-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d[] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(d, unlist)</span>
+<span id="cb63-6"><a href="importing-export-and-save-data.html#cb63-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="fu">c</span>(<span class="st">&quot;grade&quot;</span>, <span class="st">&quot;year&quot;</span>, <span class="st">&quot;mean_scale_score&quot;</span>)]</span>
+<span id="cb63-7"><a href="importing-export-and-save-data.html#cb63-7" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 3 x 3</span></span>
+<span id="cb63-8"><a href="importing-export-and-save-data.html#cb63-8" aria-hidden="true" tabindex="-1"></a>  grade year  mean_scale_score</span>
+<span id="cb63-9"><a href="importing-export-and-save-data.html#cb63-9" aria-hidden="true" tabindex="-1"></a>  <span class="sc">&lt;</span>chr<span class="sc">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span>           </span>
+<span id="cb63-10"><a href="importing-export-and-save-data.html#cb63-10" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">3</span>     <span class="dv">2006</span>  <span class="dv">700</span>             </span>
+<span id="cb63-11"><a href="importing-export-and-save-data.html#cb63-11" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="dv">4</span>     <span class="dv">2006</span>  <span class="dv">699</span>             </span>
+<span id="cb63-12"><a href="importing-export-and-save-data.html#cb63-12" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="dv">5</span>     <span class="dv">2006</span>  <span class="dv">691</span>             </span></code></pre></div>
 <p>The result is a <em>tibble</em>, a <a href="https://tibble.tidyverse.org/">tidyverse data frame</a>. We would most likely want to proceed to converting certain columns to numeric.</p>
+</div>
+</div>
+<div id="exportingwritingsaving-data-and-variables" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> Exporting/Writing/Saving data and variables</h2>
+<p>To write
+There are several ways to export/write/save files from Python and R. The following examples highlight some of these ways.</p>
+<div id="python-16" class="section level4 unnumbered">
+<h4>Python</h4>
+<p>The pandas function <code>to_csv()</code> saves a pandas DataFrame as a csv file.</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb64-1"><a href="importing-export-and-save-data.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="co"># pass a file name to the function</span></span>
+<span id="cb64-2"><a href="importing-export-and-save-data.html#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> d.to_csv(<span class="st">&quot;data.csv&quot;</span>)</span></code></pre></div>
+<p>The Python package pickle allows you to write (save) any variable from the Python environment and read (load) any variable you have written into the Python environment.</p>
+<p>To write a variable using pickle …</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb65-1"><a href="importing-export-and-save-data.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> pickle</span>
+<span id="cb65-2"><a href="importing-export-and-save-data.html#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> </span>
+<span id="cb65-3"><a href="importing-export-and-save-data.html#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> <span class="co"># define the file name</span></span>
+<span id="cb65-4"><a href="importing-export-and-save-data.html#cb65-4" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> file_name <span class="op">=</span> <span class="st">&#39;data.pickle&#39;</span></span>
+<span id="cb65-5"><a href="importing-export-and-save-data.html#cb65-5" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> </span>
+<span id="cb65-6"><a href="importing-export-and-save-data.html#cb65-6" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> <span class="co"># write the variable to the file system</span></span>
+<span id="cb65-7"><a href="importing-export-and-save-data.html#cb65-7" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> <span class="cf">with</span> <span class="bu">open</span>(file_name, <span class="st">&#39;wb&#39;</span>) <span class="im">as</span> file_:</span>
+<span id="cb65-8"><a href="importing-export-and-save-data.html#cb65-8" aria-hidden="true" tabindex="-1"></a><span class="op">+</span>     pickle.dump(d, file_, protocol<span class="op">=</span>pickle.HIGHEST_PROTOCOL)</span></code></pre></div>
+<p>To read the same variable using pickle …</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb66-1"><a href="importing-export-and-save-data.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> </span>
+<span id="cb66-2"><a href="importing-export-and-save-data.html#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> <span class="co"># read the specified file from the file system and load into variable</span></span>
+<span id="cb66-3"><a href="importing-export-and-save-data.html#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> <span class="cf">with</span> <span class="bu">open</span>(<span class="st">&#39;data.pickle&#39;</span>, <span class="st">&#39;rb&#39;</span>) <span class="im">as</span> file_:</span>
+<span id="cb66-4"><a href="importing-export-and-save-data.html#cb66-4" aria-hidden="true" tabindex="-1"></a><span class="op">+</span>     d <span class="op">=</span> pickle.load(file_)</span></code></pre></div>
+</div>
+<div id="r-16" class="section level4 unnumbered">
+<h4>R</h4>
 
 </div>
 </div>
