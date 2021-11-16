@@ -493,28 +493,35 @@ How to take a random sample of rows from a data frame. The sample is usually eit
 
 #### Python {-}
 
-The pandas package provide a function for taking a sample, of fixed size or a proportion. 
+The pandas package provide a function for taking a sample of fixed size or a proportion. To sample with replacement, set `replace = TRUE`. 
 
-To sample with replacement, set `replace = TRUE`.
+Additionally, the random sample will change every time the code is run. To always generate the same "random" sample, set `random_state` to any positive integer.
 
-The random sample will change every time the code is run. To always generate the same "random" sample, set `random_state` to any positive integer.
+To create a sample with a fixed number of rows, use the `n` argument.
 ```{python}
 # sample 5 rows from mtcars
 mtcars.sample(n=5, replace=True)
+```
 
+To create a sample of a proportion, use the `frac` argument.
+```{python}
 # sample 20% of rows from mtcars
 mtcars.sample(frac = 0.20, random_state=1)
 ```
 
-The numpy function `random.choice()` in combination with the `iloc()` function can be used to sample from a DataFrame. The `iloc()` function is used to access rows and columns by index. 
+The numpy function `random.choice()` in combination with the `loc()` function can be used to sample from a DataFrame. 
+
+The `random.choice()` function creates a random sample according to the given parameters. The `loc()` function is used to access rows and columns by index. 
 
 ```{python}
 # import the numpy package
 import numpy as np
 
 # create a random sample of size 5 with replacement
-sample = np.random.choice(len(mtcars), (5,), replace=True)
-mtcars.loc[sample,]
+random_sample = np.random.choice(len(mtcars), (5,), replace=True)
+
+# use random_sample to sample from mtcars
+mtcars.loc[random_sample,]
 ```
 
 The random sample will change every time the code is run. To always generate the same "random" sample, use the `random.seed()` function with any positive integer.

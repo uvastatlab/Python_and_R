@@ -24,7 +24,7 @@
 <meta name="author" content="Clay Ford, Jacob Goldstein-Greenwood, Oyinkansola Adenekan, Samantha Lomuscio" />
 
 
-<meta name="date" content="2021-11-13" />
+<meta name="date" content="2021-11-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -349,7 +349,7 @@ div.csl-indent {
 <p><strong>jsonlite</strong> is one of several R packages available for importing JSON files into R. The <code>read_json()</code> function takes a JSON file and returns a list or data frame depending on the structure of the data file and its arguments. We set <code>simplifyVector = TRUE</code> so the data is simplified into a matrix.</p>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="importing-data.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(jsonlite)</span>
 <span id="cb60-2"><a href="importing-data.html#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d_json <span class="ot">&lt;-</span> <span class="fu">read_json</span>(<span class="st">&#39;data/ny_math_test.json&#39;</span>, <span class="at">simplifyVector =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p>The <code>d_json</code> object is a list with two elements: “meta” and “data”. The “data” element is a matrix that contains the data of interest. The “meta” element contains the column names for the data (among much else). Notice we had to “drill down” in the list to find the column names. We assign column names to the matrix using the <code>colnames()</code> function and then convert the matrix to a data frame using the <code>as.data.frame()</code> function.</p>
+<p>The <code>d_json</code> object is a list with two elements: “meta” and “data.” The “data” element is a matrix that contains the data of interest. The “meta” element contains the column names for the data (among much else). Notice we had to “drill down” in the list to find the column names. We assign column names to the matrix using the <code>colnames()</code> function and then convert the matrix to a data frame using the <code>as.data.frame()</code> function.</p>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="importing-data.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">colnames</span>(d_json<span class="sc">$</span>data) <span class="ot">&lt;-</span> d_json<span class="sc">$</span>meta<span class="sc">$</span>view<span class="sc">$</span>columns<span class="sc">$</span>fieldName</span>
 <span id="cb61-2"><a href="importing-data.html#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d_json <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(d_json<span class="sc">$</span>data)</span>
 <span id="cb61-3"><a href="importing-data.html#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d_json[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="fu">c</span>(<span class="st">&quot;grade&quot;</span>, <span class="st">&quot;year&quot;</span>, <span class="st">&quot;mean_scale_score&quot;</span>)]</span>
@@ -364,7 +364,7 @@ div.csl-indent {
 <p>XML (e<strong>X</strong>tensible <strong>M</strong>arkup <strong>L</strong>anguage) is a markup language that was designed to store data. XML files are text and can be viewed in any text editor or a web browser. Because of their flexibility XML files can be quite complex in the way they store data. Therefore there is no one-size-fits-all for importing XML files into Python or R.</p>
 <div id="python-15" class="section level4 unnumbered">
 <h4>Python</h4>
-<p>The <strong>pandas</strong> library provides the <code>read_xml</code> function for importing XML files. The <code>ny_math_test.xml</code> file identifies records with nodes named “row”. The 168 rows are nested in one node also called “row”. Therefore we use the <code>xpath</code> argument to specify that we want to elect all row elements that are descendant of the single row element.</p>
+<p>The <strong>pandas</strong> library provides the <code>read_xml</code> function for importing XML files. The <code>ny_math_test.xml</code> file identifies records with nodes named “row.” The 168 rows are nested in one node also called “row.” Therefore we use the <code>xpath</code> argument to specify that we want to elect all row elements that are descendant of the single row element.</p>
 <div class="sourceCode" id="cb62"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb62-1"><a href="importing-data.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb62-2"><a href="importing-data.html#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> d_xml <span class="op">=</span> pd.read_xml(<span class="st">&#39;data/ny_math_test.xml&#39;</span>, xpath<span class="op">=</span><span class="st">&quot;row//row&quot;</span>)</span>
 <span id="cb62-3"><a href="importing-data.html#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> </span>
