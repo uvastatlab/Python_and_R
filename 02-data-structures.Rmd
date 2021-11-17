@@ -337,6 +337,44 @@ Both R and Python provide general "catch-all" data structures that can contain a
 
 #### Python {-}
 
+The most general data structures in Python include the _list_ and the _tuple_. Both lists and tuples are ordered collections of objects called _elements_. The elements can be other lists/tuples, arrays, integers, objects, etc. 
+
+Lists are mutable objects; elements can be reordered or deleted and new elements can be added after the list has been created. Tuples, on the other hand, are immutable; once a tuple is created it cannot be changed. 
+
+Lists are created using square brackets. Here we create a list and add an element to the list after it is created using the `append` function. 
+
+```{python}
+list = [1, 2, 'a', 'b', [3, 4, 5]]
+list 
+
+list.append('c')
+list
+```
+
+Tuples are created using parenthesis. Here we create a tuple. 
+
+```{python}
+tuple = (1, 2, 'a','b', [3, 4, 5])
+tuple 
+```
+
+Let's try to use the append function to explore the immutibility of the tuple. We expect to get an error. 
+
+```{python}
+tuple.append('c')
+```
+
+We can refer to specific list/tuple elements by using square brackets. In the square brackets we put the index number of the element. The element in the first position is at index 0. 
+
+```{python}
+# Extract the first element of the list and the tuple
+list[0]
+tuple[0]
+
+# Extract the last element of each 
+list[-1]
+tuple[-1]
+```
 
 #### R {-}
 
