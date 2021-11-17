@@ -344,11 +344,11 @@ Lists are mutable objects; elements can be reordered or deleted and new elements
 Lists are created using square brackets. Here we create a list and add an element to the list after it is created using the `append` function. 
 
 ```{python}
-list = [1, 2, 'a', 'b', [3, 4, 5]]
-list 
+lst = [1, 2, 'a', 'b', [3, 4, 5]]
+lst 
 
-list.append('c')
-list
+lst.append('c')
+lst
 ```
 
 Tuples are created using parenthesis. Here we create a tuple. 
@@ -358,9 +358,9 @@ tuple = (1, 2, 'a','b', [3, 4, 5])
 tuple 
 ```
 
-Let's try to use the append function to explore the immutibility of the tuple. We expect to get an error. 
+Let's try to use the append function to explore the immutability of the tuple. We expect to get an error. 
 
-```{python}
+```{python, error = TRUE}
 tuple.append('c')
 ```
 
@@ -368,11 +368,11 @@ We can refer to specific list/tuple elements by using square brackets. In the sq
 
 ```{python}
 # Extract the first element of the list and the tuple
-list[0]
+lst[0]
 tuple[0]
 
 # Extract the last element of each 
-list[-1]
+lst[-1]
 tuple[-1]
 ```
 
