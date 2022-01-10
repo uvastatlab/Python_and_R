@@ -4,13 +4,29 @@
 knitr::opts_chunk$set(comment = NA, prompt = TRUE, collapse = TRUE)
 ```
 
-This chapter looks at performing and interpreting common statistical analyses. 
+This chapter looks at performing common statistical analyses. It does not pretend to be comprehensive. The focus is on implementation using Python and R. Good statistical practice is more than knowing which function to use. At a minimum we recommend reading the article, [Ten Simple Rules for Effective Statistical Practice](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004961) [@kass_caffo_davidian_meng_yu_reid_2016].
 
 ## Comparing group means
 
-Comparing the means of two or more groups to assess if they differ in any meaningful way. Two group means are often analyzed with a t test. Three or more group means can be analyzed with the Analysis of Variance or ANOVA. Both the t test and ANOVA are special cases of a linear model.
+Many research studies compare mean values of some quantity of interest between two or more groups. A t test analyzes two group means. An Analysis of Variance, or ANOVA, analyzes three or more group means. Both the t test and ANOVA are special cases of a linear model.
 
-```{r echo=FALSE}
+To demonstrate the t test, we examine fictitious data on 15 scores between two groups of subjects. The "control" group was tested as-is while the "treated" group experienced a particular intervention. Of interest is (1) whether or not the mean scores differ meaningfully between the treated and control groups, and (2) if they do differ, how are they different?
+
+To demonstrate the ANOVA test, we use data from _The Analysis of Biological Data (3rd ed)_[@whitlock_schluter_2020] on the mass of pine cones (in grams) from three different environments in North America. Of interest is (1) whether or not the mean mass of pine cones differ meaningfully between the three locations, and (2) if they do differ, how are they different?
+
+We usually assess the first question in each scenario with a hypothesis test and p-value. The null hypothesis is no difference between the means. The p-value is basically the probability of the observed differences between the groups (or more extreme differences) assuming the null hypothesis is true. A small p-value, traditionally less then 0.05, provides evidence against the null. For example, a p-value of 0.01 says there's a 1% chance of sampling data as different as this (or more different) if there really was no difference between the groups. Note that p-values don't tell you how two or more statistics differ. See [the ASA Statement on p-values](https://www.tandfonline.com/doi/full/10.1080/00031305.2016.1154108#_i28).
+
+We assess the second question in each scenario by calculating confidence intervals on the difference in means. This is more informative than a p-value. A confidence interval gives us information on the uncertainty, direction and magnitude of a difference in means. For example, a 95% confidence interval of [2, 15] tells us the data is consistent with a difference anywhere between 2 and 15 and that the mean of one group appears to be at least 2 units larger than the mean of the other group. Note that a 95% confidence interval does not mean there is a 95% probability that the true value is in the interval. The confidence interval either captured the true value or it did not. We don't know. However the _process_ of calculating the confidence interval works roughly 95% of the time.
+
+#### Python {-}
+
+
+#### R {-}
+
+First we load our example data. 
+
+```{r}
+# toy data for t-test
 set.seed(1)
 s1 <- round(rnorm(n = 15, mean = 80, sd = 4))
 s2 <- round(rnorm(n = 15, mean = 85, sd = 4))
@@ -20,6 +36,8 @@ ch8_d1 <- data.frame(
 )
 rm(s1,s2)
 
+# data from The Analysis of Biological Data, 3 ed. 
+# Ch 15 assignment problem, p. 498
 ch8_d2 <- data.frame(mass = c(9.6, 9.4, 8.9, 8.8, 8.5, 8.2,
                               6.8, 6.6, 6.0, 5.7, 5.3,
                               6.7, 6.4, 6.2, 5.7, 5.6),
@@ -28,18 +46,6 @@ ch8_d2 <- data.frame(mass = c(9.6, 9.4, 8.9, 8.8, 8.5, 8.2,
 
 ```
 
-To demonstrate the t test, we will examine fictitious data on 15 scores between two groups of subjects. The "control" group were tested as-is while the "treated" group experienced a particular intervention. Of interest is (1) whether or not the mean scores differ meaningfully between the treated and control groups, and (2) if they do differ, how are they different?
-
-To demonstrate the ANOVA test, we'll use data from The Analysis of Biological Data (3rd ed) on the mass of pine cones from three different environments in North America. Of interest is (1) whether or not the mean mass of pine cones differ meaningfully between the three locations, and (2) if they do differ, how are they different?
-
-The first question in each scenario is often assessed with a hypothesis test and p-value. The null hypothesis is no difference between the means. The p-value is basically the probability of the observed differences between the groups (or more extreme differences) assuming the null hypothesis is true. A small p-value, traditionally less then 0.05, provides evidence against the null. For example, a p-value of 0.01 says there's a 1% chance of sampling data as different as this (or more different) if there really was no difference between the groups. Note that p-values don't tell you how two or more statistics differ. See [the ASA Statement on p-values](https://www.tandfonline.com/doi/full/10.1080/00031305.2016.1154108#_i28).
-
-The second question in each scenario is assessed by calculating confidence intervals on the difference in means. This is more informative than a p-value. A confidence interval gives us information on the uncertainty, direction and magnitude of a difference in means. For example, a 95% confidence interval of [2, 15] tells us the data is consistent with a difference anywhere between 2 and 15 and that the mean of one group appears to be at least 2 units larger than the mean of the other group. Note that a 95% confidence interval does not mean there is a 95% probability that the true value is in the interval. The confidence interval either captured the true value or it did not. We don't know. However the _process_ of calculating the confidence interval works roughly 95% of the time.
-
-#### Python {-}
-
-
-#### R {-}
 
 **t-test**
 
@@ -104,7 +110,7 @@ summary(aov1)
 
 The small p-value of 0.0000007 provides strong evidence that the difference in means we witnessed reflects a real difference in the population.
 
-Unlike the `t.test()` output, the `aov()` summary does not provide confidence intervals on differences in means. That's because there are many kinds of differences we might want to assess. A common and easy procedure is Tukey's Honestly Significant Differences (HSD), which computes differences between all possible pairs and returns adjusted p-values and confidence intervals to account for the multiple comparisons. Base R provides the `TukeyHSD()` for this task. Call it on the ANOVA object.
+Unlike the `t.test()` output, the `aov()` summary does not provide confidence intervals on differences in means. That's because there are many kinds of differences we might want to assess. A common and easy procedure is Tukey's Honestly Significant Differences (HSD), which computes differences between all possible pairs and returns adjusted p-values and confidence intervals to account for the multiple comparisons. Base R provides the `TukeyHSD()` function for this task. Call it on the ANOVA object.
 
 ```{r}
 TukeyHSD(aov1)
@@ -112,7 +118,7 @@ TukeyHSD(aov1)
 
 The difference in means between locations 2 and 1 (2 - 1) and locations 3 and 1 (3 - 1) are about -2.8. The difference in means between locations 3 and 2 (3 - 2) is inconclusive. It seems to be small but we're not sure if the difference is positive or negative.
 
-Both the t-test and ANOVA are special cases of the linear model (ie, regression). The same essential results can be obtained by using the `lm()` function. See the Linear Modeling section.
+Both the t-test and ANOVA are special cases of the linear model (ie, regression). We can obtain the same results, presented in different ways, using the `lm()` function. See the Linear Modeling section.
 
 ```{r eval=FALSE}
 m1 <- lm(scores ~ group, data = ch8_d1)
