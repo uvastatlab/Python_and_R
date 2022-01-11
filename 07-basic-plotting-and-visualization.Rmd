@@ -99,9 +99,14 @@ Visualizing the relationship between a numeric variable and a categorical variab
 
 #### Python {-}
 
-
 #### R {-}
-
+```{r}
+ggplot(penguins, aes(x = island, y = bill_depth_mm)) +
+  geom_jitter(aes(color = island), position = position_jitter(0.1)) +
+  scale_color_manual(values = c('lightblue', 'cornflowerblue', 'darkslateblue')) +
+  labs(title = 'Stripchart of Bill Depth by Island', x = 'Island', y = 'Bill Depth (mm)') +
+  theme(legend.position = 'none')
+```
 
 ## Boxplots
 
@@ -119,7 +124,7 @@ boxplot(bill_depth_mm ~ island, data = penguins, col = c('lightblue', 'cornflowe
 To generate a boxplot with **ggplot2**, add a `geom_boxplot()` layer to a plot initialized with `ggplot()`.
 ```{r, warning = F}
 ggplot(penguins, aes(x = island, y = bill_depth_mm)) +
-  geom_boxplot(aes(fill = island), color = 'navy') +
+  geom_boxplot(aes(fill = island)) +
   scale_fill_manual(values = c('lightblue', 'cornflowerblue', 'darkslateblue')) + # scale_fill_manual() is used to manually specify group colors
   labs(title = 'Boxplot of Bill Depth by Island', x = 'Island', y = 'Bill Depth (mm)') +
   theme(legend.position = 'none')
