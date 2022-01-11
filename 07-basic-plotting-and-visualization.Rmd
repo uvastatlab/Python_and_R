@@ -68,7 +68,7 @@ ggplot(species_counts, aes(x = species, y = Freq)) +
   geom_bar(aes(fill = species), stat = 'identity') +
   scale_fill_manual(values = c('lightblue', 'cornflowerblue', 'darkslateblue')) + # scale_fill_manual() is used here for bar-color customization
   labs(title = 'Species Sample Size', x = 'Species', y = 'Count') +
-  theme(legend.position = 'none') + ylim(0, 200) +
+  theme(legend.position = 'none') + ylim(0, 200) + # For simplicity, we omit the legend here using the code at left
   geom_text(aes(label = Freq, vjust = -0.5)) # geom_text() is used here to add counts above the bars
 ```
 
@@ -77,7 +77,6 @@ ggplot(species_counts, aes(x = species, y = Freq)) +
 Visualizing the relationship between two numeric variables.
 
 #### Python {-}
-
 
 #### R {-}
 Scatterplots can be generated in base R with the `plot()` function. The `pch` argument below modifies the point shape (e.g., 20 = solid circle; 24 = unfilled triangle; etc.)
@@ -95,15 +94,16 @@ ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +
 
 ## Stripcharts
 
-Visualizing the relationship between a numeric variable and a categorical variable.
+Stripcharts are one-dimensional scatterplots. Like boxplots, they reveal the distribution of a numeric variable "within" levels of a categorical variable.
 
 #### Python {-}
 
 #### R {-}
+We advise using **ggplots2**'s `geom_jitter()` function to create stripcharts. (There is a base R function for doing so---`stripchart()`---but it's aesthetically bland, and the **ggplot2** approach is plenty easy.)
 ```{r}
 ggplot(penguins, aes(x = island, y = bill_depth_mm)) +
   geom_jitter(aes(color = island), position = position_jitter(0.1)) +
-  scale_color_manual(values = c('lightblue', 'cornflowerblue', 'darkslateblue')) +
+  scale_color_manual(values = c('lightblue', 'cornflowerblue', 'darkslateblue')) + # scale_fill_manual() is used to manually specify group colors once aes(color = island) is specified in `geom_jitter()`
   labs(title = 'Stripchart of Bill Depth by Island', x = 'Island', y = 'Bill Depth (mm)') +
   theme(legend.position = 'none')
 ```
@@ -125,7 +125,7 @@ To generate a boxplot with **ggplot2**, add a `geom_boxplot()` layer to a plot i
 ```{r, warning = F}
 ggplot(penguins, aes(x = island, y = bill_depth_mm)) +
   geom_boxplot(aes(fill = island)) +
-  scale_fill_manual(values = c('lightblue', 'cornflowerblue', 'darkslateblue')) + # scale_fill_manual() is used to manually specify group colors
+  scale_fill_manual(values = c('lightblue', 'cornflowerblue', 'darkslateblue')) +
   labs(title = 'Boxplot of Bill Depth by Island', x = 'Island', y = 'Bill Depth (mm)') +
   theme(legend.position = 'none')
 ```
