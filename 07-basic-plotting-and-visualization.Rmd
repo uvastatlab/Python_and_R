@@ -28,6 +28,23 @@ Visualizing the distribution of numeric data.
 
 #### Python {-}
 
+The Python plotting library Matplotlib's `hist()` function computes and plots a histogram. There are many parameters that can be specified within the `hist()` function so that you can customize the output histogram plot to best fit your needs. Some parameters include the number of bins, the upper and lower bounds on each bin, weights, colors, and more. 
+
+Below we show a histogram of the bill length from the dataset. We specified 30 bins each of which is light blue with a black outline of linewidth 1. The `hist()` defaults to no outline which can make it difficult to distinguish bins clearly, so we add in the bin outlines here. 
+
+One thing to note is that the bins are left inclusive and right exclusive. For example, if a particular bin spans the range of 1 to 3, the bin will include the value 1 but will exclude the value 2 (and will include all values between 1 and 3). In short, bin ranges are as follows [x1,x2) where x1 is the starting point of the bin and x2 is the ending point of the bin. 
+
+```{python}
+import matplotlib.pyplot as plt
+
+plt.clf()
+plt.hist(penguins.bill_length_mm, bins=30, range=(30,60), color='lightblue', edgecolor='k', linewidth=1)
+plt.title("Penguin Bill Lengths")
+plt.xlabel("Bill Length (mm)")
+plt.ylabel("Count")
+plt.show()
+```
+
 #### R {-}
 Base R's `hist()` function generates histograms, and features of the histogram---like the bar color, number of bins/breaks, and so on---can be easily customized as below.
 ```{r}
