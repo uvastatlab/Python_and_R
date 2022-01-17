@@ -18,20 +18,14 @@ We usually assess the first question in each scenario with a hypothesis test and
 
 We assess the second question in each scenario by calculating confidence intervals on the difference in means. This is more informative than a p-value. A confidence interval gives us information on the uncertainty, direction and magnitude of a difference in means. For example, a 95% confidence interval of [2, 15] tells us the data is consistent with a difference anywhere between 2 and 15 and that the mean of one group appears to be at least 2 units larger than the mean of the other group. Note that a 95% confidence interval does not mean there is a 95% probability that the true value is in the interval. The confidence interval either captured the true value or it did not. We don't know. However the _process_ of calculating the confidence interval works roughly 95% of the time.
 
-#### Python {-}
 
-
-#### R {-}
-
-First we load our example data. 
-
-```{r}
+```{r echo=FALSE}
 # toy data for t-test
 set.seed(1)
 s1 <- round(rnorm(n = 15, mean = 80, sd = 4))
 s2 <- round(rnorm(n = 15, mean = 85, sd = 4))
 ch8_d1 <- data.frame(
-  scores = c(s1, s2),
+  score = c(s1, s2),
   group = rep(c("control", "treated"), each = 15)
 )
 rm(s1,s2)
@@ -42,9 +36,53 @@ ch8_d2 <- data.frame(mass = c(9.6, 9.4, 8.9, 8.8, 8.5, 8.2,
                               6.8, 6.6, 6.0, 5.7, 5.3,
                               6.7, 6.4, 6.2, 5.7, 5.6),
                      location = rep(c("1", "2", "3"),
-                                    times = c(6,5,5)))
+                                    times = c(6, 5, 5)))
 
 ```
+
+
+
+```{python echo = FALSE}
+ch8_d1 = r.ch8_d1
+ch8_d2 = r.ch8_d2
+```
+
+
+
+#### Python {-}
+
+**t-test**
+
+Our data is available as a **Pandas** dataframe. It's small enough to view in its entirety.
+
+```{python}
+ch8_d1
+```
+
+The usual way to perform a t test in Python is via the `ttest_ind()` function available in the **scipy.stats** package.
+
+```{python}
+from scipy import stats
+
+```
+
+The `ttest_ind()` function performs a t test between two arrays specified with the `a` and `b` arguments, respectively. By default the function assumes equal population variances. By setting the `equal_var` parameter to False we can relax that assumption and run Welch's t test, which is the default in R. The function returns the test statistic and p-value.
+
+
+```{python}
+stats.ttest_ind(a = ch8_d1.query('group == "control"')['score'], 
+                b = ch8_d1.query('group == "treated"')['score'],
+                equal_var=False)
+```
+
+
+**ANOVA**
+
+
+
+
+#### R {-}
+
 
 
 **t-test**
@@ -55,24 +93,24 @@ The `str()` function allows to take a quick look at the data frame `ch8_d1`. One
 str(ch8_d1)
 ```
 
-A stripchart is one of many ways to visualize numeric data between two groups. Here we use the base R function `stripchart()`. The formula `scores ~ group` says to plot scores by group. The `las = 1` argument says to rotate the y-axis labels. The `method = "jitter"` arguments says to randomly scatter the points vertically so they don't overplot. It appears the treated group had higher scores.
+A stripchart is one of many ways to visualize numeric data between two groups. Here we use the base R function `stripchart()`. The formula `score ~ group` says to plot score by group. The `las = 1` argument says to rotate the y-axis labels. The `method = "jitter"` arguments says to randomly scatter the points vertically so they don't overplot. It appears the treated group had higher scores.
 
 ```{r}
-stripchart(scores ~ group, data = ch8_d1, las = 1, method = "jitter")
+stripchart(score ~ group, data = ch8_d1, las = 1, method = "jitter")
 ```
 
-To calculate the means between the two groups we can use the `aggregate()` function. Again the formula `scores ~ group` says to aggregate scores by group. We specify `mean` so that we calculate the mean between the two groups. Some other functions we could specify include `median`, `sd`, or `sum`. The sample mean of the treated group is about 5 points higher than the control group.
+To calculate the means between the two groups we can use the `aggregate()` function. Again the formula `score ~ group` says to aggregate score by group. We specify `mean` so that we calculate the mean between the two groups. Some other functions we could specify include `median`, `sd`, or `sum`. The sample mean of the treated group is about 5 points higher than the control group.
 
 ```{r}
-aggregate(scores ~ group, data = ch8_d1, mean)
+aggregate(score ~ group, data = ch8_d1, mean)
 ```
 
 Is this difference meaningful? What if we took more samples? Would each sample result in similar differences in the means? A t test attempts to answer this. 
 
-The `t.test()` function accommodates formula notation allowing us to specify that we want to calculate mean scores by group.
+The `t.test()` function accommodates formula notation allowing us to specify that we want to calculate mean score by group.
 
 ```{r}
-t.test(scores ~ group, data = ch8_d1)
+t.test(score ~ group, data = ch8_d1)
 ```
 
 The p-value of 0.0015 is small, providing good evidence that the difference in means we witnessed reflects a real difference in the population. The confidence interval on the difference in means tells us the data is consistent with a difference between -7 and -2. It appears we can expect the control group to score at least 2 points lower than the treated group. 
@@ -121,7 +159,7 @@ The difference in means between locations 2 and 1 (2 - 1) and locations 3 and 1 
 Both the t-test and ANOVA are special cases of the linear model (ie, regression). We can obtain the same results, presented in different ways, using the `lm()` function. See the Linear Modeling section.
 
 ```{r eval=FALSE}
-m1 <- lm(scores ~ group, data = ch8_d1)
+m1 <- lm(score ~ group, data = ch8_d1)
 summary(m1)
 m2 <- lm(mass ~ location, data = ch8_d2)
 summary(m2)
