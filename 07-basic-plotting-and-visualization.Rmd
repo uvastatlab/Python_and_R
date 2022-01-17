@@ -75,8 +75,10 @@ species_counts
 We can plot those values using the `barplot()` function in base R, specifying arguments along the way to customize the title/axis labeling, bar colors, and range of the y axis. To add values above the bars, we can follow `barplot()` with a `text()` call as below.
 ```{r}
 penguin_plot <- barplot(Freq ~ species, data = species_counts, col = c('lightblue', 'cornflowerblue', 'darkslateblue'),
-                        main = 'Species Sample Size', xlab = 'Species', ylab = 'Count', ylim = c(0, 200))
-text(x = penguin_plot, y = species_counts$Freq + 10, labels = species_counts$Freq)
+                        main = 'Species Sample Size', 
+                        xlab = 'Species', ylab = 'Count', ylim = c(0, 200))
+text(x = penguin_plot, y = species_counts$Freq + 10, 
+     labels = species_counts$Freq)
 ```
 
 To recreate the barplot above with **ggplot2**, one can add a `geom_bar()` layer to a plot initialized with `ggplot()`.
@@ -98,15 +100,18 @@ Visualizing the relationship between two numeric variables.
 #### R {-}
 Scatterplots can be generated in base R with the `plot()` function. The `pch` argument below modifies the point shape (e.g., 20 = solid circle; 24 = unfilled triangle; etc.)
 ```{r}
-plot(penguins$body_mass_g, penguins$flipper_length_mm, col = 'navy', pch = 20,
-     main = 'Scatterplot of Body Mass and Flipper Length', xlab = 'Body Mass (g)', ylab = 'Flipper Length (mm)')
+plot(penguins$body_mass_g, penguins$flipper_length_mm, 
+     col = 'navy', pch = 20,
+     main = 'Scatterplot of Body Mass and Flipper Length', 
+     xlab = 'Body Mass (g)', ylab = 'Flipper Length (mm)')
 ```
 
 To generate a scatterplot with **ggplot2**, initialize a plot with `ggplot()`, then add a layer of points with `geom_point()`.
 ```{r, warning = F}
 ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +
   geom_point(color = 'navy') +
-  labs(title = 'Scatterplot of Body Mass and Flipper Length', x = 'Body Mass (g)', y = 'Flipper Length (mm)')
+  labs(title = 'Scatterplot of Body Mass and Flipper Length', 
+       x = 'Body Mass (g)', y = 'Flipper Length (mm)')
 ```
 
 ## Stripcharts
@@ -121,7 +126,8 @@ We advise using **ggplots2**'s `geom_jitter()` function to create stripcharts. (
 ggplot(penguins, aes(x = island, y = bill_depth_mm)) +
   geom_jitter(aes(color = island), position = position_jitter(0.1)) +
   scale_color_manual(values = c('lightblue', 'cornflowerblue', 'darkslateblue')) + # scale_fill_manual() is used to manually specify group colors once aes(color = island) is specified in `geom_jitter()`
-  labs(title = 'Stripchart of Bill Depth by Island', x = 'Island', y = 'Bill Depth (mm)') +
+  labs(title = 'Stripchart of Bill Depth by Island', 
+       x = 'Island', y = 'Bill Depth (mm)') +
   theme(legend.position = 'none')
 ```
 
@@ -143,7 +149,8 @@ To generate a boxplot with **ggplot2**, add a `geom_boxplot()` layer to a plot i
 ggplot(penguins, aes(x = island, y = bill_depth_mm)) +
   geom_boxplot(aes(fill = island)) +
   scale_fill_manual(values = c('lightblue', 'cornflowerblue', 'darkslateblue')) +
-  labs(title = 'Boxplot of Bill Depth by Island', x = 'Island', y = 'Bill Depth (mm)') +
+  labs(title = 'Boxplot of Bill Depth by Island', 
+       x = 'Island', y = 'Bill Depth (mm)') +
   theme(legend.position = 'none')
 ```
 
