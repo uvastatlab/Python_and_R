@@ -4,7 +4,7 @@
 knitr::opts_chunk$set(comment = NA, prompt = TRUE, collapse = TRUE)
 ```
 
-This chapter looks at various strategies for modifying and deriving variables in data. Unless otherwise stated, examples are for DataFrames (Python) and data frames (R) and use the mtcars data frame that is included with R.
+This chapter looks at various strategies for filtering, selecting, modifying and deriving variables in data. Unless otherwise stated, examples are for DataFrames (Python) and data frames (R) and use the mtcars data frame that is included with R.
 
 ```{python}
 # Python
@@ -64,9 +64,9 @@ To see just the dimensions of the data frame, use the `dim()` function. It retur
 dim(mtcars)
 ```
 
-## Access variables
+## Select variables
 
-How to work with a specific column of data.
+How to select specific columns of data frames.
 
 #### Python {-}
 The period operator `.` provides access to a column in a DataFrame as a vector. This returns pandas series. A pandas series can do everything a numpy array can do.
@@ -153,13 +153,22 @@ tail(mtcars, n = 1)
 ```
 
 
+## Filter/Subset variables
+
+How to view certain rows of a data frame that meet certain conditions.
+
+#### Python {-}
+
+#### R {-}
+
+
 ## Rename variables
 
 How to rename variables or "column headers".
 
 #### Python {-}
 
-Column names can be chnaged using the function `.rename()`. Below, we change the column names "cyl" and "wt" to "cylinder" and "WT", respectively.
+Column names can be changed using the function `.rename()`. Below, we change the column names "cyl" and "wt" to "cylinder" and "WT", respectively.
 
 ```{python}
 mtcars.rename(columns={"cyl":"cylinder", "wt":"WT"})
@@ -180,7 +189,7 @@ mtcars.columns = column_names
 mtcars.columns
 ```
 
-You can 
+
 
 #### R {-}
 

@@ -20,7 +20,8 @@ xml
 exportingwritingsaving-data-and-variables
 data-manipulation
 names-of-variables-and-their-types
-access-variables
+select-variables
+filtersubset-variables
 rename-variables
 create-replace-and-remove-variables
 create-strings-from-numbers

@@ -66,7 +66,7 @@ from scipy import stats
 
 ```
 
-The `ttest_ind()` function performs a t test between two arrays specified with the `a` and `b` arguments, respectively. By default the function assumes equal population variances. By setting the `equal_var` parameter to False we can relax that assumption and run Welch's t test, which is the default in R. The function returns the test statistic and p-value.
+The `ttest_ind()` function performs a t test between two arrays (or columns of a data frame) specified with the `a` and `b` arguments, respectively. By default the function assumes equal population variances. By setting the `equal_var` parameter to False we can relax that assumption and run Welch's t test, which is the default in R. The function returns the test statistic and p-value.
 
 
 ```{python}
@@ -78,7 +78,21 @@ stats.ttest_ind(a = ch8_d1.query('group == "control"')['score'],
 
 **ANOVA**
 
+Our data is available as a **Pandas** dataframe. It's small enough to view in its entirety.
 
+```{python}
+ch8_d2
+```
+
+The usual way to perform an ANOVA test in Python is via the `f_oneway()` function, also available in the **scipy.stats** package.
+
+The `f_oneway()` function performs an ANOVA between two or more arrays (or columns of a data frame) specified as inputs to the function. The function returns the test statistic and p-value.
+
+```{python}
+stats.f_oneway(ch8_d2.query('location == "1"')['mass'], 
+               ch8_d2.query('location == "2"')['mass'],
+               ch8_d2.query('location == "3"')['mass'])
+```
 
 
 #### R {-}

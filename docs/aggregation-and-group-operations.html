@@ -24,7 +24,7 @@
 <meta name="author" content="Clay Ford, Jacob Goldstein-Greenwood, Oyinkansola Adenekan, Samantha Lomuscio" />
 
 
-<meta name="date" content="2022-01-17" />
+<meta name="date" content="2022-01-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -189,14 +189,15 @@ div.csl-indent {
 <li class="chapter" data-level="4" data-path="data-manipulation.html"><a href="data-manipulation.html"><i class="fa fa-check"></i><b>4</b> Data Manipulation</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="data-manipulation.html"><a href="data-manipulation.html#names-of-variables-and-their-types"><i class="fa fa-check"></i><b>4.1</b> Names of variables and their types</a></li>
-<li class="chapter" data-level="4.2" data-path="data-manipulation.html"><a href="data-manipulation.html#access-variables"><i class="fa fa-check"></i><b>4.2</b> Access variables</a></li>
-<li class="chapter" data-level="4.3" data-path="data-manipulation.html"><a href="data-manipulation.html#rename-variables"><i class="fa fa-check"></i><b>4.3</b> Rename variables</a></li>
-<li class="chapter" data-level="4.4" data-path="data-manipulation.html"><a href="data-manipulation.html#create-replace-and-remove-variables"><i class="fa fa-check"></i><b>4.4</b> Create, replace and remove variables</a></li>
-<li class="chapter" data-level="4.5" data-path="data-manipulation.html"><a href="data-manipulation.html#create-strings-from-numbers"><i class="fa fa-check"></i><b>4.5</b> Create strings from numbers</a></li>
-<li class="chapter" data-level="4.6" data-path="data-manipulation.html"><a href="data-manipulation.html#create-numbers-from-strings"><i class="fa fa-check"></i><b>4.6</b> Create numbers from strings</a></li>
-<li class="chapter" data-level="4.7" data-path="data-manipulation.html"><a href="data-manipulation.html#change-case"><i class="fa fa-check"></i><b>4.7</b> Change case</a></li>
-<li class="chapter" data-level="4.8" data-path="data-manipulation.html"><a href="data-manipulation.html#drop-duplicate-rows"><i class="fa fa-check"></i><b>4.8</b> Drop duplicate rows</a></li>
-<li class="chapter" data-level="4.9" data-path="data-manipulation.html"><a href="data-manipulation.html#randomly-sample-rows"><i class="fa fa-check"></i><b>4.9</b> Randomly sample rows</a></li>
+<li class="chapter" data-level="4.2" data-path="data-manipulation.html"><a href="data-manipulation.html#select-variables"><i class="fa fa-check"></i><b>4.2</b> Select variables</a></li>
+<li class="chapter" data-level="4.3" data-path="data-manipulation.html"><a href="data-manipulation.html#filtersubset-variables"><i class="fa fa-check"></i><b>4.3</b> Filter/Subset variables</a></li>
+<li class="chapter" data-level="4.4" data-path="data-manipulation.html"><a href="data-manipulation.html#rename-variables"><i class="fa fa-check"></i><b>4.4</b> Rename variables</a></li>
+<li class="chapter" data-level="4.5" data-path="data-manipulation.html"><a href="data-manipulation.html#create-replace-and-remove-variables"><i class="fa fa-check"></i><b>4.5</b> Create, replace and remove variables</a></li>
+<li class="chapter" data-level="4.6" data-path="data-manipulation.html"><a href="data-manipulation.html#create-strings-from-numbers"><i class="fa fa-check"></i><b>4.6</b> Create strings from numbers</a></li>
+<li class="chapter" data-level="4.7" data-path="data-manipulation.html"><a href="data-manipulation.html#create-numbers-from-strings"><i class="fa fa-check"></i><b>4.7</b> Create numbers from strings</a></li>
+<li class="chapter" data-level="4.8" data-path="data-manipulation.html"><a href="data-manipulation.html#change-case"><i class="fa fa-check"></i><b>4.8</b> Change case</a></li>
+<li class="chapter" data-level="4.9" data-path="data-manipulation.html"><a href="data-manipulation.html#drop-duplicate-rows"><i class="fa fa-check"></i><b>4.9</b> Drop duplicate rows</a></li>
+<li class="chapter" data-level="4.10" data-path="data-manipulation.html"><a href="data-manipulation.html#randomly-sample-rows"><i class="fa fa-check"></i><b>4.10</b> Randomly sample rows</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="combine-reshape-and-merge.html"><a href="combine-reshape-and-merge.html"><i class="fa fa-check"></i><b>5</b> Combine, Reshape and Merge</a>
 <ul>
@@ -272,7 +273,7 @@ div.csl-indent {
 <span id="cb162-5"><a href="aggregation-and-group-operations.html#cb162-5" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>      French   f</span>
 <span id="cb162-6"><a href="aggregation-and-group-operations.html#cb162-6" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>    Egyptian   m</span>
 <span id="cb162-7"><a href="aggregation-and-group-operations.html#cb162-7" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>    Canadian   f</span></code></pre></div>
-<div id="python-34" class="section level4 unnumbered">
+<div id="python-35" class="section level4 unnumbered">
 <h4>Python</h4>
 <p>The <strong>pandas</strong> package contains a <code>crosstab()</code> function for cross tabulation with two or more variables. The <code>groupby()</code>, also in <strong>pandas</strong>, facilitates cross tabulation by one or more variables when used in combination with <code>count()</code>.</p>
 <div class="sourceCode" id="cb163"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb163-1"><a href="aggregation-and-group-operations.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -297,7 +298,7 @@ div.csl-indent {
 <span id="cb163-20"><a href="aggregation-and-group-operations.html#cb163-20" aria-hidden="true" tabindex="-1"></a>French       f      <span class="dv">2</span></span>
 <span id="cb163-21"><a href="aggregation-and-group-operations.html#cb163-21" aria-hidden="true" tabindex="-1"></a>Name: nationality, dtype: int64</span></code></pre></div>
 </div>
-<div id="r-34" class="section level4 unnumbered">
+<div id="r-35" class="section level4 unnumbered">
 <h4>R</h4>
 <p>The <code>table()</code> function performs cross tabulation in R. A user can enter a single grouping variable or enter multiple grouping variables separated by a comma(s). The <code>xtabs()</code> function also computes cross-tabs; a user enters the variables to be used for grouping in formula notation.</p>
 <div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="aggregation-and-group-operations.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">table</span>(dat<span class="sc">$</span>nationality)</span>
@@ -321,10 +322,10 @@ div.csl-indent {
 <div id="group-summaries" class="section level2" number="6.2">
 <h2><span class="header-section-number">6.2</span> Group summaries</h2>
 <p>Computing statistical summaries per group.</p>
-<div id="python-35" class="section level4 unnumbered">
+<div id="python-36" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
-<div id="r-35" class="section level4 unnumbered">
+<div id="r-36" class="section level4 unnumbered">
 <h4>R</h4>
 <p>The <code>aggregate()</code> function allows a user to easily generate by-group statistical summaries based on one or more grouping variables. Grouping variables can be declared as a list in the function’s <code>by</code> argument. Alternatively, the grouping variables (and the variable to be summarized) can be passed to <code>aggregate()</code> in formula notation: <code>var_to_be_aggregated ~ grouping_var_1 + ... + grouping_var_N</code>. The summarizing function (e.g., <code>mean()</code>; <code>median()</code>; etc.) is declared in the <code>FUN</code> argument.</p>
 <div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="aggregation-and-group-operations.html#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># One grouping variable</span></span>
@@ -391,10 +392,10 @@ div.csl-indent {
 <h2><span class="header-section-number">6.3</span> Centering and Scaling</h2>
 <p><em>Centering</em> refers to rescaling a column or vector of values such that their mean is 0. This is sometimes performed to aid interpretation of linear model coefficients.</p>
 <p><em>Scaling</em> refers to rescaling a column or vector of values such that their mean is 0 and their standard deviation is 1. This is sometimes performed to put multiple variables on the same scale and is often recommended for procedures such as principal components analysis (PCA).</p>
-<div id="python-36" class="section level4 unnumbered">
+<div id="python-37" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
-<div id="r-36" class="section level4 unnumbered">
+<div id="r-37" class="section level4 unnumbered">
 <h4>R</h4>
 <p>The <code>scale()</code> function can both center and scale variables.</p>
 <p>To center a variable (without scaling it), call <code>scale()</code> with the <code>center</code> argument set to <code>TRUE</code> and the <code>scale</code> argument set to <code>FALSE</code>. The variable’s mean will be subtracted off of each of the variable values. (Note: If desired, the <code>center</code> argument can be set to a numeric value instead of <code>TRUE</code>/<code>FALSE</code>; in that case, each variable value will have the argument value subtracted off of it.)</p>
