@@ -121,7 +121,14 @@ Stripcharts are one-dimensional scatterplots. Like boxplots, they reveal the dis
 #### Python {-}
 
 #### R {-}
-We advise using **ggplots2**'s `geom_jitter()` function to create stripcharts. (There is a base R function for doing so---`stripchart()`---but it's aesthetically bland, and the **ggplot2** approach is plenty easy.)
+
+Base R offers the `stripchart()` function. To indicate the numeric variable and the grouping variable, you can use formula notation: `numeric_var ~ grouping_var`. Adding `methhod = 'jitter'` to the set of arguments spreads the points out slightly within each level of the grouping variable, making it easier to see points that might otherwise be obscured by overlap.
+```{r}
+stripchart(bill_depth_mm ~ island, data = penguins, method = 'jitter',
+           ylab = 'Island', xlab = 'Bill Depth (mm)', main = 'Stripchart of Bill Depth by Island')
+```
+
+Stripcharts can also be made with **ggplots2**'s  `geom_jitter()` function, as shown below. You can control the amount of jitter with a `position` argument in `geom_jitter()`.
 ```{r}
 ggplot(penguins, aes(x = island, y = bill_depth_mm)) +
   geom_jitter(aes(color = island), position = position_jitter(0.1)) +
