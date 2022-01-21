@@ -64,6 +64,35 @@ ggplot(penguins, aes(x = bill_length_mm)) +
 Visualizing the distribution of categorical data.
 
 #### Python {-}
+For this example, we will generate a bar plot showing how many of each species - Adelie, Chinstrap, Gentoo - we have in our dataset. We go through two ways of doing this here. 
+
+First, we use the Matplotlib plotting library to create the bar plot using the function `bar()`. To start, we determine the number of each species, then use that data to create the bar plot. 
+
+```{python}
+import matplotlib.pyplot as plt 
+
+# Determine the number of each species
+adelie_counts = len(penguins.loc[penguins["species"]=="Adelie"])
+chinstrap_counts = len(penguins.loc[penguins["species"]=="Chinstrap"])
+gentoo_counts = len(penguins.loc[penguins["species"]=="Gentoo"])
+
+# Save the counts information into arrays to be inputted into the bar() function
+spec = ["Adelie","Chinstrap","Gentoo"]
+counts = [adelie_counts,chinstrap_counts,gentoo_counts]
+
+plt.clf() # clears the figure to ensure that multiple plots are not overlaid
+plt.bar(spec,counts)
+plt.show()
+```
+
+Our data is stored in a `pandas Dataframe`, which has it's own built-in plotting module, `plot`. Here we create the same bar plot by using the pandas `bar()` function. 
+
+```{python}
+plt.clf()
+penguins["species"].value_counts().plot.bar()
+plt.show()
+```
+One thing to note here is that we generated the same bar plot containing the same information with way less effort. Using the built-in pandas plotting routine proved to be the more efficient method here. 
 
 #### R {-}
 To form barplots, we'll first take the **penguins** data set and create a summary data frame containing the statistics we're looking to plot. Here, that's simply the sample size of each species in the data set.
