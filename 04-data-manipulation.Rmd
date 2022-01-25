@@ -36,12 +36,13 @@ Setting the argument `verbose` to `True` prints the name of the columns, their l
 mtcars.info(verbose=True)
 ```
 
-By default, the `verbose` argument is set to `False`. Then, the function lists the unique data types in the DataFrame, and it prints how much memory the DataFrame takes up. This setting excludes the table describing each column.
+Setting `verbose` to `False` excludes the table describing each column.
 
 ```{python}
-mtcars.info()
+mtcars.info(verbose=False)
 ```
 
+If a DataFrame has 100 or fewer columns, the `verbose` argument defaults to `True`. 
 
 #### R {-}
 
@@ -93,7 +94,7 @@ Double indexing returns a pandas DataFrame, instead of a numpy array or pandas s
 mtcars[['mpg']]
 ```
 
-The `head()` and `tail()` functions return the first 5 or last 5 values. Use the `n` argument to change the number of values. This function works on numpy array, pandas series and pandas DataFrames.
+The `head()` and `tail()` functions return the first 5 or last 5 values. Use the `n` argument to change the number of values. This function works on numpy arrays, pandas series and pandas DataFrames.
 
 ```{python}
 # first 6 values
@@ -113,27 +114,27 @@ The dollar sign operator, `$`, provides access to a column in a data frame as a 
 mtcars$mpg
 ```
 
-Double indexing brackets also provide access to columns as a vector.
+Double-indexing brackets also provide access to columns as a vector.
 
 ```{r}
 mtcars[["mpg"]]
 ```
 
-Single indexing brackets work as well, but return a data frame instead of a vector (if used with a data frame).
+Single-indexing brackets work as well, but they return a data frame instead of a vector (if used with a data frame).
 
 ```{r}
 mtcars["mpg"]
 ```
 
 
-Single indexing brackets also allow selection of rows when used with a comma. The syntax is `rows, columns`
+Single-indexing brackets also allow selection of rows when used with a comma. The syntax is `rows, columns`
 
 ```{r}
 # first three rows
 mtcars[1:3, "mpg"]
 ```
 
-Finally single indexing brackets allow us to select multiple columns. Request columns either by name or position using a vector.
+Finally single-indexing brackets allow us to select multiple columns. Request columns either by name or position using a vector.
 
 ```{r}
 mtcars[c("mpg", "cyl")] 
@@ -307,7 +308,7 @@ mtcars.columns
 
 #### R {-}
 
-Variable names can be changed by their index (ie, order of columns in the data frame). Below the second column is "cyl". We change the name to "cylinder".
+Variable names can be changed by their index (ie, order of columns in the data frame). Below the second column is "cyl". We change the name to "cylinders".
 
 ```{r}
 names(mtcars)[2]
@@ -443,8 +444,20 @@ mtcars$am_fac <- factor(mtcars$am, labels = c("automatic", "manual"))
 head(mtcars$am_fac)
 ```
 
+A common number-to-string conversion task is formatting 5-digit American zip codes. Some zip codes begin with 0, but if stored as a numeric value, the 0 is dropped. 
 
-TODO: add zip code conversion using `str_pad()` (or base R option?)
+```{r}
+zip_codes <- c(03766, 03748, 03241, 03264)
+zip_codes
+```
+
+We need to store the zip code as a character value so the 0 is preserved. One way to do this is via the `sprintf()` function in base R. The first argument is the _format string_ or _conversion specification_. A conversion specification begins with "%". The following "0" and "5" says to format the zip_codes vector as a 5-digit string padded by zeroes on the left. The final "i" says we're working with integer values. 
+
+```{r}
+sprintf("%05i", zip_codes)
+```
+
+See also the `str_pad()` function in the **stringr** package.
 
 ## Create numbers from strings
 
@@ -674,7 +687,7 @@ dplyr::slice_sample(mtcars, prop = 0.20)
 
 To sample with replacement, set `replace = TRUE`.
 
-The base R functions `sample()` and `runif()` can be combined to sample sizes or approximate proportions.
+The base R functions `sample()` and `runif()` can be combined to sample fixed sizes or approximate proportions.
 
 ```{r}
 # sample 5 rows from mtcars
