@@ -267,10 +267,10 @@ div.csl-indent {
 <p>A one-dimensional data structure can be visualized as a column in a spreadsheet or as a list of values.</p>
 <div id="python-8" class="section level4 unnumbered">
 <h4>Python</h4>
-<p>There are many ways to organize one-dimensional data in Python. The of the most common one-dimensional data structures are lists, numpy arrays, and pandas Series. All three are ordered and mutable, and can contain data of different types.</p>
-<p>Lists in Python do not need to be explicitly declared, they are indicated by the use of square brackets.</p>
+<p>There are many ways to organize one-dimensional data in Python. Three of the most common one-dimensional data structures are lists, numpy arrays, and pandas Series. All three are ordered and mutable, and can contain data of different types.</p>
+<p>Lists in Python do not need to be explicitly declared; they are indicated by the use of square brackets.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="data-structures.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> l <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="st">&#39;hello&#39;</span>]</span></code></pre></div>
-<p>Values in lists can be accessed by using square brackets. Python indexing begins at 0, so to extract the first element, we would use the index 0. Python also allows for negative indexing, using an index of -1 will return the last value in the list. Indexing a range in Python is not inclusive of the last index.</p>
+<p>Values in lists can be accessed by using square brackets. Python indexing begins at 0, so to extract the first element, we would use the index 0. Python also allows for negative indexing; using an index of -1 will return the last value in the list. Indexing a range in Python is not inclusive of the last index.</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="data-structures.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="co"># extract first element</span></span>
 <span id="cb27-2"><a href="data-structures.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> l[<span class="dv">0</span>]</span>
 <span id="cb27-3"><a href="data-structures.html#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> </span>
@@ -282,7 +282,7 @@ div.csl-indent {
 <span id="cb27-9"><a href="data-structures.html#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;hello&#39;</span></span>
 <span id="cb27-10"><a href="data-structures.html#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> l[<span class="dv">1</span>:<span class="dv">3</span>]</span>
 <span id="cb27-11"><a href="data-structures.html#cb27-11" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>, <span class="dv">3</span>]</span></code></pre></div>
-<p>Numpy arrays, on the other hand, need to be declared using the <code>numpy.array()</code> function and the <strong>numpy</strong> package needs to be imported.</p>
+<p>Numpy arrays, on the other hand, need to be declared using the <code>numpy.array()</code> function, and the <strong>numpy</strong> package needs to be imported.</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="data-structures.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb28-2"><a href="data-structures.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> </span>
 <span id="cb28-3"><a href="data-structures.html#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> arr <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="st">&#39;hello&#39;</span>])</span>
@@ -356,7 +356,7 @@ div.csl-indent {
 <span id="cb33-17"><a href="data-structures.html#cb33-17" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;hello&#39;</span></span>
 <span id="cb33-18"><a href="data-structures.html#cb33-18" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> ser2.b</span>
 <span id="cb33-19"><a href="data-structures.html#cb33-19" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;2&#39;</span></span></code></pre></div>
-<p>One thing to note is that mathematical operations cannot be carried out on lists, but can be carried out on numpy arrays and pandas Series. In general, lists are better for short data sets that you will not be operating on mathematically. Numpy arrays and pandas Series are better for long data sets, and for data sets that will be operated on mathematically.</p>
+<p>One thing to note is that mathematical operations cannot be carried out on lists, but they can be carried out on numpy arrays and pandas Series. In general, lists are better for short data sets that you will not be operating on mathematically. Numpy arrays and pandas Series are better for long data sets, and for data sets that will be operated on mathematically.</p>
 </div>
 <div id="r-8" class="section level4 unnumbered">
 <h4>R</h4>
@@ -458,7 +458,7 @@ div.csl-indent {
 </div>
 <div id="r-9" class="section level4 unnumbered">
 <h4>R</h4>
-<p>Two-dimensional data structures in R include the <em>matrix</em> and <em>data frame</em>. A matrix can contain only one data type. A data frame can contain multiple vectors each of which can consist of different data types.</p>
+<p>Two-dimensional data structures in R include the <em>matrix</em> and <em>data frame</em>. A matrix can contain only one data type. A data frame can contain multiple vectors, each of which can consist of different data types.</p>
 <p>Create a matrix with the <code>matrix()</code> function. Create a data frame with the <code>data.frame()</code> function. Most imported data comes into R as a data frame.</p>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="data-structures.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># matrix; populated down by column by default</span></span>
 <span id="cb42-2"><a href="data-structures.html#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> m <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">data =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>), <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span>

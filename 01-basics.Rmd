@@ -34,7 +34,7 @@ Python uses `^` for exponentiation, `%/%` for integer division, and `%%` for rem
 
 ## Assignment
 
-Python uses `=` for assignment while R can use either `=` or `<-` for assignment. The latter "assignment arrow" is preferred in most R style guides to distinguish it between assignment and setting the value of a function argument. According to R's documentation, "The operator `<-` can be used anywhere, whereas the operator `=` is only allowed at the top level (e.g., in the complete expression typed at the command prompt) or as one of the subexpressions in a braced list of expressions." See `?assignOps`.
+Python uses `=` for assignment, while R can use either `=` or `<-` for assignment. The latter "assignment arrow" is preferred in most R style guides to distinguish between assignment and setting the value of a function argument. According to R's documentation, "The operator `<-` can be used anywhere, whereas the operator `=` is only allowed at the top level (e.g., in the complete expression typed at the command prompt) or as one of the subexpressions in a braced list of expressions." See `?assignOps`.
 
 #### Python {-}
 
@@ -95,14 +95,14 @@ old.packages()
 update.packages(ask = FALSE)
 ```
 
-To install R packages from GitHub use the `install_github()` function from the **devtools** package. You need to include the username of the repo owner followed by a forward slash and the name of the package. Typing two colons between a package and a function in the package allows you to use that function without loading the package. That's how we use the `install_github()` below.
+To install R packages from GitHub use the `install_github()` function from the **devtools** package. You need to include the username of the repo owner followed by a forward slash and the name of the package. Typing two colons between a package and a function in the package allows you to use that function without loading the package. That's how we use `install_github()` below.
 
 ```{r eval=FALSE}
 install.packages("devtools")
 devtools::install_github("username/packagename")
 ```
 
-Occasionally when installing package updates you will be asked "Do you want to install from sources the package which needs compilation?" R packages on CRAN are _compiled_ for Mac and Windows operating systems. That can take a day or two after a package has been submitted to CRAN. If you try to install a package that has not been compiled then you'll get asked the question above. If you click _Yes_, R will try to compile the package on your computer. This will only work if you have the required build tools on your computer. For Windows this means having [Rtools](https://cran.r-project.org/bin/windows/Rtools/) installed. Mac users should already have the necessary build tools. Unless you absolutely need the latest version of a package, it's probably fine to click _No_.
+Occasionally when installing package updates you will be asked, "Do you want to install from sources the package which needs compilation?" R packages on CRAN are _compiled_ for Mac and Windows operating systems. That can take a day or two after a package has been submitted to CRAN. If you try to install a package that has not been compiled then you'll get asked the question above. If you click _Yes_, R will try to compile the package on your computer. This will only work if you have the required build tools on your computer. For Windows this means having [Rtools](https://cran.r-project.org/bin/windows/Rtools/) installed. Mac users should already have the necessary build tools. Unless you absolutely need the latest version of a package, it's probably fine to click _No_.
 
 ## Logic
 
@@ -194,7 +194,7 @@ Python and R allow and encourage users to create their own functions. Functions 
 
 #### Python {-}
 
-Functions in Python are defined by using the `def` keyword followed by the name we choose for our function with its arguments inside parentheses. We must include a `return()` statement after the body of our function to indicate the end of the function. The return statement takes an optional argument in it's parenthesis that will be the output of the function. Here we create a function to calculate the standard error of a mean (SEM) and call it `SEM`. 
+Functions in Python are defined by using the `def` keyword followed by the name we choose for our function with its arguments inside parentheses. We must include a `return()` statement after the body of our function to indicate the end of the function. The return statement takes an optional argument in its parentheses that will be the output of the function. Here we create a function to calculate the standard error of a mean (SEM) and call it `SEM`. 
 
 ```{python}
 def SEM(x):
@@ -212,7 +212,7 @@ d = np.array([3,4,4,7,9,6,2,5,7])
 SEM(d)
 ```
 
-Oftentimes functions have built-in error-checking that return messages describing the error. Here we show a simple error-check to ensure that the argument passed to our function is a number. 
+Oftentimes functions have built-in error-checking that returns messages describing the error. Here we show a simple error-check to ensure that the argument passed to our function is a number. 
 
 ```{python}
 def SEM(x):
@@ -227,7 +227,7 @@ def SEM(x):
   return(sem) 
 ```
 
-Python functions can return more than one result. It will output the results into a `tuple`. At tuple is a data structure very similar to a list, but it is immutable - we cannot change the order of the entries. Here we make our function return both the mean and the SEM of our data. 
+Python functions can return more than one result. It will output the results into a `tuple`. A tuple is a data structure very similar to a list, but it is immutable - we cannot change the order of the entries. Here we make our function return both the mean and the SEM of our data. 
 
 ```{python}
 def SEM(x):
@@ -305,7 +305,7 @@ d <- data.frame(x1 = c(3, 5, 7, 1, 5, 4),
 d
 ```
 
-Now find the standard error of the mean for the three columns using an anonymous function with `lapply`. The "l" means the result will be a list. We apply the function to each column of the data frame.
+Now find the standard error of the mean for the three columns using an anonymous function with `lapply()`. The "l" means the result will be a list. We apply the function to each column of the data frame.
 
 ```{r}
 lapply(d, function(x)sd(x)/sqrt(length(x)))

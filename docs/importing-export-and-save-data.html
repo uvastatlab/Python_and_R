@@ -261,11 +261,11 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="importing-export-and-save-data" class="section level1" number="3">
 <h1><span class="header-section-number">Chapter 3</span> Importing, Export, and Save Data</h1>
-<p>This chapter reviews importing external data into Python and R, including CSV, Excel, and other structured data files. There is often more than one way to import data into Python and R. The examples below highlight one way that we frequently see used.</p>
-<p>The data we use for demonstration is New York State Math Test Results by Grade from 2006 - 2011, downloaded from <a href="https://catalog.data.gov/dataset/2006-2011-nys-math-test-results-by-grade-citywide-by-race-ethnicity">data.gov</a> on September 30, 2021.</p>
+<p>This chapter reviews importing external data into Python and R, including CSV, Excel, and other structured data files. There is often more than one way to import data into Python and R. Each example below highlights one way per file type.</p>
+<p>The data set we use for demonstration is the New York State Math Test Results by Grade from 2006 - 2011, downloaded from <a href="https://catalog.data.gov/dataset/2006-2011-nys-math-test-results-by-grade-citywide-by-race-ethnicity">data.gov</a> on September 30, 2021.</p>
 <div id="csv" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> CSV</h2>
-<p>Comma separated value (CSV) files are text files with fields separated by commas. They are useful for “rectangular” data where rows represent observations and columns represent variables or features.</p>
+<p>Comma separated value (CSV) files are text files with fields separated by commas. They are useful for “rectangular” data, where rows represent observations and columns represent variables or features.</p>
 <div id="python-12" class="section level4 unnumbered">
 <h4>Python</h4>
 <p>The <strong>pandas</strong> function <code>read_csv()</code> is a common approach to importing CSV files into Python.</p>
@@ -363,7 +363,7 @@ div.csl-indent {
 </div>
 <div id="xml" class="section level2" number="3.4">
 <h2><span class="header-section-number">3.4</span> XML</h2>
-<p>XML (e<strong>X</strong>tensible <strong>M</strong>arkup <strong>L</strong>anguage) is a markup language that was designed to store data. XML files are text and can be viewed in any text editor or a web browser. Because of their flexibility XML files can be quite complex in the way they store data. Therefore there is no one-size-fits-all for importing XML files into Python or R.</p>
+<p>XML (e<strong>X</strong>tensible <strong>M</strong>arkup <strong>L</strong>anguage) is a markup language that was designed to store data. XML files are text and can be viewed in any text editor or a web browser. Because of their flexibility, XML files can be quite complex in the way they store data. Therefore there is no one-size-fits-all approach for importing XML files into Python or R.</p>
 <div id="python-15" class="section level4 unnumbered">
 <h4>Python</h4>
 <p>The <strong>pandas</strong> library provides the <code>read_xml</code> function for importing XML files. The <code>ny_math_test.xml</code> file identifies records with nodes named “row.” The 168 rows are nested in one node also called “row.” Therefore we use the <code>xpath</code> argument to specify that we want to elect all row elements that are descendant of the single row element.</p>

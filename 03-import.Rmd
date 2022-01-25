@@ -4,13 +4,13 @@
 knitr::opts_chunk$set(comment = NA, prompt = TRUE, collapse = TRUE)
 ```
 
-This chapter reviews importing external data into Python and R, including CSV, Excel, and other structured data files. There is often more than one way to import data into Python and R. The examples below highlight one way that we frequently see used.
+This chapter reviews importing external data into Python and R, including CSV, Excel, and other structured data files. There is often more than one way to import data into Python and R. Each example below highlights one way per file type.
 
-The data we use for demonstration is New York State Math Test Results by Grade from 2006 - 2011, downloaded from [data.gov](https://catalog.data.gov/dataset/2006-2011-nys-math-test-results-by-grade-citywide-by-race-ethnicity) on September 30, 2021.
+The data set we use for demonstration is the New York State Math Test Results by Grade from 2006 - 2011, downloaded from [data.gov](https://catalog.data.gov/dataset/2006-2011-nys-math-test-results-by-grade-citywide-by-race-ethnicity) on September 30, 2021.
 
 ## CSV
 
-Comma separated value (CSV) files are text files with fields separated by commas. They are useful for "rectangular" data where rows represent observations and columns represent variables or features. 
+Comma separated value (CSV) files are text files with fields separated by commas. They are useful for "rectangular" data, where rows represent observations and columns represent variables or features. 
 
 #### Python {-}
 
@@ -123,7 +123,7 @@ d_json[1:3,c("grade", "year", "mean_scale_score")]
 
 ## XML
 
-XML (e**X**tensible **M**arkup **L**anguage) is a markup language that was designed to store data. XML files are text and can be viewed in any text editor or a web browser. Because of their flexibility XML files can be quite complex in the way they store data. Therefore there is no one-size-fits-all for importing XML files into Python or R.
+XML (e**X**tensible **M**arkup **L**anguage) is a markup language that was designed to store data. XML files are text and can be viewed in any text editor or a web browser. Because of their flexibility, XML files can be quite complex in the way they store data. Therefore there is no one-size-fits-all approach for importing XML files into Python or R.
 
 
 #### Python {-}

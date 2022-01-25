@@ -12,15 +12,15 @@ A one-dimensional data structure can be visualized as a column in a spreadsheet 
 
 #### Python {-}
 
-There are many ways to organize one-dimensional data in Python. The of the most common one-dimensional data structures are lists, numpy arrays, and pandas Series. All three are ordered and mutable, and can contain data of different types. 
+There are many ways to organize one-dimensional data in Python. Three of the most common one-dimensional data structures are lists, numpy arrays, and pandas Series. All three are ordered and mutable, and can contain data of different types. 
 
-Lists in Python do not need to be explicitly declared, they are indicated by the use of square brackets.
+Lists in Python do not need to be explicitly declared; they are indicated by the use of square brackets.
 
 ```{python}
 l = [1,2,3,'hello']
 ```
 
-Values in lists can be accessed by using square brackets. Python indexing begins at 0, so to extract the first element, we would use the index 0. Python also allows for negative indexing, using an index of -1 will return the last value in the list. Indexing a range in Python is not inclusive of the last index. 
+Values in lists can be accessed by using square brackets. Python indexing begins at 0, so to extract the first element, we would use the index 0. Python also allows for negative indexing; using an index of -1 will return the last value in the list. Indexing a range in Python is not inclusive of the last index. 
 
 ```{python}
 # extract first element
@@ -34,7 +34,7 @@ l[1:3]
 
 ```
 
-Numpy arrays, on the other hand, need to be declared using the `numpy.array()` function and the **numpy** package needs to be imported. 
+Numpy arrays, on the other hand, need to be declared using the `numpy.array()` function, and the **numpy** package needs to be imported. 
 
 ```{python}
 import numpy as np
@@ -107,7 +107,7 @@ ser2.d
 ser2.b
 ```
 
-One thing to note is that mathematical operations cannot be carried out on lists, but can be carried out on numpy arrays and pandas Series. In general, lists are better for short data sets that you will not be operating on mathematically. Numpy arrays and pandas Series are better for long data sets, and for data sets that will be operated on mathematically. 
+One thing to note is that mathematical operations cannot be carried out on lists, but they can be carried out on numpy arrays and pandas Series. In general, lists are better for short data sets that you will not be operating on mathematically. Numpy arrays and pandas Series are better for long data sets, and for data sets that will be operated on mathematically. 
 
 #### R {-}
 
@@ -219,7 +219,7 @@ One thing to note is that numpy arrays can actually have N dimensions, whereas p
 
 #### R {-}
 
-Two-dimensional data structures in R include the _matrix_ and _data frame_. A matrix can contain only one data type. A data frame can contain multiple vectors each of which can consist of different data types. 
+Two-dimensional data structures in R include the _matrix_ and _data frame_. A matrix can contain only one data type. A data frame can contain multiple vectors, each of which can consist of different data types. 
 
 Create a matrix with the `matrix()` function. Create a data frame with the `data.frame()` function. Most imported data comes into R as a data frame.
 
