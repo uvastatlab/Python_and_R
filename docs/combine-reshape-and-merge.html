@@ -270,7 +270,7 @@ div.csl-indent {
 </div>
 <div id="r-27" class="section level4 unnumbered">
 <h4>R</h4>
-<p>The <code>rbind()</code> function “binds” rows. It takes two or more objects. To row bind data frames the column names must match, otherwise an error is returned. If columns being stacked have differing variable types, the values will be coerced according to <code>logical</code> &lt; <code>integer</code> &lt; <code>double</code> &lt; <code>complex</code> &lt; <code>character</code>. (E.g., if you stack a set of rows with type <code>logical</code> in column <em>J</em> on a set of rows with type <code>character</code> in column <em>J</em>, the output will have column <em>J</em> as type <code>character</code>.)</p>
+<p>The <code>rbind()</code> function “binds” rows. It takes two or more objects. To row bind data frames, the column names must match, otherwise an error is returned. If columns being stacked have differing variable types, the values will be coerced according to <code>logical</code> &lt; <code>integer</code> &lt; <code>double</code> &lt; <code>complex</code> &lt; <code>character</code>. (E.g., if you stack a set of rows with type <code>logical</code> in column <em>J</em> on a set of rows with type <code>character</code> in column <em>J</em>, the output will have column <em>J</em> as type <code>character</code>.)</p>
 <div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="combine-reshape-and-merge.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">y =</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span>
 <span id="cb155-2"><a href="combine-reshape-and-merge.html#cb155-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">y =</span> letters[<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>])</span>
 <span id="cb155-3"><a href="combine-reshape-and-merge.html#cb155-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">rbind</span>(d1, d2)</span>
@@ -346,7 +346,7 @@ div.csl-indent {
 1  1   m  16   7  15
 2  2   m  12  19  10
 3  3   f   8  15   7</code></pre>
-<p>To lengthen a data frame using <code>reshape()</code>, a user provides arguments specifying the columns that identify values’ origins (person, cell culture, etc.), the columns containing values to be lengthened, and the desired names for output columns in long data:</p>
+<p>To lengthen a data frame using <code>reshape()</code>, a user provides arguments specifying the columns that identify values’ origins (person, cell culture, etc.), the columns containing values to be lengthened, and the desired names for new columns in long data:</p>
 <div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="combine-reshape-and-merge.html#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> df_long <span class="ot">&lt;-</span> <span class="fu">reshape</span>(df_wide,</span>
 <span id="cb161-2"><a href="combine-reshape-and-merge.html#cb161-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                         <span class="at">direction =</span> <span class="st">&#39;long&#39;</span>,</span>
 <span id="cb161-3"><a href="combine-reshape-and-merge.html#cb161-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                         <span class="at">idvar =</span> <span class="fu">c</span>(<span class="st">&#39;id&#39;</span>, <span class="st">&#39;sex&#39;</span>), <span class="co"># column(s) that uniquely identifies/y each row</span></span>
@@ -490,18 +490,23 @@ div.csl-indent {
 <span id="cb169-9"><a href="combine-reshape-and-merge.html#cb169-9" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> capybara  <span class="cn">FALSE</span>          jan           <span class="dv">4</span>          <span class="dv">4</span>  </span>
 <span id="cb169-10"><a href="combine-reshape-and-merge.html#cb169-10" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span> capybara  <span class="cn">FALSE</span>          feb           <span class="dv">5</span>          <span class="dv">4</span>  </span>
 <span id="cb169-11"><a href="combine-reshape-and-merge.html#cb169-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> animals_wide <span class="ot">&lt;-</span> <span class="fu">pivot_wider</span>(animals_long_1,</span>
-<span id="cb169-12"><a href="combine-reshape-and-merge.html#cb169-12" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                             <span class="at">id_cols =</span> <span class="fu">c</span>(<span class="st">&#39;animal&#39;</span>, <span class="st">&#39;lives_in_water&#39;</span>),</span>
-<span id="cb169-13"><a href="combine-reshape-and-merge.html#cb169-13" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                             <span class="at">values_from =</span> <span class="fu">c</span>(<span class="st">&#39;playfulness&#39;</span>, <span class="st">&#39;excitement&#39;</span>),</span>
-<span id="cb169-14"><a href="combine-reshape-and-merge.html#cb169-14" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                             <span class="at">names_from =</span> <span class="st">&#39;month&#39;</span>,</span>
-<span id="cb169-15"><a href="combine-reshape-and-merge.html#cb169-15" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                             <span class="at">names_glue =</span> <span class="st">&#39;{month}_{.value}&#39;</span>) <span class="co"># `names_glue` allow for customization of wide column names based</span></span>
-<span id="cb169-16"><a href="combine-reshape-and-merge.html#cb169-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> animals_wide</span>
-<span id="cb169-17"><a href="combine-reshape-and-merge.html#cb169-17" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 3 x 6</span></span>
-<span id="cb169-18"><a href="combine-reshape-and-merge.html#cb169-18" aria-hidden="true" tabindex="-1"></a>  animal    lives_in_water jan_playfulness feb_playfulness jan_excitement</span>
-<span id="cb169-19"><a href="combine-reshape-and-merge.html#cb169-19" aria-hidden="true" tabindex="-1"></a>  <span class="sc">&lt;</span>chr<span class="sc">&gt;</span>     <span class="er">&lt;</span>lgl<span class="sc">&gt;</span>                    <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>           <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>          <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
-<span id="cb169-20"><a href="combine-reshape-and-merge.html#cb169-20" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> dolphin   <span class="cn">TRUE</span>                       <span class="dv">6</span>               <span class="fl">5.5</span>            <span class="dv">7</span>  </span>
-<span id="cb169-21"><a href="combine-reshape-and-merge.html#cb169-21" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> porcupine <span class="cn">FALSE</span>                      <span class="fl">3.5</span>             <span class="fl">4.5</span>            <span class="fl">3.5</span></span>
-<span id="cb169-22"><a href="combine-reshape-and-merge.html#cb169-22" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> capybara  <span class="cn">FALSE</span>                      <span class="dv">4</span>               <span class="dv">5</span>              <span class="dv">4</span>  </span>
-<span id="cb169-23"><a href="combine-reshape-and-merge.html#cb169-23" aria-hidden="true" tabindex="-1"></a><span class="co"># ... with 1 more variable: feb_excitement &lt;dbl&gt;</span></span></code></pre></div>
+<span id="cb169-12"><a href="combine-reshape-and-merge.html#cb169-12" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                             <span class="at">id_cols =</span> <span class="fu">c</span>(<span class="st">&#39;animal&#39;</span>, </span>
+<span id="cb169-13"><a href="combine-reshape-and-merge.html#cb169-13" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                                         <span class="st">&#39;lives_in_water&#39;</span>),</span>
+<span id="cb169-14"><a href="combine-reshape-and-merge.html#cb169-14" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                             <span class="at">values_from =</span> <span class="fu">c</span>(<span class="st">&#39;playfulness&#39;</span>,</span>
+<span id="cb169-15"><a href="combine-reshape-and-merge.html#cb169-15" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                                             <span class="st">&#39;excitement&#39;</span>),</span>
+<span id="cb169-16"><a href="combine-reshape-and-merge.html#cb169-16" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                             <span class="at">names_from =</span> <span class="st">&#39;month&#39;</span>,</span>
+<span id="cb169-17"><a href="combine-reshape-and-merge.html#cb169-17" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                             <span class="at">names_glue =</span> <span class="st">&#39;{month}_{.value}&#39;</span>) </span>
+<span id="cb169-18"><a href="combine-reshape-and-merge.html#cb169-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>                             <span class="co"># `names_glue` allows for customization </span></span>
+<span id="cb169-19"><a href="combine-reshape-and-merge.html#cb169-19" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>                             <span class="co"># of column names using &quot;glue&quot;;</span></span>
+<span id="cb169-20"><a href="combine-reshape-and-merge.html#cb169-20" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>                             <span class="co"># see https://glue.tidyverse.org/</span></span>
+<span id="cb169-21"><a href="combine-reshape-and-merge.html#cb169-21" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> animals_wide</span>
+<span id="cb169-22"><a href="combine-reshape-and-merge.html#cb169-22" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 3 x 6</span></span>
+<span id="cb169-23"><a href="combine-reshape-and-merge.html#cb169-23" aria-hidden="true" tabindex="-1"></a>  animal    lives_in_water jan_playfulness feb_playfulness jan_excitement</span>
+<span id="cb169-24"><a href="combine-reshape-and-merge.html#cb169-24" aria-hidden="true" tabindex="-1"></a>  <span class="sc">&lt;</span>chr<span class="sc">&gt;</span>     <span class="er">&lt;</span>lgl<span class="sc">&gt;</span>                    <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>           <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>          <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb169-25"><a href="combine-reshape-and-merge.html#cb169-25" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> dolphin   <span class="cn">TRUE</span>                       <span class="dv">6</span>               <span class="fl">5.5</span>            <span class="dv">7</span>  </span>
+<span id="cb169-26"><a href="combine-reshape-and-merge.html#cb169-26" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> porcupine <span class="cn">FALSE</span>                      <span class="fl">3.5</span>             <span class="fl">4.5</span>            <span class="fl">3.5</span></span>
+<span id="cb169-27"><a href="combine-reshape-and-merge.html#cb169-27" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> capybara  <span class="cn">FALSE</span>                      <span class="dv">4</span>               <span class="dv">5</span>              <span class="dv">4</span>  </span>
+<span id="cb169-28"><a href="combine-reshape-and-merge.html#cb169-28" aria-hidden="true" tabindex="-1"></a><span class="co"># ... with 1 more variable: feb_excitement &lt;dbl&gt;</span></span></code></pre></div>
 <p>To widen the version of the long data that has one column containing all the values of playfulness and excitement together:</p>
 <div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="combine-reshape-and-merge.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> animals_long_2</span>
 <span id="cb170-2"><a href="combine-reshape-and-merge.html#cb170-2" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 12 x 5</span></span>
@@ -538,18 +543,16 @@ div.csl-indent {
 <div id="mergejoin" class="section level2" number="5.4">
 <h2><span class="header-section-number">5.4</span> Merge/Join</h2>
 <p>The merge/join examples below all make use of the following sample data frames:</p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="combine-reshape-and-merge.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># x</span></span>
-<span id="cb171-2"><a href="combine-reshape-and-merge.html#cb171-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> x</span>
-<span id="cb171-3"><a href="combine-reshape-and-merge.html#cb171-3" aria-hidden="true" tabindex="-1"></a>  merge_var val_x</span>
-<span id="cb171-4"><a href="combine-reshape-and-merge.html#cb171-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>         a    <span class="dv">12</span></span>
-<span id="cb171-5"><a href="combine-reshape-and-merge.html#cb171-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>         b    <span class="dv">94</span></span>
-<span id="cb171-6"><a href="combine-reshape-and-merge.html#cb171-6" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>         c    <span class="dv">92</span></span>
-<span id="cb171-7"><a href="combine-reshape-and-merge.html#cb171-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># y</span></span>
-<span id="cb171-8"><a href="combine-reshape-and-merge.html#cb171-8" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> y</span>
-<span id="cb171-9"><a href="combine-reshape-and-merge.html#cb171-9" aria-hidden="true" tabindex="-1"></a>  merge_var val_y</span>
-<span id="cb171-10"><a href="combine-reshape-and-merge.html#cb171-10" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>         c    <span class="dv">78</span></span>
-<span id="cb171-11"><a href="combine-reshape-and-merge.html#cb171-11" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>         d    <span class="dv">32</span></span>
-<span id="cb171-12"><a href="combine-reshape-and-merge.html#cb171-12" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>         e    <span class="dv">30</span></span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="combine-reshape-and-merge.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x</span>
+<span id="cb171-2"><a href="combine-reshape-and-merge.html#cb171-2" aria-hidden="true" tabindex="-1"></a>  merge_var val_x</span>
+<span id="cb171-3"><a href="combine-reshape-and-merge.html#cb171-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>         a    <span class="dv">12</span></span>
+<span id="cb171-4"><a href="combine-reshape-and-merge.html#cb171-4" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>         b    <span class="dv">94</span></span>
+<span id="cb171-5"><a href="combine-reshape-and-merge.html#cb171-5" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>         c    <span class="dv">92</span></span>
+<span id="cb171-6"><a href="combine-reshape-and-merge.html#cb171-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> y</span>
+<span id="cb171-7"><a href="combine-reshape-and-merge.html#cb171-7" aria-hidden="true" tabindex="-1"></a>  merge_var val_y</span>
+<span id="cb171-8"><a href="combine-reshape-and-merge.html#cb171-8" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>         c    <span class="dv">78</span></span>
+<span id="cb171-9"><a href="combine-reshape-and-merge.html#cb171-9" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>         d    <span class="dv">32</span></span>
+<span id="cb171-10"><a href="combine-reshape-and-merge.html#cb171-10" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>         e    <span class="dv">30</span></span></code></pre></div>
 <div id="left-join" class="section level3" number="5.4.1">
 <h3><span class="header-section-number">5.4.1</span> Left Join</h3>
 <p>A left join of <em>x</em> and <em>y</em> keeps all rows of <em>x</em> and merges rows of <em>y</em> into <em>x</em> where possible based on the merge criterion:</p>
@@ -575,7 +578,7 @@ div.csl-indent {
 </div>
 <div id="right-join" class="section level3" number="5.4.2">
 <h3><span class="header-section-number">5.4.2</span> Right Join</h3>
-<p>A right join of <em>x</em> and <em>y</em> keeps all rows of <em>y</em> and merges rows of <em>x</em> into <em>y</em> where possible based on the merge criterion:</p>
+<p>A right join of <em>x</em> and <em>y</em> keeps all rows of <em>y</em> and merges rows of <em>x</em> into <em>y</em> wherever possible based on the merge criterion:</p>
 <p><img src="images/right_join.png" width="621" /></p>
 <div id="python-32" class="section level4 unnumbered">
 <h4>Python</h4>
@@ -598,7 +601,7 @@ div.csl-indent {
 </div>
 <div id="inner-join" class="section level3" number="5.4.3">
 <h3><span class="header-section-number">5.4.3</span> Inner Join</h3>
-<p>An inner join of <em>x</em> and <em>y</em> returns merged rows for which a match can be on the merge criterion <em>in both tables</em>:</p>
+<p>An inner join of <em>x</em> and <em>y</em> returns merged rows for which a match can be found on the merge criterion <em>in both tables</em>:</p>
 <p><img src="images/inner_join.png" width="621" /></p>
 <div id="python-33" class="section level4 unnumbered">
 <h4>Python</h4>
@@ -609,7 +612,7 @@ div.csl-indent {
 </div>
 <div id="r-33" class="section level4 unnumbered">
 <h4>R</h4>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="combine-reshape-and-merge.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># by default, merge() executes an inner join</span></span>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="combine-reshape-and-merge.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># with its default arguments, merge() executes an inner join</span></span>
 <span id="cb177-2"><a href="combine-reshape-and-merge.html#cb177-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># (more specifically, a natural join, which is a kind of</span></span>
 <span id="cb177-3"><a href="combine-reshape-and-merge.html#cb177-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># inner join in which the merge-criterion column is not</span></span>
 <span id="cb177-4"><a href="combine-reshape-and-merge.html#cb177-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># repeated, despite being initially present in both tables)</span></span>
@@ -620,7 +623,7 @@ div.csl-indent {
 </div>
 <div id="outer-join" class="section level3" number="5.4.4">
 <h3><span class="header-section-number">5.4.4</span> Outer Join</h3>
-<p>An outer join of <em>x</em> and <em>y</em> keeps all rows from both tables, merging rows where possible based on the merge criterion:</p>
+<p>An outer join of <em>x</em> and <em>y</em> keeps all rows from both tables, merging rows wherever possible based on the merge criterion:</p>
 <p><img src="images/outer_join.png" width="621" /></p>
 <div id="python-34" class="section level4 unnumbered">
 <h4>Python</h4>

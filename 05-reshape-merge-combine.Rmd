@@ -15,7 +15,7 @@ Combining rows may be thought of as "stacking" rectangular data structures.
 
 #### R {-}
 
-The `rbind()` function "binds" rows. It takes two or more objects. To row bind data frames the column names must match, otherwise an error is returned. If  columns being stacked have differing variable types, the values will be coerced according to `logical` < `integer` < `double` < `complex` < `character`. (E.g., if you stack a set of rows with type `logical` in column _J_ on a set of rows with type `character` in column _J_, the output will have column _J_ as type `character`.)
+The `rbind()` function "binds" rows. It takes two or more objects. To row bind data frames, the column names must match, otherwise an error is returned. If  columns being stacked have differing variable types, the values will be coerced according to `logical` < `integer` < `double` < `complex` < `character`. (E.g., if you stack a set of rows with type `logical` in column _J_ on a set of rows with type `character` in column _J_, the output will have column _J_ as type `character`.)
 
 ```{r}
 d1 <- data.frame(x = 4:6, y = letters[1:3])
@@ -88,7 +88,7 @@ df_wide <- data.frame(id = rep(1:3),
 df_wide
 ```
 
-To lengthen a data frame using `reshape()`, a user provides arguments specifying the columns that identify values' origins (person, cell culture, etc.), the columns containing values to be lengthened, and the desired names for output columns in long data:
+To lengthen a data frame using `reshape()`, a user provides arguments specifying the columns that identify values' origins (person, cell culture, etc.), the columns containing values to be lengthened, and the desired names for new columns in long data:
 
 ```{r}
 df_long <- reshape(df_wide,
@@ -190,10 +190,15 @@ To widen the version of the long data that has a column for each of the measures
 ```{r}
 animals_long_1
 animals_wide <- pivot_wider(animals_long_1,
-                            id_cols = c('animal', 'lives_in_water'),
-                            values_from = c('playfulness', 'excitement'),
+                            id_cols = c('animal', 
+                                        'lives_in_water'),
+                            values_from = c('playfulness',
+                                            'excitement'),
                             names_from = 'month',
-                            names_glue = '{month}_{.value}') # `names_glue` allow for customization of wide column names based
+                            names_glue = '{month}_{.value}') 
+                            # `names_glue` allows for customization 
+                            # of column names using "glue";
+                            # see https://glue.tidyverse.org/
 animals_wide
 ```
 
@@ -222,9 +227,7 @@ x = r.x
 y = r.y
 ```
 ```{r}
-# x
 x
-# y
 y
 ```
 
@@ -249,7 +252,7 @@ merge(x, y, by = 'merge_var', all.x = T)
 
 ### Right Join
 
-A right join of _x_ and _y_ keeps all rows of _y_ and merges rows of _x_ into _y_ where possible based on the merge criterion:
+A right join of _x_ and _y_ keeps all rows of _y_ and merges rows of _x_ into _y_ wherever possible based on the merge criterion:
 
 ```{r, echo = F}
 knitr::include_graphics('images/right_join.png')
@@ -268,20 +271,23 @@ merge(x, y, by = 'merge_var', all.y = T)
 
 ### Inner Join
 
-An inner join of _x_ and _y_ returns merged rows for which a match can be on the merge criterion _in both tables_:
+An inner join of _x_ and _y_ returns merged rows for which a match can be found on the merge criterion _in both tables_:
 
 ```{r, echo = F}
 knitr::include_graphics('images/inner_join.png')
 ```
 
 #### Python {-}
+
 ```{python}
 import pandas as pd
 pd.merge(x, y, how = 'inner')
 ```
+
 #### R {-}
+
 ```{r}
-# by default, merge() executes an inner join
+# with its default arguments, merge() executes an inner join
 # (more specifically, a natural join, which is a kind of
 # inner join in which the merge-criterion column is not
 # repeated, despite being initially present in both tables)
@@ -290,18 +296,21 @@ merge(x, y, by = 'merge_var')
 
 ### Outer Join
 
-An outer join of _x_ and _y_ keeps all rows from both tables, merging rows where possible based on the merge criterion:
+An outer join of _x_ and _y_ keeps all rows from both tables, merging rows wherever possible based on the merge criterion:
 
 ```{r, echo = F}
 knitr::include_graphics('images/outer_join.png')
 ```
 
 #### Python {-}
+
 ```{python}
 import pandas as pd
 pd.merge(x, y, how = 'outer')
 ```
+
 #### R {-}
+
 ```{r}
 # all = T (or all.x = T AND all.y = T) results in an outer join
 merge(x, y, by = 'merge_var', all = T)
