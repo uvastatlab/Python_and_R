@@ -34,11 +34,14 @@ Below we show a histogram of the bill length from the dataset. We specified 30 b
 
 One thing to note is that the bins are left inclusive and right exclusive. For example, if a particular bin spans the range of 1 to 3, the bin will include the value 1 but will exclude the value 2 (and will include all values between 1 and 3). In short, bin ranges are as follows [x1,x2) where x1 is the starting point of the bin and x2 is the ending point of the bin. 
 
+Notice the semicolon at the end of the `plt.hist()` function. This suppresses the printing of the array generated to create the histogram. 
+
 ```{python}
 import matplotlib.pyplot as plt
 
 plt.clf()
-plt.hist(penguins.bill_length_mm, bins=30, range=(30,60), color='lightblue', edgecolor='k', linewidth=1)
+plt.hist(penguins.bill_length_mm, bins=30, range=(30,60),
+         color='lightblue', edgecolor='k', linewidth=1);
 plt.title("Penguin Bill Lengths")
 plt.xlabel("Bill Length (mm)")
 plt.ylabel("Count")
