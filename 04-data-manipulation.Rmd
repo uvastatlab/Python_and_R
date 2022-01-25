@@ -407,6 +407,29 @@ mtcars['am'] = mtcars['am'].astype(str)
 type(mtcars.am[0]) # check the type of the first item in 'am' column
 ```
 
+A potential number-to-string conversion task in Python might be formatting 5-digit American zip codes. Some zip codes begin with 0, but if stored as a numeric value, the 0 is dropped. For example, consider the following pandas DataFrame. Notice the leading 0 is dropped from two of the zip codes.
+
+```{python}
+zc = pandas.read_csv('data/zc.csv')
+print(zc)
+```
+
+One way to fix this is using the string `zfill()` method. First we convert the numeric column to string type using the method we just demonstrated. Then we access the "zip" column using `zc.zip` and the `zfill()` method using `str.zfill` with the width parameter set to 5. This pads the string with "0" on the left to make each value 5 characters wide. 
+
+```{python}
+zc['zip'] = zc['zip'].astype(str)
+zc['zip'] = zc.zip.str.zfill(5)
+print(zc)
+```
+
+If we knew we were importing zip codes using `read_csv`, we could also use the `dtype` argument to specify which storage type to use for the "zip" column. Below we pass a dictionary that maps the "str" type to the "zip" column. The result is a properly formatted zip code column.
+
+```{python}
+zc = pandas.read_csv('data/zc.csv', dtype = {'zip': 'str'})
+print(zc)
+```
+
+
 #### R {-}
 
 The `as.character()` function takes a vector and converts it to string format.
@@ -444,10 +467,10 @@ mtcars$am_fac <- factor(mtcars$am, labels = c("automatic", "manual"))
 head(mtcars$am_fac)
 ```
 
-A common number-to-string conversion task is formatting 5-digit American zip codes. Some zip codes begin with 0, but if stored as a numeric value, the 0 is dropped. 
+A common number-to-string conversion task in R is formatting 5-digit American zip codes. Some zip codes begin with 0, but if stored as a numeric value, the 0 is dropped. 
 
 ```{r}
-zip_codes <- c(03766, 03748, 03241, 03264)
+zip_codes <- c(03766, 03748, 22901, 03264)
 zip_codes
 ```
 
@@ -458,6 +481,7 @@ sprintf("%05i", zip_codes)
 ```
 
 See also the `str_pad()` function in the **stringr** package.
+
 
 ## Create numbers from strings
 
