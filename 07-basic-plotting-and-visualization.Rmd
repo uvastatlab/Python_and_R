@@ -201,7 +201,7 @@ Facet plots (also called trellis plots, lattice plots, and conditional plots) ar
 
 #### R {-}
 
-The `coplot()` function in base R produces conditioning plots using the formula notation: `y ~ x | grouping_var`. The `rows` and `columns` arguments control layout. Below we specify one row of plots. The `panel` argument controls what action is carried out in each plot. The default is a scatterplot. Below we use the base R `smooth.plot` function to create scatter plots with a smooth trend line.
+The `coplot()` function in base R produces conditioning plots using formula notation: `y ~ x | grouping_var`. The `rows` and `columns` arguments control layout. Below we specify one row of plots. The `panel` argument controls what action is carried out in each plot. The default is a scatterplot. Below we use the base R `smooth.plot` function to create scatter plots with a smooth trend line.
 
 ```{r warning=FALSE, message=FALSE, results='hide'}
 coplot(bill_depth_mm ~ bill_length_mm | species, 
@@ -210,7 +210,7 @@ coplot(bill_depth_mm ~ bill_length_mm | species,
        rows = 1, col = "navy")
 ```
 
-To condition on two variables, use formula with syntax: `y ~ x | grp_var1 * grp_var2`.
+To condition on two variables, use formula notation with syntax: `y ~ x | grp_var1 * grp_var2`.
 
 ```{r warning=FALSE, message=FALSE, results='hide'}
 coplot(bill_depth_mm ~ bill_length_mm | species * sex, 
@@ -219,7 +219,7 @@ coplot(bill_depth_mm ~ bill_length_mm | species * sex,
        col = "navy")
 ```
 
-The labels of the conditioning variables unfortunately use a lot of real estate in the margins and there is no easy way to modify that. However this design works quite well when we condition on a _numeric variable_. The `coplot` function automatically creates overlapping group intervals to condition on, and the stacked layout of the labels helps us visualize how the relationship between y and x changes between the groups. To manually set the number of groups, use the `number` argument. Below we specify 4 groups to be generated for "bill_length_mm".
+The labels of the conditioning variables unfortunately use a lot of real estate in the margins, and there is no easy way to modify that. However, this design works quite well when we condition on a _numeric variable_. The `coplot()` function automatically creates overlapping group intervals to condition on, and the stacked layout of the labels helps us visualize how the relationship between y and x changes between the groups. To manually set the number of groups, use the `number` argument. Below we specify 4 groups to be generated for "bill_length_mm".
 
 ```{r warning=FALSE, message=FALSE, results='hide'}
 coplot(flipper_length_mm ~ body_mass_g | bill_length_mm, 
@@ -229,8 +229,7 @@ coplot(flipper_length_mm ~ body_mass_g | bill_length_mm,
        rows = 1, col = "navy")
 ```
 
-
-**ggplot2** provides a intuitive and easy-to-use method for generating facet plots: A user specifies the aesthetics of the plot using standard **ggplot2** syntax (i.e., as a series of added layers) and then adds an additional call, `facet_wrap()` (or `facet_grid()`; differences are discussed below), specifying the faceting variable(s) to split up the plots by.
+Alternatively, **ggplot2** provides a intuitive and easy-to-use method for generating facet plots: A user specifies the aesthetics of the plot using standard **ggplot2** syntax (i.e., as a series of added layers) and then adds an additional call, `facet_wrap()` (or `facet_grid()`; differences are discussed below), specifying the faceting variable(s) to split up the plots by.
 ```{r, warning = F}
 ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   geom_point(color = 'navy') +
@@ -238,9 +237,9 @@ ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   facet_wrap(~species) # Use formula notation, a character vector, or vars() to specify faceting variables; e.g., ~species, c('species'), or vars(species)
 ```
 
-The number of rows and columns can be manually specified with `nrow` and `ncol` arguments in `facet_wrap()`. By default, the x and y axes of all facet plots will be on the same scale. The axis ranges can be set to vary freely by adding `scales = 'free'` as an argument (or, alternatively, `'free_x'` or `'free_y'` to free just the x or y axes.)
+The number of rows and columns can be manually specified with `nrow` and `ncol` arguments in `facet_wrap()`. By default, the x and y axes of all facet plots will be on the same scale. The axis ranges can be set to vary freely by adding `scales = 'free'` as an argument (or, alternatively, `scales = 'free_x'` or `scales = 'free_y'` to free just the x or y axis).
 
-Both `facet_wrap()` and `facet_grid()` can be used for faceting. When faceting based on multiple variables (e.g., species and sex), `facet_wrap()` will drop group combinations for which there are no data points, whereas `facet_grid()` will generate a plot for all possible group combinations:
+Both `facet_wrap()` and `facet_grid()` can be used to make facet plots. When faceting based on multiple variables (e.g., species and sex), `facet_wrap()` will drop group combinations for which there are no data points, whereas `facet_grid()` will generate a plot for all possible group combinations:
 ```{r, warning = F}
 ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   geom_point(color = 'navy') +

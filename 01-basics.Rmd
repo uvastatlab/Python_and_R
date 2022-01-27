@@ -74,6 +74,24 @@ Packages often depend on other packages. These are known as "dependencies." Some
 
 #### Python {-}
 
+When you download Python and open a script, you have access to The Python Standard Library. This library includes several datatypes and function for storing data, performing mathematical operations, and beyond. Commonly used datatypes include list and range.
+
+```{python}
+
+```
+
+From The Standard Python Library, users can import different modules, like math and itertools, that include several functions for a range of operations.
+
+```{python}
+
+```
+
+There are also several open-source Python modules which are available for download, and subsequent import into Python, like pandas and numpy.
+
+```{python}
+
+```
+
 #### R {-}
 
 The main repository for R packages is the [Comprehensive R Archive Network](https://cran.r-project.org/) (CRAN). Another repository is [Bioconductor](https://www.bioconductor.org/), which provides tools for working with genomic data. Many packages are also distributed on [GitHub](https://github.com/).

@@ -168,9 +168,12 @@ The pandas function `to_csv()` saves a pandas DataFrame as a csv file.
 d.to_csv("data.csv")
 ```
 
-The Python package pickle allows you to write (save) any variable from the Python environment and read (load) any variable you have written into the Python environment.
+The Python package pickle allows you to write (save) any object from the Python environment and read (load) any object you have written into the Python environment.
 
-To write a variable using pickle ...
+The first line to write to a pickle file opens the file object being written to. `open(file_name, 'wb')` specifies the name of the file object being written to. Then, 'wb' stands for 'write binary', which means the file is being written in binary form (1s and 0s). After the _as_ keyword, 'file_', is the user selected name of the file object.
+
+The second line to write to a pickle file uses the `pickle.dump()` function. This function requires two arguments: the object being written and the name of the file object.
+
 ```{python}
 import pickle
 
@@ -179,15 +182,17 @@ file_name = 'data.pickle'
 
 # write the variable to the file system
 with open(file_name, 'wb') as file_:
-    pickle.dump(d, file_, protocol=pickle.HIGHEST_PROTOCOL)
+    pickle.dump(d, file_)
 ```
 
-To read the same variable using pickle ...
+The first line to read to a pickle file opens the file object being read from. `open('data.pickle', 'rb')` specifies the name of the file object being written to. Then, 'rb' stands for 'write binary', which means the file is being read in binary form (1s and 0s). After the _as_ keyword, 'my_file', is the user selected name of the file object.
+
+The second line to write to a pickle file uses the `pickle.load()` function. This function requires one argument: the name of the file object.
 ```{python}
 
 # read the specified file from the file system and load into variable
-with open('data.pickle', 'rb') as file_:
-    d = pickle.load(file_)
+with open('data.pickle', 'rb') as my_file:
+    d = pickle.load(my_file)
 ```
 
 #### R {-}
