@@ -106,7 +106,7 @@ Occasionally when installing package updates you will be asked, "Do you want to 
 
 ## Logic
 
-Python and R share the same operators for making comparisons: 
+Python and R share the same relational operators for making comparisons: 
 
 - `==` (equals)
 - `!=` (not equal to)
@@ -122,11 +122,57 @@ Likewise they share the same operators for logical AND and OR:
 
 However R also has `&&` and `||` operators for programming control-flow.
 
-Python and R have different operators for negation and xor (exclusive OR). 
+Python and R have different operators for negation. Python uses `not`. R uses `!`.
 
 #### Python {-}
 
 #### R {-}
+
+R's relational operators allow comparisons between a vector and a single value, or comparisons between two vectors. The result is a vector of TRUE/FALSE values.
+
+```{r}
+# vector compared with value
+x1 <- c(1, 5, 9, 12, 11, 6)
+x1 < 8
+
+# vector compared with vector
+x2 <- c(2, 4, 6, 14, 15, 7)
+x1 > x2
+```
+
+Comparisons with NA (missing value) results in NA.
+
+```{r}
+x1 <- c(1, 5, 9, NA, 11, 6)
+x1 < 8
+```
+
+Multiple comparisons can be made with AND (`&`) and OR (`|`) operators.
+
+```{r}
+x2 > 3 & x2 < 10
+x2 < 3 | x2 > 10
+```
+
+TRUE/FALSE values in R have numeric values of 1/0. This allows us to sum and average them. (Note: an average of 0 and 1 values is the proportion of 1's.)
+
+```{r}
+# sum of values greater than 10
+sum(x2 > 10)
+
+# proportion of values greater than 10
+mean(x2 > 10)
+```
+
+Use the `!` operator for negation. This allows to check for something that is NOT TRUE.
+
+```{r}
+# which value are NOT less than 6
+!x2 < 6
+```
+
+See the `?Comparison` and `?Logic` help pages for more information.
+
 
 ## Generating a sequence of values
 
