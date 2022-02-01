@@ -12,7 +12,7 @@ one-dimensional-data
 two-dimensional-data
 three-dimensional-and-higher-data
 general-data-structures
-importing-export-and-save-data
+import-export-and-save-data
 csv
 xlsxlsx-excel
 json
