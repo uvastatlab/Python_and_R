@@ -70,7 +70,7 @@ dim(mtcars)
 How to select specific columns of data frames.
 
 #### Python {-}
-The period operator `.` provides access to a column in a DataFrame as a vector. This returns pandas series. A pandas series can do everything a numpy array can do.
+The period operator `.` provides access to a column in a DataFrame as a vector. This returns pandas Series. A pandas series can do everything a numpy array can do.
 
 ```{python}
 mtcars.mpg
@@ -159,6 +159,24 @@ tail(mtcars, n = 1)
 How to view rows of a data frame that meet certain conditions.
 
 #### Python {-}
+
+We can filter rows of a data frame based on a condition to subset on.
+
+```{python}
+mtcars[mtcars["mpg"] > 30]
+```
+
+To select particular columns with the condition, subset the data frame using a list of desired columns as indices.
+
+```{python}
+mtcars[mtcars["mpg"] > 30][["mpg", "cyl"]]
+```
+
+You can also filter with multiple row conditions.
+
+```{python}
+mtcars[mtcars["mpg"] > 30][mtcars["hp"] < 66][["mpg", "cyl"]]
+```
 
 #### R {-}
 
