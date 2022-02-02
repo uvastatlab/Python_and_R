@@ -53,18 +53,34 @@ xtabs(formula = ~nationality + sex, data = dat)
 ## Group summaries
 
 Computing statistical summaries per group.
-
-#### Python {-}
-
-#### R {-}
-
-The `aggregate()` function allows a user to easily generate by-group statistical summaries based on one or more grouping variables. Grouping variables can be declared as a list in the function's `by` argument. Alternatively, the grouping variables and the variable to be summarized can be passed to `aggregate()` in formula notation: `var_to_be_aggregated ~ grouping_var_1 + ... + grouping_var_N`. The summarizing function (e.g., `mean()`; `median()`; etc.) is declared in the `FUN` argument.
-
 ```{r echo=FALSE}
 rm(mtcars)
 data("mtcars")
 ```
+```{python echo=FALSE}
+mtcars = r.mtcars
+```
 
+#### Python {-}
+
+The `groupby()` function from **Pandas** splits up a data set based on one or more grouping variables. Summarizing functions---like `mean()`, `sum()`, and so on---can then be applied to those groups. In the first example below, we use `groupby()` to group rows of the `mtcars` data set by the number of cylinders each car has; from there, we select just the `mpg` column and call `mean()`, thus giving the average miles per gallon within each cylinder group. In the second example, we again group observations by `cyl`, but instead of then selecting just the `mpg` column, we directly call `mean()`; this gives the mean for each variable in the data set within each cylinder group. Finally, in the third example, we group by two variables---`cyl` and `vs`---and then use the `describe()` function to generate a set of descriptive statistics for `mpg` within each `cylinder`*`vs` group (e.g., mean, SD, minimum, etc.).
+
+```{python}
+import pandas as pd
+
+mean_mpg_by_cyl = mtcars.groupby(by = 'cyl')['mpg'].mean()
+print(mean_mpg_by_cyl)
+
+means_all_vars = mtcars.groupby(by = 'cyl').mean()
+print(means_all_vars)
+
+median_mpg_by_cyl_vs = mtcars.groupby(by = ['cyl', 'vs'])['mpg'].describe()
+print(mpg_by_cyl_vs)
+````
+
+#### R {-}
+
+The `aggregate()` function can be used to generate by-group statistical summaries based on one or more grouping variables. Grouping variables can be declared as a list in the function's `by` argument. Alternatively, the grouping variable(s) and the variable to be summarized can be passed to `aggregate()` in formula notation: `var_to_be_aggregated ~ grouping_var_1 + ... + grouping_var_N`. The summarizing function (e.g., `mean()`; `median()`; etc.) is declared in the `FUN` argument.
 
 ```{r agg1}
 # One grouping variable
@@ -74,7 +90,7 @@ aggregate(x = mtcars$mpg,
           FUN = "mean") 
 ```
 
-Adding `drop=FALSE` ensures all combinations of levels are returned even if no data exist at that combination. Below the final row is `NA` since there are no 8 cylinder cars with a "straight" engine (vs = 1).
+Adding `drop=FALSE` ensures all combinations of levels are returned even if no data exist at that combination. Below the final row is `NA` since there are no 8-cylinder cars with a "straight" engine (vs = 1).
 
 ```{r agg2}
 # Two or more grouping variables
@@ -84,10 +100,8 @@ aggregate(x = mtcars$mpg,
           FUN = "max", drop = FALSE) 
 ```
 
-
 ```{r, eval = F}
 # Or, specify the variable to summarize and the grouping variables in formula notation
-aggregate(mpg ~ cyl, data = mtcars, FUN = mean)
 aggregate(mpg ~ cyl + vs, data = mtcars, FUN = max)
 ```
 
