@@ -19,11 +19,9 @@ dat <- data.frame(nationality = c('Canadian', 'French',
                                   'Canadian'),
                   sex = c('m', 'f', 'f', 'm', 'f'))
 ```
-
 ```{python, echo = F}
 dat = r.dat
 ```
-
 ```{r}
 dat
 ```
@@ -63,7 +61,7 @@ mtcars = r.mtcars
 
 #### Python {-}
 
-The `groupby()` function from **Pandas** splits up a data set based on one or more grouping variables. Summarizing functions---like `mean()`, `sum()`, and so on---can then be applied to those groups. In the first example below, we use `groupby()` to group rows of the `mtcars` data set by the number of cylinders each car has; from there, we select just the `mpg` column and call `mean()`, thus giving the average miles per gallon within each cylinder group. In the second example, we again group observations by `cyl`, but instead of then selecting just the `mpg` column, we directly call `mean()`; this gives the mean for each variable in the data set within each cylinder group. Finally, in the third example, we group by two variables---`cyl` and `vs`---and then use the `describe()` function to generate a set of descriptive statistics for `mpg` within each `cylinder`*`vs` group (e.g., mean, SD, minimum, etc.).
+The `groupby()` function from **Pandas** splits up a data set based on one or more grouping variables. Summarizing functions---like `mean()`, `sum()`, and so on---can then be applied to those groups. In the first example below, we use `groupby()` to group rows of the `mtcars` dataset by the number of cylinders each car has; from there, we select just the `mpg` column and call `mean()`, thus producing the average miles per gallon within each cylinder group. In the second example, we again group observations by `cyl`, but instead of then selecting just the `mpg` column, we directly call `mean()`; this gives the mean for each variable in the data set within each cylinder group. Finally, in the third example, we group by two variables---`cyl` and `vs`---and then use the `describe()` function to generate a set of descriptive statistics for `mpg` within each `cylinder`*`vs` group (e.g., mean, SD, minimum, etc.).
 
 ```{python}
 import pandas as pd
@@ -128,11 +126,30 @@ mtcars %>%
 
 ## Centering and Scaling
 
-_Centering_ refers to subtracting a constant from every value, such as the mean. This is sometimes performed to aid interpretation of linear model coefficients. 
+_Centering_ refers to subtracting a constant, such as the mean, from every one of set of values. This is sometimes performed to aid interpretation of linear model coefficients.
 
-_Scaling_ refers to rescaling a column or vector of values such that their mean is 0 and their standard deviation is 1. This is sometimes performed to put multiple variables on the same scale and is often recommended for procedures such as principal components analysis (PCA).
+_Scaling_ refers to rescaling a column or vector of values such that their mean is zero and their standard deviation is one. This is sometimes performed to put multiple variables on the same scale and is often recommended for procedures such as principal components analysis (PCA).
 
 #### Python {-}
+
+The `scale()` function from the **preprocessing** module of the **scikit-learn** package provides one-step centering and scaling. To center a variable at zero without scaling it, use `scale()` with `with_mean = True` and `with_std = False` (both are `True` by default).
+
+```{python}
+from sklearn import preprocessing
+
+centered_mpg = preprocessing.scale(mtcars.mpg, with_mean = True, with_std = False)
+centered_mpg.mean()
+```
+
+To scale a variable after centering it (so that its mean is zero and its standard deviation is one), use `scale()` with `with_mean = True` and `with_std = True`.
+
+```{python}
+from sklearn import preprocessing
+
+scaled_mpg = preprocessing.scale(mtcars.mpg, with_mean = True, with_std = True)
+scaled_mpg.mean()
+scaled_mpg.std()
+```
 
 #### R {-}
 
