@@ -8,6 +8,8 @@ This chapter reviews importing external data into Python and R, including CSV, E
 
 The data set we use for demonstration is the New York State Math Test Results by Grade from 2006 - 2011, downloaded from [data.gov](https://catalog.data.gov/dataset/2006-2011-nys-math-test-results-by-grade-citywide-by-race-ethnicity) on September 30, 2021.
 
+The final section presents approaches to exporting and saving data.
+
 ## CSV
 
 Comma separated value (CSV) files are text files with fields separated by commas. They are useful for "rectangular" data, where rows represent observations and columns represent variables or features. 
