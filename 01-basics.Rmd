@@ -74,22 +74,31 @@ Packages often depend on other packages. These are known as "dependencies." Some
 
 #### Python {-}
 
-When you download Python and open a script, you have access to The Python Standard Library. This library includes several datatypes and function for storing data, performing mathematical operations, and beyond. Commonly used datatypes include list and range.
+When you download Python and open a script, you have access to The Python Standard Library. This library includes several datatypes and functions for storing data, performing mathematical operations, and beyond. Commonly used datatypes include list and range. As you can see below, you do not need to import data types from the Standard Python Library.
 
 ```{python}
-
+my_list = []
+for idx in range(5):
+  my_list.append(idx)
+print(my_list)
 ```
 
-From The Standard Python Library, users can import different modules, like math and itertools, that include several functions for a range of operations.
+Libraries contain modules, groups of functions. To use functions from modules in the Standard Python Library, users must import the appropriate module. Examples include math and itertools, which both include several functions for a range of operations.
 
 ```{python}
-
+import math
+one = 1
+two = 2
+print(math.pow(two, one))
 ```
 
-There are also several open-source Python modules which are available for download, and subsequent import into Python, like pandas and numpy.
+Users can also download 100s of libraries outside of the Standard Python Library. Popular libraries include numpy, used for operations on arrays/vectors and pandas, used for data analysis.
 
 ```{python}
+import numpy as np
 
+my_array = np.array([1,2,3])
+print(my_array)
 ```
 
 #### R {-}
