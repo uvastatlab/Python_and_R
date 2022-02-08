@@ -197,3 +197,64 @@ with open('data.pickle', 'rb') as my_file:
 ```
 
 #### R {-}
+
+To export a matrix or data frame to a CSV file, use the `write.csv()` function. To export to a file with a different field separator, such as a tab, use `write.table()`. The minimal arguments for `write.csv()` are the object and the file name. To export a data frame named `dat` to a file named `dat.csv` to your current working directory:
+
+```{r eval=FALSE}
+write.csv(dat, file = "dat.csv")
+```
+
+By default a column for row names or numbers is included in the exported csv file. To turn that off, set `row.names = FALSE`, like so:
+
+```{r eval=FALSE}
+write.csv(dat, file = "dat.csv", row.names = FALSE)
+```
+
+To append a matrix or data frame to an existing csv file, set `append = TRUE`.
+
+See also `sink()`, `cat()`, and `writeLines()` for sending text and output to a file.
+
+To save and load R objects for future use in R, there are two options:
+
+1. Save and load a single object using `saveRDS()` and `readRDS()`.
+2. Save multiple objects using `save()` and `load()`.
+
+##### Save and load a single object
+
+The minimal arguments for `saveRDS()` are the object and a file name with an `.rds` extension. For example, to save a single data frame named `dat` to your current working directory as `dat.rds`:
+
+```{r eval=FALSE}
+saveRDS(dat, file = "dat.rds")
+```
+
+To load the rds file into R from your current working directory, use the `readRDS()` function. Notice we must assign the result of `readRDS()` to an object. The object name need not match the file name. 
+
+```{r eval = FALSE}
+d <- readRDS("dat.rds")
+```
+
+The advantage of saving and loading native R objects is the preservation of characteristics such as factors, attributes, classes, etc. Any object can be saved, including model objects, functions, vectors, lists, etc.
+
+##### Save multiple objects
+
+The minimal arguments for `save()` are the objects to save and a file name with a `.rda` extension. Objects can also be specified as a character vector to the `list` argument. For example, to save a data frame named `dat`, a model object named `m`, and a plot object called `p`, to your current working directory as `work.rda`:
+
+```{r eval=FALSE}
+save(dat, m, p, file = "work.rda")
+```
+
+Or with objects specified as a character vector:
+
+```{r eval=FALSE}
+save(list = c("dat", "m", "p"), file = "work.rda")
+```
+
+To load the rda file from your current working directory, use the `load()` function. Notice we do not assign the result to an object name. The result of the `load()` function is to load the objects into your global environment. 
+
+```{r eval=FALSE}
+load("work.rda")
+```
+
+Upon successful execution of the `load()` function, the `dat`, `m`, and `p` objects will be loaded into your global environment. Any objects already in your global environment with the same name will be overwritten without warning. 
+
+You can also save _everything_ in your global environment into a `rda` file using the `save.image()` function. It works just like the `save()` function except you do not specify which objects to save. You simply provide a file name. If you do not specify a file name, a default name of `.Rdata` is used. To load the file use the `load()` function. Again, all objects will be loaded into the gloabal environment, overwriting any existing objects with the same name. 
