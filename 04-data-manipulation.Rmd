@@ -666,6 +666,16 @@ anyDuplicated(mtcars2)
 ```
 
 
+## Format dates
+
+With formatted dates we can calculate elapsed time, extract components of a date, properly order names of months, and more. 
+
+#### Python {-}
+
+#### R {-}
+
+
+
 ## Randomly sample rows
 
 How to take a random sample of rows from a data frame. The sample is usually either a fixed size or a proportion.

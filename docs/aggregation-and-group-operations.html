@@ -197,7 +197,8 @@ div.csl-indent {
 <li class="chapter" data-level="4.7" data-path="data-manipulation.html"><a href="data-manipulation.html#create-numbers-from-strings"><i class="fa fa-check"></i><b>4.7</b> Create numbers from strings</a></li>
 <li class="chapter" data-level="4.8" data-path="data-manipulation.html"><a href="data-manipulation.html#change-case"><i class="fa fa-check"></i><b>4.8</b> Change case</a></li>
 <li class="chapter" data-level="4.9" data-path="data-manipulation.html"><a href="data-manipulation.html#drop-duplicate-rows"><i class="fa fa-check"></i><b>4.9</b> Drop duplicate rows</a></li>
-<li class="chapter" data-level="4.10" data-path="data-manipulation.html"><a href="data-manipulation.html#randomly-sample-rows"><i class="fa fa-check"></i><b>4.10</b> Randomly sample rows</a></li>
+<li class="chapter" data-level="4.10" data-path="data-manipulation.html"><a href="data-manipulation.html#format-dates"><i class="fa fa-check"></i><b>4.10</b> Format dates</a></li>
+<li class="chapter" data-level="4.11" data-path="data-manipulation.html"><a href="data-manipulation.html#randomly-sample-rows"><i class="fa fa-check"></i><b>4.11</b> Randomly sample rows</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="combine-reshape-and-merge.html"><a href="combine-reshape-and-merge.html"><i class="fa fa-check"></i><b>5</b> Combine, Reshape and Merge</a>
 <ul>
@@ -273,7 +274,7 @@ div.csl-indent {
 <span id="cb201-5"><a href="aggregation-and-group-operations.html#cb201-5" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>      French   f</span>
 <span id="cb201-6"><a href="aggregation-and-group-operations.html#cb201-6" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>    Egyptian   m</span>
 <span id="cb201-7"><a href="aggregation-and-group-operations.html#cb201-7" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>    Canadian   f</span></code></pre></div>
-<div id="python-35" class="section level4 unnumbered">
+<div id="python-36" class="section level4 unnumbered">
 <h4>Python</h4>
 <p>The <strong>pandas</strong> package contains a <code>crosstab()</code> function for cross tabulation with two or more variables. Alternatively, the <code>groupby()</code> function, also in <strong>pandas</strong>, facilitates cross tabulation by one or more variables when used in combination with <code>count()</code>.</p>
 <div class="sourceCode" id="cb202"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb202-1"><a href="aggregation-and-group-operations.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -298,7 +299,7 @@ div.csl-indent {
 <span id="cb202-20"><a href="aggregation-and-group-operations.html#cb202-20" aria-hidden="true" tabindex="-1"></a>French       f      <span class="dv">2</span></span>
 <span id="cb202-21"><a href="aggregation-and-group-operations.html#cb202-21" aria-hidden="true" tabindex="-1"></a>Name: nationality, dtype: int64</span></code></pre></div>
 </div>
-<div id="r-35" class="section level4 unnumbered">
+<div id="r-36" class="section level4 unnumbered">
 <h4>R</h4>
 <p>The <code>table()</code> function performs cross tabulation in R. A user can enter a single grouping variable or enter multiple grouping variables separated by a comma(s). The <code>xtabs()</code> function also computes cross-tabs; a user enters the variables to be used for grouping in formula notation.</p>
 <div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="aggregation-and-group-operations.html#cb203-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">table</span>(dat<span class="sc">$</span>nationality)</span>
@@ -322,7 +323,7 @@ div.csl-indent {
 <div id="group-summaries" class="section level2" number="6.2">
 <h2><span class="header-section-number">6.2</span> Group summaries</h2>
 <p>Computing statistical summaries per group.</p>
-<div id="python-36" class="section level4 unnumbered">
+<div id="python-37" class="section level4 unnumbered">
 <h4>Python</h4>
 <p>The <code>groupby()</code> function from <strong>Pandas</strong> splits up a data set based on one or more grouping variables. Summarizing functions—like <code>mean()</code>, <code>sum()</code>, and so on—can then be applied to those groups. In the first example below, we use <code>groupby()</code> to group rows of the <code>mtcars</code> dataset by the number of cylinders each car has; from there, we select just the <code>mpg</code> column and call <code>mean()</code>, thus producing the average miles per gallon within each cylinder group. In the second example, we again group observations by <code>cyl</code>, but instead of then selecting just the <code>mpg</code> column, we directly call <code>mean()</code>; this gives the mean for each variable in the data set within each cylinder group. Finally, in the third example, we group by two variables—<code>cyl</code> and <code>vs</code>—and then use the <code>describe()</code> function to generate a set of descriptive statistics for <code>mpg</code> within each <code>cylinder</code>*<code>vs</code> group (e.g., mean, SD, minimum, etc.).</p>
 <div class="sourceCode" id="cb204"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb204-1"><a href="aggregation-and-group-operations.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -353,7 +354,7 @@ div.csl-indent {
 <span id="cb204-26"><a href="aggregation-and-group-operations.html#cb204-26" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1.0</span>    <span class="fl">4.0</span>  <span class="fl">19.125000</span>  <span class="fl">1.631717</span>  <span class="fl">17.8</span>  <span class="fl">18.025</span>  <span class="fl">18.65</span>  <span class="fl">19.75</span>  <span class="fl">21.4</span></span>
 <span id="cb204-27"><a href="aggregation-and-group-operations.html#cb204-27" aria-hidden="true" tabindex="-1"></a><span class="fl">8.0</span> <span class="fl">0.0</span>   <span class="fl">14.0</span>  <span class="fl">15.100000</span>  <span class="fl">2.560048</span>  <span class="fl">10.4</span>  <span class="fl">14.400</span>  <span class="fl">15.20</span>  <span class="fl">16.25</span>  <span class="fl">19.2</span></span></code></pre></div>
 </div>
-<div id="r-36" class="section level4 unnumbered">
+<div id="r-37" class="section level4 unnumbered">
 <h4>R</h4>
 <p>The <code>aggregate()</code> function can be used to generate by-group statistical summaries based on one or more grouping variables. Grouping variables can be declared as a list in the function’s <code>by</code> argument. Alternatively, the grouping variable(s) and the variable to be summarized can be passed to <code>aggregate()</code> in formula notation: <code>var_to_be_aggregated ~ grouping_var_1 + ... + grouping_var_N</code>. The summarizing function (e.g., <code>mean()</code>; <code>median()</code>; etc.) is declared in the <code>FUN</code> argument.</p>
 <div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="aggregation-and-group-operations.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># One grouping variable</span></span>
@@ -421,7 +422,7 @@ div.csl-indent {
 <h2><span class="header-section-number">6.3</span> Centering and Scaling</h2>
 <p><em>Centering</em> refers to subtracting a constant, such as the mean, from every one of set of values. This is sometimes performed to aid interpretation of linear model coefficients.</p>
 <p><em>Scaling</em> refers to rescaling a column or vector of values such that their mean is zero and their standard deviation is one. This is sometimes performed to put multiple variables on the same scale and is often recommended for procedures such as principal components analysis (PCA).</p>
-<div id="python-37" class="section level4 unnumbered">
+<div id="python-38" class="section level4 unnumbered">
 <h4>Python</h4>
 <p>The <code>scale()</code> function from the <strong>preprocessing</strong> module of the <strong>scikit-learn</strong> package provides one-step centering and scaling. To center a variable at zero without scaling it, use <code>scale()</code> with <code>with_mean = True</code> and <code>with_std = False</code> (both are <code>True</code> by default).</p>
 <div class="sourceCode" id="cb210"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb210-1"><a href="aggregation-and-group-operations.html#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">from</span> sklearn <span class="im">import</span> preprocessing</span>
@@ -438,7 +439,7 @@ div.csl-indent {
 <span id="cb211-6"><a href="aggregation-and-group-operations.html#cb211-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> scaled_mpg.std()</span>
 <span id="cb211-7"><a href="aggregation-and-group-operations.html#cb211-7" aria-hidden="true" tabindex="-1"></a><span class="fl">1.0</span></span></code></pre></div>
 </div>
-<div id="r-37" class="section level4 unnumbered">
+<div id="r-38" class="section level4 unnumbered">
 <h4>R</h4>
 <p>The <code>scale()</code> function can both center and scale variables.</p>
 <p>To center a variable without scaling it, call <code>scale()</code> with the <code>center</code> argument set to <code>TRUE</code> and the <code>scale</code> argument set to <code>FALSE</code>. The variable’s mean will be subtracted off of each of the variable values. (Note: If desired, the <code>center</code> argument can be set to a numeric value instead of <code>TRUE</code>/<code>FALSE</code>; in that case, each variable value will have the argument value subtracted off of it.)</p>

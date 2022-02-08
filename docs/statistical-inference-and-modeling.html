@@ -197,7 +197,8 @@ div.csl-indent {
 <li class="chapter" data-level="4.7" data-path="data-manipulation.html"><a href="data-manipulation.html#create-numbers-from-strings"><i class="fa fa-check"></i><b>4.7</b> Create numbers from strings</a></li>
 <li class="chapter" data-level="4.8" data-path="data-manipulation.html"><a href="data-manipulation.html#change-case"><i class="fa fa-check"></i><b>4.8</b> Change case</a></li>
 <li class="chapter" data-level="4.9" data-path="data-manipulation.html"><a href="data-manipulation.html#drop-duplicate-rows"><i class="fa fa-check"></i><b>4.9</b> Drop duplicate rows</a></li>
-<li class="chapter" data-level="4.10" data-path="data-manipulation.html"><a href="data-manipulation.html#randomly-sample-rows"><i class="fa fa-check"></i><b>4.10</b> Randomly sample rows</a></li>
+<li class="chapter" data-level="4.10" data-path="data-manipulation.html"><a href="data-manipulation.html#format-dates"><i class="fa fa-check"></i><b>4.10</b> Format dates</a></li>
+<li class="chapter" data-level="4.11" data-path="data-manipulation.html"><a href="data-manipulation.html#randomly-sample-rows"><i class="fa fa-check"></i><b>4.11</b> Randomly sample rows</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="combine-reshape-and-merge.html"><a href="combine-reshape-and-merge.html"><i class="fa fa-check"></i><b>5</b> Combine, Reshape and Merge</a>
 <ul>
@@ -269,7 +270,7 @@ div.csl-indent {
 <p>To demonstrate the ANOVA test, we use data from <em>The Analysis of Biological Data (3rd ed)</em><span class="citation">(<a href="#ref-whitlock_schluter_2020" role="doc-biblioref">Whitlock and Schluter 2020</a>)</span> on the mass of pine cones (in grams) from three different environments in North America. Of interest is (1) whether or not the mean mass of pine cones differ meaningfully between the three locations, and (2) if they do differ, how are they different?</p>
 <p>We usually assess the first question in each scenario with a hypothesis test and p-value. The null hypothesis is no difference between the means. The p-value is basically the probability of the observed differences between the groups (or more extreme differences) assuming the null hypothesis is true. A small p-value, traditionally less then 0.05, provides evidence against the null. For example, a p-value of 0.01 says there’s a 1% chance of sampling data as different as this (or more different) if there really was no difference between the groups. Note that p-values don’t tell you how two or more statistics differ. See <a href="https://www.tandfonline.com/doi/full/10.1080/00031305.2016.1154108#_i28">the ASA Statement on p-values</a>.</p>
 <p>We assess the second question in each scenario by calculating confidence intervals on the difference in means. This is more informative than a p-value. A confidence interval gives us information on the uncertainty, direction and magnitude of a difference in means. For example, a 95% confidence interval of [2, 15] tells us the data is consistent with a difference anywhere between 2 and 15 and that the mean of one group appears to be at least 2 units larger than the mean of the other group. Note that a 95% confidence interval does not mean there is a 95% probability that the true value is in the interval. The confidence interval either captured the true value or it did not. We don’t know. However the <em>process</em> of calculating the confidence interval works roughly 95% of the time.</p>
-<div id="python-44" class="section level4 unnumbered">
+<div id="python-45" class="section level4 unnumbered">
 <h4>Python</h4>
 <p><strong>t-test</strong></p>
 <p>Our data is available as a <strong>Pandas</strong> dataframe. It’s small enough to view in its entirety.</p>
@@ -339,7 +340,7 @@ div.csl-indent {
 <span id="cb239-3"><a href="statistical-inference-and-modeling.html#cb239-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span>                ch8_d2.query(<span class="st">&#39;location == &quot;3&quot;&#39;</span>)[<span class="st">&#39;mass&#39;</span>])</span>
 <span id="cb239-4"><a href="statistical-inference-and-modeling.html#cb239-4" aria-hidden="true" tabindex="-1"></a>F_onewayResult(statistic<span class="op">=</span><span class="fl">50.0854297693921</span>, pvalue<span class="op">=</span><span class="fl">7.786760128813682e-07</span>)</span></code></pre></div>
 </div>
-<div id="r-44" class="section level4 unnumbered">
+<div id="r-45" class="section level4 unnumbered">
 <h4>R</h4>
 <p><strong>t-test</strong></p>
 <p>The <code>str()</code> function allows to take a quick look at the data frame <code>ch8_d1</code>. One column contains the scores, the other column indicates which group the subject was in (control vs treated).</p>
@@ -418,16 +419,6 @@ div.csl-indent {
 <div id="comparing-group-proportions" class="section level2" number="8.2">
 <h2><span class="header-section-number">8.2</span> Comparing group proportions</h2>
 <p>Comparing the proportions of two or more groups to see if or how they differ.</p>
-<div id="python-45" class="section level4 unnumbered">
-<h4>Python</h4>
-</div>
-<div id="r-45" class="section level4 unnumbered">
-<h4>R</h4>
-</div>
-</div>
-<div id="linear-modeling" class="section level2" number="8.3">
-<h2><span class="header-section-number">8.3</span> linear modeling</h2>
-<p>Analyzing if or how the variability a numeric variable depends on one or more predictor variables.</p>
 <div id="python-46" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
@@ -435,13 +426,23 @@ div.csl-indent {
 <h4>R</h4>
 </div>
 </div>
-<div id="logistic-regression" class="section level2" number="8.4">
-<h2><span class="header-section-number">8.4</span> Logistic regression</h2>
-<p>Analyzing if or how the variability of a binary variable depends on one or more predictor variables.</p>
+<div id="linear-modeling" class="section level2" number="8.3">
+<h2><span class="header-section-number">8.3</span> linear modeling</h2>
+<p>Analyzing if or how the variability a numeric variable depends on one or more predictor variables.</p>
 <div id="python-47" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
 <div id="r-47" class="section level4 unnumbered">
+<h4>R</h4>
+</div>
+</div>
+<div id="logistic-regression" class="section level2" number="8.4">
+<h2><span class="header-section-number">8.4</span> Logistic regression</h2>
+<p>Analyzing if or how the variability of a binary variable depends on one or more predictor variables.</p>
+<div id="python-48" class="section level4 unnumbered">
+<h4>Python</h4>
+</div>
+<div id="r-48" class="section level4 unnumbered">
 <h4>R</h4>
 
 </div>

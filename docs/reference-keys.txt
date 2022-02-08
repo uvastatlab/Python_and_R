@@ -28,6 +28,7 @@ create-strings-from-numbers
 create-numbers-from-strings
 change-case
 drop-duplicate-rows
+format-dates
 randomly-sample-rows
 combine-reshape-and-merge
 combine-rows

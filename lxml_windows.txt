@@ -1,0 +1,6 @@
+lxml on Windows
+
+1. go to https://www.lfd.uci.edu/~gohlke/pythonlibs/#libxml-python
+2. Download the whil file for your OS and version of Python (win10 = amd64)
+3. Open cmd.exe
+4. pip install <path to .whl file>

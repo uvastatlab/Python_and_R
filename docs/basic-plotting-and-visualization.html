@@ -197,7 +197,8 @@ div.csl-indent {
 <li class="chapter" data-level="4.7" data-path="data-manipulation.html"><a href="data-manipulation.html#create-numbers-from-strings"><i class="fa fa-check"></i><b>4.7</b> Create numbers from strings</a></li>
 <li class="chapter" data-level="4.8" data-path="data-manipulation.html"><a href="data-manipulation.html#change-case"><i class="fa fa-check"></i><b>4.8</b> Change case</a></li>
 <li class="chapter" data-level="4.9" data-path="data-manipulation.html"><a href="data-manipulation.html#drop-duplicate-rows"><i class="fa fa-check"></i><b>4.9</b> Drop duplicate rows</a></li>
-<li class="chapter" data-level="4.10" data-path="data-manipulation.html"><a href="data-manipulation.html#randomly-sample-rows"><i class="fa fa-check"></i><b>4.10</b> Randomly sample rows</a></li>
+<li class="chapter" data-level="4.10" data-path="data-manipulation.html"><a href="data-manipulation.html#format-dates"><i class="fa fa-check"></i><b>4.10</b> Format dates</a></li>
+<li class="chapter" data-level="4.11" data-path="data-manipulation.html"><a href="data-manipulation.html#randomly-sample-rows"><i class="fa fa-check"></i><b>4.11</b> Randomly sample rows</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="combine-reshape-and-merge.html"><a href="combine-reshape-and-merge.html"><i class="fa fa-check"></i><b>5</b> Combine, Reshape and Merge</a>
 <ul>
@@ -279,7 +280,7 @@ div.csl-indent {
 <div id="histograms" class="section level2" number="7.1">
 <h2><span class="header-section-number">7.1</span> Histograms</h2>
 <p>Visualizing the distribution of numeric data.</p>
-<div id="python-38" class="section level4 unnumbered">
+<div id="python-39" class="section level4 unnumbered">
 <h4>Python</h4>
 <p>The Python plotting library Matplotlib’s <code>hist()</code> function computes and plots a histogram. There are many parameters that can be specified within the <code>hist()</code> function so that you can customize the output histogram plot to best fit your needs. Some parameters include the number of bins, the upper and lower bounds on each bin, weights, colors, and more.</p>
 <p>Below we show a histogram of the bill length from the dataset. We specified 30 bins each of which is light blue with a black outline of linewidth 1. The <code>hist()</code> defaults to no outline which can make it difficult to distinguish bins clearly, so we add in the bin outlines here.</p>
@@ -296,7 +297,7 @@ div.csl-indent {
 <span id="cb215-9"><a href="basic-plotting-and-visualization.html#cb215-9" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> plt.show()</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-232-1.png" width="672" /></p>
 </div>
-<div id="r-38" class="section level4 unnumbered">
+<div id="r-39" class="section level4 unnumbered">
 <h4>R</h4>
 <p>Base R’s <code>hist()</code> function generates histograms, and features of the histogram—like the bar color, number of bins/breaks, and so on—can be easily customized as below.</p>
 <div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="basic-plotting-and-visualization.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">hist</span>(penguins<span class="sc">$</span>bill_length_mm, <span class="at">breaks =</span> <span class="dv">25</span>, <span class="at">col =</span> <span class="st">&#39;lightblue&#39;</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">60</span>),</span>
@@ -312,7 +313,7 @@ div.csl-indent {
 <div id="barplots" class="section level2" number="7.2">
 <h2><span class="header-section-number">7.2</span> Barplots</h2>
 <p>Visualizing the distribution of categorical data.</p>
-<div id="python-39" class="section level4 unnumbered">
+<div id="python-40" class="section level4 unnumbered">
 <h4>Python</h4>
 <p>For this example, we will generate a bar plot showing how many of each species - Adelie, Chinstrap, Gentoo - we have in our dataset. We go through two ways of doing this here.</p>
 <p>First, we use the Matplotlib plotting library to create the bar plot using the function <code>bar()</code>. To start, we determine the number of each species, then use that data to create the bar plot.</p>
@@ -339,7 +340,7 @@ div.csl-indent {
 <p><img src="_main_files/figure-html/unnamed-chunk-236-3.png" width="672" />
 One thing to note here is that we generated the same bar plot containing the same information with way less effort. Using the built-in pandas plotting routine proved to be the more efficient method here.</p>
 </div>
-<div id="r-39" class="section level4 unnumbered">
+<div id="r-40" class="section level4 unnumbered">
 <h4>R</h4>
 <p>To form barplots, we’ll first take the <strong>penguins</strong> data set and create a summary data frame containing the statistics we’re looking to plot. Here, that’s simply the sample size of each species in the data set.</p>
 <div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="basic-plotting-and-visualization.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> species_counts <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">xtabs</span>(<span class="sc">~</span> species, <span class="at">data =</span> penguins))</span>
@@ -368,10 +369,10 @@ One thing to note here is that we generated the same bar plot containing the sam
 <div id="scatterplot" class="section level2" number="7.3">
 <h2><span class="header-section-number">7.3</span> Scatterplot</h2>
 <p>Visualizing the relationship between two numeric variables.</p>
-<div id="python-40" class="section level4 unnumbered">
+<div id="python-41" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
-<div id="r-40" class="section level4 unnumbered">
+<div id="r-41" class="section level4 unnumbered">
 <h4>R</h4>
 <p>Scatterplots can be generated in base R with the <code>plot()</code> function. The <code>pch</code> argument below modifies the point shape (e.g., 20 = solid circle; 24 = unfilled triangle; etc.)</p>
 <div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="basic-plotting-and-visualization.html#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">plot</span>(penguins<span class="sc">$</span>body_mass_g, penguins<span class="sc">$</span>flipper_length_mm, </span>
@@ -390,10 +391,10 @@ One thing to note here is that we generated the same bar plot containing the sam
 <div id="stripcharts" class="section level2" number="7.4">
 <h2><span class="header-section-number">7.4</span> Stripcharts</h2>
 <p>Stripcharts are one-dimensional scatterplots. Like boxplots, they reveal the distribution of a numeric variable “within” levels of a categorical variable.</p>
-<div id="python-41" class="section level4 unnumbered">
+<div id="python-42" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
-<div id="r-41" class="section level4 unnumbered">
+<div id="r-42" class="section level4 unnumbered">
 <h4>R</h4>
 <p>Base R offers the <code>stripchart()</code> function. To indicate the numeric variable and the grouping variable, you can use formula notation: <code>numeric_var ~ grouping_var</code>. Adding <code>methhod = 'jitter'</code> to the set of arguments spreads the points out slightly within each level of the grouping variable, making it easier to see points that might otherwise be obscured by overlap.</p>
 <div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="basic-plotting-and-visualization.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">stripchart</span>(bill_depth_mm <span class="sc">~</span> island, <span class="at">data =</span> penguins, <span class="at">method =</span> <span class="st">&#39;jitter&#39;</span>,</span>
@@ -413,10 +414,10 @@ One thing to note here is that we generated the same bar plot containing the sam
 <div id="boxplots" class="section level2" number="7.5">
 <h2><span class="header-section-number">7.5</span> Boxplots</h2>
 <p>Visualizing the relationship between a numeric variable and a categorical variable via five-number summaries.</p>
-<div id="python-42" class="section level4 unnumbered">
+<div id="python-43" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
-<div id="r-42" class="section level4 unnumbered">
+<div id="r-43" class="section level4 unnumbered">
 <h4>R</h4>
 <p>The <code>boxplot()</code> function in base R generates boxplots, and a user specifies the grouping variable and the numeric variable to be plotted in formula notation: <code>y ~ grouping_var</code>.</p>
 <div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="basic-plotting-and-visualization.html#cb227-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">boxplot</span>(bill_depth_mm <span class="sc">~</span> island, <span class="at">data =</span> penguins, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&#39;lightblue&#39;</span>, <span class="st">&#39;cornflowerblue&#39;</span>, <span class="st">&#39;darkslateblue&#39;</span>),</span>
@@ -435,10 +436,10 @@ One thing to note here is that we generated the same bar plot containing the sam
 <div id="facet-plots" class="section level2" number="7.6">
 <h2><span class="header-section-number">7.6</span> Facet plots</h2>
 <p>Facet plots (also called trellis plots, lattice plots, and conditional plots) are comprised of multiple smaller plots, where each subplot contains a subset of the overall data, with subsets defined by one or more faceting variable.</p>
-<div id="python-43" class="section level4 unnumbered">
+<div id="python-44" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
-<div id="r-43" class="section level4 unnumbered">
+<div id="r-44" class="section level4 unnumbered">
 <h4>R</h4>
 <p>The <code>coplot()</code> function in base R produces conditioning plots using formula notation: <code>y ~ x | grouping_var</code>. The <code>rows</code> and <code>columns</code> arguments control layout. Below we specify one row of plots. The <code>panel</code> argument controls what action is carried out in each plot. The default is a scatterplot. Below we use the base R <code>smooth.plot</code> function to create scatter plots with a smooth trend line.</p>
 <div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="basic-plotting-and-visualization.html#cb229-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">coplot</span>(bill_depth_mm <span class="sc">~</span> bill_length_mm <span class="sc">|</span> species, </span>
