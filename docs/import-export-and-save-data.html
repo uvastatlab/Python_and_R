@@ -434,16 +434,16 @@ div.csl-indent {
 <li>Save and load a single object using <code>saveRDS()</code> and <code>readRDS()</code>.</li>
 <li>Save multiple objects using <code>save()</code> and <code>load()</code>.</li>
 </ol>
-<div id="save-and-load-a-single-object" class="section level5" number="3.5.0.0.1">
-<h5><span class="header-section-number">3.5.0.0.1</span> Save and load a single object</h5>
+<div id="save-and-load-a-single-object" class="section level5 unnumbered">
+<h5>Save and load a single object</h5>
 <p>The minimal arguments for <code>saveRDS()</code> are the object and a file name with an <code>.rds</code> extension. For example, to save a single data frame named <code>dat</code> to your current working directory as <code>dat.rds</code>:</p>
 <div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="import-export-and-save-data.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">saveRDS</span>(dat, <span class="at">file =</span> <span class="st">&quot;dat.rds&quot;</span>)</span></code></pre></div>
 <p>To load the rds file into R from your current working directory, use the <code>readRDS()</code> function. Notice we must assign the result of <code>readRDS()</code> to an object. The object name need not match the file name.</p>
 <div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="import-export-and-save-data.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;dat.rds&quot;</span>)</span></code></pre></div>
 <p>The advantage of saving and loading native R objects is the preservation of characteristics such as factors, attributes, classes, etc. Any object can be saved, including model objects, functions, vectors, lists, etc.</p>
 </div>
-<div id="save-multiple-objects" class="section level5" number="3.5.0.0.2">
-<h5><span class="header-section-number">3.5.0.0.2</span> Save multiple objects</h5>
+<div id="save-multiple-objects" class="section level5 unnumbered">
+<h5>Save multiple objects</h5>
 <p>The minimal arguments for <code>save()</code> are the objects to save and a file name with a <code>.rda</code> extension. Objects can also be specified as a character vector to the <code>list</code> argument. For example, to save a data frame named <code>dat</code>, a model object named <code>m</code>, and a plot object called <code>p</code>, to your current working directory as <code>work.rda</code>:</p>
 <div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="import-export-and-save-data.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">save</span>(dat, m, p, <span class="at">file =</span> <span class="st">&quot;work.rda&quot;</span>)</span></code></pre></div>
 <p>Or with objects specified as a character vector:</p>

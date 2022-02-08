@@ -18,8 +18,6 @@ xlsxlsx-excel
 json
 xml
 exportingwritingsaving-data-and-variables
-save-and-load-a-single-object
-save-multiple-objects
 data-manipulation
 names-of-variables-and-their-types
 select-variables

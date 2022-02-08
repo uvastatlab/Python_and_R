@@ -219,7 +219,7 @@ To save and load R objects for future use in R, there are two options:
 1. Save and load a single object using `saveRDS()` and `readRDS()`.
 2. Save multiple objects using `save()` and `load()`.
 
-##### Save and load a single object
+##### Save and load a single object {-}
 
 The minimal arguments for `saveRDS()` are the object and a file name with an `.rds` extension. For example, to save a single data frame named `dat` to your current working directory as `dat.rds`:
 
@@ -235,7 +235,7 @@ d <- readRDS("dat.rds")
 
 The advantage of saving and loading native R objects is the preservation of characteristics such as factors, attributes, classes, etc. Any object can be saved, including model objects, functions, vectors, lists, etc.
 
-##### Save multiple objects
+##### Save multiple objects {-}
 
 The minimal arguments for `save()` are the objects to save and a file name with a `.rda` extension. Objects can also be specified as a character vector to the `list` argument. For example, to save a data frame named `dat`, a model object named `m`, and a plot object called `p`, to your current working directory as `work.rda`:
 
