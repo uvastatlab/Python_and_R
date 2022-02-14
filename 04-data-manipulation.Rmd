@@ -674,7 +674,90 @@ With formatted dates we can calculate elapsed time, extract components of a date
 
 #### R {-}
 
+Dates in R can be stored as a Date class or a Date-Time class. Dates are stored as the number of days since January 1, 1970. Date-Times are stored as the number of seconds since January 1, 1970. With dates stored in this manner we can calculate elapsed time in units such as days, weeks, hours, minutes, and so forth.
 
+Below are the dates of the first five NASA [Columbia Space Shuttle flights](https://en.wikipedia.org/wiki/List_of_Space_Shuttle_missions#Shuttle_flights) entered as a character vector.
+
+```{r}
+date <- c("12 April 1981", 
+          "12 November 1981", 
+          "22 March 1982", 
+          "27 June 1982", 
+          "11 November 1982")
+```
+
+R does not immediately recognize these as a Date class. To format as a Date class, we can either use the base R `as.Date()` function or one of the convenience functions in the **lubridate** package. The `as.Date()` function requires a specified POSIX conversion specification as documented in `?strptime`. Below the conversion code "%d %B %Y" says Date is entered as two digit day of month (%d), full month name (%B), and year with century (%Y).
+
+```{r}
+date1 <- as.Date(date, format = "%d %B %Y")
+date1
+```
+
+The dates now print in year-month-date format, however they are stored internally as number of days since January 1, 1970. This can be seen by using `as.numeric()` on the "date1" vector.
+
+```{r}
+as.numeric(date1)
+```
+
+The **lubridate** package provides a series of functions that are permutations of the letters "m", "d", and "y" to represent the order of date components. To format the original "date" vector, we use the `dmy()` function since the date components are ordered as day, month and year. Notice we must load the **lubridate** package to use this function.
+
+```{r message=FALSE}
+library(lubridate)
+date2 <- dmy(date)
+date2
+```
+
+When dates are formatted we can easily extract information such as day of week or month. For example to extract the day of week of the launches as an ordered factor, we can use the **lubridate** function `wday()` with `label=TRUE` and `abbr = FALSE`.
+
+```{r}
+wday(date2, label = TRUE, abbr = FALSE)
+```
+
+To calculate elapsed time between launches in days we can use the base R `diff()` function.
+
+```{r}
+diff(date2)
+```
+
+To store a date as a Date-Time class we need to include a time component. Below are the first five Columbia launch dates with times. UTC refers to [Universal Coordinated Time](https://en.wikipedia.org/wiki/Coordinated_Universal_Time).
+
+```{r}
+datetime <- c("12 April 1981 12:00:04 UTC",
+              "12 November 1981 15:10:00 UTC",
+              "22 March 1982 16:00:00 UTC",
+              "27 June 1982 15:00:00 UTC",
+              "11 November 1982 12:19:00 UTC")
+```
+
+To format as a Date-Time class we can use either the base R `as.POSIXct()` function or one of the convenience functions in the **lubridate** package. To use `as.POSIXct()` we need to include additional POSIX conversion specifications for the hour, minute and second of launch. The "%H:%M:%S" specification refers to hours, minutes and seconds. The `tz` argument specifies the time zone of the times. 
+
+```{r}
+datetime1 <- as.POSIXct(datetime, 
+                        format = "%d %B %Y %H:%M:%S", 
+                        tz = "UTC")
+datetime1
+```
+
+When we use `as.numeric()` on the "datetime1" vector we see it is stored as number of seconds since January 1, 1970.
+
+```{r}
+as.numeric(datetime1)
+```
+
+Using **lubridate** we can append `_hms()` to any of the "mdy" functions to format dates with time components as a Date-Time class. Notice the default time zone in **lubridate** is UTC.
+
+```{r}
+datetime2 <- dmy_hms(datetime)
+datetime2
+```
+
+To calculate elapsed time between launches in hours, we can use the **lubridate** function `time_length()` with the `unit` set to "hours". Below we use `diff()` and then pipe to `time_length()`.
+
+```{r}
+diff(datetime2) |> time_length(unit = "hours")
+```
+
+For more information on working with dates and times in R, see the vignette accompanying the **lubridate** package. 
 
 ## Randomly sample rows
 
