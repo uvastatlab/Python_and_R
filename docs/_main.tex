@@ -6,7 +6,7 @@
 ]{book}
 \title{Python and R}
 \author{Clay Ford, Jacob Goldstein-Greenwood, Oyinkansola Adenekan, Samantha Lomuscio}
-\date{2022-02-14}
+\date{2022-02-15}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -3226,11 +3226,11 @@ To create a sample with a fixed number of rows, use the \texttt{n} argument.
 \OperatorTok{\textgreater{}} \CommentTok{\# sample 5 rows from mtcars}
 \OperatorTok{+}\NormalTok{ mtcars.sample(n}\OperatorTok{=}\DecValTok{5}\NormalTok{, replace}\OperatorTok{=}\VariableTok{True}\NormalTok{)}
 \NormalTok{     MPG  CYL   DISP   HP  AXLE\_RATIO  ...  VS  AM  GEAR CARB       KPL}
-\DecValTok{15}  \FloatTok{10.4}    \DecValTok{8}  \FloatTok{460.0}  \DecValTok{215}        \FloatTok{3.00}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{0}     \DecValTok{3}    \DecValTok{4}  \FloatTok{2.210884}
-\DecValTok{29}  \FloatTok{19.7}    \DecValTok{6}  \FloatTok{145.0}  \DecValTok{175}        \FloatTok{3.62}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{1}     \DecValTok{5}    \DecValTok{6}  \FloatTok{4.187925}
 \DecValTok{16}  \FloatTok{14.7}    \DecValTok{8}  \FloatTok{440.0}  \DecValTok{230}        \FloatTok{3.23}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{0}     \DecValTok{3}    \DecValTok{4}  \FloatTok{3.125000}
-\DecValTok{31}  \FloatTok{21.4}    \DecValTok{4}  \FloatTok{121.0}  \DecValTok{109}        \FloatTok{4.11}\NormalTok{  ...   }\DecValTok{1}   \DecValTok{1}     \DecValTok{4}    \DecValTok{2}  \FloatTok{4.549320}
-\DecValTok{1}   \FloatTok{21.0}    \DecValTok{6}  \FloatTok{160.0}  \DecValTok{110}        \FloatTok{3.90}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{1}     \DecValTok{4}    \DecValTok{4}  \FloatTok{4.464286}
+\DecValTok{8}   \FloatTok{22.8}    \DecValTok{4}  \FloatTok{140.8}   \DecValTok{95}        \FloatTok{3.92}\NormalTok{  ...   }\DecValTok{1}   \DecValTok{0}     \DecValTok{4}    \DecValTok{2}  \FloatTok{4.846939}
+\DecValTok{15}  \FloatTok{10.4}    \DecValTok{8}  \FloatTok{460.0}  \DecValTok{215}        \FloatTok{3.00}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{0}     \DecValTok{3}    \DecValTok{4}  \FloatTok{2.210884}
+\DecValTok{28}  \FloatTok{15.8}    \DecValTok{8}  \FloatTok{351.0}  \DecValTok{264}        \FloatTok{4.22}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{1}     \DecValTok{5}    \DecValTok{4}  \FloatTok{3.358844}
+\DecValTok{17}  \FloatTok{32.4}    \DecValTok{4}   \FloatTok{78.7}   \DecValTok{66}        \FloatTok{4.08}\NormalTok{  ...   }\DecValTok{1}   \DecValTok{1}     \DecValTok{4}    \DecValTok{1}  \FloatTok{6.887755}
 
 \NormalTok{[}\DecValTok{5}\NormalTok{ rows x }\DecValTok{12}\NormalTok{ columns]}
 \end{Highlighting}
@@ -3269,11 +3269,11 @@ The \texttt{random.choice()} function creates a random sample according to the g
 \OperatorTok{+} \CommentTok{\# use random\_sample to sample from mtcars}
 \OperatorTok{+}\NormalTok{ mtcars.loc[random\_sample,]}
 \NormalTok{     MPG  CYL   DISP   HP  AXLE\_RATIO  ...  VS  AM  GEAR CARB       KPL}
-\DecValTok{29}  \FloatTok{19.7}    \DecValTok{6}  \FloatTok{145.0}  \DecValTok{175}        \FloatTok{3.62}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{1}     \DecValTok{5}    \DecValTok{6}  \FloatTok{4.187925}
-\DecValTok{2}   \FloatTok{22.8}    \DecValTok{4}  \FloatTok{108.0}   \DecValTok{93}        \FloatTok{3.85}\NormalTok{  ...   }\DecValTok{1}   \DecValTok{1}     \DecValTok{4}    \DecValTok{1}  \FloatTok{4.846939}
-\DecValTok{19}  \FloatTok{33.9}    \DecValTok{4}   \FloatTok{71.1}   \DecValTok{65}        \FloatTok{4.22}\NormalTok{  ...   }\DecValTok{1}   \DecValTok{1}     \DecValTok{4}    \DecValTok{1}  \FloatTok{7.206633}
-\DecValTok{13}  \FloatTok{15.2}    \DecValTok{8}  \FloatTok{275.8}  \DecValTok{180}        \FloatTok{3.07}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{0}     \DecValTok{3}    \DecValTok{3}  \FloatTok{3.231293}
-\DecValTok{2}   \FloatTok{22.8}    \DecValTok{4}  \FloatTok{108.0}   \DecValTok{93}        \FloatTok{3.85}\NormalTok{  ...   }\DecValTok{1}   \DecValTok{1}     \DecValTok{4}    \DecValTok{1}  \FloatTok{4.846939}
+\DecValTok{30}  \FloatTok{15.0}    \DecValTok{8}  \FloatTok{301.0}  \DecValTok{335}        \FloatTok{3.54}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{1}     \DecValTok{5}    \DecValTok{8}  \FloatTok{3.188776}
+\DecValTok{23}  \FloatTok{13.3}    \DecValTok{8}  \FloatTok{350.0}  \DecValTok{245}        \FloatTok{3.73}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{0}     \DecValTok{3}    \DecValTok{4}  \FloatTok{2.827381}
+\DecValTok{27}  \FloatTok{30.4}    \DecValTok{4}   \FloatTok{95.1}  \DecValTok{113}        \FloatTok{3.77}\NormalTok{  ...   }\DecValTok{1}   \DecValTok{1}     \DecValTok{5}    \DecValTok{2}  \FloatTok{6.462585}
+\DecValTok{12}  \FloatTok{17.3}    \DecValTok{8}  \FloatTok{275.8}  \DecValTok{180}        \FloatTok{3.07}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{0}     \DecValTok{3}    \DecValTok{3}  \FloatTok{3.677721}
+\DecValTok{23}  \FloatTok{13.3}    \DecValTok{8}  \FloatTok{350.0}  \DecValTok{245}        \FloatTok{3.73}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{0}     \DecValTok{3}    \DecValTok{4}  \FloatTok{2.827381}
 
 \NormalTok{[}\DecValTok{5}\NormalTok{ rows x }\DecValTok{12}\NormalTok{ columns]}
 \end{Highlighting}
@@ -3309,33 +3309,33 @@ There are many ways to sample rows from a data frame in R. The \href{https://dpl
 \SpecialCharTok{\textgreater{}} \CommentTok{\# sample 5 rows from mtcars}
 \ErrorTok{\textgreater{}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{slice\_sample}\NormalTok{(mtcars, }\AttributeTok{n =} \DecValTok{5}\NormalTok{)}
 \NormalTok{   mpg cylinders  disp  hp axle\_ratio weight  qsec engine am gear carb am\_ch}
-\DecValTok{1} \FloatTok{21.5}         \DecValTok{4} \FloatTok{120.1}  \DecValTok{97}       \FloatTok{3.70}  \FloatTok{2.465} \FloatTok{20.01}      \DecValTok{1}  \DecValTok{0}    \DecValTok{3}    \DecValTok{1}     \DecValTok{0}
-\DecValTok{2} \FloatTok{30.4}         \DecValTok{4}  \FloatTok{95.1} \DecValTok{113}       \FloatTok{3.77}  \FloatTok{1.513} \FloatTok{16.90}      \DecValTok{1}  \DecValTok{1}    \DecValTok{5}    \DecValTok{2}     \DecValTok{1}
-\DecValTok{3} \FloatTok{19.2}         \DecValTok{6} \FloatTok{167.6} \DecValTok{123}       \FloatTok{3.92}  \FloatTok{3.440} \FloatTok{18.30}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{4}     \DecValTok{0}
-\DecValTok{4} \FloatTok{32.4}         \DecValTok{4}  \FloatTok{78.7}  \DecValTok{66}       \FloatTok{4.08}  \FloatTok{2.200} \FloatTok{19.47}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
-\DecValTok{5} \FloatTok{27.3}         \DecValTok{4}  \FloatTok{79.0}  \DecValTok{66}       \FloatTok{4.08}  \FloatTok{1.935} \FloatTok{18.90}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
+\DecValTok{1} \FloatTok{13.3}         \DecValTok{8} \FloatTok{350.0} \DecValTok{245}       \FloatTok{3.73}  \FloatTok{3.840} \FloatTok{15.41}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{2} \FloatTok{16.4}         \DecValTok{8} \FloatTok{275.8} \DecValTok{180}       \FloatTok{3.07}  \FloatTok{4.070} \FloatTok{17.40}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{3}     \DecValTok{0}
+\DecValTok{3} \FloatTok{15.2}         \DecValTok{8} \FloatTok{304.0} \DecValTok{150}       \FloatTok{3.15}  \FloatTok{3.435} \FloatTok{17.30}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{2}     \DecValTok{0}
+\DecValTok{4} \FloatTok{18.7}         \DecValTok{8} \FloatTok{360.0} \DecValTok{175}       \FloatTok{3.15}  \FloatTok{3.440} \FloatTok{17.02}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{2}     \DecValTok{0}
+\DecValTok{5} \FloatTok{21.4}         \DecValTok{6} \FloatTok{258.0} \DecValTok{110}       \FloatTok{3.08}  \FloatTok{3.215} \FloatTok{19.44}      \DecValTok{1}  \DecValTok{0}    \DecValTok{3}    \DecValTok{1}     \DecValTok{0}
+\NormalTok{     am\_fac}
+\DecValTok{1}\NormalTok{ automatic}
+\DecValTok{2}\NormalTok{ automatic}
+\DecValTok{3}\NormalTok{ automatic}
+\DecValTok{4}\NormalTok{ automatic}
+\DecValTok{5}\NormalTok{ automatic}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \CommentTok{\# sample 20\% of rows from mtcars}
+\ErrorTok{\textgreater{}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{slice\_sample}\NormalTok{(mtcars, }\AttributeTok{prop =} \FloatTok{0.20}\NormalTok{)}
+\NormalTok{   mpg cylinders  disp  hp axle\_ratio weight  qsec engine am gear carb am\_ch}
+\DecValTok{1} \FloatTok{18.1}         \DecValTok{6} \FloatTok{225.0} \DecValTok{105}       \FloatTok{2.76}  \FloatTok{3.460} \FloatTok{20.22}      \DecValTok{1}  \DecValTok{0}    \DecValTok{3}    \DecValTok{1}     \DecValTok{0}
+\DecValTok{2} \FloatTok{21.0}         \DecValTok{6} \FloatTok{160.0} \DecValTok{110}       \FloatTok{3.90}  \FloatTok{2.620} \FloatTok{16.46}      \DecValTok{0}  \DecValTok{1}    \DecValTok{4}    \DecValTok{4}     \DecValTok{1}
+\DecValTok{3} \FloatTok{18.7}         \DecValTok{8} \FloatTok{360.0} \DecValTok{175}       \FloatTok{3.15}  \FloatTok{3.440} \FloatTok{17.02}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{2}     \DecValTok{0}
+\DecValTok{4} \FloatTok{19.7}         \DecValTok{6} \FloatTok{145.0} \DecValTok{175}       \FloatTok{3.62}  \FloatTok{2.770} \FloatTok{15.50}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{6}     \DecValTok{1}
+\DecValTok{5} \FloatTok{21.5}         \DecValTok{4} \FloatTok{120.1}  \DecValTok{97}       \FloatTok{3.70}  \FloatTok{2.465} \FloatTok{20.01}      \DecValTok{1}  \DecValTok{0}    \DecValTok{3}    \DecValTok{1}     \DecValTok{0}
+\DecValTok{6} \FloatTok{14.7}         \DecValTok{8} \FloatTok{440.0} \DecValTok{230}       \FloatTok{3.23}  \FloatTok{5.345} \FloatTok{17.42}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
 \NormalTok{     am\_fac}
 \DecValTok{1}\NormalTok{ automatic}
 \DecValTok{2}\NormalTok{    manual}
 \DecValTok{3}\NormalTok{ automatic}
 \DecValTok{4}\NormalTok{    manual}
-\DecValTok{5}\NormalTok{    manual}
-\SpecialCharTok{\textgreater{}} 
-\ErrorTok{\textgreater{}} \CommentTok{\# sample 20\% of rows from mtcars}
-\ErrorTok{\textgreater{}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{slice\_sample}\NormalTok{(mtcars, }\AttributeTok{prop =} \FloatTok{0.20}\NormalTok{)}
-\NormalTok{   mpg cylinders  disp  hp axle\_ratio weight  qsec engine am gear carb am\_ch}
-\DecValTok{1} \FloatTok{32.4}         \DecValTok{4}  \FloatTok{78.7}  \DecValTok{66}       \FloatTok{4.08}  \FloatTok{2.200} \FloatTok{19.47}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
-\DecValTok{2} \FloatTok{14.3}         \DecValTok{8} \FloatTok{360.0} \DecValTok{245}       \FloatTok{3.21}  \FloatTok{3.570} \FloatTok{15.84}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
-\DecValTok{3} \FloatTok{17.8}         \DecValTok{6} \FloatTok{167.6} \DecValTok{123}       \FloatTok{3.92}  \FloatTok{3.440} \FloatTok{18.90}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{4}     \DecValTok{0}
-\DecValTok{4} \FloatTok{22.8}         \DecValTok{4} \FloatTok{108.0}  \DecValTok{93}       \FloatTok{3.85}  \FloatTok{2.320} \FloatTok{18.61}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
-\DecValTok{5} \FloatTok{27.3}         \DecValTok{4}  \FloatTok{79.0}  \DecValTok{66}       \FloatTok{4.08}  \FloatTok{1.935} \FloatTok{18.90}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
-\DecValTok{6} \FloatTok{10.4}         \DecValTok{8} \FloatTok{472.0} \DecValTok{205}       \FloatTok{2.93}  \FloatTok{5.250} \FloatTok{17.98}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
-\NormalTok{     am\_fac}
-\DecValTok{1}\NormalTok{    manual}
-\DecValTok{2}\NormalTok{ automatic}
-\DecValTok{3}\NormalTok{ automatic}
-\DecValTok{4}\NormalTok{    manual}
-\DecValTok{5}\NormalTok{    manual}
+\DecValTok{5}\NormalTok{ automatic}
 \DecValTok{6}\NormalTok{ automatic}
 \end{Highlighting}
 \end{Shaded}
@@ -3352,17 +3352,17 @@ The base R functions \texttt{sample()} and \texttt{runif()} can be combined to s
 \SpecialCharTok{\textgreater{}} \CommentTok{\# use i to select rows}
 \ErrorTok{\textgreater{}}\NormalTok{ mtcars[i,]}
 \NormalTok{    mpg cylinders  disp  hp axle\_ratio weight  qsec engine am gear carb am\_ch}
-\DecValTok{12} \FloatTok{16.4}         \DecValTok{8} \FloatTok{275.8} \DecValTok{180}       \FloatTok{3.07}  \FloatTok{4.070} \FloatTok{17.40}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{3}     \DecValTok{0}
-\DecValTok{22} \FloatTok{15.5}         \DecValTok{8} \FloatTok{318.0} \DecValTok{150}       \FloatTok{2.76}  \FloatTok{3.520} \FloatTok{16.87}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{2}     \DecValTok{0}
 \DecValTok{9}  \FloatTok{22.8}         \DecValTok{4} \FloatTok{140.8}  \DecValTok{95}       \FloatTok{3.92}  \FloatTok{3.150} \FloatTok{22.90}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{2}     \DecValTok{0}
-\DecValTok{20} \FloatTok{33.9}         \DecValTok{4}  \FloatTok{71.1}  \DecValTok{65}       \FloatTok{4.22}  \FloatTok{1.835} \FloatTok{19.90}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
-\DecValTok{27} \FloatTok{26.0}         \DecValTok{4} \FloatTok{120.3}  \DecValTok{91}       \FloatTok{4.43}  \FloatTok{2.140} \FloatTok{16.70}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{2}     \DecValTok{1}
+\DecValTok{16} \FloatTok{10.4}         \DecValTok{8} \FloatTok{460.0} \DecValTok{215}       \FloatTok{3.00}  \FloatTok{5.424} \FloatTok{17.82}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{21} \FloatTok{21.5}         \DecValTok{4} \FloatTok{120.1}  \DecValTok{97}       \FloatTok{3.70}  \FloatTok{2.465} \FloatTok{20.01}      \DecValTok{1}  \DecValTok{0}    \DecValTok{3}    \DecValTok{1}     \DecValTok{0}
+\DecValTok{28} \FloatTok{30.4}         \DecValTok{4}  \FloatTok{95.1} \DecValTok{113}       \FloatTok{3.77}  \FloatTok{1.513} \FloatTok{16.90}      \DecValTok{1}  \DecValTok{1}    \DecValTok{5}    \DecValTok{2}     \DecValTok{1}
+\DecValTok{8}  \FloatTok{24.4}         \DecValTok{4} \FloatTok{146.7}  \DecValTok{62}       \FloatTok{3.69}  \FloatTok{3.190} \FloatTok{20.00}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{2}     \DecValTok{0}
 \NormalTok{      am\_fac}
-\DecValTok{12}\NormalTok{ automatic}
-\DecValTok{22}\NormalTok{ automatic}
 \DecValTok{9}\NormalTok{  automatic}
-\DecValTok{20}\NormalTok{    manual}
-\DecValTok{27}\NormalTok{    manual}
+\DecValTok{16}\NormalTok{ automatic}
+\DecValTok{21}\NormalTok{ automatic}
+\DecValTok{28}\NormalTok{    manual}
+\DecValTok{8}\NormalTok{  automatic}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3376,20 +3376,18 @@ The base R functions \texttt{sample()} and \texttt{runif()} can be combined to s
 \ErrorTok{\textgreater{}}\NormalTok{ mtcars[i }\SpecialCharTok{\textless{}} \FloatTok{0.20}\NormalTok{,]}
 \NormalTok{    mpg cylinders  disp  hp axle\_ratio weight  qsec engine am gear carb am\_ch}
 \DecValTok{2}  \FloatTok{21.0}         \DecValTok{6} \FloatTok{160.0} \DecValTok{110}       \FloatTok{3.90}  \FloatTok{2.875} \FloatTok{17.02}      \DecValTok{0}  \DecValTok{1}    \DecValTok{4}    \DecValTok{4}     \DecValTok{1}
-\DecValTok{6}  \FloatTok{18.1}         \DecValTok{6} \FloatTok{225.0} \DecValTok{105}       \FloatTok{2.76}  \FloatTok{3.460} \FloatTok{20.22}      \DecValTok{1}  \DecValTok{0}    \DecValTok{3}    \DecValTok{1}     \DecValTok{0}
+\DecValTok{9}  \FloatTok{22.8}         \DecValTok{4} \FloatTok{140.8}  \DecValTok{95}       \FloatTok{3.92}  \FloatTok{3.150} \FloatTok{22.90}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{2}     \DecValTok{0}
 \DecValTok{12} \FloatTok{16.4}         \DecValTok{8} \FloatTok{275.8} \DecValTok{180}       \FloatTok{3.07}  \FloatTok{4.070} \FloatTok{17.40}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{3}     \DecValTok{0}
 \DecValTok{16} \FloatTok{10.4}         \DecValTok{8} \FloatTok{460.0} \DecValTok{215}       \FloatTok{3.00}  \FloatTok{5.424} \FloatTok{17.82}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
-\DecValTok{21} \FloatTok{21.5}         \DecValTok{4} \FloatTok{120.1}  \DecValTok{97}       \FloatTok{3.70}  \FloatTok{2.465} \FloatTok{20.01}      \DecValTok{1}  \DecValTok{0}    \DecValTok{3}    \DecValTok{1}     \DecValTok{0}
-\DecValTok{24} \FloatTok{13.3}         \DecValTok{8} \FloatTok{350.0} \DecValTok{245}       \FloatTok{3.73}  \FloatTok{3.840} \FloatTok{15.41}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
-\DecValTok{32} \FloatTok{21.4}         \DecValTok{4} \FloatTok{121.0} \DecValTok{109}       \FloatTok{4.11}  \FloatTok{2.780} \FloatTok{18.60}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{2}     \DecValTok{1}
+\DecValTok{28} \FloatTok{30.4}         \DecValTok{4}  \FloatTok{95.1} \DecValTok{113}       \FloatTok{3.77}  \FloatTok{1.513} \FloatTok{16.90}      \DecValTok{1}  \DecValTok{1}    \DecValTok{5}    \DecValTok{2}     \DecValTok{1}
+\DecValTok{30} \FloatTok{19.7}         \DecValTok{6} \FloatTok{145.0} \DecValTok{175}       \FloatTok{3.62}  \FloatTok{2.770} \FloatTok{15.50}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{6}     \DecValTok{1}
 \NormalTok{      am\_fac}
 \DecValTok{2}\NormalTok{     manual}
-\DecValTok{6}\NormalTok{  automatic}
+\DecValTok{9}\NormalTok{  automatic}
 \DecValTok{12}\NormalTok{ automatic}
 \DecValTok{16}\NormalTok{ automatic}
-\DecValTok{21}\NormalTok{ automatic}
-\DecValTok{24}\NormalTok{ automatic}
-\DecValTok{32}\NormalTok{    manual}
+\DecValTok{28}\NormalTok{    manual}
+\DecValTok{30}\NormalTok{    manual}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4649,10 +4647,10 @@ Both \texttt{facet\_wrap()} and \texttt{facet\_grid()} can be used to make facet
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-264-2.pdf}
 
-\hypertarget{statistical-inference-and-modeling}{%
-\chapter{Statistical Inference and Modeling}\label{statistical-inference-and-modeling}}
+\hypertarget{selected-topics-in-statistical-inference}{%
+\chapter{Selected Topics in Statistical Inference}\label{selected-topics-in-statistical-inference}}
 
-This chapter looks at performing common statistical analyses. It does not pretend to be comprehensive. The focus is on implementation using Python and R. Good statistical practice is more than knowing which function to use. At a minimum we recommend reading the article, \href{https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004961}{Ten Simple Rules for Effective Statistical Practice} \citep{kass_caffo_davidian_meng_yu_reid_2016}.
+This chapter looks at performing selected statistical analyses. It is not comprehensive. The focus is on implementation using Python and R. Good statistical practice is more than knowing which function to use. At a minimum we recommend reading the article, \href{https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004961}{Ten Simple Rules for Effective Statistical Practice} \citep{kass_caffo_davidian_meng_yu_reid_2016}.
 
 \hypertarget{comparing-group-means}{%
 \section{Comparing group means}\label{comparing-group-means}}
@@ -4663,7 +4661,7 @@ To demonstrate the t test, we examine fictitious data on 15 scores between two g
 
 To demonstrate the ANOVA test, we use data from \emph{The Analysis of Biological Data (3rd ed)}\citep{whitlock_schluter_2020} on the mass of pine cones (in grams) from three different environments in North America. Of interest is (1) whether or not the mean mass of pine cones differ meaningfully between the three locations, and (2) if they do differ, how are they different?
 
-We usually assess the first question in each scenario with a hypothesis test and p-value. The null hypothesis is no difference between the means. The p-value is basically the probability of the observed differences between the groups (or more extreme differences) assuming the null hypothesis is true. A small p-value, traditionally less then 0.05, provides evidence against the null. For example, a p-value of 0.01 says there's a 1\% chance of sampling data as different as this (or more different) if there really was no difference between the groups. Note that p-values don't tell you how two or more statistics differ. See \href{https://www.tandfonline.com/doi/full/10.1080/00031305.2016.1154108\#_i28}{the ASA Statement on p-values}.
+We usually assess the first question in each scenario with a hypothesis test and p-value. The null hypothesis is no difference between the means. The p-value is the probability of the observed differences between the groups (or more extreme differences) assuming the null hypothesis is true. A small p-value, traditionally less then 0.05, provides evidence against the null. For example, a p-value of 0.01 says there's a 1\% chance of sampling data as different as this (or more different) if there really was no difference between the groups. Note that p-values don't tell you how two or more statistics differ. See \href{https://www.tandfonline.com/doi/full/10.1080/00031305.2016.1154108\#_i28}{the ASA Statement on p-values}.
 
 We assess the second question in each scenario by calculating confidence intervals on the difference in means. This is more informative than a p-value. A confidence interval gives us information on the uncertainty, direction and magnitude of a difference in means. For example, a 95\% confidence interval of {[}2, 15{]} tells us the data is consistent with a difference anywhere between 2 and 15 and that the mean of one group appears to be at least 2 units larger than the mean of the other group. Note that a 95\% confidence interval does not mean there is a 95\% probability that the true value is in the interval. The confidence interval either captured the true value or it did not. We don't know. However the \emph{process} of calculating the confidence interval works roughly 95\% of the time.
 
@@ -4712,24 +4710,79 @@ Our data is available as a \textbf{Pandas} dataframe. It's small enough to view 
 \end{Highlighting}
 \end{Shaded}
 
-The usual way to perform a t test in Python is via the \texttt{ttest\_ind()} function available in the \textbf{scipy.stats} package.
+A stripchart is one of many ways to visualize numeric data between two groups. Here we use the seaborn function \texttt{stripplot()}. It appears the treated group had higher scores.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\OperatorTok{\textgreater{}} \ImportTok{from}\NormalTok{ scipy }\ImportTok{import}\NormalTok{ stats}
+\OperatorTok{\textgreater{}} \ImportTok{import}\NormalTok{ seaborn }\ImportTok{as}\NormalTok{ sns}
+\OperatorTok{+} \ImportTok{import}\NormalTok{ matplotlib.pyplot }\ImportTok{as}\NormalTok{ plt}
+\OperatorTok{+}\NormalTok{ sns.stripplot(x}\OperatorTok{=}\StringTok{"score"}\NormalTok{, y}\OperatorTok{=}\StringTok{"group"}\NormalTok{, data}\OperatorTok{=}\NormalTok{ch8\_d1)}
+\OperatorTok{+}\NormalTok{ plt.show()}
 \end{Highlighting}
 \end{Shaded}
 
-The \texttt{ttest\_ind()} function performs a t test between two arrays (or columns of a data frame) specified with the \texttt{a} and \texttt{b} arguments, respectively. By default the function assumes equal population variances. By setting the \texttt{equal\_var} parameter to False we can relax that assumption and run Welch's t test, which is the default in R. The function returns the test statistic and p-value.
+\includegraphics{_main_files/figure-latex/unnamed-chunk-269-1.pdf}
+
+One way to perform a t test in Python is via the \texttt{CompareMeans()} function and its associated methods available in the \textbf{statsmodels} package. Below we import \textbf{statsmodels.stats.api} as ``sms''.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\OperatorTok{\textgreater{}}\NormalTok{ stats.ttest\_ind(a }\OperatorTok{=}\NormalTok{ ch8\_d1.query(}\StringTok{\textquotesingle{}group == "control"\textquotesingle{}}\NormalTok{)[}\StringTok{\textquotesingle{}score\textquotesingle{}}\NormalTok{], }
-\OperatorTok{+}\NormalTok{                 b }\OperatorTok{=}\NormalTok{ ch8\_d1.query(}\StringTok{\textquotesingle{}group == "treated"\textquotesingle{}}\NormalTok{)[}\StringTok{\textquotesingle{}score\textquotesingle{}}\NormalTok{],}
-\OperatorTok{+}\NormalTok{                 equal\_var}\OperatorTok{=}\VariableTok{False}\NormalTok{)}
-\NormalTok{Ttest\_indResult(statistic}\OperatorTok{={-}}\FloatTok{3.5313033136199854}\NormalTok{, pvalue}\OperatorTok{=}\FloatTok{0.0014824162773470618}\NormalTok{)}
+\OperatorTok{\textgreater{}} \ImportTok{import}\NormalTok{ statsmodels.stats.api }\ImportTok{as}\NormalTok{ sms}
 \end{Highlighting}
 \end{Shaded}
+
+We first extract the data we want to compare as pandas Series.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}}\NormalTok{ d\_control }\OperatorTok{=}\NormalTok{ ch8\_d1.query(}\StringTok{\textquotesingle{}group == "control"\textquotesingle{}}\NormalTok{)[}\StringTok{\textquotesingle{}score\textquotesingle{}}\NormalTok{]}
+\OperatorTok{+}\NormalTok{ d\_treated }\OperatorTok{=}\NormalTok{ ch8\_d1.query(}\StringTok{\textquotesingle{}group == "treated"\textquotesingle{}}\NormalTok{)[}\StringTok{\textquotesingle{}score\textquotesingle{}}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+Next we create Descriptive statistics objects using the \texttt{DescrStatsW()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}}\NormalTok{ control }\OperatorTok{=}\NormalTok{ sms.DescrStatsW(d\_control)}
+\OperatorTok{+}\NormalTok{ treated }\OperatorTok{=}\NormalTok{ sms.DescrStatsW(d\_treated)}
+\end{Highlighting}
+\end{Shaded}
+
+Descriptive statistics objects have attributes such as \texttt{mean} and \texttt{std} (standard deviation). Below we print the mean and standard deviation of each group. We also round the standard deviation to three decimal places.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}} \BuiltInTok{print}\NormalTok{(\{}\StringTok{"control mean"}\NormalTok{:control.mean, }\StringTok{"std"}\NormalTok{:}\BuiltInTok{round}\NormalTok{(control.std, }\DecValTok{3}\NormalTok{)\})}
+\NormalTok{\{}\StringTok{\textquotesingle{}control mean\textquotesingle{}}\NormalTok{: }\FloatTok{80.4}\NormalTok{, }\StringTok{\textquotesingle{}std\textquotesingle{}}\NormalTok{: }\FloatTok{3.844}\NormalTok{\}}
+\OperatorTok{\textgreater{}} \BuiltInTok{print}\NormalTok{(\{}\StringTok{"treated mean"}\NormalTok{:treated.mean, }\StringTok{"std"}\NormalTok{: }\BuiltInTok{round}\NormalTok{(treated.std, }\DecValTok{3}\NormalTok{)\})}
+\NormalTok{\{}\StringTok{\textquotesingle{}treated mean\textquotesingle{}}\NormalTok{: }\FloatTok{85.2}\NormalTok{, }\StringTok{\textquotesingle{}std\textquotesingle{}}\NormalTok{: }\FloatTok{3.331}\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Next we create a CompareMeans means object using the \texttt{CompareMeans()} function. The required inputs are Descriptive statistics objects. We save the result as ``ttest''.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}}\NormalTok{ ttest }\OperatorTok{=}\NormalTok{ sms.CompareMeans(control, treated)}
+\end{Highlighting}
+\end{Shaded}
+
+Now we can use various methods with the ``ttest'' object. To see the result of a two sample t test assuming unequal variances, along with a confidence interval on the differences, use the \texttt{summary} method with \texttt{usevar=\textquotesingle{}unequal\textquotesingle{}}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}} \BuiltInTok{print}\NormalTok{(ttest.summary(usevar}\OperatorTok{=}\StringTok{\textquotesingle{}unequal\textquotesingle{}}\NormalTok{))}
+\NormalTok{                          Test }\ControlFlowTok{for}\NormalTok{ equality of means                          }
+\OperatorTok{==============================================================================}
+\NormalTok{                 coef    std err          t      P}\OperatorTok{\textgreater{}|}\NormalTok{t}\OperatorTok{|}\NormalTok{      [}\FloatTok{0.025}      \FloatTok{0.975}\NormalTok{]}
+\OperatorTok{{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\NormalTok{subset }\CommentTok{\#1     {-}4.8000      1.359     {-}3.531      0.001      {-}7.587      {-}2.013}
+\OperatorTok{==============================================================================}
+\end{Highlighting}
+\end{Shaded}
+
+The p-value of 0.001 is small, providing good evidence that the difference in means we witnessed reflects a real difference in the population. The confidence interval on the difference in means tells us the data is consistent with a difference between -7 and -2. It appears we can expect the control group to score at least 2 points lower than the treated group.
 
 \textbf{ANOVA}
 
@@ -4758,18 +4811,75 @@ Our data is available as a \textbf{Pandas} dataframe. It's small enough to view 
 \end{Highlighting}
 \end{Shaded}
 
-The usual way to perform an ANOVA test in Python is via the \texttt{f\_oneway()} function, also available in the \textbf{scipy.stats} package.
-
-The \texttt{f\_oneway()} function performs an ANOVA between two or more arrays (or columns of a data frame) specified as inputs to the function. The function returns the test statistic and p-value.
+Again we use a stripchart to visualize the three groups of data. It appears the pine cones in location 1 have a higher mass.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\OperatorTok{\textgreater{}}\NormalTok{ stats.f\_oneway(ch8\_d2.query(}\StringTok{\textquotesingle{}location == "1"\textquotesingle{}}\NormalTok{)[}\StringTok{\textquotesingle{}mass\textquotesingle{}}\NormalTok{], }
-\OperatorTok{+}\NormalTok{                ch8\_d2.query(}\StringTok{\textquotesingle{}location == "2"\textquotesingle{}}\NormalTok{)[}\StringTok{\textquotesingle{}mass\textquotesingle{}}\NormalTok{],}
-\OperatorTok{+}\NormalTok{                ch8\_d2.query(}\StringTok{\textquotesingle{}location == "3"\textquotesingle{}}\NormalTok{)[}\StringTok{\textquotesingle{}mass\textquotesingle{}}\NormalTok{])}
-\NormalTok{F\_onewayResult(statistic}\OperatorTok{=}\FloatTok{50.0854297693921}\NormalTok{, pvalue}\OperatorTok{=}\FloatTok{7.786760128813682e{-}07}\NormalTok{)}
+\OperatorTok{\textgreater{}}\NormalTok{ plt.clf()}
+\OperatorTok{+}\NormalTok{ sns.stripplot(x}\OperatorTok{=}\StringTok{"mass"}\NormalTok{, y}\OperatorTok{=}\StringTok{"location"}\NormalTok{, data}\OperatorTok{=}\NormalTok{ch8\_d2)}
+\OperatorTok{+}\NormalTok{ plt.show()}
 \end{Highlighting}
 \end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-277-3.pdf}
+
+We can calculate means using the \texttt{groupby} and \texttt{mean} methods.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}}\NormalTok{ ch8\_d2[}\StringTok{\textquotesingle{}mass\textquotesingle{}}\NormalTok{].groupby(ch8\_d2[}\StringTok{\textquotesingle{}location\textquotesingle{}}\NormalTok{]).mean()}
+\NormalTok{location}
+\DecValTok{1}    \FloatTok{8.90}
+\DecValTok{2}    \FloatTok{6.08}
+\DecValTok{3}    \FloatTok{6.12}
+\NormalTok{Name: mass, dtype: float64}
+\end{Highlighting}
+\end{Shaded}
+
+One way to perform an ANOVA test in Python is via the \texttt{anova\_oneway()} function, also available in the \textbf{statsmodels} package.
+
+The \texttt{anova\_oneway()} function can perform an ANOVA on a pandas Dataframe with the first argument specifying the numeric data and the second argument the grouping variable. We also set \texttt{use\_var=\textquotesingle{}equal\textquotesingle{}} to replicate the R output below.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}}\NormalTok{ sms.anova\_oneway(ch8\_d2.mass, ch8\_d2.location, use\_var}\OperatorTok{=}\StringTok{\textquotesingle{}equal\textquotesingle{}}\NormalTok{)}
+\OperatorTok{\textless{}}\KeywordTok{class} \StringTok{\textquotesingle{}statsmodels.stats.base.HolderTuple\textquotesingle{}}\OperatorTok{\textgreater{}}
+\NormalTok{statistic }\OperatorTok{=} \FloatTok{50.085429769392036}
+\NormalTok{pvalue }\OperatorTok{=} \FloatTok{7.786760128813737e{-}07}
+\NormalTok{df }\OperatorTok{=}\NormalTok{ (}\FloatTok{2.0}\NormalTok{, }\FloatTok{13.0}\NormalTok{)}
+\NormalTok{df\_num }\OperatorTok{=} \FloatTok{2.0}
+\NormalTok{df\_denom }\OperatorTok{=} \FloatTok{13.0}
+\NormalTok{nobs\_t }\OperatorTok{=} \FloatTok{16.0}
+\NormalTok{n\_groups }\OperatorTok{=} \DecValTok{3}
+\NormalTok{means }\OperatorTok{=}\NormalTok{ array([}\FloatTok{8.9}\NormalTok{ , }\FloatTok{6.08}\NormalTok{, }\FloatTok{6.12}\NormalTok{])}
+\NormalTok{nobs }\OperatorTok{=}\NormalTok{ array([}\FloatTok{6.}\NormalTok{, }\FloatTok{5.}\NormalTok{, }\FloatTok{5.}\NormalTok{])}
+\NormalTok{vars\_ }\OperatorTok{=}\NormalTok{ array([}\FloatTok{0.28}\NormalTok{ , }\FloatTok{0.387}\NormalTok{, }\FloatTok{0.217}\NormalTok{])}
+\NormalTok{use\_var }\OperatorTok{=} \StringTok{\textquotesingle{}equal\textquotesingle{}}
+\NormalTok{welch\_correction }\OperatorTok{=} \VariableTok{True}
+\BuiltInTok{tuple} \OperatorTok{=}\NormalTok{ (}\FloatTok{50.085429769392036}\NormalTok{, }\FloatTok{7.786760128813737e{-}07}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The small p-value of 0.0000007 provides strong evidence that the difference in means we witnessed reflects a real difference in the population.
+
+A common follow-up to an ANOVA is Tukey's Honestly Significant Differences (HSD), which computes differences between all possible pairs and returns adjusted p-values and confidence intervals to account for the multiple comparisons. To carry this out in the \textbf{statsmodels} package, we need to first create a MultiComparison object using the \texttt{multicomp.MultiComparison()} function. Then we use the \texttt{tukeyhsd()} method to compare the means with corrected p-values.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}}\NormalTok{ mc }\OperatorTok{=}\NormalTok{ sms.multicomp.MultiComparison(ch8\_d2.mass, ch8\_d2.location)}
+\OperatorTok{+} \BuiltInTok{print}\NormalTok{(mc.tukeyhsd())}
+\NormalTok{Multiple Comparison of Means }\OperatorTok{{-}}\NormalTok{ Tukey HSD, FWER}\OperatorTok{=}\FloatTok{0.05} 
+\OperatorTok{====================================================}
+\NormalTok{group1 group2 meandiff p}\OperatorTok{{-}}\NormalTok{adj   lower   upper  reject}
+\OperatorTok{{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+     \DecValTok{1}      \DecValTok{2}    \OperatorTok{{-}}\FloatTok{2.82}    \FloatTok{0.0} \OperatorTok{{-}}\FloatTok{3.6863} \OperatorTok{{-}}\FloatTok{1.9537}   \VariableTok{True}
+     \DecValTok{1}      \DecValTok{3}    \OperatorTok{{-}}\FloatTok{2.78}    \FloatTok{0.0} \OperatorTok{{-}}\FloatTok{3.6463} \OperatorTok{{-}}\FloatTok{1.9137}   \VariableTok{True}
+     \DecValTok{2}      \DecValTok{3}     \FloatTok{0.04} \FloatTok{0.9925} \OperatorTok{{-}}\FloatTok{0.8648}  \FloatTok{0.9448}  \VariableTok{False}
+\OperatorTok{{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\end{Highlighting}
+\end{Shaded}
+
+The difference in means between locations 2 and 1 (2 - 1) and locations 3 and 1 (3 - 1) are about -2.8. The difference in means between locations 3 and 2 (3 - 2) is inconclusive. It seems to be small but we're not sure if the difference is positive or negative.
 
 \hypertarget{r-45}{%
 \subsubsection*{R}\label{r-45}}
@@ -4796,7 +4906,7 @@ A stripchart is one of many ways to visualize numeric data between two groups. H
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-274-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-282-1.pdf}
 
 To calculate the means between the two groups we can use the \texttt{aggregate()} function. Again the formula \texttt{score\ \textasciitilde{}\ group} says to aggregate score by group. We specify \texttt{mean} so that we calculate the mean between the two groups. Some other functions we could specify include \texttt{median}, \texttt{sd}, or \texttt{sum}. The sample mean of the treated group is about 5 points higher than the control group.
 
@@ -4845,7 +4955,7 @@ The \texttt{str()} function allows to take a quick look at the data frame \textt
 \end{Highlighting}
 \end{Shaded}
 
-Again we use a stripchart to visualize the three groups of data. It appears the treated group had higher scores. It appears the pine cones in location 1 have a higher mass.
+Again we use a stripchart to visualize the three groups of data. It appears the pine cones in location 1 have a higher mass.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4853,7 +4963,7 @@ Again we use a stripchart to visualize the three groups of data. It appears the 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-278-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-286-1.pdf}
 
 To calculate the means between the three groups we can use the \texttt{aggregate()} function. Again the formula \texttt{mass\ \textasciitilde{}\ location} says to aggregate mass by location. We specify \texttt{mean} so that we calculate the mean between the three groups.
 
@@ -4904,17 +5014,6 @@ Unlike the \texttt{t.test()} output, the \texttt{aov()} summary does not provide
 \end{Shaded}
 
 The difference in means between locations 2 and 1 (2 - 1) and locations 3 and 1 (3 - 1) are about -2.8. The difference in means between locations 3 and 2 (3 - 2) is inconclusive. It seems to be small but we're not sure if the difference is positive or negative.
-
-Both the t-test and ANOVA are special cases of the linear model (ie, regression). We can obtain the same results, presented in different ways, using the \texttt{lm()} function. See the Linear Modeling section.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\SpecialCharTok{\textgreater{}}\NormalTok{ m1 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(score }\SpecialCharTok{\textasciitilde{}}\NormalTok{ group, }\AttributeTok{data =}\NormalTok{ ch8\_d1)}
-\SpecialCharTok{\textgreater{}} \FunctionTok{summary}\NormalTok{(m1)}
-\SpecialCharTok{\textgreater{}}\NormalTok{ m2 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(mass }\SpecialCharTok{\textasciitilde{}}\NormalTok{ location, }\AttributeTok{data =}\NormalTok{ ch8\_d2)}
-\SpecialCharTok{\textgreater{}} \FunctionTok{summary}\NormalTok{(m2)}
-\end{Highlighting}
-\end{Shaded}
 
 \hypertarget{comparing-group-proportions}{%
 \section{Comparing group proportions}\label{comparing-group-proportions}}

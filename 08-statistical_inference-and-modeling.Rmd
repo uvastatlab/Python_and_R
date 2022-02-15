@@ -1,10 +1,10 @@
-# Statistical Inference and Modeling
+# Selected Topics in Statistical Inference
 
 ```{r,echo=FALSE}
 knitr::opts_chunk$set(comment = NA, prompt = TRUE, collapse = TRUE)
 ```
 
-This chapter looks at performing common statistical analyses. It does not pretend to be comprehensive. The focus is on implementation using Python and R. Good statistical practice is more than knowing which function to use. At a minimum we recommend reading the article, [Ten Simple Rules for Effective Statistical Practice](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004961) [@kass_caffo_davidian_meng_yu_reid_2016].
+This chapter looks at performing selected statistical analyses. It is not comprehensive. The focus is on implementation using Python and R. Good statistical practice is more than knowing which function to use. At a minimum we recommend reading the article, [Ten Simple Rules for Effective Statistical Practice](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004961) [@kass_caffo_davidian_meng_yu_reid_2016].
 
 ## Comparing group means
 
@@ -14,7 +14,7 @@ To demonstrate the t test, we examine fictitious data on 15 scores between two g
 
 To demonstrate the ANOVA test, we use data from _The Analysis of Biological Data (3rd ed)_[@whitlock_schluter_2020] on the mass of pine cones (in grams) from three different environments in North America. Of interest is (1) whether or not the mean mass of pine cones differ meaningfully between the three locations, and (2) if they do differ, how are they different?
 
-We usually assess the first question in each scenario with a hypothesis test and p-value. The null hypothesis is no difference between the means. The p-value is basically the probability of the observed differences between the groups (or more extreme differences) assuming the null hypothesis is true. A small p-value, traditionally less then 0.05, provides evidence against the null. For example, a p-value of 0.01 says there's a 1% chance of sampling data as different as this (or more different) if there really was no difference between the groups. Note that p-values don't tell you how two or more statistics differ. See [the ASA Statement on p-values](https://www.tandfonline.com/doi/full/10.1080/00031305.2016.1154108#_i28).
+We usually assess the first question in each scenario with a hypothesis test and p-value. The null hypothesis is no difference between the means. The p-value is the probability of the observed differences between the groups (or more extreme differences) assuming the null hypothesis is true. A small p-value, traditionally less then 0.05, provides evidence against the null. For example, a p-value of 0.01 says there's a 1% chance of sampling data as different as this (or more different) if there really was no difference between the groups. Note that p-values don't tell you how two or more statistics differ. See [the ASA Statement on p-values](https://www.tandfonline.com/doi/full/10.1080/00031305.2016.1154108#_i28).
 
 We assess the second question in each scenario by calculating confidence intervals on the difference in means. This is more informative than a p-value. A confidence interval gives us information on the uncertainty, direction and magnitude of a difference in means. For example, a 95% confidence interval of [2, 15] tells us the data is consistent with a difference anywhere between 2 and 15 and that the mean of one group appears to be at least 2 units larger than the mean of the other group. Note that a 95% confidence interval does not mean there is a 95% probability that the true value is in the interval. The confidence interval either captured the true value or it did not. We don't know. However the _process_ of calculating the confidence interval works roughly 95% of the time.
 
@@ -59,21 +59,57 @@ Our data is available as a **Pandas** dataframe. It's small enough to view in it
 ch8_d1
 ```
 
-The usual way to perform a t test in Python is via the `ttest_ind()` function available in the **scipy.stats** package.
 
-```{python}
-from scipy import stats
+A stripchart is one of many ways to visualize numeric data between two groups. Here we use the seaborn function `stripplot()`. It appears the treated group had higher scores.
 
+```{python }
+import seaborn as sns
+import matplotlib.pyplot as plt
+sns.stripplot(x="score", y="group", data=ch8_d1)
+plt.show()
 ```
 
-The `ttest_ind()` function performs a t test between two arrays (or columns of a data frame) specified with the `a` and `b` arguments, respectively. By default the function assumes equal population variances. By setting the `equal_var` parameter to False we can relax that assumption and run Welch's t test, which is the default in R. The function returns the test statistic and p-value.
 
+One way to perform a t test in Python is via the `CompareMeans()` function and its associated methods available in the **statsmodels** package. Below we import **statsmodels.stats.api** as "sms".
 
 ```{python}
-stats.ttest_ind(a = ch8_d1.query('group == "control"')['score'], 
-                b = ch8_d1.query('group == "treated"')['score'],
-                equal_var=False)
+import statsmodels.stats.api as sms
 ```
+
+We first extract the data we want to compare as pandas Series.
+
+```{python}
+d_control = ch8_d1.query('group == "control"')['score']
+d_treated = ch8_d1.query('group == "treated"')['score']
+```
+
+Next we create Descriptive statistics objects using the `DescrStatsW()` function.
+
+```{python}
+control = sms.DescrStatsW(d_control)
+treated = sms.DescrStatsW(d_treated)
+```
+
+Descriptive statistics objects have attributes such as `mean` and `std` (standard deviation). Below we print the mean and standard deviation of each group. We also round the standard deviation to three decimal places.
+
+```{python}
+print({"control mean":control.mean, "std":round(control.std, 3)})
+print({"treated mean":treated.mean, "std": round(treated.std, 3)})
+```
+
+Next we create a CompareMeans means object using the `CompareMeans()` function. The required inputs are Descriptive statistics objects. We save the result as "ttest".
+
+```{python}
+ttest = sms.CompareMeans(control, treated)
+```
+
+Now we can use various methods with the "ttest" object. To see the result of a two sample t test assuming unequal variances, along with a confidence interval on the differences, use the `summary` method with `usevar='unequal'`. 
+
+```{python}
+print(ttest.summary(usevar='unequal'))
+```
+
+The p-value of 0.001 is small, providing good evidence that the difference in means we witnessed reflects a real difference in the population. The confidence interval on the difference in means tells us the data is consistent with a difference between -7 and -2. It appears we can expect the control group to score at least 2 points lower than the treated group.
 
 
 **ANOVA**
@@ -84,16 +120,40 @@ Our data is available as a **Pandas** dataframe. It's small enough to view in it
 ch8_d2
 ```
 
-The usual way to perform an ANOVA test in Python is via the `f_oneway()` function, also available in the **scipy.stats** package.
-
-The `f_oneway()` function performs an ANOVA between two or more arrays (or columns of a data frame) specified as inputs to the function. The function returns the test statistic and p-value.
+Again we use a stripchart to visualize the three groups of data. It appears the pine cones in location 1 have a higher mass.
 
 ```{python}
-stats.f_oneway(ch8_d2.query('location == "1"')['mass'], 
-               ch8_d2.query('location == "2"')['mass'],
-               ch8_d2.query('location == "3"')['mass'])
+plt.clf()
+sns.stripplot(x="mass", y="location", data=ch8_d2)
+plt.show()
 ```
 
+
+
+We can calculate means using the `groupby` and `mean` methods.
+
+```{python}
+ch8_d2['mass'].groupby(ch8_d2['location']).mean()
+```
+
+One way to perform an ANOVA test in Python is via the `anova_oneway()` function, also available in the **statsmodels** package.
+
+The `anova_oneway()` function can perform an ANOVA on a pandas Dataframe with the first argument specifying the numeric data and the second argument the grouping variable. We also set `use_var='equal'` to replicate the R output below.
+
+```{python}
+sms.anova_oneway(ch8_d2.mass, ch8_d2.location, use_var='equal')
+```
+
+The small p-value of 0.0000007 provides strong evidence that the difference in means we witnessed reflects a real difference in the population.
+
+A common follow-up to an ANOVA is Tukey's Honestly Significant Differences (HSD), which computes differences between all possible pairs and returns adjusted p-values and confidence intervals to account for the multiple comparisons. To carry this out in the **statsmodels** package, we need to first create a MultiComparison object using the `multicomp.MultiComparison()` function. Then we use the `tukeyhsd()` method to compare the means with corrected p-values.
+
+```{python}
+mc = sms.multicomp.MultiComparison(ch8_d2.mass, ch8_d2.location)
+print(mc.tukeyhsd())
+```
+
+The difference in means between locations 2 and 1 (2 - 1) and locations 3 and 1 (3 - 1) are about -2.8. The difference in means between locations 3 and 2 (3 - 2) is inconclusive. It seems to be small but we're not sure if the difference is positive or negative.
 
 #### R {-}
 
@@ -139,7 +199,7 @@ The `str()` function allows to take a quick look at the data frame `ch8_d2`. One
 str(ch8_d2)
 ```
 
-Again we use a stripchart to visualize the three groups of data. It appears the treated group had higher scores. It appears the pine cones in location 1 have a higher mass.
+Again we use a stripchart to visualize the three groups of data. It appears the pine cones in location 1 have a higher mass.
 
 ```{r}
 stripchart(mass ~ location, data = ch8_d2, las = 1, method = "jitter")
@@ -169,15 +229,6 @@ TukeyHSD(aov1)
 ```
 
 The difference in means between locations 2 and 1 (2 - 1) and locations 3 and 1 (3 - 1) are about -2.8. The difference in means between locations 3 and 2 (3 - 2) is inconclusive. It seems to be small but we're not sure if the difference is positive or negative.
-
-Both the t-test and ANOVA are special cases of the linear model (ie, regression). We can obtain the same results, presented in different ways, using the `lm()` function. See the Linear Modeling section.
-
-```{r eval=FALSE}
-m1 <- lm(score ~ group, data = ch8_d1)
-summary(m1)
-m2 <- lm(mass ~ location, data = ch8_d2)
-summary(m2)
-```
 
 
 ## Comparing group proportions

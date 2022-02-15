@@ -52,7 +52,7 @@ scatterplot
 stripcharts
 boxplots
 facet-plots
-statistical-inference-and-modeling
+selected-topics-in-statistical-inference
 comparing-group-means
 comparing-group-proportions
 linear-modeling
