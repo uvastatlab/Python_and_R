@@ -90,11 +90,11 @@ control = sms.DescrStatsW(d_control)
 treated = sms.DescrStatsW(d_treated)
 ```
 
-Descriptive statistics objects have attributes such as `mean` and `std` (standard deviation). Below we print the mean and standard deviation of each group. We also round the standard deviation to three decimal places.
+Descriptive statistics objects have attributes such as `mean` and `std` (standard deviation). Below we print the mean and standard deviation of each group. We also round the standard deviation to three decimal places and place a line break before printing the standard deviation.
 
 ```{python}
-print({"control mean":control.mean, "std":round(control.std, 3)})
-print({"treated mean":treated.mean, "std": round(treated.std, 3)})
+print("control mean:", control.mean, "\ncontrol std:", round(control.std, 3))
+print("treated mean:", treated.mean, "\ntreated std:", round(treated.std, 3))
 ```
 
 Next we create a CompareMeans means object using the `CompareMeans()` function. The required inputs are Descriptive statistics objects. We save the result as "ttest".
@@ -233,7 +233,7 @@ The difference in means between locations 2 and 1 (2 - 1) and locations 3 and 1 
 
 ## Comparing group proportions
 
-Comparing the proportions of two or more groups to see if or how they differ. 
+It is often of interest to compare proportions between two groups. Sometimes this is referred to as a two-sample proportion test. To demonstrate we use an exercise from the text _Introductory Statistics with R_ [@Dalgaard_2020] (p.154). We are told that 210 out of 747 patients died of Rocky Mountain spotted fever in the western United States. That's a proportion of `r round(210/747, 3)`. In the eastern United States, 122 out 661 patients died. That's a proportion of `r round(122/661, 3)`. Is the difference in proportions statistically significant? In other words, assuming there is no difference in the fatality rate between the two regions, is this difference in proportions surprising?
 
 
 #### Python {-}
@@ -241,7 +241,40 @@ Comparing the proportions of two or more groups to see if or how they differ.
 
 #### R {-}
 
-## linear modeling
+A two-sample proportion test in R can be carried out with the `prop.test()` function. The first argument, `x`, is the number of "successes" or "occurrences" of some event for each group. The second argument, `n`, is the number of total trials for each group.
+
+```{r}
+prop.test(x = c(210, 122), n = c(747, 661))
+```
+
+The proportion of patients who died in the western US is about 0.28. The proportion who died in the eastern US is about 0.18. The small p-value says there is a very small chance of seeing a difference as large as this (or larger) if there really was no difference in the proportions. The confidence interval on the difference of proportions ranges from 0.05 to 0.14, indicating that this fever seems to kill at least 5% more patients in the western US.
+
+Sometimes data is presented in a 2-way table with successes and failures. We can present the preceding data in a table as follows using the `matrix()` function. 
+
+```{r}
+fever <- matrix(c(210, 122,
+                  747-210, 661-122), ncol = 2)
+rownames(fever) <- c("western US", "eastern US")
+colnames(fever) <- c("died", "lived")
+fever
+```
+
+When the table is constructed in this fashion with "successes" in the first column and "failures" in the second column, we can feed the table directly to the `prop.test()` function. (Obviously "success" here means "experienced the event of interest".)
+
+```{r}
+prop.test(fever)
+```
+
+The chi-squared test statistic is reported as `X-squared = 17.612`. This is the same statistic reported if we ran a chi-squared test of association using the `chisq.test()` function. 
+
+```{r}
+chisq.test(fever)
+```
+
+This tests the null hypothesis of no association between location in the US and fatality of the fever. The result is identical to `prop.test()` output, however there is no indication of the nature of association.
+
+
+## Linear modeling
 
 Analyzing if or how the variability a numeric variable depends on one or more predictor variables.
 

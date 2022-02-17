@@ -24,7 +24,7 @@
 <meta name="author" content="Clay Ford, Jacob Goldstein-Greenwood, Oyinkansola Adenekan, Samantha Lomuscio" />
 
 
-<meta name="date" content="2022-02-15" />
+<meta name="date" content="2022-02-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -236,7 +236,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="8.1" data-path="selected-topics-in-statistical-inference.html"><a href="selected-topics-in-statistical-inference.html#comparing-group-means"><i class="fa fa-check"></i><b>8.1</b> Comparing group means</a></li>
 <li class="chapter" data-level="8.2" data-path="selected-topics-in-statistical-inference.html"><a href="selected-topics-in-statistical-inference.html#comparing-group-proportions"><i class="fa fa-check"></i><b>8.2</b> Comparing group proportions</a></li>
-<li class="chapter" data-level="8.3" data-path="selected-topics-in-statistical-inference.html"><a href="selected-topics-in-statistical-inference.html#linear-modeling"><i class="fa fa-check"></i><b>8.3</b> linear modeling</a></li>
+<li class="chapter" data-level="8.3" data-path="selected-topics-in-statistical-inference.html"><a href="selected-topics-in-statistical-inference.html#linear-modeling"><i class="fa fa-check"></i><b>8.3</b> Linear modeling</a></li>
 <li class="chapter" data-level="8.4" data-path="selected-topics-in-statistical-inference.html"><a href="selected-topics-in-statistical-inference.html#logistic-regression"><i class="fa fa-check"></i><b>8.4</b> Logistic regression</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -320,11 +320,13 @@ div.csl-indent {
 <p>Next we create Descriptive statistics objects using the <code>DescrStatsW()</code> function.</p>
 <div class="sourceCode" id="cb253"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb253-1"><a href="selected-topics-in-statistical-inference.html#cb253-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> control <span class="op">=</span> sms.DescrStatsW(d_control)</span>
 <span id="cb253-2"><a href="selected-topics-in-statistical-inference.html#cb253-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> treated <span class="op">=</span> sms.DescrStatsW(d_treated)</span></code></pre></div>
-<p>Descriptive statistics objects have attributes such as <code>mean</code> and <code>std</code> (standard deviation). Below we print the mean and standard deviation of each group. We also round the standard deviation to three decimal places.</p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb254-1"><a href="selected-topics-in-statistical-inference.html#cb254-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="bu">print</span>({<span class="st">&quot;control mean&quot;</span>:control.mean, <span class="st">&quot;std&quot;</span>:<span class="bu">round</span>(control.std, <span class="dv">3</span>)})</span>
-<span id="cb254-2"><a href="selected-topics-in-statistical-inference.html#cb254-2" aria-hidden="true" tabindex="-1"></a>{<span class="st">&#39;control mean&#39;</span>: <span class="fl">80.4</span>, <span class="st">&#39;std&#39;</span>: <span class="fl">3.844</span>}</span>
-<span id="cb254-3"><a href="selected-topics-in-statistical-inference.html#cb254-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="bu">print</span>({<span class="st">&quot;treated mean&quot;</span>:treated.mean, <span class="st">&quot;std&quot;</span>: <span class="bu">round</span>(treated.std, <span class="dv">3</span>)})</span>
-<span id="cb254-4"><a href="selected-topics-in-statistical-inference.html#cb254-4" aria-hidden="true" tabindex="-1"></a>{<span class="st">&#39;treated mean&#39;</span>: <span class="fl">85.2</span>, <span class="st">&#39;std&#39;</span>: <span class="fl">3.331</span>}</span></code></pre></div>
+<p>Descriptive statistics objects have attributes such as <code>mean</code> and <code>std</code> (standard deviation). Below we print the mean and standard deviation of each group. We also round the standard deviation to three decimal places and place a line break before printing the standard deviation.</p>
+<div class="sourceCode" id="cb254"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb254-1"><a href="selected-topics-in-statistical-inference.html#cb254-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="bu">print</span>(<span class="st">&quot;control mean:&quot;</span>, control.mean, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">control std:&quot;</span>, <span class="bu">round</span>(control.std, <span class="dv">3</span>))</span>
+<span id="cb254-2"><a href="selected-topics-in-statistical-inference.html#cb254-2" aria-hidden="true" tabindex="-1"></a>control mean: <span class="fl">80.4</span> </span>
+<span id="cb254-3"><a href="selected-topics-in-statistical-inference.html#cb254-3" aria-hidden="true" tabindex="-1"></a>control std: <span class="fl">3.844</span></span>
+<span id="cb254-4"><a href="selected-topics-in-statistical-inference.html#cb254-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="bu">print</span>(<span class="st">&quot;treated mean:&quot;</span>, treated.mean, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">treated std:&quot;</span>, <span class="bu">round</span>(treated.std, <span class="dv">3</span>))</span>
+<span id="cb254-5"><a href="selected-topics-in-statistical-inference.html#cb254-5" aria-hidden="true" tabindex="-1"></a>treated mean: <span class="fl">85.2</span> </span>
+<span id="cb254-6"><a href="selected-topics-in-statistical-inference.html#cb254-6" aria-hidden="true" tabindex="-1"></a>treated std: <span class="fl">3.331</span></span></code></pre></div>
 <p>Next we create a CompareMeans means object using the <code>CompareMeans()</code> function. The required inputs are Descriptive statistics objects. We save the result as “ttest.”</p>
 <div class="sourceCode" id="cb255"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb255-1"><a href="selected-topics-in-statistical-inference.html#cb255-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> ttest <span class="op">=</span> sms.CompareMeans(control, treated)</span></code></pre></div>
 <p>Now we can use various methods with the “ttest” object. To see the result of a two sample t test assuming unequal variances, along with a confidence interval on the differences, use the <code>summary</code> method with <code>usevar='unequal'</code>.</p>
@@ -472,16 +474,60 @@ div.csl-indent {
 </div>
 <div id="comparing-group-proportions" class="section level2" number="8.2">
 <h2><span class="header-section-number">8.2</span> Comparing group proportions</h2>
-<p>Comparing the proportions of two or more groups to see if or how they differ.</p>
+<p>It is often of interest to compare proportions between two groups. Sometimes this is referred to as a two-sample proportion test. To demonstrate we use an exercise from the text <em>Introductory Statistics with R</em> <span class="citation">(<a href="#ref-Dalgaard_2020" role="doc-biblioref">Dalgaard 2008</a>)</span> (p.154). We are told that 210 out of 747 patients died of Rocky Mountain spotted fever in the western United States. That’s a proportion of 0.281. In the eastern United States, 122 out 661 patients died. That’s a proportion of 0.185. Is the difference in proportions statistically significant? In other words, assuming there is no difference in the fatality rate between the two regions, is this difference in proportions surprising?</p>
 <div id="python-46" class="section level4 unnumbered">
 <h4>Python</h4>
 </div>
 <div id="r-46" class="section level4 unnumbered">
 <h4>R</h4>
+<p>A two-sample proportion test in R can be carried out with the <code>prop.test()</code> function. The first argument, <code>x</code>, is the number of “successes” or “occurrences” of some event for each group. The second argument, <code>n</code>, is the number of total trials for each group.</p>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="selected-topics-in-statistical-inference.html#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">prop.test</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">210</span>, <span class="dv">122</span>), <span class="at">n =</span> <span class="fu">c</span>(<span class="dv">747</span>, <span class="dv">661</span>))</span>
+<span id="cb271-2"><a href="selected-topics-in-statistical-inference.html#cb271-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-3"><a href="selected-topics-in-statistical-inference.html#cb271-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">2</span><span class="sc">-</span>sample test <span class="cf">for</span> equality of proportions with continuity correction</span>
+<span id="cb271-4"><a href="selected-topics-in-statistical-inference.html#cb271-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-5"><a href="selected-topics-in-statistical-inference.html#cb271-5" aria-hidden="true" tabindex="-1"></a>data<span class="sc">:</span>  <span class="fu">c</span>(<span class="dv">210</span>, <span class="dv">122</span>) out of <span class="fu">c</span>(<span class="dv">747</span>, <span class="dv">661</span>)</span>
+<span id="cb271-6"><a href="selected-topics-in-statistical-inference.html#cb271-6" aria-hidden="true" tabindex="-1"></a>X<span class="sc">-</span>squared <span class="ot">=</span> <span class="fl">17.612</span>, df <span class="ot">=</span> <span class="dv">1</span>, p<span class="sc">-</span>value <span class="ot">=</span> <span class="fl">2.709e-05</span></span>
+<span id="cb271-7"><a href="selected-topics-in-statistical-inference.html#cb271-7" aria-hidden="true" tabindex="-1"></a>alternative hypothesis<span class="sc">:</span> two.sided</span>
+<span id="cb271-8"><a href="selected-topics-in-statistical-inference.html#cb271-8" aria-hidden="true" tabindex="-1"></a><span class="dv">95</span> percent confidence interval<span class="sc">:</span></span>
+<span id="cb271-9"><a href="selected-topics-in-statistical-inference.html#cb271-9" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.05138139</span> <span class="fl">0.14172994</span></span>
+<span id="cb271-10"><a href="selected-topics-in-statistical-inference.html#cb271-10" aria-hidden="true" tabindex="-1"></a>sample estimates<span class="sc">:</span></span>
+<span id="cb271-11"><a href="selected-topics-in-statistical-inference.html#cb271-11" aria-hidden="true" tabindex="-1"></a>   prop <span class="dv">1</span>    prop <span class="dv">2</span> </span>
+<span id="cb271-12"><a href="selected-topics-in-statistical-inference.html#cb271-12" aria-hidden="true" tabindex="-1"></a><span class="fl">0.2811245</span> <span class="fl">0.1845688</span> </span></code></pre></div>
+<p>The proportion of patients who died in the western US is about 0.28. The proportion who died in the eastern US is about 0.18. The small p-value says there is a very small chance of seeing a difference as large as this (or larger) if there really was no difference in the proportions. The confidence interval on the difference of proportions ranges from 0.05 to 0.14, indicating that this fever seems to kill at least 5% more patients in the western US.</p>
+<p>Sometimes data is presented in a 2-way table with successes and failures. We can present the preceding data in a table as follows using the <code>matrix()</code> function.</p>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="selected-topics-in-statistical-inference.html#cb272-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> fever <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">210</span>, <span class="dv">122</span>,</span>
+<span id="cb272-2"><a href="selected-topics-in-statistical-inference.html#cb272-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                   <span class="dv">747-210</span>, <span class="dv">661-122</span>), <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb272-3"><a href="selected-topics-in-statistical-inference.html#cb272-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">rownames</span>(fever) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;western US&quot;</span>, <span class="st">&quot;eastern US&quot;</span>)</span>
+<span id="cb272-4"><a href="selected-topics-in-statistical-inference.html#cb272-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">colnames</span>(fever) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;died&quot;</span>, <span class="st">&quot;lived&quot;</span>)</span>
+<span id="cb272-5"><a href="selected-topics-in-statistical-inference.html#cb272-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> fever</span>
+<span id="cb272-6"><a href="selected-topics-in-statistical-inference.html#cb272-6" aria-hidden="true" tabindex="-1"></a>           died lived</span>
+<span id="cb272-7"><a href="selected-topics-in-statistical-inference.html#cb272-7" aria-hidden="true" tabindex="-1"></a>western US  <span class="dv">210</span>   <span class="dv">537</span></span>
+<span id="cb272-8"><a href="selected-topics-in-statistical-inference.html#cb272-8" aria-hidden="true" tabindex="-1"></a>eastern US  <span class="dv">122</span>   <span class="dv">539</span></span></code></pre></div>
+<p>When the table is constructed in this fashion with “successes” in the first column and “failures” in the second column, we can feed the table directly to the <code>prop.test()</code> function. (Obviously “success” here means “experienced the event of interest.”)</p>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="selected-topics-in-statistical-inference.html#cb273-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">prop.test</span>(fever)</span>
+<span id="cb273-2"><a href="selected-topics-in-statistical-inference.html#cb273-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb273-3"><a href="selected-topics-in-statistical-inference.html#cb273-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">2</span><span class="sc">-</span>sample test <span class="cf">for</span> equality of proportions with continuity correction</span>
+<span id="cb273-4"><a href="selected-topics-in-statistical-inference.html#cb273-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb273-5"><a href="selected-topics-in-statistical-inference.html#cb273-5" aria-hidden="true" tabindex="-1"></a>data<span class="sc">:</span>  fever</span>
+<span id="cb273-6"><a href="selected-topics-in-statistical-inference.html#cb273-6" aria-hidden="true" tabindex="-1"></a>X<span class="sc">-</span>squared <span class="ot">=</span> <span class="fl">17.612</span>, df <span class="ot">=</span> <span class="dv">1</span>, p<span class="sc">-</span>value <span class="ot">=</span> <span class="fl">2.709e-05</span></span>
+<span id="cb273-7"><a href="selected-topics-in-statistical-inference.html#cb273-7" aria-hidden="true" tabindex="-1"></a>alternative hypothesis<span class="sc">:</span> two.sided</span>
+<span id="cb273-8"><a href="selected-topics-in-statistical-inference.html#cb273-8" aria-hidden="true" tabindex="-1"></a><span class="dv">95</span> percent confidence interval<span class="sc">:</span></span>
+<span id="cb273-9"><a href="selected-topics-in-statistical-inference.html#cb273-9" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.05138139</span> <span class="fl">0.14172994</span></span>
+<span id="cb273-10"><a href="selected-topics-in-statistical-inference.html#cb273-10" aria-hidden="true" tabindex="-1"></a>sample estimates<span class="sc">:</span></span>
+<span id="cb273-11"><a href="selected-topics-in-statistical-inference.html#cb273-11" aria-hidden="true" tabindex="-1"></a>   prop <span class="dv">1</span>    prop <span class="dv">2</span> </span>
+<span id="cb273-12"><a href="selected-topics-in-statistical-inference.html#cb273-12" aria-hidden="true" tabindex="-1"></a><span class="fl">0.2811245</span> <span class="fl">0.1845688</span> </span></code></pre></div>
+<p>The chi-squared test statistic is reported as <code>X-squared = 17.612</code>. This is the same statistic reported if we ran a chi-squared test of association using the <code>chisq.test()</code> function.</p>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="selected-topics-in-statistical-inference.html#cb274-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">chisq.test</span>(fever)</span>
+<span id="cb274-2"><a href="selected-topics-in-statistical-inference.html#cb274-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb274-3"><a href="selected-topics-in-statistical-inference.html#cb274-3" aria-hidden="true" tabindex="-1"></a>    Pearson<span class="st">&#39;s Chi-squared test with Yates&#39;</span> continuity correction</span>
+<span id="cb274-4"><a href="selected-topics-in-statistical-inference.html#cb274-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb274-5"><a href="selected-topics-in-statistical-inference.html#cb274-5" aria-hidden="true" tabindex="-1"></a>data<span class="sc">:</span>  fever</span>
+<span id="cb274-6"><a href="selected-topics-in-statistical-inference.html#cb274-6" aria-hidden="true" tabindex="-1"></a>X<span class="sc">-</span>squared <span class="ot">=</span> <span class="fl">17.612</span>, df <span class="ot">=</span> <span class="dv">1</span>, p<span class="sc">-</span>value <span class="ot">=</span> <span class="fl">2.709e-05</span></span></code></pre></div>
+<p>This tests the null hypothesis of no association between location in the US and fatality of the fever. The result is identical to <code>prop.test()</code> output, however there is no indication of the nature of association.</p>
 </div>
 </div>
 <div id="linear-modeling" class="section level2" number="8.3">
-<h2><span class="header-section-number">8.3</span> linear modeling</h2>
+<h2><span class="header-section-number">8.3</span> Linear modeling</h2>
 <p>Analyzing if or how the variability a numeric variable depends on one or more predictor variables.</p>
 <div id="python-47" class="section level4 unnumbered">
 <h4>Python</h4>
@@ -504,6 +550,9 @@ div.csl-indent {
 </div>
 <h3>References</h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Dalgaard_2020" class="csl-entry">
+Dalgaard, Peter. 2008. <em>Introductory Statistics with <span>R</span></em>. 2nd ed. Springer.
+</div>
 <div id="ref-kass_caffo_davidian_meng_yu_reid_2016" class="csl-entry">
 Kass, Robert E., Brian S. Caffo, Marie Davidian, Xiao-Li Meng, Bin Yu, and Nancy Reid. 2016. <span>“Ten Simple Rules for Effective Statistical Practice.”</span> <em>PLOS Computational Biology</em> 12 (6). <a href="https://doi.org/10.1371/journal.pcbi.1004961">https://doi.org/10.1371/journal.pcbi.1004961</a>.
 </div>
