@@ -12,6 +12,36 @@ Combining rows may be thought of as "stacking" rectangular data structures.
 
 #### Python {-}
 
+The pandas function `concat` function "binds" rows. It takes a list of pandas DataFrame objects. The second argument `axis` specifies a row bind when 0 and a column bind when 1. The default value is 0. The column names of the DataFrames should match, otherwise the DataFrame fills with NaNs. You can bind rows with different column types.
+
+```{python}
+import pandas as pd
+
+d1 = pd.DataFrame({'x':[4,5,6], 'y':['a','b','c']})
+d2 = pd.DataFrame({'x':[3,2,1], 'y':['d','e','f']})
+
+# create list of DataFrame objects
+frames = [d1, d2]
+combined_df = pd.concat(frames)
+
+combined_df
+```
+
+The following code is an example of when column names do not match, resulting in NaNs in the DataFrame.
+
+```{python}
+
+# DataFrame with different column names
+d1 = pd.DataFrame({'x':[4,5,6], 'z':['a','b','c']})
+d2 = pd.DataFrame({'x':[3,2,1], 'y':['d','e','f']})
+
+# create list of DataFrame objects
+frames = [d1, d2]
+combined_df = pd.concat(frames)
+
+combined_df
+```
+
 
 #### R {-}
 
@@ -31,6 +61,19 @@ Combining columns may be thought of as setting rectangular data structures next 
 
 #### Python {-}
 
+The `concat` function also "binds" columns. It takes two or more objects. The second argument `axis` specifies a row bind when 0 and a column bind when 1. The default value is 0. To column bind data frames, the number of rows must match; otherwise, the function throws an error.
+
+```{python}
+
+d1 = pd.DataFrame({'x':[4,5,6], 'y':['a','b','c']})
+d2 = pd.DataFrame({'z':[3,2,1], 'a':['d','e','f']})
+
+# create list of DataFrame objects
+frames = [d1, d2]
+combined_df = pd.concat(frames, axis=1)
+
+combined_df
+```
 
 #### R {-}
 
