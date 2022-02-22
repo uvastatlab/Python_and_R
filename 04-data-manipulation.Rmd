@@ -569,7 +569,81 @@ The `parse_number()` function in the **readr** package can often take care of th
 readr::parse_number(weight)
 ```
 
+## Combine strings
 
+String concatenation---turning 'Jane' and 'Smith' into 'Jane Smith'---is easily done in both languages.
+
+#### Python {-}
+
+The `+` operator can combine strings in Python.
+
+```{python}
+species = 'yellow-bellied sea snake'
+tail_shape = 'paddle-shaped'
+
+statement = 'The ' + species + ' has a ' + tail_shape + ' tail that helps it swim.'
+print(statement)
+```
+
+#### R {-}
+
+The `paste()` and `paste0()` functions combine strings in R. The former concatenates strings and places spaces between them; the latter concatenates sans spaces.
+
+```{r}
+species <- 'rainbow boa'
+appearance <- 'iridescent'
+location <- 'Central and South America'
+
+statement1 <- paste('The', species, 'has an', appearance, 'sheen.')
+statement1
+
+# Note that spaces must be provided explicitly when using paste0()
+statement2 <- paste0('The ', species, ' is found in ', location)
+statement2
+```
+
+## Find and replace patterns within strings
+
+#### Python
+
+#### R
+
+The base R functions `sub()` and `gsub()` can be used to find and replace the first or all instances of a pattern in strings, respectively. The pattern searched for can be expressed as a raw character string or as a regular expression.
+```{r}
+statements <- c('Great Pencil Co. sells pencils of the following grades: HB; B; and 3B.',
+                'Great Pencil Co. has its headquarters in Maine, and Great Pencil Co. has supplied the Northeast for decades.')
+# Replace the first instance of a pattern (Co. --> Company)
+revised <- sub(pattern = 'Co.', replacement = 'Company', x = statements)
+revised
+# Replace all instances of a pattern (; --> ,)
+revised2 <- gsub(pattern = ';', replacement = ',', x = revised)
+revised2
+# Find and replace a pattern using regex (3B --> 2B)
+final <- sub(pattern = '\\d{1}', replacement = '2', x = revised2)
+final
+```
+
+Those functions can be used to trim excess (or all) white space in character strings.
+```{r}
+spaced_string <- c('There      are    too   many    spaces     in this   string')
+# Replace all instances of >=2 spaces with single spaces
+gsub(pattern = '\\s{2,}', replacement = ' ', x = spaced_string)
+# Remove all white space
+collapse_these <- c('9:00 - 10:15', '10:15 - 11:30', '11:30 - 12:00')
+gsub(pattern = '\\s', replacement = '', x = collapse_these)
+```
+
+The package **stringi** also provides an array of string manipulation functions, including `stri_detect()`, `stri_replace()`, and `stri_extract()`, all of which easily handle fixed and regex search patterns. For example:
+```{r}
+library(stringi)
+user_dat <- data.frame(name = c('Shire, Jane E', 'Winchester, Marcus L', 'Fox, Sal'), id_number = c('aaa101', 'aaa102', 'aaa103'))
+user_dat
+# Say we want to use regex patterns and the stringi package to eliminate the 'aaa' patterns from
+# the user IDs and then add middle initials---for those users who have them---to the data frame
+user_dat$id_number <- stri_replace(user_dat$id_number, regex = '\\w{3}(?=\\d+)', replacement = '')
+user_dat$middle_initial <- stri_extract(user_dat$name, regex = '\\b\\w{1}\\b')
+user_dat
+```
 
 ## Change case
 
