@@ -505,7 +505,6 @@ See also the `str_pad()` function in the **stringr** package.
 
 String variables that ought to be numbers usually have some character data in the values such as units (eg, "4 cm"). To create numbers from strings it's important to remove any character data that cannot be converted to a number.
 
-
 #### Python {-}
 The `astype(float)` or `astype(int)` function will coerce strings to numerical representation.
 
@@ -526,7 +525,6 @@ except ValueError:
 ```
 
 One way to approach this is to first remove the strings from the objects and then use `astype(float)`. Below we use the `strip()` function to find " lbs." using a list comprehension.
-
 
 ```{python}
 # [] indicates a list in python
@@ -556,7 +554,7 @@ The `as.numeric()` function returns all NA due to presence of character data.
 as.numeric(weight)
 ```
 
-There are many ways to approach this. A common approach is to first remove the characters and then use `as.numeric()`. Below we use the `sub` function to find "lbs." and replace with nothing.
+There are many ways to approach this. A common approach is to first remove the characters and then use `as.numeric()`. Below we use the `gsub()` function to find "lbs." and replace with nothing (find-and-replace procedures are discussed more below).
 
 ```{r}
 weightN <- gsub("lbs.", "", weight)
@@ -602,30 +600,66 @@ statement2 <- paste0('The ', species, ' is found in ', location)
 statement2
 ```
 
-## Find and replace patterns within strings
+## Finding and replacing patterns within strings
+
+This section reviews key functions in Python and R for finding and replacing character patterns. The functions we discuss can search for fixed character patterns (e.g., "Meredith Rollins" to case-sensitively match that name and that name alone) or regular expression (regex) patterns (e.g., `\w+` to capture all instances of >=1 word character). Note that in R, meta characters, like `w` (to match word characters) and `d` (to match digits), are escaped with _two_ backslashes (e.g., `\\w` and `\\d`). In Python, regex patterns are generally headed by `r`, which allows meta characters in the regex itself to be escaped with just one `\` (e.g., `r"\w+"`). Regex is an enormous topic, and we don't discuss it at any length here, but you can learn more about regular expressions---and how they're implemented in different programming languages---at these resources: https://www.regular-expressions.info/; https://regexone.com/
 
 #### Python
 
+The **re** module provides a set of functions for searching and manipulating strings. The `search()` function does exactly as its name suggests: It identifies matches for a fixed or regex character pattern in a string. `sub()` searches for and replaces character patterns (fixed or regex). The `count` argument in `sub()` allows a user to specify how many instances of the matched pattern they want to to replace; e.g., use `count = 1` to replace just the first instance of a match.
+
+```{python}
+import re
+statement = 'Pencils with an HB graphite grade are commonly used for writing. An HB pencil is approximately equal to a #2 pencil.'
+
+# Search for "HB" using fixed and regex patterns
+search_result1 = re.search(pattern = "HB", string = statement)
+print(search_result1)
+search_result2 = re.search(pattern = r"[H,B]{2}", string = statement)
+print(search_result2)
+
+# Replace all instances of "HB"
+all_replaced = re.sub(pattern = 'HB', repl = 'HB (hard black)', string = statement)
+print(all_replaced)
+
+# Replace just the first instance of HB
+one_replaced = re.sub(pattern = 'HB', repl = 'HB (hard black)', string = statement, count = 1)
+print(one_replaced)
+
+# Search and replace using a regex pattern instead of a fixed string
+regex_replaced = re.sub(pattern = r'(?<=\.)\s{1}', repl = '\n', string = statement)
+print(regex_replaced)
+```
+
 #### R
 
-The base R functions `sub()` and `gsub()` can be used to find and replace the first or all instances of a pattern in strings, respectively. The pattern searched for can be expressed as a raw character string or as a regular expression.
+The standard-issue string-search function is `grep()`; it returns the index of the elements in a set of one or more strings for which a pattern match was found. (`grepl()` acts similarly but returns a vector of `TRUE`/`FALSE` indicating whether a match was found in each string passed to the function.) The functions `sub()` and `gsub()` can be used to find and replace instances of a pattern: The former replaces just the first instance; the latter replaces all instances. The search pattern can be provided as a raw character string or as a regular expression.
+
 ```{r}
-statements <- c('Great Pencil Co. sells pencils of the following grades: HB; B; and 3B.',
+statements <- c('Great Pencil Co. primarily sells pencils of the following grades: HB; B; and 3B.',
                 'Great Pencil Co. has its headquarters in Maine, and Great Pencil Co. has supplied the Northeast for decades.')
+
+# Search for pattern and return indexex of elements for which match is found
+grep(pattern = 'pencil', x = statements) # When searched for case sensitively, "pencil" is only found in the first string
+grep(pattern = '(?i)pencil', x = statements) # When searched for case insensitively, "P/pencil" is found in both strings
+
 # Replace the first instance of a pattern (Co. --> Company)
 revised <- sub(pattern = 'Co.', replacement = 'Company', x = statements)
 revised
+
 # Replace all instances of a pattern (; --> ,)
 revised2 <- gsub(pattern = ';', replacement = ',', x = revised)
 revised2
+
 # Find and replace a pattern using regex (3B --> 2B)
 final <- sub(pattern = '\\d{1}', replacement = '2', x = revised2)
 final
 ```
 
 Those functions can be used to trim excess (or all) white space in character strings.
+
 ```{r}
-spaced_string <- c('There      are    too   many    spaces     in this   string')
+spaced_string <- c('This      string    started  out with too    many    spaces.')
 # Replace all instances of >=2 spaces with single spaces
 gsub(pattern = '\\s{2,}', replacement = ' ', x = spaced_string)
 # Remove all white space
@@ -633,7 +667,8 @@ collapse_these <- c('9:00 - 10:15', '10:15 - 11:30', '11:30 - 12:00')
 gsub(pattern = '\\s', replacement = '', x = collapse_these)
 ```
 
-The package **stringi** also provides an array of string manipulation functions, including `stri_detect()`, `stri_replace()`, and `stri_extract()`, all of which easily handle fixed and regex search patterns. For example:
+The package **stringi** also provides an array of string-search and string-manipulation functions, including `stri_detect()`, `stri_replace()`, and `stri_extract()`, all of which easily handle fixed and regex search patterns. For example:
+
 ```{r}
 library(stringi)
 user_dat <- data.frame(name = c('Shire, Jane E', 'Winchester, Marcus L', 'Fox, Sal'), id_number = c('aaa101', 'aaa102', 'aaa103'))
