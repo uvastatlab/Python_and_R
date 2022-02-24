@@ -152,6 +152,16 @@ Stripcharts are one-dimensional scatterplots. Like boxplots, they reveal the dis
 
 #### Python {-}
 
+The **seaborn** package provides the `stripplot()` function. Specify which variables you want on the x and y axes. Below we specify island on the y axis to see the distribution of bill_depth_mm horizontally. Specify your Pandas data frame using the data argument. Finally create the plot using `plt.show()` from **matplotlib**.
+
+```{python}
+import seaborn as sns
+import matplotlib.pyplot as plt
+sns.stripplot(x="bill_depth_mm", y="island", data=penguins)
+plt.show()
+```
+
+
 #### R {-}
 
 Base R offers the `stripchart()` function. To indicate the numeric variable and the grouping variable, you can use formula notation: `numeric_var ~ grouping_var`. Adding `methhod = 'jitter'` to the set of arguments spreads the points out slightly within each level of the grouping variable, making it easier to see points that might otherwise be obscured by overlap.

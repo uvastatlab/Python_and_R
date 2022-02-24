@@ -24,7 +24,7 @@
 <meta name="author" content="Clay Ford, Jacob Goldstein-Greenwood, Oyinkansola Adenekan, Samantha Lomuscio" />
 
 
-<meta name="date" content="2022-02-17" />
+<meta name="date" content="2022-02-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -195,10 +195,12 @@ div.csl-indent {
 <li class="chapter" data-level="4.5" data-path="data-manipulation.html"><a href="data-manipulation.html#create-replace-and-remove-variables"><i class="fa fa-check"></i><b>4.5</b> Create, replace and remove variables</a></li>
 <li class="chapter" data-level="4.6" data-path="data-manipulation.html"><a href="data-manipulation.html#create-strings-from-numbers"><i class="fa fa-check"></i><b>4.6</b> Create strings from numbers</a></li>
 <li class="chapter" data-level="4.7" data-path="data-manipulation.html"><a href="data-manipulation.html#create-numbers-from-strings"><i class="fa fa-check"></i><b>4.7</b> Create numbers from strings</a></li>
-<li class="chapter" data-level="4.8" data-path="data-manipulation.html"><a href="data-manipulation.html#change-case"><i class="fa fa-check"></i><b>4.8</b> Change case</a></li>
-<li class="chapter" data-level="4.9" data-path="data-manipulation.html"><a href="data-manipulation.html#drop-duplicate-rows"><i class="fa fa-check"></i><b>4.9</b> Drop duplicate rows</a></li>
-<li class="chapter" data-level="4.10" data-path="data-manipulation.html"><a href="data-manipulation.html#format-dates"><i class="fa fa-check"></i><b>4.10</b> Format dates</a></li>
-<li class="chapter" data-level="4.11" data-path="data-manipulation.html"><a href="data-manipulation.html#randomly-sample-rows"><i class="fa fa-check"></i><b>4.11</b> Randomly sample rows</a></li>
+<li class="chapter" data-level="4.8" data-path="data-manipulation.html"><a href="data-manipulation.html#combine-strings"><i class="fa fa-check"></i><b>4.8</b> Combine strings</a></li>
+<li class="chapter" data-level="4.9" data-path="data-manipulation.html"><a href="data-manipulation.html#finding-and-replacing-patterns-within-strings"><i class="fa fa-check"></i><b>4.9</b> Finding and replacing patterns within strings</a></li>
+<li class="chapter" data-level="4.10" data-path="data-manipulation.html"><a href="data-manipulation.html#change-case"><i class="fa fa-check"></i><b>4.10</b> Change case</a></li>
+<li class="chapter" data-level="4.11" data-path="data-manipulation.html"><a href="data-manipulation.html#drop-duplicate-rows"><i class="fa fa-check"></i><b>4.11</b> Drop duplicate rows</a></li>
+<li class="chapter" data-level="4.12" data-path="data-manipulation.html"><a href="data-manipulation.html#format-dates"><i class="fa fa-check"></i><b>4.12</b> Format dates</a></li>
+<li class="chapter" data-level="4.13" data-path="data-manipulation.html"><a href="data-manipulation.html#randomly-sample-rows"><i class="fa fa-check"></i><b>4.13</b> Randomly sample rows</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="combine-reshape-and-merge.html"><a href="combine-reshape-and-merge.html"><i class="fa fa-check"></i><b>5</b> Combine, Reshape and Merge</a>
 <ul>
@@ -637,7 +639,7 @@ div.csl-indent {
 <div id="r-11" class="section level4 unnumbered">
 <h4>R</h4>
 <p>The most general data structure in R is the <em>list</em>. A list is an ordered collection of objects, which are referred to as the <em>components</em>. The components can be vectors, matrices, arrays, data frames, and other lists. The components are always numbered but can also have names. The results of statistical functions are often returned as lists.</p>
-<p>We can create lists with the <code>list()</code> function. The list below contains three components: a vector named “x,” a matrix named “y,” and a data frame named “z.” Notice the <code>m</code> and <code>d</code> objects were created in the two-dimensional data section earlier in this chapter.</p>
+<p>We can create lists with the <code>list()</code> function. The list below contains three components: a vector named “x”, a matrix named “y”, and a data frame named “z”. Notice the <code>m</code> and <code>d</code> objects were created in the two-dimensional data section earlier in this chapter.</p>
 <div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="data-structures.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> l <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),</span>
 <span id="cb68-2"><a href="data-structures.html#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>           <span class="at">y =</span> m,</span>
 <span id="cb68-3"><a href="data-structures.html#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>           <span class="at">z =</span> d)</span>
