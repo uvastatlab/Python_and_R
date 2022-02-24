@@ -780,7 +780,46 @@ anyDuplicated(mtcars2)
 With formatted dates we can calculate elapsed time, extract components of a date, properly order names of months, and more. 
 
 #### Python {-}
+Dates in Python can be stores as datetime objects using the `datetime` class. 
 
+Here we use the `date()` class to create a date object consisting only of a date. The attributes are year, month, day.
+
+```{python}
+import datetime
+
+x = datetime.date(1981, 4, 12)
+print(x)
+```
+
+Next we use the `time()` class to create a time object containing information about a time. The attributes that go into the `time()` class are hour, minute, seconds. 
+
+```{python}
+y = datetime.time(11, 34, 56)
+print(y)
+```
+Here we use the `datetime()` class to create a datetime object consisting of both date and time. The attributes are year, month, day, hour, minute, second. 
+
+```{python}
+z = datetime.datetime(1981, 4, 12, 11, 34, 56)
+print(z)
+```
+
+We can find the time difference between times by subtracting date/time/datetime objects from each other. We can also specify attributes in the argument of the class with attribute names. 
+
+```{python}
+t1 = datetime.datetime(year = 2001, month = 8, day = 11, hour = 5, minute = 49, second = 3)
+t2 = datetime.datetime(year = 2003, month = 6, day = 5, hour = 6, minute = 33, second = 10)
+t3 = t2 - t1
+print(t3)
+```
+
+We can convert between days, seconds, etc. as follows: 
+
+```{python}
+t3
+t3.days
+t3.seconds
+```
 #### R {-}
 
 Dates in R can be stored as a Date class or a Date-Time class. Dates are stored as the number of days since January 1, 1970. Date-Times are stored as the number of seconds since January 1, 1970. With dates stored in this manner we can calculate elapsed time in units such as days, weeks, hours, minutes, and so forth.
