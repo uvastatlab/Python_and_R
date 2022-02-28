@@ -604,7 +604,7 @@ statement2
 
 This section reviews key functions in Python and R for finding and replacing character patterns. The functions we discuss can search for fixed character patterns (e.g., "Meredith Rollins" to case-sensitively match that name and that name alone) or regular expression (regex) patterns (e.g., `\w+` to capture all instances of >=1 word character). Note that in R, meta characters, like `w` (to match word characters) and `d` (to match digits), are escaped with _two_ backslashes (e.g., `\\w` and `\\d`). In Python, regex patterns are generally headed by `r`, which allows meta characters in the regex itself to be escaped with just one `\` (e.g., `r"\w+"`). Regex is an enormous topic, and we don't discuss it at any length here, but you can learn more about regular expressions---and how they're implemented in different programming languages---at these resources: https://www.regular-expressions.info/; https://regexone.com/
 
-#### Python
+#### Python {-}
 
 The **re** module provides a set of functions for searching and manipulating strings. The `search()` function does exactly as its name suggests: It identifies matches for a fixed or regex character pattern in a string. `sub()` searches for and replaces character patterns (fixed or regex). The `count` argument in `sub()` allows a user to specify how many instances of the matched pattern they want to to replace; e.g., use `count = 1` to replace just the first instance of a match.
 
@@ -631,7 +631,7 @@ regex_replaced = re.sub(pattern = r'(?<=\.)\s{1}', repl = '\n', string = stateme
 print(regex_replaced)
 ```
 
-#### R
+#### R {-}
 
 The standard-issue string-search function is `grep()`; it returns the index of the elements in a set of one or more strings for which a pattern match was found. (`grepl()` acts similarly but returns a vector of `TRUE`/`FALSE` indicating whether a match was found in each string passed to the function.) The functions `sub()` and `gsub()` can be used to find and replace instances of a pattern: The former replaces just the first instance; the latter replaces all instances. The search pattern can be provided as a raw character string or as a regular expression.
 

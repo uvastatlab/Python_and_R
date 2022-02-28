@@ -13,8 +13,6 @@ data-manipulation
 select-variables
 rename-variables
 combine-strings
-python-25
-r-25
 change-case
 format-dates
 combine-rows

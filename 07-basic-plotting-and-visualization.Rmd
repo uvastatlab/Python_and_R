@@ -13,6 +13,7 @@ For the R sections below, we discuss how to generate plots using base R and usin
 ```{r, echo = F}
 library(palmerpenguins)
 ```
+
 ```{python, echo = F}
 penguins = r.penguins
 ```
@@ -148,7 +149,7 @@ ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +
 
 ## Stripcharts
 
-Stripcharts are one-dimensional scatterplots. Like boxplots, they reveal the distribution of a numeric variable "within" levels of a categorical variable.
+Stripcharts, or strip plots, are one-dimensional scatterplots. Like boxplots, they reveal the distribution of a numeric variable within levels of a categorical variable.
 
 #### Python {-}
 
@@ -161,6 +162,7 @@ sns.stripplot(x="bill_depth_mm", y="island", data=penguins)
 plt.show()
 ```
 
+The [stripplot](https://seaborn.pydata.org/generated/seaborn.stripplot.html) help page provides more examples. 
 
 #### R {-}
 
@@ -205,13 +207,42 @@ ggplot(penguins, aes(x = island, y = bill_depth_mm)) +
 
 ## Facet plots
 
-Facet plots (also called trellis plots, lattice plots, and conditional plots) are comprised of multiple smaller plots, where each subplot contains a subset of the overall data, with subsets defined by one or more faceting variable.
+Facet plots (also called trellis plots, lattice plots, and conditional plots) are comprised of multiple smaller plots, where each subplot contains a subset of the overall data, with subsets defined by one or more faceting variables.
 
 #### Python {-}
 
+The seaborn package provides several functions for creating facet plots, including `relplot()`, `displot()`, `catplot()`, and `lmplot()`. Below we demonstrate the `lmplot()` function which allows you to create scatter plots at certain levels of categorical variable. Specify your x and y variables as character strings using the `x` and `y` arguments, respectively. Specing the grouping variable using either the `col` or `row` arguments. By default a linear-squares lines is added to the plot. Setting `ci = None` suppresses the confidence interval ribbon.
+
+```{python}
+plt.clf()
+sns.lmplot(x = "bill_length_mm", y = "bill_depth_mm", col = "species",
+          data = penguins, ci = None)
+```
+
+To facet by two variables, provide variables to both the `col` and `row` arguments.
+
+```{python}
+plt.clf()
+sns.lmplot(x = "bill_length_mm", y = "bill_depth_mm", 
+           col = "species", row = "sex",
+           data = penguins, ci = None)
+```
+
+Set `lowess = True` for smooth trend lines. Notice also that color can be mapped to the same variable used for faceting.
+
+```{python}
+plt.clf()
+sns.lmplot(x = "bill_length_mm", y = "bill_depth_mm", 
+           col = "species", hue = "species",
+           data = penguins, ci = None, lowess = True)
+```
+
+
+The [lmplot](https://seaborn.pydata.org/generated/seaborn.lmplot.html#seaborn.lmplot) help page showcases other examples.
+
 #### R {-}
 
-The `coplot()` function in base R produces conditioning plots using formula notation: `y ~ x | grouping_var`. The `rows` and `columns` arguments control layout. Below we specify one row of plots. The `panel` argument controls what action is carried out in each plot. The default is a scatterplot. Below we use the base R `smooth.plot` function to create scatter plots with a smooth trend line.
+The `coplot()` function in base R produces conditioning plots using formula notation: `y ~ x | grouping_var`. The `rows` and `columns` arguments control layout. Below we specify one row of plots. The `panel` argument controls what action is carried out in each plot. The default is a scatterplot. Below we use the base R `panel.smooth` function to create scatter plots with a smooth trend line.
 
 ```{r warning=FALSE, message=FALSE, results='hide'}
 coplot(bill_depth_mm ~ bill_length_mm | species, 
@@ -243,8 +274,10 @@ Alternatively, **ggplot2** provides a intuitive and easy-to-use method for gener
 ```{r, warning = F}
 ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   geom_point(color = 'navy') +
-  geom_smooth(method = 'lm', se = F, color = 'salmon') + # Add basic least-squares line
-  facet_wrap(~species) # Use formula notation, a character vector, or vars() to specify faceting variables; e.g., ~species, c('species'), or vars(species)
+  geom_smooth(method = 'lm', se = F, color = 'salmon') + # Add least-squares line
+  facet_wrap(~species)
+# Use formula notation, a character vector, or vars() to specify faceting
+# variables; e.g., ~species, c('species'), or vars(species)
 ```
 
 The number of rows and columns can be manually specified with `nrow` and `ncol` arguments in `facet_wrap()`. By default, the x and y axes of all facet plots will be on the same scale. The axis ranges can be set to vary freely by adding `scales = 'free'` as an argument (or, alternatively, `scales = 'free_x'` or `scales = 'free_y'` to free just the x or y axis).
@@ -255,8 +288,11 @@ ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   geom_point(color = 'navy') +
   geom_smooth(method = 'lm', se = F, color = 'salmon') +
   facet_wrap(vars(species, sex))
+
 ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   geom_point(color = 'navy') +
   geom_smooth(method = 'lm', se = F, color = 'salmon') +
-  facet_grid(rows = vars(sex), cols = vars(species)) # Note that facet_grid() has separate `rows` and `cols` arguments for specifying faceting variables
+  facet_grid(rows = vars(sex), cols = vars(species)) 
+# Note that facet_grid() has separate `rows` and `cols` arguments for specifying
+# faceting variables
 ```
