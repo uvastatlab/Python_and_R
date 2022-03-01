@@ -68,7 +68,7 @@ ggplot(penguins, aes(x = bill_length_mm)) +
 Visualizing the distribution of categorical data.
 
 #### Python {-}
-For this example, we will generate a bar plot showing how many of each species - Adelie, Chinstrap, Gentoo - we have in our dataset. We go through two ways of doing this here. 
+For this example, we will generate a bar plot showing how many of each species---Adelie, Chinstrap, Gentoo---we have in our dataset. We go through two ways of doing this here. 
 
 First, we use the Matplotlib plotting library to create the bar plot using the function `bar()`. To start, we determine the number of each species, then use that data to create the bar plot. 
 
@@ -130,10 +130,25 @@ Visualizing the relationship between two numeric variables.
 
 #### Python {-}
 
+The `scatter()` function, part of **matplotlib**, can produce scatterplots in Python. The `x` and `y` arguments specify the points to plot. In the example below, we also use the `c` and `marker` arguments to customize the point color and point shape, respectively. The `xlabel()`, `ylabel()`, and `title()` functions customize plot labels,
+
+```{python}
+import matplotlib.pyplot as plt
+
+penguins_no_na = penguins.dropna() # remove NA rows, as we only want to plot present data
+plt.clf() # clear the plotting space to prevent plot overlap
+plt.scatter(x = penguins_no_na['body_mass_g'], y = penguins_no_na['flipper_length_mm'], c = 'lightblue', marker = 'd') # 'd' generates diamond markers; learn more about available marker shapes here: https://matplotlib.org/stable/api/markers_api.html#module-matplotlib.markers
+plt.xlabel('Body Mass (g)')
+plt.ylabel('Flipper Length (mm)')
+plt.title('Scatterplot of Body Mass and Flipper Length')
+
+plt.show()
+```
+
 #### R {-}
 Scatterplots can be generated in base R with the `plot()` function. The `pch` argument below modifies the point shape (e.g., 20 = solid circle; 24 = unfilled triangle; etc.)
 ```{r}
-plot(penguins$body_mass_g, penguins$flipper_length_mm, 
+plot(x = penguins$body_mass_g, y = penguins$flipper_length_mm, 
      col = 'navy', pch = 20,
      main = 'Scatterplot of Body Mass and Flipper Length', 
      xlab = 'Body Mass (g)', ylab = 'Flipper Length (mm)')
