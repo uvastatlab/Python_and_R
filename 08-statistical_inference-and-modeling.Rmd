@@ -249,6 +249,19 @@ prop.test_proportions_2indep(210, 747, 122, 661, method='score', compare='diff',
 ```
 
 
+
+TRIAL WITH SCIPY.STATS
+
+```{python}
+from scipy import stats 
+import numpy as np
+
+data = np.array([[210,(747-210)],[122, (661-122)]])
+
+stats.chi2_contingency(data)
+```
+
+
 #### R {-}
 
 A two-sample proportion test in R can be carried out with the `prop.test()` function. The first argument, `x`, is the number of "successes" or "occurrences" of some event for each group. The second argument, `n`, is the number of total trials for each group.
