@@ -32,6 +32,10 @@ Python uses `^` for exponentiation, `%/%` for integer division, and `%%` for rem
 5 %% 2
 ```
 
+## Missing values
+
+Python and R represent missing values differently, and the distinction is worth keeping in mind, as missing values will crop up throughout this book---some code examples intake or output data that are entirely or partially missing. In Python, a standard indicator for a missing value in a data set is `NaN`.* In R, missing values are generally indicated by `NA`. `NaN` does appear in R as well, but R reserves `NaN` to indicate values that are not technically absent but that are not defined and/or that can't be represented with numbers; e.g., `Inf/Inf`.
+
 ## Assignment
 
 Python uses `=` for assignment, while R can use either `=` or `<-` for assignment. The latter "assignment arrow" is preferred in most R style guides to distinguish between assignment and setting the value of a function argument. According to R's documentation, "The operator `<-` can be used anywhere, whereas the operator `=` is only allowed at the top level (e.g., in the complete expression typed at the command prompt) or as one of the subexpressions in a braced list of expressions." See `?assignOps`.
