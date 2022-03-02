@@ -238,6 +238,16 @@ It is often of interest to compare proportions between two groups. Sometimes thi
 
 #### Python {-}
 
+A two-sample proportion test can be done in Python using the `test_proportions_2indep()` function of the `statsmodels.stats.proportion` module. The two proportions being compared must be independent.
+
+The first argument is the number of successes or occurances for the first proportion. The second argument is the number of total trials for the first group. The third and fourth arguments are the occurrences and total number of trials for the second group, respectively. Here we also specify the method for computing the confidence interval with the `method` argument, and how we compute the confidence interval with the `compare` argument. 
+
+```{python}
+import statsmodels.stats.proportion as prop
+
+prop.test_proportions_2indep(210, 747, 122, 661, method='score', compare='diff', return_results=True)
+```
+
 
 #### R {-}
 
