@@ -238,28 +238,44 @@ It is often of interest to compare proportions between two groups. Sometimes thi
 
 #### Python {-}
 
-A two-sample proportion test can be done in Python using the `test_proportions_2indep()` function of the `statsmodels.stats.proportion` module. The two proportions being compared must be independent.
+A two-sample proportion test can be carried out in Python using the `test_proportions_2indep()` function from the `statsmodels.stats.api` module. The two proportions being compared must be independent.
 
-The first argument is the number of successes or occurances for the first proportion. The second argument is the number of total trials for the first group. The third and fourth arguments are the occurrences and total number of trials for the second group, respectively. Here we also specify the method for computing the confidence interval with the `method` argument, and how we compute the confidence interval with the `compare` argument. 
-
-```{python}
-import statsmodels.stats.proportion as prop
-
-prop.test_proportions_2indep(210, 747, 122, 661, method='score', compare='diff', return_results=True)
-```
-
-
-
-TRIAL WITH SCIPY.STATS
+The first argument is the number of successes or occurrences for the first proportion. The second argument is the number of total trials for the first group. The third and fourth arguments are the occurrences and total number of trials for the second group, respectively.
 
 ```{python}
-from scipy import stats 
-import numpy as np
-
-data = np.array([[210,(747-210)],[122, (661-122)]])
-
-stats.chi2_contingency(data)
+# import statsmodels.stats.proportion as prop
+import statsmodels.stats.api as sms
+ptest = sms.test_proportions_2indep(210, 747, 122, 661)
 ```
+
+We can extract the p-value of the test and the difference in proportions using the `pvalue` and `diff` attributes, respectively.
+
+```{python}
+ptest.pvalue
+```
+
+```{python}
+# rounded to 4 decimal places
+round(ptest.diff, 4)
+```
+
+To calculate a 95% confidence interval for the difference in proportions we need to use the `confint_proportions_2indep()` function.
+
+```{python}
+pdiff = sms.confint_proportions_2indep(210, 747, 122, 661)
+pdiff
+```
+
+The result is returned as a tuple with an extreme amount of precision. We recommend rounding these values to few decimal places. Here's one way using f strings. Notice we extract each element of the "pdiff" tuple and round to 5 decimal places.
+
+```{python}
+print(f"({round(pdiff[0],5)}, {round(pdiff[1],5)})")
+```
+
+This results are slightly different from the R example below. That's because the `test_proportions_2indep()` and `confint_proportions_2indep()` functions use different methods. See their respective help pages to learn more about the methods available and other function arguments.
+
+[test_proportions_2indep](https://www.statsmodels.org/dev/generated/statsmodels.stats.proportion.test_proportions_2indep.html#statsmodels.stats.proportion.test_proportions_2indep) help page   
+[confint_proportions_2indep](https://www.statsmodels.org/dev/generated/statsmodels.stats.proportion.confint_proportions_2indep.html#statsmodels.stats.proportion.confint_proportions_2indep) help page   
 
 
 #### R {-}
