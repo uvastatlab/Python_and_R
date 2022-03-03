@@ -32,6 +32,10 @@ Python uses `^` for exponentiation, `%/%` for integer division, and `%%` for rem
 5 %% 2
 ```
 
+## Missing values
+
+Python and R represent missing values differently, and the distinction is worth keeping in mind, as missing values will crop up throughout this book---some code examples intake or output data that are entirely or partially missing. In Python, a standard indicator for a missing value in a data set is `NaN`.* In R, missing values are generally indicated by `NA`. `NaN` does appear in R as well, but R reserves `NaN` to indicate values that are not technically absent but that are not defined and/or that can't be represented with numbers; e.g., `Inf/Inf`.
+
 ## Assignment
 
 Python uses `=` for assignment, while R can use either `=` or `<-` for assignment. The latter "assignment arrow" is preferred in most R style guides to distinguish between assignment and setting the value of a function argument. According to R's documentation, "The operator `<-` can be used anywhere, whereas the operator `=` is only allowed at the top level (e.g., in the complete expression typed at the command prompt) or as one of the subexpressions in a braced list of expressions." See `?assignOps`.
@@ -74,7 +78,7 @@ Packages often depend on other packages. These are known as "dependencies." Some
 
 #### Python {-}
 
-When you download Python and open a script, you have access to The Python Standard Library. This library includes several datatypes and functions for storing data, performing mathematical operations, and beyond. Commonly used datatypes include list and range. As you can see below, you do not need to import data types from the Standard Python Library.
+When you download Python, you gain access to The Python Standard Library. This library includes several datatypes and functions for storing data, performing mathematical operations, and beyond. Commonly used datatypes include _list_ and _range_. As you can see below, you do not need to import data types from the Standard Python Library.
 
 ```{python}
 my_list = []
@@ -83,7 +87,7 @@ for idx in range(5):
 print(my_list)
 ```
 
-Libraries contain modules, groups of functions. To use functions from modules in the Standard Python Library, users must import the appropriate module. Examples include math and itertools, which both include several functions for a range of operations.
+Libraries contain modules, groups of functions. To use functions from modules in the Python Standard Library, users must import the appropriate module. Examples include math and itertools, which both include several functions for a range of operations.
 
 ```{python}
 import math
@@ -92,7 +96,7 @@ two = 2
 print(math.pow(two, one))
 ```
 
-Users can also download 100s of libraries outside of the Standard Python Library. Popular libraries include numpy, used for operations on arrays/vectors and pandas, used for data analysis.
+Users can also download 100s of libraries outside of the Standard Python Library. Python libraries are also called packages. Popular libraries include numpy, used for operations on arrays/vectors and pandas, used for data analysis. The following code is an example of importing a Python library, NumPy, into a Python script.
 
 ```{python}
 import numpy as np
@@ -100,6 +104,27 @@ import numpy as np
 my_array = np.array([1,2,3])
 print(my_array)
 ```
+
+To use Python libraries outside the Python Standard Library, they must be installed in the Python environment. 
+
+Anaconda is the most popular Python library manager. Anaconda allows you to use and create Python virtual environments and install libraries to these environments. A Python virtual environment is a collection of libraries isolated from other virtual environments. These environments allow users to seamlessly organize programming projects.
+
+You can download Anaconda from the following link: https://www.anaconda.com/products/individual. When you download Anaconda, you have access to the Anaconda Navigator, a graphical user interface, and the Anaconda Prompt, a command prompt. Anaconda comes with an automatic environment called "base".
+
+The following screenshot illustrates how to install a library to an environment using the Anaconda GUI. Using the drop down menu, navigate to "Not installed". Then, select the desired library from the list. The search bar can be used to search for libraries. Finally, click the green "Apply" button to install the package.
+
+```{r, echo = F}
+knitr::include_graphics('images/anaconda_gui_install.png')
+```
+
+The following screenshot illustrates how to install a library to the "base" environment using the Anaconda Command Prompt.
+
+```{r, echo = F}
+knitr::include_graphics('images/anaconda_command_install.png')
+```
+
+Sometimes the commands to download libraries are not as simple as shown in the above example. The Anaconda website provides commands for how to download popular Python libraries.
+
 
 #### R {-}
 
