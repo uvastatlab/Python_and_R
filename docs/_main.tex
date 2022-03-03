@@ -3406,15 +3406,15 @@ Here is an example of howto add and subtract datesa and times using these object
 \OperatorTok{+} \BuiltInTok{print}\NormalTok{(d1)}
 \OperatorTok{+} 
 \OperatorTok{+} \CommentTok{\# Add 550 days to our datetime object }
-\DecValTok{2022}\OperatorTok{{-}}\DecValTok{0}\ErrorTok{3}\OperatorTok{{-}}\DecValTok{0}\ErrorTok{3} \DecValTok{00}\NormalTok{:}\DecValTok{13}\NormalTok{:}\FloatTok{42.789387}
+\DecValTok{2022}\OperatorTok{{-}}\DecValTok{0}\ErrorTok{3}\OperatorTok{{-}}\DecValTok{0}\ErrorTok{3} \DecValTok{13}\NormalTok{:}\DecValTok{53}\NormalTok{:}\FloatTok{16.792142}
 \OperatorTok{\textgreater{}}\NormalTok{ d2 }\OperatorTok{=}\NormalTok{ d1 }\OperatorTok{+}\NormalTok{ dt.timedelta(days }\OperatorTok{=} \DecValTok{550}\NormalTok{)}
 \OperatorTok{+} \BuiltInTok{print}\NormalTok{(d2)}
 \OperatorTok{+} 
 \OperatorTok{+} \CommentTok{\# Subtract 5 hours from our datetime object }
-\DecValTok{2023}\OperatorTok{{-}}\DecValTok{0}\ErrorTok{9}\OperatorTok{{-}}\DecValTok{0}\ErrorTok{4} \DecValTok{00}\NormalTok{:}\DecValTok{13}\NormalTok{:}\FloatTok{42.789387}
+\DecValTok{2023}\OperatorTok{{-}}\DecValTok{0}\ErrorTok{9}\OperatorTok{{-}}\DecValTok{0}\ErrorTok{4} \DecValTok{13}\NormalTok{:}\DecValTok{53}\NormalTok{:}\FloatTok{16.792142}
 \OperatorTok{\textgreater{}}\NormalTok{ d3 }\OperatorTok{=}\NormalTok{ d1 }\OperatorTok{{-}}\NormalTok{ dt.timedelta(hours }\OperatorTok{=} \DecValTok{5}\NormalTok{)}
 \OperatorTok{+} \BuiltInTok{print}\NormalTok{(d3)}
-\DecValTok{2022}\OperatorTok{{-}}\DecValTok{0}\ErrorTok{3}\OperatorTok{{-}}\DecValTok{0}\ErrorTok{2} \DecValTok{19}\NormalTok{:}\DecValTok{13}\NormalTok{:}\FloatTok{42.789387}
+\DecValTok{2022}\OperatorTok{{-}}\DecValTok{0}\ErrorTok{3}\OperatorTok{{-}}\DecValTok{0}\ErrorTok{3} \DecValTok{0}\ErrorTok{8}\NormalTok{:}\DecValTok{53}\NormalTok{:}\FloatTok{16.792142}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3425,7 +3425,7 @@ The attribute \texttt{strftime()} converts datetime objects to strings. In the a
 \begin{Shaded}
 \begin{Highlighting}[]
 \OperatorTok{\textgreater{}}\NormalTok{ d1}
-\NormalTok{datetime.datetime(}\DecValTok{2022}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{13}\NormalTok{, }\DecValTok{42}\NormalTok{, }\DecValTok{789387}\NormalTok{)}
+\NormalTok{datetime.datetime(}\DecValTok{2022}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{13}\NormalTok{, }\DecValTok{53}\NormalTok{, }\DecValTok{16}\NormalTok{, }\DecValTok{792142}\NormalTok{)}
 \OperatorTok{\textgreater{}}\NormalTok{ d1.strftime(}\StringTok{"\%A \%m \%Y"}\NormalTok{)}
 \CommentTok{\textquotesingle{}Thursday 03 2022\textquotesingle{}}
 \OperatorTok{\textgreater{}}\NormalTok{ d1.strftime(}\StringTok{"\%a \%m \%y"}\NormalTok{)}
@@ -3590,11 +3590,11 @@ To create a sample with a fixed number of rows, use the \texttt{n} argument.
 \OperatorTok{\textgreater{}} \CommentTok{\# sample 5 rows from mtcars}
 \OperatorTok{+}\NormalTok{ mtcars.sample(n}\OperatorTok{=}\DecValTok{5}\NormalTok{, replace}\OperatorTok{=}\VariableTok{True}\NormalTok{)}
 \NormalTok{     MPG  CYL   DISP   HP  AXLE\_RATIO  ...  VS  AM  GEAR CARB       KPL}
-\DecValTok{27}  \FloatTok{30.4}    \DecValTok{4}   \FloatTok{95.1}  \DecValTok{113}        \FloatTok{3.77}\NormalTok{  ...   }\DecValTok{1}   \DecValTok{1}     \DecValTok{5}    \DecValTok{2}  \FloatTok{6.462585}
-\DecValTok{22}  \FloatTok{15.2}    \DecValTok{8}  \FloatTok{304.0}  \DecValTok{150}        \FloatTok{3.15}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{0}     \DecValTok{3}    \DecValTok{2}  \FloatTok{3.231293}
-\DecValTok{12}  \FloatTok{17.3}    \DecValTok{8}  \FloatTok{275.8}  \DecValTok{180}        \FloatTok{3.07}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{0}     \DecValTok{3}    \DecValTok{3}  \FloatTok{3.677721}
-\DecValTok{10}  \FloatTok{17.8}    \DecValTok{6}  \FloatTok{167.6}  \DecValTok{123}        \FloatTok{3.92}\NormalTok{  ...   }\DecValTok{1}   \DecValTok{0}     \DecValTok{4}    \DecValTok{4}  \FloatTok{3.784014}
-\DecValTok{14}  \FloatTok{10.4}    \DecValTok{8}  \FloatTok{472.0}  \DecValTok{205}        \FloatTok{2.93}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{0}     \DecValTok{3}    \DecValTok{4}  \FloatTok{2.210884}
+\DecValTok{21}  \FloatTok{15.5}    \DecValTok{8}  \FloatTok{318.0}  \DecValTok{150}        \FloatTok{2.76}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{0}     \DecValTok{3}    \DecValTok{2}  \FloatTok{3.295068}
+\DecValTok{5}   \FloatTok{18.1}    \DecValTok{6}  \FloatTok{225.0}  \DecValTok{105}        \FloatTok{2.76}\NormalTok{  ...   }\DecValTok{1}   \DecValTok{0}     \DecValTok{3}    \DecValTok{1}  \FloatTok{3.847789}
+\DecValTok{1}   \FloatTok{21.0}    \DecValTok{6}  \FloatTok{160.0}  \DecValTok{110}        \FloatTok{3.90}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{1}     \DecValTok{4}    \DecValTok{4}  \FloatTok{4.464286}
+\DecValTok{19}  \FloatTok{33.9}    \DecValTok{4}   \FloatTok{71.1}   \DecValTok{65}        \FloatTok{4.22}\NormalTok{  ...   }\DecValTok{1}   \DecValTok{1}     \DecValTok{4}    \DecValTok{1}  \FloatTok{7.206633}
+\DecValTok{17}  \FloatTok{32.4}    \DecValTok{4}   \FloatTok{78.7}   \DecValTok{66}        \FloatTok{4.08}\NormalTok{  ...   }\DecValTok{1}   \DecValTok{1}     \DecValTok{4}    \DecValTok{1}  \FloatTok{6.887755}
 
 \NormalTok{[}\DecValTok{5}\NormalTok{ rows x }\DecValTok{12}\NormalTok{ columns]}
 \end{Highlighting}
@@ -3633,11 +3633,11 @@ The \texttt{random.choice()} function creates a random sample according to the g
 \OperatorTok{+} \CommentTok{\# use random\_sample to sample from mtcars}
 \OperatorTok{+}\NormalTok{ mtcars.loc[random\_sample,]}
 \NormalTok{     MPG  CYL   DISP   HP  AXLE\_RATIO  ...  VS  AM  GEAR CARB       KPL}
-\DecValTok{2}   \FloatTok{22.8}    \DecValTok{4}  \FloatTok{108.0}   \DecValTok{93}        \FloatTok{3.85}\NormalTok{  ...   }\DecValTok{1}   \DecValTok{1}     \DecValTok{4}    \DecValTok{1}  \FloatTok{4.846939}
+\DecValTok{23}  \FloatTok{13.3}    \DecValTok{8}  \FloatTok{350.0}  \DecValTok{245}        \FloatTok{3.73}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{0}     \DecValTok{3}    \DecValTok{4}  \FloatTok{2.827381}
+\DecValTok{21}  \FloatTok{15.5}    \DecValTok{8}  \FloatTok{318.0}  \DecValTok{150}        \FloatTok{2.76}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{0}     \DecValTok{3}    \DecValTok{2}  \FloatTok{3.295068}
 \DecValTok{25}  \FloatTok{27.3}    \DecValTok{4}   \FloatTok{79.0}   \DecValTok{66}        \FloatTok{4.08}\NormalTok{  ...   }\DecValTok{1}   \DecValTok{1}     \DecValTok{4}    \DecValTok{1}  \FloatTok{5.803571}
 \DecValTok{12}  \FloatTok{17.3}    \DecValTok{8}  \FloatTok{275.8}  \DecValTok{180}        \FloatTok{3.07}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{0}     \DecValTok{3}    \DecValTok{3}  \FloatTok{3.677721}
-\DecValTok{3}   \FloatTok{21.4}    \DecValTok{6}  \FloatTok{258.0}  \DecValTok{110}        \FloatTok{3.08}\NormalTok{  ...   }\DecValTok{1}   \DecValTok{0}     \DecValTok{3}    \DecValTok{1}  \FloatTok{4.549320}
-\DecValTok{19}  \FloatTok{33.9}    \DecValTok{4}   \FloatTok{71.1}   \DecValTok{65}        \FloatTok{4.22}\NormalTok{  ...   }\DecValTok{1}   \DecValTok{1}     \DecValTok{4}    \DecValTok{1}  \FloatTok{7.206633}
+\DecValTok{29}  \FloatTok{19.7}    \DecValTok{6}  \FloatTok{145.0}  \DecValTok{175}        \FloatTok{3.62}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{1}     \DecValTok{5}    \DecValTok{6}  \FloatTok{4.187925}
 
 \NormalTok{[}\DecValTok{5}\NormalTok{ rows x }\DecValTok{12}\NormalTok{ columns]}
 \end{Highlighting}
@@ -3673,33 +3673,33 @@ There are many ways to sample rows from a data frame in R. The \href{https://dpl
 \SpecialCharTok{\textgreater{}} \CommentTok{\# sample 5 rows from mtcars}
 \ErrorTok{\textgreater{}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{slice\_sample}\NormalTok{(mtcars, }\AttributeTok{n =} \DecValTok{5}\NormalTok{)}
 \NormalTok{   mpg cylinders  disp  hp axle\_ratio weight  qsec engine am gear carb am\_ch}
-\DecValTok{1} \FloatTok{16.4}         \DecValTok{8} \FloatTok{275.8} \DecValTok{180}       \FloatTok{3.07}  \FloatTok{4.070} \FloatTok{17.40}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{3}     \DecValTok{0}
-\DecValTok{2} \FloatTok{26.0}         \DecValTok{4} \FloatTok{120.3}  \DecValTok{91}       \FloatTok{4.43}  \FloatTok{2.140} \FloatTok{16.70}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{2}     \DecValTok{1}
-\DecValTok{3} \FloatTok{19.2}         \DecValTok{8} \FloatTok{400.0} \DecValTok{175}       \FloatTok{3.08}  \FloatTok{3.845} \FloatTok{17.05}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{2}     \DecValTok{0}
-\DecValTok{4} \FloatTok{17.8}         \DecValTok{6} \FloatTok{167.6} \DecValTok{123}       \FloatTok{3.92}  \FloatTok{3.440} \FloatTok{18.90}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{4}     \DecValTok{0}
-\DecValTok{5} \FloatTok{17.3}         \DecValTok{8} \FloatTok{275.8} \DecValTok{180}       \FloatTok{3.07}  \FloatTok{3.730} \FloatTok{17.60}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{3}     \DecValTok{0}
+\DecValTok{1} \FloatTok{18.1}         \DecValTok{6} \FloatTok{225.0} \DecValTok{105}       \FloatTok{2.76}  \FloatTok{3.460} \FloatTok{20.22}      \DecValTok{1}  \DecValTok{0}    \DecValTok{3}    \DecValTok{1}     \DecValTok{0}
+\DecValTok{2} \FloatTok{30.4}         \DecValTok{4}  \FloatTok{95.1} \DecValTok{113}       \FloatTok{3.77}  \FloatTok{1.513} \FloatTok{16.90}      \DecValTok{1}  \DecValTok{1}    \DecValTok{5}    \DecValTok{2}     \DecValTok{1}
+\DecValTok{3} \FloatTok{30.4}         \DecValTok{4}  \FloatTok{75.7}  \DecValTok{52}       \FloatTok{4.93}  \FloatTok{1.615} \FloatTok{18.52}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{2}     \DecValTok{1}
+\DecValTok{4} \FloatTok{26.0}         \DecValTok{4} \FloatTok{120.3}  \DecValTok{91}       \FloatTok{4.43}  \FloatTok{2.140} \FloatTok{16.70}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{2}     \DecValTok{1}
+\DecValTok{5} \FloatTok{32.4}         \DecValTok{4}  \FloatTok{78.7}  \DecValTok{66}       \FloatTok{4.08}  \FloatTok{2.200} \FloatTok{19.47}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
 \NormalTok{     am\_fac}
 \DecValTok{1}\NormalTok{ automatic}
 \DecValTok{2}\NormalTok{    manual}
-\DecValTok{3}\NormalTok{ automatic}
-\DecValTok{4}\NormalTok{ automatic}
-\DecValTok{5}\NormalTok{ automatic}
+\DecValTok{3}\NormalTok{    manual}
+\DecValTok{4}\NormalTok{    manual}
+\DecValTok{5}\NormalTok{    manual}
 \SpecialCharTok{\textgreater{}} 
 \ErrorTok{\textgreater{}} \CommentTok{\# sample 20\% of rows from mtcars}
 \ErrorTok{\textgreater{}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{slice\_sample}\NormalTok{(mtcars, }\AttributeTok{prop =} \FloatTok{0.20}\NormalTok{)}
 \NormalTok{   mpg cylinders  disp  hp axle\_ratio weight  qsec engine am gear carb am\_ch}
-\DecValTok{1} \FloatTok{30.4}         \DecValTok{4}  \FloatTok{75.7}  \DecValTok{52}       \FloatTok{4.93}  \FloatTok{1.615} \FloatTok{18.52}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{2}     \DecValTok{1}
-\DecValTok{2} \FloatTok{24.4}         \DecValTok{4} \FloatTok{146.7}  \DecValTok{62}       \FloatTok{3.69}  \FloatTok{3.190} \FloatTok{20.00}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{2}     \DecValTok{0}
-\DecValTok{3} \FloatTok{27.3}         \DecValTok{4}  \FloatTok{79.0}  \DecValTok{66}       \FloatTok{4.08}  \FloatTok{1.935} \FloatTok{18.90}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
-\DecValTok{4} \FloatTok{21.4}         \DecValTok{4} \FloatTok{121.0} \DecValTok{109}       \FloatTok{4.11}  \FloatTok{2.780} \FloatTok{18.60}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{2}     \DecValTok{1}
-\DecValTok{5} \FloatTok{10.4}         \DecValTok{8} \FloatTok{460.0} \DecValTok{215}       \FloatTok{3.00}  \FloatTok{5.424} \FloatTok{17.82}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{1} \FloatTok{15.5}         \DecValTok{8} \FloatTok{318.0} \DecValTok{150}       \FloatTok{2.76}  \FloatTok{3.520} \FloatTok{16.87}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{2}     \DecValTok{0}
+\DecValTok{2} \FloatTok{26.0}         \DecValTok{4} \FloatTok{120.3}  \DecValTok{91}       \FloatTok{4.43}  \FloatTok{2.140} \FloatTok{16.70}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{2}     \DecValTok{1}
+\DecValTok{3} \FloatTok{21.4}         \DecValTok{6} \FloatTok{258.0} \DecValTok{110}       \FloatTok{3.08}  \FloatTok{3.215} \FloatTok{19.44}      \DecValTok{1}  \DecValTok{0}    \DecValTok{3}    \DecValTok{1}     \DecValTok{0}
+\DecValTok{4} \FloatTok{21.0}         \DecValTok{6} \FloatTok{160.0} \DecValTok{110}       \FloatTok{3.90}  \FloatTok{2.875} \FloatTok{17.02}      \DecValTok{0}  \DecValTok{1}    \DecValTok{4}    \DecValTok{4}     \DecValTok{1}
+\DecValTok{5} \FloatTok{15.8}         \DecValTok{8} \FloatTok{351.0} \DecValTok{264}       \FloatTok{4.22}  \FloatTok{3.170} \FloatTok{14.50}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{4}     \DecValTok{1}
 \DecValTok{6} \FloatTok{17.8}         \DecValTok{6} \FloatTok{167.6} \DecValTok{123}       \FloatTok{3.92}  \FloatTok{3.440} \FloatTok{18.90}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{4}     \DecValTok{0}
 \NormalTok{     am\_fac}
-\DecValTok{1}\NormalTok{    manual}
-\DecValTok{2}\NormalTok{ automatic}
-\DecValTok{3}\NormalTok{    manual}
+\DecValTok{1}\NormalTok{ automatic}
+\DecValTok{2}\NormalTok{    manual}
+\DecValTok{3}\NormalTok{ automatic}
 \DecValTok{4}\NormalTok{    manual}
-\DecValTok{5}\NormalTok{ automatic}
+\DecValTok{5}\NormalTok{    manual}
 \DecValTok{6}\NormalTok{ automatic}
 \end{Highlighting}
 \end{Shaded}
@@ -3716,17 +3716,17 @@ The base R functions \texttt{sample()} and \texttt{runif()} can be combined to s
 \SpecialCharTok{\textgreater{}} \CommentTok{\# use i to select rows}
 \ErrorTok{\textgreater{}}\NormalTok{ mtcars[i,]}
 \NormalTok{    mpg cylinders  disp  hp axle\_ratio weight  qsec engine am gear carb am\_ch}
-\DecValTok{12} \FloatTok{16.4}         \DecValTok{8} \FloatTok{275.8} \DecValTok{180}       \FloatTok{3.07}  \FloatTok{4.070} \FloatTok{17.40}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{3}     \DecValTok{0}
-\DecValTok{26} \FloatTok{27.3}         \DecValTok{4}  \FloatTok{79.0}  \DecValTok{66}       \FloatTok{4.08}  \FloatTok{1.935} \FloatTok{18.90}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
-\DecValTok{9}  \FloatTok{22.8}         \DecValTok{4} \FloatTok{140.8}  \DecValTok{95}       \FloatTok{3.92}  \FloatTok{3.150} \FloatTok{22.90}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{2}     \DecValTok{0}
+\DecValTok{16} \FloatTok{10.4}         \DecValTok{8} \FloatTok{460.0} \DecValTok{215}       \FloatTok{3.00}  \FloatTok{5.424} \FloatTok{17.82}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{15} \FloatTok{10.4}         \DecValTok{8} \FloatTok{472.0} \DecValTok{205}       \FloatTok{2.93}  \FloatTok{5.250} \FloatTok{17.98}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{22} \FloatTok{15.5}         \DecValTok{8} \FloatTok{318.0} \DecValTok{150}       \FloatTok{2.76}  \FloatTok{3.520} \FloatTok{16.87}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{2}     \DecValTok{0}
+\DecValTok{18} \FloatTok{32.4}         \DecValTok{4}  \FloatTok{78.7}  \DecValTok{66}       \FloatTok{4.08}  \FloatTok{2.200} \FloatTok{19.47}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
 \DecValTok{28} \FloatTok{30.4}         \DecValTok{4}  \FloatTok{95.1} \DecValTok{113}       \FloatTok{3.77}  \FloatTok{1.513} \FloatTok{16.90}      \DecValTok{1}  \DecValTok{1}    \DecValTok{5}    \DecValTok{2}     \DecValTok{1}
-\DecValTok{6}  \FloatTok{18.1}         \DecValTok{6} \FloatTok{225.0} \DecValTok{105}       \FloatTok{2.76}  \FloatTok{3.460} \FloatTok{20.22}      \DecValTok{1}  \DecValTok{0}    \DecValTok{3}    \DecValTok{1}     \DecValTok{0}
 \NormalTok{      am\_fac}
-\DecValTok{12}\NormalTok{ automatic}
-\DecValTok{26}\NormalTok{    manual}
-\DecValTok{9}\NormalTok{  automatic}
+\DecValTok{16}\NormalTok{ automatic}
+\DecValTok{15}\NormalTok{ automatic}
+\DecValTok{22}\NormalTok{ automatic}
+\DecValTok{18}\NormalTok{    manual}
 \DecValTok{28}\NormalTok{    manual}
-\DecValTok{6}\NormalTok{  automatic}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3739,21 +3739,19 @@ The base R functions \texttt{sample()} and \texttt{runif()} can be combined to s
 \ErrorTok{\textgreater{}} \CommentTok{\# select rows that correspond to TRUE}
 \ErrorTok{\textgreater{}}\NormalTok{ mtcars[i }\SpecialCharTok{\textless{}} \FloatTok{0.20}\NormalTok{,]}
 \NormalTok{    mpg cylinders  disp  hp axle\_ratio weight  qsec engine am gear carb am\_ch}
-\DecValTok{5}  \FloatTok{18.7}         \DecValTok{8} \FloatTok{360.0} \DecValTok{175}       \FloatTok{3.15}  \FloatTok{3.440} \FloatTok{17.02}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{2}     \DecValTok{0}
-\DecValTok{8}  \FloatTok{24.4}         \DecValTok{4} \FloatTok{146.7}  \DecValTok{62}       \FloatTok{3.69}  \FloatTok{3.190} \FloatTok{20.00}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{2}     \DecValTok{0}
-\DecValTok{23} \FloatTok{15.2}         \DecValTok{8} \FloatTok{304.0} \DecValTok{150}       \FloatTok{3.15}  \FloatTok{3.435} \FloatTok{17.30}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{2}     \DecValTok{0}
-\DecValTok{24} \FloatTok{13.3}         \DecValTok{8} \FloatTok{350.0} \DecValTok{245}       \FloatTok{3.73}  \FloatTok{3.840} \FloatTok{15.41}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
-\DecValTok{25} \FloatTok{19.2}         \DecValTok{8} \FloatTok{400.0} \DecValTok{175}       \FloatTok{3.08}  \FloatTok{3.845} \FloatTok{17.05}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{2}     \DecValTok{0}
+\DecValTok{3}  \FloatTok{22.8}         \DecValTok{4} \FloatTok{108.0}  \DecValTok{93}       \FloatTok{3.85}  \FloatTok{2.320} \FloatTok{18.61}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
+\DecValTok{4}  \FloatTok{21.4}         \DecValTok{6} \FloatTok{258.0} \DecValTok{110}       \FloatTok{3.08}  \FloatTok{3.215} \FloatTok{19.44}      \DecValTok{1}  \DecValTok{0}    \DecValTok{3}    \DecValTok{1}     \DecValTok{0}
+\DecValTok{6}  \FloatTok{18.1}         \DecValTok{6} \FloatTok{225.0} \DecValTok{105}       \FloatTok{2.76}  \FloatTok{3.460} \FloatTok{20.22}      \DecValTok{1}  \DecValTok{0}    \DecValTok{3}    \DecValTok{1}     \DecValTok{0}
+\DecValTok{12} \FloatTok{16.4}         \DecValTok{8} \FloatTok{275.8} \DecValTok{180}       \FloatTok{3.07}  \FloatTok{4.070} \FloatTok{17.40}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{3}     \DecValTok{0}
 \DecValTok{28} \FloatTok{30.4}         \DecValTok{4}  \FloatTok{95.1} \DecValTok{113}       \FloatTok{3.77}  \FloatTok{1.513} \FloatTok{16.90}      \DecValTok{1}  \DecValTok{1}    \DecValTok{5}    \DecValTok{2}     \DecValTok{1}
-\DecValTok{30} \FloatTok{19.7}         \DecValTok{6} \FloatTok{145.0} \DecValTok{175}       \FloatTok{3.62}  \FloatTok{2.770} \FloatTok{15.50}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{6}     \DecValTok{1}
+\DecValTok{29} \FloatTok{15.8}         \DecValTok{8} \FloatTok{351.0} \DecValTok{264}       \FloatTok{4.22}  \FloatTok{3.170} \FloatTok{14.50}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{4}     \DecValTok{1}
 \NormalTok{      am\_fac}
-\DecValTok{5}\NormalTok{  automatic}
-\DecValTok{8}\NormalTok{  automatic}
-\DecValTok{23}\NormalTok{ automatic}
-\DecValTok{24}\NormalTok{ automatic}
-\DecValTok{25}\NormalTok{ automatic}
+\DecValTok{3}\NormalTok{     manual}
+\DecValTok{4}\NormalTok{  automatic}
+\DecValTok{6}\NormalTok{  automatic}
+\DecValTok{12}\NormalTok{ automatic}
 \DecValTok{28}\NormalTok{    manual}
-\DecValTok{30}\NormalTok{    manual}
+\DecValTok{29}\NormalTok{    manual}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4583,7 +4581,8 @@ The \textbf{tidyverse} also offers a summarizing function, \texttt{summarize()} 
 \SpecialCharTok{\textgreater{}}\NormalTok{ mtcars }\SpecialCharTok{\%\textgreater{}\%} 
 \SpecialCharTok{+}   \FunctionTok{group\_by}\NormalTok{(cyl, vs) }\SpecialCharTok{\%\textgreater{}\%} 
 \SpecialCharTok{+}   \FunctionTok{summarize}\NormalTok{(}\AttributeTok{avg\_mpg =} \FunctionTok{mean}\NormalTok{(mpg))}
-\StringTok{\textasciigrave{}}\AttributeTok{summarise()}\StringTok{\textasciigrave{}}\NormalTok{ has grouped output by }\StringTok{\textquotesingle{}cyl\textquotesingle{}}\NormalTok{. You can override using the }\StringTok{\textasciigrave{}}\AttributeTok{.groups}\StringTok{\textasciigrave{}}\NormalTok{ argument.}
+\StringTok{\textasciigrave{}}\AttributeTok{summarise()}\StringTok{\textasciigrave{}}\NormalTok{ has grouped output by }\StringTok{\textquotesingle{}cyl\textquotesingle{}}\NormalTok{. You can override using the }\StringTok{\textasciigrave{}}\AttributeTok{.groups}\StringTok{\textasciigrave{}}
+\NormalTok{argument.}
 \CommentTok{\# A tibble: 5 x 3}
 \CommentTok{\# Groups:   cyl [3]}
 \NormalTok{    cyl    vs avg\_mpg}
@@ -4607,7 +4606,8 @@ The \textbf{tidyverse} also offers a summarizing function, \texttt{summarize()} 
 \SpecialCharTok{+}               \FunctionTok{min}\NormalTok{(mpg)}\SpecialCharTok{\^{}}\FloatTok{0.5} \SpecialCharTok{*} 
 \SpecialCharTok{+}               \FunctionTok{mean}\NormalTok{(wt)}\SpecialCharTok{\^{}}\FloatTok{0.5} \SpecialCharTok{+} 
 \SpecialCharTok{+}               \FunctionTok{mean}\NormalTok{(disp)}\SpecialCharTok{\^{}}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\FunctionTok{mean}\NormalTok{(hp)))}
-\StringTok{\textasciigrave{}}\AttributeTok{summarise()}\StringTok{\textasciigrave{}}\NormalTok{ has grouped output by }\StringTok{\textquotesingle{}cyl\textquotesingle{}}\NormalTok{. You can override using the }\StringTok{\textasciigrave{}}\AttributeTok{.groups}\StringTok{\textasciigrave{}}\NormalTok{ argument.}
+\StringTok{\textasciigrave{}}\AttributeTok{summarise()}\StringTok{\textasciigrave{}}\NormalTok{ has grouped output by }\StringTok{\textquotesingle{}cyl\textquotesingle{}}\NormalTok{. You can override using the }\StringTok{\textasciigrave{}}\AttributeTok{.groups}\StringTok{\textasciigrave{}}
+\NormalTok{argument.}
 \CommentTok{\# A tibble: 5 x 4}
 \CommentTok{\# Groups:   cyl [3]}
 \NormalTok{    cyl    vs avg\_mpg complicated\_summary\_calculation}
@@ -4956,8 +4956,10 @@ Base R offers the \texttt{stripchart()} function. To indicate the numeric variab
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\SpecialCharTok{\textgreater{}} \FunctionTok{stripchart}\NormalTok{(bill\_depth\_mm }\SpecialCharTok{\textasciitilde{}}\NormalTok{ island, }\AttributeTok{data =}\NormalTok{ penguins, }\AttributeTok{method =} \StringTok{\textquotesingle{}jitter\textquotesingle{}}\NormalTok{,}
-\SpecialCharTok{+}            \AttributeTok{ylab =} \StringTok{\textquotesingle{}Island\textquotesingle{}}\NormalTok{, }\AttributeTok{xlab =} \StringTok{\textquotesingle{}Bill Depth (mm)\textquotesingle{}}\NormalTok{, }\AttributeTok{main =} \StringTok{\textquotesingle{}Stripchart of Bill Depth by Island\textquotesingle{}}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{stripchart}\NormalTok{(bill\_depth\_mm }\SpecialCharTok{\textasciitilde{}}\NormalTok{ island, }\AttributeTok{data =}\NormalTok{ penguins, }
+\SpecialCharTok{+}            \AttributeTok{method =} \StringTok{\textquotesingle{}jitter\textquotesingle{}}\NormalTok{,}
+\SpecialCharTok{+}            \AttributeTok{ylab =} \StringTok{\textquotesingle{}Island\textquotesingle{}}\NormalTok{, }\AttributeTok{xlab =} \StringTok{\textquotesingle{}Bill Depth (mm)\textquotesingle{}}\NormalTok{, }
+\SpecialCharTok{+}            \AttributeTok{main =} \StringTok{\textquotesingle{}Stripchart of Bill Depth by Island\textquotesingle{}}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5408,14 +5410,14 @@ A common follow-up to an ANOVA is Tukey's Honestly Significant Differences (HSD)
 \begin{Highlighting}[]
 \OperatorTok{\textgreater{}}\NormalTok{ mc }\OperatorTok{=}\NormalTok{ sms.multicomp.MultiComparison(ch8\_d2.mass, ch8\_d2.location)}
 \OperatorTok{+} \BuiltInTok{print}\NormalTok{(mc.tukeyhsd())}
-\NormalTok{Multiple Comparison of Means }\OperatorTok{{-}}\NormalTok{ Tukey HSD, FWER}\OperatorTok{=}\FloatTok{0.05}
-\OperatorTok{===================================================}
-\NormalTok{group1 group2 meandiff p}\OperatorTok{{-}}\NormalTok{adj  lower   upper  reject}
-\OperatorTok{{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-     \DecValTok{1}      \DecValTok{2}    \OperatorTok{{-}}\FloatTok{2.82} \FloatTok{0.001} \OperatorTok{{-}}\FloatTok{3.6858} \OperatorTok{{-}}\FloatTok{1.9542}   \VariableTok{True}
-     \DecValTok{1}      \DecValTok{3}    \OperatorTok{{-}}\FloatTok{2.78} \FloatTok{0.001} \OperatorTok{{-}}\FloatTok{3.6458} \OperatorTok{{-}}\FloatTok{1.9142}   \VariableTok{True}
-     \DecValTok{2}      \DecValTok{3}     \FloatTok{0.04}   \FloatTok{0.9} \OperatorTok{{-}}\FloatTok{0.8643}  \FloatTok{0.9443}  \VariableTok{False}
-\OperatorTok{{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\NormalTok{Multiple Comparison of Means }\OperatorTok{{-}}\NormalTok{ Tukey HSD, FWER}\OperatorTok{=}\FloatTok{0.05} 
+\OperatorTok{====================================================}
+\NormalTok{group1 group2 meandiff p}\OperatorTok{{-}}\NormalTok{adj   lower   upper  reject}
+\OperatorTok{{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+     \DecValTok{1}      \DecValTok{2}    \OperatorTok{{-}}\FloatTok{2.82}    \FloatTok{0.0} \OperatorTok{{-}}\FloatTok{3.6863} \OperatorTok{{-}}\FloatTok{1.9537}   \VariableTok{True}
+     \DecValTok{1}      \DecValTok{3}    \OperatorTok{{-}}\FloatTok{2.78}    \FloatTok{0.0} \OperatorTok{{-}}\FloatTok{3.6463} \OperatorTok{{-}}\FloatTok{1.9137}   \VariableTok{True}
+     \DecValTok{2}      \DecValTok{3}     \FloatTok{0.04} \FloatTok{0.9925} \OperatorTok{{-}}\FloatTok{0.8648}  \FloatTok{0.9448}  \VariableTok{False}
+\OperatorTok{{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \end{Highlighting}
 \end{Shaded}
 
