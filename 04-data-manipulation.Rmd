@@ -888,7 +888,7 @@ The attribute `strftime()` converts datetime objects to strings. In the argument
 ```{python}
 d1
 
-d1.strftime("%A %-m %-Y")
+d1.strftime("%A %m %Y")
 d1.strftime("%a %m %y")
 ```
 
