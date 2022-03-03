@@ -203,6 +203,19 @@ Visualizing the relationship between a numeric variable and a categorical variab
 
 #### Python {-}
 
+The `boxplot()` function in seaborn generates boxplots, and matplotlib can be used for the aesthetics of the plot.
+
+```{python}
+import seaborn as sns
+import matplotlib.pyplot as plt
+plt.figure()
+sns.boxplot(x="island", y="bill_depth_mm", data=penguins)
+plt.xlabel("Island")
+plt.ylabel("Bill Depth (mm)")
+plt.title("Bill Depth by Island")
+plt.show()
+```
+
 #### R {-}
 The `boxplot()` function in base R generates boxplots, and a user specifies the grouping variable and the numeric variable to be plotted in formula notation: `y ~ grouping_var`.
 ```{r}

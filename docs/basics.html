@@ -24,7 +24,7 @@
 <meta name="author" content="Clay Ford, Jacob Goldstein-Greenwood, Oyinkansola Adenekan, Samantha Lomuscio" />
 
 
-<meta name="date" content="2022-03-02" />
+<meta name="date" content="2022-03-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -340,12 +340,20 @@ div.csl-indent {
 <span id="cb8-3"><a href="basics.html#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> two <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb8-4"><a href="basics.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> <span class="bu">print</span>(math.<span class="bu">pow</span>(two, one))</span>
 <span id="cb8-5"><a href="basics.html#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fl">2.0</span></span></code></pre></div>
-<p>Users can also download 100s of libraries outside of the Standard Python Library. Python libraries are also called packages. Popular libraries include numpy, used for operations on arrays/vectors and pandas, used for data analysis. The following code is an example of importing a Python library, NumPy, into a Pythons script.</p>
+<p>Users can also download 100s of libraries outside of the Standard Python Library. Python libraries are also called packages. Popular libraries include numpy, used for operations on arrays/vectors and pandas, used for data analysis. The following code is an example of importing a Python library, NumPy, into a Python script.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="basics.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb9-2"><a href="basics.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> </span>
 <span id="cb9-3"><a href="basics.html#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> my_array <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>])</span>
 <span id="cb9-4"><a href="basics.html#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> <span class="bu">print</span>(my_array)</span>
 <span id="cb9-5"><a href="basics.html#cb9-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>]</span></code></pre></div>
+<p>To use Python libraries outside the Python Standard Library, they must be installed in the Python environment.</p>
+<p>Anaconda is the most popular Python library manager. Anaconda allows you to use and create Python virtual environments and install libraries to these environments. A Python virtual environment is a collection of libraries isolated from other virtual environments. These environments allow users to seamlessly organize programming projects.</p>
+<p>You can download Anaconda from the following link: <a href="https://www.anaconda.com/products/individual" class="uri">https://www.anaconda.com/products/individual</a>. When you download Anaconda, you have access to the Anaconda Navigator, a graphical user interface, and the Anaconda Prompt, a command prompt. Anaconda comes with an automatic environment called “base”.</p>
+<p>The following screenshot illustrates how to install a library to an environment using the Anaconda GUI. Using the drop down menu, navigate to “Not installed”. Then, select the desired library from the list. The search bar can be used to search for libraries. Finally, click the green “Apply” button to install the package.</p>
+<p><img src="images/anaconda_gui_install.png" width="960" /></p>
+<p>The following screenshot illustrates how to install a library to the “base” environment using the Anaconda Command Prompt.</p>
+<p><img src="images/anaconda_command_install.png" width="960" /></p>
+<p>Sometimes the commands to download libraries are not as simple as shown in the above example. The Anaconda website provides commands for how to download popular Python libraries.</p>
 </div>
 <div id="r-3" class="section level4 unnumbered">
 <h4>R</h4>
