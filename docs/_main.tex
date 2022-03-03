@@ -4,6 +4,10 @@
 %
 \documentclass[
 ]{book}
+\title{Python and R}
+\author{Clay Ford, Jacob Goldstein-Greenwood, Oyinkansola Adenekan, Samantha Lomuscio}
+\date{2022-03-02}
+
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
 \usepackage{iftex}
@@ -116,10 +120,6 @@
 \bibliographystyle{plainnat}
 \nocite{*}
 
-\title{Python and R}
-\author{Clay Ford, Jacob Goldstein-Greenwood, Oyinkansola Adenekan, Samantha Lomuscio}
-\date{2022-02-28}
-
 \begin{document}
 \maketitle
 
@@ -182,6 +182,11 @@ Python uses \texttt{\^{}} for exponentiation, \texttt{\%/\%} for integer divisio
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{1}
 \end{Highlighting}
 \end{Shaded}
+
+\hypertarget{missing-values}{%
+\section{Missing values}\label{missing-values}}
+
+Python and R represent missing values differently, and the distinction is worth keeping in mind, as missing values will crop up throughout this book---some code examples intake or output data that are entirely or partially missing. In Python, a standard indicator for a missing value in a data set is \texttt{NaN}.* In R, missing values are generally indicated by \texttt{NA}. \texttt{NaN} does appear in R as well, but R reserves \texttt{NaN} to indicate values that are not technically absent but that are not defined and/or that can't be represented with numbers; e.g., \texttt{Inf/Inf}.
 
 \hypertarget{assignment}{%
 \section{Assignment}\label{assignment}}
@@ -248,7 +253,7 @@ Packages often depend on other packages. These are known as ``dependencies.'' So
 \subsubsection*{Python}\label{python-3}}
 \addcontentsline{toc}{subsubsection}{Python}
 
-When you download Python and open a script, you have access to The Python Standard Library. This library includes several datatypes and functions for storing data, performing mathematical operations, and beyond. Commonly used datatypes include list and range. As you can see below, you do not need to import data types from the Standard Python Library.
+When you download Python, you gain access to The Python Standard Library. This library includes several datatypes and functions for storing data, performing mathematical operations, and beyond. Commonly used datatypes include \emph{list} and \emph{range}. As you can see below, you do not need to import data types from the Standard Python Library.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -260,7 +265,7 @@ When you download Python and open a script, you have access to The Python Standa
 \end{Highlighting}
 \end{Shaded}
 
-Libraries contain modules, groups of functions. To use functions from modules in the Standard Python Library, users must import the appropriate module. Examples include math and itertools, which both include several functions for a range of operations.
+Libraries contain modules, groups of functions. To use functions from modules in the Python Standard Library, users must import the appropriate module. Examples include math and itertools, which both include several functions for a range of operations.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -272,7 +277,7 @@ Libraries contain modules, groups of functions. To use functions from modules in
 \end{Highlighting}
 \end{Shaded}
 
-Users can also download 100s of libraries outside of the Standard Python Library. Popular libraries include numpy, used for operations on arrays/vectors and pandas, used for data analysis.
+Users can also download 100s of libraries outside of the Standard Python Library. Python libraries are also called packages. Popular libraries include numpy, used for operations on arrays/vectors and pandas, used for data analysis. The following code is an example of importing a Python library, NumPy, into a Pythons script.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1968,7 +1973,7 @@ Indexing also provides access to columns as a pandas Series. Single and double q
 \end{Highlighting}
 \end{Shaded}
 
-Operations on numpy arrays are faster than operations on pandas series. But using pandas series should be fine, in terms of performance, in many cases. This is important for large data sets on which many operations are performed. The \texttt{.values} function returns a numpy array.
+Operations on numpy arrays are faster than operations on pandas Series. But using pandas series should be fine, in terms of performance, in many cases. This is important for large data sets on which many operations are performed. The \texttt{.values} function returns a numpy array.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2191,7 +2196,7 @@ How to view rows of a data frame that meet certain conditions.
 \subsubsection*{Python}\label{python-19}}
 \addcontentsline{toc}{subsubsection}{Python}
 
-We can filter rows of a data frame based on a condition to subset on.
+We can filter rows of a DataFrame based on a condition to subset on. This returns a DataFrame.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2227,6 +2232,22 @@ You can also filter with multiple row conditions.
 \DecValTok{19}  \FloatTok{33.9}    \DecValTok{4}
 
 \OperatorTok{\textless{}}\NormalTok{string}\OperatorTok{\textgreater{}}\NormalTok{:}\DecValTok{1}\NormalTok{: }\PreprocessorTok{UserWarning}\NormalTok{: Boolean Series key will be reindexed to match DataFrame index.}
+\end{Highlighting}
+\end{Shaded}
+
+Using the \texttt{.values} function returns a NumPy array, which can be used for vector operations (many functions require some sort of vector, like a numpy array of list, rather than a DataFrame) or faster performance.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}}\NormalTok{ mtcars[mtcars[}\StringTok{"mpg"}\NormalTok{] }\OperatorTok{\textgreater{}} \DecValTok{30}\NormalTok{].values}
+\NormalTok{array([[ }\FloatTok{32.4}\NormalTok{  ,   }\FloatTok{4.}\NormalTok{   ,  }\FloatTok{78.7}\NormalTok{  ,  }\FloatTok{66.}\NormalTok{   ,   }\FloatTok{4.08}\NormalTok{ ,   }\FloatTok{2.2}\NormalTok{  ,  }\FloatTok{19.47}\NormalTok{ ,}
+          \FloatTok{1.}\NormalTok{   ,   }\FloatTok{1.}\NormalTok{   ,   }\FloatTok{4.}\NormalTok{   ,   }\FloatTok{1.}\NormalTok{   ],}
+\NormalTok{       [ }\FloatTok{30.4}\NormalTok{  ,   }\FloatTok{4.}\NormalTok{   ,  }\FloatTok{75.7}\NormalTok{  ,  }\FloatTok{52.}\NormalTok{   ,   }\FloatTok{4.93}\NormalTok{ ,   }\FloatTok{1.615}\NormalTok{,  }\FloatTok{18.52}\NormalTok{ ,}
+          \FloatTok{1.}\NormalTok{   ,   }\FloatTok{1.}\NormalTok{   ,   }\FloatTok{4.}\NormalTok{   ,   }\FloatTok{2.}\NormalTok{   ],}
+\NormalTok{       [ }\FloatTok{33.9}\NormalTok{  ,   }\FloatTok{4.}\NormalTok{   ,  }\FloatTok{71.1}\NormalTok{  ,  }\FloatTok{65.}\NormalTok{   ,   }\FloatTok{4.22}\NormalTok{ ,   }\FloatTok{1.835}\NormalTok{,  }\FloatTok{19.9}\NormalTok{  ,}
+          \FloatTok{1.}\NormalTok{   ,   }\FloatTok{1.}\NormalTok{   ,   }\FloatTok{4.}\NormalTok{   ,   }\FloatTok{1.}\NormalTok{   ],}
+\NormalTok{       [ }\FloatTok{30.4}\NormalTok{  ,   }\FloatTok{4.}\NormalTok{   ,  }\FloatTok{95.1}\NormalTok{  , }\FloatTok{113.}\NormalTok{   ,   }\FloatTok{3.77}\NormalTok{ ,   }\FloatTok{1.513}\NormalTok{,  }\FloatTok{16.9}\NormalTok{  ,}
+          \FloatTok{1.}\NormalTok{   ,   }\FloatTok{1.}\NormalTok{   ,   }\FloatTok{5.}\NormalTok{   ,   }\FloatTok{2.}\NormalTok{   ]])}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2729,9 +2750,9 @@ One way to fix this is using the string \texttt{zfill()} method. First we conver
 \OperatorTok{+}\NormalTok{ zc[}\StringTok{\textquotesingle{}zip\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ zc.}\BuiltInTok{zip}\NormalTok{.}\BuiltInTok{str}\NormalTok{.zfill(}\DecValTok{5}\NormalTok{)}
 \OperatorTok{+} \BuiltInTok{print}\NormalTok{(zc)}
 \NormalTok{  state    }\BuiltInTok{zip}
-\DecValTok{0}\NormalTok{    VT  }\DecValTok{0}\ErrorTok{5001}
+\DecValTok{0}\NormalTok{    VT  }\DecValTok{05001}
 \DecValTok{1}\NormalTok{    VA  }\DecValTok{22901}
-\DecValTok{2}\NormalTok{    NH  }\DecValTok{0}\ErrorTok{3282}
+\DecValTok{2}\NormalTok{    NH  }\DecValTok{03282}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2742,9 +2763,9 @@ If we knew we were importing zip codes using \texttt{read\_csv}, we could also u
 \OperatorTok{\textgreater{}}\NormalTok{ zc }\OperatorTok{=}\NormalTok{ pandas.read\_csv(}\StringTok{\textquotesingle{}data/zc.csv\textquotesingle{}}\NormalTok{, dtype }\OperatorTok{=}\NormalTok{ \{}\StringTok{\textquotesingle{}zip\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}str\textquotesingle{}}\NormalTok{\})}
 \OperatorTok{+} \BuiltInTok{print}\NormalTok{(zc)}
 \NormalTok{  state    }\BuiltInTok{zip}
-\DecValTok{0}\NormalTok{    VT  }\DecValTok{0}\ErrorTok{5001}
+\DecValTok{0}\NormalTok{    VT  }\DecValTok{05001}
 \DecValTok{1}\NormalTok{    VA  }\DecValTok{22901}
-\DecValTok{2}\NormalTok{    NH  }\DecValTok{0}\ErrorTok{3282}
+\DecValTok{2}\NormalTok{    NH  }\DecValTok{03282}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3242,62 +3263,168 @@ With formatted dates we can calculate elapsed time, extract components of a date
 \subsubsection*{Python}\label{python-28}}
 \addcontentsline{toc}{subsubsection}{Python}
 
-Dates in Python can be stores as datetime objects using the \texttt{datetime} class.
+The Python module \texttt{datetime} can be used to create various date and time objects. Here we will discuss 4 of the main classes within \texttt{datetime} that are most useful.
 
-Here we use the \texttt{date()} class to create a date object consisting only of a date. The attributes are year, month, day.
+The first class we will go over is the \texttt{date()} class. This creates a ``date'' object whose only attributes are year, month, day.
+
+Here we create a date object using the date class. The attributes are specified as integers in the argument of \texttt{date()} in this order \texttt{date(year,\ month,\ day)}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\OperatorTok{\textgreater{}} \ImportTok{import}\NormalTok{ datetime}
+\OperatorTok{\textgreater{}} \ImportTok{import}\NormalTok{ datetime }\ImportTok{as}\NormalTok{ dt }
 \OperatorTok{+} 
-\OperatorTok{+}\NormalTok{ x }\OperatorTok{=}\NormalTok{ datetime.date(}\DecValTok{1981}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{12}\NormalTok{)}
+\OperatorTok{+}\NormalTok{ x }\OperatorTok{=}\NormalTok{ dt.date(}\DecValTok{2001}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{12}\NormalTok{)}
 \OperatorTok{+} \BuiltInTok{print}\NormalTok{(x)}
-\DecValTok{1981}\OperatorTok{{-}}\DecValTok{0}\ErrorTok{4}\OperatorTok{{-}}\DecValTok{12}
+\DecValTok{2001}\OperatorTok{{-}}\DecValTok{04}\OperatorTok{{-}}\DecValTok{12}
 \end{Highlighting}
 \end{Shaded}
 
-Next we use the \texttt{time()} class to create a time object containing information about a time. The attributes that go into the \texttt{time()} class are hour, minute, seconds.
+To get today's date, we can use the \texttt{date.today()} function:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\OperatorTok{\textgreater{}}\NormalTok{ y }\OperatorTok{=}\NormalTok{ datetime.time(}\DecValTok{11}\NormalTok{, }\DecValTok{34}\NormalTok{, }\DecValTok{56}\NormalTok{)}
+\OperatorTok{\textgreater{}}\NormalTok{ today }\OperatorTok{=}\NormalTok{ dt.date.today()}
+\OperatorTok{+} \BuiltInTok{print}\NormalTok{(today)}
+\DecValTok{2022}\OperatorTok{{-}}\DecValTok{03}\OperatorTok{{-}}\DecValTok{02}
+\end{Highlighting}
+\end{Shaded}
+
+Note that the output of both x and today are only year-month-day because they are date objects.
+
+We can extract each of these attributes (year, month, day) from the date object as follows:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}}\NormalTok{ today.year }
+\DecValTok{2022}
+\OperatorTok{\textgreater{}}\NormalTok{ today.month}
+\DecValTok{3}
+\OperatorTok{\textgreater{}}\NormalTok{ today.day}
+\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+Next we will discuss the \texttt{time()} class. This class creates time objects containing information about only a time. The attributes that go into the \texttt{time()} class are hours, minutes, seconds in that order. Like the date class, these attributes must be inputted as integers.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}}\NormalTok{ y }\OperatorTok{=}\NormalTok{ dt.time(}\DecValTok{11}\NormalTok{, }\DecValTok{34}\NormalTok{, }\DecValTok{56}\NormalTok{)}
 \OperatorTok{+} \BuiltInTok{print}\NormalTok{(y)}
 \DecValTok{11}\NormalTok{:}\DecValTok{34}\NormalTok{:}\DecValTok{56}
 \end{Highlighting}
 \end{Shaded}
 
-Here we use the \texttt{datetime()} class to create a datetime object consisting of both date and time. The attributes are year, month, day, hour, minute, second.
+If you want a time object containing only hours and minutes, only seconds, etc. you can specify the attributes by name when creating the time object.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\OperatorTok{\textgreater{}}\NormalTok{ z }\OperatorTok{=}\NormalTok{ datetime.datetime(}\DecValTok{1981}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{12}\NormalTok{, }\DecValTok{11}\NormalTok{, }\DecValTok{34}\NormalTok{, }\DecValTok{56}\NormalTok{)}
+\OperatorTok{\textgreater{}}\NormalTok{ only\_hrs }\OperatorTok{=}\NormalTok{ dt.time(hour }\OperatorTok{=} \DecValTok{10}\NormalTok{)}
+\OperatorTok{+}\NormalTok{ only\_mins }\OperatorTok{=}\NormalTok{ dt.time(minute }\OperatorTok{=} \DecValTok{55}\NormalTok{)}
+\OperatorTok{+} 
+\OperatorTok{+} \BuiltInTok{print}\NormalTok{(only\_hrs)}
+\DecValTok{10}\NormalTok{:}\DecValTok{00}\NormalTok{:}\DecValTok{00}
+\OperatorTok{\textgreater{}} \BuiltInTok{print}\NormalTok{(only\_mins)}
+\DecValTok{00}\NormalTok{:}\DecValTok{55}\NormalTok{:}\DecValTok{00}
+\end{Highlighting}
+\end{Shaded}
+
+Again similar to the date class, we can extract hour, minute, and second attributes from the time objects:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}}\NormalTok{ y.hour}
+\DecValTok{11}
+\OperatorTok{\textgreater{}}\NormalTok{ y.minute}
+\DecValTok{34}
+\OperatorTok{\textgreater{}}\NormalTok{ y.second}
+\DecValTok{56}
+\OperatorTok{\textgreater{}}\NormalTok{ y.microsecond}
+\DecValTok{0}
+\end{Highlighting}
+\end{Shaded}
+
+Now we will talk about the \texttt{datetime()} class that creates a datetime object containing information about both date and time. The attributes must be inputted as integers and are year, month, day, hour, minute, second, in that order. Like the date and time classes, we can speficy specific attributes in the argument using the attrubute names as well. If we don't specify any time components, the datetime object defaults to time 00:00:00.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}} \CommentTok{\# Input attributes in order}
+\OperatorTok{+}\NormalTok{ z }\OperatorTok{=}\NormalTok{ dt.datetime(}\DecValTok{1981}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{12}\NormalTok{, }\DecValTok{11}\NormalTok{, }\DecValTok{34}\NormalTok{, }\DecValTok{56}\NormalTok{)}
 \OperatorTok{+} \BuiltInTok{print}\NormalTok{(z)}
-\DecValTok{1981}\OperatorTok{{-}}\DecValTok{0}\ErrorTok{4}\OperatorTok{{-}}\DecValTok{12} \DecValTok{11}\NormalTok{:}\DecValTok{34}\NormalTok{:}\DecValTok{56}
+\OperatorTok{+} 
+\OperatorTok{+} \CommentTok{\# Input attributes using attribute names (any order)}
+\DecValTok{1981}\OperatorTok{{-}}\DecValTok{04}\OperatorTok{{-}}\DecValTok{12} \DecValTok{11}\NormalTok{:}\DecValTok{34}\NormalTok{:}\DecValTok{56}
+\OperatorTok{\textgreater{}}\NormalTok{ z2}\OperatorTok{=}\NormalTok{ dt.datetime(year }\OperatorTok{=} \DecValTok{2021}\NormalTok{, day }\OperatorTok{=} \DecValTok{6}\NormalTok{, month }\OperatorTok{=} \DecValTok{12}\NormalTok{, hour }\OperatorTok{=} \DecValTok{6}\NormalTok{)}
+\OperatorTok{+} \BuiltInTok{print}\NormalTok{(z2)}
+\OperatorTok{+} 
+\OperatorTok{+} \CommentTok{\# No time attributes}
+\DecValTok{2021}\OperatorTok{{-}}\DecValTok{12}\OperatorTok{{-}}\DecValTok{06} \DecValTok{06}\NormalTok{:}\DecValTok{00}\NormalTok{:}\DecValTok{00}
+\OperatorTok{\textgreater{}}\NormalTok{ z3 }\OperatorTok{=}\NormalTok{ dt.datetime(}\DecValTok{1981}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{12}\NormalTok{)}
+\OperatorTok{+} \BuiltInTok{print}\NormalTok{(z3)}
+\DecValTok{1981}\OperatorTok{{-}}\DecValTok{04}\OperatorTok{{-}}\DecValTok{12} \DecValTok{00}\NormalTok{:}\DecValTok{00}\NormalTok{:}\DecValTok{00}
 \end{Highlighting}
 \end{Shaded}
 
-We can find the time difference between times by subtracting date/time/datetime objects from each other. We can also specify attributes in the argument of the class with attribute names.
+Again, we can extract attributes in exactly the same way as the date and time classes.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\OperatorTok{\textgreater{}}\NormalTok{ t1 }\OperatorTok{=}\NormalTok{ datetime.datetime(year }\OperatorTok{=} \DecValTok{2001}\NormalTok{, month }\OperatorTok{=} \DecValTok{8}\NormalTok{, day }\OperatorTok{=} \DecValTok{11}\NormalTok{, hour }\OperatorTok{=} \DecValTok{5}\NormalTok{, minute }\OperatorTok{=} \DecValTok{49}\NormalTok{, second }\OperatorTok{=} \DecValTok{3}\NormalTok{)}
-\OperatorTok{+}\NormalTok{ t2 }\OperatorTok{=}\NormalTok{ datetime.datetime(year }\OperatorTok{=} \DecValTok{2003}\NormalTok{, month }\OperatorTok{=} \DecValTok{6}\NormalTok{, day }\OperatorTok{=} \DecValTok{5}\NormalTok{, hour }\OperatorTok{=} \DecValTok{6}\NormalTok{, minute }\OperatorTok{=} \DecValTok{33}\NormalTok{, second }\OperatorTok{=} \DecValTok{10}\NormalTok{)}
-\OperatorTok{+}\NormalTok{ t3 }\OperatorTok{=}\NormalTok{ t2 }\OperatorTok{{-}}\NormalTok{ t1}
-\OperatorTok{+} \BuiltInTok{print}\NormalTok{(t3)}
-\DecValTok{663}\NormalTok{ days, }\DecValTok{0}\NormalTok{:}\DecValTok{44}\NormalTok{:}\DecValTok{0}\ErrorTok{7}
+\OperatorTok{\textgreater{}}\NormalTok{ z.year}
+\DecValTok{1981}
+\OperatorTok{\textgreater{}}\NormalTok{ z.day}
+\DecValTok{12}
+\OperatorTok{\textgreater{}}\NormalTok{ z.hour}
+\DecValTok{11}
 \end{Highlighting}
 \end{Shaded}
 
-We can convert between days, seconds, etc. as follows:
+The final class we will discuss is the \texttt{timedelta} class. This class is used to store date/time differences between date objects.
+
+The default settings for a timedelta object are as follows: \texttt{timedelta(weeks=0,\ days=0,\ hours=0,minutes=0,\ seconds=0,\ milliseconds=0,\ microseconds=0)}
+
+Here is an example of howto add and subtract datesa and times using these objects.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\OperatorTok{\textgreater{}}\NormalTok{ t3}
-\NormalTok{datetime.timedelta(days}\OperatorTok{=}\DecValTok{663}\NormalTok{, seconds}\OperatorTok{=}\DecValTok{2647}\NormalTok{)}
-\OperatorTok{\textgreater{}}\NormalTok{ t3.days}
-\DecValTok{663}
-\OperatorTok{\textgreater{}}\NormalTok{ t3.seconds}
-\DecValTok{2647}
+\OperatorTok{\textgreater{}} \CommentTok{\# Create a datetime object for the current time that we will increment}
+\OperatorTok{+}\NormalTok{ d1 }\OperatorTok{=}\NormalTok{ dt.datetime.now()}
+\OperatorTok{+} \BuiltInTok{print}\NormalTok{(d1)}
+\OperatorTok{+} 
+\OperatorTok{+} \CommentTok{\# Add 550 days to our datetime object }
+\DecValTok{2022}\OperatorTok{{-}}\DecValTok{03}\OperatorTok{{-}}\DecValTok{02} \DecValTok{23}\NormalTok{:}\DecValTok{32}\NormalTok{:}\FloatTok{31.995703}
+\OperatorTok{\textgreater{}}\NormalTok{ d2 }\OperatorTok{=}\NormalTok{ d1 }\OperatorTok{+}\NormalTok{ dt.timedelta(days }\OperatorTok{=} \DecValTok{550}\NormalTok{)}
+\OperatorTok{+} \BuiltInTok{print}\NormalTok{(d2)}
+\OperatorTok{+} 
+\OperatorTok{+} \CommentTok{\# Subtract 5 hours from our datetime object }
+\DecValTok{2023}\OperatorTok{{-}}\DecValTok{09}\OperatorTok{{-}}\DecValTok{03} \DecValTok{23}\NormalTok{:}\DecValTok{32}\NormalTok{:}\FloatTok{31.995703}
+\OperatorTok{\textgreater{}}\NormalTok{ d3 }\OperatorTok{=}\NormalTok{ d1 }\OperatorTok{{-}}\NormalTok{ dt.timedelta(hours }\OperatorTok{=} \DecValTok{5}\NormalTok{)}
+\OperatorTok{+} \BuiltInTok{print}\NormalTok{(d3)}
+\DecValTok{2022}\OperatorTok{{-}}\DecValTok{03}\OperatorTok{{-}}\DecValTok{02} \DecValTok{18}\NormalTok{:}\DecValTok{32}\NormalTok{:}\FloatTok{31.995703}
+\end{Highlighting}
+\end{Shaded}
+
+Finally, we will discuss how to convert strings to datetime objects and vice versa.
+
+The attribute \texttt{strftime()} converts datetime objects to strings. In the argument of \texttt{strftime()} can specify the format you would like.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}}\NormalTok{ d1}
+\NormalTok{datetime.datetime(}\DecValTok{2022}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{23}\NormalTok{, }\DecValTok{32}\NormalTok{, }\DecValTok{31}\NormalTok{, }\DecValTok{995703}\NormalTok{)}
+\OperatorTok{\textgreater{}}\NormalTok{ d1.strftime(}\StringTok{"\%A \%m \%Y"}\NormalTok{)}
+\CommentTok{\textquotesingle{}Wednesday 03 2022\textquotesingle{}}
+\OperatorTok{\textgreater{}}\NormalTok{ d1.strftime(}\StringTok{"\%a \%m \%y"}\NormalTok{)}
+\CommentTok{\textquotesingle{}Wed 03 22\textquotesingle{}}
+\end{Highlighting}
+\end{Shaded}
+
+The attribute \texttt{strptime()} converts strings into datetime objects. In the argument of \texttt{strptime()} you must specify the string and then the format of the string.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}}\NormalTok{ d4 }\OperatorTok{=} \StringTok{"27/10/98 11:03:9.033"}
+\OperatorTok{+} 
+\OperatorTok{+}\NormalTok{ d1.strptime(d4, }\StringTok{"}\SpecialCharTok{\%d}\StringTok{/\%m/\%y \%H:\%M:\%S.}\SpecialCharTok{\%f}\StringTok{"}\NormalTok{)}
+\NormalTok{datetime.datetime(}\DecValTok{1998}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{27}\NormalTok{, }\DecValTok{11}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{9}\NormalTok{, }\DecValTok{33000}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3447,11 +3574,11 @@ To create a sample with a fixed number of rows, use the \texttt{n} argument.
 \OperatorTok{\textgreater{}} \CommentTok{\# sample 5 rows from mtcars}
 \OperatorTok{+}\NormalTok{ mtcars.sample(n}\OperatorTok{=}\DecValTok{5}\NormalTok{, replace}\OperatorTok{=}\VariableTok{True}\NormalTok{)}
 \NormalTok{     MPG  CYL   DISP   HP  AXLE\_RATIO  ...  VS  AM  GEAR CARB       KPL}
-\DecValTok{25}  \FloatTok{27.3}    \DecValTok{4}   \FloatTok{79.0}   \DecValTok{66}        \FloatTok{4.08}\NormalTok{  ...   }\DecValTok{1}   \DecValTok{1}     \DecValTok{4}    \DecValTok{1}  \FloatTok{5.803571}
-\DecValTok{11}  \FloatTok{16.4}    \DecValTok{8}  \FloatTok{275.8}  \DecValTok{180}        \FloatTok{3.07}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{0}     \DecValTok{3}    \DecValTok{3}  \FloatTok{3.486395}
-\DecValTok{17}  \FloatTok{32.4}    \DecValTok{4}   \FloatTok{78.7}   \DecValTok{66}        \FloatTok{4.08}\NormalTok{  ...   }\DecValTok{1}   \DecValTok{1}     \DecValTok{4}    \DecValTok{1}  \FloatTok{6.887755}
-\DecValTok{17}  \FloatTok{32.4}    \DecValTok{4}   \FloatTok{78.7}   \DecValTok{66}        \FloatTok{4.08}\NormalTok{  ...   }\DecValTok{1}   \DecValTok{1}     \DecValTok{4}    \DecValTok{1}  \FloatTok{6.887755}
-\DecValTok{0}   \FloatTok{21.0}    \DecValTok{6}  \FloatTok{160.0}  \DecValTok{110}        \FloatTok{3.90}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{1}     \DecValTok{4}    \DecValTok{4}  \FloatTok{4.464286}
+\DecValTok{1}   \FloatTok{21.0}    \DecValTok{6}  \FloatTok{160.0}  \DecValTok{110}        \FloatTok{3.90}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{1}     \DecValTok{4}    \DecValTok{4}  \FloatTok{4.464286}
+\DecValTok{2}   \FloatTok{22.8}    \DecValTok{4}  \FloatTok{108.0}   \DecValTok{93}        \FloatTok{3.85}\NormalTok{  ...   }\DecValTok{1}   \DecValTok{1}     \DecValTok{4}    \DecValTok{1}  \FloatTok{4.846939}
+\DecValTok{6}   \FloatTok{14.3}    \DecValTok{8}  \FloatTok{360.0}  \DecValTok{245}        \FloatTok{3.21}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{0}     \DecValTok{3}    \DecValTok{4}  \FloatTok{3.039966}
+\DecValTok{20}  \FloatTok{21.5}    \DecValTok{4}  \FloatTok{120.1}   \DecValTok{97}        \FloatTok{3.70}\NormalTok{  ...   }\DecValTok{1}   \DecValTok{0}     \DecValTok{3}    \DecValTok{1}  \FloatTok{4.570578}
+\DecValTok{28}  \FloatTok{15.8}    \DecValTok{8}  \FloatTok{351.0}  \DecValTok{264}        \FloatTok{4.22}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{1}     \DecValTok{5}    \DecValTok{4}  \FloatTok{3.358844}
 
 \NormalTok{[}\DecValTok{5}\NormalTok{ rows x }\DecValTok{12}\NormalTok{ columns]}
 \end{Highlighting}
@@ -3490,11 +3617,11 @@ The \texttt{random.choice()} function creates a random sample according to the g
 \OperatorTok{+} \CommentTok{\# use random\_sample to sample from mtcars}
 \OperatorTok{+}\NormalTok{ mtcars.loc[random\_sample,]}
 \NormalTok{     MPG  CYL   DISP   HP  AXLE\_RATIO  ...  VS  AM  GEAR CARB       KPL}
-\DecValTok{10}  \FloatTok{17.8}    \DecValTok{6}  \FloatTok{167.6}  \DecValTok{123}        \FloatTok{3.92}\NormalTok{  ...   }\DecValTok{1}   \DecValTok{0}     \DecValTok{4}    \DecValTok{4}  \FloatTok{3.784014}
-\DecValTok{22}  \FloatTok{15.2}    \DecValTok{8}  \FloatTok{304.0}  \DecValTok{150}        \FloatTok{3.15}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{0}     \DecValTok{3}    \DecValTok{2}  \FloatTok{3.231293}
-\DecValTok{18}  \FloatTok{30.4}    \DecValTok{4}   \FloatTok{75.7}   \DecValTok{52}        \FloatTok{4.93}\NormalTok{  ...   }\DecValTok{1}   \DecValTok{1}     \DecValTok{4}    \DecValTok{2}  \FloatTok{6.462585}
-\DecValTok{30}  \FloatTok{15.0}    \DecValTok{8}  \FloatTok{301.0}  \DecValTok{335}        \FloatTok{3.54}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{1}     \DecValTok{5}    \DecValTok{8}  \FloatTok{3.188776}
-\DecValTok{10}  \FloatTok{17.8}    \DecValTok{6}  \FloatTok{167.6}  \DecValTok{123}        \FloatTok{3.92}\NormalTok{  ...   }\DecValTok{1}   \DecValTok{0}     \DecValTok{4}    \DecValTok{4}  \FloatTok{3.784014}
+\DecValTok{16}  \FloatTok{14.7}    \DecValTok{8}  \FloatTok{440.0}  \DecValTok{230}        \FloatTok{3.23}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{0}     \DecValTok{3}    \DecValTok{4}  \FloatTok{3.125000}
+\DecValTok{11}  \FloatTok{16.4}    \DecValTok{8}  \FloatTok{275.8}  \DecValTok{180}        \FloatTok{3.07}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{0}     \DecValTok{3}    \DecValTok{3}  \FloatTok{3.486395}
+\DecValTok{28}  \FloatTok{15.8}    \DecValTok{8}  \FloatTok{351.0}  \DecValTok{264}        \FloatTok{4.22}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{1}     \DecValTok{5}    \DecValTok{4}  \FloatTok{3.358844}
+\DecValTok{5}   \FloatTok{18.1}    \DecValTok{6}  \FloatTok{225.0}  \DecValTok{105}        \FloatTok{2.76}\NormalTok{  ...   }\DecValTok{1}   \DecValTok{0}     \DecValTok{3}    \DecValTok{1}  \FloatTok{3.847789}
+\DecValTok{5}   \FloatTok{18.1}    \DecValTok{6}  \FloatTok{225.0}  \DecValTok{105}        \FloatTok{2.76}\NormalTok{  ...   }\DecValTok{1}   \DecValTok{0}     \DecValTok{3}    \DecValTok{1}  \FloatTok{3.847789}
 
 \NormalTok{[}\DecValTok{5}\NormalTok{ rows x }\DecValTok{12}\NormalTok{ columns]}
 \end{Highlighting}
@@ -3529,35 +3656,35 @@ There are many ways to sample rows from a data frame in R. The \href{https://dpl
 \begin{Highlighting}[]
 \SpecialCharTok{\textgreater{}} \CommentTok{\# sample 5 rows from mtcars}
 \ErrorTok{\textgreater{}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{slice\_sample}\NormalTok{(mtcars, }\AttributeTok{n =} \DecValTok{5}\NormalTok{)}
-\NormalTok{   mpg cylinders  disp  hp axle\_ratio weight  qsec engine am gear carb am\_ch}
-\DecValTok{1} \FloatTok{21.4}         \DecValTok{6} \FloatTok{258.0} \DecValTok{110}       \FloatTok{3.08}  \FloatTok{3.215} \FloatTok{19.44}      \DecValTok{1}  \DecValTok{0}    \DecValTok{3}    \DecValTok{1}     \DecValTok{0}
-\DecValTok{2} \FloatTok{19.2}         \DecValTok{6} \FloatTok{167.6} \DecValTok{123}       \FloatTok{3.92}  \FloatTok{3.440} \FloatTok{18.30}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{4}     \DecValTok{0}
-\DecValTok{3} \FloatTok{15.2}         \DecValTok{8} \FloatTok{275.8} \DecValTok{180}       \FloatTok{3.07}  \FloatTok{3.780} \FloatTok{18.00}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{3}     \DecValTok{0}
-\DecValTok{4} \FloatTok{22.8}         \DecValTok{4} \FloatTok{108.0}  \DecValTok{93}       \FloatTok{3.85}  \FloatTok{2.320} \FloatTok{18.61}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
-\DecValTok{5} \FloatTok{21.4}         \DecValTok{4} \FloatTok{121.0} \DecValTok{109}       \FloatTok{4.11}  \FloatTok{2.780} \FloatTok{18.60}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{2}     \DecValTok{1}
+\NormalTok{   mpg cylinders  disp  hp axle\_ratio weight qsec engine am gear carb am\_ch}
+\DecValTok{1} \FloatTok{15.2}         \DecValTok{8} \FloatTok{275.8} \DecValTok{180}       \FloatTok{3.07}  \FloatTok{3.780} \FloatTok{18.0}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{3}     \DecValTok{0}
+\DecValTok{2} \FloatTok{24.4}         \DecValTok{4} \FloatTok{146.7}  \DecValTok{62}       \FloatTok{3.69}  \FloatTok{3.190} \FloatTok{20.0}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{2}     \DecValTok{0}
+\DecValTok{3} \FloatTok{33.9}         \DecValTok{4}  \FloatTok{71.1}  \DecValTok{65}       \FloatTok{4.22}  \FloatTok{1.835} \FloatTok{19.9}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
+\DecValTok{4} \FloatTok{21.4}         \DecValTok{4} \FloatTok{121.0} \DecValTok{109}       \FloatTok{4.11}  \FloatTok{2.780} \FloatTok{18.6}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{2}     \DecValTok{1}
+\DecValTok{5} \FloatTok{17.3}         \DecValTok{8} \FloatTok{275.8} \DecValTok{180}       \FloatTok{3.07}  \FloatTok{3.730} \FloatTok{17.6}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{3}     \DecValTok{0}
 \NormalTok{     am\_fac}
 \DecValTok{1}\NormalTok{ automatic}
 \DecValTok{2}\NormalTok{ automatic}
-\DecValTok{3}\NormalTok{ automatic}
+\DecValTok{3}\NormalTok{    manual}
 \DecValTok{4}\NormalTok{    manual}
-\DecValTok{5}\NormalTok{    manual}
+\DecValTok{5}\NormalTok{ automatic}
 \SpecialCharTok{\textgreater{}} 
 \ErrorTok{\textgreater{}} \CommentTok{\# sample 20\% of rows from mtcars}
 \ErrorTok{\textgreater{}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{slice\_sample}\NormalTok{(mtcars, }\AttributeTok{prop =} \FloatTok{0.20}\NormalTok{)}
 \NormalTok{   mpg cylinders  disp  hp axle\_ratio weight  qsec engine am gear carb am\_ch}
-\DecValTok{1} \FloatTok{30.4}         \DecValTok{4}  \FloatTok{75.7}  \DecValTok{52}       \FloatTok{4.93}  \FloatTok{1.615} \FloatTok{18.52}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{2}     \DecValTok{1}
-\DecValTok{2} \FloatTok{13.3}         \DecValTok{8} \FloatTok{350.0} \DecValTok{245}       \FloatTok{3.73}  \FloatTok{3.840} \FloatTok{15.41}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
-\DecValTok{3} \FloatTok{17.3}         \DecValTok{8} \FloatTok{275.8} \DecValTok{180}       \FloatTok{3.07}  \FloatTok{3.730} \FloatTok{17.60}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{3}     \DecValTok{0}
+\DecValTok{1} \FloatTok{15.2}         \DecValTok{8} \FloatTok{275.8} \DecValTok{180}       \FloatTok{3.07}  \FloatTok{3.780} \FloatTok{18.00}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{3}     \DecValTok{0}
+\DecValTok{2} \FloatTok{21.5}         \DecValTok{4} \FloatTok{120.1}  \DecValTok{97}       \FloatTok{3.70}  \FloatTok{2.465} \FloatTok{20.01}      \DecValTok{1}  \DecValTok{0}    \DecValTok{3}    \DecValTok{1}     \DecValTok{0}
+\DecValTok{3} \FloatTok{18.7}         \DecValTok{8} \FloatTok{360.0} \DecValTok{175}       \FloatTok{3.15}  \FloatTok{3.440} \FloatTok{17.02}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{2}     \DecValTok{0}
 \DecValTok{4} \FloatTok{16.4}         \DecValTok{8} \FloatTok{275.8} \DecValTok{180}       \FloatTok{3.07}  \FloatTok{4.070} \FloatTok{17.40}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{3}     \DecValTok{0}
-\DecValTok{5} \FloatTok{19.2}         \DecValTok{6} \FloatTok{167.6} \DecValTok{123}       \FloatTok{3.92}  \FloatTok{3.440} \FloatTok{18.30}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{4}     \DecValTok{0}
-\DecValTok{6} \FloatTok{14.3}         \DecValTok{8} \FloatTok{360.0} \DecValTok{245}       \FloatTok{3.21}  \FloatTok{3.570} \FloatTok{15.84}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{5} \FloatTok{22.8}         \DecValTok{4} \FloatTok{108.0}  \DecValTok{93}       \FloatTok{3.85}  \FloatTok{2.320} \FloatTok{18.61}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
+\DecValTok{6} \FloatTok{21.0}         \DecValTok{6} \FloatTok{160.0} \DecValTok{110}       \FloatTok{3.90}  \FloatTok{2.620} \FloatTok{16.46}      \DecValTok{0}  \DecValTok{1}    \DecValTok{4}    \DecValTok{4}     \DecValTok{1}
 \NormalTok{     am\_fac}
-\DecValTok{1}\NormalTok{    manual}
+\DecValTok{1}\NormalTok{ automatic}
 \DecValTok{2}\NormalTok{ automatic}
 \DecValTok{3}\NormalTok{ automatic}
 \DecValTok{4}\NormalTok{ automatic}
-\DecValTok{5}\NormalTok{ automatic}
-\DecValTok{6}\NormalTok{ automatic}
+\DecValTok{5}\NormalTok{    manual}
+\DecValTok{6}\NormalTok{    manual}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3573,17 +3700,17 @@ The base R functions \texttt{sample()} and \texttt{runif()} can be combined to s
 \SpecialCharTok{\textgreater{}} \CommentTok{\# use i to select rows}
 \ErrorTok{\textgreater{}}\NormalTok{ mtcars[i,]}
 \NormalTok{    mpg cylinders  disp  hp axle\_ratio weight  qsec engine am gear carb am\_ch}
-\DecValTok{7}  \FloatTok{14.3}         \DecValTok{8} \FloatTok{360.0} \DecValTok{245}       \FloatTok{3.21}   \FloatTok{3.57} \FloatTok{15.84}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
-\DecValTok{24} \FloatTok{13.3}         \DecValTok{8} \FloatTok{350.0} \DecValTok{245}       \FloatTok{3.73}   \FloatTok{3.84} \FloatTok{15.41}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
-\DecValTok{29} \FloatTok{15.8}         \DecValTok{8} \FloatTok{351.0} \DecValTok{264}       \FloatTok{4.22}   \FloatTok{3.17} \FloatTok{14.50}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{4}     \DecValTok{1}
-\DecValTok{1}  \FloatTok{21.0}         \DecValTok{6} \FloatTok{160.0} \DecValTok{110}       \FloatTok{3.90}   \FloatTok{2.62} \FloatTok{16.46}      \DecValTok{0}  \DecValTok{1}    \DecValTok{4}    \DecValTok{4}     \DecValTok{1}
-\DecValTok{8}  \FloatTok{24.4}         \DecValTok{4} \FloatTok{146.7}  \DecValTok{62}       \FloatTok{3.69}   \FloatTok{3.19} \FloatTok{20.00}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{2}     \DecValTok{0}
+\DecValTok{27} \FloatTok{26.0}         \DecValTok{4} \FloatTok{120.3}  \DecValTok{91}       \FloatTok{4.43}  \FloatTok{2.140} \FloatTok{16.70}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{2}     \DecValTok{1}
+\DecValTok{7}  \FloatTok{14.3}         \DecValTok{8} \FloatTok{360.0} \DecValTok{245}       \FloatTok{3.21}  \FloatTok{3.570} \FloatTok{15.84}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{13} \FloatTok{17.3}         \DecValTok{8} \FloatTok{275.8} \DecValTok{180}       \FloatTok{3.07}  \FloatTok{3.730} \FloatTok{17.60}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{3}     \DecValTok{0}
+\DecValTok{2}  \FloatTok{21.0}         \DecValTok{6} \FloatTok{160.0} \DecValTok{110}       \FloatTok{3.90}  \FloatTok{2.875} \FloatTok{17.02}      \DecValTok{0}  \DecValTok{1}    \DecValTok{4}    \DecValTok{4}     \DecValTok{1}
+\DecValTok{25} \FloatTok{19.2}         \DecValTok{8} \FloatTok{400.0} \DecValTok{175}       \FloatTok{3.08}  \FloatTok{3.845} \FloatTok{17.05}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{2}     \DecValTok{0}
 \NormalTok{      am\_fac}
+\DecValTok{27}\NormalTok{    manual}
 \DecValTok{7}\NormalTok{  automatic}
-\DecValTok{24}\NormalTok{ automatic}
-\DecValTok{29}\NormalTok{    manual}
-\DecValTok{1}\NormalTok{     manual}
-\DecValTok{8}\NormalTok{  automatic}
+\DecValTok{13}\NormalTok{ automatic}
+\DecValTok{2}\NormalTok{     manual}
+\DecValTok{25}\NormalTok{ automatic}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3596,11 +3723,19 @@ The base R functions \texttt{sample()} and \texttt{runif()} can be combined to s
 \ErrorTok{\textgreater{}} \CommentTok{\# select rows that correspond to TRUE}
 \ErrorTok{\textgreater{}}\NormalTok{ mtcars[i }\SpecialCharTok{\textless{}} \FloatTok{0.20}\NormalTok{,]}
 \NormalTok{    mpg cylinders  disp  hp axle\_ratio weight  qsec engine am gear carb am\_ch}
-\DecValTok{20} \FloatTok{33.9}         \DecValTok{4}  \FloatTok{71.1}  \DecValTok{65}       \FloatTok{4.22}  \FloatTok{1.835} \FloatTok{19.90}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
-\DecValTok{24} \FloatTok{13.3}         \DecValTok{8} \FloatTok{350.0} \DecValTok{245}       \FloatTok{3.73}  \FloatTok{3.840} \FloatTok{15.41}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{4}  \FloatTok{21.4}         \DecValTok{6} \FloatTok{258.0} \DecValTok{110}       \FloatTok{3.08}  \FloatTok{3.215} \FloatTok{19.44}      \DecValTok{1}  \DecValTok{0}    \DecValTok{3}    \DecValTok{1}     \DecValTok{0}
+\DecValTok{5}  \FloatTok{18.7}         \DecValTok{8} \FloatTok{360.0} \DecValTok{175}       \FloatTok{3.15}  \FloatTok{3.440} \FloatTok{17.02}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{2}     \DecValTok{0}
+\DecValTok{8}  \FloatTok{24.4}         \DecValTok{4} \FloatTok{146.7}  \DecValTok{62}       \FloatTok{3.69}  \FloatTok{3.190} \FloatTok{20.00}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{2}     \DecValTok{0}
+\DecValTok{15} \FloatTok{10.4}         \DecValTok{8} \FloatTok{472.0} \DecValTok{205}       \FloatTok{2.93}  \FloatTok{5.250} \FloatTok{17.98}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{18} \FloatTok{32.4}         \DecValTok{4}  \FloatTok{78.7}  \DecValTok{66}       \FloatTok{4.08}  \FloatTok{2.200} \FloatTok{19.47}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
+\DecValTok{28} \FloatTok{30.4}         \DecValTok{4}  \FloatTok{95.1} \DecValTok{113}       \FloatTok{3.77}  \FloatTok{1.513} \FloatTok{16.90}      \DecValTok{1}  \DecValTok{1}    \DecValTok{5}    \DecValTok{2}     \DecValTok{1}
 \NormalTok{      am\_fac}
-\DecValTok{20}\NormalTok{    manual}
-\DecValTok{24}\NormalTok{ automatic}
+\DecValTok{4}\NormalTok{  automatic}
+\DecValTok{5}\NormalTok{  automatic}
+\DecValTok{8}\NormalTok{  automatic}
+\DecValTok{15}\NormalTok{ automatic}
+\DecValTok{18}\NormalTok{    manual}
+\DecValTok{28}\NormalTok{    manual}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4430,8 +4565,7 @@ The \textbf{tidyverse} also offers a summarizing function, \texttt{summarize()} 
 \SpecialCharTok{\textgreater{}}\NormalTok{ mtcars }\SpecialCharTok{\%\textgreater{}\%} 
 \SpecialCharTok{+}   \FunctionTok{group\_by}\NormalTok{(cyl, vs) }\SpecialCharTok{\%\textgreater{}\%} 
 \SpecialCharTok{+}   \FunctionTok{summarize}\NormalTok{(}\AttributeTok{avg\_mpg =} \FunctionTok{mean}\NormalTok{(mpg))}
-\StringTok{\textasciigrave{}}\AttributeTok{summarise()}\StringTok{\textasciigrave{}}\NormalTok{ has grouped output by }\StringTok{\textquotesingle{}cyl\textquotesingle{}}\NormalTok{. You can override using the }\StringTok{\textasciigrave{}}\AttributeTok{.groups}\StringTok{\textasciigrave{}}
-\NormalTok{argument.}
+\StringTok{\textasciigrave{}}\AttributeTok{summarise()}\StringTok{\textasciigrave{}}\NormalTok{ has grouped output by }\StringTok{\textquotesingle{}cyl\textquotesingle{}}\NormalTok{. You can override using the }\StringTok{\textasciigrave{}}\AttributeTok{.groups}\StringTok{\textasciigrave{}}\NormalTok{ argument.}
 \CommentTok{\# A tibble: 5 x 3}
 \CommentTok{\# Groups:   cyl [3]}
 \NormalTok{    cyl    vs avg\_mpg}
@@ -4455,8 +4589,7 @@ The \textbf{tidyverse} also offers a summarizing function, \texttt{summarize()} 
 \SpecialCharTok{+}               \FunctionTok{min}\NormalTok{(mpg)}\SpecialCharTok{\^{}}\FloatTok{0.5} \SpecialCharTok{*} 
 \SpecialCharTok{+}               \FunctionTok{mean}\NormalTok{(wt)}\SpecialCharTok{\^{}}\FloatTok{0.5} \SpecialCharTok{+} 
 \SpecialCharTok{+}               \FunctionTok{mean}\NormalTok{(disp)}\SpecialCharTok{\^{}}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\FunctionTok{mean}\NormalTok{(hp)))}
-\StringTok{\textasciigrave{}}\AttributeTok{summarise()}\StringTok{\textasciigrave{}}\NormalTok{ has grouped output by }\StringTok{\textquotesingle{}cyl\textquotesingle{}}\NormalTok{. You can override using the }\StringTok{\textasciigrave{}}\AttributeTok{.groups}\StringTok{\textasciigrave{}}
-\NormalTok{argument.}
+\StringTok{\textasciigrave{}}\AttributeTok{summarise()}\StringTok{\textasciigrave{}}\NormalTok{ has grouped output by }\StringTok{\textquotesingle{}cyl\textquotesingle{}}\NormalTok{. You can override using the }\StringTok{\textasciigrave{}}\AttributeTok{.groups}\StringTok{\textasciigrave{}}\NormalTok{ argument.}
 \CommentTok{\# A tibble: 5 x 4}
 \CommentTok{\# Groups:   cyl [3]}
 \NormalTok{    cyl    vs avg\_mpg complicated\_summary\_calculation}
@@ -4592,7 +4725,7 @@ Notice the semicolon at the end of the \texttt{plt.hist()} function. This suppre
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-260-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-267-1.pdf}
 
 \hypertarget{r-41}{%
 \subsubsection*{R}\label{r-41}}
@@ -4607,7 +4740,7 @@ Base R's \texttt{hist()} function generates histograms, and features of the hist
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-261-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-268-3.pdf}
 
 The \textbf{ggplot2} method for generating histograms follows the standard \textbf{ggplot2} syntax: Initialize a plot with \texttt{ggplot()}, and then add layers thereto, specifying aesthetic properties along the way. Here, the layer to add is \texttt{geom\_histogram()}.
 
@@ -4619,7 +4752,7 @@ The \textbf{ggplot2} method for generating histograms follows the standard \text
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-262-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-269-1.pdf}
 
 \hypertarget{barplots}{%
 \section{Barplots}\label{barplots}}
@@ -4630,7 +4763,7 @@ Visualizing the distribution of categorical data.
 \subsubsection*{Python}\label{python-42}}
 \addcontentsline{toc}{subsubsection}{Python}
 
-For this example, we will generate a bar plot showing how many of each species - Adelie, Chinstrap, Gentoo - we have in our dataset. We go through two ways of doing this here.
+For this example, we will generate a bar plot showing how many of each species---Adelie, Chinstrap, Gentoo---we have in our dataset. We go through two ways of doing this here.
 
 First, we use the Matplotlib plotting library to create the bar plot using the function \texttt{bar()}. To start, we determine the number of each species, then use that data to create the bar plot.
 
@@ -4654,7 +4787,7 @@ First, we use the Matplotlib plotting library to create the bar plot using the f
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-263-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-270-1.pdf}
 
 Our data is stored in a \texttt{pandas\ Dataframe}, which has it's own built-in plotting module, \texttt{plot}. Here we create the same bar plot by using the pandas \texttt{bar()} function.
 
@@ -4666,7 +4799,7 @@ Our data is stored in a \texttt{pandas\ Dataframe}, which has it's own built-in 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-264-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-271-3.pdf}
 One thing to note here is that we generated the same bar plot containing the same information with way less effort. Using the built-in pandas plotting routine proved to be the more efficient method here.
 
 \hypertarget{r-42}{%
@@ -4698,7 +4831,7 @@ We can plot those values using the \texttt{barplot()} function in base R, specif
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-266-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-273-1.pdf}
 
 To recreate the barplot above with \textbf{ggplot2}, one can add a \texttt{geom\_bar()} layer to a plot initialized with \texttt{ggplot()}.
 
@@ -4713,7 +4846,7 @@ To recreate the barplot above with \textbf{ggplot2}, one can add a \texttt{geom\
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-267-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-274-1.pdf}
 
 \hypertarget{scatterplot}{%
 \section{Scatterplot}\label{scatterplot}}
@@ -4724,6 +4857,25 @@ Visualizing the relationship between two numeric variables.
 \subsubsection*{Python}\label{python-43}}
 \addcontentsline{toc}{subsubsection}{Python}
 
+The \texttt{scatter()} function, part of \textbf{matplotlib}, can produce scatterplots in Python. The \texttt{x} and \texttt{y} arguments specify the points to plot. In the example below, we also use the \texttt{c} and \texttt{marker} arguments to customize the point color and point shape, respectively. The \texttt{xlabel()}, \texttt{ylabel()}, and \texttt{title()} functions customize plot labels,
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}} \ImportTok{import}\NormalTok{ matplotlib.pyplot }\ImportTok{as}\NormalTok{ plt}
+\OperatorTok{+} 
+\OperatorTok{+}\NormalTok{ penguins\_no\_na }\OperatorTok{=}\NormalTok{ penguins.dropna() }\CommentTok{\# remove NA rows, as we only want to plot present data}
+\OperatorTok{+}\NormalTok{ plt.clf() }\CommentTok{\# clear the plotting space to prevent plot overlap}
+\OperatorTok{+}\NormalTok{ plt.scatter(x }\OperatorTok{=}\NormalTok{ penguins\_no\_na[}\StringTok{\textquotesingle{}body\_mass\_g\textquotesingle{}}\NormalTok{], y }\OperatorTok{=}\NormalTok{ penguins\_no\_na[}\StringTok{\textquotesingle{}flipper\_length\_mm\textquotesingle{}}\NormalTok{], c }\OperatorTok{=} \StringTok{\textquotesingle{}lightblue\textquotesingle{}}\NormalTok{, marker }\OperatorTok{=} \StringTok{\textquotesingle{}d\textquotesingle{}}\NormalTok{) }\CommentTok{\# \textquotesingle{}d\textquotesingle{} generates diamond markers; learn more about available marker shapes here: https://matplotlib.org/stable/api/markers\_api.html\#module{-}matplotlib.markers}
+\OperatorTok{+}\NormalTok{ plt.xlabel(}\StringTok{\textquotesingle{}Body Mass (g)\textquotesingle{}}\NormalTok{)}
+\OperatorTok{+}\NormalTok{ plt.ylabel(}\StringTok{\textquotesingle{}Flipper Length (mm)\textquotesingle{}}\NormalTok{)}
+\OperatorTok{+}\NormalTok{ plt.title(}\StringTok{\textquotesingle{}Scatterplot of Body Mass and Flipper Length\textquotesingle{}}\NormalTok{)}
+\OperatorTok{+} 
+\OperatorTok{+}\NormalTok{ plt.show()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-275-1.pdf}
+
 \hypertarget{r-43}{%
 \subsubsection*{R}\label{r-43}}
 \addcontentsline{toc}{subsubsection}{R}
@@ -4732,14 +4884,14 @@ Scatterplots can be generated in base R with the \texttt{plot()} function. The \
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\SpecialCharTok{\textgreater{}} \FunctionTok{plot}\NormalTok{(penguins}\SpecialCharTok{$}\NormalTok{body\_mass\_g, penguins}\SpecialCharTok{$}\NormalTok{flipper\_length\_mm, }
+\SpecialCharTok{\textgreater{}} \FunctionTok{plot}\NormalTok{(}\AttributeTok{x =}\NormalTok{ penguins}\SpecialCharTok{$}\NormalTok{body\_mass\_g, }\AttributeTok{y =}\NormalTok{ penguins}\SpecialCharTok{$}\NormalTok{flipper\_length\_mm, }
 \SpecialCharTok{+}      \AttributeTok{col =} \StringTok{\textquotesingle{}navy\textquotesingle{}}\NormalTok{, }\AttributeTok{pch =} \DecValTok{20}\NormalTok{,}
 \SpecialCharTok{+}      \AttributeTok{main =} \StringTok{\textquotesingle{}Scatterplot of Body Mass and Flipper Length\textquotesingle{}}\NormalTok{, }
 \SpecialCharTok{+}      \AttributeTok{xlab =} \StringTok{\textquotesingle{}Body Mass (g)\textquotesingle{}}\NormalTok{, }\AttributeTok{ylab =} \StringTok{\textquotesingle{}Flipper Length (mm)\textquotesingle{}}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-268-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-276-3.pdf}
 
 To generate a scatterplot with \textbf{ggplot2}, initialize a plot with \texttt{ggplot()}, then add a layer of points with \texttt{geom\_point()}.
 
@@ -4752,7 +4904,7 @@ To generate a scatterplot with \textbf{ggplot2}, initialize a plot with \texttt{
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-269-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-277-1.pdf}
 
 \hypertarget{stripcharts}{%
 \section{Stripcharts}\label{stripcharts}}
@@ -4774,7 +4926,7 @@ The \textbf{seaborn} package provides the \texttt{stripplot()} function. Specify
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-270-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-278-1.pdf}
 
 The \href{https://seaborn.pydata.org/generated/seaborn.stripplot.html}{stripplot} help page provides more examples.
 
@@ -4791,7 +4943,7 @@ Base R offers the \texttt{stripchart()} function. To indicate the numeric variab
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-271-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-279-3.pdf}
 
 Stripcharts can also be made with \textbf{ggplots2}'s \texttt{geom\_jitter()} function, as shown below. You can control the amount of jitter with a \texttt{position} argument in \texttt{geom\_jitter()}.
 
@@ -4807,7 +4959,7 @@ Stripcharts can also be made with \textbf{ggplots2}'s \texttt{geom\_jitter()} fu
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-272-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-280-1.pdf}
 
 \hypertarget{boxplots}{%
 \section{Boxplots}\label{boxplots}}
@@ -4831,7 +4983,7 @@ The \texttt{boxplot()} function in base R generates boxplots, and a user specifi
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-273-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-281-1.pdf}
 
 To generate a boxplot with \textbf{ggplot2}, add a \texttt{geom\_boxplot()} layer to a plot initialized with \texttt{ggplot()}.
 
@@ -4846,7 +4998,7 @@ To generate a boxplot with \textbf{ggplot2}, add a \texttt{geom\_boxplot()} laye
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-274-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-282-1.pdf}
 
 \hypertarget{facet-plots}{%
 \section{Facet plots}\label{facet-plots}}
@@ -4867,7 +5019,7 @@ The seaborn package provides several functions for creating facet plots, includi
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-275-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-283-1.pdf}
 
 To facet by two variables, provide variables to both the \texttt{col} and \texttt{row} arguments.
 
@@ -4880,7 +5032,7 @@ To facet by two variables, provide variables to both the \texttt{col} and \textt
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-276-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-284-3.pdf}
 
 Set \texttt{lowess\ =\ True} for smooth trend lines. Notice also that color can be mapped to the same variable used for faceting.
 
@@ -4893,7 +5045,7 @@ Set \texttt{lowess\ =\ True} for smooth trend lines. Notice also that color can 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-277-5.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-285-5.pdf}
 
 The \href{https://seaborn.pydata.org/generated/seaborn.lmplot.html\#seaborn.lmplot}{lmplot} help page showcases other examples.
 
@@ -4912,7 +5064,7 @@ The \texttt{coplot()} function in base R produces conditioning plots using formu
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-278-7.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-286-7.pdf}
 
 To condition on two variables, use formula notation with syntax: \texttt{y\ \textasciitilde{}\ x\ \textbar{}\ grp\_var1\ *\ grp\_var2}.
 
@@ -4925,7 +5077,7 @@ To condition on two variables, use formula notation with syntax: \texttt{y\ \tex
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-279-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-287-1.pdf}
 
 The labels of the conditioning variables unfortunately use a lot of real estate in the margins, and there is no easy way to modify that. However, this design works quite well when we condition on a \emph{numeric variable}. The \texttt{coplot()} function automatically creates overlapping group intervals to condition on, and the stacked layout of the labels helps us visualize how the relationship between y and x changes between the groups. To manually set the number of groups, use the \texttt{number} argument. Below we specify 4 groups to be generated for ``bill\_length\_mm''.
 
@@ -4939,7 +5091,7 @@ The labels of the conditioning variables unfortunately use a lot of real estate 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-280-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-288-1.pdf}
 
 Alternatively, \textbf{ggplot2} provides a intuitive and easy-to-use method for generating facet plots: A user specifies the aesthetics of the plot using standard \textbf{ggplot2} syntax (i.e., as a series of added layers) and then adds an additional call, \texttt{facet\_wrap()} (or \texttt{facet\_grid()}; differences are discussed below), specifying the faceting variable(s) to split up the plots by.
 
@@ -4953,7 +5105,7 @@ Alternatively, \textbf{ggplot2} provides a intuitive and easy-to-use method for 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-281-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-289-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4976,7 +5128,7 @@ Both \texttt{facet\_wrap()} and \texttt{facet\_grid()} can be used to make facet
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-282-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-290-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4989,7 +5141,7 @@ Both \texttt{facet\_wrap()} and \texttt{facet\_grid()} can be used to make facet
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-282-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-290-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5072,7 +5224,7 @@ A stripchart is one of many ways to visualize numeric data between two groups. H
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-287-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-295-1.pdf}
 
 One way to perform a t test in Python is via the \texttt{CompareMeans()} function and its associated methods available in the \textbf{statsmodels} package. Below we import \textbf{statsmodels.stats.api} as ``sms''.
 
@@ -5174,7 +5326,7 @@ Again we use a stripchart to visualize the three groups of data. It appears the 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-295-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-303-3.pdf}
 
 We can calculate means using the \texttt{groupby} and \texttt{mean} methods.
 
@@ -5221,14 +5373,14 @@ A common follow-up to an ANOVA is Tukey's Honestly Significant Differences (HSD)
 \begin{Highlighting}[]
 \OperatorTok{\textgreater{}}\NormalTok{ mc }\OperatorTok{=}\NormalTok{ sms.multicomp.MultiComparison(ch8\_d2.mass, ch8\_d2.location)}
 \OperatorTok{+} \BuiltInTok{print}\NormalTok{(mc.tukeyhsd())}
-\NormalTok{Multiple Comparison of Means }\OperatorTok{{-}}\NormalTok{ Tukey HSD, FWER}\OperatorTok{=}\FloatTok{0.05} 
-\OperatorTok{====================================================}
-\NormalTok{group1 group2 meandiff p}\OperatorTok{{-}}\NormalTok{adj   lower   upper  reject}
-\OperatorTok{{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-     \DecValTok{1}      \DecValTok{2}    \OperatorTok{{-}}\FloatTok{2.82}    \FloatTok{0.0} \OperatorTok{{-}}\FloatTok{3.6863} \OperatorTok{{-}}\FloatTok{1.9537}   \VariableTok{True}
-     \DecValTok{1}      \DecValTok{3}    \OperatorTok{{-}}\FloatTok{2.78}    \FloatTok{0.0} \OperatorTok{{-}}\FloatTok{3.6463} \OperatorTok{{-}}\FloatTok{1.9137}   \VariableTok{True}
-     \DecValTok{2}      \DecValTok{3}     \FloatTok{0.04} \FloatTok{0.9925} \OperatorTok{{-}}\FloatTok{0.8648}  \FloatTok{0.9448}  \VariableTok{False}
-\OperatorTok{{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\NormalTok{Multiple Comparison of Means }\OperatorTok{{-}}\NormalTok{ Tukey HSD, FWER}\OperatorTok{=}\FloatTok{0.05}
+\OperatorTok{===================================================}
+\NormalTok{group1 group2 meandiff p}\OperatorTok{{-}}\NormalTok{adj  lower   upper  reject}
+\OperatorTok{{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+     \DecValTok{1}      \DecValTok{2}    \OperatorTok{{-}}\FloatTok{2.82} \FloatTok{0.001} \OperatorTok{{-}}\FloatTok{3.6858} \OperatorTok{{-}}\FloatTok{1.9542}   \VariableTok{True}
+     \DecValTok{1}      \DecValTok{3}    \OperatorTok{{-}}\FloatTok{2.78} \FloatTok{0.001} \OperatorTok{{-}}\FloatTok{3.6458} \OperatorTok{{-}}\FloatTok{1.9142}   \VariableTok{True}
+     \DecValTok{2}      \DecValTok{3}     \FloatTok{0.04}   \FloatTok{0.9} \OperatorTok{{-}}\FloatTok{0.8643}  \FloatTok{0.9443}  \VariableTok{False}
+\OperatorTok{{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5259,7 +5411,7 @@ A stripchart is one of many ways to visualize numeric data between two groups. H
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-300-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-308-1.pdf}
 
 To calculate the means between the two groups we can use the \texttt{aggregate()} function. Again the formula \texttt{score\ \textasciitilde{}\ group} says to aggregate score by group. We specify \texttt{mean} so that we calculate the mean between the two groups. Some other functions we could specify include \texttt{median}, \texttt{sd}, or \texttt{sum}. The sample mean of the treated group is about 5 points higher than the control group.
 
@@ -5316,7 +5468,7 @@ Again we use a stripchart to visualize the three groups of data. It appears the 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-304-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-312-1.pdf}
 
 To calculate the means between the three groups we can use the \texttt{aggregate()} function. Again the formula \texttt{mass\ \textasciitilde{}\ location} says to aggregate mass by location. We specify \texttt{mean} so that we calculate the mean between the three groups.
 
@@ -5376,6 +5528,47 @@ It is often of interest to compare proportions between two groups. Sometimes thi
 \hypertarget{python-48}{%
 \subsubsection*{Python}\label{python-48}}
 \addcontentsline{toc}{subsubsection}{Python}
+
+A two-sample proportion test can be done in Python using the \texttt{test\_proportions\_2indep()} function of the \texttt{statsmodels.stats.proportion} module. The two proportions being compared must be independent.
+
+The first argument is the number of successes or occurances for the first proportion. The second argument is the number of total trials for the first group. The third and fourth arguments are the occurrences and total number of trials for the second group, respectively. Here we also specify the method for computing the confidence interval with the \texttt{method} argument, and how we compute the confidence interval with the \texttt{compare} argument.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}} \ImportTok{import}\NormalTok{ statsmodels.stats.proportion }\ImportTok{as}\NormalTok{ prop}
+\OperatorTok{+} 
+\OperatorTok{+}\NormalTok{ prop.test\_proportions\_2indep(}\DecValTok{210}\NormalTok{, }\DecValTok{747}\NormalTok{, }\DecValTok{122}\NormalTok{, }\DecValTok{661}\NormalTok{, method}\OperatorTok{=}\StringTok{\textquotesingle{}score\textquotesingle{}}\NormalTok{, compare}\OperatorTok{=}\StringTok{\textquotesingle{}diff\textquotesingle{}}\NormalTok{, return\_results}\OperatorTok{=}\VariableTok{True}\NormalTok{)}
+\OperatorTok{\textless{}}\KeywordTok{class} \StringTok{\textquotesingle{}statsmodels.stats.base.HolderTuple\textquotesingle{}}\OperatorTok{\textgreater{}}
+\NormalTok{statistic }\OperatorTok{=} \FloatTok{4.258048968887464}
+\NormalTok{pvalue }\OperatorTok{=} \FloatTok{2.062187829962944e{-}05}
+\NormalTok{compare }\OperatorTok{=} \StringTok{\textquotesingle{}diff\textquotesingle{}}
+\NormalTok{method }\OperatorTok{=} \StringTok{\textquotesingle{}score\textquotesingle{}}
+\NormalTok{variance }\OperatorTok{=} \FloatTok{0.0005142025147895945}
+\NormalTok{alternative }\OperatorTok{=} \StringTok{\textquotesingle{}two{-}sided\textquotesingle{}}
+\NormalTok{prop1\_null }\OperatorTok{=} \FloatTok{0.23579545454545456}
+\NormalTok{prop2\_null }\OperatorTok{=} \FloatTok{0.23579545454545456}
+\BuiltInTok{tuple} \OperatorTok{=}\NormalTok{ (}\FloatTok{4.258048968887464}\NormalTok{, }\FloatTok{2.062187829962944e{-}05}\NormalTok{)}
+\NormalTok{diff }\OperatorTok{=} \FloatTok{0.09655566289363202}
+\NormalTok{ratio }\OperatorTok{=} \FloatTok{1.5231417473171374}
+\NormalTok{odds\_ratio }\OperatorTok{=} \FloatTok{1.7277223188936714}
+\NormalTok{value }\OperatorTok{=} \DecValTok{0}
+\end{Highlighting}
+\end{Shaded}
+
+TRIAL WITH SCIPY.STATS
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}} \ImportTok{from}\NormalTok{ scipy }\ImportTok{import}\NormalTok{ stats }
+\OperatorTok{+} \ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\OperatorTok{+} 
+\OperatorTok{+}\NormalTok{ data }\OperatorTok{=}\NormalTok{ np.array([[}\DecValTok{210}\NormalTok{,(}\DecValTok{747}\OperatorTok{{-}}\DecValTok{210}\NormalTok{)],[}\DecValTok{122}\NormalTok{, (}\DecValTok{661}\OperatorTok{{-}}\DecValTok{122}\NormalTok{)]])}
+\OperatorTok{+} 
+\OperatorTok{+}\NormalTok{ stats.chi2\_contingency(data)}
+\NormalTok{(}\FloatTok{17.611986459401233}\NormalTok{, }\FloatTok{2.70875657597463e{-}05}\NormalTok{, }\DecValTok{1}\NormalTok{, array([[}\FloatTok{176.13920455}\NormalTok{, }\FloatTok{570.86079545}\NormalTok{],}
+\NormalTok{       [}\FloatTok{155.86079545}\NormalTok{, }\FloatTok{505.13920455}\NormalTok{]]))}
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{r-48}{%
 \subsubsection*{R}\label{r-48}}

@@ -82,7 +82,7 @@ Indexing also provides access to columns as a pandas Series. Single and double q
 mtcars['mpg']
 ```
 
-Operations on numpy arrays are faster than operations on pandas series. But using pandas series should be fine, in terms of performance, in many cases. This is important for large data sets on which many operations are performed. The `.values` function returns a numpy array.
+Operations on numpy arrays are faster than operations on pandas Series. But using pandas series should be fine, in terms of performance, in many cases. This is important for large data sets on which many operations are performed. The `.values` function returns a numpy array.
 
 ```{python}
 mtcars['mpg'].values
@@ -160,7 +160,7 @@ How to view rows of a data frame that meet certain conditions.
 
 #### Python {-}
 
-We can filter rows of a data frame based on a condition to subset on.
+We can filter rows of a DataFrame based on a condition to subset on. This returns a DataFrame.
 
 ```{python}
 mtcars[mtcars["mpg"] > 30]
@@ -176,6 +176,12 @@ You can also filter with multiple row conditions.
 
 ```{python}
 mtcars[mtcars["mpg"] > 30][mtcars["hp"] < 66][["mpg", "cyl"]]
+```
+
+Using the `.values` function returns a NumPy array, which can be used for vector operations (many functions require some sort of vector, like a numpy array of list, rather than a DataFrame) or faster performance.
+
+```{python}
+mtcars[mtcars["mpg"] > 30].values
 ```
 
 #### R {-}
