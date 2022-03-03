@@ -130,7 +130,7 @@ Visualizing the relationship between two numeric variables.
 
 #### Python {-}
 
-The `scatter()` function, part of **matplotlib**, can produce scatterplots in Python. The `x` and `y` arguments specify the points to plot. In the example below, we also use the `c` and `marker` arguments to customize the point color and point shape, respectively. The `xlabel()`, `ylabel()`, and `title()` functions customize plot labels,
+The `scatter()` function, part of **matplotlib**, can produce scatterplots in Python. The `x` and `y` arguments specify the points to plot. In the example below, we also use the `c` and `marker` arguments to customize the point color and point shape, respectively. The `xlabel()`, `ylabel()`, and `title()` functions customize plot labels.
 
 ```{python}
 import matplotlib.pyplot as plt

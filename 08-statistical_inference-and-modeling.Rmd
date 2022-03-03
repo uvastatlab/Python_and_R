@@ -65,6 +65,7 @@ A stripchart is one of many ways to visualize numeric data between two groups. H
 ```{python }
 import seaborn as sns
 import matplotlib.pyplot as plt
+plt.clf()
 sns.stripplot(x="score", y="group", data=ch8_d1)
 plt.show()
 ```
@@ -238,12 +239,11 @@ It is often of interest to compare proportions between two groups. Sometimes thi
 
 #### Python {-}
 
-A two-sample proportion test can be carried out in Python using the `test_proportions_2indep()` function from the `statsmodels.stats.api` module. The two proportions being compared must be independent.
+A two-sample proportion test can be carried out in Python using the `test_proportions_2indep()` function from the **statsmodels** package. The two proportions being compared must be independent.
 
 The first argument is the number of successes or occurrences for the first proportion. The second argument is the number of total trials for the first group. The third and fourth arguments are the occurrences and total number of trials for the second group, respectively.
 
 ```{python}
-# import statsmodels.stats.proportion as prop
 import statsmodels.stats.api as sms
 ptest = sms.test_proportions_2indep(210, 747, 122, 661)
 ```
