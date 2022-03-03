@@ -96,7 +96,7 @@ two = 2
 print(math.pow(two, one))
 ```
 
-Users can also download 100s of libraries outside of the Standard Python Library. Python libraries are also called packages. Popular libraries include numpy, used for operations on arrays/vectors and pandas, used for data analysis. The following code is an example of importing a Python library, NumPy, into a Pythons script.
+Users can also download 100s of libraries outside of the Standard Python Library. Python libraries are also called packages. Popular libraries include numpy, used for operations on arrays/vectors and pandas, used for data analysis. The following code is an example of importing a Python library, NumPy, into a Python script.
 
 ```{python}
 import numpy as np
@@ -105,6 +105,25 @@ my_array = np.array([1,2,3])
 print(my_array)
 ```
 
+To use Python libraries outside the Python Standard Library, they must be installed in the Python environment. 
+
+Anaconda is the most popular Python library manager. Anaconda allows you to use and create Python virtual environments and install libraries to these environments. A Python virtual environment is a collection of libraries isolated from other virtual environments. These environments allow users to seamlessly organize programming projects.
+
+You can download Anaconda from the following link: https://www.anaconda.com/products/individual. When you download Anaconda, you have access to the Anaconda Navigator, a graphical user interface, and the Anaconda Prompt, a command prompt. Anaconda comes with an automatic environment called "base".
+
+The following screenshot illustrates how to install a library to an environment using the Anaconda GUI. Using the drop down menu, navigate to "Not installed". Then, select the desired library from the list. The search bar can be used to search for libraries. Finally, click the green "Apply" button to install the package.
+
+```{r, echo = F}
+knitr::include_graphics('images/anaconda_gui_install.png')
+```
+
+The following screenshot illustrates how to install a library to the "base" environment using the Anaconda Command Prompt.
+
+```{r, echo = F}
+knitr::include_graphics('images/anaconda_command_install.png')
+```
+
+Sometimes the commands to download libraries are not as simple as shown in the above example. The Anaconda website provides commands for how to download popular Python libraries.
 
 
 #### R {-}
