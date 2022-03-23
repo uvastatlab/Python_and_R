@@ -317,17 +317,17 @@ This tests the null hypothesis of no association between location in the US and 
 
 Linear modeling attempts to assess if or how the variability a numeric variable depends on one or more predictor variables. This is often referred to as _regression modeling_ or _multiple regression_. While it is relatively easy to "fit a model" and generate lots of output, the model we fit may not be very good. There are many decisions we have to make when proposing a model. Which predictors do we include? Will they interact? Do we allow for non-linear effects? Answering these kinds of questions require subject matter expertise. 
 
-We walk through a somewhat simple example using data on weekly gas consumption. The data is courtesy of the R package **MASS**[@MASS]. The documentation describes the data as follows:
+We walk through a somewhat simple example using data on weekly gas consumption. The data is courtesy of the R package **MASS** [@MASS]. The documentation describes the data as follows:
 
 "Mr Derek Whiteside of the UK Building Research Station recorded the weekly gas consumption and average external temperature at his own house in south-east England for two heating seasons, one of 26 weeks before, and one of 30 weeks after cavity-wall insulation was installed. The object of the exercise was to assess the effect of the insulation on gas consumption."
 
 The `whiteside` data frame has 56 rows and 3 columns:
 
-- Insul: A factor, before or after insulation.
-- Temp: average outside temperature in degrees Celsius.
-- Gas: weekly gas consumption in 1000s of cubic feet.
+- `Insul`: A factor, before or after insulation.
+- `Temp`: average outside temperature in degrees Celsius.
+- `Gas`: weekly gas consumption in 1000s of cubic feet.
 
-Below we demonstrate modeling Gas as a function of Insul, Temp, and their interaction.
+Below we demonstrate modeling `Gas` as a function of `Insul`, `Temp`, and their interaction.
 
 Obviously this is not a comprehensive treatment of linear modeling. 
 
@@ -390,9 +390,109 @@ We see that after installing insulation, gas consumption fell considerably, and 
 
 ## Logistic regression
 
-Analyzing if or how the variability of a binary variable depends on one or more predictor variables.
+Logistic regression attempts to assess if or how the variability a binary variable depends on one or more predictor variables. It is a type of Generalized Linear Model and is commonly used to model the _probability_ of an event occurring. While it is relatively easy to "fit a model" and generate lots of output, the model we fit may not be very good. There are many decisions we have to make when proposing a model. Which predictors do we include? Will they interact? Do we allow for non-linear effects? Answering these kinds of questions require subject matter expertise.
+
+We walk through a basic example using data on low infant birth weight. The data is courtesy of the R package **MASS** [@MASS]. According to the documentation, "the data were collected at Baystate Medical Center, Springfield, Mass during 1986." 
+
+We use the data as prepared in the example code found at `?birthwt`. 
+
+The `birthwt` data frame has 189 rows and 9 columns:
+
+- `low`: 1 if birth weight less than 2.5 kg, 0 otherwise
+- `age`: mother's age in years
+- `lwt`: mother's weight in pounds at last menstrual period
+- `race`: mother's race (white, black, other)
+- `smoke`: smoking status during pregnancy (1 = yes, 0 = no)
+- `ptd`: previous premature labors (1 = yes, 0 = no)
+- `ht`: history of hypertension (1 = yes, 0 = no)
+- `ui`: presence of uterine irritability (1 = yes, 0 = no)
+- `ftv`: number of physician visits during the first trimester (0, 1, 2+)
+
+Below we demonstrate modeling `low` as a function of all other predictors.
+
+Obviously this is not a comprehensive treatment of logistic regression. 
+
+```{r echo=FALSE, message=FALSE}
+birthwt <- readRDS("data/bwt.Rds")
+```
+
+```{python echo = FALSE}
+birthwt = r.birthwt
+```
+
 
 #### Python {-}
 
 
 #### R {-}
+
+The `glm()` function fits a generalized linear model in R using whatever model we propose. We specify models using a special syntax. The basic construction is to first list your dependent or response variable, then a tilde (`~`), and then your predictor variables, or terms, separated by plus operators (`+`). Listing two variables separated by a colon (`:`) indicates we wish to fit an interaction for those variables. See `?formula` for further details on formula syntax.
+
+In addition, `glm()` requires we specify a family argument to specify the error distribution for the dependent variable. The default is `gaussian`. For a logistic regression model, we need to specify `binomial` since our dependent variable is binary. 
+
+It's considered best practice to reference variables in a data frame and indicate the data frame using the `data` argument. Though not required, you'll almost always want to save the result to an object for further inquiry.
+
+```{r}
+mod <- glm(low ~ age + lwt + race + 
+             smoke + ptd + ht + 
+             ui + ftv, 
+           data = birthwt, family = binomial)
+```
+
+Since we're modeling `low` as a function of all other variables in the data frame, we could have used the following syntax, where the period symbolizes all other remaining variables:
+
+```{r eval=FALSE}
+mod <- glm(low ~ ., data = birthwt, family = binomial)
+```
+
+Once you fit your logistic regression model, you can extract information about it using several functions. The most commonly used include:
+
+- `summary()`: summary of model coefficients with standard errors and test statistics
+- `coef()`: model coefficients
+- `confint()`: 95% confidence interval of model coefficients
+
+The `summary()` function produces the standard regression summary one typically finds described in a statistics textbook.
+
+```{r}
+summary(mod)
+```
+
+Exponentiating coefficients in a logistic regression model produces odds ratios. To get the odds ratio for the previous premature labors variable, `ptd`, we do the following:
+
+```{r}
+exp(coef(mod)["ptd1"])
+```
+
+This says the odds of having an infant with low birth weight are about 3.8 times higher for women who experienced previous premature labors versus women who did not, assuming all other variables equal.
+
+The 3.8 value is just an estimate. We can use the `confint()` function to get a 95% confidence interval on the odds ratio.
+
+```{r message=FALSE}
+exp(confint(mod)["ptd1",])
+```
+
+It appears the odds ratio is at least 1.5, possibly as high as 10.1 (assuming we believe this model).
+
+Once we fit a model and we're reasonably confident that it's a good model, we may want to visualize it. Three packages in R that help with this are **emmeans**, **effects**, and **ggeffects**. We briefly demonstrate the **ggeffects** package.
+
+You need to first install the **ggeffects** package as it does not come with the base R installation. Once installed, load using the `library()` function.
+
+Once loaded, we can get a basic visualization of our model by using the `plot()` and `ggpredict()` functions. This is particularly useful for logistic regression models because it produces model predictions on a probability scale. 
+
+Use the `terms` argument to specify which variables to plot. Below we create two plots: one for `ptd` (previous premature labors) and one for `lwt` (mother's weight at last menstrual period).
+
+```{r}
+# install.packages("ggeffects")
+library(ggeffects)
+plot(ggpredict(mod, terms = "ptd"))
+```
+
+It looks like the probability of low infant birth weight jumps from about 12% to over 35% for mothers who previously experienced premature labors, though the error bars on the expected values are quite large. 
+
+```{r message=FALSE}
+plot(ggpredict(mod, terms = "lwt"))
+```
+
+It appears the probability of low infant birth weight drops from about 15% when a mother weighs 100 lbs to about 5% when a mother weighs around 200 lbs. The regions with the larger confidence ribbon indicate regions of higher uncertainty. There are clearly not many mothers in our data who weigh less than 100 lbs.
+
+

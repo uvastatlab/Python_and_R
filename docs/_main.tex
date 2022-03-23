@@ -3406,15 +3406,15 @@ Here is an example of howto add and subtract datesa and times using these object
 \OperatorTok{+} \BuiltInTok{print}\NormalTok{(d1)}
 \OperatorTok{+} 
 \OperatorTok{+} \CommentTok{\# Add 550 days to our datetime object }
-\DecValTok{2022}\OperatorTok{{-}}\DecValTok{0}\ErrorTok{3}\OperatorTok{{-}}\DecValTok{23} \DecValTok{15}\NormalTok{:}\DecValTok{10}\NormalTok{:}\FloatTok{38.594340}
+\DecValTok{2022}\OperatorTok{{-}}\DecValTok{0}\ErrorTok{3}\OperatorTok{{-}}\DecValTok{23} \DecValTok{16}\NormalTok{:}\DecValTok{43}\NormalTok{:}\FloatTok{56.502932}
 \OperatorTok{\textgreater{}}\NormalTok{ d2 }\OperatorTok{=}\NormalTok{ d1 }\OperatorTok{+}\NormalTok{ dt.timedelta(days }\OperatorTok{=} \DecValTok{550}\NormalTok{)}
 \OperatorTok{+} \BuiltInTok{print}\NormalTok{(d2)}
 \OperatorTok{+} 
 \OperatorTok{+} \CommentTok{\# Subtract 5 hours from our datetime object }
-\DecValTok{2023}\OperatorTok{{-}}\DecValTok{0}\ErrorTok{9}\OperatorTok{{-}}\DecValTok{24} \DecValTok{15}\NormalTok{:}\DecValTok{10}\NormalTok{:}\FloatTok{38.594340}
+\DecValTok{2023}\OperatorTok{{-}}\DecValTok{0}\ErrorTok{9}\OperatorTok{{-}}\DecValTok{24} \DecValTok{16}\NormalTok{:}\DecValTok{43}\NormalTok{:}\FloatTok{56.502932}
 \OperatorTok{\textgreater{}}\NormalTok{ d3 }\OperatorTok{=}\NormalTok{ d1 }\OperatorTok{{-}}\NormalTok{ dt.timedelta(hours }\OperatorTok{=} \DecValTok{5}\NormalTok{)}
 \OperatorTok{+} \BuiltInTok{print}\NormalTok{(d3)}
-\DecValTok{2022}\OperatorTok{{-}}\DecValTok{0}\ErrorTok{3}\OperatorTok{{-}}\DecValTok{23} \DecValTok{10}\NormalTok{:}\DecValTok{10}\NormalTok{:}\FloatTok{38.594340}
+\DecValTok{2022}\OperatorTok{{-}}\DecValTok{0}\ErrorTok{3}\OperatorTok{{-}}\DecValTok{23} \DecValTok{11}\NormalTok{:}\DecValTok{43}\NormalTok{:}\FloatTok{56.502932}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3425,7 +3425,7 @@ The attribute \texttt{strftime()} converts datetime objects to strings. In the a
 \begin{Shaded}
 \begin{Highlighting}[]
 \OperatorTok{\textgreater{}}\NormalTok{ d1}
-\NormalTok{datetime.datetime(}\DecValTok{2022}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{23}\NormalTok{, }\DecValTok{15}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{38}\NormalTok{, }\DecValTok{594340}\NormalTok{)}
+\NormalTok{datetime.datetime(}\DecValTok{2022}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{23}\NormalTok{, }\DecValTok{16}\NormalTok{, }\DecValTok{43}\NormalTok{, }\DecValTok{56}\NormalTok{, }\DecValTok{502932}\NormalTok{)}
 \OperatorTok{\textgreater{}}\NormalTok{ d1.strftime(}\StringTok{"\%A \%m \%Y"}\NormalTok{)}
 \CommentTok{\textquotesingle{}Wednesday 03 2022\textquotesingle{}}
 \OperatorTok{\textgreater{}}\NormalTok{ d1.strftime(}\StringTok{"\%a \%m \%y"}\NormalTok{)}
@@ -3590,11 +3590,11 @@ To create a sample with a fixed number of rows, use the \texttt{n} argument.
 \OperatorTok{\textgreater{}} \CommentTok{\# sample 5 rows from mtcars}
 \OperatorTok{+}\NormalTok{ mtcars.sample(n}\OperatorTok{=}\DecValTok{5}\NormalTok{, replace}\OperatorTok{=}\VariableTok{True}\NormalTok{)}
 \NormalTok{     MPG  CYL   DISP   HP  AXLE\_RATIO  ...  VS  AM  GEAR CARB       KPL}
-\DecValTok{26}  \FloatTok{26.0}    \DecValTok{4}  \FloatTok{120.3}   \DecValTok{91}        \FloatTok{4.43}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{1}     \DecValTok{5}    \DecValTok{2}  \FloatTok{5.527211}
-\DecValTok{9}   \FloatTok{19.2}    \DecValTok{6}  \FloatTok{167.6}  \DecValTok{123}        \FloatTok{3.92}\NormalTok{  ...   }\DecValTok{1}   \DecValTok{0}     \DecValTok{4}    \DecValTok{4}  \FloatTok{4.081633}
-\DecValTok{24}  \FloatTok{19.2}    \DecValTok{8}  \FloatTok{400.0}  \DecValTok{175}        \FloatTok{3.08}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{0}     \DecValTok{3}    \DecValTok{2}  \FloatTok{4.081633}
-\DecValTok{23}  \FloatTok{13.3}    \DecValTok{8}  \FloatTok{350.0}  \DecValTok{245}        \FloatTok{3.73}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{0}     \DecValTok{3}    \DecValTok{4}  \FloatTok{2.827381}
-\DecValTok{26}  \FloatTok{26.0}    \DecValTok{4}  \FloatTok{120.3}   \DecValTok{91}        \FloatTok{4.43}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{1}     \DecValTok{5}    \DecValTok{2}  \FloatTok{5.527211}
+\DecValTok{15}  \FloatTok{10.4}    \DecValTok{8}  \FloatTok{460.0}  \DecValTok{215}        \FloatTok{3.00}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{0}     \DecValTok{3}    \DecValTok{4}  \FloatTok{2.210884}
+\DecValTok{29}  \FloatTok{19.7}    \DecValTok{6}  \FloatTok{145.0}  \DecValTok{175}        \FloatTok{3.62}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{1}     \DecValTok{5}    \DecValTok{6}  \FloatTok{4.187925}
+\DecValTok{19}  \FloatTok{33.9}    \DecValTok{4}   \FloatTok{71.1}   \DecValTok{65}        \FloatTok{4.22}\NormalTok{  ...   }\DecValTok{1}   \DecValTok{1}     \DecValTok{4}    \DecValTok{1}  \FloatTok{7.206633}
+\DecValTok{11}  \FloatTok{16.4}    \DecValTok{8}  \FloatTok{275.8}  \DecValTok{180}        \FloatTok{3.07}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{0}     \DecValTok{3}    \DecValTok{3}  \FloatTok{3.486395}
+\DecValTok{30}  \FloatTok{15.0}    \DecValTok{8}  \FloatTok{301.0}  \DecValTok{335}        \FloatTok{3.54}\NormalTok{  ...   }\DecValTok{0}   \DecValTok{1}     \DecValTok{5}    \DecValTok{8}  \FloatTok{3.188776}
 
 \NormalTok{[}\DecValTok{5}\NormalTok{ rows x }\DecValTok{12}\NormalTok{ columns]}
 \end{Highlighting}
@@ -3633,11 +3633,11 @@ The \texttt{random.choice()} function creates a random sample according to the g
 \OperatorTok{+} \CommentTok{\# use random\_sample to sample from mtcars}
 \OperatorTok{+}\NormalTok{ mtcars.loc[random\_sample,]}
 \NormalTok{     MPG  CYL   DISP   HP  AXLE\_RATIO    WT   QSEC  VS AM  GEAR  CARB       KPL}
+\DecValTok{31}  \FloatTok{21.4}    \DecValTok{4}  \FloatTok{121.0}  \DecValTok{109}        \FloatTok{4.11}  \FloatTok{2.78}  \FloatTok{18.60}   \DecValTok{1}  \DecValTok{1}     \DecValTok{4}     \DecValTok{2}  \FloatTok{4.549320}
+\DecValTok{8}   \FloatTok{22.8}    \DecValTok{4}  \FloatTok{140.8}   \DecValTok{95}        \FloatTok{3.92}  \FloatTok{3.15}  \FloatTok{22.90}   \DecValTok{1}  \DecValTok{0}     \DecValTok{4}     \DecValTok{2}  \FloatTok{4.846939}
 \DecValTok{17}  \FloatTok{32.4}    \DecValTok{4}   \FloatTok{78.7}   \DecValTok{66}        \FloatTok{4.08}  \FloatTok{2.20}  \FloatTok{19.47}   \DecValTok{1}  \DecValTok{1}     \DecValTok{4}     \DecValTok{1}  \FloatTok{6.887755}
 \DecValTok{11}  \FloatTok{16.4}    \DecValTok{8}  \FloatTok{275.8}  \DecValTok{180}        \FloatTok{3.07}  \FloatTok{4.07}  \FloatTok{17.40}   \DecValTok{0}  \DecValTok{0}     \DecValTok{3}     \DecValTok{3}  \FloatTok{3.486395}
-\DecValTok{6}   \FloatTok{14.3}    \DecValTok{8}  \FloatTok{360.0}  \DecValTok{245}        \FloatTok{3.21}  \FloatTok{3.57}  \FloatTok{15.84}   \DecValTok{0}  \DecValTok{0}     \DecValTok{3}     \DecValTok{4}  \FloatTok{3.039966}
-\DecValTok{26}  \FloatTok{26.0}    \DecValTok{4}  \FloatTok{120.3}   \DecValTok{91}        \FloatTok{4.43}  \FloatTok{2.14}  \FloatTok{16.70}   \DecValTok{0}  \DecValTok{1}     \DecValTok{5}     \DecValTok{2}  \FloatTok{5.527211}
-\DecValTok{21}  \FloatTok{15.5}    \DecValTok{8}  \FloatTok{318.0}  \DecValTok{150}        \FloatTok{2.76}  \FloatTok{3.52}  \FloatTok{16.87}   \DecValTok{0}  \DecValTok{0}     \DecValTok{3}     \DecValTok{2}  \FloatTok{3.295068}
+\DecValTok{9}   \FloatTok{19.2}    \DecValTok{6}  \FloatTok{167.6}  \DecValTok{123}        \FloatTok{3.92}  \FloatTok{3.44}  \FloatTok{18.30}   \DecValTok{1}  \DecValTok{0}     \DecValTok{4}     \DecValTok{4}  \FloatTok{4.081633}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3671,34 +3671,34 @@ There are many ways to sample rows from a data frame in R. The \href{https://dpl
 \SpecialCharTok{\textgreater{}} \CommentTok{\# sample 5 rows from mtcars}
 \ErrorTok{\textgreater{}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{slice\_sample}\NormalTok{(mtcars, }\AttributeTok{n =} \DecValTok{5}\NormalTok{)}
 \NormalTok{   mpg cylinders  disp  hp axle\_ratio weight  qsec engine am gear carb am\_ch}
-\DecValTok{1} \FloatTok{22.8}         \DecValTok{4} \FloatTok{108.0}  \DecValTok{93}       \FloatTok{3.85}  \FloatTok{2.320} \FloatTok{18.61}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
-\DecValTok{2} \FloatTok{30.4}         \DecValTok{4}  \FloatTok{95.1} \DecValTok{113}       \FloatTok{3.77}  \FloatTok{1.513} \FloatTok{16.90}      \DecValTok{1}  \DecValTok{1}    \DecValTok{5}    \DecValTok{2}     \DecValTok{1}
-\DecValTok{3} \FloatTok{16.4}         \DecValTok{8} \FloatTok{275.8} \DecValTok{180}       \FloatTok{3.07}  \FloatTok{4.070} \FloatTok{17.40}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{3}     \DecValTok{0}
-\DecValTok{4} \FloatTok{15.2}         \DecValTok{8} \FloatTok{304.0} \DecValTok{150}       \FloatTok{3.15}  \FloatTok{3.435} \FloatTok{17.30}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{2}     \DecValTok{0}
-\DecValTok{5} \FloatTok{21.4}         \DecValTok{6} \FloatTok{258.0} \DecValTok{110}       \FloatTok{3.08}  \FloatTok{3.215} \FloatTok{19.44}      \DecValTok{1}  \DecValTok{0}    \DecValTok{3}    \DecValTok{1}     \DecValTok{0}
+\DecValTok{1} \FloatTok{21.4}         \DecValTok{6} \FloatTok{258.0} \DecValTok{110}       \FloatTok{3.08}  \FloatTok{3.215} \FloatTok{19.44}      \DecValTok{1}  \DecValTok{0}    \DecValTok{3}    \DecValTok{1}     \DecValTok{0}
+\DecValTok{2} \FloatTok{14.3}         \DecValTok{8} \FloatTok{360.0} \DecValTok{245}       \FloatTok{3.21}  \FloatTok{3.570} \FloatTok{15.84}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{3} \FloatTok{21.5}         \DecValTok{4} \FloatTok{120.1}  \DecValTok{97}       \FloatTok{3.70}  \FloatTok{2.465} \FloatTok{20.01}      \DecValTok{1}  \DecValTok{0}    \DecValTok{3}    \DecValTok{1}     \DecValTok{0}
+\DecValTok{4} \FloatTok{27.3}         \DecValTok{4}  \FloatTok{79.0}  \DecValTok{66}       \FloatTok{4.08}  \FloatTok{1.935} \FloatTok{18.90}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
+\DecValTok{5} \FloatTok{17.3}         \DecValTok{8} \FloatTok{275.8} \DecValTok{180}       \FloatTok{3.07}  \FloatTok{3.730} \FloatTok{17.60}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{3}     \DecValTok{0}
 \NormalTok{     am\_fac}
-\DecValTok{1}\NormalTok{    manual}
-\DecValTok{2}\NormalTok{    manual}
+\DecValTok{1}\NormalTok{ automatic}
+\DecValTok{2}\NormalTok{ automatic}
 \DecValTok{3}\NormalTok{ automatic}
-\DecValTok{4}\NormalTok{ automatic}
+\DecValTok{4}\NormalTok{    manual}
 \DecValTok{5}\NormalTok{ automatic}
 \SpecialCharTok{\textgreater{}} 
 \ErrorTok{\textgreater{}} \CommentTok{\# sample 20\% of rows from mtcars}
 \ErrorTok{\textgreater{}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{slice\_sample}\NormalTok{(mtcars, }\AttributeTok{prop =} \FloatTok{0.20}\NormalTok{)}
 \NormalTok{   mpg cylinders  disp  hp axle\_ratio weight  qsec engine am gear carb am\_ch}
-\DecValTok{1} \FloatTok{18.7}         \DecValTok{8} \FloatTok{360.0} \DecValTok{175}       \FloatTok{3.15}   \FloatTok{3.44} \FloatTok{17.02}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{2}     \DecValTok{0}
-\DecValTok{2} \FloatTok{26.0}         \DecValTok{4} \FloatTok{120.3}  \DecValTok{91}       \FloatTok{4.43}   \FloatTok{2.14} \FloatTok{16.70}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{2}     \DecValTok{1}
-\DecValTok{3} \FloatTok{21.4}         \DecValTok{4} \FloatTok{121.0} \DecValTok{109}       \FloatTok{4.11}   \FloatTok{2.78} \FloatTok{18.60}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{2}     \DecValTok{1}
-\DecValTok{4} \FloatTok{15.5}         \DecValTok{8} \FloatTok{318.0} \DecValTok{150}       \FloatTok{2.76}   \FloatTok{3.52} \FloatTok{16.87}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{2}     \DecValTok{0}
-\DecValTok{5} \FloatTok{14.3}         \DecValTok{8} \FloatTok{360.0} \DecValTok{245}       \FloatTok{3.21}   \FloatTok{3.57} \FloatTok{15.84}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
-\DecValTok{6} \FloatTok{15.0}         \DecValTok{8} \FloatTok{301.0} \DecValTok{335}       \FloatTok{3.54}   \FloatTok{3.57} \FloatTok{14.60}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{8}     \DecValTok{1}
+\DecValTok{1} \FloatTok{22.8}         \DecValTok{4} \FloatTok{140.8}  \DecValTok{95}       \FloatTok{3.92}  \FloatTok{3.150} \FloatTok{22.90}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{2}     \DecValTok{0}
+\DecValTok{2} \FloatTok{21.4}         \DecValTok{4} \FloatTok{121.0} \DecValTok{109}       \FloatTok{4.11}  \FloatTok{2.780} \FloatTok{18.60}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{2}     \DecValTok{1}
+\DecValTok{3} \FloatTok{15.8}         \DecValTok{8} \FloatTok{351.0} \DecValTok{264}       \FloatTok{4.22}  \FloatTok{3.170} \FloatTok{14.50}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{4}     \DecValTok{1}
+\DecValTok{4} \FloatTok{33.9}         \DecValTok{4}  \FloatTok{71.1}  \DecValTok{65}       \FloatTok{4.22}  \FloatTok{1.835} \FloatTok{19.90}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
+\DecValTok{5} \FloatTok{19.2}         \DecValTok{8} \FloatTok{400.0} \DecValTok{175}       \FloatTok{3.08}  \FloatTok{3.845} \FloatTok{17.05}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{2}     \DecValTok{0}
+\DecValTok{6} \FloatTok{10.4}         \DecValTok{8} \FloatTok{460.0} \DecValTok{215}       \FloatTok{3.00}  \FloatTok{5.424} \FloatTok{17.82}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
 \NormalTok{     am\_fac}
 \DecValTok{1}\NormalTok{ automatic}
 \DecValTok{2}\NormalTok{    manual}
 \DecValTok{3}\NormalTok{    manual}
-\DecValTok{4}\NormalTok{ automatic}
+\DecValTok{4}\NormalTok{    manual}
 \DecValTok{5}\NormalTok{ automatic}
-\DecValTok{6}\NormalTok{    manual}
+\DecValTok{6}\NormalTok{ automatic}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3713,18 +3713,18 @@ The base R functions \texttt{sample()} and \texttt{runif()} can be combined to s
 \ErrorTok{\textgreater{}}\NormalTok{ i }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(mtcars), }\AttributeTok{size =} \DecValTok{5}\NormalTok{)}
 \SpecialCharTok{\textgreater{}} \CommentTok{\# use i to select rows}
 \ErrorTok{\textgreater{}}\NormalTok{ mtcars[i,]}
-\NormalTok{    mpg cylinders  disp  hp axle\_ratio weight  qsec engine am gear carb am\_ch}
-\DecValTok{18} \FloatTok{32.4}         \DecValTok{4}  \FloatTok{78.7}  \DecValTok{66}       \FloatTok{4.08}  \FloatTok{2.200} \FloatTok{19.47}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
-\DecValTok{1}  \FloatTok{21.0}         \DecValTok{6} \FloatTok{160.0} \DecValTok{110}       \FloatTok{3.90}  \FloatTok{2.620} \FloatTok{16.46}      \DecValTok{0}  \DecValTok{1}    \DecValTok{4}    \DecValTok{4}     \DecValTok{1}
-\DecValTok{26} \FloatTok{27.3}         \DecValTok{4}  \FloatTok{79.0}  \DecValTok{66}       \FloatTok{4.08}  \FloatTok{1.935} \FloatTok{18.90}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
-\DecValTok{11} \FloatTok{17.8}         \DecValTok{6} \FloatTok{167.6} \DecValTok{123}       \FloatTok{3.92}  \FloatTok{3.440} \FloatTok{18.90}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{4}     \DecValTok{0}
-\DecValTok{19} \FloatTok{30.4}         \DecValTok{4}  \FloatTok{75.7}  \DecValTok{52}       \FloatTok{4.93}  \FloatTok{1.615} \FloatTok{18.52}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{2}     \DecValTok{1}
+\NormalTok{    mpg cylinders  disp  hp axle\_ratio weight qsec engine am gear carb am\_ch}
+\DecValTok{10} \FloatTok{19.2}         \DecValTok{6} \FloatTok{167.6} \DecValTok{123}       \FloatTok{3.92}  \FloatTok{3.440} \FloatTok{18.3}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{28} \FloatTok{30.4}         \DecValTok{4}  \FloatTok{95.1} \DecValTok{113}       \FloatTok{3.77}  \FloatTok{1.513} \FloatTok{16.9}      \DecValTok{1}  \DecValTok{1}    \DecValTok{5}    \DecValTok{2}     \DecValTok{1}
+\DecValTok{20} \FloatTok{33.9}         \DecValTok{4}  \FloatTok{71.1}  \DecValTok{65}       \FloatTok{4.22}  \FloatTok{1.835} \FloatTok{19.9}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
+\DecValTok{12} \FloatTok{16.4}         \DecValTok{8} \FloatTok{275.8} \DecValTok{180}       \FloatTok{3.07}  \FloatTok{4.070} \FloatTok{17.4}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{3}     \DecValTok{0}
+\DecValTok{11} \FloatTok{17.8}         \DecValTok{6} \FloatTok{167.6} \DecValTok{123}       \FloatTok{3.92}  \FloatTok{3.440} \FloatTok{18.9}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{4}     \DecValTok{0}
 \NormalTok{      am\_fac}
-\DecValTok{18}\NormalTok{    manual}
-\DecValTok{1}\NormalTok{     manual}
-\DecValTok{26}\NormalTok{    manual}
+\DecValTok{10}\NormalTok{ automatic}
+\DecValTok{28}\NormalTok{    manual}
+\DecValTok{20}\NormalTok{    manual}
+\DecValTok{12}\NormalTok{ automatic}
 \DecValTok{11}\NormalTok{ automatic}
-\DecValTok{19}\NormalTok{    manual}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3737,21 +3737,19 @@ The base R functions \texttt{sample()} and \texttt{runif()} can be combined to s
 \ErrorTok{\textgreater{}} \CommentTok{\# select rows that correspond to TRUE}
 \ErrorTok{\textgreater{}}\NormalTok{ mtcars[i }\SpecialCharTok{\textless{}} \FloatTok{0.20}\NormalTok{,]}
 \NormalTok{    mpg cylinders  disp  hp axle\_ratio weight  qsec engine am gear carb am\_ch}
-\DecValTok{4}  \FloatTok{21.4}         \DecValTok{6} \FloatTok{258.0} \DecValTok{110}       \FloatTok{3.08}  \FloatTok{3.215} \FloatTok{19.44}      \DecValTok{1}  \DecValTok{0}    \DecValTok{3}    \DecValTok{1}     \DecValTok{0}
-\DecValTok{11} \FloatTok{17.8}         \DecValTok{6} \FloatTok{167.6} \DecValTok{123}       \FloatTok{3.92}  \FloatTok{3.440} \FloatTok{18.90}      \DecValTok{1}  \DecValTok{0}    \DecValTok{4}    \DecValTok{4}     \DecValTok{0}
-\DecValTok{12} \FloatTok{16.4}         \DecValTok{8} \FloatTok{275.8} \DecValTok{180}       \FloatTok{3.07}  \FloatTok{4.070} \FloatTok{17.40}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{3}     \DecValTok{0}
-\DecValTok{22} \FloatTok{15.5}         \DecValTok{8} \FloatTok{318.0} \DecValTok{150}       \FloatTok{2.76}  \FloatTok{3.520} \FloatTok{16.87}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{2}     \DecValTok{0}
+\DecValTok{7}  \FloatTok{14.3}         \DecValTok{8} \FloatTok{360.0} \DecValTok{245}       \FloatTok{3.21}  \FloatTok{3.570} \FloatTok{15.84}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{17} \FloatTok{14.7}         \DecValTok{8} \FloatTok{440.0} \DecValTok{230}       \FloatTok{3.23}  \FloatTok{5.345} \FloatTok{17.42}      \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{4}     \DecValTok{0}
+\DecValTok{19} \FloatTok{30.4}         \DecValTok{4}  \FloatTok{75.7}  \DecValTok{52}       \FloatTok{4.93}  \FloatTok{1.615} \FloatTok{18.52}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{2}     \DecValTok{1}
+\DecValTok{26} \FloatTok{27.3}         \DecValTok{4}  \FloatTok{79.0}  \DecValTok{66}       \FloatTok{4.08}  \FloatTok{1.935} \FloatTok{18.90}      \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}     \DecValTok{1}
 \DecValTok{27} \FloatTok{26.0}         \DecValTok{4} \FloatTok{120.3}  \DecValTok{91}       \FloatTok{4.43}  \FloatTok{2.140} \FloatTok{16.70}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{2}     \DecValTok{1}
-\DecValTok{28} \FloatTok{30.4}         \DecValTok{4}  \FloatTok{95.1} \DecValTok{113}       \FloatTok{3.77}  \FloatTok{1.513} \FloatTok{16.90}      \DecValTok{1}  \DecValTok{1}    \DecValTok{5}    \DecValTok{2}     \DecValTok{1}
-\DecValTok{31} \FloatTok{15.0}         \DecValTok{8} \FloatTok{301.0} \DecValTok{335}       \FloatTok{3.54}  \FloatTok{3.570} \FloatTok{14.60}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{8}     \DecValTok{1}
+\DecValTok{30} \FloatTok{19.7}         \DecValTok{6} \FloatTok{145.0} \DecValTok{175}       \FloatTok{3.62}  \FloatTok{2.770} \FloatTok{15.50}      \DecValTok{0}  \DecValTok{1}    \DecValTok{5}    \DecValTok{6}     \DecValTok{1}
 \NormalTok{      am\_fac}
-\DecValTok{4}\NormalTok{  automatic}
-\DecValTok{11}\NormalTok{ automatic}
-\DecValTok{12}\NormalTok{ automatic}
-\DecValTok{22}\NormalTok{ automatic}
+\DecValTok{7}\NormalTok{  automatic}
+\DecValTok{17}\NormalTok{ automatic}
+\DecValTok{19}\NormalTok{    manual}
+\DecValTok{26}\NormalTok{    manual}
 \DecValTok{27}\NormalTok{    manual}
-\DecValTok{28}\NormalTok{    manual}
-\DecValTok{31}\NormalTok{    manual}
+\DecValTok{30}\NormalTok{    manual}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5698,7 +5696,7 @@ This tests the null hypothesis of no association between location in the US and 
 
 Linear modeling attempts to assess if or how the variability a numeric variable depends on one or more predictor variables. This is often referred to as \emph{regression modeling} or \emph{multiple regression}. While it is relatively easy to ``fit a model'' and generate lots of output, the model we fit may not be very good. There are many decisions we have to make when proposing a model. Which predictors do we include? Will they interact? Do we allow for non-linear effects? Answering these kinds of questions require subject matter expertise.
 
-We walk through a somewhat simple example using data on weekly gas consumption. The data is courtesy of the R package \textbf{MASS}\citep{MASS}. The documentation describes the data as follows:
+We walk through a somewhat simple example using data on weekly gas consumption. The data is courtesy of the R package \textbf{MASS} \citep{MASS}. The documentation describes the data as follows:
 
 ``Mr Derek Whiteside of the UK Building Research Station recorded the weekly gas consumption and average external temperature at his own house in south-east England for two heating seasons, one of 26 weeks before, and one of 30 weeks after cavity-wall insulation was installed. The object of the exercise was to assess the effect of the insulation on gas consumption.''
 
@@ -5707,14 +5705,14 @@ The \texttt{whiteside} data frame has 56 rows and 3 columns:
 \begin{itemize}
 \tightlist
 \item
-  Insul: A factor, before or after insulation.
+  \texttt{Insul}: A factor, before or after insulation.
 \item
-  Temp: average outside temperature in degrees Celsius.
+  \texttt{Temp}: average outside temperature in degrees Celsius.
 \item
-  Gas: weekly gas consumption in 1000s of cubic feet.
+  \texttt{Gas}: weekly gas consumption in 1000s of cubic feet.
 \end{itemize}
 
-Below we demonstrate modeling Gas as a function of Insul, Temp, and their interaction.
+Below we demonstrate modeling \texttt{Gas} as a function of \texttt{Insul}, \texttt{Temp}, and their interaction.
 
 Obviously this is not a comprehensive treatment of linear modeling.
 
@@ -5809,7 +5807,39 @@ We see that after installing insulation, gas consumption fell considerably, and 
 \hypertarget{logistic-regression}{%
 \section{Logistic regression}\label{logistic-regression}}
 
-Analyzing if or how the variability of a binary variable depends on one or more predictor variables.
+Logistic regression attempts to assess if or how the variability a binary variable depends on one or more predictor variables. It is a type of Generalized Linear Model and is commonly used to model the \emph{probability} of an event occurring. While it is relatively easy to ``fit a model'' and generate lots of output, the model we fit may not be very good. There are many decisions we have to make when proposing a model. Which predictors do we include? Will they interact? Do we allow for non-linear effects? Answering these kinds of questions require subject matter expertise.
+
+We walk through a basic example using data on low infant birth weight. The data is courtesy of the R package \textbf{MASS} \citep{MASS}. According to the documentation, ``the data were collected at Baystate Medical Center, Springfield, Mass during 1986.''
+
+We use the data as prepared in the example code found at \texttt{?birthwt}.
+
+The \texttt{birthwt} data frame has 189 rows and 9 columns:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{low}: 1 if birth weight less than 2.5 kg, 0 otherwise
+\item
+  \texttt{age}: mother's age in years
+\item
+  \texttt{lwt}: mother's weight in pounds at last menstrual period
+\item
+  \texttt{race}: mother's race (white, black, other)
+\item
+  \texttt{smoke}: smoking status during pregnancy (1 = yes, 0 = no)
+\item
+  \texttt{ptd}: previous premature labors (1 = yes, 0 = no)
+\item
+  \texttt{ht}: history of hypertension (1 = yes, 0 = no)
+\item
+  \texttt{ui}: presence of uterine irritability (1 = yes, 0 = no)
+\item
+  \texttt{ftv}: number of physician visits during the first trimester (0, 1, 2+)
+\end{itemize}
+
+Below we demonstrate modeling \texttt{low} as a function of all other predictors.
+
+Obviously this is not a comprehensive treatment of logistic regression.
 
 \hypertarget{python-50}{%
 \subsubsection*{Python}\label{python-50}}
@@ -5818,6 +5848,135 @@ Analyzing if or how the variability of a binary variable depends on one or more 
 \hypertarget{r-50}{%
 \subsubsection*{R}\label{r-50}}
 \addcontentsline{toc}{subsubsection}{R}
+
+The \texttt{glm()} function fits a generalized linear model in R using whatever model we propose. We specify models using a special syntax. The basic construction is to first list your dependent or response variable, then a tilde (\texttt{\textasciitilde{}}), and then your predictor variables, or terms, separated by plus operators (\texttt{+}). Listing two variables separated by a colon (\texttt{:}) indicates we wish to fit an interaction for those variables. See \texttt{?formula} for further details on formula syntax.
+
+In addition, \texttt{glm()} requires we specify a family argument to specify the error distribution for the dependent variable. The default is \texttt{gaussian}. For a logistic regression model, we need to specify \texttt{binomial} since our dependent variable is binary.
+
+It's considered best practice to reference variables in a data frame and indicate the data frame using the \texttt{data} argument. Though not required, you'll almost always want to save the result to an object for further inquiry.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}}\NormalTok{ mod }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(low }\SpecialCharTok{\textasciitilde{}}\NormalTok{ age }\SpecialCharTok{+}\NormalTok{ lwt }\SpecialCharTok{+}\NormalTok{ race }\SpecialCharTok{+} 
+\SpecialCharTok{+}\NormalTok{              smoke }\SpecialCharTok{+}\NormalTok{ ptd }\SpecialCharTok{+}\NormalTok{ ht }\SpecialCharTok{+} 
+\SpecialCharTok{+}\NormalTok{              ui }\SpecialCharTok{+}\NormalTok{ ftv, }
+\SpecialCharTok{+}            \AttributeTok{data =}\NormalTok{ birthwt, }\AttributeTok{family =}\NormalTok{ binomial)}
+\end{Highlighting}
+\end{Shaded}
+
+Since we're modeling \texttt{low} as a function of all other variables in the data frame, we could have used the following syntax, where the period symbolizes all other remaining variables:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}}\NormalTok{ mod }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(low }\SpecialCharTok{\textasciitilde{}}\NormalTok{ ., }\AttributeTok{data =}\NormalTok{ birthwt, }\AttributeTok{family =}\NormalTok{ binomial)}
+\end{Highlighting}
+\end{Shaded}
+
+Once you fit your logistic regression model, you can extract information about it using several functions. The most commonly used include:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{summary()}: summary of model coefficients with standard errors and test statistics
+\item
+  \texttt{coef()}: model coefficients
+\item
+  \texttt{confint()}: 95\% confidence interval of model coefficients
+\end{itemize}
+
+The \texttt{summary()} function produces the standard regression summary one typically finds described in a statistics textbook.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{summary}\NormalTok{(mod)}
+
+\NormalTok{Call}\SpecialCharTok{:}
+\FunctionTok{glm}\NormalTok{(}\AttributeTok{formula =}\NormalTok{ low }\SpecialCharTok{\textasciitilde{}}\NormalTok{ age }\SpecialCharTok{+}\NormalTok{ lwt }\SpecialCharTok{+}\NormalTok{ race }\SpecialCharTok{+}\NormalTok{ smoke }\SpecialCharTok{+}\NormalTok{ ptd }\SpecialCharTok{+}\NormalTok{ ht }\SpecialCharTok{+}\NormalTok{ ui }\SpecialCharTok{+} 
+\NormalTok{    ftv, }\AttributeTok{family =}\NormalTok{ binomial, }\AttributeTok{data =}\NormalTok{ birthwt)}
+
+\NormalTok{Deviance Residuals}\SpecialCharTok{:} 
+\NormalTok{    Min       1Q   Median       3Q      Max  }
+\SpecialCharTok{{-}}\FloatTok{1.7038}  \SpecialCharTok{{-}}\FloatTok{0.8068}  \SpecialCharTok{{-}}\FloatTok{0.5008}   \FloatTok{0.8835}   \FloatTok{2.2152}  
+
+\NormalTok{Coefficients}\SpecialCharTok{:}
+\NormalTok{            Estimate Std. Error z value }\FunctionTok{Pr}\NormalTok{(}\SpecialCharTok{\textgreater{}}\ErrorTok{|}\NormalTok{z}\SpecialCharTok{|}\NormalTok{)   }
+\NormalTok{(Intercept)  }\FloatTok{0.82302}    \FloatTok{1.24471}   \FloatTok{0.661}  \FloatTok{0.50848}   
+\NormalTok{age         }\SpecialCharTok{{-}}\FloatTok{0.03723}    \FloatTok{0.03870}  \SpecialCharTok{{-}}\FloatTok{0.962}  \FloatTok{0.33602}   
+\NormalTok{lwt         }\SpecialCharTok{{-}}\FloatTok{0.01565}    \FloatTok{0.00708}  \SpecialCharTok{{-}}\FloatTok{2.211}  \FloatTok{0.02705} \SpecialCharTok{*} 
+\NormalTok{raceblack    }\FloatTok{1.19241}    \FloatTok{0.53597}   \FloatTok{2.225}  \FloatTok{0.02609} \SpecialCharTok{*} 
+\NormalTok{raceother    }\FloatTok{0.74069}    \FloatTok{0.46174}   \FloatTok{1.604}  \FloatTok{0.10869}   
+\NormalTok{smoke1       }\FloatTok{0.75553}    \FloatTok{0.42502}   \FloatTok{1.778}  \FloatTok{0.07546}\NormalTok{ . }
+\NormalTok{ptd1         }\FloatTok{1.34376}    \FloatTok{0.48062}   \FloatTok{2.796}  \FloatTok{0.00518} \SpecialCharTok{**}
+\NormalTok{ht1          }\FloatTok{1.91317}    \FloatTok{0.72074}   \FloatTok{2.654}  \FloatTok{0.00794} \SpecialCharTok{**}
+\NormalTok{ui1          }\FloatTok{0.68019}    \FloatTok{0.46434}   \FloatTok{1.465}  \FloatTok{0.14296}   
+\NormalTok{ftv1        }\SpecialCharTok{{-}}\FloatTok{0.43638}    \FloatTok{0.47939}  \SpecialCharTok{{-}}\FloatTok{0.910}  \FloatTok{0.36268}   
+\NormalTok{ftv2}\SpecialCharTok{+}        \FloatTok{0.17901}    \FloatTok{0.45638}   \FloatTok{0.392}  \FloatTok{0.69488}   
+\SpecialCharTok{{-}{-}{-}}
+\NormalTok{Signif. codes}\SpecialCharTok{:}  \DecValTok{0} \StringTok{\textquotesingle{}***\textquotesingle{}} \FloatTok{0.001} \StringTok{\textquotesingle{}**\textquotesingle{}} \FloatTok{0.01} \StringTok{\textquotesingle{}*\textquotesingle{}} \FloatTok{0.05} \StringTok{\textquotesingle{}.\textquotesingle{}} \FloatTok{0.1} \StringTok{\textquotesingle{} \textquotesingle{}} \DecValTok{1}
+
+\NormalTok{(Dispersion parameter }\ControlFlowTok{for}\NormalTok{ binomial family taken to be }\DecValTok{1}\NormalTok{)}
+
+\NormalTok{    Null deviance}\SpecialCharTok{:} \FloatTok{234.67}\NormalTok{  on }\DecValTok{188}\NormalTok{  degrees of freedom}
+\NormalTok{Residual deviance}\SpecialCharTok{:} \FloatTok{195.48}\NormalTok{  on }\DecValTok{178}\NormalTok{  degrees of freedom}
+\NormalTok{AIC}\SpecialCharTok{:} \FloatTok{217.48}
+
+\NormalTok{Number of Fisher Scoring iterations}\SpecialCharTok{:} \DecValTok{4}
+\end{Highlighting}
+\end{Shaded}
+
+Exponentiating coefficients in a logistic regression model produces odds ratios. To get the odds ratio for the previous premature labors variable, \texttt{ptd}, we do the following:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{exp}\NormalTok{(}\FunctionTok{coef}\NormalTok{(mod)[}\StringTok{"ptd1"}\NormalTok{])}
+\NormalTok{    ptd1 }
+\FloatTok{3.833443} 
+\end{Highlighting}
+\end{Shaded}
+
+This says the odds of having an infant with low birth weight are about 3.8 times higher for women who experienced previous premature labors versus women who did not, assuming all other variables equal.
+
+The 3.8 value is just an estimate. We can use the \texttt{confint()} function to get a 95\% confidence interval on the odds ratio.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{exp}\NormalTok{(}\FunctionTok{confint}\NormalTok{(mod)[}\StringTok{"ptd1"}\NormalTok{,])}
+    \FloatTok{2.5} \SpecialCharTok{\%    97.5 \%} 
+ \FloatTok{1.516837} \FloatTok{10.128974} 
+\end{Highlighting}
+\end{Shaded}
+
+It appears the odds ratio is at least 1.5, possibly as high as 10.1 (assuming we believe this model).
+
+Once we fit a model and we're reasonably confident that it's a good model, we may want to visualize it. Three packages in R that help with this are \textbf{emmeans}, \textbf{effects}, and \textbf{ggeffects}. We briefly demonstrate the \textbf{ggeffects} package.
+
+You need to first install the \textbf{ggeffects} package as it does not come with the base R installation. Once installed, load using the \texttt{library()} function.
+
+Once loaded, we can get a basic visualization of our model by using the \texttt{plot()} and \texttt{ggpredict()} functions. This is particularly useful for logistic regression models because it produces model predictions on a probability scale.
+
+Use the \texttt{terms} argument to specify which variables to plot. Below we create two plots: one for \texttt{ptd} (previous premature labors) and one for \texttt{lwt} (mother's weight at last menstrual period).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\# install.packages("ggeffects")}
+\ErrorTok{\textgreater{}} \FunctionTok{library}\NormalTok{(ggeffects)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{plot}\NormalTok{(}\FunctionTok{ggpredict}\NormalTok{(mod, }\AttributeTok{terms =} \StringTok{"ptd"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-341-1.pdf}
+
+It looks like the probability of low infant birth weight jumps from about 12\% to over 35\% for mothers who previously experienced premature labors, though the error bars on the expected values are quite large.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{plot}\NormalTok{(}\FunctionTok{ggpredict}\NormalTok{(mod, }\AttributeTok{terms =} \StringTok{"lwt"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-342-1.pdf}
+
+It appears the probability of low infant birth weight drops from about 15\% when a mother weighs 100 lbs to about 5\% when a mother weighs around 200 lbs. The regions with the larger confidence ribbon indicate regions of higher uncertainty. There are clearly not many mothers in our data who weigh less than 100 lbs.
 
   \bibliography{book.bib,packages.bib}
 

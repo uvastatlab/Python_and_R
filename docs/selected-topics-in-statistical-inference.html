@@ -554,15 +554,15 @@ div.csl-indent {
 <div id="linear-modeling" class="section level2 hasAnchor" number="8.3">
 <h2><span class="header-section-number">8.3</span> Linear modeling<a href="selected-topics-in-statistical-inference.html#linear-modeling" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Linear modeling attempts to assess if or how the variability a numeric variable depends on one or more predictor variables. This is often referred to as <em>regression modeling</em> or <em>multiple regression</em>. While it is relatively easy to “fit a model” and generate lots of output, the model we fit may not be very good. There are many decisions we have to make when proposing a model. Which predictors do we include? Will they interact? Do we allow for non-linear effects? Answering these kinds of questions require subject matter expertise.</p>
-<p>We walk through a somewhat simple example using data on weekly gas consumption. The data is courtesy of the R package <strong>MASS</strong><span class="citation">(<a href="#ref-MASS" role="doc-biblioref">Venables and Ripley 2002a</a>)</span>. The documentation describes the data as follows:</p>
+<p>We walk through a somewhat simple example using data on weekly gas consumption. The data is courtesy of the R package <strong>MASS</strong> <span class="citation">(<a href="#ref-MASS" role="doc-biblioref">Venables and Ripley 2002a</a>)</span>. The documentation describes the data as follows:</p>
 <p>“Mr Derek Whiteside of the UK Building Research Station recorded the weekly gas consumption and average external temperature at his own house in south-east England for two heating seasons, one of 26 weeks before, and one of 30 weeks after cavity-wall insulation was installed. The object of the exercise was to assess the effect of the insulation on gas consumption.”</p>
 <p>The <code>whiteside</code> data frame has 56 rows and 3 columns:</p>
 <ul>
-<li>Insul: A factor, before or after insulation.</li>
-<li>Temp: average outside temperature in degrees Celsius.</li>
-<li>Gas: weekly gas consumption in 1000s of cubic feet.</li>
+<li><code>Insul</code>: A factor, before or after insulation.</li>
+<li><code>Temp</code>: average outside temperature in degrees Celsius.</li>
+<li><code>Gas</code>: weekly gas consumption in 1000s of cubic feet.</li>
 </ul>
-<p>Below we demonstrate modeling Gas as a function of Insul, Temp, and their interaction.</p>
+<p>Below we demonstrate modeling <code>Gas</code> as a function of <code>Insul</code>, <code>Temp</code>, and their interaction.</p>
 <p>Obviously this is not a comprehensive treatment of linear modeling.</p>
 <div id="python-49" class="section level4 unnumbered hasAnchor">
 <h4>Python<a href="selected-topics-in-statistical-inference.html#python-49" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -616,12 +616,99 @@ div.csl-indent {
 </div>
 <div id="logistic-regression" class="section level2 hasAnchor" number="8.4">
 <h2><span class="header-section-number">8.4</span> Logistic regression<a href="selected-topics-in-statistical-inference.html#logistic-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Analyzing if or how the variability of a binary variable depends on one or more predictor variables.</p>
+<p>Logistic regression attempts to assess if or how the variability a binary variable depends on one or more predictor variables. It is a type of Generalized Linear Model and is commonly used to model the <em>probability</em> of an event occurring. While it is relatively easy to “fit a model” and generate lots of output, the model we fit may not be very good. There are many decisions we have to make when proposing a model. Which predictors do we include? Will they interact? Do we allow for non-linear effects? Answering these kinds of questions require subject matter expertise.</p>
+<p>We walk through a basic example using data on low infant birth weight. The data is courtesy of the R package <strong>MASS</strong> <span class="citation">(<a href="#ref-MASS" role="doc-biblioref">Venables and Ripley 2002a</a>)</span>. According to the documentation, “the data were collected at Baystate Medical Center, Springfield, Mass during 1986.”</p>
+<p>We use the data as prepared in the example code found at <code>?birthwt</code>.</p>
+<p>The <code>birthwt</code> data frame has 189 rows and 9 columns:</p>
+<ul>
+<li><code>low</code>: 1 if birth weight less than 2.5 kg, 0 otherwise</li>
+<li><code>age</code>: mother’s age in years</li>
+<li><code>lwt</code>: mother’s weight in pounds at last menstrual period</li>
+<li><code>race</code>: mother’s race (white, black, other)</li>
+<li><code>smoke</code>: smoking status during pregnancy (1 = yes, 0 = no)</li>
+<li><code>ptd</code>: previous premature labors (1 = yes, 0 = no)</li>
+<li><code>ht</code>: history of hypertension (1 = yes, 0 = no)</li>
+<li><code>ui</code>: presence of uterine irritability (1 = yes, 0 = no)</li>
+<li><code>ftv</code>: number of physician visits during the first trimester (0, 1, 2+)</li>
+</ul>
+<p>Below we demonstrate modeling <code>low</code> as a function of all other predictors.</p>
+<p>Obviously this is not a comprehensive treatment of logistic regression.</p>
 <div id="python-50" class="section level4 unnumbered hasAnchor">
 <h4>Python<a href="selected-topics-in-statistical-inference.html#python-50" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 </div>
 <div id="r-50" class="section level4 unnumbered hasAnchor">
 <h4>R<a href="selected-topics-in-statistical-inference.html#r-50" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The <code>glm()</code> function fits a generalized linear model in R using whatever model we propose. We specify models using a special syntax. The basic construction is to first list your dependent or response variable, then a tilde (<code>~</code>), and then your predictor variables, or terms, separated by plus operators (<code>+</code>). Listing two variables separated by a colon (<code>:</code>) indicates we wish to fit an interaction for those variables. See <code>?formula</code> for further details on formula syntax.</p>
+<p>In addition, <code>glm()</code> requires we specify a family argument to specify the error distribution for the dependent variable. The default is <code>gaussian</code>. For a logistic regression model, we need to specify <code>binomial</code> since our dependent variable is binary.</p>
+<p>It’s considered best practice to reference variables in a data frame and indicate the data frame using the <code>data</code> argument. Though not required, you’ll almost always want to save the result to an object for further inquiry.</p>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="selected-topics-in-statistical-inference.html#cb313-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> mod <span class="ot">&lt;-</span> <span class="fu">glm</span>(low <span class="sc">~</span> age <span class="sc">+</span> lwt <span class="sc">+</span> race <span class="sc">+</span> </span>
+<span id="cb313-2"><a href="selected-topics-in-statistical-inference.html#cb313-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>              smoke <span class="sc">+</span> ptd <span class="sc">+</span> ht <span class="sc">+</span> </span>
+<span id="cb313-3"><a href="selected-topics-in-statistical-inference.html#cb313-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>              ui <span class="sc">+</span> ftv, </span>
+<span id="cb313-4"><a href="selected-topics-in-statistical-inference.html#cb313-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>            <span class="at">data =</span> birthwt, <span class="at">family =</span> binomial)</span></code></pre></div>
+<p>Since we’re modeling <code>low</code> as a function of all other variables in the data frame, we could have used the following syntax, where the period symbolizes all other remaining variables:</p>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="selected-topics-in-statistical-inference.html#cb314-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> mod <span class="ot">&lt;-</span> <span class="fu">glm</span>(low <span class="sc">~</span> ., <span class="at">data =</span> birthwt, <span class="at">family =</span> binomial)</span></code></pre></div>
+<p>Once you fit your logistic regression model, you can extract information about it using several functions. The most commonly used include:</p>
+<ul>
+<li><code>summary()</code>: summary of model coefficients with standard errors and test statistics</li>
+<li><code>coef()</code>: model coefficients</li>
+<li><code>confint()</code>: 95% confidence interval of model coefficients</li>
+</ul>
+<p>The <code>summary()</code> function produces the standard regression summary one typically finds described in a statistics textbook.</p>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="selected-topics-in-statistical-inference.html#cb315-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">summary</span>(mod)</span>
+<span id="cb315-2"><a href="selected-topics-in-statistical-inference.html#cb315-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb315-3"><a href="selected-topics-in-statistical-inference.html#cb315-3" aria-hidden="true" tabindex="-1"></a>Call<span class="sc">:</span></span>
+<span id="cb315-4"><a href="selected-topics-in-statistical-inference.html#cb315-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glm</span>(<span class="at">formula =</span> low <span class="sc">~</span> age <span class="sc">+</span> lwt <span class="sc">+</span> race <span class="sc">+</span> smoke <span class="sc">+</span> ptd <span class="sc">+</span> ht <span class="sc">+</span> ui <span class="sc">+</span> </span>
+<span id="cb315-5"><a href="selected-topics-in-statistical-inference.html#cb315-5" aria-hidden="true" tabindex="-1"></a>    ftv, <span class="at">family =</span> binomial, <span class="at">data =</span> birthwt)</span>
+<span id="cb315-6"><a href="selected-topics-in-statistical-inference.html#cb315-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb315-7"><a href="selected-topics-in-statistical-inference.html#cb315-7" aria-hidden="true" tabindex="-1"></a>Deviance Residuals<span class="sc">:</span> </span>
+<span id="cb315-8"><a href="selected-topics-in-statistical-inference.html#cb315-8" aria-hidden="true" tabindex="-1"></a>    Min       1Q   Median       3Q      Max  </span>
+<span id="cb315-9"><a href="selected-topics-in-statistical-inference.html#cb315-9" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="fl">1.7038</span>  <span class="sc">-</span><span class="fl">0.8068</span>  <span class="sc">-</span><span class="fl">0.5008</span>   <span class="fl">0.8835</span>   <span class="fl">2.2152</span>  </span>
+<span id="cb315-10"><a href="selected-topics-in-statistical-inference.html#cb315-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb315-11"><a href="selected-topics-in-statistical-inference.html#cb315-11" aria-hidden="true" tabindex="-1"></a>Coefficients<span class="sc">:</span></span>
+<span id="cb315-12"><a href="selected-topics-in-statistical-inference.html#cb315-12" aria-hidden="true" tabindex="-1"></a>            Estimate Std. Error z value <span class="fu">Pr</span>(<span class="sc">&gt;</span><span class="er">|</span>z<span class="sc">|</span>)   </span>
+<span id="cb315-13"><a href="selected-topics-in-statistical-inference.html#cb315-13" aria-hidden="true" tabindex="-1"></a>(Intercept)  <span class="fl">0.82302</span>    <span class="fl">1.24471</span>   <span class="fl">0.661</span>  <span class="fl">0.50848</span>   </span>
+<span id="cb315-14"><a href="selected-topics-in-statistical-inference.html#cb315-14" aria-hidden="true" tabindex="-1"></a>age         <span class="sc">-</span><span class="fl">0.03723</span>    <span class="fl">0.03870</span>  <span class="sc">-</span><span class="fl">0.962</span>  <span class="fl">0.33602</span>   </span>
+<span id="cb315-15"><a href="selected-topics-in-statistical-inference.html#cb315-15" aria-hidden="true" tabindex="-1"></a>lwt         <span class="sc">-</span><span class="fl">0.01565</span>    <span class="fl">0.00708</span>  <span class="sc">-</span><span class="fl">2.211</span>  <span class="fl">0.02705</span> <span class="sc">*</span> </span>
+<span id="cb315-16"><a href="selected-topics-in-statistical-inference.html#cb315-16" aria-hidden="true" tabindex="-1"></a>raceblack    <span class="fl">1.19241</span>    <span class="fl">0.53597</span>   <span class="fl">2.225</span>  <span class="fl">0.02609</span> <span class="sc">*</span> </span>
+<span id="cb315-17"><a href="selected-topics-in-statistical-inference.html#cb315-17" aria-hidden="true" tabindex="-1"></a>raceother    <span class="fl">0.74069</span>    <span class="fl">0.46174</span>   <span class="fl">1.604</span>  <span class="fl">0.10869</span>   </span>
+<span id="cb315-18"><a href="selected-topics-in-statistical-inference.html#cb315-18" aria-hidden="true" tabindex="-1"></a>smoke1       <span class="fl">0.75553</span>    <span class="fl">0.42502</span>   <span class="fl">1.778</span>  <span class="fl">0.07546</span> . </span>
+<span id="cb315-19"><a href="selected-topics-in-statistical-inference.html#cb315-19" aria-hidden="true" tabindex="-1"></a>ptd1         <span class="fl">1.34376</span>    <span class="fl">0.48062</span>   <span class="fl">2.796</span>  <span class="fl">0.00518</span> <span class="sc">**</span></span>
+<span id="cb315-20"><a href="selected-topics-in-statistical-inference.html#cb315-20" aria-hidden="true" tabindex="-1"></a>ht1          <span class="fl">1.91317</span>    <span class="fl">0.72074</span>   <span class="fl">2.654</span>  <span class="fl">0.00794</span> <span class="sc">**</span></span>
+<span id="cb315-21"><a href="selected-topics-in-statistical-inference.html#cb315-21" aria-hidden="true" tabindex="-1"></a>ui1          <span class="fl">0.68019</span>    <span class="fl">0.46434</span>   <span class="fl">1.465</span>  <span class="fl">0.14296</span>   </span>
+<span id="cb315-22"><a href="selected-topics-in-statistical-inference.html#cb315-22" aria-hidden="true" tabindex="-1"></a>ftv1        <span class="sc">-</span><span class="fl">0.43638</span>    <span class="fl">0.47939</span>  <span class="sc">-</span><span class="fl">0.910</span>  <span class="fl">0.36268</span>   </span>
+<span id="cb315-23"><a href="selected-topics-in-statistical-inference.html#cb315-23" aria-hidden="true" tabindex="-1"></a>ftv2<span class="sc">+</span>        <span class="fl">0.17901</span>    <span class="fl">0.45638</span>   <span class="fl">0.392</span>  <span class="fl">0.69488</span>   </span>
+<span id="cb315-24"><a href="selected-topics-in-statistical-inference.html#cb315-24" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb315-25"><a href="selected-topics-in-statistical-inference.html#cb315-25" aria-hidden="true" tabindex="-1"></a>Signif. codes<span class="sc">:</span>  <span class="dv">0</span> <span class="st">&#39;***&#39;</span> <span class="fl">0.001</span> <span class="st">&#39;**&#39;</span> <span class="fl">0.01</span> <span class="st">&#39;*&#39;</span> <span class="fl">0.05</span> <span class="st">&#39;.&#39;</span> <span class="fl">0.1</span> <span class="st">&#39; &#39;</span> <span class="dv">1</span></span>
+<span id="cb315-26"><a href="selected-topics-in-statistical-inference.html#cb315-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb315-27"><a href="selected-topics-in-statistical-inference.html#cb315-27" aria-hidden="true" tabindex="-1"></a>(Dispersion parameter <span class="cf">for</span> binomial family taken to be <span class="dv">1</span>)</span>
+<span id="cb315-28"><a href="selected-topics-in-statistical-inference.html#cb315-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb315-29"><a href="selected-topics-in-statistical-inference.html#cb315-29" aria-hidden="true" tabindex="-1"></a>    Null deviance<span class="sc">:</span> <span class="fl">234.67</span>  on <span class="dv">188</span>  degrees of freedom</span>
+<span id="cb315-30"><a href="selected-topics-in-statistical-inference.html#cb315-30" aria-hidden="true" tabindex="-1"></a>Residual deviance<span class="sc">:</span> <span class="fl">195.48</span>  on <span class="dv">178</span>  degrees of freedom</span>
+<span id="cb315-31"><a href="selected-topics-in-statistical-inference.html#cb315-31" aria-hidden="true" tabindex="-1"></a>AIC<span class="sc">:</span> <span class="fl">217.48</span></span>
+<span id="cb315-32"><a href="selected-topics-in-statistical-inference.html#cb315-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb315-33"><a href="selected-topics-in-statistical-inference.html#cb315-33" aria-hidden="true" tabindex="-1"></a>Number of Fisher Scoring iterations<span class="sc">:</span> <span class="dv">4</span></span></code></pre></div>
+<p>Exponentiating coefficients in a logistic regression model produces odds ratios. To get the odds ratio for the previous premature labors variable, <code>ptd</code>, we do the following:</p>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="selected-topics-in-statistical-inference.html#cb316-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">exp</span>(<span class="fu">coef</span>(mod)[<span class="st">&quot;ptd1&quot;</span>])</span>
+<span id="cb316-2"><a href="selected-topics-in-statistical-inference.html#cb316-2" aria-hidden="true" tabindex="-1"></a>    ptd1 </span>
+<span id="cb316-3"><a href="selected-topics-in-statistical-inference.html#cb316-3" aria-hidden="true" tabindex="-1"></a><span class="fl">3.833443</span> </span></code></pre></div>
+<p>This says the odds of having an infant with low birth weight are about 3.8 times higher for women who experienced previous premature labors versus women who did not, assuming all other variables equal.</p>
+<p>The 3.8 value is just an estimate. We can use the <code>confint()</code> function to get a 95% confidence interval on the odds ratio.</p>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="selected-topics-in-statistical-inference.html#cb317-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">exp</span>(<span class="fu">confint</span>(mod)[<span class="st">&quot;ptd1&quot;</span>,])</span>
+<span id="cb317-2"><a href="selected-topics-in-statistical-inference.html#cb317-2" aria-hidden="true" tabindex="-1"></a>    <span class="fl">2.5</span> <span class="sc">%    97.5 %</span> </span>
+<span id="cb317-3"><a href="selected-topics-in-statistical-inference.html#cb317-3" aria-hidden="true" tabindex="-1"></a> <span class="fl">1.516837</span> <span class="fl">10.128974</span> </span></code></pre></div>
+<p>It appears the odds ratio is at least 1.5, possibly as high as 10.1 (assuming we believe this model).</p>
+<p>Once we fit a model and we’re reasonably confident that it’s a good model, we may want to visualize it. Three packages in R that help with this are <strong>emmeans</strong>, <strong>effects</strong>, and <strong>ggeffects</strong>. We briefly demonstrate the <strong>ggeffects</strong> package.</p>
+<p>You need to first install the <strong>ggeffects</strong> package as it does not come with the base R installation. Once installed, load using the <code>library()</code> function.</p>
+<p>Once loaded, we can get a basic visualization of our model by using the <code>plot()</code> and <code>ggpredict()</code> functions. This is particularly useful for logistic regression models because it produces model predictions on a probability scale.</p>
+<p>Use the <code>terms</code> argument to specify which variables to plot. Below we create two plots: one for <code>ptd</code> (previous premature labors) and one for <code>lwt</code> (mother’s weight at last menstrual period).</p>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="selected-topics-in-statistical-inference.html#cb318-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># install.packages(&quot;ggeffects&quot;)</span></span>
+<span id="cb318-2"><a href="selected-topics-in-statistical-inference.html#cb318-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">library</span>(ggeffects)</span>
+<span id="cb318-3"><a href="selected-topics-in-statistical-inference.html#cb318-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">plot</span>(<span class="fu">ggpredict</span>(mod, <span class="at">terms =</span> <span class="st">&quot;ptd&quot;</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-341-1.png" width="672" /></p>
+<p>It looks like the probability of low infant birth weight jumps from about 12% to over 35% for mothers who previously experienced premature labors, though the error bars on the expected values are quite large.</p>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="selected-topics-in-statistical-inference.html#cb319-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">plot</span>(<span class="fu">ggpredict</span>(mod, <span class="at">terms =</span> <span class="st">&quot;lwt&quot;</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-342-1.png" width="672" /></p>
+<p>It appears the probability of low infant birth weight drops from about 15% when a mother weighs 100 lbs to about 5% when a mother weighs around 200 lbs. The regions with the larger confidence ribbon indicate regions of higher uncertainty. There are clearly not many mothers in our data who weigh less than 100 lbs.</p>
 
 </div>
 </div>
