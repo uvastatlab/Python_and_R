@@ -315,14 +315,78 @@ This tests the null hypothesis of no association between location in the US and 
 
 ## Linear modeling
 
-Analyzing if or how the variability a numeric variable depends on one or more predictor variables.
+Linear modeling attempts to assess if or how the variability a numeric variable depends on one or more predictor variables. This is often referred to as _regression modeling_ or _multiple regression_. While it is relatively easy to "fit a model" and generate lots of output, the model we fit may not be very good. There are many decisions we have to make when proposing a model. Which predictors do we include? Will they interact? Do we allow for non-linear effects? Answering these kinds of questions require subject matter expertise. 
+
+We walk through a somewhat simple example using data on weekly gas consumption. The data is courtesy of the R package **MASS**[@MASS]. The documentation describes the data as follows:
+
+"Mr Derek Whiteside of the UK Building Research Station recorded the weekly gas consumption and average external temperature at his own house in south-east England for two heating seasons, one of 26 weeks before, and one of 30 weeks after cavity-wall insulation was installed. The object of the exercise was to assess the effect of the insulation on gas consumption."
+
+The `whiteside` data frame has 56 rows and 3 columns:
+
+- Insul: A factor, before or after insulation.
+- Temp: average outside temperature in degrees Celsius.
+- Gas: weekly gas consumption in 1000s of cubic feet.
+
+Below we demonstrate modeling Gas as a function of Insul, Temp, and their interaction.
+
+Obviously this is not a comprehensive treatment of linear modeling. 
+
+```{r echo=FALSE, message=FALSE}
+library(MASS)
+data("whiteside")
+```
+
+
+```{python echo = FALSE}
+whiteside = r.whiteside
+```
+
 
 #### Python {-}
 
 
 #### R {-}
 
+The `lm()` function fits a linear model in R using whatever model we propose. We specify models using a special syntax. The basic construction is to first list your dependent or response variable, then a tilde (`~`), and then your predictor variables, or terms, separated by plus operators (`+`). Listing two variables separated by a colon (`:`) indicates we wish to fit an interaction for those variables. See `?formula` for further details on formula syntax.
 
+It's considered best practice to reference variables in a data frame and indicate the data frame using the `data` argument. Though not required, you'll almost always want to save the result to an object for further inquiry.
+
+```{r}
+m <- lm(Gas ~ Insul + Temp + Insul:Temp, data = whiteside)
+```
+
+Once you fit your model, you can extract information about it using several functions. The most commonly used include:
+
+- `summary()`: summary of model coefficients with standard errors and test statistics
+- `coef()`: model coefficients
+- `confint()`: 95% confidence interval of model coefficients
+- `plot()`: a set of four diagnostic plots
+
+The `summary()` function produces the standard regression summary one typically finds described in a statistics textbook.
+
+```{r}
+summary(m)
+```
+
+Calling `plot()` on a model object produces four different diagnostic plots by default. Using the `which` argument we can specify which of six possible plots to create. The first one checks the constant variance assumption (ie, that our model is not dramatically over- or under-predicting values.) We hope to see residuals evenly scattered around 0. (See `?plot.lm` for more details on the diagnostic plots.)
+
+```{r}
+plot(m, which = 1)
+```
+
+Once we fit a model and we're reasonably confident that it's a good model, we may want to visualize it. Three packages in R that help with this are **emmeans**, **effects**, and **ggeffects**. We briefly demonstrate the **ggeffects** package.
+
+You need to first install the **ggeffects** package as it does not come with the base R installation. Once installed, load using the `library()` function.
+
+Once loaded, we can get a basic visualization of our model by using the `plot()` and `ggpredict()` functions. This is particularly useful for models with interactions. Use the `terms` argument to specify which variables to plot. Below we list "Temp" first, which will plot "Temp" on the x axis. Then we list "Insul", the grouping variable, to indicate we want a separate fit for each level of "Insul".
+
+```{r message=FALSE}
+# install.pacakges("ggeffects")
+library(ggeffects)
+plot(ggpredict(m, terms = c("Temp", "Insul")))
+```
+
+We see that after installing insulation, gas consumption fell considerably, and that the effect of temperature on gas consumption is less pronounced.
 
 ## Logistic regression
 

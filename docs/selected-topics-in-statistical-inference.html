@@ -24,7 +24,7 @@
 <meta name="author" content="Clay Ford, Jacob Goldstein-Greenwood, Oyinkansola Adenekan, Samantha Lomuscio" />
 
 
-<meta name="date" content="2022-03-03" />
+<meta name="date" content="2022-03-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="basic-plotting-and-visualization.html"/>
 <link rel="next" href="references.html"/>
-<script src="libs/header-attrs-2.12/header-attrs.js"></script>
+<script src="libs/header-attrs-2.13/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -553,12 +553,65 @@ div.csl-indent {
 </div>
 <div id="linear-modeling" class="section level2 hasAnchor" number="8.3">
 <h2><span class="header-section-number">8.3</span> Linear modeling<a href="selected-topics-in-statistical-inference.html#linear-modeling" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Analyzing if or how the variability a numeric variable depends on one or more predictor variables.</p>
+<p>Linear modeling attempts to assess if or how the variability a numeric variable depends on one or more predictor variables. This is often referred to as <em>regression modeling</em> or <em>multiple regression</em>. While it is relatively easy to “fit a model” and generate lots of output, the model we fit may not be very good. There are many decisions we have to make when proposing a model. Which predictors do we include? Will they interact? Do we allow for non-linear effects? Answering these kinds of questions require subject matter expertise.</p>
+<p>We walk through a somewhat simple example using data on weekly gas consumption. The data is courtesy of the R package <strong>MASS</strong><span class="citation">(<a href="#ref-MASS" role="doc-biblioref">Venables and Ripley 2002a</a>)</span>. The documentation describes the data as follows:</p>
+<p>“Mr Derek Whiteside of the UK Building Research Station recorded the weekly gas consumption and average external temperature at his own house in south-east England for two heating seasons, one of 26 weeks before, and one of 30 weeks after cavity-wall insulation was installed. The object of the exercise was to assess the effect of the insulation on gas consumption.”</p>
+<p>The <code>whiteside</code> data frame has 56 rows and 3 columns:</p>
+<ul>
+<li>Insul: A factor, before or after insulation.</li>
+<li>Temp: average outside temperature in degrees Celsius.</li>
+<li>Gas: weekly gas consumption in 1000s of cubic feet.</li>
+</ul>
+<p>Below we demonstrate modeling Gas as a function of Insul, Temp, and their interaction.</p>
+<p>Obviously this is not a comprehensive treatment of linear modeling.</p>
 <div id="python-49" class="section level4 unnumbered hasAnchor">
 <h4>Python<a href="selected-topics-in-statistical-inference.html#python-49" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 </div>
 <div id="r-49" class="section level4 unnumbered hasAnchor">
 <h4>R<a href="selected-topics-in-statistical-inference.html#r-49" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The <code>lm()</code> function fits a linear model in R using whatever model we propose. We specify models using a special syntax. The basic construction is to first list your dependent or response variable, then a tilde (<code>~</code>), and then your predictor variables, or terms, separated by plus operators (<code>+</code>). Listing two variables separated by a colon (<code>:</code>) indicates we wish to fit an interaction for those variables. See <code>?formula</code> for further details on formula syntax.</p>
+<p>It’s considered best practice to reference variables in a data frame and indicate the data frame using the <code>data</code> argument. Though not required, you’ll almost always want to save the result to an object for further inquiry.</p>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="selected-topics-in-statistical-inference.html#cb309-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> m <span class="ot">&lt;-</span> <span class="fu">lm</span>(Gas <span class="sc">~</span> Insul <span class="sc">+</span> Temp <span class="sc">+</span> Insul<span class="sc">:</span>Temp, <span class="at">data =</span> whiteside)</span></code></pre></div>
+<p>Once you fit your model, you can extract information about it using several functions. The most commonly used include:</p>
+<ul>
+<li><code>summary()</code>: summary of model coefficients with standard errors and test statistics</li>
+<li><code>coef()</code>: model coefficients</li>
+<li><code>confint()</code>: 95% confidence interval of model coefficients</li>
+<li><code>plot()</code>: a set of four diagnostic plots</li>
+</ul>
+<p>The <code>summary()</code> function produces the standard regression summary one typically finds described in a statistics textbook.</p>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="selected-topics-in-statistical-inference.html#cb310-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">summary</span>(m)</span>
+<span id="cb310-2"><a href="selected-topics-in-statistical-inference.html#cb310-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb310-3"><a href="selected-topics-in-statistical-inference.html#cb310-3" aria-hidden="true" tabindex="-1"></a>Call<span class="sc">:</span></span>
+<span id="cb310-4"><a href="selected-topics-in-statistical-inference.html#cb310-4" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(<span class="at">formula =</span> Gas <span class="sc">~</span> Insul <span class="sc">+</span> Temp <span class="sc">+</span> Insul<span class="sc">:</span>Temp, <span class="at">data =</span> whiteside)</span>
+<span id="cb310-5"><a href="selected-topics-in-statistical-inference.html#cb310-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb310-6"><a href="selected-topics-in-statistical-inference.html#cb310-6" aria-hidden="true" tabindex="-1"></a>Residuals<span class="sc">:</span></span>
+<span id="cb310-7"><a href="selected-topics-in-statistical-inference.html#cb310-7" aria-hidden="true" tabindex="-1"></a>     Min       1Q   Median       3Q      Max </span>
+<span id="cb310-8"><a href="selected-topics-in-statistical-inference.html#cb310-8" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="fl">0.97802</span> <span class="sc">-</span><span class="fl">0.18011</span>  <span class="fl">0.03757</span>  <span class="fl">0.20930</span>  <span class="fl">0.63803</span> </span>
+<span id="cb310-9"><a href="selected-topics-in-statistical-inference.html#cb310-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb310-10"><a href="selected-topics-in-statistical-inference.html#cb310-10" aria-hidden="true" tabindex="-1"></a>Coefficients<span class="sc">:</span></span>
+<span id="cb310-11"><a href="selected-topics-in-statistical-inference.html#cb310-11" aria-hidden="true" tabindex="-1"></a>                Estimate Std. Error t value <span class="fu">Pr</span>(<span class="sc">&gt;</span><span class="er">|</span>t<span class="sc">|</span>)    </span>
+<span id="cb310-12"><a href="selected-topics-in-statistical-inference.html#cb310-12" aria-hidden="true" tabindex="-1"></a>(Intercept)      <span class="fl">6.85383</span>    <span class="fl">0.13596</span>  <span class="fl">50.409</span>  <span class="sc">&lt;</span> <span class="fl">2e-16</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb310-13"><a href="selected-topics-in-statistical-inference.html#cb310-13" aria-hidden="true" tabindex="-1"></a>InsulAfter      <span class="sc">-</span><span class="fl">2.12998</span>    <span class="fl">0.18009</span> <span class="sc">-</span><span class="fl">11.827</span> <span class="fl">2.32e-16</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb310-14"><a href="selected-topics-in-statistical-inference.html#cb310-14" aria-hidden="true" tabindex="-1"></a>Temp            <span class="sc">-</span><span class="fl">0.39324</span>    <span class="fl">0.02249</span> <span class="sc">-</span><span class="fl">17.487</span>  <span class="sc">&lt;</span> <span class="fl">2e-16</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb310-15"><a href="selected-topics-in-statistical-inference.html#cb310-15" aria-hidden="true" tabindex="-1"></a>InsulAfter<span class="sc">:</span>Temp  <span class="fl">0.11530</span>    <span class="fl">0.03211</span>   <span class="fl">3.591</span> <span class="fl">0.000731</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb310-16"><a href="selected-topics-in-statistical-inference.html#cb310-16" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb310-17"><a href="selected-topics-in-statistical-inference.html#cb310-17" aria-hidden="true" tabindex="-1"></a>Signif. codes<span class="sc">:</span>  <span class="dv">0</span> <span class="st">&#39;***&#39;</span> <span class="fl">0.001</span> <span class="st">&#39;**&#39;</span> <span class="fl">0.01</span> <span class="st">&#39;*&#39;</span> <span class="fl">0.05</span> <span class="st">&#39;.&#39;</span> <span class="fl">0.1</span> <span class="st">&#39; &#39;</span> <span class="dv">1</span></span>
+<span id="cb310-18"><a href="selected-topics-in-statistical-inference.html#cb310-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb310-19"><a href="selected-topics-in-statistical-inference.html#cb310-19" aria-hidden="true" tabindex="-1"></a>Residual standard error<span class="sc">:</span> <span class="fl">0.323</span> on <span class="dv">52</span> degrees of freedom</span>
+<span id="cb310-20"><a href="selected-topics-in-statistical-inference.html#cb310-20" aria-hidden="true" tabindex="-1"></a>Multiple R<span class="sc">-</span>squared<span class="sc">:</span>  <span class="fl">0.9277</span>,    Adjusted R<span class="sc">-</span>squared<span class="sc">:</span>  <span class="fl">0.9235</span> </span>
+<span id="cb310-21"><a href="selected-topics-in-statistical-inference.html#cb310-21" aria-hidden="true" tabindex="-1"></a>F<span class="sc">-</span>statistic<span class="sc">:</span> <span class="fl">222.3</span> on <span class="dv">3</span> and <span class="dv">52</span> DF,  p<span class="sc">-</span>value<span class="sc">:</span> <span class="er">&lt;</span> <span class="fl">2.2e-16</span></span></code></pre></div>
+<p>Calling <code>plot()</code> on a model object produces four different diagnostic plots by default. Using the <code>which</code> argument we can specify which of six possible plots to create. The first one checks the constant variance assumption (ie, that our model is not dramatically over- or under-predicting values.) We hope to see residuals evenly scattered around 0. (See <code>?plot.lm</code> for more details on the diagnostic plots.)</p>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="selected-topics-in-statistical-inference.html#cb311-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">plot</span>(m, <span class="at">which =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-332-1.png" width="672" /></p>
+<p>Once we fit a model and we’re reasonably confident that it’s a good model, we may want to visualize it. Three packages in R that help with this are <strong>emmeans</strong>, <strong>effects</strong>, and <strong>ggeffects</strong>. We briefly demonstrate the <strong>ggeffects</strong> package.</p>
+<p>You need to first install the <strong>ggeffects</strong> package as it does not come with the base R installation. Once installed, load using the <code>library()</code> function.</p>
+<p>Once loaded, we can get a basic visualization of our model by using the <code>plot()</code> and <code>ggpredict()</code> functions. This is particularly useful for models with interactions. Use the <code>terms</code> argument to specify which variables to plot. Below we list “Temp” first, which will plot “Temp” on the x axis. Then we list “Insul”, the grouping variable, to indicate we want a separate fit for each level of “Insul”.</p>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="selected-topics-in-statistical-inference.html#cb312-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># install.pacakges(&quot;ggeffects&quot;)</span></span>
+<span id="cb312-2"><a href="selected-topics-in-statistical-inference.html#cb312-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">library</span>(ggeffects)</span>
+<span id="cb312-3"><a href="selected-topics-in-statistical-inference.html#cb312-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">plot</span>(<span class="fu">ggpredict</span>(m, <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">&quot;Temp&quot;</span>, <span class="st">&quot;Insul&quot;</span>)))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-333-1.png" width="672" /></p>
+<p>We see that after installing insulation, gas consumption fell considerably, and that the effect of temperature on gas consumption is less pronounced.</p>
 </div>
 </div>
 <div id="logistic-regression" class="section level2 hasAnchor" number="8.4">
@@ -580,6 +633,9 @@ Dalgaard, Peter. 2008. <em>Introductory Statistics with <span>R</span></em>. 2nd
 </div>
 <div id="ref-kass_caffo_davidian_meng_yu_reid_2016" class="csl-entry">
 Kass, Robert E., Brian S. Caffo, Marie Davidian, Xiao-Li Meng, Bin Yu, and Nancy Reid. 2016. <span>“Ten Simple Rules for Effective Statistical Practice.”</span> <em>PLOS Computational Biology</em> 12 (6). <a href="https://doi.org/10.1371/journal.pcbi.1004961">https://doi.org/10.1371/journal.pcbi.1004961</a>.
+</div>
+<div id="ref-MASS" class="csl-entry">
+Venables, W. N., and B. D. Ripley. 2002a. <em>Modern Applied Statistics with s</em>. Fourth. New York: Springer. <a href="https://www.stats.ox.ac.uk/pub/MASS4/">https://www.stats.ox.ac.uk/pub/MASS4/</a>.
 </div>
 <div id="ref-whitlock_schluter_2020" class="csl-entry">
 Whitlock, Michael, and Dolph Schluter. 2020. <em>The Analysis of Biological Data</em>. 3rd ed. Macmillan Learning.
