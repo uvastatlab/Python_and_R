@@ -116,6 +116,31 @@ Shifting between these two data formats is often necessary for implementing cert
 
 #### Python {-}
 
+To reshape a DataFrame from wide to long, we can use the pandas `melt()` function.
+
+The following is an example of a wide DataFrame.
+
+```{python}
+import numpy as np
+import pandas as pd
+
+data = {"sex": np.random.choice(['i', 'f', 'm'], 3),
+"wk1": np.random.choice(range(20), 3),
+"wk2": np.random.choice(range(20), 3),
+"wk3": np.random.choice(range(20), 3)}
+
+df_wide = pd.DataFrame(data)
+```
+
+The following code uses the pandas `melt()` function to reshape the DataFrame from wide to long.
+
+```{python}
+pd.melt(df_wide,
+id_vars = ["sex"],
+value_vars = ["wk1", "wk2", "wk3"],
+value_name = "observations")
+```
+
 #### R {-}
 
 In base R, the `reshape()` function can take data from wide to long or long to wide. The **tidyverse** also provides reshaping functions: `pivot_longer()` and `pivot_wider()`. The **tidyverse** functions have a degree of intuitiveness and usability that may make them the go-to reshaping tools for many R users. We give examples below using both base R and **tidyverse**.
@@ -193,6 +218,32 @@ animals_long_2
 ### Long to wide
 
 #### Python {-}
+
+To reshape a DataFrame from long to wide, we can use the pandas `pivot()` and `pivot_table()` functions.
+
+The following is an example of a long DataFrame.
+
+```{python}
+import numpy as np
+import pandas as pd
+
+data = {"sex": np.random.choice(['i', 'f', 'm'], 9),
+"week": np.random.choice(range(3), 9),
+"observations": np.random.choice(range(20), 9)}
+
+df_long = pd.DataFrame(data)
+```
+
+The following code uses the pandas `pivot_table()` function to reshape the DataFrame from long to wide.
+
+```{python}
+df_wide = pd.pivot_table(df_long,
+index='sex',
+columns='week',
+values='observations')
+
+df_wide 
+```
 
 #### R {-}
 
