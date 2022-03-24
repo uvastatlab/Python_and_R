@@ -160,28 +160,39 @@ How to view rows of a data frame that meet certain conditions.
 
 #### Python {-}
 
-We can filter rows of a DataFrame based on a condition to subset on. This returns a DataFrame.
+We can filter rows of a DataFrame based on a condition to subset. The data type returned depends on the filtration method.
 
-```{python}
-mtcars[mtcars["mpg"] > 30]
-```
-
-To select particular columns with the condition, subset the data frame using a list of desired columns as indices.
+The following code returns a DataFrame, not a Series, as there is more than one column selected from the DataFrame. Use a list, square brackets [], to subset more than one column.
 
 ```{python}
 mtcars[mtcars["mpg"] > 30][["mpg", "cyl"]]
 ```
 
+Both pandas Series and NumPy arrays can be used for faster performance or vector operations. Many functions require a vector as input.
+
+The following code returns one column, mpg, as a pandas Series. A pandas Series is one column from a pandas DataFrame.
+
+```{python}
+mtcars[mtcars["mpg"] > 30]["mpg"]
+```
+
+The following code also returns a pandas Series, but using the `.` operator to select for a column, rather than square brackets [].
+
+```{python}
+mtcars[mtcars["mpg"] > 30].mpg
+```
+
+Both of the following lines of code return NumPy arrays using the `.values` function. `df1` is one dimension, for the one column, and `df1` is two dimensions, for the two columns.
+
+```{python}
+df1 = mtcars[mtcars["mpg"] > 30]["mpg"].values
+df2 = mtcars[mtcars["mpg"] > 30][["mpg", "cyl"]].values
+```
+
 You can also filter with multiple row conditions.
 
 ```{python}
-mtcars[mtcars["mpg"] > 30][mtcars["hp"] < 66][["mpg", "cyl"]]
-```
-
-Using the `.values` function returns a NumPy array, which can be used for vector operations (many functions require some sort of vector, like a numpy array of list, rather than a DataFrame) or faster performance.
-
-```{python}
-mtcars[mtcars["mpg"] > 30].values
+mtcars[mtcars["mpg"] > 30][mtcars["hp"] < 66]
 ```
 
 #### R {-}
