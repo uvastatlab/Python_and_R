@@ -1,7 +1,7 @@
 # Basics 
 
 ```{r,echo=FALSE}
-knitr::opts_chunk$set(comment = NA, prompt = TRUE, collapse = TRUE)
+knitr::opts_chunk$set(comment = '##', prompt = FALSE, collapse = FALSE)
 ```
 
 This chapter covers the very basics of Python and R.

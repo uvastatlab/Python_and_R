@@ -1,7 +1,7 @@
 # Data Manipulation
 
 ```{r,echo=FALSE}
-knitr::opts_chunk$set(comment = NA, prompt = TRUE, collapse = TRUE)
+knitr::opts_chunk$set(comment = '##', prompt = FALSE, collapse = FALSE)
 ```
 
 This chapter looks at various strategies for filtering, selecting, modifying and deriving variables in data. Unless otherwise stated, examples are for DataFrames (Python) and data frames (R) and use the mtcars data frame that is included with R.

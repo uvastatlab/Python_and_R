@@ -1,7 +1,7 @@
 # Combine, Reshape and Merge
 
 ```{r,echo=FALSE}
-knitr::opts_chunk$set(comment = NA, prompt = TRUE, collapse = TRUE)
+knitr::opts_chunk$set(comment = '##', prompt = FALSE, collapse = FALSE)
 ```
 
 This chapter looks at various strategies for combining, reshaping, and merging data.
@@ -124,21 +124,29 @@ The following is an example of a wide DataFrame.
 import numpy as np
 import pandas as pd
 
-data = {"sex": np.random.choice(['i', 'f', 'm'], 3),
-"wk1": np.random.choice(range(20), 3),
-"wk2": np.random.choice(range(20), 3),
-"wk3": np.random.choice(range(20), 3)}
+data = {"id": [1, 2, 3],
+        "wk1": np.random.choice(range(20), 3),
+        "wk2": np.random.choice(range(20), 3),
+        "wk3": np.random.choice(range(20), 3)}
 
 df_wide = pd.DataFrame(data)
+print(df_wide)
 ```
 
 The following code uses the pandas `melt()` function to reshape the DataFrame from wide to long.
 
 ```{python}
-pd.melt(df_wide,
-id_vars = ["sex"],
-value_vars = ["wk1", "wk2", "wk3"],
-value_name = "observations")
+dataL = pd.melt(df_wide,
+
+                # column(s) that uniquely identifies/y each row
+                id_vars = ["id"],
+                
+                # variables that contain the values to be lengthened
+                value_vars = ["wk1", "wk2", "wk3"],
+                
+                # desired name of column in long data that will contain values
+                value_name = "observations")
+print(dataL)
 ```
 
 #### R {-}
@@ -160,11 +168,20 @@ To lengthen a data frame using `reshape()`, a user provides arguments specifying
 
 ```{r}
 df_long <- reshape(df_wide,
-                        direction = 'long',
-                        idvar = c('id', 'sex'), # column(s) that uniquely identifies/y each row
-                        varying = c('wk1', 'wk2', 'wk3'), # variables that contain the values to be lengthened
-                        v.names = 'val', # desired name of column in long data that will contain values
-                        timevar = 'week') # desired name of column in long data that will identify each value's context
+                   direction = 'long',
+                   
+                   # column(s) that uniquely identifies/y each row
+                   idvar = c('id', 'sex'), 
+                   
+                   # variables that contain the values to be lengthened
+                   varying = c('wk1', 'wk2', 'wk3'), 
+                   
+                   # desired name of column in long data that will contain values
+                   v.names = 'val', 
+                   
+                   # desired name of column in long data that will 
+                   # identify each value's context
+                   timevar = 'week')
 df_long
 ```
 
@@ -173,9 +190,19 @@ The **tidyverse** function for taking data from wide to long is `pivot_longer()`
 ```{r, message = F}
 library(tidyverse)
 df_long_PL <- pivot_longer(df_wide,
-                             cols = -c('id', 'sex'), # columns that contain the values to be lengthened (can use -c() to negate variables)
-                             names_to = 'week', # desired name of column in long data that will identify each value's context
-                             values_to = 'val') # desired name of column in long data that will contain values
+                           
+                           # columns that contain the 
+                           # values to be lengthened 
+                           # (can use -c() to negate variables)
+                           cols = -c('id', 'sex'), 
+                           
+                           # desired name of column in long data 
+                           # that will identify each value's context
+                           names_to = 'week',
+                           
+                           # desired name of column in long data 
+                           # that will contain values
+                           values_to = 'val') 
 df_long_PL
 ```
 
@@ -199,8 +226,15 @@ animals_wide
 ```{r}
 animals_long_1 <- pivot_longer(animals_wide,
                              cols = -c('animal', 'lives_in_water'),
-                             names_to = c('month', '.value'), # ".value" is placeholder for strings that will be extracted from wide column names 
-                             names_pattern = '(.+)_(.+)') # specify structure of wide column names with regex from which long column names will be extracted
+                             
+                             # ".value" is placeholder for strings 
+                             # that will be extracted from wide column names 
+                             names_to = c('month', '.value'),
+                             
+                             # specify structure of wide column names 
+                             # with regex from which long column names 
+                             # will be extracted
+                             names_pattern = '(.+)_(.+)') 
 animals_long_1
 ```
 
@@ -219,7 +253,7 @@ animals_long_2
 
 #### Python {-}
 
-To reshape a DataFrame from long to wide, we can use the pandas `pivot()` and `pivot_table()` functions.
+To reshape a DataFrame from long to wide, we can use the pandas `pivot_table()` function.
 
 The following is an example of a long DataFrame.
 
@@ -227,23 +261,24 @@ The following is an example of a long DataFrame.
 import numpy as np
 import pandas as pd
 
-data = {"sex": np.random.choice(['i', 'f', 'm'], 9),
-"week": np.random.choice(range(3), 9),
-"observations": np.random.choice(range(20), 9)}
+data = {"id": np.concatenate([([i]*3) for i in [1,2,3]], axis=0),
+        "week": [1, 2, 3] * 3,
+        "observations": np.random.choice(range(20), 9)}
 
 df_long = pd.DataFrame(data)
+print(df_long)
 ```
 
 The following code uses the pandas `pivot_table()` function to reshape the DataFrame from long to wide.
 
 ```{python}
 df_wide = pd.pivot_table(df_long,
-index='sex',
-columns='week',
-values='observations')
-
-df_wide 
+          index='id',
+          columns='week',
+          values='observations')
+print(df_wide)
 ```
+
 
 #### R {-}
 

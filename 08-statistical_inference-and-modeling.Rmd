@@ -1,7 +1,7 @@
 # Selected Topics in Statistical Inference
 
 ```{r,echo=FALSE}
-knitr::opts_chunk$set(comment = NA, prompt = TRUE, collapse = TRUE)
+knitr::opts_chunk$set(comment = '##', prompt = FALSE, collapse = FALSE)
 ```
 
 This chapter looks at performing selected statistical analyses. It is not comprehensive. The focus is on implementation using Python and R. Good statistical practice is more than knowing which function to use. At a minimum we recommend reading the article, [Ten Simple Rules for Effective Statistical Practice](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004961) [@kass_caffo_davidian_meng_yu_reid_2016].
