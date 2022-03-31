@@ -344,6 +344,58 @@ whiteside = r.whiteside
 
 #### Python {-}
 
+In Python, the `OLS()` function in the statsmodels package fits a linear model. 
+
+First, we select a column for the independent variable y, the variable to be predicted, and then columns for the dependent variable X, the variable(s) used to predict.
+
+```{python}
+# load packages
+import statsmodels.api as sm
+
+# select dependent variables
+X = whiteside[["Insul", "Temp"]]
+X
+```
+
+Notice that X contains a column of categorical data. Categorical data cannot be an input to a linear regression model unless converted to an indicator, or dummy, variable. An indicator variable is a numerical encoding of a categorical variable. We can use the pandas `get_dummies()` function to convert categorical variables to indicator variables. 
+
+```{python}
+import pandas as pd
+
+X = pd.get_dummies(X, columns=['Insul'], drop_first=True)
+X
+```
+
+To add an intercept to the model, use the statsmodels `add_constant()` function to add a column of 1s to the X data. This column of 1s serves as an input to fit an intercept. Then we pass the y and X variables into the `OLS()` function.
+
+```{python}
+# select independent variables
+y = whiteside[["Gas"]]
+
+# add column of 1s for intercept
+X = sm.add_constant(X)
+
+model = sm.OLS(y, X)
+results = model.fit()
+```
+
+The `summary()` function produces the standard regression summary one typically finds described in a statistics textbook.
+
+```{python}
+print(results.summary())
+```
+
+Because there are only 3 axes in the model (2 dependent variables and 1 independent variable) we can visu
+
+```{python}
+from matplotlib.pyplot as plt
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+img = ax.grid(False)
+
+
+```
 
 #### R {-}
 
