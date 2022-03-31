@@ -475,6 +475,40 @@ birthwt = r.birthwt
 
 #### Python {-}
 
+```{python}
+import statsmodels.api as sm
+import numpy as np
+
+# Dependent variable (endogenous variable in documentation)
+data_endog = birthwt["low"].values
+
+# Independent variables (exogenous variable in documentation)
+data_exog = birthwt.drop(['low'], axis = 1)
+data_exog = pd.get_dummies(data_exog, columns=['race','ftv'], drop_first=True)
+
+data_exog
+
+model = sm.GLM(data_endog, data_exog, family=sm.families.Binomial())
+res = model.fit()
+res.summary()
+
+print(data_exog)
+```
+
+
+```{python}
+### TRIAL ###
+
+data = sm.datasets.star98.load()
+
+data.exog = sm.add_constant(data.exog, prepend=False)
+
+glm_binom = sm.GLM(data.endog, data.exog, family=sm.families.Binomial())
+res = glm_binom.fit()
+#print(res.summary())
+
+
+```
 
 #### R {-}
 
