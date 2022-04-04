@@ -475,40 +475,46 @@ birthwt = r.birthwt
 
 #### Python {-}
 
+The Python statistics library `statsmodels` has a function `GLM` that fits a general linear model using a specified model. The two main arguments of this function are `endog` and `exog`. `endog` refers to the endogenous or dependent variable, and `exog` refers to the exogenous or independent variable(s) in the dataset. 
+
+Here we extract the endogenous and exogenous variables from the data. We are looking to model `low` as a function of all other variables. This means `low` is the endogenous variable, and all variables except `low` are exogenous.
+
 ```{python}
 import statsmodels.api as sm
-import numpy as np
 
-# Dependent variable (endogenous variable in documentation)
-data_endog = birthwt["low"].values
+# Extract the endogenous/dependent variable
+data_endog = birthwt["low"]
 
-# Independent variables (exogenous variable in documentation)
+# Extract the exogenous/independent variables (exogenous variable in documentation)
 data_exog = birthwt.drop(['low'], axis = 1)
-data_exog = pd.get_dummies(data_exog, columns=['race','ftv'], drop_first=True)
-
-data_exog
-
-model = sm.GLM(data_endog, data_exog, family=sm.families.Binomial())
-res = model.fit()
-res.summary()
-
-print(data_exog)
 ```
 
+One important thing to note is that `GLM` can only construct the model if the data are all numerical. In this dataset, two of the exogenous variables are categorical, not numerical: `race` and `ftv`. To make this data compatible with the `GLM` function, we use the pandas `get_dummies()` function. This function converts categorical data into dummy indicator variables. 
 
 ```{python}
-### TRIAL ###
-
-data = sm.datasets.star98.load()
-
-data.exog = sm.add_constant(data.exog, prepend=False)
-
-glm_binom = sm.GLM(data.endog, data.exog, family=sm.families.Binomial())
-res = glm_binom.fit()
-#print(res.summary())
-
-
+data_exog = pd.get_dummies(data_exog, columns=['race','ftv'], drop_first=True).astype('float64')
 ```
+
+Now that all of our data is in the right format, we can build the model. 
+
+```{python}
+model = sm.GLM(data_endog, data_exog, family=sm.families.Binomial())
+res = model.fit()
+```
+
+We can then call `summary()` on our fit model to see the model coefficients and statistics. 
+
+```{python}
+#res.summary()
+```
+
+We can also see coefficients by using the `.params` attribute of our model, and confidence intervals using the `.conf_int()` method. 
+
+```{python}
+res.params #coefficients of the model 
+res.conf_int() #confidence intervals of the model
+```
+
 
 #### R {-}
 
