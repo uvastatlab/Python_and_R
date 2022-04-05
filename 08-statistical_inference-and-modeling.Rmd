@@ -512,7 +512,11 @@ We can also see coefficients by using the `.params` attribute of our model, and 
 
 ```{python}
 res.params #coefficients of the model 
-res.conf_int() #confidence intervals of the model
+res.conf_int() #confidence intervals of the model, defaults to 95% but can specify in the argument
+```
+
+```{python}
+#fig = sm.graphics.plot_fit(res, "lwt")
 ```
 
 
