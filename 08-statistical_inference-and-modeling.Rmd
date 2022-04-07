@@ -475,12 +475,40 @@ birthwt = r.birthwt
 
 #### Python {-}
 
-The Python statistics library `statsmodels` has a function `GLM` that fits a general linear model using a specified model. The two main arguments of this function are `endog` and `exog`. `endog` refers to the endogenous or dependent variable, and `exog` refers to the exogenous or independent variable(s) in the dataset. 
+The Python statistics library `statsmodels.formula` has a function `logit` that fits a logistic regression model to your specified dataset. We specify how we want to model our data as a formula string in the argument of the `logit` function. The format is as follows: dependent/response variable followed by a tilde (`~`), then the predictor variables separated by a plus sign (`+`). We also specfiy our data set in the agrument as well. 
+
+```{python}
+import statsmodels.formula.api as smf
+
+log_reg = smf.logit("low ~ age + lwt + race + smoke + ptd + ht + ui + ftv", data=birthwt).fit()
+```
+
+Once we fit the logistic regression, we can extract the information from it using funcitons and attributes. 
+
+- `.summary()`: returns a description of model coefficients along with standard errors and other statistics
+- `.params`:  returns coefficients of the model 
+- `.conf_int()`: returns 95% confidence interval of the coefficients 
+
+```{python}
+log_reg.summary()
+log_reg.params
+log_reg.conf_int()
+```
+
+
+
+```{python}
+#sm.graphics.plot_fit(log_reg,"low" )
+#type(log_reg)
+```
+
+We can also build our logistic regression model using the function `GLM` from the `statsmodels` library. This function fits a general linear model to the data using a specified model. The two main arguments of this function are `endog` and `exog`. `endog` refers to the endogenous or dependent variable, and `exog` refers to the exogenous or independent variable(s) in the data set. 
 
 Here we extract the endogenous and exogenous variables from the data. We are looking to model `low` as a function of all other variables. This means `low` is the endogenous variable, and all variables except `low` are exogenous.
 
 ```{python}
 import statsmodels.api as sm
+import pandas as pd
 
 # Extract the endogenous/dependent variable
 data_endog = birthwt["low"]
@@ -500,21 +528,18 @@ Now that all of our data is in the right format, we can build the model.
 
 ```{python}
 model = sm.GLM(data_endog, data_exog, family=sm.families.Binomial())
-res = model.fit()
+log_reg_2 = model.fit()
 ```
 
 We can then call `summary()` on our fit model to see the model coefficients and statistics. 
 
 ```{python}
-res.summary()
+log_reg_2.summary()
+log_reg_2.params
+log_reg_2.conf_int()
 ```
 
-We can also see coefficients by using the `.params` attribute of our model, and confidence intervals using the `.conf_int()` method. 
-
-```{python}
-res.params #coefficients of the model 
-res.conf_int() #confidence intervals of the model, defaults to 95% but can specify in the argument
-```
+Notice we get the same results using both methods. 
 
 ```{python}
 #sm.graphics.plot_fit(res, "ptd")
@@ -526,19 +551,8 @@ plt.show()
 ```
 
 
-```{python}
-import statsmodels.formula.api as smf
 
-log_reg = smf.logit("low ~ age + lwt + race + smoke + ptd + ht + ui + ftv", data=birthwt).fit()
-log_reg.summary()
-```
 
-```{python}
-sm.graphics.plot_fit(log_reg,"low" )
-```
-```{python}
-type(log_reg)
-```
 #### R {-}
 
 The `glm()` function fits a generalized linear model in R using whatever model we propose. We specify models using a special syntax. The basic construction is to first list your dependent or response variable, then a tilde (`~`), and then your predictor variables, or terms, separated by plus operators (`+`). Listing two variables separated by a colon (`:`) indicates we wish to fit an interaction for those variables. See `?formula` for further details on formula syntax.
