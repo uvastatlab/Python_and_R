@@ -346,56 +346,63 @@ whiteside = r.whiteside
 
 In Python, the `OLS()` function in the statsmodels package fits a linear model. 
 
-First, we select a column for the independent variable y, the variable to be predicted, and then columns for the dependent variable X, the variable(s) used to predict.
+In this example, we fit a linear model to predict gas prices from insulation, temperature, and the interaction between insulation and temperature.
+
+The basic construction is to first list your dependent or response variable, then a tilde (`~`), and then your predictor variables, or terms, separated by plus operators (`+`). Listing two variables separated by a colon (`:`) indicates we wish to fit an interaction for those variables. The variables in the formula correspond to columns in a pandas DataFrame. Users specify the pandas DataFrame using the `data` argument.
 
 ```{python}
-# load packages
 import statsmodels.api as sm
+import statsmodels.formula.api as smf
 
-# select dependent variables
-X = whiteside[["Insul", "Temp"]]
-X
+model = smf.ols('Gas ~ Insul + Temp + Insul:Temp', data=whiteside)
+results = model.fit() # fit the linear model
 ```
 
-Notice that X contains a column of categorical data. Categorical data cannot be an input to a linear regression model unless converted to an indicator, or dummy, variable. An indicator variable is a numerical encoding of a categorical variable. We can use the pandas `get_dummies()` function to convert categorical variables to indicator variables. 
+Once you fit your model, you can extract information about it using several functions. The most commonly used include:
 
-```{python}
-import pandas as pd
+- `summary()`: summary of model coefficients with standard errors and test statistics
+- `params`: model coefficients
+- `conf_int()`: 95% confidence interval of model coefficients
+- statsmodels provides functions for diagnostic plots. A few examples are shown below.
 
-X = pd.get_dummies(X, columns=['Insul'], drop_first=True)
-X
-```
-
-To add an intercept to the model, use the statsmodels `add_constant()` function to add a column of 1s to the X data. This column of 1s serves as an input to fit an intercept. Then we pass the y and X variables into the `OLS()` function.
-
-```{python}
-# select independent variables
-y = whiteside[["Gas"]]
-
-# add column of 1s for intercept
-X = sm.add_constant(X)
-
-model = sm.OLS(y, X)
-results = model.fit()
-```
-
-The `summary()` function produces the standard regression summary one typically finds described in a statistics textbook.
+The `summary()` function produces the standard regression summary one typically finds in a statistics textbook.
 
 ```{python}
 print(results.summary())
 ```
 
-Because there are only 3 axes in the model (2 dependent variables and 1 independent variable) we can visu
+The following code produces a fitted vs residual plot for the model.
 
 ```{python}
-from matplotlib.pyplot as plt
-
-fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
-img = ax.grid(False)
-
-
+plt.figure()
+smoothed_line = sm.nonparametric.lowess(results.resid, results.fittedvalues)
+plt.plot(results.fittedvalues, results.resid, ".")
+plt.plot(smoothed_line[:,0], smoothed_line[:,1],color = 'r')
+plt.xlabel("fitted values")
+plt.ylabel("residuals")
+plt.title("residuals vs fitted")
+plt.show()
 ```
+
+For the model's Q-Q plot, use the `qqplot()` function.
+
+```{python}
+import matplotlib.pyplot as plt
+
+plt.figure()
+sm.graphics.qqplot(results.get_influence().resid_studentized_internal)
+plt.title("q-q")
+plt.show()
+```
+
+For the model's residuals vs leverage, or influence plot, use the influence_plot() function.
+
+```{python}
+plt.figure()
+sm.graphics.influence_plot(results)
+plt.show()
+```
+
 
 #### R {-}
 
@@ -423,7 +430,7 @@ summary(m)
 Calling `plot()` on a model object produces four different diagnostic plots by default. Using the `which` argument we can specify which of six possible plots to create. The first one checks the constant variance assumption (ie, that our model is not dramatically over- or under-predicting values.) We hope to see residuals evenly scattered around 0. (See `?plot.lm` for more details on the diagnostic plots.)
 
 ```{r}
-plot(m, which = 1)
+plot(m)
 ```
 
 Once we fit a model and we're reasonably confident that it's a good model, we may want to visualize it. Three packages in R that help with this are **emmeans**, **effects**, and **ggeffects**. We briefly demonstrate the **ggeffects** package.
