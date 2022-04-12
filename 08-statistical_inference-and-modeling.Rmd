@@ -488,6 +488,16 @@ The Python statistics library `statsmodels.formula` has a function `logit` that 
 import statsmodels.formula.api as smf
 
 log_reg = smf.logit("low ~ age + lwt + race + smoke + ptd + ht + ui + ftv", data=birthwt).fit()
+#log_reg = log_reg_0.fit()
+
+#log_reg_0.endog = "low"
+#log_reg_0.exog = birthwt.drop(['low'], axis = 1)
+
+
+
+#mitght have to set model.endog and model.exog
+
+#log_reg.predict({"ptd":[0]})
 ```
 
 Once we fit the logistic regression, we can extract the information from it using funcitons and attributes. 
@@ -505,8 +515,14 @@ log_reg.conf_int()
 
 
 ```{python}
-#sm.graphics.plot_fit(log_reg,"low" )
+import matplotlib.pyplot as plt
+#sm.graphics.plot_fit(log_reg,0 )
+sm.graphics.influence_plot(log_reg)
+#plt.show()
 #type(log_reg)
+```
+```{python}
+type(log_reg)
 ```
 
 We can also build our logistic regression model using the function `GLM` from the `statsmodels` library. This function fits a general linear model to the data using a specified model. The two main arguments of this function are `endog` and `exog`. `endog` refers to the endogenous or dependent variable, and `exog` refers to the exogenous or independent variable(s) in the data set. 
