@@ -2898,7 +2898,7 @@ This chapter looks at creating basic plots to explore and understand data. Visua
 
 The plots below make use of the [**palmerpenguins**](https://allisonhorst.github.io/palmerpenguins/) data set, which contains various measurements for 344 penguins across three islands in the Antarctic Palmer Archipelago. The data were collected by [Kristen Gorman](https://www.uaf.edu/cfos/people/faculty/detail/kristen-gorman.php) and colleagues, and they were made available under a [CC0 public domain license](https://creativecommons.org/share-your-work/public-domain/cc0/) by Allison Horst, Alison Hill, and Kristen Gorman.
 
-For the R sections below, we discuss how to generate plots using base R and using **ggplot2**.
+For the R sections below, we show how to make each plot with base R and with **ggplot2**.
 
 ```{r, echo = F}
 library(palmerpenguins)
@@ -2919,18 +2919,18 @@ Visualizing the distribution of numeric data.
 
 #### Python {-}
 
-The Python plotting library Matplotlib's `hist()` function computes and plots a histogram. There are many parameters that can be specified within the `hist()` function so that you can customize the output histogram plot to best fit your needs. Some parameters include the number of bins, the upper and lower bounds on each bin, weights, colors, and more. 
+The Python library **Matplotlib** provides the `hist()` function to compute and plot a histogram. There are many parameters that can be specified within the `hist()` function so that you can customize the output histogram plot to best fit your needs. Some parameters include the number of bins, the upper and lower bounds on each bin, weights, colors, and more. 
 
-Below we show a histogram of the bill length from the dataset. We specified 30 bins each of which is light blue with a black outline of linewidth 1. The `hist()` defaults to no outline which can make it difficult to distinguish bins clearly, so we add in the bin outlines here. 
+Below we show a histogram of the bill lengths from the penguins dataset. We specified 30 bins, each of which is light blue with a black outline of `linewidth = 1`. The `hist()` function defaults to no outline, which can make it difficult to distinguish bins clearly, so we add in the bin outlines here. 
 
-One thing to note is that the bins are left inclusive and right exclusive. For example, if a particular bin spans the range of 1 to 3, the bin will include the value 1 but will exclude the value 2 (and will include all values between 1 and 3). In short, bin ranges are as follows [x1,x2) where x1 is the starting point of the bin and x2 is the ending point of the bin. 
+One thing to note is that the bins are left inclusive and right exclusive. For example, if a particular bin spans the range of 1 to 3, the bin will include the value 1 but will exclude the value 3 (and will include all values between 1 and 3). In short, bin ranges are as follows [x1,x2) where x1 is the starting point of the bin and x2 is the ending point of the bin. 
 
 Notice the semicolon at the end of the `plt.hist()` function. This suppresses the printing of the array generated to create the histogram. 
 
 ```{python}
 import matplotlib.pyplot as plt
 
-plt.clf()
+plt.clf() # clear the current figure
 plt.hist(penguins.bill_length_mm, bins=30, range=(30,60),
          color='lightblue', edgecolor='k', linewidth=1);
 plt.title("Penguin Bill Lengths")
@@ -2940,17 +2940,24 @@ plt.show()
 ```
 
 #### R {-}
+
 Base R's `hist()` function generates histograms, and features of the histogram---like the bar color, number of bins/breaks, and so on---can be easily customized as below.
+
 ```{r}
-hist(penguins$bill_length_mm, breaks = 25, col = 'lightblue', xlim = c(30, 60),
-     main = 'Penguin Bill Lengths', xlab = 'Bill Length (mm)', ylab = 'Count')
+hist(penguins$bill_length_mm, breaks = 25, col = 'lightblue', 
+     xlim = c(30, 60),
+     main = 'Penguin Bill Lengths', 
+     xlab = 'Bill Length (mm)', ylab = 'Count')
 ```
 
-The **ggplot2** method for generating histograms follows the standard **ggplot2** syntax: Initialize a plot with `ggplot()`, and then add layers thereto, specifying aesthetic properties along the way. Here, the layer to add is `geom_histogram()`.
+The **ggplot2** method for generating histograms follows the standard **ggplot2** syntax: Initialize a plot with `ggplot()`, and then add layers thereto. Here, the layer to add is `geom_histogram()`.
+
 ```{r, warning = F}
 ggplot(penguins, aes(x = bill_length_mm)) +
   geom_histogram(fill = 'lightblue', color = 'black', bins = 25) +
-  xlim(30, 60) + labs(title = 'Penguin Bill Lengths', x = 'Bill Length (mm)', y = 'Count')
+  xlim(30, 60) + 
+  labs(title = 'Penguin Bill Lengths', 
+       x = 'Bill Length (mm)', y = 'Count')
 ```
 
 ## Barplots
@@ -2958,9 +2965,10 @@ ggplot(penguins, aes(x = bill_length_mm)) +
 Visualizing the distribution of categorical data.
 
 #### Python {-}
+
 For this example, we will generate a bar plot showing how many of each species---Adelie, Chinstrap, Gentoo---we have in our dataset. We go through two ways of doing this here. 
 
-First, we use the Matplotlib plotting library to create the bar plot using the function `bar()`. To start, we determine the number of each species, then use that data to create the bar plot. 
+First, we use the **Matplotlib** plotting library to create the bar plot using the function `bar()`. To start, we determine the number of each species, then use that data to create the bar plot. 
 
 ```{python}
 import matplotlib.pyplot as plt 
@@ -2979,25 +2987,30 @@ plt.bar(spec,counts)
 plt.show()
 ```
 
-Our data is stored in a `pandas Dataframe`, which has it's own built-in plotting module, `plot`. Here we create the same bar plot by using the pandas `bar()` function. 
+Our data is stored in a `pandas Dataframe`, which has its own built-in plotting module, `plot`. Here we create the same bar plot by using the pandas `bar()` function. 
 
 ```{python}
 plt.clf()
 penguins["species"].value_counts().plot.bar()
 plt.show()
 ```
-One thing to note here is that we generated the same bar plot containing the same information with way less effort. Using the built-in pandas plotting routine proved to be the more efficient method here. 
+
+One thing to note here is that we generated the same bar plot as we first made with way less effort. Using the built-in pandas plotting routine proved to be the more efficient method here. 
 
 #### R {-}
+
 To form barplots, we'll first take the **penguins** data set and create a summary data frame containing the statistics we're looking to plot. Here, that's simply the sample size of each species in the data set.
+
 ```{r}
 species_counts <- as.data.frame(xtabs(~ species, data = penguins))
 species_counts
 ```
 
 We can plot those values using the `barplot()` function in base R, specifying arguments along the way to customize the title/axis labeling, bar colors, and range of the y axis. To add values above the bars, we can follow `barplot()` with a `text()` call as below.
+
 ```{r}
-penguin_plot <- barplot(Freq ~ species, data = species_counts, col = c('lightblue', 'cornflowerblue', 'darkslateblue'),
+penguin_plot <- barplot(Freq ~ species, data = species_counts, 
+                        col = c('lightblue', 'cornflowerblue', 'darkslateblue'),
                         main = 'Species Sample Size', 
                         xlab = 'Species', ylab = 'Count', ylim = c(0, 200))
 text(x = penguin_plot, y = species_counts$Freq + 10, 
@@ -3005,13 +3018,21 @@ text(x = penguin_plot, y = species_counts$Freq + 10,
 ```
 
 To recreate the barplot above with **ggplot2**, one can add a `geom_bar()` layer to a plot initialized with `ggplot()`.
+
 ```{r, warning = F}
 ggplot(species_counts, aes(x = species, y = Freq)) +
   geom_bar(aes(fill = species), stat = 'identity') +
-  scale_fill_manual(values = c('lightblue', 'cornflowerblue', 'darkslateblue')) + # scale_fill_manual() is used here for bar-color customization
+  
+  # scale_fill_manual() is used here for bar-color customization
+  scale_fill_manual(values = c('lightblue', 'cornflowerblue', 'darkslateblue')) + 
   labs(title = 'Species Sample Size', x = 'Species', y = 'Count') +
-  theme(legend.position = 'none') + ylim(0, 200) + # For simplicity, we omit the legend here using the code at left
-  geom_text(aes(label = Freq, vjust = -0.5)) # geom_text() is used here to add counts above the bars
+  
+  # For simplicity, we omit the legend 
+  theme(legend.position = 'none') + 
+  ylim(0, 200) + 
+  
+  # geom_text() is used here to add counts above the bars
+  geom_text(aes(label = Freq, vjust = -0.5)) 
 ```
 
 ## Scatterplot
@@ -3025,9 +3046,17 @@ The `scatter()` function, part of **matplotlib**, can produce scatterplots in Py
 ```{python}
 import matplotlib.pyplot as plt
 
-penguins_no_na = penguins.dropna() # remove NA rows, as we only want to plot present data
+# remove NA rows, as we only want to plot present data
+penguins_no_na = penguins.dropna() 
+
 plt.clf() # clear the plotting space to prevent plot overlap
-plt.scatter(x = penguins_no_na['body_mass_g'], y = penguins_no_na['flipper_length_mm'], c = 'lightblue', marker = 'd') # 'd' generates diamond markers; learn more about available marker shapes here: https://matplotlib.org/stable/api/markers_api.html#module-matplotlib.markers
+
+# 'd' generates diamond markers; 
+# learn more about available marker shapes: 
+# https://matplotlib.org/stable/api/markers_api.html#module-matplotlib.markers
+plt.scatter(x = penguins_no_na['body_mass_g'], 
+            y = penguins_no_na['flipper_length_mm'], 
+            c = 'lightblue', marker = 'd') 
 plt.xlabel('Body Mass (g)')
 plt.ylabel('Flipper Length (mm)')
 plt.title('Scatterplot of Body Mass and Flipper Length')
@@ -3036,7 +3065,9 @@ plt.show()
 ```
 
 #### R {-}
+
 Scatterplots can be generated in base R with the `plot()` function. The `pch` argument below modifies the point shape (e.g., 20 = solid circle; 24 = unfilled triangle; etc.)
+
 ```{r}
 plot(x = penguins$body_mass_g, y = penguins$flipper_length_mm, 
      col = 'navy', pch = 20,
@@ -3045,6 +3076,7 @@ plot(x = penguins$body_mass_g, y = penguins$flipper_length_mm,
 ```
 
 To generate a scatterplot with **ggplot2**, initialize a plot with `ggplot()`, then add a layer of points with `geom_point()`.
+
 ```{r, warning = F}
 ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +
   geom_point(color = 'navy') +
@@ -3071,7 +3103,7 @@ The [stripplot](https://seaborn.pydata.org/generated/seaborn.stripplot.html) hel
 
 #### R {-}
 
-Base R offers the `stripchart()` function. To indicate the numeric variable and the grouping variable, you can use formula notation: `numeric_var ~ grouping_var`. Adding `methhod = 'jitter'` to the set of arguments spreads the points out slightly within each level of the grouping variable, making it easier to see points that might otherwise be obscured by overlap.
+Base R offers the `stripchart()` function. To indicate the numeric variable and the grouping variable, you can use formula notation: `numeric_var ~ grouping_var`. Adding `method = 'jitter'` to the arguments spreads the points out slightly within each level of the grouping variable, making it easier to see points that might otherwise be obscured by overlap.
 
 ```{r}
 stripchart(bill_depth_mm ~ island, data = penguins, 
@@ -3081,10 +3113,14 @@ stripchart(bill_depth_mm ~ island, data = penguins,
 ```
 
 Stripcharts can also be made with **ggplots2**'s  `geom_jitter()` function, as shown below. You can control the amount of jitter with a `position` argument in `geom_jitter()`.
+
 ```{r}
 ggplot(penguins, aes(x = island, y = bill_depth_mm)) +
   geom_jitter(aes(color = island), position = position_jitter(0.1)) +
-  scale_color_manual(values = c('lightblue', 'cornflowerblue', 'darkslateblue')) + # scale_fill_manual() is used to manually specify group colors once aes(color = island) is specified in `geom_jitter()`
+  
+  # scale_fill_manual() is used to manually specify group colors 
+  # once aes(color = island) is specified in `geom_jitter()`
+  scale_color_manual(values = c('lightblue', 'cornflowerblue', 'darkslateblue')) + 
   labs(title = 'Stripchart of Bill Depth by Island', 
        x = 'Island', y = 'Bill Depth (mm)') +
   theme(legend.position = 'none')
@@ -3110,13 +3146,18 @@ plt.show()
 ```
 
 #### R {-}
-The `boxplot()` function in base R generates boxplots, and a user specifies the grouping variable and the numeric variable to be plotted in formula notation: `y ~ grouping_var`.
+
+The `boxplot()` function in base R generates boxplots. A user specifies the grouping variable and the numeric variable to be plotted in formula notation: `y ~ grouping_var`.
+
 ```{r}
-boxplot(bill_depth_mm ~ island, data = penguins, col = c('lightblue', 'cornflowerblue', 'darkslateblue'),
-        main = 'Boxplot of Bill Depth by Island', xlab = 'Island', ylab = 'Bill Depth (mm)')
+boxplot(bill_depth_mm ~ island, data = penguins, 
+        col = c('lightblue', 'cornflowerblue', 'darkslateblue'),
+        main = 'Boxplot of Bill Depth by Island', 
+        xlab = 'Island', ylab = 'Bill Depth (mm)')
 ```
 
 To generate a boxplot with **ggplot2**, add a `geom_boxplot()` layer to a plot initialized with `ggplot()`.
+
 ```{r, warning = F}
 ggplot(penguins, aes(x = island, y = bill_depth_mm)) +
   geom_boxplot(aes(fill = island)) +
@@ -3136,8 +3177,9 @@ The seaborn package provides several functions for creating facet plots, includi
 
 ```{python}
 plt.clf()
-sns.lmplot(x = "bill_length_mm", y = "bill_depth_mm", col = "species",
-          data = penguins, ci = None)
+sns.lmplot(x = "bill_length_mm", y = "bill_depth_mm", 
+           col = "species",
+           data = penguins, ci = None)
 ```
 
 To facet by two variables, provide variables to both the `col` and `row` arguments.
@@ -3192,18 +3234,24 @@ coplot(flipper_length_mm ~ body_mass_g | bill_length_mm,
 ```
 
 Alternatively, **ggplot2** provides a intuitive and easy-to-use method for generating facet plots: A user specifies the aesthetics of the plot using standard **ggplot2** syntax (i.e., as a series of added layers) and then adds an additional call, `facet_wrap()` (or `facet_grid()`; differences are discussed below), specifying the faceting variable(s) to split up the plots by.
+
 ```{r, warning = F}
 ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   geom_point(color = 'navy') +
-  geom_smooth(method = 'lm', se = F, color = 'salmon') + # Add least-squares line
-  facet_wrap(~species)
-# Use formula notation, a character vector, or vars() to specify faceting
-# variables; e.g., ~species, c('species'), or vars(species)
+  
+  # Add least-squares line
+  geom_smooth(method = 'lm', se = FALSE, color = 'salmon') + 
+  
+  # Use formula notation, a character vector, or vars() to 
+  # specify faceting variables; e.g., ~species, c('species'), 
+  # or vars(species)
+  facet_wrap(~ species)
 ```
 
 The number of rows and columns can be manually specified with `nrow` and `ncol` arguments in `facet_wrap()`. By default, the x and y axes of all facet plots will be on the same scale. The axis ranges can be set to vary freely by adding `scales = 'free'` as an argument (or, alternatively, `scales = 'free_x'` or `scales = 'free_y'` to free just the x or y axis).
 
 Both `facet_wrap()` and `facet_grid()` can be used to make facet plots. When faceting based on multiple variables (e.g., species and sex), `facet_wrap()` will drop group combinations for which there are no data points, whereas `facet_grid()` will generate a plot for all possible group combinations:
+
 ```{r, warning = F}
 ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   geom_point(color = 'navy') +
@@ -3213,10 +3261,12 @@ ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
 ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   geom_point(color = 'navy') +
   geom_smooth(method = 'lm', se = F, color = 'salmon') +
+  
+  # Note that facet_grid() has separate `rows` and `cols` arguments 
+  # for specifying faceting variables
   facet_grid(rows = vars(sex), cols = vars(species)) 
-# Note that facet_grid() has separate `rows` and `cols` arguments for specifying
-# faceting variables
 ```
+
 
 <!--chapter:end:07-basic-plotting-and-visualization.Rmd-->
 
@@ -3625,6 +3675,48 @@ sm.graphics.influence_plot(results)
 plt.show()
 ```
 
+The following code plots "Temp" values and corresponding model predictions using the `plot_fit()` function.
+
+```{python}
+plt.figure()
+sm.graphics.plot_fit(results, 'Temp')
+plt.show()
+```
+
+The following code plots model predictions. Each curve on the plot represents a level of the variable "Insul".
+
+```{python}
+import numpy as np
+import pandas as pd
+
+# create DataFrame (wrt Inusl == "Before") to pass into predict function
+temp = np.linspace(whiteside["Temp"].min(), whiteside["Temp"].max())
+insul_before = ["Before"]*temp.shape[0]
+whiteside_before = pd.DataFrame({"Temp": temp, "Insul": insul_before, "Insul:Temp":0**temp.shape[0]})
+before_predict_object = results.get_prediction(whiteside_before)
+before_predictions = before_predict_object.predicted_mean
+before_ci = before_predict_object.conf_int()
+
+# create DataFrame (wrt Inusl == "After") to pass into predict function
+insul_after = ["After"]*temp.shape[0]
+whiteside_after = pd.DataFrame({"Temp": temp, "Insul": insul_after, "Insul:Temp":temp})
+after_predictions_object = results.get_prediction(whiteside_after)
+after_predictions = after_predictions_object.predicted_mean
+after_ci = after_predictions_object.conf_int()
+
+# plot results
+plt.figure()
+fig, ax1, ax2 = plt.subplots()
+plt.plot(temp, before_predictions, color = "red", label="Before")
+plt.fill_between(temp, before_ci[:,0], before_ci[:,1], color = "red", alpha = 0.1)
+plt.plot(temp, after_predictions, color="blue", label="After")
+plt.fill_between(temp, after_ci[:,0], after_ci[:,1], color = "blue", alpha = 0.1)
+plt.legend(title="Insul")
+plt.title("Predicted values of Gas")
+plt.xlabel("Temp")
+plt.ylabel("Gas")
+plt.show()
+```
 
 #### R {-}
 
@@ -3704,12 +3796,56 @@ birthwt = r.birthwt
 
 #### Python {-}
 
-The Python statistics library `statsmodels` has a function `GLM` that fits a general linear model using a specified model. The two main arguments of this function are `endog` and `exog`. `endog` refers to the endogenous or dependent variable, and `exog` refers to the exogenous or independent variable(s) in the dataset. 
+The Python statistics library `statsmodels.formula` has a function `logit` that fits a logistic regression model to your specified dataset. We specify how we want to model our data as a formula string in the argument of the `logit` function. The format is as follows: dependent/response variable followed by a tilde (`~`), then the predictor variables separated by a plus sign (`+`). We also specfiy our data set in the agrument as well. 
+
+```{python}
+import statsmodels.formula.api as smf
+
+log_reg = smf.logit("low ~ age + lwt + race + smoke + ptd + ht + ui + ftv", data=birthwt).fit()
+#log_reg = log_reg_0.fit()
+
+#log_reg_0.endog = "low"
+#log_reg_0.exog = birthwt.drop(['low'], axis = 1)
+
+
+
+#mitght have to set model.endog and model.exog
+
+#log_reg.predict({"ptd":[0]})
+```
+
+Once we fit the logistic regression, we can extract the information from it using funcitons and attributes. 
+
+- `.summary()`: returns a description of model coefficients along with standard errors and other statistics
+- `.params`:  returns coefficients of the model 
+- `.conf_int()`: returns 95% confidence interval of the coefficients 
+
+```{python}
+log_reg.summary()
+log_reg.params
+log_reg.conf_int()
+```
+
+
+
+```{python}
+import matplotlib.pyplot as plt
+#sm.graphics.plot_fit(log_reg,0 )
+sm.graphics.influence_plot(log_reg)
+#plt.show()
+#type(log_reg)
+```
+```{python}
+type(log_reg)
+```
+
+We can also build our logistic regression model using the function `GLM` from the `statsmodels` library. This function fits a general linear model to the data using a specified model. The two main arguments of this function are `endog` and `exog`. `endog` refers to the endogenous or dependent variable, and `exog` refers to the exogenous or independent variable(s) in the data set. 
 
 Here we extract the endogenous and exogenous variables from the data. We are looking to model `low` as a function of all other variables. This means `low` is the endogenous variable, and all variables except `low` are exogenous.
 
 ```{python}
 import statsmodels.api as sm
+import pandas as pd
 
 # Extract the endogenous/dependent variable
 data_endog = birthwt["low"]
@@ -3729,21 +3865,18 @@ Now that all of our data is in the right format, we can build the model.
 
 ```{python}
 model = sm.GLM(data_endog, data_exog, family=sm.families.Binomial())
-res = model.fit()
+log_reg_2 = model.fit()
 ```
 
 We can then call `summary()` on our fit model to see the model coefficients and statistics. 
 
 ```{python}
-res.summary()
+log_reg_2.summary()
+log_reg_2.params
+log_reg_2.conf_int()
 ```
 
-We can also see coefficients by using the `.params` attribute of our model, and confidence intervals using the `.conf_int()` method. 
-
-```{python}
-res.params #coefficients of the model 
-res.conf_int() #confidence intervals of the model, defaults to 95% but can specify in the argument
-```
+Notice we get the same results using both methods. 
 
 ```{python}
 #sm.graphics.plot_fit(res, "ptd")
@@ -3755,19 +3888,8 @@ plt.show()
 ```
 
 
-```{python}
-import statsmodels.formula.api as smf
 
-log_reg = smf.logit("low ~ age + lwt + race + smoke + ptd + ht + ui + ftv", data=birthwt).fit()
-log_reg.summary()
-```
 
-```{python}
-sm.graphics.plot_fit(log_reg,"low" )
-```
-```{python}
-type(log_reg)
-```
 #### R {-}
 
 The `glm()` function fits a generalized linear model in R using whatever model we propose. We specify models using a special syntax. The basic construction is to first list your dependent or response variable, then a tilde (`~`), and then your predictor variables, or terms, separated by plus operators (`+`). Listing two variables separated by a colon (`:`) indicates we wish to fit an interaction for those variables. See `?formula` for further details on formula syntax.
