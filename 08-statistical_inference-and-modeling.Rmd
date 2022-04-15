@@ -416,11 +416,14 @@ The following code plots model predictions. Each curve on the plot represents a 
 ```{python}
 import numpy as np
 import pandas as pd
+from statsmodels.sandbox.predict_functional import predict_functional
 
 # create DataFrame (wrt Inusl == "Before") to pass into predict function
 temp = np.linspace(whiteside["Temp"].min(), whiteside["Temp"].max())
 insul_before = ["Before"]*temp.shape[0]
-whiteside_before = pd.DataFrame({"Temp": temp, "Insul": insul_before, "Insul:Temp":0**temp.shape[0]})
+# whiteside_before = pd.DataFrame({"Temp": temp, "Insul": insul_before})
+whiteside_before = {"Temp": temp, "Insul": insul_before, "Insul:Temp":[0]*temp.shape[0]}
+# pr, cb, fv = predict_functional(results, "Temp", values=whiteside_before, ci_method='scheffe')
 before_predict_object = results.get_prediction(whiteside_before)
 before_predictions = before_predict_object.predicted_mean
 before_ci = before_predict_object.conf_int()
@@ -434,7 +437,6 @@ after_ci = after_predictions_object.conf_int()
 
 # plot results
 plt.figure()
-fig, ax1, ax2 = plt.subplots()
 plt.plot(temp, before_predictions, color = "red", label="Before")
 plt.fill_between(temp, before_ci[:,0], before_ci[:,1], color = "red", alpha = 0.1)
 plt.plot(temp, after_predictions, color="blue", label="After")
