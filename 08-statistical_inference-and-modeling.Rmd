@@ -530,18 +530,42 @@ The Python statistics library `statsmodels.formula` has a function `logit` that 
 
 ```{python}
 import statsmodels.formula.api as smf
+import statsmodels.api as sm
+import matplotlib.pyplot as plt
+import statsmodels.graphics.regressionplots as grf
 
 log_reg = smf.logit("low ~ age + lwt + race + smoke + ptd + ht + ui + ftv", data=birthwt).fit()
-#log_reg = log_reg_0.fit()
 
-#log_reg_0.endog = "low"
-#log_reg_0.exog = birthwt.drop(['low'], axis = 1)
+#sm.graphics.plot_fit(log_reg,2)
+plt.clf()
+sm.graphics.plot_fit(log_reg,"age")
+plt.show()
+```
 
 
+```{python}
+###########
+## TRIAL
+###########
+x = birthwt.drop(['low'], axis = 1)
+x = pd.get_dummies(x, columns=['race','ftv'], drop_first=True).astype('float64')
+y = birthwt["low"].values.astype('float64')
+x = sm.add_constant(x)
 
-#mitght have to set model.endog and model.exog
+log_reg_TRIAL = sm.Logit(y,x)
+log_reg_TRIAL_fit = log_reg_TRIAL.fit()
 
-#log_reg.predict({"ptd":[0]})
+sm.graphics.plot_fit(log_reg_TRIAL_fit,4)
+plt.show()
+
+```
+
+```{python}
+import seaborn as sns
+
+plt.clf()
+ax = sns.regplot(y = "low", x = "lwt", data = birthwt, logistic = True)
+plt.show()
 ```
 
 Once we fit the logistic regression, we can extract the information from it using funcitons and attributes. 
@@ -554,19 +578,6 @@ Once we fit the logistic regression, we can extract the information from it usin
 log_reg.summary()
 log_reg.params
 log_reg.conf_int()
-```
-
-
-
-```{python}
-import matplotlib.pyplot as plt
-#sm.graphics.plot_fit(log_reg,0 )
-sm.graphics.influence_plot(log_reg)
-#plt.show()
-#type(log_reg)
-```
-```{python}
-type(log_reg)
 ```
 
 We can also build our logistic regression model using the function `GLM` from the `statsmodels` library. This function fits a general linear model to the data using a specified model. The two main arguments of this function are `endog` and `exog`. `endog` refers to the endogenous or dependent variable, and `exog` refers to the exogenous or independent variable(s) in the data set. 
@@ -607,15 +618,6 @@ log_reg_2.conf_int()
 ```
 
 Notice we get the same results using both methods. 
-
-```{python}
-#sm.graphics.plot_fit(res, "ptd")
-import seaborn as sns 
-
-sns.lmplot(x="lwt", y="low", data=birthwt, logistic=False)
-plt.show()
-
-```
 
 
 
