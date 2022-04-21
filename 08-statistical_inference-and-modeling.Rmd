@@ -374,7 +374,6 @@ print(results.summary())
 The following code produces a fitted vs residual plot for the model.
 
 ```{python}
-import matplotlib.pyplot as plt
 plt.figure()
 smoothed_line = sm.nonparametric.lowess(results.resid, results.fittedvalues)
 plt.plot(results.fittedvalues, results.resid, ".")
@@ -396,7 +395,7 @@ plt.title("q-q")
 plt.show()
 ```
 
-For the model's residuals vs leverage, or influence plot, use the `influence_plot()` function.
+For the model's residuals vs leverage, or influence plot, use the influence_plot() function.
 
 ```{python}
 plt.figure()
@@ -431,7 +430,7 @@ summary(m)
 Calling `plot()` on a model object produces four different diagnostic plots by default. Using the `which` argument we can specify which of six possible plots to create. The first one checks the constant variance assumption (ie, that our model is not dramatically over- or under-predicting values.) We hope to see residuals evenly scattered around 0. (See `?plot.lm` for more details on the diagnostic plots.)
 
 ```{r}
-plot(m, which = 1)
+plot(m)
 ```
 
 Once we fit a model and we're reasonably confident that it's a good model, we may want to visualize it. Three packages in R that help with this are **emmeans**, **effects**, and **ggeffects**. We briefly demonstrate the **ggeffects** package.
@@ -482,6 +481,102 @@ birthwt = r.birthwt
 
 
 #### Python {-}
+
+The Python statistics library `statsmodels.formula` has a function `logit` that fits a logistic regression model to your specified dataset. We specify how we want to model our data as a formula string in the argument of the `logit` function. The format is as follows: dependent/response variable followed by a tilde (`~`), then the predictor variables separated by a plus sign (`+`). We also specfiy our data set in the agrument as well. 
+
+```{python}
+import statsmodels.formula.api as smf
+import statsmodels.api as sm
+import matplotlib.pyplot as plt
+import statsmodels.graphics.regressionplots as grf
+
+log_reg = smf.logit("low ~ age + lwt + race + smoke + ptd + ht + ui + ftv", data=birthwt).fit()
+
+#sm.graphics.plot_fit(log_reg,2)
+plt.clf()
+sm.graphics.plot_fit(log_reg,"age")
+plt.show()
+```
+
+
+```{python}
+###########
+## TRIAL
+###########
+x = birthwt.drop(['low'], axis = 1)
+x = pd.get_dummies(x, columns=['race','ftv'], drop_first=True).astype('float64')
+y = birthwt["low"].values.astype('float64')
+x = sm.add_constant(x)
+
+log_reg_TRIAL = sm.Logit(y,x)
+log_reg_TRIAL_fit = log_reg_TRIAL.fit()
+
+sm.graphics.plot_fit(log_reg_TRIAL_fit,4)
+plt.show()
+
+```
+
+```{python}
+import seaborn as sns
+
+plt.clf()
+ax = sns.regplot(y = "low", x = "lwt", data = birthwt, logistic = True)
+plt.show()
+```
+
+Once we fit the logistic regression, we can extract the information from it using funcitons and attributes. 
+
+- `.summary()`: returns a description of model coefficients along with standard errors and other statistics
+- `.params`:  returns coefficients of the model 
+- `.conf_int()`: returns 95% confidence interval of the coefficients 
+
+```{python}
+log_reg.summary()
+log_reg.params
+log_reg.conf_int()
+```
+
+We can also build our logistic regression model using the function `GLM` from the `statsmodels` library. This function fits a general linear model to the data using a specified model. The two main arguments of this function are `endog` and `exog`. `endog` refers to the endogenous or dependent variable, and `exog` refers to the exogenous or independent variable(s) in the data set. 
+
+Here we extract the endogenous and exogenous variables from the data. We are looking to model `low` as a function of all other variables. This means `low` is the endogenous variable, and all variables except `low` are exogenous.
+
+```{python}
+import statsmodels.api as sm
+import pandas as pd
+
+# Extract the endogenous/dependent variable
+data_endog = birthwt["low"]
+
+# Extract the exogenous/independent variables (exogenous variable in documentation)
+data_exog = birthwt.drop(['low'], axis = 1)
+```
+
+One important thing to note is that `GLM` can only construct the model if the data are all numerical. In this dataset, two of the exogenous variables are categorical, not numerical: `race` and `ftv`. To make this data compatible with the `GLM` function, we use the pandas `get_dummies()` function. This function converts categorical data into dummy indicator variables. 
+
+```{python}
+data_exog = pd.get_dummies(data_exog, columns=['race','ftv'], drop_first=True).astype('float64')
+data_exog = sm.add_constant(data_exog)
+```
+
+Now that all of our data is in the right format, we can build the model. 
+
+```{python}
+model = sm.GLM(data_endog, data_exog, family=sm.families.Binomial())
+log_reg_2 = model.fit()
+```
+
+We can then call `summary()` on our fit model to see the model coefficients and statistics. 
+
+```{python}
+log_reg_2.summary()
+log_reg_2.params
+log_reg_2.conf_int()
+```
+
+Notice we get the same results using both methods. 
+
+
+
 
 #### R {-}
 
