@@ -4370,7 +4370,7 @@ Here is an example of howto add and subtract datesa and times using these object
 \end{Shaded}
 
 \begin{verbatim}
-## 2022-04-21 12:02:58.678367
+## 2022-04-21 13:05:18.574440
 \end{verbatim}
 
 \begin{Shaded}
@@ -4383,7 +4383,7 @@ Here is an example of howto add and subtract datesa and times using these object
 \end{Shaded}
 
 \begin{verbatim}
-## 2023-10-23 12:02:58.678367
+## 2023-10-23 13:05:18.574440
 \end{verbatim}
 
 \begin{Shaded}
@@ -4394,7 +4394,7 @@ Here is an example of howto add and subtract datesa and times using these object
 \end{Shaded}
 
 \begin{verbatim}
-## 2022-04-21 07:02:58.678367
+## 2022-04-21 08:05:18.574440
 \end{verbatim}
 
 Finally, we will discuss how to convert strings to datetime objects and vice versa.
@@ -4408,7 +4408,7 @@ The attribute \texttt{strftime()} converts datetime objects to strings. In the a
 \end{Shaded}
 
 \begin{verbatim}
-## datetime.datetime(2022, 4, 21, 12, 2, 58, 678367)
+## datetime.datetime(2022, 4, 21, 13, 5, 18, 574440)
 \end{verbatim}
 
 \begin{Shaded}
@@ -4621,12 +4621,14 @@ To create a sample with a fixed number of rows, use the \texttt{n} argument.
 \end{Shaded}
 
 \begin{verbatim}
-##      MPG  CYL   DISP   HP  AXLE_RATIO    WT   QSEC  VS AM  GEAR  CARB       KPL
-## 2   22.8    4  108.0   93        3.85  2.32  18.61   1  1     4     1  4.846939
-## 2   22.8    4  108.0   93        3.85  2.32  18.61   1  1     4     1  4.846939
-## 11  16.4    8  275.8  180        3.07  4.07  17.40   0  0     3     3  3.486395
-## 10  17.8    6  167.6  123        3.92  3.44  18.90   1  0     4     4  3.784014
-## 6   14.3    8  360.0  245        3.21  3.57  15.84   0  0     3     4  3.039966
+##      MPG  CYL   DISP   HP  AXLE_RATIO  ...  VS  AM  GEAR CARB       KPL
+## 22  15.2    8  304.0  150        3.15  ...   0   0     3    2  3.231293
+## 4   18.7    8  360.0  175        3.15  ...   0   0     3    2  3.975340
+## 7   24.4    4  146.7   62        3.69  ...   1   0     4    2  5.187075
+## 4   18.7    8  360.0  175        3.15  ...   0   0     3    2  3.975340
+## 21  15.5    8  318.0  150        2.76  ...   0   0     3    2  3.295068
+## 
+## [5 rows x 12 columns]
 \end{verbatim}
 
 To create a sample of a proportion, use the \texttt{frac} argument.
@@ -4669,11 +4671,11 @@ The \texttt{random.choice()} function creates a random sample according to the g
 
 \begin{verbatim}
 ##      MPG  CYL   DISP   HP  AXLE_RATIO  ...  VS  AM  GEAR CARB       KPL
-## 2   22.8    4  108.0   93        3.85  ...   1   1     4    1  4.846939
-## 16  14.7    8  440.0  230        3.23  ...   0   0     3    4  3.125000
-## 29  19.7    6  145.0  175        3.62  ...   0   1     5    6  4.187925
-## 19  33.9    4   71.1   65        4.22  ...   1   1     4    1  7.206633
-## 15  10.4    8  460.0  215        3.00  ...   0   0     3    4  2.210884
+## 17  32.4    4   78.7   66        4.08  ...   1   1     4    1  6.887755
+## 11  16.4    8  275.8  180        3.07  ...   0   0     3    3  3.486395
+## 11  16.4    8  275.8  180        3.07  ...   0   0     3    3  3.486395
+## 3   21.4    6  258.0  110        3.08  ...   1   0     3    1  4.549320
+## 26  26.0    4  120.3   91        4.43  ...   0   1     5    2  5.527211
 ## 
 ## [5 rows x 12 columns]
 \end{verbatim}
@@ -4715,15 +4717,15 @@ There are many ways to sample rows from a data frame in R. The \href{https://dpl
 
 \begin{verbatim}
 ##    mpg cylinders  disp  hp axle_ratio weight  qsec engine am gear carb am_ch
-## 1 26.0         4 120.3  91       4.43  2.140 16.70      0  1    5    2     1
-## 2 15.2         8 304.0 150       3.15  3.435 17.30      0  0    3    2     0
-## 3 21.0         6 160.0 110       3.90  2.875 17.02      0  1    4    4     1
-## 4 13.3         8 350.0 245       3.73  3.840 15.41      0  0    3    4     0
-## 5 15.5         8 318.0 150       2.76  3.520 16.87      0  0    3    2     0
+## 1 16.4         8 275.8 180       3.07  4.070 17.40      0  0    3    3     0
+## 2 21.4         6 258.0 110       3.08  3.215 19.44      1  0    3    1     0
+## 3 19.2         8 400.0 175       3.08  3.845 17.05      0  0    3    2     0
+## 4 15.2         8 275.8 180       3.07  3.780 18.00      0  0    3    3     0
+## 5 18.1         6 225.0 105       2.76  3.460 20.22      1  0    3    1     0
 ##      am_fac
-## 1    manual
+## 1 automatic
 ## 2 automatic
-## 3    manual
+## 3 automatic
 ## 4 automatic
 ## 5 automatic
 \end{verbatim}
@@ -4737,18 +4739,18 @@ There are many ways to sample rows from a data frame in R. The \href{https://dpl
 
 \begin{verbatim}
 ##    mpg cylinders  disp  hp axle_ratio weight  qsec engine am gear carb am_ch
-## 1 15.5         8 318.0 150       2.76  3.520 16.87      0  0    3    2     0
-## 2 10.4         8 472.0 205       2.93  5.250 17.98      0  0    3    4     0
-## 3 21.0         6 160.0 110       3.90  2.620 16.46      0  1    4    4     1
-## 4 21.5         4 120.1  97       3.70  2.465 20.01      1  0    3    1     0
-## 5 19.2         6 167.6 123       3.92  3.440 18.30      1  0    4    4     0
-## 6 30.4         4  75.7  52       4.93  1.615 18.52      1  1    4    2     1
+## 1 33.9         4  71.1  65       4.22  1.835 19.90      1  1    4    1     1
+## 2 18.7         8 360.0 175       3.15  3.440 17.02      0  0    3    2     0
+## 3 17.8         6 167.6 123       3.92  3.440 18.90      1  0    4    4     0
+## 4 13.3         8 350.0 245       3.73  3.840 15.41      0  0    3    4     0
+## 5 21.0         6 160.0 110       3.90  2.875 17.02      0  1    4    4     1
+## 6 26.0         4 120.3  91       4.43  2.140 16.70      0  1    5    2     1
 ##      am_fac
-## 1 automatic
+## 1    manual
 ## 2 automatic
-## 3    manual
+## 3 automatic
 ## 4 automatic
-## 5 automatic
+## 5    manual
 ## 6    manual
 \end{verbatim}
 
@@ -4768,17 +4770,17 @@ The base R functions \texttt{sample()} and \texttt{runif()} can be combined to s
 
 \begin{verbatim}
 ##     mpg cylinders  disp  hp axle_ratio weight  qsec engine am gear carb am_ch
-## 12 16.4         8 275.8 180       3.07  4.070 17.40      0  0    3    3     0
-## 32 21.4         4 121.0 109       4.11  2.780 18.60      1  1    4    2     1
+## 19 30.4         4  75.7  52       4.93  1.615 18.52      1  1    4    2     1
 ## 17 14.7         8 440.0 230       3.23  5.345 17.42      0  0    3    4     0
-## 23 15.2         8 304.0 150       3.15  3.435 17.30      0  0    3    2     0
-## 28 30.4         4  95.1 113       3.77  1.513 16.90      1  1    5    2     1
+## 12 16.4         8 275.8 180       3.07  4.070 17.40      0  0    3    3     0
+## 3  22.8         4 108.0  93       3.85  2.320 18.61      1  1    4    1     1
+## 15 10.4         8 472.0 205       2.93  5.250 17.98      0  0    3    4     0
 ##       am_fac
-## 12 automatic
-## 32    manual
+## 19    manual
 ## 17 automatic
-## 23 automatic
-## 28    manual
+## 12 automatic
+## 3     manual
+## 15 automatic
 \end{verbatim}
 
 \begin{Shaded}
@@ -4794,13 +4796,19 @@ The base R functions \texttt{sample()} and \texttt{runif()} can be combined to s
 
 \begin{verbatim}
 ##     mpg cylinders  disp  hp axle_ratio weight  qsec engine am gear carb am_ch
-## 24 13.3         8 350.0 245       3.73  3.840 15.41      0  0    3    4     0
-## 28 30.4         4  95.1 113       3.77  1.513 16.90      1  1    5    2     1
-## 29 15.8         8 351.0 264       4.22  3.170 14.50      0  1    5    4     1
+## 5  18.7         8 360.0 175       3.15  3.440 17.02      0  0    3    2     0
+## 7  14.3         8 360.0 245       3.21  3.570 15.84      0  0    3    4     0
+## 11 17.8         6 167.6 123       3.92  3.440 18.90      1  0    4    4     0
+## 26 27.3         4  79.0  66       4.08  1.935 18.90      1  1    4    1     1
+## 27 26.0         4 120.3  91       4.43  2.140 16.70      0  1    5    2     1
+## 30 19.7         6 145.0 175       3.62  2.770 15.50      0  1    5    6     1
 ##       am_fac
-## 24 automatic
-## 28    manual
-## 29    manual
+## 5  automatic
+## 7  automatic
+## 11 automatic
+## 26    manual
+## 27    manual
+## 30    manual
 \end{verbatim}
 
 The random sample will change every time the code is run. To always generate the same ``random'' sample, use the \texttt{set.seed()} function with any positive integer.
@@ -6433,33 +6441,6 @@ The \texttt{boxplot()} function in seaborn generates boxplots, and matplotlib ca
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## Traceback (most recent call last):
-##   File "C:\Users\jcf2d\AppData\Roaming\Python\Python39\site-packages\matplotlib\backends\backend_qt.py", line 455, in _draw_idle
-##     self.draw()
-##   File "C:\Users\jcf2d\AppData\Roaming\Python\Python39\site-packages\matplotlib\backends\backend_agg.py", line 436, in draw
-##     self.figure.draw(self.renderer)
-##   File "C:\Users\jcf2d\AppData\Roaming\Python\Python39\site-packages\matplotlib\artist.py", line 73, in draw_wrapper
-##     result = draw(artist, renderer, *args, **kwargs)
-##   File "C:\Users\jcf2d\AppData\Roaming\Python\Python39\site-packages\matplotlib\artist.py", line 50, in draw_wrapper
-##     return draw(artist, renderer)
-##   File "C:\Users\jcf2d\AppData\Roaming\Python\Python39\site-packages\matplotlib\figure.py", line 2810, in draw
-##     mimage._draw_list_compositing_images(
-##   File "C:\Users\jcf2d\AppData\Roaming\Python\Python39\site-packages\matplotlib\image.py", line 132, in _draw_list_compositing_images
-##     a.draw(renderer)
-##   File "C:\Users\jcf2d\AppData\Roaming\Python\Python39\site-packages\matplotlib\artist.py", line 50, in draw_wrapper
-##     return draw(artist, renderer)
-##   File "C:\Users\jcf2d\AppData\Roaming\Python\Python39\site-packages\matplotlib\axes\_base.py", line 3046, in draw
-##     self._update_title_position(renderer)
-##   File "C:\Users\jcf2d\AppData\Roaming\Python\Python39\site-packages\matplotlib\axes\_base.py", line 2984, in _update_title_position
-##     if (ax.xaxis.get_ticks_position() in ['top', 'unknown']
-##   File "C:\Users\jcf2d\AppData\Roaming\Python\Python39\site-packages\matplotlib\axis.py", line 2232, in get_ticks_position
-##     self._get_ticks_position()]
-##   File "C:\Users\jcf2d\AppData\Roaming\Python\Python39\site-packages\matplotlib\axis.py", line 1936, in _get_ticks_position
-##     major = self.majorTicks[0]
-## IndexError: list index out of range
-\end{verbatim}
-
 \includegraphics{_main_files/figure-latex/unnamed-chunk-288-1.pdf}
 
 \hypertarget{r-45}{%
@@ -7302,7 +7283,7 @@ The \texttt{summary()} function produces the standard regression summary one typ
 ## Model:                            OLS   Adj. R-squared:                  0.924
 ## Method:                 Least Squares   F-statistic:                     222.3
 ## Date:                Thu, 21 Apr 2022   Prob (F-statistic):           1.23e-29
-## Time:                        12:03:57   Log-Likelihood:                -14.100
+## Time:                        13:06:05   Log-Likelihood:                -14.100
 ## No. Observations:                  56   AIC:                             36.20
 ## Df Residuals:                      52   BIC:                             44.30
 ## Df Model:                           3                                         
@@ -7342,46 +7323,7 @@ The following code produces a fitted vs residual plot for the model.
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-337-1.pdf}
 
-For the model's Q-Q plot, use the \texttt{qqplot()} function.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\ImportTok{import}\NormalTok{ matplotlib.pyplot }\ImportTok{as}\NormalTok{ plt}
-
-\NormalTok{plt.figure()}
-\NormalTok{sm.graphics.qqplot(results.get\_influence().resid\_studentized\_internal)}
-\NormalTok{plt.title(}\StringTok{"q{-}q"}\NormalTok{)}
-\NormalTok{plt.show()}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{_main_files/figure-latex/unnamed-chunk-338-3.pdf}
-
-For the model's residuals vs leverage, or influence plot, use the influence\_plot() function.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{plt.figure()}
-\NormalTok{sm.graphics.influence\_plot(results)}
-\NormalTok{plt.show()}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{_main_files/figure-latex/unnamed-chunk-339-5.pdf}
-
-The following code plots ``Temp'' values and corresponding model predictions using the \texttt{plot\_fit()} function.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{plt.figure()}
-\NormalTok{sm.graphics.plot\_fit(results, }\StringTok{\textquotesingle{}Temp\textquotesingle{}}\NormalTok{)}
-\NormalTok{plt.show()}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{_main_files/figure-latex/unnamed-chunk-340-7.pdf}
-
-The following code plots model predictions. Each curve on the plot represents a level of the variable ``Insul''.
+The following code plots model predictions. Each line of the plot represents a level of the variable ``Insul''.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7420,7 +7362,9 @@ The following code plots model predictions. Each curve on the plot represents a 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-341-9.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-338-3.pdf}
+
+We see that after installing insulation, gas consumption fell considerably, and that the effect of temperature on gas consumption is less pronounced.
 
 \hypertarget{r-49}{%
 \subsubsection*{R}\label{r-49}}
@@ -7485,11 +7429,11 @@ Calling \texttt{plot()} on a model object produces four different diagnostic plo
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{plot}\NormalTok{(m)}
+\FunctionTok{plot}\NormalTok{(m, }\AttributeTok{which =} \DecValTok{1}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-344-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-344-2.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-344-3.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-344-4.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-341-1.pdf}
 
 Once we fit a model and we're reasonably confident that it's a good model, we may want to visualize it. Three packages in R that help with this are \textbf{emmeans}, \textbf{effects}, and \textbf{ggeffects}. We briefly demonstrate the \textbf{ggeffects} package.
 
@@ -7505,7 +7449,7 @@ Once loaded, we can get a basic visualization of our model by using the \texttt{
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-345-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-342-1.pdf}
 
 We see that after installing insulation, gas consumption fell considerably, and that the effect of temperature on gas consumption is less pronounced.
 
@@ -7573,7 +7517,7 @@ The Python statistics library \texttt{statsmodels.formula.api} provides the \tex
 ## Link Function:                  Logit   Scale:                          1.0000
 ## Method:                          IRLS   Log-Likelihood:                -97.738
 ## Date:                Thu, 21 Apr 2022   Deviance:                       195.48
-## Time:                        12:04:10   Pearson chi2:                     179.
+## Time:                        13:06:10   Pearson chi2:                     179.
 ## No. Iterations:                     5   Pseudo R-squ. (CS):             0.1873
 ## Covariance Type:            nonrobust                                         
 ## =================================================================================
@@ -7669,7 +7613,7 @@ Finally we can make the plot.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-353-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-350-1.pdf}
 
 \hypertarget{r-50}{%
 \subsubsection*{R}\label{r-50}}
@@ -7789,7 +7733,7 @@ You need to first install the \textbf{ggeffects} package as it does not come wit
 
 Once loaded, we can get a basic visualization of our model by using the \texttt{plot()} and \texttt{ggpredict()} functions. This is particularly useful for logistic regression models because it produces model predictions on a probability scale.
 
-Use the \texttt{terms} argument to specify which variables to plot. Below we create two plots: one for \texttt{ptd} (previous premature labors) and one for \texttt{lwt} (mother's weight at last menstrual period).
+Use the \texttt{terms} argument to specify which variables to plot. Below we plot the probability of low infant birth weight versus whether or not the mother had previous premature labors (1 = yes, 0 = no).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7799,19 +7743,9 @@ Use the \texttt{terms} argument to specify which variables to plot. Below we cre
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-359-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-356-1.pdf}
 
 It looks like the probability of low infant birth weight jumps from about 12\% to over 35\% for mothers who previously experienced premature labors, though the error bars on the expected values are quite large.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{plot}\NormalTok{(}\FunctionTok{ggpredict}\NormalTok{(mod, }\AttributeTok{terms =} \StringTok{"lwt"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{_main_files/figure-latex/unnamed-chunk-360-1.pdf}
-
-It appears the probability of low infant birth weight drops from about 15\% when a mother weighs 100 lbs to about 5\% when a mother weighs around 200 lbs. The regions with the larger confidence ribbon indicate regions of higher uncertainty. There are clearly not many mothers in our data who weigh less than 100 lbs.
 
   \bibliography{book.bib,packages.bib}
 

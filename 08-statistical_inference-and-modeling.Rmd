@@ -384,34 +384,7 @@ plt.title("residuals vs fitted")
 plt.show()
 ```
 
-For the model's Q-Q plot, use the `qqplot()` function.
-
-```{python}
-import matplotlib.pyplot as plt
-
-plt.figure()
-sm.graphics.qqplot(results.get_influence().resid_studentized_internal)
-plt.title("q-q")
-plt.show()
-```
-
-For the model's residuals vs leverage, or influence plot, use the influence_plot() function.
-
-```{python}
-plt.figure()
-sm.graphics.influence_plot(results)
-plt.show()
-```
-
-The following code plots "Temp" values and corresponding model predictions using the `plot_fit()` function.
-
-```{python}
-plt.figure()
-sm.graphics.plot_fit(results, 'Temp')
-plt.show()
-```
-
-The following code plots model predictions. Each curve on the plot represents a level of the variable "Insul".
+The following code plots model predictions. Each line of the plot represents a level of the variable "Insul".
 
 ```{python}
 import numpy as np
@@ -448,6 +421,8 @@ plt.ylabel("Gas")
 plt.show()
 ```
 
+We see that after installing insulation, gas consumption fell considerably, and that the effect of temperature on gas consumption is less pronounced.
+
 #### R {-}
 
 The `lm()` function fits a linear model in R using whatever model we propose. We specify models using a special syntax. The basic construction is to first list your dependent or response variable, then a tilde (`~`), and then your predictor variables, or terms, separated by plus operators (`+`). Listing two variables separated by a colon (`:`) indicates we wish to fit an interaction for those variables. See `?formula` for further details on formula syntax.
@@ -474,7 +449,7 @@ summary(m)
 Calling `plot()` on a model object produces four different diagnostic plots by default. Using the `which` argument we can specify which of six possible plots to create. The first one checks the constant variance assumption (ie, that our model is not dramatically over- or under-predicting values.) We hope to see residuals evenly scattered around 0. (See `?plot.lm` for more details on the diagnostic plots.)
 
 ```{r}
-plot(m)
+plot(m, which = 1)
 ```
 
 Once we fit a model and we're reasonably confident that it's a good model, we may want to visualize it. Three packages in R that help with this are **emmeans**, **effects**, and **ggeffects**. We briefly demonstrate the **ggeffects** package.
@@ -646,7 +621,7 @@ You need to first install the **ggeffects** package as it does not come with the
 
 Once loaded, we can get a basic visualization of our model by using the `plot()` and `ggpredict()` functions. This is particularly useful for logistic regression models because it produces model predictions on a probability scale. 
 
-Use the `terms` argument to specify which variables to plot. Below we create two plots: one for `ptd` (previous premature labors) and one for `lwt` (mother's weight at last menstrual period).
+Use the `terms` argument to specify which variables to plot. Below we plot the probability of low infant birth weight versus whether or not the mother had previous premature labors (1 = yes, 0 = no).
 
 ```{r}
 # install.packages("ggeffects")
@@ -655,11 +630,5 @@ plot(ggpredict(mod, terms = "ptd"))
 ```
 
 It looks like the probability of low infant birth weight jumps from about 12% to over 35% for mothers who previously experienced premature labors, though the error bars on the expected values are quite large. 
-
-```{r message=FALSE}
-plot(ggpredict(mod, terms = "lwt"))
-```
-
-It appears the probability of low infant birth weight drops from about 15% when a mother weighs 100 lbs to about 5% when a mother weighs around 200 lbs. The regions with the larger confidence ribbon indicate regions of higher uncertainty. There are clearly not many mothers in our data who weigh less than 100 lbs.
 
 
