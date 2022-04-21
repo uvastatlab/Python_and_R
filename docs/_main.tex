@@ -118,7 +118,7 @@
 
 \title{Python and R}
 \author{Clay Ford, Jacob Goldstein-Greenwood, Oyinkansola Adenekan, Samantha Lomuscio}
-\date{2022-03-25}
+\date{2022-04-21}
 
 \begin{document}
 \maketitle
@@ -4164,7 +4164,7 @@ To get today's date, we can use the \texttt{date.today()} function:
 \end{Shaded}
 
 \begin{verbatim}
-## 2022-03-25
+## 2022-04-21
 \end{verbatim}
 
 Note that the output of both x and today are only year-month-day because they are date objects.
@@ -4188,7 +4188,7 @@ We can extract each of these attributes (year, month, day) from the date object 
 \end{Shaded}
 
 \begin{verbatim}
-## 3
+## 4
 \end{verbatim}
 
 \begin{Shaded}
@@ -4198,7 +4198,7 @@ We can extract each of these attributes (year, month, day) from the date object 
 \end{Shaded}
 
 \begin{verbatim}
-## 25
+## 21
 \end{verbatim}
 
 Next we will discuss the \texttt{time()} class. This class creates time objects containing information about only a time. The attributes that go into the \texttt{time()} class are hours, minutes, seconds in that order. Like the date class, these attributes must be inputted as integers.
@@ -4370,7 +4370,7 @@ Here is an example of howto add and subtract datesa and times using these object
 \end{Shaded}
 
 \begin{verbatim}
-## 2022-03-25 09:07:26.782922
+## 2022-04-21 12:02:58.678367
 \end{verbatim}
 
 \begin{Shaded}
@@ -4383,7 +4383,7 @@ Here is an example of howto add and subtract datesa and times using these object
 \end{Shaded}
 
 \begin{verbatim}
-## 2023-09-26 09:07:26.782922
+## 2023-10-23 12:02:58.678367
 \end{verbatim}
 
 \begin{Shaded}
@@ -4394,7 +4394,7 @@ Here is an example of howto add and subtract datesa and times using these object
 \end{Shaded}
 
 \begin{verbatim}
-## 2022-03-25 04:07:26.782922
+## 2022-04-21 07:02:58.678367
 \end{verbatim}
 
 Finally, we will discuss how to convert strings to datetime objects and vice versa.
@@ -4408,7 +4408,7 @@ The attribute \texttt{strftime()} converts datetime objects to strings. In the a
 \end{Shaded}
 
 \begin{verbatim}
-## datetime.datetime(2022, 3, 25, 9, 7, 26, 782922)
+## datetime.datetime(2022, 4, 21, 12, 2, 58, 678367)
 \end{verbatim}
 
 \begin{Shaded}
@@ -4418,7 +4418,7 @@ The attribute \texttt{strftime()} converts datetime objects to strings. In the a
 \end{Shaded}
 
 \begin{verbatim}
-## 'Friday 03 2022'
+## 'Thursday 04 2022'
 \end{verbatim}
 
 \begin{Shaded}
@@ -4428,7 +4428,7 @@ The attribute \texttt{strftime()} converts datetime objects to strings. In the a
 \end{Shaded}
 
 \begin{verbatim}
-## 'Fri 03 22'
+## 'Thu 04 22'
 \end{verbatim}
 
 The attribute \texttt{strptime()} converts strings into datetime objects. In the argument of \texttt{strptime()} you must specify the string and then the format of the string.
@@ -4621,14 +4621,12 @@ To create a sample with a fixed number of rows, use the \texttt{n} argument.
 \end{Shaded}
 
 \begin{verbatim}
-##      MPG  CYL   DISP   HP  AXLE_RATIO  ...  VS  AM  GEAR CARB       KPL
-## 20  21.5    4  120.1   97        3.70  ...   1   0     3    1  4.570578
-## 3   21.4    6  258.0  110        3.08  ...   1   0     3    1  4.549320
-## 19  33.9    4   71.1   65        4.22  ...   1   1     4    1  7.206633
-## 23  13.3    8  350.0  245        3.73  ...   0   0     3    4  2.827381
-## 28  15.8    8  351.0  264        4.22  ...   0   1     5    4  3.358844
-## 
-## [5 rows x 12 columns]
+##      MPG  CYL   DISP   HP  AXLE_RATIO    WT   QSEC  VS AM  GEAR  CARB       KPL
+## 2   22.8    4  108.0   93        3.85  2.32  18.61   1  1     4     1  4.846939
+## 2   22.8    4  108.0   93        3.85  2.32  18.61   1  1     4     1  4.846939
+## 11  16.4    8  275.8  180        3.07  4.07  17.40   0  0     3     3  3.486395
+## 10  17.8    6  167.6  123        3.92  3.44  18.90   1  0     4     4  3.784014
+## 6   14.3    8  360.0  245        3.21  3.57  15.84   0  0     3     4  3.039966
 \end{verbatim}
 
 To create a sample of a proportion, use the \texttt{frac} argument.
@@ -4671,11 +4669,11 @@ The \texttt{random.choice()} function creates a random sample according to the g
 
 \begin{verbatim}
 ##      MPG  CYL   DISP   HP  AXLE_RATIO  ...  VS  AM  GEAR CARB       KPL
-## 8   22.8    4  140.8   95        3.92  ...   1   0     4    2  4.846939
-## 22  15.2    8  304.0  150        3.15  ...   0   0     3    2  3.231293
-## 18  30.4    4   75.7   52        4.93  ...   1   1     4    2  6.462585
-## 17  32.4    4   78.7   66        4.08  ...   1   1     4    1  6.887755
-## 9   19.2    6  167.6  123        3.92  ...   1   0     4    4  4.081633
+## 2   22.8    4  108.0   93        3.85  ...   1   1     4    1  4.846939
+## 16  14.7    8  440.0  230        3.23  ...   0   0     3    4  3.125000
+## 29  19.7    6  145.0  175        3.62  ...   0   1     5    6  4.187925
+## 19  33.9    4   71.1   65        4.22  ...   1   1     4    1  7.206633
+## 15  10.4    8  460.0  215        3.00  ...   0   0     3    4  2.210884
 ## 
 ## [5 rows x 12 columns]
 \end{verbatim}
@@ -4717,16 +4715,16 @@ There are many ways to sample rows from a data frame in R. The \href{https://dpl
 
 \begin{verbatim}
 ##    mpg cylinders  disp  hp axle_ratio weight  qsec engine am gear carb am_ch
-## 1 21.4         6 258.0 110       3.08  3.215 19.44      1  0    3    1     0
-## 2 14.3         8 360.0 245       3.21  3.570 15.84      0  0    3    4     0
-## 3 32.4         4  78.7  66       4.08  2.200 19.47      1  1    4    1     1
-## 4 30.4         4  95.1 113       3.77  1.513 16.90      1  1    5    2     1
-## 5 16.4         8 275.8 180       3.07  4.070 17.40      0  0    3    3     0
+## 1 26.0         4 120.3  91       4.43  2.140 16.70      0  1    5    2     1
+## 2 15.2         8 304.0 150       3.15  3.435 17.30      0  0    3    2     0
+## 3 21.0         6 160.0 110       3.90  2.875 17.02      0  1    4    4     1
+## 4 13.3         8 350.0 245       3.73  3.840 15.41      0  0    3    4     0
+## 5 15.5         8 318.0 150       2.76  3.520 16.87      0  0    3    2     0
 ##      am_fac
-## 1 automatic
+## 1    manual
 ## 2 automatic
 ## 3    manual
-## 4    manual
+## 4 automatic
 ## 5 automatic
 \end{verbatim}
 
@@ -4739,19 +4737,19 @@ There are many ways to sample rows from a data frame in R. The \href{https://dpl
 
 \begin{verbatim}
 ##    mpg cylinders  disp  hp axle_ratio weight  qsec engine am gear carb am_ch
-## 1 15.2         8 304.0 150       3.15  3.435 17.30      0  0    3    2     0
-## 2 21.5         4 120.1  97       3.70  2.465 20.01      1  0    3    1     0
-## 3 10.4         8 472.0 205       2.93  5.250 17.98      0  0    3    4     0
-## 4 15.8         8 351.0 264       4.22  3.170 14.50      0  1    5    4     1
-## 5 22.8         4 140.8  95       3.92  3.150 22.90      1  0    4    2     0
-## 6 13.3         8 350.0 245       3.73  3.840 15.41      0  0    3    4     0
+## 1 15.5         8 318.0 150       2.76  3.520 16.87      0  0    3    2     0
+## 2 10.4         8 472.0 205       2.93  5.250 17.98      0  0    3    4     0
+## 3 21.0         6 160.0 110       3.90  2.620 16.46      0  1    4    4     1
+## 4 21.5         4 120.1  97       3.70  2.465 20.01      1  0    3    1     0
+## 5 19.2         6 167.6 123       3.92  3.440 18.30      1  0    4    4     0
+## 6 30.4         4  75.7  52       4.93  1.615 18.52      1  1    4    2     1
 ##      am_fac
 ## 1 automatic
 ## 2 automatic
-## 3 automatic
-## 4    manual
+## 3    manual
+## 4 automatic
 ## 5 automatic
-## 6 automatic
+## 6    manual
 \end{verbatim}
 
 To sample with replacement, set \texttt{replace\ =\ TRUE}.
@@ -4770,17 +4768,17 @@ The base R functions \texttt{sample()} and \texttt{runif()} can be combined to s
 
 \begin{verbatim}
 ##     mpg cylinders  disp  hp axle_ratio weight  qsec engine am gear carb am_ch
-## 29 15.8         8 351.0 264       4.22   3.17 14.50      0  1    5    4     1
-## 31 15.0         8 301.0 335       3.54   3.57 14.60      0  1    5    8     1
-## 6  18.1         6 225.0 105       2.76   3.46 20.22      1  0    3    1     0
-## 8  24.4         4 146.7  62       3.69   3.19 20.00      1  0    4    2     0
-## 9  22.8         4 140.8  95       3.92   3.15 22.90      1  0    4    2     0
+## 12 16.4         8 275.8 180       3.07  4.070 17.40      0  0    3    3     0
+## 32 21.4         4 121.0 109       4.11  2.780 18.60      1  1    4    2     1
+## 17 14.7         8 440.0 230       3.23  5.345 17.42      0  0    3    4     0
+## 23 15.2         8 304.0 150       3.15  3.435 17.30      0  0    3    2     0
+## 28 30.4         4  95.1 113       3.77  1.513 16.90      1  1    5    2     1
 ##       am_fac
-## 29    manual
-## 31    manual
-## 6  automatic
-## 8  automatic
-## 9  automatic
+## 12 automatic
+## 32    manual
+## 17 automatic
+## 23 automatic
+## 28    manual
 \end{verbatim}
 
 \begin{Shaded}
@@ -4796,23 +4794,13 @@ The base R functions \texttt{sample()} and \texttt{runif()} can be combined to s
 
 \begin{verbatim}
 ##     mpg cylinders  disp  hp axle_ratio weight  qsec engine am gear carb am_ch
-## 8  24.4         4 146.7  62       3.69  3.190 20.00      1  0    4    2     0
-## 10 19.2         6 167.6 123       3.92  3.440 18.30      1  0    4    4     0
-## 13 17.3         8 275.8 180       3.07  3.730 17.60      0  0    3    3     0
-## 17 14.7         8 440.0 230       3.23  5.345 17.42      0  0    3    4     0
-## 20 33.9         4  71.1  65       4.22  1.835 19.90      1  1    4    1     1
-## 22 15.5         8 318.0 150       2.76  3.520 16.87      0  0    3    2     0
-## 30 19.7         6 145.0 175       3.62  2.770 15.50      0  1    5    6     1
-## 31 15.0         8 301.0 335       3.54  3.570 14.60      0  1    5    8     1
+## 24 13.3         8 350.0 245       3.73  3.840 15.41      0  0    3    4     0
+## 28 30.4         4  95.1 113       3.77  1.513 16.90      1  1    5    2     1
+## 29 15.8         8 351.0 264       4.22  3.170 14.50      0  1    5    4     1
 ##       am_fac
-## 8  automatic
-## 10 automatic
-## 13 automatic
-## 17 automatic
-## 20    manual
-## 22 automatic
-## 30    manual
-## 31    manual
+## 24 automatic
+## 28    manual
+## 29    manual
 \end{verbatim}
 
 The random sample will change every time the code is run. To always generate the same ``random'' sample, use the \texttt{set.seed()} function with any positive integer.
@@ -6091,7 +6079,7 @@ This chapter looks at creating basic plots to explore and understand data. Visua
 
 The plots below make use of the \href{https://allisonhorst.github.io/palmerpenguins/}{\textbf{palmerpenguins}} data set, which contains various measurements for 344 penguins across three islands in the Antarctic Palmer Archipelago. The data were collected by \href{https://www.uaf.edu/cfos/people/faculty/detail/kristen-gorman.php}{Kristen Gorman} and colleagues, and they were made available under a \href{https://creativecommons.org/share-your-work/public-domain/cc0/}{CC0 public domain license} by Allison Horst, Alison Hill, and Kristen Gorman.
 
-For the R sections below, we discuss how to generate plots using base R and using \textbf{ggplot2}.
+For the R sections below, we show how to make each plot with base R and with \textbf{ggplot2}.
 
 Here's a glimpse at the data set:
 
@@ -6123,11 +6111,11 @@ Visualizing the distribution of numeric data.
 \subsubsection*{Python}\label{python-41}}
 \addcontentsline{toc}{subsubsection}{Python}
 
-The Python plotting library Matplotlib's \texttt{hist()} function computes and plots a histogram. There are many parameters that can be specified within the \texttt{hist()} function so that you can customize the output histogram plot to best fit your needs. Some parameters include the number of bins, the upper and lower bounds on each bin, weights, colors, and more.
+The Python library \textbf{Matplotlib} provides the \texttt{hist()} function to compute and plot a histogram. There are many parameters that can be specified within the \texttt{hist()} function so that you can customize the output histogram plot to best fit your needs. Some parameters include the number of bins, the upper and lower bounds on each bin, weights, colors, and more.
 
-Below we show a histogram of the bill length from the dataset. We specified 30 bins each of which is light blue with a black outline of linewidth 1. The \texttt{hist()} defaults to no outline which can make it difficult to distinguish bins clearly, so we add in the bin outlines here.
+Below we show a histogram of the bill lengths from the penguins dataset. We specified 30 bins, each of which is light blue with a black outline of \texttt{linewidth\ =\ 1}. The \texttt{hist()} function defaults to no outline, which can make it difficult to distinguish bins clearly, so we add in the bin outlines here.
 
-One thing to note is that the bins are left inclusive and right exclusive. For example, if a particular bin spans the range of 1 to 3, the bin will include the value 1 but will exclude the value 2 (and will include all values between 1 and 3). In short, bin ranges are as follows {[}x1,x2) where x1 is the starting point of the bin and x2 is the ending point of the bin.
+One thing to note is that the bins are left inclusive and right exclusive. For example, if a particular bin spans the range of 1 to 3, the bin will include the value 1 but will exclude the value 3 (and will include all values between 1 and 3). In short, bin ranges are as follows {[}x1,x2) where x1 is the starting point of the bin and x2 is the ending point of the bin.
 
 Notice the semicolon at the end of the \texttt{plt.hist()} function. This suppresses the printing of the array generated to create the histogram.
 
@@ -6135,7 +6123,7 @@ Notice the semicolon at the end of the \texttt{plt.hist()} function. This suppre
 \begin{Highlighting}[]
 \ImportTok{import}\NormalTok{ matplotlib.pyplot }\ImportTok{as}\NormalTok{ plt}
 
-\NormalTok{plt.clf()}
+\NormalTok{plt.clf() }\CommentTok{\# clear the current figure}
 \NormalTok{plt.hist(penguins.bill\_length\_mm, bins}\OperatorTok{=}\DecValTok{30}\NormalTok{, }\BuiltInTok{range}\OperatorTok{=}\NormalTok{(}\DecValTok{30}\NormalTok{,}\DecValTok{60}\NormalTok{),}
 \NormalTok{         color}\OperatorTok{=}\StringTok{\textquotesingle{}lightblue\textquotesingle{}}\NormalTok{, edgecolor}\OperatorTok{=}\StringTok{\textquotesingle{}k\textquotesingle{}}\NormalTok{, linewidth}\OperatorTok{=}\DecValTok{1}\NormalTok{)}\OperatorTok{;}
 \NormalTok{plt.title(}\StringTok{"Penguin Bill Lengths"}\NormalTok{)}
@@ -6155,20 +6143,24 @@ Base R's \texttt{hist()} function generates histograms, and features of the hist
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{hist}\NormalTok{(penguins}\SpecialCharTok{$}\NormalTok{bill\_length\_mm, }\AttributeTok{breaks =} \DecValTok{25}\NormalTok{, }\AttributeTok{col =} \StringTok{\textquotesingle{}lightblue\textquotesingle{}}\NormalTok{, }\AttributeTok{xlim =} \FunctionTok{c}\NormalTok{(}\DecValTok{30}\NormalTok{, }\DecValTok{60}\NormalTok{),}
-     \AttributeTok{main =} \StringTok{\textquotesingle{}Penguin Bill Lengths\textquotesingle{}}\NormalTok{, }\AttributeTok{xlab =} \StringTok{\textquotesingle{}Bill Length (mm)\textquotesingle{}}\NormalTok{, }\AttributeTok{ylab =} \StringTok{\textquotesingle{}Count\textquotesingle{}}\NormalTok{)}
+\FunctionTok{hist}\NormalTok{(penguins}\SpecialCharTok{$}\NormalTok{bill\_length\_mm, }\AttributeTok{breaks =} \DecValTok{25}\NormalTok{, }\AttributeTok{col =} \StringTok{\textquotesingle{}lightblue\textquotesingle{}}\NormalTok{, }
+     \AttributeTok{xlim =} \FunctionTok{c}\NormalTok{(}\DecValTok{30}\NormalTok{, }\DecValTok{60}\NormalTok{),}
+     \AttributeTok{main =} \StringTok{\textquotesingle{}Penguin Bill Lengths\textquotesingle{}}\NormalTok{, }
+     \AttributeTok{xlab =} \StringTok{\textquotesingle{}Bill Length (mm)\textquotesingle{}}\NormalTok{, }\AttributeTok{ylab =} \StringTok{\textquotesingle{}Count\textquotesingle{}}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-275-3.pdf}
 
-The \textbf{ggplot2} method for generating histograms follows the standard \textbf{ggplot2} syntax: Initialize a plot with \texttt{ggplot()}, and then add layers thereto, specifying aesthetic properties along the way. Here, the layer to add is \texttt{geom\_histogram()}.
+The \textbf{ggplot2} method for generating histograms follows the standard \textbf{ggplot2} syntax: Initialize a plot with \texttt{ggplot()}, and then add layers thereto. Here, the layer to add is \texttt{geom\_histogram()}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{ggplot}\NormalTok{(penguins, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ bill\_length\_mm)) }\SpecialCharTok{+}
   \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{fill =} \StringTok{\textquotesingle{}lightblue\textquotesingle{}}\NormalTok{, }\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{, }\AttributeTok{bins =} \DecValTok{25}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{xlim}\NormalTok{(}\DecValTok{30}\NormalTok{, }\DecValTok{60}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{\textquotesingle{}Penguin Bill Lengths\textquotesingle{}}\NormalTok{, }\AttributeTok{x =} \StringTok{\textquotesingle{}Bill Length (mm)\textquotesingle{}}\NormalTok{, }\AttributeTok{y =} \StringTok{\textquotesingle{}Count\textquotesingle{}}\NormalTok{)}
+  \FunctionTok{xlim}\NormalTok{(}\DecValTok{30}\NormalTok{, }\DecValTok{60}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{\textquotesingle{}Penguin Bill Lengths\textquotesingle{}}\NormalTok{, }
+       \AttributeTok{x =} \StringTok{\textquotesingle{}Bill Length (mm)\textquotesingle{}}\NormalTok{, }\AttributeTok{y =} \StringTok{\textquotesingle{}Count\textquotesingle{}}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6185,7 +6177,7 @@ Visualizing the distribution of categorical data.
 
 For this example, we will generate a bar plot showing how many of each species---Adelie, Chinstrap, Gentoo---we have in our dataset. We go through two ways of doing this here.
 
-First, we use the Matplotlib plotting library to create the bar plot using the function \texttt{bar()}. To start, we determine the number of each species, then use that data to create the bar plot.
+First, we use the \textbf{Matplotlib} plotting library to create the bar plot using the function \texttt{bar()}. To start, we determine the number of each species, then use that data to create the bar plot.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6217,7 +6209,7 @@ First, we use the Matplotlib plotting library to create the bar plot using the f
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-277-1.pdf}
 
-Our data is stored in a \texttt{pandas\ Dataframe}, which has it's own built-in plotting module, \texttt{plot}. Here we create the same bar plot by using the pandas \texttt{bar()} function.
+Our data is stored in a \texttt{pandas\ Dataframe}, which has its own built-in plotting module, \texttt{plot}. Here we create the same bar plot by using the pandas \texttt{bar()} function.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6228,7 +6220,8 @@ Our data is stored in a \texttt{pandas\ Dataframe}, which has it's own built-in 
 \end{Shaded}
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-278-3.pdf}
-One thing to note here is that we generated the same bar plot containing the same information with way less effort. Using the built-in pandas plotting routine proved to be the more efficient method here.
+
+One thing to note here is that we generated the same bar plot as we first made with way less effort. Using the built-in pandas plotting routine proved to be the more efficient method here.
 
 \hypertarget{r-42}{%
 \subsubsection*{R}\label{r-42}}
@@ -6254,7 +6247,8 @@ We can plot those values using the \texttt{barplot()} function in base R, specif
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{penguin\_plot }\OtherTok{\textless{}{-}} \FunctionTok{barplot}\NormalTok{(Freq }\SpecialCharTok{\textasciitilde{}}\NormalTok{ species, }\AttributeTok{data =}\NormalTok{ species\_counts, }\AttributeTok{col =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}lightblue\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}cornflowerblue\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}darkslateblue\textquotesingle{}}\NormalTok{),}
+\NormalTok{penguin\_plot }\OtherTok{\textless{}{-}} \FunctionTok{barplot}\NormalTok{(Freq }\SpecialCharTok{\textasciitilde{}}\NormalTok{ species, }\AttributeTok{data =}\NormalTok{ species\_counts, }
+                        \AttributeTok{col =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}lightblue\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}cornflowerblue\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}darkslateblue\textquotesingle{}}\NormalTok{),}
                         \AttributeTok{main =} \StringTok{\textquotesingle{}Species Sample Size\textquotesingle{}}\NormalTok{, }
                         \AttributeTok{xlab =} \StringTok{\textquotesingle{}Species\textquotesingle{}}\NormalTok{, }\AttributeTok{ylab =} \StringTok{\textquotesingle{}Count\textquotesingle{}}\NormalTok{, }\AttributeTok{ylim =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{200}\NormalTok{))}
 \FunctionTok{text}\NormalTok{(}\AttributeTok{x =}\NormalTok{ penguin\_plot, }\AttributeTok{y =}\NormalTok{ species\_counts}\SpecialCharTok{$}\NormalTok{Freq }\SpecialCharTok{+} \DecValTok{10}\NormalTok{, }
@@ -6270,10 +6264,17 @@ To recreate the barplot above with \textbf{ggplot2}, one can add a \texttt{geom\
 \begin{Highlighting}[]
 \FunctionTok{ggplot}\NormalTok{(species\_counts, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ species, }\AttributeTok{y =}\NormalTok{ Freq)) }\SpecialCharTok{+}
   \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ species), }\AttributeTok{stat =} \StringTok{\textquotesingle{}identity\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}lightblue\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}cornflowerblue\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}darkslateblue\textquotesingle{}}\NormalTok{)) }\SpecialCharTok{+} \CommentTok{\# scale\_fill\_manual() is used here for bar{-}color customization}
+  
+  \CommentTok{\# scale\_fill\_manual() is used here for bar{-}color customization}
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}lightblue\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}cornflowerblue\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}darkslateblue\textquotesingle{}}\NormalTok{)) }\SpecialCharTok{+} 
   \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{\textquotesingle{}Species Sample Size\textquotesingle{}}\NormalTok{, }\AttributeTok{x =} \StringTok{\textquotesingle{}Species\textquotesingle{}}\NormalTok{, }\AttributeTok{y =} \StringTok{\textquotesingle{}Count\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{\textquotesingle{}none\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylim}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{200}\NormalTok{) }\SpecialCharTok{+} \CommentTok{\# For simplicity, we omit the legend here using the code at left}
-  \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =}\NormalTok{ Freq, }\AttributeTok{vjust =} \SpecialCharTok{{-}}\FloatTok{0.5}\NormalTok{)) }\CommentTok{\# geom\_text() is used here to add counts above the bars}
+  
+  \CommentTok{\# For simplicity, we omit the legend }
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{\textquotesingle{}none\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{ylim}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{200}\NormalTok{) }\SpecialCharTok{+} 
+  
+  \CommentTok{\# geom\_text() is used here to add counts above the bars}
+  \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =}\NormalTok{ Freq, }\AttributeTok{vjust =} \SpecialCharTok{{-}}\FloatTok{0.5}\NormalTok{)) }
 \end{Highlighting}
 \end{Shaded}
 
@@ -6294,9 +6295,17 @@ The \texttt{scatter()} function, part of \textbf{matplotlib}, can produce scatte
 \begin{Highlighting}[]
 \ImportTok{import}\NormalTok{ matplotlib.pyplot }\ImportTok{as}\NormalTok{ plt}
 
-\NormalTok{penguins\_no\_na }\OperatorTok{=}\NormalTok{ penguins.dropna() }\CommentTok{\# remove NA rows, as we only want to plot present data}
+\CommentTok{\# remove NA rows, as we only want to plot present data}
+\NormalTok{penguins\_no\_na }\OperatorTok{=}\NormalTok{ penguins.dropna() }
+
 \NormalTok{plt.clf() }\CommentTok{\# clear the plotting space to prevent plot overlap}
-\NormalTok{plt.scatter(x }\OperatorTok{=}\NormalTok{ penguins\_no\_na[}\StringTok{\textquotesingle{}body\_mass\_g\textquotesingle{}}\NormalTok{], y }\OperatorTok{=}\NormalTok{ penguins\_no\_na[}\StringTok{\textquotesingle{}flipper\_length\_mm\textquotesingle{}}\NormalTok{], c }\OperatorTok{=} \StringTok{\textquotesingle{}lightblue\textquotesingle{}}\NormalTok{, marker }\OperatorTok{=} \StringTok{\textquotesingle{}d\textquotesingle{}}\NormalTok{) }\CommentTok{\# \textquotesingle{}d\textquotesingle{} generates diamond markers; learn more about available marker shapes here: https://matplotlib.org/stable/api/markers\_api.html\#module{-}matplotlib.markers}
+
+\CommentTok{\# \textquotesingle{}d\textquotesingle{} generates diamond markers; }
+\CommentTok{\# learn more about available marker shapes: }
+\CommentTok{\# https://matplotlib.org/stable/api/markers\_api.html\#module{-}matplotlib.markers}
+\NormalTok{plt.scatter(x }\OperatorTok{=}\NormalTok{ penguins\_no\_na[}\StringTok{\textquotesingle{}body\_mass\_g\textquotesingle{}}\NormalTok{], }
+\NormalTok{            y }\OperatorTok{=}\NormalTok{ penguins\_no\_na[}\StringTok{\textquotesingle{}flipper\_length\_mm\textquotesingle{}}\NormalTok{], }
+\NormalTok{            c }\OperatorTok{=} \StringTok{\textquotesingle{}lightblue\textquotesingle{}}\NormalTok{, marker }\OperatorTok{=} \StringTok{\textquotesingle{}d\textquotesingle{}}\NormalTok{) }
 \NormalTok{plt.xlabel(}\StringTok{\textquotesingle{}Body Mass (g)\textquotesingle{}}\NormalTok{)}
 \NormalTok{plt.ylabel(}\StringTok{\textquotesingle{}Flipper Length (mm)\textquotesingle{}}\NormalTok{)}
 \NormalTok{plt.title(}\StringTok{\textquotesingle{}Scatterplot of Body Mass and Flipper Length\textquotesingle{}}\NormalTok{)}
@@ -6365,7 +6374,7 @@ The \href{https://seaborn.pydata.org/generated/seaborn.stripplot.html}{stripplot
 \subsubsection*{R}\label{r-44}}
 \addcontentsline{toc}{subsubsection}{R}
 
-Base R offers the \texttt{stripchart()} function. To indicate the numeric variable and the grouping variable, you can use formula notation: \texttt{numeric\_var\ \textasciitilde{}\ grouping\_var}. Adding \texttt{methhod\ =\ \textquotesingle{}jitter\textquotesingle{}} to the set of arguments spreads the points out slightly within each level of the grouping variable, making it easier to see points that might otherwise be obscured by overlap.
+Base R offers the \texttt{stripchart()} function. To indicate the numeric variable and the grouping variable, you can use formula notation: \texttt{numeric\_var\ \textasciitilde{}\ grouping\_var}. Adding \texttt{method\ =\ \textquotesingle{}jitter\textquotesingle{}} to the arguments spreads the points out slightly within each level of the grouping variable, making it easier to see points that might otherwise be obscured by overlap.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6384,7 +6393,10 @@ Stripcharts can also be made with \textbf{ggplots2}'s \texttt{geom\_jitter()} fu
 \begin{Highlighting}[]
 \FunctionTok{ggplot}\NormalTok{(penguins, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ island, }\AttributeTok{y =}\NormalTok{ bill\_depth\_mm)) }\SpecialCharTok{+}
   \FunctionTok{geom\_jitter}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{color =}\NormalTok{ island), }\AttributeTok{position =} \FunctionTok{position\_jitter}\NormalTok{(}\FloatTok{0.1}\NormalTok{)) }\SpecialCharTok{+}
-  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}lightblue\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}cornflowerblue\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}darkslateblue\textquotesingle{}}\NormalTok{)) }\SpecialCharTok{+} \CommentTok{\# scale\_fill\_manual() is used to manually specify group colors once aes(color = island) is specified in \textasciigrave{}geom\_jitter()\textasciigrave{}}
+  
+  \CommentTok{\# scale\_fill\_manual() is used to manually specify group colors }
+  \CommentTok{\# once aes(color = island) is specified in \textasciigrave{}geom\_jitter()\textasciigrave{}}
+  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}lightblue\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}cornflowerblue\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}darkslateblue\textquotesingle{}}\NormalTok{)) }\SpecialCharTok{+} 
   \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{\textquotesingle{}Stripchart of Bill Depth by Island\textquotesingle{}}\NormalTok{, }
        \AttributeTok{x =} \StringTok{\textquotesingle{}Island\textquotesingle{}}\NormalTok{, }\AttributeTok{y =} \StringTok{\textquotesingle{}Bill Depth (mm)\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{\textquotesingle{}none\textquotesingle{}}\NormalTok{)}
@@ -6421,18 +6433,47 @@ The \texttt{boxplot()} function in seaborn generates boxplots, and matplotlib ca
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+## Traceback (most recent call last):
+##   File "C:\Users\jcf2d\AppData\Roaming\Python\Python39\site-packages\matplotlib\backends\backend_qt.py", line 455, in _draw_idle
+##     self.draw()
+##   File "C:\Users\jcf2d\AppData\Roaming\Python\Python39\site-packages\matplotlib\backends\backend_agg.py", line 436, in draw
+##     self.figure.draw(self.renderer)
+##   File "C:\Users\jcf2d\AppData\Roaming\Python\Python39\site-packages\matplotlib\artist.py", line 73, in draw_wrapper
+##     result = draw(artist, renderer, *args, **kwargs)
+##   File "C:\Users\jcf2d\AppData\Roaming\Python\Python39\site-packages\matplotlib\artist.py", line 50, in draw_wrapper
+##     return draw(artist, renderer)
+##   File "C:\Users\jcf2d\AppData\Roaming\Python\Python39\site-packages\matplotlib\figure.py", line 2810, in draw
+##     mimage._draw_list_compositing_images(
+##   File "C:\Users\jcf2d\AppData\Roaming\Python\Python39\site-packages\matplotlib\image.py", line 132, in _draw_list_compositing_images
+##     a.draw(renderer)
+##   File "C:\Users\jcf2d\AppData\Roaming\Python\Python39\site-packages\matplotlib\artist.py", line 50, in draw_wrapper
+##     return draw(artist, renderer)
+##   File "C:\Users\jcf2d\AppData\Roaming\Python\Python39\site-packages\matplotlib\axes\_base.py", line 3046, in draw
+##     self._update_title_position(renderer)
+##   File "C:\Users\jcf2d\AppData\Roaming\Python\Python39\site-packages\matplotlib\axes\_base.py", line 2984, in _update_title_position
+##     if (ax.xaxis.get_ticks_position() in ['top', 'unknown']
+##   File "C:\Users\jcf2d\AppData\Roaming\Python\Python39\site-packages\matplotlib\axis.py", line 2232, in get_ticks_position
+##     self._get_ticks_position()]
+##   File "C:\Users\jcf2d\AppData\Roaming\Python\Python39\site-packages\matplotlib\axis.py", line 1936, in _get_ticks_position
+##     major = self.majorTicks[0]
+## IndexError: list index out of range
+\end{verbatim}
+
 \includegraphics{_main_files/figure-latex/unnamed-chunk-288-1.pdf}
 
 \hypertarget{r-45}{%
 \subsubsection*{R}\label{r-45}}
 \addcontentsline{toc}{subsubsection}{R}
 
-The \texttt{boxplot()} function in base R generates boxplots, and a user specifies the grouping variable and the numeric variable to be plotted in formula notation: \texttt{y\ \textasciitilde{}\ grouping\_var}.
+The \texttt{boxplot()} function in base R generates boxplots. A user specifies the grouping variable and the numeric variable to be plotted in formula notation: \texttt{y\ \textasciitilde{}\ grouping\_var}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{boxplot}\NormalTok{(bill\_depth\_mm }\SpecialCharTok{\textasciitilde{}}\NormalTok{ island, }\AttributeTok{data =}\NormalTok{ penguins, }\AttributeTok{col =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}lightblue\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}cornflowerblue\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}darkslateblue\textquotesingle{}}\NormalTok{),}
-        \AttributeTok{main =} \StringTok{\textquotesingle{}Boxplot of Bill Depth by Island\textquotesingle{}}\NormalTok{, }\AttributeTok{xlab =} \StringTok{\textquotesingle{}Island\textquotesingle{}}\NormalTok{, }\AttributeTok{ylab =} \StringTok{\textquotesingle{}Bill Depth (mm)\textquotesingle{}}\NormalTok{)}
+\FunctionTok{boxplot}\NormalTok{(bill\_depth\_mm }\SpecialCharTok{\textasciitilde{}}\NormalTok{ island, }\AttributeTok{data =}\NormalTok{ penguins, }
+        \AttributeTok{col =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}lightblue\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}cornflowerblue\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}darkslateblue\textquotesingle{}}\NormalTok{),}
+        \AttributeTok{main =} \StringTok{\textquotesingle{}Boxplot of Bill Depth by Island\textquotesingle{}}\NormalTok{, }
+        \AttributeTok{xlab =} \StringTok{\textquotesingle{}Island\textquotesingle{}}\NormalTok{, }\AttributeTok{ylab =} \StringTok{\textquotesingle{}Bill Depth (mm)\textquotesingle{}}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6467,8 +6508,9 @@ The seaborn package provides several functions for creating facet plots, includi
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{plt.clf()}
-\NormalTok{sns.lmplot(x }\OperatorTok{=} \StringTok{"bill\_length\_mm"}\NormalTok{, y }\OperatorTok{=} \StringTok{"bill\_depth\_mm"}\NormalTok{, col }\OperatorTok{=} \StringTok{"species"}\NormalTok{,}
-\NormalTok{          data }\OperatorTok{=}\NormalTok{ penguins, ci }\OperatorTok{=} \VariableTok{None}\NormalTok{)}
+\NormalTok{sns.lmplot(x }\OperatorTok{=} \StringTok{"bill\_length\_mm"}\NormalTok{, y }\OperatorTok{=} \StringTok{"bill\_depth\_mm"}\NormalTok{, }
+\NormalTok{           col }\OperatorTok{=} \StringTok{"species"}\NormalTok{,}
+\NormalTok{           data }\OperatorTok{=}\NormalTok{ penguins, ci }\OperatorTok{=} \VariableTok{None}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6552,8 +6594,14 @@ Alternatively, \textbf{ggplot2} provides a intuitive and easy-to-use method for 
 \begin{Highlighting}[]
 \FunctionTok{ggplot}\NormalTok{(penguins, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ bill\_length\_mm, }\AttributeTok{y =}\NormalTok{ bill\_depth\_mm)) }\SpecialCharTok{+}
   \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{color =} \StringTok{\textquotesingle{}navy\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{\textquotesingle{}lm\textquotesingle{}}\NormalTok{, }\AttributeTok{se =}\NormalTok{ F, }\AttributeTok{color =} \StringTok{\textquotesingle{}salmon\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \CommentTok{\# Add least{-}squares line}
-  \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{species)}
+  
+  \CommentTok{\# Add least{-}squares line}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{\textquotesingle{}lm\textquotesingle{}}\NormalTok{, }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{color =} \StringTok{\textquotesingle{}salmon\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  
+  \CommentTok{\# Use formula notation, a character vector, or vars() to }
+  \CommentTok{\# specify faceting variables; e.g., \textasciitilde{}species, c(\textquotesingle{}species\textquotesingle{}), }
+  \CommentTok{\# or vars(species)}
+  \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{ species)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6562,13 +6610,6 @@ Alternatively, \textbf{ggplot2} provides a intuitive and easy-to-use method for 
 \end{verbatim}
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-297-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Use formula notation, a character vector, or vars() to specify faceting}
-\CommentTok{\# variables; e.g., \textasciitilde{}species, c(\textquotesingle{}species\textquotesingle{}), or vars(species)}
-\end{Highlighting}
-\end{Shaded}
 
 The number of rows and columns can be manually specified with \texttt{nrow} and \texttt{ncol} arguments in \texttt{facet\_wrap()}. By default, the x and y axes of all facet plots will be on the same scale. The axis ranges can be set to vary freely by adding \texttt{scales\ =\ \textquotesingle{}free\textquotesingle{}} as an argument (or, alternatively, \texttt{scales\ =\ \textquotesingle{}free\_x\textquotesingle{}} or \texttt{scales\ =\ \textquotesingle{}free\_y\textquotesingle{}} to free just the x or y axis).
 
@@ -6594,6 +6635,9 @@ Both \texttt{facet\_wrap()} and \texttt{facet\_grid()} can be used to make facet
 \FunctionTok{ggplot}\NormalTok{(penguins, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ bill\_length\_mm, }\AttributeTok{y =}\NormalTok{ bill\_depth\_mm)) }\SpecialCharTok{+}
   \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{color =} \StringTok{\textquotesingle{}navy\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{\textquotesingle{}lm\textquotesingle{}}\NormalTok{, }\AttributeTok{se =}\NormalTok{ F, }\AttributeTok{color =} \StringTok{\textquotesingle{}salmon\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  
+  \CommentTok{\# Note that facet\_grid() has separate \textasciigrave{}rows\textasciigrave{} and \textasciigrave{}cols\textasciigrave{} arguments }
+  \CommentTok{\# for specifying faceting variables}
   \FunctionTok{facet\_grid}\NormalTok{(}\AttributeTok{rows =} \FunctionTok{vars}\NormalTok{(sex), }\AttributeTok{cols =} \FunctionTok{vars}\NormalTok{(species)) }
 \end{Highlighting}
 \end{Shaded}
@@ -6603,13 +6647,6 @@ Both \texttt{facet\_wrap()} and \texttt{facet\_grid()} can be used to make facet
 \end{verbatim}
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-298-2.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Note that facet\_grid() has separate \textasciigrave{}rows\textasciigrave{} and \textasciigrave{}cols\textasciigrave{} arguments for specifying}
-\CommentTok{\# faceting variables}
-\end{Highlighting}
-\end{Shaded}
 
 \hypertarget{selected-topics-in-statistical-inference}{%
 \chapter{Selected Topics in Statistical Inference}\label{selected-topics-in-statistical-inference}}
@@ -7220,6 +7257,171 @@ Obviously this is not a comprehensive treatment of linear modeling.
 \subsubsection*{Python}\label{python-49}}
 \addcontentsline{toc}{subsubsection}{Python}
 
+In Python, the \texttt{OLS()} function in the statsmodels package fits a linear model.
+
+In this example, we fit a linear model to predict gas prices from insulation, temperature, and the interaction between insulation and temperature.
+
+The basic construction is to first list your dependent or response variable, then a tilde (\texttt{\textasciitilde{}}), and then your predictor variables, or terms, separated by plus operators (\texttt{+}). Listing two variables separated by a colon (\texttt{:}) indicates we wish to fit an interaction for those variables. The variables in the formula correspond to columns in a pandas DataFrame. Users specify the pandas DataFrame using the \texttt{data} argument.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ statsmodels.api }\ImportTok{as}\NormalTok{ sm}
+\ImportTok{import}\NormalTok{ statsmodels.formula.api }\ImportTok{as}\NormalTok{ smf}
+
+\NormalTok{model }\OperatorTok{=}\NormalTok{ smf.ols(}\StringTok{\textquotesingle{}Gas \textasciitilde{} Insul + Temp + Insul:Temp\textquotesingle{}}\NormalTok{, data}\OperatorTok{=}\NormalTok{whiteside)}
+\NormalTok{results }\OperatorTok{=}\NormalTok{ model.fit() }\CommentTok{\# fit the linear model}
+\end{Highlighting}
+\end{Shaded}
+
+Once you fit your model, you can extract information about it using several functions. The most commonly used include:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{summary()}: summary of model coefficients with standard errors and test statistics
+\item
+  \texttt{params}: model coefficients
+\item
+  \texttt{conf\_int()}: 95\% confidence interval of model coefficients
+\item
+  statsmodels provides functions for diagnostic plots. A few examples are shown below.
+\end{itemize}
+
+The \texttt{summary()} function produces the standard regression summary one typically finds in a statistics textbook.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(results.summary())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                             OLS Regression Results                            
+## ==============================================================================
+## Dep. Variable:                    Gas   R-squared:                       0.928
+## Model:                            OLS   Adj. R-squared:                  0.924
+## Method:                 Least Squares   F-statistic:                     222.3
+## Date:                Thu, 21 Apr 2022   Prob (F-statistic):           1.23e-29
+## Time:                        12:03:57   Log-Likelihood:                -14.100
+## No. Observations:                  56   AIC:                             36.20
+## Df Residuals:                      52   BIC:                             44.30
+## Df Model:                           3                                         
+## Covariance Type:            nonrobust                                         
+## =======================================================================================
+##                           coef    std err          t      P>|t|      [0.025      0.975]
+## ---------------------------------------------------------------------------------------
+## Intercept               6.8538      0.136     50.409      0.000       6.581       7.127
+## Insul[T.After]         -2.1300      0.180    -11.827      0.000      -2.491      -1.769
+## Temp                   -0.3932      0.022    -17.487      0.000      -0.438      -0.348
+## Insul[T.After]:Temp     0.1153      0.032      3.591      0.001       0.051       0.180
+## ==============================================================================
+## Omnibus:                        6.016   Durbin-Watson:                   1.854
+## Prob(Omnibus):                  0.049   Jarque-Bera (JB):                4.998
+## Skew:                          -0.626   Prob(JB):                       0.0822
+## Kurtosis:                       3.757   Cond. No.                         31.6
+## ==============================================================================
+## 
+## Notes:
+## [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+\end{verbatim}
+
+The following code produces a fitted vs residual plot for the model.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{plt.figure()}
+\NormalTok{smoothed\_line }\OperatorTok{=}\NormalTok{ sm.nonparametric.lowess(results.resid, results.fittedvalues)}
+\NormalTok{plt.plot(results.fittedvalues, results.resid, }\StringTok{"."}\NormalTok{)}
+\NormalTok{plt.plot(smoothed\_line[:,}\DecValTok{0}\NormalTok{], smoothed\_line[:,}\DecValTok{1}\NormalTok{],color }\OperatorTok{=} \StringTok{\textquotesingle{}r\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.xlabel(}\StringTok{"fitted values"}\NormalTok{)}
+\NormalTok{plt.ylabel(}\StringTok{"residuals"}\NormalTok{)}
+\NormalTok{plt.title(}\StringTok{"residuals vs fitted"}\NormalTok{)}
+\NormalTok{plt.show()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-337-1.pdf}
+
+For the model's Q-Q plot, use the \texttt{qqplot()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ matplotlib.pyplot }\ImportTok{as}\NormalTok{ plt}
+
+\NormalTok{plt.figure()}
+\NormalTok{sm.graphics.qqplot(results.get\_influence().resid\_studentized\_internal)}
+\NormalTok{plt.title(}\StringTok{"q{-}q"}\NormalTok{)}
+\NormalTok{plt.show()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-338-3.pdf}
+
+For the model's residuals vs leverage, or influence plot, use the influence\_plot() function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{plt.figure()}
+\NormalTok{sm.graphics.influence\_plot(results)}
+\NormalTok{plt.show()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-339-5.pdf}
+
+The following code plots ``Temp'' values and corresponding model predictions using the \texttt{plot\_fit()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{plt.figure()}
+\NormalTok{sm.graphics.plot\_fit(results, }\StringTok{\textquotesingle{}Temp\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.show()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-340-7.pdf}
+
+The following code plots model predictions. Each curve on the plot represents a level of the variable ``Insul''.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd}
+\ImportTok{from}\NormalTok{ statsmodels.sandbox.predict\_functional }\ImportTok{import}\NormalTok{ predict\_functional}
+
+\CommentTok{\# create DataFrame (wrt Inusl == "Before") to pass into predict function}
+\NormalTok{temp }\OperatorTok{=}\NormalTok{ np.linspace(whiteside[}\StringTok{"Temp"}\NormalTok{].}\BuiltInTok{min}\NormalTok{(), whiteside[}\StringTok{"Temp"}\NormalTok{].}\BuiltInTok{max}\NormalTok{())}
+\NormalTok{insul\_before }\OperatorTok{=}\NormalTok{ [}\StringTok{"Before"}\NormalTok{]}\OperatorTok{*}\NormalTok{temp.shape[}\DecValTok{0}\NormalTok{]}
+\CommentTok{\# whiteside\_before = pd.DataFrame(\{"Temp": temp, "Insul": insul\_before\})}
+\NormalTok{whiteside\_before }\OperatorTok{=}\NormalTok{ \{}\StringTok{"Temp"}\NormalTok{: temp, }\StringTok{"Insul"}\NormalTok{: insul\_before, }\StringTok{"Insul:Temp"}\NormalTok{:[}\DecValTok{0}\NormalTok{]}\OperatorTok{*}\NormalTok{temp.shape[}\DecValTok{0}\NormalTok{]\}}
+\CommentTok{\# pr, cb, fv = predict\_functional(results, "Temp", values=whiteside\_before, ci\_method=\textquotesingle{}scheffe\textquotesingle{})}
+\NormalTok{before\_predict\_object }\OperatorTok{=}\NormalTok{ results.get\_prediction(whiteside\_before)}
+\NormalTok{before\_predictions }\OperatorTok{=}\NormalTok{ before\_predict\_object.predicted\_mean}
+\NormalTok{before\_ci }\OperatorTok{=}\NormalTok{ before\_predict\_object.conf\_int()}
+
+\CommentTok{\# create DataFrame (wrt Inusl == "After") to pass into predict function}
+\NormalTok{insul\_after }\OperatorTok{=}\NormalTok{ [}\StringTok{"After"}\NormalTok{]}\OperatorTok{*}\NormalTok{temp.shape[}\DecValTok{0}\NormalTok{]}
+\NormalTok{whiteside\_after }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}\StringTok{"Temp"}\NormalTok{: temp, }\StringTok{"Insul"}\NormalTok{: insul\_after, }\StringTok{"Insul:Temp"}\NormalTok{:temp\})}
+\NormalTok{after\_predictions\_object }\OperatorTok{=}\NormalTok{ results.get\_prediction(whiteside\_after)}
+\NormalTok{after\_predictions }\OperatorTok{=}\NormalTok{ after\_predictions\_object.predicted\_mean}
+\NormalTok{after\_ci }\OperatorTok{=}\NormalTok{ after\_predictions\_object.conf\_int()}
+
+\CommentTok{\# plot results}
+\NormalTok{plt.figure()}
+\NormalTok{plt.plot(temp, before\_predictions, color }\OperatorTok{=} \StringTok{"red"}\NormalTok{, label}\OperatorTok{=}\StringTok{"Before"}\NormalTok{)}
+\NormalTok{plt.fill\_between(temp, before\_ci[:,}\DecValTok{0}\NormalTok{], before\_ci[:,}\DecValTok{1}\NormalTok{], color }\OperatorTok{=} \StringTok{"red"}\NormalTok{, alpha }\OperatorTok{=} \FloatTok{0.1}\NormalTok{)}
+\NormalTok{plt.plot(temp, after\_predictions, color}\OperatorTok{=}\StringTok{"blue"}\NormalTok{, label}\OperatorTok{=}\StringTok{"After"}\NormalTok{)}
+\NormalTok{plt.fill\_between(temp, after\_ci[:,}\DecValTok{0}\NormalTok{], after\_ci[:,}\DecValTok{1}\NormalTok{], color }\OperatorTok{=} \StringTok{"blue"}\NormalTok{, alpha }\OperatorTok{=} \FloatTok{0.1}\NormalTok{)}
+\NormalTok{plt.legend(title}\OperatorTok{=}\StringTok{"Insul"}\NormalTok{)}
+\NormalTok{plt.title(}\StringTok{"Predicted values of Gas"}\NormalTok{)}
+\NormalTok{plt.xlabel(}\StringTok{"Temp"}\NormalTok{)}
+\NormalTok{plt.ylabel(}\StringTok{"Gas"}\NormalTok{)}
+\NormalTok{plt.show()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-341-9.pdf}
+
 \hypertarget{r-49}{%
 \subsubsection*{R}\label{r-49}}
 \addcontentsline{toc}{subsubsection}{R}
@@ -7283,11 +7485,11 @@ Calling \texttt{plot()} on a model object produces four different diagnostic plo
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{plot}\NormalTok{(m, }\AttributeTok{which =} \DecValTok{1}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(m)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-337-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-344-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-344-2.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-344-3.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-344-4.pdf}
 
 Once we fit a model and we're reasonably confident that it's a good model, we may want to visualize it. Three packages in R that help with this are \textbf{emmeans}, \textbf{effects}, and \textbf{ggeffects}. We briefly demonstrate the \textbf{ggeffects} package.
 
@@ -7303,7 +7505,7 @@ Once loaded, we can get a basic visualization of our model by using the \texttt{
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-338-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-345-1.pdf}
 
 We see that after installing insulation, gas consumption fell considerably, and that the effect of temperature on gas consumption is less pronounced.
 
@@ -7347,6 +7549,127 @@ Obviously this is not a comprehensive treatment of logistic regression.
 \hypertarget{python-50}{%
 \subsubsection*{Python}\label{python-50}}
 \addcontentsline{toc}{subsubsection}{Python}
+
+The Python statistics library \texttt{statsmodels.formula.api} provides the \texttt{glm} function for fitting generalized linear models. We specify how we want to model our data as a formula string in the first argument of the \texttt{glm} function. The format is as follows: dependent/response variable followed by a tilde (\texttt{\textasciitilde{}}), then the predictor variables separated by a plus sign (\texttt{+}). To indicate we want to fit a logistic regression model we specify \texttt{family=sm.families.Binomial()} since our dependent variable is binary. We also specify our data set in the argument as well.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ statsmodels.api }\ImportTok{as}\NormalTok{ sm}
+\ImportTok{import}\NormalTok{ statsmodels.formula.api }\ImportTok{as}\NormalTok{ smf}
+\ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd}
+\NormalTok{formula }\OperatorTok{=} \StringTok{"low \textasciitilde{} age + lwt + race + smoke + ptd + ht + ui + ftv"}
+\NormalTok{mod1 }\OperatorTok{=}\NormalTok{ smf.glm(formula}\OperatorTok{=}\NormalTok{formula, data}\OperatorTok{=}\NormalTok{birthwt,}
+\NormalTok{               family}\OperatorTok{=}\NormalTok{sm.families.Binomial()).fit()}
+\BuiltInTok{print}\NormalTok{(mod1.summary())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                  Generalized Linear Model Regression Results                  
+## ==============================================================================
+## Dep. Variable:                    low   No. Observations:                  189
+## Model:                            GLM   Df Residuals:                      178
+## Model Family:                Binomial   Df Model:                           10
+## Link Function:                  Logit   Scale:                          1.0000
+## Method:                          IRLS   Log-Likelihood:                -97.738
+## Date:                Thu, 21 Apr 2022   Deviance:                       195.48
+## Time:                        12:04:10   Pearson chi2:                     179.
+## No. Iterations:                     5   Pseudo R-squ. (CS):             0.1873
+## Covariance Type:            nonrobust                                         
+## =================================================================================
+##                     coef    std err          z      P>|z|      [0.025      0.975]
+## ---------------------------------------------------------------------------------
+## Intercept         0.8230      1.245      0.661      0.508      -1.617       3.263
+## race[T.black]     1.1924      0.536      2.225      0.026       0.142       2.243
+## race[T.other]     0.7407      0.462      1.604      0.109      -0.164       1.646
+## smoke[T.1]        0.7555      0.425      1.778      0.075      -0.078       1.589
+## ptd[T.1]          1.3438      0.481      2.796      0.005       0.402       2.286
+## ht[T.1]           1.9132      0.721      2.654      0.008       0.501       3.326
+## ui[T.1]           0.6802      0.464      1.465      0.143      -0.230       1.590
+## ftv[T.1]         -0.4364      0.479     -0.910      0.363      -1.376       0.503
+## ftv[T.2+]         0.1790      0.456      0.392      0.695      -0.715       1.074
+## age              -0.0372      0.039     -0.962      0.336      -0.113       0.039
+## lwt              -0.0157      0.007     -2.211      0.027      -0.030      -0.002
+## =================================================================================
+\end{verbatim}
+
+Once we fit a model and we're reasonably confident that it's a good model, we may want to visualize it. For example, how does \texttt{ptd} affect the probability of low infant birth weight?
+
+To begin, we create a Pandas DataFrame for our predictors. This needs to be a Pandas DataFrame since we used the formula option when fitting the model. Notice the only variable that changes is \texttt{ptd}. All other variables are held constant. What values you choose to hold them at is up to you, but typical choices are means or medians for numeric predictors, and most populous group for categorical predictors.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# create dictionary of values}
+\NormalTok{d }\OperatorTok{=}\NormalTok{ \{}\StringTok{\textquotesingle{}age\textquotesingle{}}\NormalTok{: }\DecValTok{23}\NormalTok{, }\StringTok{\textquotesingle{}lwt\textquotesingle{}}\NormalTok{: }\DecValTok{123}\NormalTok{, }\StringTok{\textquotesingle{}race\textquotesingle{}}\NormalTok{: }\StringTok{"white"}\NormalTok{,}
+     \StringTok{\textquotesingle{}smoke\textquotesingle{}}\NormalTok{ : }\StringTok{"0"}\NormalTok{, }\StringTok{\textquotesingle{}ptd\textquotesingle{}}\NormalTok{ : [}\StringTok{"0"}\NormalTok{,}\StringTok{"1"}\NormalTok{], }\StringTok{\textquotesingle{}ht\textquotesingle{}}\NormalTok{: }\StringTok{"0"}\NormalTok{, }
+     \StringTok{\textquotesingle{}ui\textquotesingle{}}\NormalTok{: }\StringTok{"0"}\NormalTok{, }\StringTok{\textquotesingle{}ftv\textquotesingle{}}\NormalTok{: }\StringTok{"0"}\NormalTok{\}}
+\CommentTok{\# convert dictionary to Pandas DataFrame.}
+\NormalTok{nd }\OperatorTok{=}\NormalTok{ pd.DataFrame(data}\OperatorTok{=}\NormalTok{d)}
+\end{Highlighting}
+\end{Shaded}
+
+Now plug in our new data (nd) into our model using the \texttt{get\_prediction} method. See \href{https://www.statsmodels.org/devel/generated/statsmodels.genmod.generalized_linear_model.GLMResults.html\#statsmodels.genmod.generalized_linear_model.GLMResults}{this page}. This returns the predictions as a \texttt{PredictionResults} class. We can access the predicted probabilities using the \texttt{predicted\_mean} property. See \href{https://www.statsmodels.org/devel/generated/statsmodels.tsa.base.prediction.PredictionResults.html}{this page}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pred }\OperatorTok{=}\NormalTok{ mod1.get\_prediction(exog}\OperatorTok{=}\NormalTok{nd)}
+\NormalTok{prob }\OperatorTok{=}\NormalTok{ pred.predicted\_mean}
+\BuiltInTok{print}\NormalTok{(prob)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [0.12360891 0.35093623]
+\end{verbatim}
+
+We can use the \texttt{conf\_int} method to extract the confidence intervals for the predicted probabilities.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ci }\OperatorTok{=}\NormalTok{ pred.conf\_int()}
+\BuiltInTok{print}\NormalTok{(ci)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[0.05166761 0.26746827]
+##  [0.12724595 0.66722908]]
+\end{verbatim}
+
+Now we use the matplotlib \texttt{errorbar} function to create the plot. The \texttt{errorbar} function requires \emph{margin of error}, not the lower and upper limits. So we have to do some subtraction to get the lower and upper margin of errors.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lower }\OperatorTok{=}\NormalTok{ [prob[}\DecValTok{0}\NormalTok{] }\OperatorTok{{-}}\NormalTok{ ci[}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{], prob[}\DecValTok{1}\NormalTok{] }\OperatorTok{{-}}\NormalTok{ ci[}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{]]}
+\NormalTok{upper }\OperatorTok{=}\NormalTok{ [ci[}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{] }\OperatorTok{{-}}\NormalTok{ prob[}\DecValTok{0}\NormalTok{], ci[}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{] }\OperatorTok{{-}}\NormalTok{ prob[}\DecValTok{1}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+Finally we can make the plot.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ matplotlib.pyplot }\ImportTok{as}\NormalTok{ plt}
+\NormalTok{plt.clf()}
+\NormalTok{plt.errorbar(x }\OperatorTok{=}\NormalTok{ [}\StringTok{"0"}\NormalTok{,}\StringTok{"1"}\NormalTok{], y }\OperatorTok{=}\NormalTok{ prob, }
+\NormalTok{             yerr}\OperatorTok{=}\NormalTok{[lower, upper], fmt}\OperatorTok{=}\StringTok{\textquotesingle{}ok\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## <ErrorbarContainer object of 3 artists>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{plt.xlabel(}\StringTok{\textquotesingle{}ptd\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.ylabel(}\StringTok{\textquotesingle{}low\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.title(}\StringTok{\textquotesingle{}Predicted probabilities of low\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.show()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-353-1.pdf}
 
 \hypertarget{r-50}{%
 \subsubsection*{R}\label{r-50}}
@@ -7476,7 +7799,7 @@ Use the \texttt{terms} argument to specify which variables to plot. Below we cre
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-346-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-359-1.pdf}
 
 It looks like the probability of low infant birth weight jumps from about 12\% to over 35\% for mothers who previously experienced premature labors, though the error bars on the expected values are quite large.
 
@@ -7486,7 +7809,7 @@ It looks like the probability of low infant birth weight jumps from about 12\% t
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-347-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-360-1.pdf}
 
 It appears the probability of low infant birth weight drops from about 15\% when a mother weighs 100 lbs to about 5\% when a mother weighs around 200 lbs. The regions with the larger confidence ribbon indicate regions of higher uncertainty. There are clearly not many mothers in our data who weigh less than 100 lbs.
 

@@ -526,99 +526,68 @@ birthwt = r.birthwt
 
 #### Python {-}
 
-The Python statistics library `statsmodels.formula` has a function `logit` that fits a logistic regression model to your specified dataset. We specify how we want to model our data as a formula string in the argument of the `logit` function. The format is as follows: dependent/response variable followed by a tilde (`~`), then the predictor variables separated by a plus sign (`+`). We also specfiy our data set in the agrument as well. 
+The Python statistics library `statsmodels.formula.api` provides the `glm` function for fitting generalized linear models. We specify how we want to model our data as a formula string in the first argument of the `glm` function. The format is as follows: dependent/response variable followed by a tilde (`~`), then the predictor variables separated by a plus sign (`+`). To indicate we want to fit a logistic regression model we specify `family=sm.families.Binomial()` since our dependent variable is binary. We also specify our data set in the argument as well.
 
 ```{python}
+import statsmodels.api as sm
 import statsmodels.formula.api as smf
-import statsmodels.api as sm
-import matplotlib.pyplot as plt
-import statsmodels.graphics.regressionplots as grf
-
-log_reg = smf.logit("low ~ age + lwt + race + smoke + ptd + ht + ui + ftv", data=birthwt).fit()
-
-#sm.graphics.plot_fit(log_reg,2)
-plt.clf()
-sm.graphics.plot_fit(log_reg,"age")
-plt.show()
-```
-
-
-```{python}
-###########
-## TRIAL
-###########
-x = birthwt.drop(['low'], axis = 1)
-x = pd.get_dummies(x, columns=['race','ftv'], drop_first=True).astype('float64')
-y = birthwt["low"].values.astype('float64')
-x = sm.add_constant(x)
-
-log_reg_TRIAL = sm.Logit(y,x)
-log_reg_TRIAL_fit = log_reg_TRIAL.fit()
-
-sm.graphics.plot_fit(log_reg_TRIAL_fit,4)
-plt.show()
-
-```
-
-```{python}
-import seaborn as sns
-
-plt.clf()
-ax = sns.regplot(y = "low", x = "lwt", data = birthwt, logistic = True)
-plt.show()
-```
-
-Once we fit the logistic regression, we can extract the information from it using funcitons and attributes. 
-
-- `.summary()`: returns a description of model coefficients along with standard errors and other statistics
-- `.params`:  returns coefficients of the model 
-- `.conf_int()`: returns 95% confidence interval of the coefficients 
-
-```{python}
-log_reg.summary()
-log_reg.params
-log_reg.conf_int()
-```
-
-We can also build our logistic regression model using the function `GLM` from the `statsmodels` library. This function fits a general linear model to the data using a specified model. The two main arguments of this function are `endog` and `exog`. `endog` refers to the endogenous or dependent variable, and `exog` refers to the exogenous or independent variable(s) in the data set. 
-
-Here we extract the endogenous and exogenous variables from the data. We are looking to model `low` as a function of all other variables. This means `low` is the endogenous variable, and all variables except `low` are exogenous.
-
-```{python}
-import statsmodels.api as sm
 import pandas as pd
-
-# Extract the endogenous/dependent variable
-data_endog = birthwt["low"]
-
-# Extract the exogenous/independent variables (exogenous variable in documentation)
-data_exog = birthwt.drop(['low'], axis = 1)
+formula = "low ~ age + lwt + race + smoke + ptd + ht + ui + ftv"
+mod1 = smf.glm(formula=formula, data=birthwt,
+               family=sm.families.Binomial()).fit()
+print(mod1.summary())
 ```
 
-One important thing to note is that `GLM` can only construct the model if the data are all numerical. In this dataset, two of the exogenous variables are categorical, not numerical: `race` and `ftv`. To make this data compatible with the `GLM` function, we use the pandas `get_dummies()` function. This function converts categorical data into dummy indicator variables. 
+
+Once we fit a model and we’re reasonably confident that it’s a good model, we may want to visualize it. For example, how does `ptd` affect the probability of low infant birth weight?
+
+To begin, we create a Pandas DataFrame for our predictors. This needs to be a Pandas DataFrame since we used the formula option when fitting the model. Notice the only variable that changes is `ptd`. All other variables are held constant. What values you choose to hold them at is up to you, but typical choices are means or medians for numeric predictors, and most populous group for categorical predictors.
 
 ```{python}
-data_exog = pd.get_dummies(data_exog, columns=['race','ftv'], drop_first=True).astype('float64')
-data_exog = sm.add_constant(data_exog)
+# create dictionary of values
+d = {'age': 23, 'lwt': 123, 'race': "white",
+     'smoke' : "0", 'ptd' : ["0","1"], 'ht': "0", 
+     'ui': "0", 'ftv': "0"}
+# convert dictionary to Pandas DataFrame.
+nd = pd.DataFrame(data=d)
 ```
 
-Now that all of our data is in the right format, we can build the model. 
+Now plug in our new data (nd) into our model using the `get_prediction` method. See [this page](https://www.statsmodels.org/devel/generated/statsmodels.genmod.generalized_linear_model.GLMResults.html#statsmodels.genmod.generalized_linear_model.GLMResults). This returns the predictions as a `PredictionResults` class. We can access the predicted probabilities using the `predicted_mean` property. See [this page](https://www.statsmodels.org/devel/generated/statsmodels.tsa.base.prediction.PredictionResults.html). 
+
 
 ```{python}
-model = sm.GLM(data_endog, data_exog, family=sm.families.Binomial())
-log_reg_2 = model.fit()
+pred = mod1.get_prediction(exog=nd)
+prob = pred.predicted_mean
+print(prob)
 ```
 
-We can then call `summary()` on our fit model to see the model coefficients and statistics. 
+We can use the `conf_int` method to extract the confidence intervals for the predicted probabilities.
 
 ```{python}
-log_reg_2.summary()
-log_reg_2.params
-log_reg_2.conf_int()
+ci = pred.conf_int()
+print(ci)
 ```
 
-Notice we get the same results using both methods. 
+Now we use the matplotlib `errorbar` function to create the plot. The `errorbar` function requires _margin of error_, not the lower and upper limits. So we have to do some subtraction to get the lower and upper margin of errors.
 
+```{python}
+lower = [prob[0] - ci[0,0], prob[1] - ci[1,0]]
+upper = [ci[0,1] - prob[0], ci[1,1] - prob[1]]
+```
+
+Finally we can make the plot.
+
+
+```{python message=FALSE}
+import matplotlib.pyplot as plt
+plt.clf()
+plt.errorbar(x = ["0","1"], y = prob, 
+             yerr=[lower, upper], fmt='ok')
+plt.xlabel('ptd')
+plt.ylabel('low')
+plt.title('Predicted probabilities of low')
+plt.show()
+```
 
 
 
