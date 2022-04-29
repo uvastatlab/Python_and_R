@@ -8,7 +8,7 @@ This chapter covers the very basics of Python and R.
 
 ## Math
 
-Mathematical operators are the same except for exponents, integer division, and remainder division (modulo).
+Mathematical operators are the same in both languages except for exponents, integer division, and remainder division (modulo).
 
 #### Python {-}
 
@@ -20,7 +20,7 @@ Python uses `**` for exponentiation, `//` for integer division, and `%` for rema
 5 % 2
 ```
 
-In Python, the `+` operator can also be used to combine strings. See this TBD section.
+In Python, the `+` operator can also be used to combine strings. **See this TBD section.**
 
 #### R {-}
 
@@ -34,11 +34,11 @@ Python uses `^` for exponentiation, `%/%` for integer division, and `%%` for rem
 
 ## Missing values
 
-Python and R represent missing values differently, and the distinction is worth keeping in mind, as missing values will crop up throughout this book---some code examples intake or output data that are entirely or partially missing. In Python, a standard indicator for a missing value in a data set is `NaN`.* In R, missing values are generally indicated by `NA`. `NaN` does appear in R as well, but R reserves `NaN` to indicate values that are not technically absent but that are not defined and/or that can't be represented with numbers; e.g., `Inf/Inf`.
+Python and R represent missing values differently, and the distinction is worth keeping in mind, as missing values appear throughout this book---some code examples intake or output data that are entirely or partially missing. In Python, a standard indicator for a missing value in a data set is `NaN`. In R, missing values are generally indicated by `NA`. `NaN` does appear in R as well, but R reserves `NaN` to indicate values that, while not technically absent, are undefined and/or can't be represented with numbers (e.g., `Inf/Inf`).
 
 ## Assignment
 
-Python uses `=` for assignment, while R can use either `=` or `<-` for assignment. The latter "assignment arrow" is preferred in most R style guides to distinguish between assignment and setting the value of a function argument. According to R's documentation, "The operator `<-` can be used anywhere, whereas the operator `=` is only allowed at the top level (e.g., in the complete expression typed at the command prompt) or as one of the subexpressions in a braced list of expressions." See `?assignOps`.
+Python uses `=` for assignment, while R can use either `=` or `<-` for assignment. The latter "assignment arrow" is preferred in most R style guides to distinguish between assignment and setting the value of a function argument. According to R's documentation, "The operator `<-` can be used anywhere, whereas the operator `=` is only allowed at the top level (e.g., in the complete expression typed at the command prompt) or as one of the subexpressions in a braced list of expressions." (See `?assignOps` in R.)
 
 #### Python {-}
 
@@ -54,7 +54,7 @@ x <- 12
 
 ## Printing a value
 
-To see the value of an object created via assignment, you can simply enter the object at the console and hit enter for both Python and R, though it is common in Python to explicitly use the `print()` function.
+To see the value of an object created via assignment, you can simply enter the object name in the console and hit enter in both Python and R. It is common in Python, however, to explicitly use the `print()` function.
 
 #### Python {-}
 
@@ -70,15 +70,15 @@ x
 
 ## Packages
 
-User-created functions can be bundled and distributed as packages. Packages need to be installed only once. Thereafter they're "imported" (Python) or "loaded" (R) in each new session when needed.
+User-created functions can be bundled and distributed as packages. Packages need to be installed only once. Thereafter they're "imported" (Python) or "attached" (R) in each new session when needed.
 
-Packages with large user bases are often updated to add functionality and fix bugs. The updates are not automatically installed. Staying apprised of library/package updates can be challenging. Some suggestions are following developers on Twitter, signing up for newsletters, or periodically checking to see what updates are available.
+Packages with large user bases are often updated to add functionality and to fix bugs. The updates are not automatically installed. Staying apprised of library/package updates can be challenging. To stay up to date, you might consider signing up for newsletters, following developers on Twitter, or periodically checking to see what updates are available.
 
-Packages often depend on other packages. These are known as "dependencies." Sometimes packages are updated to accommodate changes to other packages they depend on.
+Packages often depend on other packages. These are known as "dependencies." Packages are sometimes updated to accommodate changes to other packages they depend on.
 
 #### Python {-}
 
-When you download Python, you gain access to The Python Standard Library. This library includes several datatypes and functions for storing data, performing mathematical operations, and beyond. Commonly used datatypes include _list_ and _range_. As you can see below, you do not need to import data types from the Standard Python Library.
+When you download Python, you gain access to the Python Standard Library. This library includes several data types and functions for storing data, performing mathematical operations, and beyond. Commonly used data types include _lists_ and _ranges_. As you can see below, you do not need to import data types from the Python Standard Library.
 
 ```{python}
 my_list = []
@@ -87,7 +87,7 @@ for idx in range(5):
 print(my_list)
 ```
 
-Libraries contain modules, groups of functions. To use functions from modules in the Python Standard Library, users must import the appropriate module. Examples include math and itertools, which both include several functions for a range of operations.
+Libraries contain modules---groups of functions. To use functions from modules in the Python Standard Library, users must import the appropriate module. Examples include **math** and **itertools**.
 
 ```{python}
 import math
@@ -96,22 +96,20 @@ two = 2
 print(math.pow(two, one))
 ```
 
-Users can also download 100s of libraries outside of the Standard Python Library. Python libraries are also called packages. Popular libraries include numpy, used for operations on arrays/vectors and pandas, used for data analysis. The following code is an example of importing a Python library, NumPy, into a Python script.
+Users can also download hundreds of libraries outside of the Python Standard Library. Python libraries are also called packages. Popular libraries include **NumPy**, which provides functions for operating on arrays/vectors, and **pandas**, which provides functions for data analysis. The following code gives an example of importing a Python library, **NumPy**, into a Python script, and using one of its functions to create an array (a data structure discussed in Chapter 2).
 
 ```{python}
 import numpy as np
 
-my_array = np.array([1,2,3])
+my_array = np.array([1, 2, 3])
 print(my_array)
 ```
 
-To use Python libraries outside the Python Standard Library, they must be installed in the Python environment. 
+To use Python libraries outside the Python Standard Library, you must install them. Package managers help shepherd along the process. _Anaconda_, for example, is a popular distribution of Python that includes a package manager called _conda_. Anaconda allows you to use and create Python environments and install libraries to these environments. A Python virtual environment is a collection of libraries isolated from other virtual environments. These environments allow users to seamlessly organize programming projects.
 
-Anaconda is the most popular Python library manager. Anaconda allows you to use and create Python virtual environments and install libraries to these environments. A Python virtual environment is a collection of libraries isolated from other virtual environments. These environments allow users to seamlessly organize programming projects.
+You can download Anaconda from the following link: https://www.anaconda.com/products/individual. When you download Anaconda, you have access to the Anaconda Navigator, a graphical user interface, and the Anaconda Prompt, a command prompt. Anaconda comes with an automatic environment called "base."
 
-You can download Anaconda from the following link: https://www.anaconda.com/products/individual. When you download Anaconda, you have access to the Anaconda Navigator, a graphical user interface, and the Anaconda Prompt, a command prompt. Anaconda comes with an automatic environment called "base".
-
-The following screenshot illustrates how to install a library to an environment using the Anaconda GUI. Using the drop down menu, navigate to "Not installed". Then, select the desired library from the list. The search bar can be used to search for libraries. Finally, click the green "Apply" button to install the package.
+The following screenshot illustrates how to install a library to an environment using the Anaconda GUI. Using the drop down menu, navigate to "Not installed." Then, select the desired library from the list. You can use the search bar to search for libraries by name. Finally, click the green "Apply" button to install the package.
 
 ```{r, echo = F}
 knitr::include_graphics('images/anaconda_gui_install.png')
@@ -123,14 +121,13 @@ The following screenshot illustrates how to install a library to the "base" envi
 knitr::include_graphics('images/anaconda_command_install.png')
 ```
 
-Sometimes the commands to download libraries are not as simple as shown in the above example. The Anaconda website provides commands for how to download popular Python libraries.
-
+Sometimes, the commands to download libraries are not as simple as in the example above. The Anaconda website provides commands for how to download popular Python libraries.
 
 #### R {-}
 
-The main repository for R packages is the [Comprehensive R Archive Network](https://cran.r-project.org/) (CRAN). Another repository is [Bioconductor](https://www.bioconductor.org/), which provides tools for working with genomic data. Many packages are also distributed on [GitHub](https://github.com/).
+The main repository for R packages is the [Comprehensive R Archive Network](https://cran.r-project.org/) (CRAN). Another major repository is [Bioconductor](https://www.bioconductor.org/), which hosts packages for working with genomic data. Many packages are also distributed on [GitHub](https://github.com/).
 
-To install packages from CRAN use the `install.packages()` function. In RStudio, you can also go to Tools...Install Packages... for a dialog that will auto-complete package names as you type.
+To install packages from CRAN use the `install.packages()` function. In RStudio, you can also go to _Tools...Install Packages..._ to bring up a dialog box that will auto-complete package names as you type.
 
 ```{r eval=FALSE}
 # install the vcd package, a package for Visualizing Categorical Data
@@ -147,14 +144,14 @@ old.packages()
 update.packages(ask = FALSE)
 ```
 
-To install R packages from GitHub use the `install_github()` function from the **devtools** package. You need to include the username of the repo owner followed by a forward slash and the name of the package. Typing two colons between a package and a function in the package allows you to use that function without loading the package. That's how we use `install_github()` below.
+To install R packages from GitHub, use the `install_github()` function from the **devtools** package. You need to include the username of the repo owner followed by a forward slash and the name of the package. Typing two colons between a package and a function in the package allows you to use that function without attaching the package in your R environment. That's how we access `install_github()` in the example below.
 
 ```{r eval=FALSE}
 install.packages("devtools")
 devtools::install_github("username/packagename")
 ```
 
-Occasionally when installing package updates you will be asked, "Do you want to install from sources the package which needs compilation?" R packages on CRAN are _compiled_ for Mac and Windows operating systems. That can take a day or two after a package has been submitted to CRAN. If you try to install a package that has not been compiled then you'll get asked the question above. If you click _Yes_, R will try to compile the package on your computer. This will only work if you have the required build tools on your computer. For Windows this means having [Rtools](https://cran.r-project.org/bin/windows/Rtools/) installed. Mac users should already have the necessary build tools. Unless you absolutely need the latest version of a package, it's probably fine to click _No_.
+When installing package updates, you will occasionally be asked, "Do you want to install from sources the package(s) which need(s) compilation?" R packages on CRAN are _compiled_ for Mac and Windows operating systems. That can take a day or two after a package has been submitted to CRAN. If you try to install a package that has not yet been compiled, you'll be asked the question above. If you click _Yes_, R will try to compile the package on your computer. This will only work if you have the required build tools on your computer. For Windows, this means having [Rtools](https://cran.r-project.org/bin/windows/Rtools/) installed. Mac users should already have the necessary build tools. Unless you absolutely need the latest version of a package, it's generally fine to click _No_.
 
 ## Logic
 
@@ -172,100 +169,102 @@ Likewise they share the same operators for logical AND and OR:
 - `&` (AND)
 - `|` (OR)
 
-However R also has `&&` and `||` operators for programming control-flow.
+However R also has `&&` and `||` operators for programming control-flow. These operators _short-circuit_ and return the first result of a set of logical evaluations. For example:
+
+```{r}
+c(1, 9, 9) && c(1, 8, 8) == 1
+c(1, 9, 9) & c(1, 8, 8) == 1
+```
 
 Python and R have different operators for negation. Python uses `not`. R uses `!`.
 
 #### Python {-}
 
-These Python operators can be used to compare arrays to single values or other arrays. This operation returns an array containing true and false values. 
+Python's relational operators can be used to compare arrays to single values or other arrays. The following operation returns an array containing `True` and `False` values. 
 
 ```{python}
 import numpy as np 
 
 # Comparison of array to single value
-x1 = np.array([1,5,9,12,11,6])
+x1 = np.array([1, 5, 9, 12, 11, 6])
 x1 < 8
 
 # Comparison of array to another array 
-x2 = np.array([2,4,6,14,15,7])
+x2 = np.array([2, 4, 6, 14, 15, 7])
 x1 > x2
 ```
 
-We can make multiple comparisons with the AND (`and`) and OR (`or`) operators. An important thing to note is that the `and` operator is inclusive, meaning that all statements must be true to return `True`. The `or` operator is exclusive, meaning that at least one of the statements joined by `or` must be true to return `True`. 
+We can make multiple comparisons with the `and` and `or` operators. An important thing to note is that the `and` operator is inclusive, meaning that all statements must be true to return `True`. The `or` operator is exclusive, meaning that just one of the statements joined by `or` must be true to return `True`. 
 
 ```{python}
-x=5 
-y= 4
+x = 5 
+y = 4
 
 x > 6 and y < 10
 
 x > 6 or y < 10
 ```
 
-True and False operators have numeric values of 1 and 0, respectively. We can sum and average these values.
+`True` and `False` have numeric values of 1 and 0, respectively. This allows us to sum and average these values.
 
 ```{python}
 # Sum of values greater than 10 in array x2
 np.sum(x2 > 10)
 
-# Portion of values greater than 10 in array x2
+# Proportion of values greater than 10 in array x2
 np.mean(x2 > 10)
 ```
 
-
-
 #### R {-}
 
-R's relational operators allow comparisons between a vector and a single value, or comparisons between two vectors. The result is a vector of TRUE/FALSE values.
+R's relational operators allow comparisons between a vector and a single value, or comparisons between two vectors. The result is a vector of `TRUE`/`FALSE` values.
 
 ```{r}
-# vector compared with value
+# Vector compared with a value
 x1 <- c(1, 5, 9, 12, 11, 6)
 x1 < 8
 
-# vector compared with vector
+# Vector compared with another vector
 x2 <- c(2, 4, 6, 14, 15, 7)
 x1 > x2
 ```
 
-Comparisons with NA (missing value) results in NA.
+Comparisons with `NA` (a missing value) return `NA`.
 
 ```{r}
 x1 <- c(1, 5, 9, NA, 11, 6)
 x1 < 8
 ```
 
-Multiple comparisons can be made with AND (`&`) and OR (`|`) operators.
+Multiple comparisons can be made with the AND (`&`) and OR (`|`) operators.
 
 ```{r}
 x2 > 3 & x2 < 10
 x2 < 3 | x2 > 10
 ```
 
-TRUE/FALSE values in R have numeric values of 1/0. This allows us to sum and average them. (Note: an average of 0 and 1 values is the proportion of 1's.)
+`TRUE`/`FALSE` values in R have numeric values of 1 and 0, respectively. This allows us to sum and average them. (An average of 0 and 1 values is the proportion of 1's.)
 
 ```{r}
-# sum of values greater than 10
+# Sum of values greater than 10
 sum(x2 > 10)
 
-# proportion of values greater than 10
+# Proportion of values greater than 10
 mean(x2 > 10)
 ```
 
-Use the `!` operator for negation. This allows to check for something that is NOT TRUE.
+The `!` operator indicates negation. This allows us to check whether something is _not_ `TRUE`.
 
 ```{r}
-# which value are NOT less than 6
+# Which values are not less than 6?
 !x2 < 6
 ```
 
 See the `?Comparison` and `?Logic` help pages for more information.
 
-
 ## Generating a sequence of values
 
-In Python, one option for generating a sequence of values is `arange()` from **NumPy**. In R, a common approach is to use `seq()`. The sequences can be incremented by indicating a `step` argument in `arange()` or a `by` argument in `seq()`. Be aware that the end of the start/stop interval in `arange()` is _open_, but both sides of the from/to interval in `seq()` are _closed_.
+In Python, one option for generating a sequence of values is `arange()` from **NumPy**. In R, a common approach is to use `seq()`. The sequences can be incremented by indicating a `step` argument in `arange()` or a `by` argument in `seq()`. Be aware that the end of the start/stop interval in `arange()` (Python) is _open_, but both sides of the from/to interval in `seq()` (R) are _closed_.
 
 #### Python {-}
 
@@ -288,7 +287,7 @@ The **NumPy** Python library has functions for calculating means and medians, an
 
 #### Python {-}
 
-Mean, using function from **NumPy** library
+Mean, using function from **NumPy**:
 
 ```{python}
 import numpy as np
@@ -297,7 +296,7 @@ x_avg = np.mean(x)
 print(x_avg)
 ```
 
-Median, using function from **NumPy** library
+Median, using function from **NumPy**:
 
 ```{python}
 x = [98, 102, 20, 22, 304]
@@ -307,7 +306,7 @@ print(x_med)
 
 #### R {-}
 
-Mean, using function from base R
+Mean, using function from base R:
 
 ```{r}
 x <- c(90, 105, 110)
@@ -315,7 +314,7 @@ x_avg <- mean(x)
 x_avg
 ```
 
-Median, using function from base R
+Median, using function from base R:
 
 ```{r}
 x <- c(98, 102, 20, 22, 304)
@@ -325,29 +324,29 @@ x_med
 
 ## Writing your own functions
 
-Python and R allow and encourage users to create their own functions. Functions can be created, named, and stored in memory and used throughout a session. Or they can be created on-the-fly "anonymously" and used once.
+Python and R allow and encourage users to create their own functions. Functions can be created, named, and stored in memory for use throughout a session. Or they can be created on-the-fly "anonymously" and used once.
 
 #### Python {-}
 
-Functions in Python are defined by using the `def` keyword followed by the name we choose for our function with its arguments inside parentheses. We must include a `return()` statement after the body of our function to indicate the end of the function. The return statement takes an optional argument in its parentheses that will be the output of the function. Here we create a function to calculate the standard error of a mean (SEM) and call it `SEM`. 
+Functions in Python are defined by using the `def` keyword followed by the intended name of the function with its arguments inside parentheses. We must include a `return()` statement after the body of our function to indicate the end of the function. The return statement takes an optional argument in its parentheses that will be the output of the function. Below, we create a function called `SEM()` to calculate the standard error of a mean (SEM).
 
 ```{python}
 def SEM(x):
-  import numpy as np # import statement included inside the function to ensure it's always imported
-  s = x.std(ddof=1) # find standard deviation of the data, specify delta degrees of freedom as 1 (makes denominator n-1 not n)
+  import numpy as np # including the import statement inside the function ensures that NumPy is always imported
+  s = x.std(ddof = 1) # standard deviation of the data, specifying delta degrees of freedom as 1 (this makes denominator of the SD calculation n-1 instead of n)
   n = x.shape[0] # extract the length of the input array
   sem = s / np.sqrt(n) # calculate the SEM
   return(sem) # return the calculated SEM value
 ```
 
-Now let's try our function out on some test data.
+Now, let's try our function out on some test data.
 
 ```{python}
-d = np.array([3,4,4,7,9,6,2,5,7])
+d = np.array([3, 4, 4, 7, 9, 6, 2, 5, 7])
 SEM(d)
 ```
 
-Oftentimes functions have built-in error-checking that returns messages describing the error. Here we show a simple error-check to ensure that the argument passed to our function is a number. 
+Functions often have built-in error-checking that returns messages describing the error. Below, we modify the `SEM()` function to include a simple error-check to ensure that the argument passed to the function is numeric. 
 
 ```{python}
 def SEM(x):
@@ -362,7 +361,7 @@ def SEM(x):
   return(sem) 
 ```
 
-Python functions can return more than one result. It will output the results into a `tuple`. A tuple is a data structure very similar to a list, but it is immutable - we cannot change the order of the entries. Here we make our function return both the mean and the SEM of our data. 
+Python functions can return more than one result. In such cases, the results are output as a `tuple`. Data structures are discussed at length in Chapter 2, but as a brief introduction: A tuple is a data structure similar to a list, but it is immutable---we cannot change the order of or modify the entries. Below, we further modify the `SEM()` function to make it return both the mean and the SEM of our data.
 
 ```{python}
 def SEM(x):
@@ -381,47 +380,46 @@ def SEM(x):
 
 #### R {-}
 
-Functions in R can be created and named using `function()`. Add arguments inside the parentheses. Longer functions with multiple lines can be wrapped in curly braces `{}`.
+Functions in R can be created and named using `function()`. Add arguments inside the parentheses. Functions with multiple lines are wrapped in curly braces: `{}`. By default, the last line of the function is returned as the output; however, a result(s) can be returned before the final line via the `return()` function.
 
-Below we create a function to calculate the standard error of a mean (SEM) and name it `sem`. It takes one argument: `x`, a vector of numbers. Both the function name and argument name(s) can be whatever we like, as long as they follow [R's naming conventions](https://cran.r-project.org/doc/manuals/r-release/R-intro.html#R-commands_003b-case-sensitivity-etc).
+Below, we create a function called `sem()` to calculate the standard error of a mean (as we did in Python above). The function takes one argument, `x`, a vector of numbers. Both the function name and argument name(s) can be whatever we like as long as they follow [R's naming conventions](https://cran.r-project.org/doc/manuals/r-release/R-intro.html#R-commands_003b-case-sensitivity-etc).
 
 ```{r}
-sem <- function(x){
+sem <- function(x) {
   s <- sd(x)
   n <- length(x)
-  s/sqrt(n)
+  s / sqrt(n)
 }
 
 ```
 
-Now we can try it out on some test data.
+Now, we can try it out on some test data.
 
 ```{r}
-d <- c(3,4,4,7,9,6,2,5,7)
+d <- c(3, 4, 4, 7, 9, 6, 2, 5, 7)
 sem(d)
 ```
 
-Functions that will be used on different data and/or by different users often need built-in error-checking to return informative error messages. This simple example checks if the data are not numeric and returns a special error message.
+Functions that will be used on different data and/or by different users often need built-in error-checking to return informative error messages. This simple example checks if the data are not numeric and returns a custom error message if they are not.
 
 ```{r error=TRUE}
-sem <- function(x){
-  if(!is.numeric(x)) stop("x must be numeric")
+sem <- function(x) {
+  if (!is.numeric(x)) stop("x must be numeric")
   s <- sd(x)
   n <- length(x)
-  s/sqrt(n)
+  s / sqrt(n)
 }
 sem(c(1, 4, 6, "a"))
 ```
 
-R functions can also return more than one result. Below we return a list that holds the mean and SEM, but we could also return a vector, a data frame, or other data structure. Notice we also add an additional argument, `...`, known as the three dots argument. This allows us to pass arguments for `sd` and `mean` directly through our own function. Below we pass through `na.rm = TRUE` to drop missing values.
+R functions can also return more than one result. Below, we return a list that holds the mean and SEM of input data. We could also return a vector, a data frame, or other data structure. Notice we also add an additional argument to the function, `...`, known as the three dots argument. This allows us to pass arguments for `sd` and `mean` directly through our own function. We pass through the additional argument `na.rm = TRUE` to drop missing values from the input data.
  
-
 ```{r}
-sem <- function(x, ...){
-  if(!is.numeric(x)) stop("x must be numeric")
+sem <- function(x, ...) {
+  if (!is.numeric(x)) stop("x must be numeric")
   s <- sd(x, ...)
   n <- length(x)
-  se <- s/sqrt(n)
+  se <- s / sqrt(n)
   mean <- mean(x, ...)
   list(mean = mean, SEM = se)
 }
@@ -430,25 +428,22 @@ d <- c(1, 4, 6, 8, NA, 4, 4, 8, 6)
 sem(d, na.rm = TRUE)
 ```
 
-Functions can also be created on-the-fly as "anonymous" functions. This simply means the functions are not saved as objects in memory. These are often used with R's family of `apply` functions. As before, the functions can be created with `function()`. We can also use the backslash `\` as a shorthand for `function()`. We demonstrate both below with a data frame.
+Functions can also be created on-the-fly as "anonymous" functions. This simply means the functions are not saved as objects in memory. These are often used with R's family of `apply` functions, which apply some function over a set of inputs. As before, the functions can be created with `function()`. We can also use the backslash `\` as a shorthand for `function()`. We demonstrate both below using the following example data.
 
 ```{r}
-# generate some example data
-d <- data.frame(x1 = c(3, 5, 7, 1, 5, 4),
-                x2 = c(6, 9, 8, 9, 2, 5),
-                x3 = c(1, 9, 9, 7, 8, 4))
+# Generate some example data
+d <- data.frame(x1 = c(3, 5, 7, 1, 5, 4), x2 = c(6, 9, 8, 9, 2, 5), x3 = c(1, 9, 9, 7, 8, 4))
 d
 ```
 
-Now find the standard error of the mean for the three columns using an anonymous function with `lapply()`. The "l" means the result will be a list. We apply the function to each column of the data frame.
+Say we want to find the standard error of the mean for the three columns using an anonymous function with `lapply()`. The "l" in `lapply()` means the result will be a list. The function is applied to each column of the data frame.
 
 ```{r}
-lapply(d, function(x)sd(x)/sqrt(length(x)))
+lapply(d, function(x) sd(x) / sqrt(length(x)))
 ```
 
 We can also use the backslash as a shorthand for `function()`.
 
 ```{r}
-lapply(d, \(x)sd(x)/sqrt(length(x)))
+lapply(d, \(x) sd(x) / sqrt(length(x)))
 ```
-
