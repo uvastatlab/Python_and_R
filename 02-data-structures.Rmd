@@ -12,210 +12,199 @@ A one-dimensional data structure can be visualized as a column in a spreadsheet 
 
 #### Python {-}
 
-There are many ways to organize one-dimensional data in Python. Three of the most common one-dimensional data structures are lists, numpy arrays, and pandas Series. All three are ordered and mutable, and can contain data of different types. 
+There are many ways to organize one-dimensional data in Python. Three of the most common one-dimensional data structures are lists, NumPy arrays, and pandas Series. All three are ordered and mutable, and they can contain data of different types. 
 
 Lists in Python do not need to be explicitly declared; they are indicated by the use of square brackets.
 
 ```{python}
-l = [1,2,3,'hello']
+l = [1, 2, 3, 'hello']
 ```
 
-Values in lists can be accessed by using square brackets. Python indexing begins at 0, so to extract the first element, we would use the index 0. Python also allows for negative indexing; using an index of -1 will return the last value in the list. Indexing a range in Python is not inclusive of the last index. 
+Values in lists can be accessed by using square brackets. Python indexing begins at 0, so to extract the first element, we would use the index 0. Python also allows for negative indexing; using an index of -1 will return the last value in the list. Indexing a range in Python is _not_ inclusive of the last index. 
 
 ```{python}
-# extract first element
+# Extract first element
 l[0]
-
-#extract last element
+```
+```{python}
+# Extract last element
 l[-1]
-
-# extract 2nd and 3rd elements
+```
+```{python}
+# Extract second and third elements
 l[1:3]
-
 ```
 
-Numpy arrays, on the other hand, need to be declared using the `numpy.array()` function, and the **numpy** package needs to be imported. 
+NumPy arrays, on the other hand, need to be declared using the `numpy.array()` function, and the **NumPy** package needs to be imported. 
 
 ```{python}
 import numpy as np
 
-arr = np.array([1,2,3,'hello'])
+arr = np.array([1, 2, 3, 'hello'])
 print(arr)
 ```
 
-Accessing data in a numpy array is the same as indexing a list. 
+Accessing data in a NumPy array is the same as indexing a list. 
 
 ```{python}
-# extract first element 
+# Extract first element 
 arr[0]
 
-# extract last element
+# Extract last element
 arr[-1]
 
-# extract 2nd and 3rd elements
+# Extract second and third elements
 arr[1:3]
 ```
 
-Pandas Series also need to be declared using the `pandas.Series()` function. Like **numpy**, the **pandas** package must be imported as well. The pandas package is built on numpy, so we can input data into a pandas Series using a numpy array. We can extract data from the Series by using the index similar to indexing a list and numpy array. 
+Pandas Series also need to be declared using the `pandas.Series()` function. Like **NumPy**, the **pandas** package must be imported as well. The pandas package is built on NumPy, so we can input data into a pandas Series using a NumPy array. We can extract data from a Series by indexing, similar to indexing a list or NumPy array.
 
 ```{python}
 import pandas as pd 
 import numpy as np
 
-data = np.array([1,2,3,"hello"])
+data = np.array([1, 2, 3, "hello"])
 ser1 = pd.Series(data)
 print(ser1)
-
-# extract first element 
+```
+```{python}
+# Extract first element 
 ser1[0]
-
-# extract 2nd and 3rd elements 
+```
+```{python}
+# Extract second and third elements 
 ser1[1:3]
 ```
 
-To extract the last element of a pandas Series using `-1`, we need to use the `iloc` function.
-
+Similarly, we can use `iloc[]` (note the square brackets) to subset elements based on integer position. 
 ```{python}
-ser1.iloc[-1]
+# Extract second and third elements 
+ser1.iloc[1:3]
 ```
 
-
-We can relabel the indices of the Series to whatever we like using the `index` attribute within the `Series` function. 
+We can relabel the indices of the Series to whatever we like using the `index` attribute within the `Series()` function. 
 
 ```{python}
 import pandas as pd 
 import numpy as np
 
-ser2 = pd.Series(data, index=['a','b','c','d'])
+ser2 = pd.Series(data, index = ['a', 'b', 'c', 'd'])
 print(ser2)
 ```
 
-We can then use our own specified indices to select and index our data. Indexing with our labels can be done in two ways. One similar to indexing arrays and lists with square brackets using the `.loc` function, and the other follows this form: `Series.label_name`.
+We can then use our own specified indices to select and index our data. Indexing with our labels can be done in two ways; one approach uses the `.loc[]` function and is similar to indexing arrays and lists with square brackets; the other approach follows this form: `Series.label_name`. Note that ranges referenced in `loc[]` are _inclusive on both ends_; normally, Python interprets ranges as having open upper ends (e.g., `print(['a', 'b', 'c'][0:2])` returns `['a', 'b']`.)
 
 ```{python}
-
-# extract element in row b
+# Extract element in row b
 ser2.loc["b"]
-
-# extract elements from row b to the end
+```
+```{python}
+# Extract elements from row b to the end
 ser2.loc["b":]
-
-# extract element in row "d"
+```
+```{python}
+# Extract element in row "d"
 ser2.d
-
-# extract element in row "b"
+```
+```{python}
+# Extract element in row "b"
 ser2.b
 ```
 
-One thing to note is that mathematical operations cannot be carried out on lists, but they can be carried out on numpy arrays and pandas Series. In general, lists are better for short data sets that you will not be operating on mathematically. Numpy arrays and pandas Series are better for long data sets, and for data sets that will be operated on mathematically. 
+Mathematical operations cannot be carried out on lists, but they can be carried out on NumPy arrays and pandas Series. In general, lists are better for short data sets that won't be the targets of mathematical operations. NumPy arrays and pandas Series are better for long data sets and for data sets that will be operated on mathematically.
 
 #### R {-}
 
-In R a one-dimensional data structure is called a _vector_. We can create a vector using the `c()` function. A vector in R can only contain one type of data (all numbers, all strings, etc). The columns of data frames are vectors. If multiple types of data are put into a vector, the data will be coerced according to the hierarchy `logical` < `integer` < `double` < `complex` < `character`. This means if you mix, say, integers and character data, all the data will be coerced to character. 
+In R a one-dimensional data structure is called a _vector_. We can create a vector using the `c()` function. A vector in R can only contain one type of data (all numbers, all strings, etc). The columns of data frames---a data structure discussed in section 2.2 below---are vectors. If multiple types of data are put into a vector, the data will be coerced according to the hierarchy `logical` < `integer` < `double` < `complex` < `character`. This means if you mix, say, integers and character data, all the data will be coerced to character. 
 
 ```{r}
 x1 <- c(23, 43, 55)
 x1
 
-# all values coerced to character
+# All values coerced to character
 x2 <- c(23, 43, 'hi')
 x2
 ```
 
-Values in a vector can be accessed by position using indexing brackets. R indexes elements of a vector starting at 1. Index values are inclusive. For example, `2:3` selects the second and third elements.
+Values in a vector can be accessed by position using indexing brackets. R indexes elements of a vector starting at 1. Index values are inclusive. For example, a_vec[`2:3`] selects the second and third elements of `a_vec`.
 
 ```{r}
-# extract the 2nd value
+# Extract the second value
 x1[2]
 
-# extract the 2nd and 3rd value
+# Extract the second and third values
 x1[2:3]
-
 ```
-
-
 
 ## Two-dimensional data
 
-Two-dimensional data are rectangular in nature, consisting of rows and columns. These can be the type of data you might find in a spreadsheet with a mix of data types in columns; they can also be matrices as you might encounter in matrix algebra.
+Two-dimensional data are rectangular in nature, consisting of rows and columns. These can be the type of data you might find in a spreadsheet with a mix of data types in the columns; they can also be matrices as you might encounter in matrix algebra.
 
 #### Python {-}
-In Python, two common two-dimensional data structures include the _numpy array_ and the _pandas DataFrame_. 
+In Python, two common two-dimensional data structures are the NumPy array (introduced above in its one-dimensional form) and the pandas DataFrame.
 
-A two-dimensional numpy array is made in a similar way to the one-dimensional array using the `numpy.array` function. 
+A two-dimensional NumPy array is made in a similar way to the one-dimensional array using the `numpy.array()` function. 
 
 ```{python}
 import numpy as np
 
-arr2d = np.array([[1,2,3,"hello"],[4,5,6,"world"]])
+arr2d = np.array([[1, 2, 3, "hello"], [4, 5, 6, "world"]])
 print(arr2d)
 ```
 
-Selecting data for a two-dimensional numpy array follows the same form as indexing a one-dimensional array. 
+Data can be selected from a two-dimensional NumPy array via `[row, column]` indexing:
 
 ```{python}
 import numpy as np
 
-# extract first element 
-arr2d[0,0]
+# Extract first element 
+arr2d[0, 0]
 
-# extract last element 
+# Extract last element 
 arr2d[-1, -1]
 
-# extract 2nd and 3rd columns
-arr2d[:,1:3]
-
+# Extract second and third columns (all rows)
+arr2d[:, 1:3]
 ```
 
-A pandas DataFrame is made using the `pandas.DataFrame` function in a similar way to the pandas Series. 
+A pandas DataFrame is made using the `pandas.DataFrame()` function, and it shares many functional similarities with the pandas Series.
 
 ```{python}
 import pandas as pd
 import numpy as np
 
-data = np.array([[1,2,3,"hello"],[4,5,6,"world"]])
+data = np.array([[1, 2, 3, "hello"], [4, 5, 6, "world"]])
 df = pd.DataFrame(data)
 print(df)
 ```
 
-Selecting data from a DataFrame is similar to that of the Series. 
+To select certain rows and columns from a pandas DataFrame based on their integer position, we can use `iloc[]` (as we did with the pandas Series above). The values inside the brackets following `iloc` reflect the rows and the columns, respectively. 
 
 ```{python}
-# extract first element 
-df.loc[0,0]
-
-# extract column 1
-df.loc[0]
-
-# extract row 1
-df.loc[0,0]
+# Extract first element (first row, first column)
+df.loc[0, 0]
 ```
-
-Like the pandas Series, we can change the indices and the column names of the DataFrame and can use those to select and index our data. 
-
-We change the indices again using the `index` attribute in the `pandas.DataFrame` function:
-
 ```{python}
-import pandas as pd
-import numpy as np
-
-data = np.array([[1,2,3,"hello"],[4,5,6,"world"]])
-df = pd.DataFrame(data, index=["a","b"])
-print(df)
+# Extract first row, all columns
+df.loc[0, :]
+```
+```{python}
+# Extract second column, all rows
+df.loc[:, 1]
 ```
 
-We can change the column names using the `columns` attribute in the `pandas.DataFrame` function:
+As we did with the pandas Series, we can change the indices and the column names of the DataFrame and use those to select certain data. We change the indices using the `index` attribute in `pandas.DataFrame()`, and we change the column names using the `columns` attribute. These new labels can be used with `loc[]` for subsetting. (And, as mentioned above, if a range is passed to `loc[]`, it's treated as inclusive on both ends.)
 
 ```{python}
 import pandas as pd
 import numpy as np
 
-data = np.array([[1,2,3,"hello"],[4,5,6,"world"]])
-df = pd.DataFrame(data, index=["a","b"], columns=["column 1","column 2", "column 3", "column 4"])
-print(df)
+data = np.array([[1, 2, 3, "hello"], [4, 5, 6, "world"]])
+df = pd.DataFrame(data, index = ["a", "b"], columns = ["column 1", "column 2", "column 3", "column 4"])
+print(df.loc[["a", "b"], "column 1"])
 ```
 
-One thing to note is that numpy arrays can actually have N dimensions, whereas pandas DataFrames can only have two. Numpy arrays will be the better choice for data with more than two dimensions. 
+One thing to note is that NumPy arrays can actually have an arbitrary number of dimensions, whereas pandas DataFrames can only have two.
 
 #### R {-}
 
@@ -224,11 +213,11 @@ Two-dimensional data structures in R include the _matrix_ and _data frame_. A ma
 Create a matrix with the `matrix()` function. Create a data frame with the `data.frame()` function. Most imported data comes into R as a data frame.
 
 ```{r}
-# matrix; populated down by column by default
-m <- matrix(data = c(1,3,5,7), nrow = 2, ncol = 2)
+# Matrix; populated down by column by default
+m <- matrix(data = c(1, 3, 5, 7), nrow = 2, ncol = 2)
 m
 
-# data frame
+# Data frame
 d <- data.frame(name = c("Rob", "Cindy"),
                 age = c(35, 37))
 d
@@ -237,13 +226,12 @@ d
 Values in a matrix and data frame can be accessed by position using indexing brackets. The first number(s) refers to rows; the second number(s) refers to columns. Leaving row or column numbers empty selects all rows or columns.
 
 ```{r}
-# extract value in row 1, column 2
-m[1,2]
+# Extract value in row 1, column 2
+m[1, 2]
 
-# extract values in row 2
-d[2,]
+# Extract values in row 2
+d[2, ]
 ```
-
 
 ## Three-dimensional and higher data
 
@@ -251,7 +239,7 @@ Three-dimensional and higher data can be visualized as multiple rectangular stru
 
 #### Python {-}
 
-To create a three-dimensional and higher data structure in Python, we again use a numpy array. We can think of the three-dimensional array as a stack of two-dimensional arrays. We construct this in the same way as the one- and two-dimensional arrays.
+To create a three-dimensional and higher data structure in Python, we again use a NumPy array. We can think of the three-dimensional array as a stack of two-dimensional arrays. We construct this in the same way as the one- and two-dimensional arrays.
 
 ```{python}
 import numpy as np 
@@ -260,37 +248,37 @@ arr3d = np.array([[[1, 2, 3], [4, 5, 6]], [[7, 8, 9], [10, 11, 12]]])
 arr3d
 ```
 
-We can also construct a three-dimensional numpy array using the `reshape` function on an existing array. The argument of `reshape` is where you input your desired dimensions - strata, rows, columns.  Here, the `arange` function is used to create a numpy array containing the numbers 1 through 12 (to recreate the same array shown above). 
+We can also construct a three-dimensional NumPy array using the `reshape` function on an existing array. The argument of `reshape` is where you input your desired dimensions: strata, rows, and then columns. Here, the `arange` function is used to create a NumPy array containing the numbers 1 through 12 (to recreate the same array shown above). 
 
 ```{python}
-arr3d_2 = np.arange(1,13).reshape(2,2,3)
+arr3d_2 = np.arange(1, 13).reshape(2, 2, 3)
 arr3d_2
 ```
 
 Indexing the three-dimensional array follows the same format as the two-dimensional arrays. Since we can think of the three-dimensional array as a stack of two-dimensional arrays, we can extract each "stacked" two-dimensional array. Here we extract the first of the "stacked" two-dimensional arrays:
 
 ```{python}
-# extract first strata (first "stacked" 2-D array)
+# Extract first strata (first "stacked" 2-D array)
 arr3d[0]
 ```
 
-We can also extract entire rows and columns, and individual array elements:
+We can also extract entire rows and columns, or individual array elements:
 
 ```{python}
-# extract 1st row of 2nd strata (second "stacked" 2-D array)
+# Extract first row of second strata (second "stacked" 2-D array)
 arr3d[1, 0]
 
-# extract 1st column of 2nd strata 
+# Extract first column of second strata 
 arr3d[1, :, 0]
 
-# extract the number 6 (1st strata, 2nd row, 3rd column)
+# Extract the number 6 (first strata, second row, third column)
 arr3d[0, 1, 2]
 ```
 
 The three-dimensional arrays can be converted to two-dimensional arrays again using the `reshape` function: 
 
 ```{python}
-arr3d_2d = arr3d.reshape(4,3)
+arr3d_2d = arr3d.reshape(4, 3)
 arr3d_2d
 ```
 
@@ -301,19 +289,19 @@ The `array()` function in R can create three-dimensional and higher data structu
 We can specify the dimension number and size using the `dim` argument. Below we specify 2 rows, 3 columns, and 2 strata using a vector: `c(2,3,2)`. This creates a three-dimensional data structure. The data in the example are simply the numbers 1 through 12.
 
 ```{r}
-a1 <- array(data = 1:12, dim = c(2,3,2))
+a1 <- array(data = 1:12, dim = c(2, 3, 2))
 a1
 ```
 
 Values in arrays can be accessed by position using indexing brackets.
 
 ```{r}
-# extract value in row 1, column 2, strata 1
-a1[1,2,1]
+# Extract value in row 1, column 2, strata 1
+a1[1, 2, 1]
 
-# extract column 2 in both strata
-# result is returned as matrix
-a1[,2,]
+# Extract column 2 in both strata
+# Result is returned as matrix
+a1[, 2, ]
 ```
 
 The dimensions can be named using the `dimnames()` function. Notice the names must be a _list_.
@@ -333,15 +321,15 @@ as.data.frame.table(a1, responseName = "value")
 
 ## General data structures
 
-Both R and Python provide general "catch-all" data structures that can contain any number, shape, and type of data. 
+Both R and Python provide general "catch-all" data structures that can contain data of any shape, type, and amount. 
 
 #### Python {-}
 
-The most general data structures in Python include the _list_ and the _tuple_. Both lists and tuples are ordered collections of objects called _elements_. The elements can be other lists/tuples, arrays, integers, objects, etc. 
+The most general data structures in Python are the _list_ and the _tuple_. Both lists and tuples are ordered collections of objects called _elements_. The elements can be other lists/tuples, arrays, integers, objects, etc. 
 
-Lists are mutable objects; elements can be reordered or deleted and new elements can be added after the list has been created. Tuples, on the other hand, are immutable; once a tuple is created it cannot be changed. 
+Lists are mutable objects; elements can be reordered or deleted, and new elements can be added after the list has been created. Tuples, on the other hand, are immutable; once a tuple is created it cannot be changed. 
 
-Lists are created using square brackets. Here we create a list and add an element to the list after it is created using the `append` function. 
+Lists are created using square brackets. Here, we create a list and add an element to the list after it is created using the `append` function. 
 
 ```{python}
 lst = [1, 2, 'a', 'b', [3, 4, 5]]
@@ -383,7 +371,7 @@ The most general data structure in R is the _list_. A list is an ordered collect
 We can create lists with the `list()` function. The list below contains three components: a vector named "x", a matrix named "y", and a data frame named "z". Notice the `m` and `d` objects were created in the two-dimensional data section earlier in this chapter.
 
 ```{r}
-l <- list(x = c(1,2,3),
+l <- list(x = c(1, 2, 3),
           y = m,
           z = d)
 l
@@ -392,10 +380,10 @@ l
 We can refer to list components by their order number or name (if present). To use order number, use indexing brackets. Single brackets returns a list. Double brackets return the component itself.
 
 ```{r}
-# second element returned as list
+# Second element returned as list
 l[2]
 
-# second element returned as itself (matrix)
+# Second element returned as itself (matrix)
 l[[2]]
 ```
 
@@ -405,14 +393,13 @@ Use the `$` operator to refer to components by name. This returns the component 
 l$y
 ```
 
-Finally it is worth noting that a data frame is a special case of a list consisting of components with the same length. The `is.list()` function returns TRUE if an object is a list and FALSE otherwise.
+Finally, it is worth noting that a data frame is a special case of a list consisting of components with the same length. The `is.list()` function returns `TRUE` if an object is a list and `FALSE` otherwise.
 
 ```{r}
-# object d is data frame
+# Object d is data frame
 d
 str(d)
 
-# but a data frame is a list
+# ...And a data frame is a list
 is.list(d)
 ```
-
