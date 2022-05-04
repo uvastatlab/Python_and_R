@@ -23,7 +23,7 @@
 <meta name="author" content="Clay Ford, Jacob Goldstein-Greenwood, Oyinkansola Adenekan, Samantha Lomuscio" />
 
 
-<meta name="date" content="2022-04-21" />
+<meta name="date" content="2022-05-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -270,216 +270,200 @@ div.csl-indent {
 <p>A one-dimensional data structure can be visualized as a column in a spreadsheet or as a list of values.</p>
 <div id="python-8" class="section level4 unnumbered hasAnchor">
 <h4>Python<a href="data-structures.html#python-8" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>There are many ways to organize one-dimensional data in Python. Three of the most common one-dimensional data structures are lists, numpy arrays, and pandas Series. All three are ordered and mutable, and can contain data of different types.</p>
+<p>There are many ways to organize one-dimensional data in Python. Three of the most common one-dimensional data structures are lists, NumPy arrays, and pandas Series. All three are ordered and mutable, and they can contain data of different types.</p>
 <p>Lists in Python do not need to be explicitly declared; they are indicated by the use of square brackets.</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb85-1"><a href="data-structures.html#cb85-1" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="st">&#39;hello&#39;</span>]</span></code></pre></div>
-<p>Values in lists can be accessed by using square brackets. Python indexing begins at 0, so to extract the first element, we would use the index 0. Python also allows for negative indexing; using an index of -1 will return the last value in the list. Indexing a range in Python is not inclusive of the last index.</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb86-1"><a href="data-structures.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract first element</span></span>
-<span id="cb86-2"><a href="data-structures.html#cb86-2" aria-hidden="true" tabindex="-1"></a>l[<span class="dv">0</span>]</span>
-<span id="cb86-3"><a href="data-structures.html#cb86-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb86-4"><a href="data-structures.html#cb86-4" aria-hidden="true" tabindex="-1"></a><span class="co">#extract last element</span></span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb90-1"><a href="data-structures.html#cb90-1" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="st">&#39;hello&#39;</span>]</span></code></pre></div>
+<p>Values in lists can be accessed by using square brackets. Python indexing begins at 0, so to extract the first element, we would use the index 0. Python also allows for negative indexing; using an index of -1 will return the last value in the list. Indexing a range in Python is <em>not</em> inclusive of the last index.</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb91-1"><a href="data-structures.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract first element</span></span>
+<span id="cb91-2"><a href="data-structures.html#cb91-2" aria-hidden="true" tabindex="-1"></a>l[<span class="dv">0</span>]</span></code></pre></div>
 <pre><code>## 1</code></pre>
-<div class="sourceCode" id="cb88"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb88-1"><a href="data-structures.html#cb88-1" aria-hidden="true" tabindex="-1"></a>l[<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb88-2"><a href="data-structures.html#cb88-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-3"><a href="data-structures.html#cb88-3" aria-hidden="true" tabindex="-1"></a><span class="co"># extract 2nd and 3rd elements</span></span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb93-1"><a href="data-structures.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract last element</span></span>
+<span id="cb93-2"><a href="data-structures.html#cb93-2" aria-hidden="true" tabindex="-1"></a>l[<span class="op">-</span><span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## &#39;hello&#39;</code></pre>
-<div class="sourceCode" id="cb90"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb90-1"><a href="data-structures.html#cb90-1" aria-hidden="true" tabindex="-1"></a>l[<span class="dv">1</span>:<span class="dv">3</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb95-1"><a href="data-structures.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract second and third elements</span></span>
+<span id="cb95-2"><a href="data-structures.html#cb95-2" aria-hidden="true" tabindex="-1"></a>l[<span class="dv">1</span>:<span class="dv">3</span>]</span></code></pre></div>
 <pre><code>## [2, 3]</code></pre>
-<p>Numpy arrays, on the other hand, need to be declared using the <code>numpy.array()</code> function, and the <strong>numpy</strong> package needs to be imported.</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb92-1"><a href="data-structures.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb92-2"><a href="data-structures.html#cb92-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-3"><a href="data-structures.html#cb92-3" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="st">&#39;hello&#39;</span>])</span>
-<span id="cb92-4"><a href="data-structures.html#cb92-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr)</span></code></pre></div>
+<p>NumPy arrays, on the other hand, need to be declared using the <code>numpy.array()</code> function, and the <strong>NumPy</strong> package needs to be imported.</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb97-1"><a href="data-structures.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb97-2"><a href="data-structures.html#cb97-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-3"><a href="data-structures.html#cb97-3" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="st">&#39;hello&#39;</span>])</span>
+<span id="cb97-4"><a href="data-structures.html#cb97-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr)</span></code></pre></div>
 <pre><code>## [&#39;1&#39; &#39;2&#39; &#39;3&#39; &#39;hello&#39;]</code></pre>
-<p>Accessing data in a numpy array is the same as indexing a list.</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb94-1"><a href="data-structures.html#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract first element </span></span>
-<span id="cb94-2"><a href="data-structures.html#cb94-2" aria-hidden="true" tabindex="-1"></a>arr[<span class="dv">0</span>]</span>
-<span id="cb94-3"><a href="data-structures.html#cb94-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb94-4"><a href="data-structures.html#cb94-4" aria-hidden="true" tabindex="-1"></a><span class="co"># extract last element</span></span></code></pre></div>
+<p>Accessing data in a NumPy array is the same as indexing a list.</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb99-1"><a href="data-structures.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract first element </span></span>
+<span id="cb99-2"><a href="data-structures.html#cb99-2" aria-hidden="true" tabindex="-1"></a>arr[<span class="dv">0</span>]</span>
+<span id="cb99-3"><a href="data-structures.html#cb99-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-4"><a href="data-structures.html#cb99-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract last element</span></span></code></pre></div>
 <pre><code>## &#39;1&#39;</code></pre>
-<div class="sourceCode" id="cb96"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb96-1"><a href="data-structures.html#cb96-1" aria-hidden="true" tabindex="-1"></a>arr[<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb96-2"><a href="data-structures.html#cb96-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb96-3"><a href="data-structures.html#cb96-3" aria-hidden="true" tabindex="-1"></a><span class="co"># extract 2nd and 3rd elements</span></span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb101-1"><a href="data-structures.html#cb101-1" aria-hidden="true" tabindex="-1"></a>arr[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb101-2"><a href="data-structures.html#cb101-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb101-3"><a href="data-structures.html#cb101-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract second and third elements</span></span></code></pre></div>
 <pre><code>## &#39;hello&#39;</code></pre>
-<div class="sourceCode" id="cb98"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb98-1"><a href="data-structures.html#cb98-1" aria-hidden="true" tabindex="-1"></a>arr[<span class="dv">1</span>:<span class="dv">3</span>]</span></code></pre></div>
-<pre><code>## array([&#39;2&#39;, &#39;3&#39;], dtype=&#39;&lt;U11&#39;)</code></pre>
-<p>Pandas Series also need to be declared using the <code>pandas.Series()</code> function. Like <strong>numpy</strong>, the <strong>pandas</strong> package must be imported as well. The pandas package is built on numpy, so we can input data into a pandas Series using a numpy array. We can extract data from the Series by using the index similar to indexing a list and numpy array.</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb100-1"><a href="data-structures.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
-<span id="cb100-2"><a href="data-structures.html#cb100-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb100-3"><a href="data-structures.html#cb100-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb100-4"><a href="data-structures.html#cb100-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="st">&quot;hello&quot;</span>])</span>
-<span id="cb100-5"><a href="data-structures.html#cb100-5" aria-hidden="true" tabindex="-1"></a>ser1 <span class="op">=</span> pd.Series(data)</span>
-<span id="cb100-6"><a href="data-structures.html#cb100-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ser1)</span>
-<span id="cb100-7"><a href="data-structures.html#cb100-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb100-8"><a href="data-structures.html#cb100-8" aria-hidden="true" tabindex="-1"></a><span class="co"># extract first element </span></span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb103-1"><a href="data-structures.html#cb103-1" aria-hidden="true" tabindex="-1"></a>arr[<span class="dv">1</span>:<span class="dv">3</span>]</span></code></pre></div>
+<pre><code>## array([&#39;2&#39;, &#39;3&#39;], dtype=&#39;&lt;U21&#39;)</code></pre>
+<p>Pandas Series also need to be declared using the <code>pandas.Series()</code> function. Like <strong>NumPy</strong>, the <strong>pandas</strong> package must be imported as well. The pandas package is built on NumPy, so we can input data into a pandas Series using a NumPy array. We can extract data from a Series by indexing, similar to indexing a list or NumPy array.</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb105-1"><a href="data-structures.html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
+<span id="cb105-2"><a href="data-structures.html#cb105-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb105-3"><a href="data-structures.html#cb105-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb105-4"><a href="data-structures.html#cb105-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="st">&quot;hello&quot;</span>])</span>
+<span id="cb105-5"><a href="data-structures.html#cb105-5" aria-hidden="true" tabindex="-1"></a>ser1 <span class="op">=</span> pd.Series(data)</span>
+<span id="cb105-6"><a href="data-structures.html#cb105-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ser1)</span></code></pre></div>
 <pre><code>## 0        1
 ## 1        2
 ## 2        3
 ## 3    hello
 ## dtype: object</code></pre>
-<div class="sourceCode" id="cb102"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb102-1"><a href="data-structures.html#cb102-1" aria-hidden="true" tabindex="-1"></a>ser1[<span class="dv">0</span>]</span>
-<span id="cb102-2"><a href="data-structures.html#cb102-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb102-3"><a href="data-structures.html#cb102-3" aria-hidden="true" tabindex="-1"></a><span class="co"># extract 2nd and 3rd elements </span></span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb107-1"><a href="data-structures.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract first element </span></span>
+<span id="cb107-2"><a href="data-structures.html#cb107-2" aria-hidden="true" tabindex="-1"></a>ser1[<span class="dv">0</span>]</span></code></pre></div>
 <pre><code>## &#39;1&#39;</code></pre>
-<div class="sourceCode" id="cb104"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb104-1"><a href="data-structures.html#cb104-1" aria-hidden="true" tabindex="-1"></a>ser1[<span class="dv">1</span>:<span class="dv">3</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb109-1"><a href="data-structures.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract second and third elements </span></span>
+<span id="cb109-2"><a href="data-structures.html#cb109-2" aria-hidden="true" tabindex="-1"></a>ser1[<span class="dv">1</span>:<span class="dv">3</span>]</span></code></pre></div>
 <pre><code>## 1    2
 ## 2    3
 ## dtype: object</code></pre>
-<p>To extract the last element of a pandas Series using <code>-1</code>, we need to use the <code>iloc</code> function.</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb106-1"><a href="data-structures.html#cb106-1" aria-hidden="true" tabindex="-1"></a>ser1.iloc[<span class="op">-</span><span class="dv">1</span>]</span></code></pre></div>
-<pre><code>## &#39;hello&#39;</code></pre>
-<p>We can relabel the indices of the Series to whatever we like using the <code>index</code> attribute within the <code>Series</code> function.</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb108-1"><a href="data-structures.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
-<span id="cb108-2"><a href="data-structures.html#cb108-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb108-3"><a href="data-structures.html#cb108-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb108-4"><a href="data-structures.html#cb108-4" aria-hidden="true" tabindex="-1"></a>ser2 <span class="op">=</span> pd.Series(data, index<span class="op">=</span>[<span class="st">&#39;a&#39;</span>,<span class="st">&#39;b&#39;</span>,<span class="st">&#39;c&#39;</span>,<span class="st">&#39;d&#39;</span>])</span>
-<span id="cb108-5"><a href="data-structures.html#cb108-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ser2)</span></code></pre></div>
+<p>Similarly, we can use <code>iloc[]</code> (note the square brackets) to subset elements based on integer position.</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb111-1"><a href="data-structures.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract second and third elements </span></span>
+<span id="cb111-2"><a href="data-structures.html#cb111-2" aria-hidden="true" tabindex="-1"></a>ser1.iloc[<span class="dv">1</span>:<span class="dv">3</span>]</span></code></pre></div>
+<pre><code>## 1    2
+## 2    3
+## dtype: object</code></pre>
+<p>We can relabel the indices of the Series to whatever we like using the <code>index</code> attribute within the <code>Series()</code> function.</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb113-1"><a href="data-structures.html#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
+<span id="cb113-2"><a href="data-structures.html#cb113-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb113-3"><a href="data-structures.html#cb113-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb113-4"><a href="data-structures.html#cb113-4" aria-hidden="true" tabindex="-1"></a>ser2 <span class="op">=</span> pd.Series(data, index <span class="op">=</span> [<span class="st">&#39;a&#39;</span>, <span class="st">&#39;b&#39;</span>, <span class="st">&#39;c&#39;</span>, <span class="st">&#39;d&#39;</span>])</span>
+<span id="cb113-5"><a href="data-structures.html#cb113-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ser2)</span></code></pre></div>
 <pre><code>## a        1
 ## b        2
 ## c        3
 ## d    hello
 ## dtype: object</code></pre>
-<p>We can then use our own specified indices to select and index our data. Indexing with our labels can be done in two ways. One similar to indexing arrays and lists with square brackets using the <code>.loc</code> function, and the other follows this form: <code>Series.label_name</code>.</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb110-1"><a href="data-structures.html#cb110-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb110-2"><a href="data-structures.html#cb110-2" aria-hidden="true" tabindex="-1"></a><span class="co"># extract element in row b</span></span>
-<span id="cb110-3"><a href="data-structures.html#cb110-3" aria-hidden="true" tabindex="-1"></a>ser2.loc[<span class="st">&quot;b&quot;</span>]</span>
-<span id="cb110-4"><a href="data-structures.html#cb110-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb110-5"><a href="data-structures.html#cb110-5" aria-hidden="true" tabindex="-1"></a><span class="co"># extract elements from row b to the end</span></span></code></pre></div>
+<p>We can then use our own specified indices to select and index our data. Indexing with our labels can be done in two ways; one approach uses the <code>.loc[]</code> function and is similar to indexing arrays and lists with square brackets; the other approach follows this form: <code>Series.label_name</code>. Note that ranges referenced in <code>loc[]</code> are <em>inclusive on both ends</em>; normally, Python interprets ranges as having open upper ends (e.g., <code>print(["a", "b", "c"][0:2])</code> returns <code>["a", "b"]</code>.)</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb115-1"><a href="data-structures.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract element in row b</span></span>
+<span id="cb115-2"><a href="data-structures.html#cb115-2" aria-hidden="true" tabindex="-1"></a>ser2.loc[<span class="st">&quot;b&quot;</span>]</span></code></pre></div>
 <pre><code>## &#39;2&#39;</code></pre>
-<div class="sourceCode" id="cb112"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb112-1"><a href="data-structures.html#cb112-1" aria-hidden="true" tabindex="-1"></a>ser2.loc[<span class="st">&quot;b&quot;</span>:]</span>
-<span id="cb112-2"><a href="data-structures.html#cb112-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb112-3"><a href="data-structures.html#cb112-3" aria-hidden="true" tabindex="-1"></a><span class="co"># extract element in row &quot;d&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb117-1"><a href="data-structures.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract elements from row b to the end</span></span>
+<span id="cb117-2"><a href="data-structures.html#cb117-2" aria-hidden="true" tabindex="-1"></a>ser2.loc[<span class="st">&quot;b&quot;</span>:]</span></code></pre></div>
 <pre><code>## b        2
 ## c        3
 ## d    hello
 ## dtype: object</code></pre>
-<div class="sourceCode" id="cb114"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb114-1"><a href="data-structures.html#cb114-1" aria-hidden="true" tabindex="-1"></a>ser2.d</span>
-<span id="cb114-2"><a href="data-structures.html#cb114-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb114-3"><a href="data-structures.html#cb114-3" aria-hidden="true" tabindex="-1"></a><span class="co"># extract element in row &quot;b&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb119-1"><a href="data-structures.html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract element in row &quot;d&quot;</span></span>
+<span id="cb119-2"><a href="data-structures.html#cb119-2" aria-hidden="true" tabindex="-1"></a>ser2.d</span></code></pre></div>
 <pre><code>## &#39;hello&#39;</code></pre>
-<div class="sourceCode" id="cb116"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb116-1"><a href="data-structures.html#cb116-1" aria-hidden="true" tabindex="-1"></a>ser2.b</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb121-1"><a href="data-structures.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract element in row &quot;b&quot;</span></span>
+<span id="cb121-2"><a href="data-structures.html#cb121-2" aria-hidden="true" tabindex="-1"></a>ser2.b</span></code></pre></div>
 <pre><code>## &#39;2&#39;</code></pre>
-<p>One thing to note is that mathematical operations cannot be carried out on lists, but they can be carried out on numpy arrays and pandas Series. In general, lists are better for short data sets that you will not be operating on mathematically. Numpy arrays and pandas Series are better for long data sets, and for data sets that will be operated on mathematically.</p>
+<p>Mathematical operations cannot be carried out on lists, but they can be carried out on NumPy arrays and pandas Series. In general, lists are better for short data sets that won’t be the targets of mathematical operations. NumPy arrays and pandas Series are better for long data sets and for data sets that will be operated on mathematically.</p>
 </div>
 <div id="r-8" class="section level4 unnumbered hasAnchor">
 <h4>R<a href="data-structures.html#r-8" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>In R a one-dimensional data structure is called a <em>vector</em>. We can create a vector using the <code>c()</code> function. A vector in R can only contain one type of data (all numbers, all strings, etc). The columns of data frames are vectors. If multiple types of data are put into a vector, the data will be coerced according to the hierarchy <code>logical</code> &lt; <code>integer</code> &lt; <code>double</code> &lt; <code>complex</code> &lt; <code>character</code>. This means if you mix, say, integers and character data, all the data will be coerced to character.</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="data-structures.html#cb118-1" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">43</span>, <span class="dv">55</span>)</span>
-<span id="cb118-2"><a href="data-structures.html#cb118-2" aria-hidden="true" tabindex="-1"></a>x1</span></code></pre></div>
+<p>In R a one-dimensional data structure is called a <em>vector</em>. We can create a vector using the <code>c()</code> function. A vector in R can only contain one type of data (all numbers, all strings, etc). The columns of data frames—a data structure discussed in section 2.2 below—are vectors. If multiple types of data are put into a vector, the data will be coerced according to the hierarchy <code>logical</code> &lt; <code>integer</code> &lt; <code>double</code> &lt; <code>complex</code> &lt; <code>character</code>. This means if you mix, say, integers and character data, all the data will be coerced to character.</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="data-structures.html#cb123-1" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">43</span>, <span class="dv">55</span>)</span>
+<span id="cb123-2"><a href="data-structures.html#cb123-2" aria-hidden="true" tabindex="-1"></a>x1</span></code></pre></div>
 <pre><code>## [1] 23 43 55</code></pre>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="data-structures.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="co"># all values coerced to character</span></span>
-<span id="cb120-2"><a href="data-structures.html#cb120-2" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">43</span>, <span class="st">&#39;hi&#39;</span>)</span>
-<span id="cb120-3"><a href="data-structures.html#cb120-3" aria-hidden="true" tabindex="-1"></a>x2</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="data-structures.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="co"># All values coerced to character</span></span>
+<span id="cb125-2"><a href="data-structures.html#cb125-2" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">43</span>, <span class="st">&#39;hi&#39;</span>)</span>
+<span id="cb125-3"><a href="data-structures.html#cb125-3" aria-hidden="true" tabindex="-1"></a>x2</span></code></pre></div>
 <pre><code>## [1] &quot;23&quot; &quot;43&quot; &quot;hi&quot;</code></pre>
-<p>Values in a vector can be accessed by position using indexing brackets. R indexes elements of a vector starting at 1. Index values are inclusive. For example, <code>2:3</code> selects the second and third elements.</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="data-structures.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract the 2nd value</span></span>
-<span id="cb122-2"><a href="data-structures.html#cb122-2" aria-hidden="true" tabindex="-1"></a>x1[<span class="dv">2</span>]</span></code></pre></div>
+<p>Values in a vector can be accessed by position using indexing brackets. R indexes elements of a vector starting at 1. Index values are inclusive. For example, a_vec[<code>2:3</code>] selects the second and third elements of <code>a_vec</code>.</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="data-structures.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the second value</span></span>
+<span id="cb127-2"><a href="data-structures.html#cb127-2" aria-hidden="true" tabindex="-1"></a>x1[<span class="dv">2</span>]</span></code></pre></div>
 <pre><code>## [1] 43</code></pre>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="data-structures.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract the 2nd and 3rd value</span></span>
-<span id="cb124-2"><a href="data-structures.html#cb124-2" aria-hidden="true" tabindex="-1"></a>x1[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="data-structures.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the second and third values</span></span>
+<span id="cb129-2"><a href="data-structures.html#cb129-2" aria-hidden="true" tabindex="-1"></a>x1[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
 <pre><code>## [1] 43 55</code></pre>
 </div>
 </div>
 <div id="two-dimensional-data" class="section level2 hasAnchor" number="2.2">
 <h2><span class="header-section-number">2.2</span> Two-dimensional data<a href="data-structures.html#two-dimensional-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Two-dimensional data are rectangular in nature, consisting of rows and columns. These can be the type of data you might find in a spreadsheet with a mix of data types in columns; they can also be matrices as you might encounter in matrix algebra.</p>
+<p>Two-dimensional data are rectangular in nature, consisting of rows and columns. These can be the type of data you might find in a spreadsheet with a mix of data types in the columns; they can also be matrices as you might encounter in matrix algebra.</p>
 <div id="python-9" class="section level4 unnumbered hasAnchor">
 <h4>Python<a href="data-structures.html#python-9" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>In Python, two common two-dimensional data structures include the <em>numpy array</em> and the <em>pandas DataFrame</em>.</p>
-<p>A two-dimensional numpy array is made in a similar way to the one-dimensional array using the <code>numpy.array</code> function.</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb126-1"><a href="data-structures.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb126-2"><a href="data-structures.html#cb126-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb126-3"><a href="data-structures.html#cb126-3" aria-hidden="true" tabindex="-1"></a>arr2d <span class="op">=</span> np.array([[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="st">&quot;hello&quot;</span>],[<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="st">&quot;world&quot;</span>]])</span>
-<span id="cb126-4"><a href="data-structures.html#cb126-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr2d)</span></code></pre></div>
+<p>In Python, two common two-dimensional data structures are the NumPy array (introduced above in its one-dimensional form) and the pandas DataFrame.</p>
+<p>A two-dimensional NumPy array is made in a similar way to the one-dimensional array using the <code>numpy.array()</code> function.</p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb131-1"><a href="data-structures.html#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb131-2"><a href="data-structures.html#cb131-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb131-3"><a href="data-structures.html#cb131-3" aria-hidden="true" tabindex="-1"></a>arr2d <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="st">&quot;hello&quot;</span>], [<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="st">&quot;world&quot;</span>]])</span>
+<span id="cb131-4"><a href="data-structures.html#cb131-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr2d)</span></code></pre></div>
 <pre><code>## [[&#39;1&#39; &#39;2&#39; &#39;3&#39; &#39;hello&#39;]
 ##  [&#39;4&#39; &#39;5&#39; &#39;6&#39; &#39;world&#39;]]</code></pre>
-<p>Selecting data for a two-dimensional numpy array follows the same form as indexing a one-dimensional array.</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb128-1"><a href="data-structures.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb128-2"><a href="data-structures.html#cb128-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb128-3"><a href="data-structures.html#cb128-3" aria-hidden="true" tabindex="-1"></a><span class="co"># extract first element </span></span>
-<span id="cb128-4"><a href="data-structures.html#cb128-4" aria-hidden="true" tabindex="-1"></a>arr2d[<span class="dv">0</span>,<span class="dv">0</span>]</span>
-<span id="cb128-5"><a href="data-structures.html#cb128-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb128-6"><a href="data-structures.html#cb128-6" aria-hidden="true" tabindex="-1"></a><span class="co"># extract last element </span></span></code></pre></div>
+<p>Data can be selected from a two-dimensional NumPy array via <code>[row, column]</code> indexing:</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb133-1"><a href="data-structures.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb133-2"><a href="data-structures.html#cb133-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb133-3"><a href="data-structures.html#cb133-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract first element </span></span>
+<span id="cb133-4"><a href="data-structures.html#cb133-4" aria-hidden="true" tabindex="-1"></a>arr2d[<span class="dv">0</span>, <span class="dv">0</span>]</span>
+<span id="cb133-5"><a href="data-structures.html#cb133-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb133-6"><a href="data-structures.html#cb133-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract last element </span></span></code></pre></div>
 <pre><code>## &#39;1&#39;</code></pre>
-<div class="sourceCode" id="cb130"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb130-1"><a href="data-structures.html#cb130-1" aria-hidden="true" tabindex="-1"></a>arr2d[<span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb130-2"><a href="data-structures.html#cb130-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb130-3"><a href="data-structures.html#cb130-3" aria-hidden="true" tabindex="-1"></a><span class="co"># extract 2nd and 3rd columns</span></span></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb135-1"><a href="data-structures.html#cb135-1" aria-hidden="true" tabindex="-1"></a>arr2d[<span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb135-2"><a href="data-structures.html#cb135-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb135-3"><a href="data-structures.html#cb135-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract second and third columns (all rows)</span></span></code></pre></div>
 <pre><code>## &#39;world&#39;</code></pre>
-<div class="sourceCode" id="cb132"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb132-1"><a href="data-structures.html#cb132-1" aria-hidden="true" tabindex="-1"></a>arr2d[:,<span class="dv">1</span>:<span class="dv">3</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb137-1"><a href="data-structures.html#cb137-1" aria-hidden="true" tabindex="-1"></a>arr2d[:, <span class="dv">1</span>:<span class="dv">3</span>]</span></code></pre></div>
 <pre><code>## array([[&#39;2&#39;, &#39;3&#39;],
-##        [&#39;5&#39;, &#39;6&#39;]], dtype=&#39;&lt;U11&#39;)</code></pre>
-<p>A pandas DataFrame is made using the <code>pandas.DataFrame</code> function in a similar way to the pandas Series.</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb134-1"><a href="data-structures.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb134-2"><a href="data-structures.html#cb134-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb134-3"><a href="data-structures.html#cb134-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb134-4"><a href="data-structures.html#cb134-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> np.array([[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="st">&quot;hello&quot;</span>],[<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="st">&quot;world&quot;</span>]])</span>
-<span id="cb134-5"><a href="data-structures.html#cb134-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data)</span>
-<span id="cb134-6"><a href="data-structures.html#cb134-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df)</span></code></pre></div>
+##        [&#39;5&#39;, &#39;6&#39;]], dtype=&#39;&lt;U21&#39;)</code></pre>
+<p>A pandas DataFrame is made using the <code>pandas.DataFrame()</code> function, and it shares many functional similarities with the pandas Series.</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb139-1"><a href="data-structures.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb139-2"><a href="data-structures.html#cb139-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb139-3"><a href="data-structures.html#cb139-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb139-4"><a href="data-structures.html#cb139-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="st">&quot;hello&quot;</span>], [<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="st">&quot;world&quot;</span>]])</span>
+<span id="cb139-5"><a href="data-structures.html#cb139-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data)</span>
+<span id="cb139-6"><a href="data-structures.html#cb139-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df)</span></code></pre></div>
 <pre><code>##    0  1  2      3
 ## 0  1  2  3  hello
 ## 1  4  5  6  world</code></pre>
-<p>Selecting data from a DataFrame is similar to that of the Series.</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb136-1"><a href="data-structures.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract first element </span></span>
-<span id="cb136-2"><a href="data-structures.html#cb136-2" aria-hidden="true" tabindex="-1"></a>df.loc[<span class="dv">0</span>,<span class="dv">0</span>]</span>
-<span id="cb136-3"><a href="data-structures.html#cb136-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb136-4"><a href="data-structures.html#cb136-4" aria-hidden="true" tabindex="-1"></a><span class="co"># extract column 1</span></span></code></pre></div>
+<p>To select certain rows and columns from a pandas DataFrame based on their integer position, we can use <code>iloc[]</code> (as we did with the pandas Series above). The values inside the brackets following <code>iloc</code> reflect the rows and the columns, respectively.</p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb141-1"><a href="data-structures.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract first element (first row, first column)</span></span>
+<span id="cb141-2"><a href="data-structures.html#cb141-2" aria-hidden="true" tabindex="-1"></a>df.loc[<span class="dv">0</span>, <span class="dv">0</span>]</span></code></pre></div>
 <pre><code>## &#39;1&#39;</code></pre>
-<div class="sourceCode" id="cb138"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb138-1"><a href="data-structures.html#cb138-1" aria-hidden="true" tabindex="-1"></a>df.loc[<span class="dv">0</span>]</span>
-<span id="cb138-2"><a href="data-structures.html#cb138-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb138-3"><a href="data-structures.html#cb138-3" aria-hidden="true" tabindex="-1"></a><span class="co"># extract row 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb143-1"><a href="data-structures.html#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract first row, all columns</span></span>
+<span id="cb143-2"><a href="data-structures.html#cb143-2" aria-hidden="true" tabindex="-1"></a>df.loc[<span class="dv">0</span>, :]</span></code></pre></div>
 <pre><code>## 0        1
 ## 1        2
 ## 2        3
 ## 3    hello
 ## Name: 0, dtype: object</code></pre>
-<div class="sourceCode" id="cb140"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb140-1"><a href="data-structures.html#cb140-1" aria-hidden="true" tabindex="-1"></a>df.loc[<span class="dv">0</span>,<span class="dv">0</span>]</span></code></pre></div>
-<pre><code>## &#39;1&#39;</code></pre>
-<p>Like the pandas Series, we can change the indices and the column names of the DataFrame and can use those to select and index our data.</p>
-<p>We change the indices again using the <code>index</code> attribute in the <code>pandas.DataFrame</code> function:</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb142-1"><a href="data-structures.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb142-2"><a href="data-structures.html#cb142-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb142-3"><a href="data-structures.html#cb142-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb142-4"><a href="data-structures.html#cb142-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> np.array([[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="st">&quot;hello&quot;</span>],[<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="st">&quot;world&quot;</span>]])</span>
-<span id="cb142-5"><a href="data-structures.html#cb142-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data, index<span class="op">=</span>[<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>])</span>
-<span id="cb142-6"><a href="data-structures.html#cb142-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df)</span></code></pre></div>
-<pre><code>##    0  1  2      3
-## a  1  2  3  hello
-## b  4  5  6  world</code></pre>
-<p>We can change the column names using the <code>columns</code> attribute in the <code>pandas.DataFrame</code> function:</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb144-1"><a href="data-structures.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb144-2"><a href="data-structures.html#cb144-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb144-3"><a href="data-structures.html#cb144-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb144-4"><a href="data-structures.html#cb144-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> np.array([[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="st">&quot;hello&quot;</span>],[<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="st">&quot;world&quot;</span>]])</span>
-<span id="cb144-5"><a href="data-structures.html#cb144-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data, index<span class="op">=</span>[<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>], columns<span class="op">=</span>[<span class="st">&quot;column 1&quot;</span>,<span class="st">&quot;column 2&quot;</span>, <span class="st">&quot;column 3&quot;</span>, <span class="st">&quot;column 4&quot;</span>])</span>
-<span id="cb144-6"><a href="data-structures.html#cb144-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df)</span></code></pre></div>
-<pre><code>##   column 1 column 2 column 3 column 4
-## a        1        2        3    hello
-## b        4        5        6    world</code></pre>
-<p>One thing to note is that numpy arrays can actually have N dimensions, whereas pandas DataFrames can only have two. Numpy arrays will be the better choice for data with more than two dimensions.</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb145-1"><a href="data-structures.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract second column, all rows</span></span>
+<span id="cb145-2"><a href="data-structures.html#cb145-2" aria-hidden="true" tabindex="-1"></a>df.loc[:, <span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## 0    2
+## 1    5
+## Name: 1, dtype: object</code></pre>
+<p>As we did with the pandas Series, we can change the indices and the column names of the DataFrame and use those to select certain data. We change the indices using the <code>index</code> attribute in <code>pandas.DataFrame()</code>, and we change the column names using the <code>columns</code> attribute. These new labels can be used with <code>loc[]</code> for subsetting. (And, as mentioned above, if a range is passed to <code>loc[]</code>, it’s treated as inclusive on both ends.)</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb147-1"><a href="data-structures.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb147-2"><a href="data-structures.html#cb147-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb147-3"><a href="data-structures.html#cb147-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb147-4"><a href="data-structures.html#cb147-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="st">&quot;hello&quot;</span>], [<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="st">&quot;world&quot;</span>]])</span>
+<span id="cb147-5"><a href="data-structures.html#cb147-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data, index <span class="op">=</span> [<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>], columns <span class="op">=</span> [<span class="st">&quot;column 1&quot;</span>, <span class="st">&quot;column 2&quot;</span>, <span class="st">&quot;column 3&quot;</span>, <span class="st">&quot;column 4&quot;</span>])</span>
+<span id="cb147-6"><a href="data-structures.html#cb147-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.loc[[<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>], <span class="st">&quot;column 1&quot;</span>])</span></code></pre></div>
+<pre><code>## a    1
+## b    4
+## Name: column 1, dtype: object</code></pre>
+<p>One thing to note is that NumPy arrays can actually have an arbitrary number of dimensions, whereas pandas DataFrames can only have two.</p>
 </div>
 <div id="r-9" class="section level4 unnumbered hasAnchor">
 <h4>R<a href="data-structures.html#r-9" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Two-dimensional data structures in R include the <em>matrix</em> and <em>data frame</em>. A matrix can contain only one data type. A data frame can contain multiple vectors, each of which can consist of different data types.</p>
 <p>Create a matrix with the <code>matrix()</code> function. Create a data frame with the <code>data.frame()</code> function. Most imported data comes into R as a data frame.</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="data-structures.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="co"># matrix; populated down by column by default</span></span>
-<span id="cb146-2"><a href="data-structures.html#cb146-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">data =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>), <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
-<span id="cb146-3"><a href="data-structures.html#cb146-3" aria-hidden="true" tabindex="-1"></a>m</span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="data-structures.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Matrix; populated down by column by default</span></span>
+<span id="cb149-2"><a href="data-structures.html#cb149-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">data =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>), <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb149-3"><a href="data-structures.html#cb149-3" aria-hidden="true" tabindex="-1"></a>m</span></code></pre></div>
 <pre><code>##      [,1] [,2]
 ## [1,]    1    5
 ## [2,]    3    7</code></pre>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="data-structures.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data frame</span></span>
-<span id="cb148-2"><a href="data-structures.html#cb148-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">name =</span> <span class="fu">c</span>(<span class="st">&quot;Rob&quot;</span>, <span class="st">&quot;Cindy&quot;</span>),</span>
-<span id="cb148-3"><a href="data-structures.html#cb148-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">35</span>, <span class="dv">37</span>))</span>
-<span id="cb148-4"><a href="data-structures.html#cb148-4" aria-hidden="true" tabindex="-1"></a>d</span></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="data-structures.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data frame</span></span>
+<span id="cb151-2"><a href="data-structures.html#cb151-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">name =</span> <span class="fu">c</span>(<span class="st">&quot;Rob&quot;</span>, <span class="st">&quot;Cindy&quot;</span>),</span>
+<span id="cb151-3"><a href="data-structures.html#cb151-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">35</span>, <span class="dv">37</span>))</span>
+<span id="cb151-4"><a href="data-structures.html#cb151-4" aria-hidden="true" tabindex="-1"></a>d</span></code></pre></div>
 <pre><code>##    name age
 ## 1   Rob  35
 ## 2 Cindy  37</code></pre>
 <p>Values in a matrix and data frame can be accessed by position using indexing brackets. The first number(s) refers to rows; the second number(s) refers to columns. Leaving row or column numbers empty selects all rows or columns.</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="data-structures.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract value in row 1, column 2</span></span>
-<span id="cb150-2"><a href="data-structures.html#cb150-2" aria-hidden="true" tabindex="-1"></a>m[<span class="dv">1</span>,<span class="dv">2</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="data-structures.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract value in row 1, column 2</span></span>
+<span id="cb153-2"><a href="data-structures.html#cb153-2" aria-hidden="true" tabindex="-1"></a>m[<span class="dv">1</span>, <span class="dv">2</span>]</span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="data-structures.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract values in row 2</span></span>
-<span id="cb152-2"><a href="data-structures.html#cb152-2" aria-hidden="true" tabindex="-1"></a>d[<span class="dv">2</span>,]</span></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="data-structures.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract values in row 2</span></span>
+<span id="cb155-2"><a href="data-structures.html#cb155-2" aria-hidden="true" tabindex="-1"></a>d[<span class="dv">2</span>, ]</span></code></pre></div>
 <pre><code>##    name age
 ## 2 Cindy  37</code></pre>
 </div>
@@ -489,44 +473,42 @@ div.csl-indent {
 <p>Three-dimensional and higher data can be visualized as multiple rectangular structures stratified by extra variables. These are sometimes referred to as <em>arrays</em>. Analysts usually prefer two-dimensional data frames to arrays. Data frames can accommodate multidimensional data by including the additional dimensions as variables.</p>
 <div id="python-10" class="section level4 unnumbered hasAnchor">
 <h4>Python<a href="data-structures.html#python-10" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>To create a three-dimensional and higher data structure in Python, we again use a numpy array. We can think of the three-dimensional array as a stack of two-dimensional arrays. We construct this in the same way as the one- and two-dimensional arrays.</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb154-1"><a href="data-structures.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np </span>
-<span id="cb154-2"><a href="data-structures.html#cb154-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb154-3"><a href="data-structures.html#cb154-3" aria-hidden="true" tabindex="-1"></a>arr3d <span class="op">=</span> np.array([[[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>]], [[<span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>], [<span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">12</span>]]])</span>
-<span id="cb154-4"><a href="data-structures.html#cb154-4" aria-hidden="true" tabindex="-1"></a>arr3d</span></code></pre></div>
+<p>To create a three-dimensional and higher data structure in Python, we again use a NumPy array. We can think of the three-dimensional array as a stack of two-dimensional arrays. We construct this in the same way as the one- and two-dimensional arrays.</p>
+<div class="sourceCode" id="cb157"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb157-1"><a href="data-structures.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np </span>
+<span id="cb157-2"><a href="data-structures.html#cb157-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb157-3"><a href="data-structures.html#cb157-3" aria-hidden="true" tabindex="-1"></a>arr3d <span class="op">=</span> np.array([[[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>]], [[<span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>], [<span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">12</span>]]])</span>
+<span id="cb157-4"><a href="data-structures.html#cb157-4" aria-hidden="true" tabindex="-1"></a>arr3d</span></code></pre></div>
 <pre><code>## array([[[ 1,  2,  3],
 ##         [ 4,  5,  6]],
 ## 
 ##        [[ 7,  8,  9],
 ##         [10, 11, 12]]])</code></pre>
-<p>We can also construct a three-dimensional numpy array using the <code>reshape</code> function on an existing array. The argument of <code>reshape</code> is where you input your desired dimensions - strata, rows, columns. Here, the <code>arange</code> function is used to create a numpy array containing the numbers 1 through 12 (to recreate the same array shown above).</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb156-1"><a href="data-structures.html#cb156-1" aria-hidden="true" tabindex="-1"></a>arr3d_2 <span class="op">=</span> np.arange(<span class="dv">1</span>,<span class="dv">13</span>).reshape(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
-<span id="cb156-2"><a href="data-structures.html#cb156-2" aria-hidden="true" tabindex="-1"></a>arr3d_2</span></code></pre></div>
+<p>We can also construct a three-dimensional NumPy array using the <code>reshape</code> function on an existing array. The argument of <code>reshape</code> is where you input your desired dimensions: strata, rows, and then columns. Here, the <code>arange</code> function is used to create a NumPy array containing the numbers 1 through 12 (to recreate the same array shown above).</p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb159-1"><a href="data-structures.html#cb159-1" aria-hidden="true" tabindex="-1"></a>arr3d_2 <span class="op">=</span> np.arange(<span class="dv">1</span>, <span class="dv">13</span>).reshape(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb159-2"><a href="data-structures.html#cb159-2" aria-hidden="true" tabindex="-1"></a>arr3d_2</span></code></pre></div>
 <pre><code>## array([[[ 1,  2,  3],
 ##         [ 4,  5,  6]],
 ## 
 ##        [[ 7,  8,  9],
 ##         [10, 11, 12]]])</code></pre>
 <p>Indexing the three-dimensional array follows the same format as the two-dimensional arrays. Since we can think of the three-dimensional array as a stack of two-dimensional arrays, we can extract each “stacked” two-dimensional array. Here we extract the first of the “stacked” two-dimensional arrays:</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb158-1"><a href="data-structures.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract first strata (first &quot;stacked&quot; 2-D array)</span></span>
-<span id="cb158-2"><a href="data-structures.html#cb158-2" aria-hidden="true" tabindex="-1"></a>arr3d[<span class="dv">0</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb161-1"><a href="data-structures.html#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract first strata (first &quot;stacked&quot; 2-D array)</span></span>
+<span id="cb161-2"><a href="data-structures.html#cb161-2" aria-hidden="true" tabindex="-1"></a>arr3d[<span class="dv">0</span>]</span></code></pre></div>
 <pre><code>## array([[1, 2, 3],
 ##        [4, 5, 6]])</code></pre>
-<p>We can also extract entire rows and columns, and individual array elements:</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb160-1"><a href="data-structures.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract 1st row of 2nd strata (second &quot;stacked&quot; 2-D array)</span></span>
-<span id="cb160-2"><a href="data-structures.html#cb160-2" aria-hidden="true" tabindex="-1"></a>arr3d[<span class="dv">1</span>, <span class="dv">0</span>]</span>
-<span id="cb160-3"><a href="data-structures.html#cb160-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb160-4"><a href="data-structures.html#cb160-4" aria-hidden="true" tabindex="-1"></a><span class="co"># extract 1st column of 2nd strata </span></span></code></pre></div>
+<p>We can also extract entire rows and columns, or individual array elements:</p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb163-1"><a href="data-structures.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract first row of second strata (second &quot;stacked&quot; 2-D array)</span></span>
+<span id="cb163-2"><a href="data-structures.html#cb163-2" aria-hidden="true" tabindex="-1"></a>arr3d[<span class="dv">1</span>, <span class="dv">0</span>]</span></code></pre></div>
 <pre><code>## array([7, 8, 9])</code></pre>
-<div class="sourceCode" id="cb162"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb162-1"><a href="data-structures.html#cb162-1" aria-hidden="true" tabindex="-1"></a>arr3d[<span class="dv">1</span>, :, <span class="dv">0</span>]</span>
-<span id="cb162-2"><a href="data-structures.html#cb162-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb162-3"><a href="data-structures.html#cb162-3" aria-hidden="true" tabindex="-1"></a><span class="co"># extract the number 6 (1st strata, 2nd row, 3rd column)</span></span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb165-1"><a href="data-structures.html#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract first column of second strata </span></span>
+<span id="cb165-2"><a href="data-structures.html#cb165-2" aria-hidden="true" tabindex="-1"></a>arr3d[<span class="dv">1</span>, :, <span class="dv">0</span>]</span></code></pre></div>
 <pre><code>## array([ 7, 10])</code></pre>
-<div class="sourceCode" id="cb164"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb164-1"><a href="data-structures.html#cb164-1" aria-hidden="true" tabindex="-1"></a>arr3d[<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb167-1"><a href="data-structures.html#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the number 6 (first strata, second row, third column)</span></span>
+<span id="cb167-2"><a href="data-structures.html#cb167-2" aria-hidden="true" tabindex="-1"></a>arr3d[<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>]</span></code></pre></div>
 <pre><code>## 6</code></pre>
 <p>The three-dimensional arrays can be converted to two-dimensional arrays again using the <code>reshape</code> function:</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb166-1"><a href="data-structures.html#cb166-1" aria-hidden="true" tabindex="-1"></a>arr3d_2d <span class="op">=</span> arr3d.reshape(<span class="dv">4</span>,<span class="dv">3</span>)</span>
-<span id="cb166-2"><a href="data-structures.html#cb166-2" aria-hidden="true" tabindex="-1"></a>arr3d_2d</span></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb169-1"><a href="data-structures.html#cb169-1" aria-hidden="true" tabindex="-1"></a>arr3d_2d <span class="op">=</span> arr3d.reshape(<span class="dv">4</span>, <span class="dv">3</span>)</span>
+<span id="cb169-2"><a href="data-structures.html#cb169-2" aria-hidden="true" tabindex="-1"></a>arr3d_2d</span></code></pre></div>
 <pre><code>## array([[ 1,  2,  3],
 ##        [ 4,  5,  6],
 ##        [ 7,  8,  9],
@@ -536,8 +518,8 @@ div.csl-indent {
 <h4>R<a href="data-structures.html#r-10" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The <code>array()</code> function in R can create three-dimensional and higher data structures. Arrays are like vectors and matrices in that they can only contain one data type. In fact matrices and arrays are sometimes described as vectors with instructions on how to layout the data.</p>
 <p>We can specify the dimension number and size using the <code>dim</code> argument. Below we specify 2 rows, 3 columns, and 2 strata using a vector: <code>c(2,3,2)</code>. This creates a three-dimensional data structure. The data in the example are simply the numbers 1 through 12.</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="data-structures.html#cb168-1" aria-hidden="true" tabindex="-1"></a>a1 <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="at">data =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">dim =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">2</span>))</span>
-<span id="cb168-2"><a href="data-structures.html#cb168-2" aria-hidden="true" tabindex="-1"></a>a1</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="data-structures.html#cb171-1" aria-hidden="true" tabindex="-1"></a>a1 <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="at">data =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">dim =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>))</span>
+<span id="cb171-2"><a href="data-structures.html#cb171-2" aria-hidden="true" tabindex="-1"></a>a1</span></code></pre></div>
 <pre><code>## , , 1
 ## 
 ##      [,1] [,2] [,3]
@@ -550,20 +532,20 @@ div.csl-indent {
 ## [1,]    7    9   11
 ## [2,]    8   10   12</code></pre>
 <p>Values in arrays can be accessed by position using indexing brackets.</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="data-structures.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract value in row 1, column 2, strata 1</span></span>
-<span id="cb170-2"><a href="data-structures.html#cb170-2" aria-hidden="true" tabindex="-1"></a>a1[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="data-structures.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract value in row 1, column 2, strata 1</span></span>
+<span id="cb173-2"><a href="data-structures.html#cb173-2" aria-hidden="true" tabindex="-1"></a>a1[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="data-structures.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract column 2 in both strata</span></span>
-<span id="cb172-2"><a href="data-structures.html#cb172-2" aria-hidden="true" tabindex="-1"></a><span class="co"># result is returned as matrix</span></span>
-<span id="cb172-3"><a href="data-structures.html#cb172-3" aria-hidden="true" tabindex="-1"></a>a1[,<span class="dv">2</span>,]</span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="data-structures.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract column 2 in both strata</span></span>
+<span id="cb175-2"><a href="data-structures.html#cb175-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Result is returned as matrix</span></span>
+<span id="cb175-3"><a href="data-structures.html#cb175-3" aria-hidden="true" tabindex="-1"></a>a1[, <span class="dv">2</span>, ]</span></code></pre></div>
 <pre><code>##      [,1] [,2]
 ## [1,]    3    9
 ## [2,]    4   10</code></pre>
 <p>The dimensions can be named using the <code>dimnames()</code> function. Notice the names must be a <em>list</em>.</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="data-structures.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dimnames</span>(a1) <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;X&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;x1&quot;</span>, <span class="st">&quot;x2&quot;</span>), </span>
-<span id="cb174-2"><a href="data-structures.html#cb174-2" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&quot;Y&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;y1&quot;</span>, <span class="st">&quot;y2&quot;</span>, <span class="st">&quot;y3&quot;</span>), </span>
-<span id="cb174-3"><a href="data-structures.html#cb174-3" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&quot;Z&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;z1&quot;</span>, <span class="st">&quot;z2&quot;</span>))</span>
-<span id="cb174-4"><a href="data-structures.html#cb174-4" aria-hidden="true" tabindex="-1"></a>a1</span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="data-structures.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dimnames</span>(a1) <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;X&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;x1&quot;</span>, <span class="st">&quot;x2&quot;</span>), </span>
+<span id="cb177-2"><a href="data-structures.html#cb177-2" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&quot;Y&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;y1&quot;</span>, <span class="st">&quot;y2&quot;</span>, <span class="st">&quot;y3&quot;</span>), </span>
+<span id="cb177-3"><a href="data-structures.html#cb177-3" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&quot;Z&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;z1&quot;</span>, <span class="st">&quot;z2&quot;</span>))</span>
+<span id="cb177-4"><a href="data-structures.html#cb177-4" aria-hidden="true" tabindex="-1"></a>a1</span></code></pre></div>
 <pre><code>## , , Z = z1
 ## 
 ##     Y
@@ -578,7 +560,7 @@ div.csl-indent {
 ##   x1  7  9 11
 ##   x2  8 10 12</code></pre>
 <p>The <code>as.data.frame.table()</code> function can collapse an array into a two-dimensional structure that may be easier to use with standard statistical and graphical routines. The <code>responseName</code> argument allows you to provide a suitable column name for the values in the array.</p>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="data-structures.html#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame.table</span>(a1, <span class="at">responseName =</span> <span class="st">&quot;value&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="data-structures.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame.table</span>(a1, <span class="at">responseName =</span> <span class="st">&quot;value&quot;</span>)</span></code></pre></div>
 <pre><code>##     X  Y  Z value
 ## 1  x1 y1 z1     1
 ## 2  x2 y1 z1     2
@@ -596,49 +578,45 @@ div.csl-indent {
 </div>
 <div id="general-data-structures" class="section level2 hasAnchor" number="2.4">
 <h2><span class="header-section-number">2.4</span> General data structures<a href="data-structures.html#general-data-structures" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Both R and Python provide general “catch-all” data structures that can contain any number, shape, and type of data.</p>
+<p>Both R and Python provide general “catch-all” data structures that can contain data of any shape, type, and amount.</p>
 <div id="python-11" class="section level4 unnumbered hasAnchor">
 <h4>Python<a href="data-structures.html#python-11" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>The most general data structures in Python include the <em>list</em> and the <em>tuple</em>. Both lists and tuples are ordered collections of objects called <em>elements</em>. The elements can be other lists/tuples, arrays, integers, objects, etc.</p>
-<p>Lists are mutable objects; elements can be reordered or deleted and new elements can be added after the list has been created. Tuples, on the other hand, are immutable; once a tuple is created it cannot be changed.</p>
-<p>Lists are created using square brackets. Here we create a list and add an element to the list after it is created using the <code>append</code> function.</p>
-<div class="sourceCode" id="cb178"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb178-1"><a href="data-structures.html#cb178-1" aria-hidden="true" tabindex="-1"></a>lst <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&#39;a&#39;</span>, <span class="st">&#39;b&#39;</span>, [<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]]</span>
-<span id="cb178-2"><a href="data-structures.html#cb178-2" aria-hidden="true" tabindex="-1"></a>lst </span></code></pre></div>
+<p>The most general data structures in Python are the <em>list</em> and the <em>tuple</em>. Both lists and tuples are ordered collections of objects called <em>elements</em>. The elements can be other lists/tuples, arrays, integers, objects, etc.</p>
+<p>Lists are mutable objects; elements can be reordered or deleted, and new elements can be added after the list has been created. Tuples, on the other hand, are immutable; once a tuple is created it cannot be changed.</p>
+<p>Lists are created using square brackets. Here, we create a list and add an element to the list after it is created using the <code>append</code> function.</p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb181-1"><a href="data-structures.html#cb181-1" aria-hidden="true" tabindex="-1"></a>lst <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&#39;a&#39;</span>, <span class="st">&#39;b&#39;</span>, [<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]]</span>
+<span id="cb181-2"><a href="data-structures.html#cb181-2" aria-hidden="true" tabindex="-1"></a>lst </span></code></pre></div>
 <pre><code>## [1, 2, &#39;a&#39;, &#39;b&#39;, [3, 4, 5]]</code></pre>
-<div class="sourceCode" id="cb180"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb180-1"><a href="data-structures.html#cb180-1" aria-hidden="true" tabindex="-1"></a>lst.append(<span class="st">&#39;c&#39;</span>)</span>
-<span id="cb180-2"><a href="data-structures.html#cb180-2" aria-hidden="true" tabindex="-1"></a>lst</span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb183-1"><a href="data-structures.html#cb183-1" aria-hidden="true" tabindex="-1"></a>lst.append(<span class="st">&#39;c&#39;</span>)</span>
+<span id="cb183-2"><a href="data-structures.html#cb183-2" aria-hidden="true" tabindex="-1"></a>lst</span></code></pre></div>
 <pre><code>## [1, 2, &#39;a&#39;, &#39;b&#39;, [3, 4, 5], &#39;c&#39;]</code></pre>
 <p>Tuples are created using parenthesis. Here we create a tuple.</p>
-<div class="sourceCode" id="cb182"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb182-1"><a href="data-structures.html#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="bu">tuple</span> <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&#39;a&#39;</span>,<span class="st">&#39;b&#39;</span>, [<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>])</span>
-<span id="cb182-2"><a href="data-structures.html#cb182-2" aria-hidden="true" tabindex="-1"></a><span class="bu">tuple</span> </span></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb185-1"><a href="data-structures.html#cb185-1" aria-hidden="true" tabindex="-1"></a><span class="bu">tuple</span> <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&#39;a&#39;</span>,<span class="st">&#39;b&#39;</span>, [<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>])</span>
+<span id="cb185-2"><a href="data-structures.html#cb185-2" aria-hidden="true" tabindex="-1"></a><span class="bu">tuple</span> </span></code></pre></div>
 <pre><code>## (1, 2, &#39;a&#39;, &#39;b&#39;, [3, 4, 5])</code></pre>
 <p>Let’s try to use the append function to explore the immutability of the tuple. We expect to get an error.</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb184-1"><a href="data-structures.html#cb184-1" aria-hidden="true" tabindex="-1"></a><span class="bu">tuple</span>.append(<span class="st">&#39;c&#39;</span>)</span></code></pre></div>
-<pre><code>## Error in py_call_impl(callable, dots$args, dots$keywords): AttributeError: &#39;tuple&#39; object has no attribute &#39;append&#39;
-## 
-## Detailed traceback:
-##   File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb187"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb187-1"><a href="data-structures.html#cb187-1" aria-hidden="true" tabindex="-1"></a><span class="bu">tuple</span>.append(<span class="st">&#39;c&#39;</span>)</span></code></pre></div>
+<pre><code>## Error in py_call_impl(callable, dots$args, dots$keywords): AttributeError: &#39;tuple&#39; object has no attribute &#39;append&#39;</code></pre>
 <p>We can refer to specific list/tuple elements by using square brackets. In the square brackets we put the index number of the element. The element in the first position is at index 0.</p>
-<div class="sourceCode" id="cb186"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb186-1"><a href="data-structures.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the first element of the list and the tuple</span></span>
-<span id="cb186-2"><a href="data-structures.html#cb186-2" aria-hidden="true" tabindex="-1"></a>lst[<span class="dv">0</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb189-1"><a href="data-structures.html#cb189-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the first element of the list and the tuple</span></span>
+<span id="cb189-2"><a href="data-structures.html#cb189-2" aria-hidden="true" tabindex="-1"></a>lst[<span class="dv">0</span>]</span></code></pre></div>
 <pre><code>## 1</code></pre>
-<div class="sourceCode" id="cb188"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb188-1"><a href="data-structures.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="bu">tuple</span>[<span class="dv">0</span>]</span>
-<span id="cb188-2"><a href="data-structures.html#cb188-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb188-3"><a href="data-structures.html#cb188-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the last element of each </span></span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb191-1"><a href="data-structures.html#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="bu">tuple</span>[<span class="dv">0</span>]</span></code></pre></div>
 <pre><code>## 1</code></pre>
-<div class="sourceCode" id="cb190"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb190-1"><a href="data-structures.html#cb190-1" aria-hidden="true" tabindex="-1"></a>lst[<span class="op">-</span><span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb193-1"><a href="data-structures.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the last element of each </span></span>
+<span id="cb193-2"><a href="data-structures.html#cb193-2" aria-hidden="true" tabindex="-1"></a>lst[<span class="op">-</span><span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## &#39;c&#39;</code></pre>
-<div class="sourceCode" id="cb192"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb192-1"><a href="data-structures.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="bu">tuple</span>[<span class="op">-</span><span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb195-1"><a href="data-structures.html#cb195-1" aria-hidden="true" tabindex="-1"></a><span class="bu">tuple</span>[<span class="op">-</span><span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## [3, 4, 5]</code></pre>
 </div>
 <div id="r-11" class="section level4 unnumbered hasAnchor">
 <h4>R<a href="data-structures.html#r-11" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The most general data structure in R is the <em>list</em>. A list is an ordered collection of objects, which are referred to as the <em>components</em>. The components can be vectors, matrices, arrays, data frames, and other lists. The components are always numbered but can also have names. The results of statistical functions are often returned as lists.</p>
 <p>We can create lists with the <code>list()</code> function. The list below contains three components: a vector named “x”, a matrix named “y”, and a data frame named “z”. Notice the <code>m</code> and <code>d</code> objects were created in the two-dimensional data section earlier in this chapter.</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="data-structures.html#cb194-1" aria-hidden="true" tabindex="-1"></a>l <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),</span>
-<span id="cb194-2"><a href="data-structures.html#cb194-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> m,</span>
-<span id="cb194-3"><a href="data-structures.html#cb194-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">z =</span> d)</span>
-<span id="cb194-4"><a href="data-structures.html#cb194-4" aria-hidden="true" tabindex="-1"></a>l</span></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="data-structures.html#cb197-1" aria-hidden="true" tabindex="-1"></a>l <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>),</span>
+<span id="cb197-2"><a href="data-structures.html#cb197-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> m,</span>
+<span id="cb197-3"><a href="data-structures.html#cb197-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">z =</span> d)</span>
+<span id="cb197-4"><a href="data-structures.html#cb197-4" aria-hidden="true" tabindex="-1"></a>l</span></code></pre></div>
 <pre><code>## $x
 ## [1] 1 2 3
 ## 
@@ -652,34 +630,34 @@ div.csl-indent {
 ## 1   Rob  35
 ## 2 Cindy  37</code></pre>
 <p>We can refer to list components by their order number or name (if present). To use order number, use indexing brackets. Single brackets returns a list. Double brackets return the component itself.</p>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="data-structures.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="co"># second element returned as list</span></span>
-<span id="cb196-2"><a href="data-structures.html#cb196-2" aria-hidden="true" tabindex="-1"></a>l[<span class="dv">2</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="data-structures.html#cb199-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Second element returned as list</span></span>
+<span id="cb199-2"><a href="data-structures.html#cb199-2" aria-hidden="true" tabindex="-1"></a>l[<span class="dv">2</span>]</span></code></pre></div>
 <pre><code>## $y
 ##      [,1] [,2]
 ## [1,]    1    5
 ## [2,]    3    7</code></pre>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="data-structures.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="co"># second element returned as itself (matrix)</span></span>
-<span id="cb198-2"><a href="data-structures.html#cb198-2" aria-hidden="true" tabindex="-1"></a>l[[<span class="dv">2</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="data-structures.html#cb201-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Second element returned as itself (matrix)</span></span>
+<span id="cb201-2"><a href="data-structures.html#cb201-2" aria-hidden="true" tabindex="-1"></a>l[[<span class="dv">2</span>]]</span></code></pre></div>
 <pre><code>##      [,1] [,2]
 ## [1,]    1    5
 ## [2,]    3    7</code></pre>
 <p>Use the <code>$</code> operator to refer to components by name. This returns the component itself.</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="data-structures.html#cb200-1" aria-hidden="true" tabindex="-1"></a>l<span class="sc">$</span>y</span></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="data-structures.html#cb203-1" aria-hidden="true" tabindex="-1"></a>l<span class="sc">$</span>y</span></code></pre></div>
 <pre><code>##      [,1] [,2]
 ## [1,]    1    5
 ## [2,]    3    7</code></pre>
-<p>Finally it is worth noting that a data frame is a special case of a list consisting of components with the same length. The <code>is.list()</code> function returns TRUE if an object is a list and FALSE otherwise.</p>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="data-structures.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="co"># object d is data frame</span></span>
-<span id="cb202-2"><a href="data-structures.html#cb202-2" aria-hidden="true" tabindex="-1"></a>d</span></code></pre></div>
+<p>Finally, it is worth noting that a data frame is a special case of a list consisting of components with the same length. The <code>is.list()</code> function returns <code>TRUE</code> if an object is a list and <code>FALSE</code> otherwise.</p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="data-structures.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Object d is data frame</span></span>
+<span id="cb205-2"><a href="data-structures.html#cb205-2" aria-hidden="true" tabindex="-1"></a>d</span></code></pre></div>
 <pre><code>##    name age
 ## 1   Rob  35
 ## 2 Cindy  37</code></pre>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="data-structures.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(d)</span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="data-structures.html#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(d)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    2 obs. of  2 variables:
 ##  $ name: chr  &quot;Rob&quot; &quot;Cindy&quot;
 ##  $ age : num  35 37</code></pre>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="data-structures.html#cb206-1" aria-hidden="true" tabindex="-1"></a><span class="co"># but a data frame is a list</span></span>
-<span id="cb206-2"><a href="data-structures.html#cb206-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.list</span>(d)</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="data-structures.html#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ...And a data frame is a list</span></span>
+<span id="cb209-2"><a href="data-structures.html#cb209-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.list</span>(d)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 
 </div>
