@@ -1061,8 +1061,9 @@ div.csl-indent {
 <pre><code>## [1] &quot;9:00-10:15&quot;  &quot;10:15-11:30&quot; &quot;11:30-12:00&quot;</code></pre>
 <p>The package <strong>stringi</strong> also provides an array of string-search and string-manipulation functions, including <code>stri_detect()</code>, <code>stri_replace()</code>, and <code>stri_extract()</code>, all of which easily handle fixed and regex search patterns. For example:</p>
 <div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="data-manipulation.html#cb409-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringi)</span>
-<span id="cb409-2"><a href="data-manipulation.html#cb409-2" aria-hidden="true" tabindex="-1"></a>user_dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">name =</span> <span class="fu">c</span>(<span class="st">&#39;Shire, Jane E&#39;</span>, <span class="st">&#39;Winchester, Marcus L&#39;</span>, <span class="st">&#39;Fox, Sal&#39;</span>), <span class="at">id_number =</span> <span class="fu">c</span>(<span class="st">&#39;aaa101&#39;</span>, <span class="st">&#39;aaa102&#39;</span>, <span class="st">&#39;aaa103&#39;</span>))</span>
-<span id="cb409-3"><a href="data-manipulation.html#cb409-3" aria-hidden="true" tabindex="-1"></a>user_dat</span></code></pre></div>
+<span id="cb409-2"><a href="data-manipulation.html#cb409-2" aria-hidden="true" tabindex="-1"></a>user_dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">name =</span> <span class="fu">c</span>(<span class="st">&#39;Shire, Jane E&#39;</span>, <span class="st">&#39;Winchester, Marcus L&#39;</span>, <span class="st">&#39;Fox, Sal&#39;</span>),</span>
+<span id="cb409-3"><a href="data-manipulation.html#cb409-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">id_number =</span> <span class="fu">c</span>(<span class="st">&#39;aaa101&#39;</span>, <span class="st">&#39;aaa102&#39;</span>, <span class="st">&#39;aaa103&#39;</span>))</span>
+<span id="cb409-4"><a href="data-manipulation.html#cb409-4" aria-hidden="true" tabindex="-1"></a>user_dat</span></code></pre></div>
 <pre><code>##                   name id_number
 ## 1        Shire, Jane E    aaa101
 ## 2 Winchester, Marcus L    aaa102
@@ -1099,7 +1100,7 @@ div.csl-indent {
 <span id="cb416-2"><a href="data-manipulation.html#cb416-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mtcars)</span></code></pre></div>
 <pre><code>##  [1] &quot;mpg&quot;        &quot;cylinders&quot;  &quot;disp&quot;       &quot;hp&quot;         &quot;axle_ratio&quot; &quot;weight&quot;     &quot;qsec&quot;       &quot;engine&quot;     &quot;am&quot;         &quot;gear&quot;       &quot;carb&quot;       &quot;am_ch&quot;     
 ## [13] &quot;am_fac&quot;</code></pre>
-<p>The <strong>stringr</strong> package provides a convenient title case conversion function, <code>str_to_title()</code>, which capitalizes the first letter of each string.</p>
+<p>The <strong>stringr</strong> package provides a convenient title-case conversion function, <code>str_to_title()</code>, which capitalizes the first letter of each string.</p>
 <div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="data-manipulation.html#cb418-1" aria-hidden="true" tabindex="-1"></a>stringr<span class="sc">::</span><span class="fu">str_to_title</span>(<span class="fu">names</span>(mtcars))</span></code></pre></div>
 <pre><code>##  [1] &quot;Mpg&quot;        &quot;Cylinders&quot;  &quot;Disp&quot;       &quot;Hp&quot;         &quot;Axle_ratio&quot; &quot;Weight&quot;     &quot;Qsec&quot;       &quot;Engine&quot;     &quot;Am&quot;         &quot;Gear&quot;       &quot;Carb&quot;       &quot;Am_ch&quot;     
 ## [13] &quot;Am_fac&quot;</code></pre>
@@ -1111,13 +1112,12 @@ div.csl-indent {
 <div id="python-27" class="section level4 unnumbered hasAnchor">
 <h4>Python<a href="data-manipulation.html#python-27" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The <code>duplicated()</code> function determines which rows of a DataFrame are duplicates of previous rows.</p>
-<p>First, we create a DataFrame with a duplicate row by using the pandas <code>concat()</code> function. <code>concat()</code> combines DataFrames by rows or columns, row by default.</p>
-<div class="sourceCode" id="cb420"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb420-1"><a href="data-manipulation.html#cb420-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create DataFrame with duplicate rows</span></span>
+<p>First, we create a DataFrame with a duplicate row by using the pandas <code>concat()</code> function. <code>concat()</code> combines DataFrames by rows or columns (by rows is the default).</p>
+<div class="sourceCode" id="cb420"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb420-1"><a href="data-manipulation.html#cb420-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create DataFrame with duplicate rows</span></span>
 <span id="cb420-2"><a href="data-manipulation.html#cb420-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb420-3"><a href="data-manipulation.html#cb420-3" aria-hidden="true" tabindex="-1"></a>mtcars2 <span class="op">=</span> pd.concat([mtcars.iloc[<span class="dv">0</span>:<span class="dv">3</span>,<span class="dv">0</span>:<span class="dv">6</span>], mtcars.iloc[<span class="dv">0</span>:<span class="dv">1</span>,<span class="dv">0</span>:<span class="dv">6</span>]])</span></code></pre></div>
 <p>The <code>duplicated()</code> function returns a logical vector. TRUE indicates a row is a duplicate of a previous row.</p>
-<div class="sourceCode" id="cb421"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb421-1"><a href="data-manipulation.html#cb421-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create DataFrame with duplicate rows</span></span>
-<span id="cb421-2"><a href="data-manipulation.html#cb421-2" aria-hidden="true" tabindex="-1"></a>mtcars2.duplicated()</span></code></pre></div>
+<div class="sourceCode" id="cb421"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb421-1"><a href="data-manipulation.html#cb421-1" aria-hidden="true" tabindex="-1"></a>mtcars2.duplicated()</span></code></pre></div>
 <pre><code>## 0    False
 ## 1    False
 ## 2    False
@@ -1126,30 +1126,30 @@ div.csl-indent {
 </div>
 <div id="r-27" class="section level4 unnumbered hasAnchor">
 <h4>R<a href="data-manipulation.html#r-27" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>The <code>duplicated()</code> function “determines which elements of a vector or data frame are duplicates of elements with smaller subscripts”. (from <code>?duplicated</code>)</p>
-<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="data-manipulation.html#cb423-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create data frame with duplicate rows</span></span>
+<p>The <code>duplicated()</code> function “determines which elements of a vector or data frame are duplicates of elements with smaller subscripts” (from <code>?duplicated</code>).</p>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="data-manipulation.html#cb423-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create data frame with duplicate rows</span></span>
 <span id="cb423-2"><a href="data-manipulation.html#cb423-2" aria-hidden="true" tabindex="-1"></a>mtcars2 <span class="ot">&lt;-</span> <span class="fu">rbind</span>(mtcars[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>], mtcars[<span class="dv">1</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>])</span>
-<span id="cb423-3"><a href="data-manipulation.html#cb423-3" aria-hidden="true" tabindex="-1"></a><span class="co"># last row is duplicate of first</span></span>
+<span id="cb423-3"><a href="data-manipulation.html#cb423-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Last row is duplicate of first</span></span>
 <span id="cb423-4"><a href="data-manipulation.html#cb423-4" aria-hidden="true" tabindex="-1"></a>mtcars2</span></code></pre></div>
 <pre><code>##    mpg cylinders disp  hp axle_ratio weight
 ## 1 21.0         6  160 110       3.90  2.620
 ## 2 21.0         6  160 110       3.90  2.875
 ## 3 22.8         4  108  93       3.85  2.320
 ## 4 21.0         6  160 110       3.90  2.620</code></pre>
-<p>The <code>duplicated()</code> function returns a logical vector. TRUE indicates a row is a duplicate of a previous row.</p>
-<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="data-manipulation.html#cb425-1" aria-hidden="true" tabindex="-1"></a><span class="co"># last row is duplicate</span></span>
+<p>The <code>duplicated()</code> function returns a logical vector. <code>TRUE</code> indicates that a given element is a duplicate of a previous one (and here, element = row).</p>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="data-manipulation.html#cb425-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The last row is a duplicate</span></span>
 <span id="cb425-2"><a href="data-manipulation.html#cb425-2" aria-hidden="true" tabindex="-1"></a><span class="fu">duplicated</span>(mtcars2)</span></code></pre></div>
 <pre><code>## [1] FALSE FALSE FALSE  TRUE</code></pre>
-<p>The TRUE/FALSE vector can be used to extract or drop duplicate rows. Since TRUE in indexing brackets will keep a row, we can use <code>!</code> to negate the logicals and keep those that are “NOT TRUE”</p>
-<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="data-manipulation.html#cb427-1" aria-hidden="true" tabindex="-1"></a><span class="co"># drop the duplicate and update the data frame</span></span>
-<span id="cb427-2"><a href="data-manipulation.html#cb427-2" aria-hidden="true" tabindex="-1"></a>mtcars3 <span class="ot">&lt;-</span> mtcars2[<span class="sc">!</span><span class="fu">duplicated</span>(mtcars2),]</span>
+<p>The <code>TRUE</code>/<code>FALSE</code> vector can be used to extract or drop duplicate rows. Since <code>TRUE</code> in indexing brackets will keep a row, we can use <code>!</code> to negate the logicals and keep those that are <em>not</em> <code>TRUE.</code></p>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="data-manipulation.html#cb427-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop the duplicate and update the data frame</span></span>
+<span id="cb427-2"><a href="data-manipulation.html#cb427-2" aria-hidden="true" tabindex="-1"></a>mtcars3 <span class="ot">&lt;-</span> mtcars2[<span class="sc">!</span><span class="fu">duplicated</span>(mtcars2), ]</span>
 <span id="cb427-3"><a href="data-manipulation.html#cb427-3" aria-hidden="true" tabindex="-1"></a>mtcars3</span></code></pre></div>
 <pre><code>##    mpg cylinders disp  hp axle_ratio weight
 ## 1 21.0         6  160 110       3.90  2.620
 ## 2 21.0         6  160 110       3.90  2.875
 ## 3 22.8         4  108  93       3.85  2.320</code></pre>
-<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="data-manipulation.html#cb429-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract and investigate the duplicate row</span></span>
-<span id="cb429-2"><a href="data-manipulation.html#cb429-2" aria-hidden="true" tabindex="-1"></a>mtcars2[<span class="fu">duplicated</span>(mtcars2),]</span></code></pre></div>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="data-manipulation.html#cb429-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract and investigate the duplicate row</span></span>
+<span id="cb429-2"><a href="data-manipulation.html#cb429-2" aria-hidden="true" tabindex="-1"></a>mtcars2[<span class="fu">duplicated</span>(mtcars2), ]</span></code></pre></div>
 <pre><code>##   mpg cylinders disp  hp axle_ratio weight
 ## 4  21         6  160 110        3.9   2.62</code></pre>
 <p>The <code>anyDuplicated()</code> function returns the row number of duplicate rows.</p>
@@ -1233,19 +1233,19 @@ div.csl-indent {
 <span id="cb469-3"><a href="data-manipulation.html#cb469-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d1)</span>
 <span id="cb469-4"><a href="data-manipulation.html#cb469-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb469-5"><a href="data-manipulation.html#cb469-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Add 550 days to our datetime object </span></span></code></pre></div>
-<pre><code>## 2022-05-09 15:23:41.942882</code></pre>
+<pre><code>## 2022-05-09 15:28:36.776548</code></pre>
 <div class="sourceCode" id="cb471"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb471-1"><a href="data-manipulation.html#cb471-1" aria-hidden="true" tabindex="-1"></a>d2 <span class="op">=</span> d1 <span class="op">+</span> dt.timedelta(days <span class="op">=</span> <span class="dv">550</span>)</span>
 <span id="cb471-2"><a href="data-manipulation.html#cb471-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d2)</span>
 <span id="cb471-3"><a href="data-manipulation.html#cb471-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb471-4"><a href="data-manipulation.html#cb471-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Subtract 5 hours from our datetime object </span></span></code></pre></div>
-<pre><code>## 2023-11-10 15:23:41.942882</code></pre>
+<pre><code>## 2023-11-10 15:28:36.776548</code></pre>
 <div class="sourceCode" id="cb473"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb473-1"><a href="data-manipulation.html#cb473-1" aria-hidden="true" tabindex="-1"></a>d3 <span class="op">=</span> d1 <span class="op">-</span> dt.timedelta(hours <span class="op">=</span> <span class="dv">5</span>)</span>
 <span id="cb473-2"><a href="data-manipulation.html#cb473-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d3)</span></code></pre></div>
-<pre><code>## 2022-05-09 10:23:41.942882</code></pre>
+<pre><code>## 2022-05-09 10:28:36.776548</code></pre>
 <p>Finally, we will discuss how to convert strings to datetime objects and vice versa.</p>
 <p>The attribute <code>strftime()</code> converts datetime objects to strings. In the argument of <code>strftime()</code> can specify the format you would like.</p>
 <div class="sourceCode" id="cb475"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb475-1"><a href="data-manipulation.html#cb475-1" aria-hidden="true" tabindex="-1"></a>d1</span></code></pre></div>
-<pre><code>## datetime.datetime(2022, 5, 9, 15, 23, 41, 942882)</code></pre>
+<pre><code>## datetime.datetime(2022, 5, 9, 15, 28, 36, 776548)</code></pre>
 <div class="sourceCode" id="cb477"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb477-1"><a href="data-manipulation.html#cb477-1" aria-hidden="true" tabindex="-1"></a>d1.strftime(<span class="st">&quot;%A %m %Y&quot;</span>)</span></code></pre></div>
 <pre><code>## &#39;Monday 05 2022&#39;</code></pre>
 <div class="sourceCode" id="cb479"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb479-1"><a href="data-manipulation.html#cb479-1" aria-hidden="true" tabindex="-1"></a>d1.strftime(<span class="st">&quot;%a %m %y&quot;</span>)</span></code></pre></div>

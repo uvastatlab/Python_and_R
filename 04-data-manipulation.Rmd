@@ -683,7 +683,8 @@ The package **stringi** also provides an array of string-search and string-manip
 
 ```{r}
 library(stringi)
-user_dat <- data.frame(name = c('Shire, Jane E', 'Winchester, Marcus L', 'Fox, Sal'), id_number = c('aaa101', 'aaa102', 'aaa103'))
+user_dat <- data.frame(name = c('Shire, Jane E', 'Winchester, Marcus L', 'Fox, Sal'),
+                       id_number = c('aaa101', 'aaa102', 'aaa103'))
 user_dat
 
 # Say we want to to eliminate the 'aaa' patterns from the user IDs and then add
@@ -721,7 +722,7 @@ names(mtcars) <- tolower(names(mtcars))
 names(mtcars)
 ```
 
-The **stringr** package provides a convenient title case conversion function, `str_to_title()`, which capitalizes the first letter of each string.
+The **stringr** package provides a convenient title-case conversion function, `str_to_title()`, which capitalizes the first letter of each string.
 
 ```{r}
 stringr::str_to_title(names(mtcars))
@@ -735,10 +736,10 @@ How to find and drop duplicate elements.
 
 The `duplicated()` function determines which rows of a DataFrame are duplicates of previous rows. 
 
-First, we create a DataFrame with a duplicate row by using the pandas `concat()` function. `concat()` combines DataFrames by rows or columns, row by default.
+First, we create a DataFrame with a duplicate row by using the pandas `concat()` function. `concat()` combines DataFrames by rows or columns (by rows is the default).
 
 ```{python}
-# create DataFrame with duplicate rows
+# Create DataFrame with duplicate rows
 import pandas as pd
 mtcars2 = pd.concat([mtcars.iloc[0:3,0:6], mtcars.iloc[0:1,0:6]])
 ```
@@ -746,40 +747,39 @@ mtcars2 = pd.concat([mtcars.iloc[0:3,0:6], mtcars.iloc[0:1,0:6]])
 The `duplicated()` function returns a logical vector. TRUE indicates a row is a duplicate of a previous row.
 
 ```{python}
-# create DataFrame with duplicate rows
 mtcars2.duplicated()
 ```
 
 
 #### R {-}
 
-The `duplicated()` function "determines which elements of a vector or data frame are duplicates of elements with smaller subscripts". (from `?duplicated`)
+The `duplicated()` function "determines which elements of a vector or data frame are duplicates of elements with smaller subscripts" (from `?duplicated`).
 
 ```{r}
-# create data frame with duplicate rows
+# Create data frame with duplicate rows
 mtcars2 <- rbind(mtcars[1:3,1:6], mtcars[1,1:6])
-# last row is duplicate of first
+# Last row is duplicate of first
 mtcars2
 ```
 
-The `duplicated()` function returns a logical vector. TRUE indicates a row is a duplicate of a previous row.
+The `duplicated()` function returns a logical vector. `TRUE` indicates that a given element is a duplicate of a previous one (and here, element = row).
 
 ```{r}
-# last row is duplicate
+# The last row is a duplicate
 duplicated(mtcars2)
 ```
 
-The TRUE/FALSE vector can be used to extract or drop duplicate rows. Since TRUE in indexing brackets will keep a row, we can use `!` to negate the logicals and keep those that are "NOT TRUE"
+The `TRUE`/`FALSE` vector can be used to extract or drop duplicate rows. Since `TRUE` in indexing brackets will keep a row, we can use `!` to negate the logicals and keep those that are _not_ `TRUE.`
 
 ```{r}
-# drop the duplicate and update the data frame
-mtcars3 <- mtcars2[!duplicated(mtcars2),]
+# Drop the duplicate and update the data frame
+mtcars3 <- mtcars2[!duplicated(mtcars2), ]
 mtcars3
 ```
 
 ```{r}
-# extract and investigate the duplicate row
-mtcars2[duplicated(mtcars2),]
+# Extract and investigate the duplicate row
+mtcars2[duplicated(mtcars2), ]
 ```
 
 The `anyDuplicated()` function returns the row number of duplicate rows.
@@ -787,7 +787,6 @@ The `anyDuplicated()` function returns the row number of duplicate rows.
 ```{r}
 anyDuplicated(mtcars2)
 ```
-
 
 ## Format dates
 
