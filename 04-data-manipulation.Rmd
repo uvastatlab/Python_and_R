@@ -379,7 +379,7 @@ mtcars['kpl'] = mtcars.mpg / 2.352
 Doing the same with an _existing_ column updates the values in the column.
 
 ```{python}
-# update to liters per 100 Kilometers
+# Update to liters per 100 kilometers
 mtcars['kpl'] = 100 / mtcars.kpl 
 ```
 
@@ -488,7 +488,7 @@ head(factor(mtcars$am, labels = c("automatic", "manual")))
 As before, to save the results of this conversion to the data frame, we need to assign the results to a variable:
 
 ```{r}
-# create factor variable am_fac
+# Create factor variable am_fac
 mtcars$am_fac <- factor(mtcars$am, labels = c("automatic", "manual"))
 head(mtcars$am_fac)
 ```
@@ -577,7 +577,7 @@ readr::parse_number(weight)
 
 ## Combine strings
 
-String concatenation---turning 'Jane' and 'Smith' into 'Jane Smith'---is easily done in both languages.
+String concatenation---turning "Jane" and "Smith" into "Jane Smith"---is easily done in both languages.
 
 #### Python {-}
 
@@ -610,7 +610,7 @@ statement2
 
 ## Finding and replacing patterns within strings
 
-This section reviews key functions in Python and R for finding and replacing character patterns. The functions we discuss can search for fixed character patterns (e.g., "Meredith Rollins" to case-sensitively match that name and that name alone) or regular expression (regex) patterns (e.g., `\w+` to capture all instances of >=1 word character). Note that in R, meta characters, like `w` (to match word characters) and `d` (to match digits), are escaped with _two_ backslashes (e.g., `\\w` and `\\d`). In Python, regex patterns are generally headed by `r`, which allows meta characters in the regex itself to be escaped with just one `\` (e.g., `r"\w+"`). Regex is an enormous topic, and we don't discuss it at any length here, but you can learn more about regular expressions---and how they're implemented in different programming languages---at these resources: https://www.regular-expressions.info/; https://regexone.com/
+This section reviews key functions in Python and R for finding and replacing character patterns. The functions we discuss can search for fixed character patterns (e.g., "Meredith Rollins" to case-sensitively match that name and that name alone) or regular expression (regex) patterns (e.g., `\w+` to capture all instances of >=1 alphabetic character). Note that in R, meta characters like `w` (to match word characters) and `d` (to match digits) are escaped with _two_ backslashes (e.g., `\\w` and `\\d`). In Python, regex patterns are generally headed by `r`, which allows meta characters in the regex itself to be escaped with just one `\` (e.g., `r"\w+"`). Regex is an enormous topic, and we don't discuss it at any length here, but you can learn more about regular expressions---and how they're implemented in different programming languages---at these websites: https://www.regular-expressions.info/; https://regexone.com/
 
 #### Python {-}
 
@@ -625,34 +625,38 @@ search_result1 = re.search(pattern = "HB", string = statement)
 print(search_result1)
 search_result2 = re.search(pattern = r"[H,B]{2}", string = statement)
 print(search_result2)
-
+```
+```{python}
 # Replace all instances of "HB"
 all_replaced = re.sub(pattern = 'HB', repl = 'HB (hard black)', string = statement)
 print(all_replaced)
-
+```
+```{python}
 # Replace just the first instance of HB
 one_replaced = re.sub(pattern = 'HB', repl = 'HB (hard black)', string = statement, count = 1)
 print(one_replaced)
-
+```
+```{python}
 # Search and replace using a regex pattern instead of a fixed string
+# (Replace a space after a period with a line break)
 regex_replaced = re.sub(pattern = r'(?<=\.)\s{1}', repl = '\n', string = statement)
 print(regex_replaced)
 ```
 
 #### R {-}
 
-The standard-issue string-search function is `grep()`; it returns the index of the elements in a set of one or more strings for which a pattern match was found. (`grepl()` acts similarly but returns a vector of `TRUE`/`FALSE` indicating whether a match was found in each string passed to the function.) The functions `sub()` and `gsub()` can be used to find and replace instances of a pattern: The former replaces just the first instance; the latter replaces all instances. The search pattern can be provided as a raw character string or as a regular expression.
+The standard-issue string-search function in base R is `grep()`; it returns the index of the elements in a set of one or more strings for which a pattern match was found. (`grepl()` acts similarly but returns a vector of `TRUE`/`FALSE` indicating whether a match was found in each string passed to the function.) The functions `sub()` and `gsub()` can be used to find and replace instances of a pattern: The former replaces just the first instance; the latter replaces all instances. The search pattern can be provided as a raw character string or as a regular expression.
 
 ```{r}
 statements <- c('Great Pencil Co. primarily sells pencils of the following grades: HB; B; and 3B.',
                 'Great Pencil Co. has its headquarters in Maine, and Great Pencil Co. has supplied the Northeast for decades.')
 
-# Search for pattern and return indexex of elements for which match is found
-grep(pattern = 'pencil', x = statements) # When searched for case sensitively, "pencil" is only found in the first string
-grep(pattern = '(?i)pencil', x = statements) # When searched for case insensitively, "P/pencil" is found in both strings
+# Search for a pattern and return the indexes of elements for which a match is found
+grep(pattern = 'pencil', x = statements, fixed = TRUE) # use `fixed = T` to search for exactly the declared string: "pencil" in all lowercase, which is only found in one string
+grep(pattern = '(?i)pencil', x = statements) # using regex allows for flexible searches, such as a case-insensitive search for "P/pencil", which, unlike "pencil" is found in in both strings
 
 # Replace the first instance of a pattern (Co. --> Company)
-revised <- sub(pattern = 'Co.', replacement = 'Company', x = statements)
+revised <- sub(pattern = 'Co\\.', replacement = 'Company', x = statements)
 revised
 
 # Replace all instances of a pattern (; --> ,)
@@ -681,10 +685,12 @@ The package **stringi** also provides an array of string-search and string-manip
 library(stringi)
 user_dat <- data.frame(name = c('Shire, Jane E', 'Winchester, Marcus L', 'Fox, Sal'), id_number = c('aaa101', 'aaa102', 'aaa103'))
 user_dat
-# Say we want to use regex patterns and the stringi package to eliminate the 'aaa' patterns from
-# the user IDs and then add middle initials---for those users who have them---to the data frame
-user_dat$id_number <- stri_replace(user_dat$id_number, regex = '\\w{3}(?=\\d+)', replacement = '')
-user_dat$middle_initial <- stri_extract(user_dat$name, regex = '\\b\\w{1}\\b')
+
+# Say we want to to eliminate the 'aaa' patterns from the user IDs and then add
+# middle initials---for those users who have them---to the data frame
+user_dat$id_number <- stri_replace(user_dat$id_number, regex = '^\\w{3}(?=\\d+)', replacement = '') # alternatively: stri_extract(user_dat$id_number, regex = '(?<=\\w{3})\\d+$')
+
+user_dat$middle_initial <- stri_extract(user_dat$name, regex = '\\b\\w{1}$')
 user_dat
 ```
 
@@ -694,7 +700,7 @@ How to change the case of strings. The most common case transformations are lowe
 
 #### Python {-}
 
-The `lower()`, `upper()`, and `title()` functions convert case to lower, upper, and title, respectively. We can use a list comprehension to apply these functions to each string in a list.
+The `lower()`, `upper()`, and `title()` functions convert strings to lower, upper, and title case, respectively. We can use a list comprehension to apply these functions to each string in a list.
 
 ```{python}
 col_names = [col.upper() for col in mtcars.columns]
