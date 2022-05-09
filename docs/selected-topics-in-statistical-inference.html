@@ -314,7 +314,7 @@ div.csl-indent {
 <span id="cb667-3"><a href="selected-topics-in-statistical-inference.html#cb667-3" aria-hidden="true" tabindex="-1"></a>plt.clf()</span>
 <span id="cb667-4"><a href="selected-topics-in-statistical-inference.html#cb667-4" aria-hidden="true" tabindex="-1"></a>sns.stripplot(x<span class="op">=</span><span class="st">&quot;score&quot;</span>, y<span class="op">=</span><span class="st">&quot;group&quot;</span>, data<span class="op">=</span>ch8_d1)</span>
 <span id="cb667-5"><a href="selected-topics-in-statistical-inference.html#cb667-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-315-1.png" width="1440" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-319-1.png" width="1440" /></p>
 <p>One way to perform a t test in Python is via the <code>CompareMeans()</code> function and its associated methods available in the <strong>statsmodels</strong> package. Below we import <strong>statsmodels.stats.api</strong> as “sms”.</p>
 <div class="sourceCode" id="cb668"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb668-1"><a href="selected-topics-in-statistical-inference.html#cb668-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.stats.api <span class="im">as</span> sms</span></code></pre></div>
 <p>We first extract the data we want to compare as pandas Series.</p>
@@ -365,7 +365,7 @@ div.csl-indent {
 <div class="sourceCode" id="cb680"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb680-1"><a href="selected-topics-in-statistical-inference.html#cb680-1" aria-hidden="true" tabindex="-1"></a>plt.clf()</span>
 <span id="cb680-2"><a href="selected-topics-in-statistical-inference.html#cb680-2" aria-hidden="true" tabindex="-1"></a>sns.stripplot(x<span class="op">=</span><span class="st">&quot;mass&quot;</span>, y<span class="op">=</span><span class="st">&quot;location&quot;</span>, data<span class="op">=</span>ch8_d2)</span>
 <span id="cb680-3"><a href="selected-topics-in-statistical-inference.html#cb680-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-323-3.png" width="1440" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-327-3.png" width="1440" /></p>
 <p>We can calculate means using the <code>groupby</code> and <code>mean</code> methods.</p>
 <div class="sourceCode" id="cb681"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb681-1"><a href="selected-topics-in-statistical-inference.html#cb681-1" aria-hidden="true" tabindex="-1"></a>ch8_d2[<span class="st">&#39;mass&#39;</span>].groupby(ch8_d2[<span class="st">&#39;location&#39;</span>]).mean()</span></code></pre></div>
 <pre><code>## location
@@ -414,7 +414,7 @@ div.csl-indent {
 ##  $ group: chr  &quot;control&quot; &quot;control&quot; &quot;control&quot; &quot;control&quot; ...</code></pre>
 <p>A stripchart is one of many ways to visualize numeric data between two groups. Here we use the base R function <code>stripchart()</code>. The formula <code>score ~ group</code> says to plot score by group. The <code>las = 1</code> argument says to rotate the y-axis labels. The <code>method = "jitter"</code> arguments says to randomly scatter the points vertically so they don’t overplot. It appears the treated group had higher scores.</p>
 <div class="sourceCode" id="cb689"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb689-1"><a href="selected-topics-in-statistical-inference.html#cb689-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(score <span class="sc">~</span> group, <span class="at">data =</span> ch8_d1, <span class="at">las =</span> <span class="dv">1</span>, <span class="at">method =</span> <span class="st">&quot;jitter&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-328-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-332-1.png" width="672" /></p>
 <p>To calculate the means between the two groups we can use the <code>aggregate()</code> function. Again the formula <code>score ~ group</code> says to aggregate score by group. We specify <code>mean</code> so that we calculate the mean between the two groups. Some other functions we could specify include <code>median</code>, <code>sd</code>, or <code>sum</code>. The sample mean of the treated group is about 5 points higher than the control group.</p>
 <div class="sourceCode" id="cb690"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb690-1"><a href="selected-topics-in-statistical-inference.html#cb690-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(score <span class="sc">~</span> group, <span class="at">data =</span> ch8_d1, mean)</span></code></pre></div>
 <pre><code>##     group score
@@ -443,7 +443,7 @@ div.csl-indent {
 ##  $ location: chr  &quot;1&quot; &quot;1&quot; &quot;1&quot; &quot;1&quot; ...</code></pre>
 <p>Again we use a stripchart to visualize the three groups of data. It appears the pine cones in location 1 have a higher mass.</p>
 <div class="sourceCode" id="cb696"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb696-1"><a href="selected-topics-in-statistical-inference.html#cb696-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(mass <span class="sc">~</span> location, <span class="at">data =</span> ch8_d2, <span class="at">las =</span> <span class="dv">1</span>, <span class="at">method =</span> <span class="st">&quot;jitter&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-332-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-336-1.png" width="672" /></p>
 <p>To calculate the means between the three groups we can use the <code>aggregate()</code> function. Again the formula <code>mass ~ location</code> says to aggregate mass by location. We specify <code>mean</code> so that we calculate the mean between the three groups.</p>
 <div class="sourceCode" id="cb697"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb697-1"><a href="selected-topics-in-statistical-inference.html#cb697-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(mass <span class="sc">~</span> location, <span class="at">data =</span> ch8_d2, mean)</span></code></pre></div>
 <pre><code>##   location mass
@@ -587,7 +587,7 @@ div.csl-indent {
 ## Model:                            OLS   Adj. R-squared:                  0.924
 ## Method:                 Least Squares   F-statistic:                     222.3
 ## Date:                Mon, 09 May 2022   Prob (F-statistic):           1.23e-29
-## Time:                        14:44:33   Log-Likelihood:                -14.100
+## Time:                        14:51:10   Log-Likelihood:                -14.100
 ## No. Observations:                  56   AIC:                             36.20
 ## Df Residuals:                      52   BIC:                             44.30
 ## Df Model:                           3                                         
@@ -617,7 +617,7 @@ div.csl-indent {
 <span id="cb723-6"><a href="selected-topics-in-statistical-inference.html#cb723-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;residuals&quot;</span>)</span>
 <span id="cb723-7"><a href="selected-topics-in-statistical-inference.html#cb723-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&quot;residuals vs fitted&quot;</span>)</span>
 <span id="cb723-8"><a href="selected-topics-in-statistical-inference.html#cb723-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-349-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-353-1.png" width="672" /></p>
 <p>The following code plots model predictions. Each line of the plot represents a level of the variable “Insul”.</p>
 <div class="sourceCode" id="cb724"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb724-1"><a href="selected-topics-in-statistical-inference.html#cb724-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb724-2"><a href="selected-topics-in-statistical-inference.html#cb724-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -651,7 +651,7 @@ div.csl-indent {
 <span id="cb724-30"><a href="selected-topics-in-statistical-inference.html#cb724-30" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;Temp&quot;</span>)</span>
 <span id="cb724-31"><a href="selected-topics-in-statistical-inference.html#cb724-31" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;Gas&quot;</span>)</span>
 <span id="cb724-32"><a href="selected-topics-in-statistical-inference.html#cb724-32" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-350-3.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-354-3.png" width="672" /></p>
 <p>We see that after installing insulation, gas consumption fell considerably, and that the effect of temperature on gas consumption is less pronounced.</p>
 </div>
 <div id="r-49" class="section level4 unnumbered hasAnchor">
@@ -690,14 +690,14 @@ div.csl-indent {
 ## F-statistic: 222.3 on 3 and 52 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Calling <code>plot()</code> on a model object produces four different diagnostic plots by default. Using the <code>which</code> argument we can specify which of six possible plots to create. The first one checks the constant variance assumption (ie, that our model is not dramatically over- or under-predicting values.) We hope to see residuals evenly scattered around 0. (See <code>?plot.lm</code> for more details on the diagnostic plots.)</p>
 <div class="sourceCode" id="cb728"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb728-1"><a href="selected-topics-in-statistical-inference.html#cb728-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m, <span class="at">which =</span> <span class="dv">1</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-353-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-357-1.png" width="672" /></p>
 <p>Once we fit a model and we’re reasonably confident that it’s a good model, we may want to visualize it. Three packages in R that help with this are <strong>emmeans</strong>, <strong>effects</strong>, and <strong>ggeffects</strong>. We briefly demonstrate the <strong>ggeffects</strong> package.</p>
 <p>You need to first install the <strong>ggeffects</strong> package as it does not come with the base R installation. Once installed, load using the <code>library()</code> function.</p>
 <p>Once loaded, we can get a basic visualization of our model by using the <code>plot()</code> and <code>ggpredict()</code> functions. This is particularly useful for models with interactions. Use the <code>terms</code> argument to specify which variables to plot. Below we list “Temp” first, which will plot “Temp” on the x axis. Then we list “Insul”, the grouping variable, to indicate we want a separate fit for each level of “Insul”.</p>
 <div class="sourceCode" id="cb729"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb729-1"><a href="selected-topics-in-statistical-inference.html#cb729-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.pacakges(&quot;ggeffects&quot;)</span></span>
 <span id="cb729-2"><a href="selected-topics-in-statistical-inference.html#cb729-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggeffects)</span>
 <span id="cb729-3"><a href="selected-topics-in-statistical-inference.html#cb729-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">ggpredict</span>(m, <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">&quot;Temp&quot;</span>, <span class="st">&quot;Insul&quot;</span>)))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-354-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-358-1.png" width="672" /></p>
 <p>We see that after installing insulation, gas consumption fell considerably, and that the effect of temperature on gas consumption is less pronounced.</p>
 </div>
 </div>
@@ -738,7 +738,7 @@ div.csl-indent {
 ## Link Function:                  Logit   Scale:                          1.0000
 ## Method:                          IRLS   Log-Likelihood:                -97.738
 ## Date:                Mon, 09 May 2022   Deviance:                       195.48
-## Time:                        14:44:36   Pearson chi2:                     179.
+## Time:                        14:51:12   Pearson chi2:                     179.
 ## No. Iterations:                     5   Pseudo R-squ. (CS):             0.1873
 ## Covariance Type:            nonrobust                                         
 ## =================================================================================
@@ -787,7 +787,7 @@ div.csl-indent {
 <span id="cb740-2"><a href="selected-topics-in-statistical-inference.html#cb740-2" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;low&#39;</span>)</span>
 <span id="cb740-3"><a href="selected-topics-in-statistical-inference.html#cb740-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Predicted probabilities of low&#39;</span>)</span>
 <span id="cb740-4"><a href="selected-topics-in-statistical-inference.html#cb740-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-362-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-366-1.png" width="672" /></p>
 </div>
 <div id="r-50" class="section level4 unnumbered hasAnchor">
 <h4>R<a href="selected-topics-in-statistical-inference.html#r-50" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -857,7 +857,7 @@ div.csl-indent {
 <div class="sourceCode" id="cb749"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb749-1"><a href="selected-topics-in-statistical-inference.html#cb749-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;ggeffects&quot;)</span></span>
 <span id="cb749-2"><a href="selected-topics-in-statistical-inference.html#cb749-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggeffects)</span>
 <span id="cb749-3"><a href="selected-topics-in-statistical-inference.html#cb749-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">ggpredict</span>(mod, <span class="at">terms =</span> <span class="st">&quot;ptd&quot;</span>))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-368-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-372-1.png" width="672" /></p>
 <p>It looks like the probability of low infant birth weight jumps from about 12% to over 35% for mothers who previously experienced premature labors, though the error bars on the expected values are quite large.</p>
 
 </div>

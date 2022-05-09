@@ -510,19 +510,20 @@ See also the `str_pad()` function in the **stringr** package.
 
 ## Create numbers from strings
 
-String variables that ought to be numbers usually have some character data in the values such as units (eg, "4 cm"). To create numbers from strings it's important to remove any character data that cannot be converted to a number.
+String variables that ought to be numbers usually have some character data contained in the values, such as units (e.g., "4 cm"). To create numbers from strings, it's important to remove any character data that cannot be converted to a number.
 
 #### Python {-}
+
 The `astype(float)` or `astype(int)` function will coerce strings to numerical representation.
 
-For demonstration, let's say we have the following numpy array.
+For demonstration, let's say we have the following NumPy array:
 
 ```{python}
 import numpy as np
 weight = np.array(["125 lbs.", "132 lbs.", "156 lbs."])
 ```
 
-The `astype(float)` function throws an error due to the presence of strings. The `astype()` function is for numpy arrays.
+The `astype(float)` function throws an error due to the presence of strings. The `astype()` function is for NumPy arrays.
 
 ```{python}
 try:
@@ -547,9 +548,9 @@ weight.astype(float)
 
 #### R {-}
 
-The `as.numeric()` function will attempt to coerce strings to numeric type _if possible_. Any non-numeric values are coerced to NA.
+The `as.numeric()` function will attempt to coerce strings to numeric type _if possible_. Any non-numeric values are coerced to `NA`.
 
-For demonstration, let's say we have the following vector.
+For demonstration, say we have the following vector:
 
 ```{r}
 weight <- c("125 lbs.", "132 lbs.", "156 lbs.")
@@ -561,10 +562,10 @@ The `as.numeric()` function returns all NA due to presence of character data.
 as.numeric(weight)
 ```
 
-There are many ways to approach this. A common approach is to first remove the characters and then use `as.numeric()`. Below we use the `gsub()` function to find "lbs." and replace with nothing (find-and-replace procedures are discussed more below).
+There are many ways to approach this. A common approach is to first remove the characters and then use `as.numeric()`. Below, we use the `gsub()` function to find "lbs." and replace it with nothing (find-and-replace procedures are discussed more below).
 
 ```{r}
-weightN <- gsub("lbs.", "", weight)
+weightN <- gsub(" lbs.", "", weight)
 as.numeric(weightN)
 ```
 

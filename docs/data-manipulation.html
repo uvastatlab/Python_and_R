@@ -925,14 +925,14 @@ div.csl-indent {
 </div>
 <div id="create-numbers-from-strings" class="section level2 hasAnchor" number="4.7">
 <h2><span class="header-section-number">4.7</span> Create numbers from strings<a href="data-manipulation.html#create-numbers-from-strings" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>String variables that ought to be numbers usually have some character data in the values such as units (eg, “4 cm”). To create numbers from strings it’s important to remove any character data that cannot be converted to a number.</p>
+<p>String variables that ought to be numbers usually have some character data contained in the values, such as units (e.g., “4 cm”). To create numbers from strings, it’s important to remove any character data that cannot be converted to a number.</p>
 <div id="python-23" class="section level4 unnumbered hasAnchor">
 <h4>Python<a href="data-manipulation.html#python-23" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The <code>astype(float)</code> or <code>astype(int)</code> function will coerce strings to numerical representation.</p>
-<p>For demonstration, let’s say we have the following numpy array.</p>
+<p>For demonstration, let’s say we have the following NumPy array:</p>
 <div class="sourceCode" id="cb365"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb365-1"><a href="data-manipulation.html#cb365-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb365-2"><a href="data-manipulation.html#cb365-2" aria-hidden="true" tabindex="-1"></a>weight <span class="op">=</span> np.array([<span class="st">&quot;125 lbs.&quot;</span>, <span class="st">&quot;132 lbs.&quot;</span>, <span class="st">&quot;156 lbs.&quot;</span>])</span></code></pre></div>
-<p>The <code>astype(float)</code> function throws an error due to the presence of strings. The <code>astype()</code> function is for numpy arrays.</p>
+<p>The <code>astype(float)</code> function throws an error due to the presence of strings. The <code>astype()</code> function is for NumPy arrays.</p>
 <div class="sourceCode" id="cb366"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb366-1"><a href="data-manipulation.html#cb366-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
 <span id="cb366-2"><a href="data-manipulation.html#cb366-2" aria-hidden="true" tabindex="-1"></a>  weight.astype(<span class="bu">float</span>)</span>
 <span id="cb366-3"><a href="data-manipulation.html#cb366-3" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">ValueError</span>:</span>
@@ -948,15 +948,15 @@ div.csl-indent {
 </div>
 <div id="r-23" class="section level4 unnumbered hasAnchor">
 <h4>R<a href="data-manipulation.html#r-23" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>The <code>as.numeric()</code> function will attempt to coerce strings to numeric type <em>if possible</em>. Any non-numeric values are coerced to NA.</p>
-<p>For demonstration, let’s say we have the following vector.</p>
+<p>The <code>as.numeric()</code> function will attempt to coerce strings to numeric type <em>if possible</em>. Any non-numeric values are coerced to <code>NA</code>.</p>
+<p>For demonstration, say we have the following vector:</p>
 <div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="data-manipulation.html#cb371-1" aria-hidden="true" tabindex="-1"></a>weight <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;125 lbs.&quot;</span>, <span class="st">&quot;132 lbs.&quot;</span>, <span class="st">&quot;156 lbs.&quot;</span>)</span></code></pre></div>
 <p>The <code>as.numeric()</code> function returns all NA due to presence of character data.</p>
 <div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="data-manipulation.html#cb372-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(weight)</span></code></pre></div>
 <pre><code>## Warning: NAs introduced by coercion</code></pre>
 <pre><code>## [1] NA NA NA</code></pre>
-<p>There are many ways to approach this. A common approach is to first remove the characters and then use <code>as.numeric()</code>. Below we use the <code>gsub()</code> function to find “lbs.” and replace with nothing (find-and-replace procedures are discussed more below).</p>
-<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="data-manipulation.html#cb375-1" aria-hidden="true" tabindex="-1"></a>weightN <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;lbs.&quot;</span>, <span class="st">&quot;&quot;</span>, weight)</span>
+<p>There are many ways to approach this. A common approach is to first remove the characters and then use <code>as.numeric()</code>. Below, we use the <code>gsub()</code> function to find “lbs.” and replace it with nothing (find-and-replace procedures are discussed more below).</p>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="data-manipulation.html#cb375-1" aria-hidden="true" tabindex="-1"></a>weightN <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot; lbs.&quot;</span>, <span class="st">&quot;&quot;</span>, weight)</span>
 <span id="cb375-2"><a href="data-manipulation.html#cb375-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(weightN)</span></code></pre></div>
 <pre><code>## [1] 125 132 156</code></pre>
 <p>The <code>parse_number()</code> function in the <strong>readr</strong> package can often take care of these situations automatically.</p>
@@ -1234,19 +1234,19 @@ div.csl-indent {
 <span id="cb469-3"><a href="data-manipulation.html#cb469-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d1)</span>
 <span id="cb469-4"><a href="data-manipulation.html#cb469-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb469-5"><a href="data-manipulation.html#cb469-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Add 550 days to our datetime object </span></span></code></pre></div>
-<pre><code>## 2022-05-09 14:44:06.531481</code></pre>
+<pre><code>## 2022-05-09 14:50:43.423541</code></pre>
 <div class="sourceCode" id="cb471"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb471-1"><a href="data-manipulation.html#cb471-1" aria-hidden="true" tabindex="-1"></a>d2 <span class="op">=</span> d1 <span class="op">+</span> dt.timedelta(days <span class="op">=</span> <span class="dv">550</span>)</span>
 <span id="cb471-2"><a href="data-manipulation.html#cb471-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d2)</span>
 <span id="cb471-3"><a href="data-manipulation.html#cb471-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb471-4"><a href="data-manipulation.html#cb471-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Subtract 5 hours from our datetime object </span></span></code></pre></div>
-<pre><code>## 2023-11-10 14:44:06.531481</code></pre>
+<pre><code>## 2023-11-10 14:50:43.423541</code></pre>
 <div class="sourceCode" id="cb473"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb473-1"><a href="data-manipulation.html#cb473-1" aria-hidden="true" tabindex="-1"></a>d3 <span class="op">=</span> d1 <span class="op">-</span> dt.timedelta(hours <span class="op">=</span> <span class="dv">5</span>)</span>
 <span id="cb473-2"><a href="data-manipulation.html#cb473-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d3)</span></code></pre></div>
-<pre><code>## 2022-05-09 09:44:06.531481</code></pre>
+<pre><code>## 2022-05-09 09:50:43.423541</code></pre>
 <p>Finally, we will discuss how to convert strings to datetime objects and vice versa.</p>
 <p>The attribute <code>strftime()</code> converts datetime objects to strings. In the argument of <code>strftime()</code> can specify the format you would like.</p>
 <div class="sourceCode" id="cb475"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb475-1"><a href="data-manipulation.html#cb475-1" aria-hidden="true" tabindex="-1"></a>d1</span></code></pre></div>
-<pre><code>## datetime.datetime(2022, 5, 9, 14, 44, 6, 531481)</code></pre>
+<pre><code>## datetime.datetime(2022, 5, 9, 14, 50, 43, 423541)</code></pre>
 <div class="sourceCode" id="cb477"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb477-1"><a href="data-manipulation.html#cb477-1" aria-hidden="true" tabindex="-1"></a>d1.strftime(<span class="st">&quot;%A %m %Y&quot;</span>)</span></code></pre></div>
 <pre><code>## &#39;Monday 05 2022&#39;</code></pre>
 <div class="sourceCode" id="cb479"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb479-1"><a href="data-manipulation.html#cb479-1" aria-hidden="true" tabindex="-1"></a>d1.strftime(<span class="st">&quot;%a %m %y&quot;</span>)</span></code></pre></div>
