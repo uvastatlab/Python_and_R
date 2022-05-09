@@ -20,7 +20,7 @@ json
 xml
 exportingwritingsaving-data-and-variables
 data-manipulation
-names-of-variables-and-their-types
+view-variable-names-and-types
 select-variables
 filtersubset-variables
 rename-variables

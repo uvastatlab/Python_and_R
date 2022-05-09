@@ -4,7 +4,7 @@
 knitr::opts_chunk$set(comment = '##', prompt = FALSE, collapse = FALSE)
 ```
 
-This chapter looks at various strategies for filtering, selecting, modifying and deriving variables in data. Unless otherwise stated, examples are for DataFrames (Python) and data frames (R) and use the mtcars data frame that is included with R.
+This chapter discusses strategies for filtering, selecting, modifying, and deriving variables in data. Unless otherwise stated, examples are for DataFrames (Python) and data frames (R) and use the `mtcars` data frame that is included with R.
 
 ```{python}
 # Python
@@ -21,32 +21,31 @@ rownames(mtcars) <- NULL
 ```
 
 
-## Names of variables and their types
+## View variable names and types
 
-View and inspect the names of variables and their type (numeric, string, logical, etc.) This is useful to ensure that variables have the expected type. 
+View and inspect the names of variables and their types (numeric, string, logical, etc.).
 
 #### Python {-}
 
-The `.info()` function in pandas lists information on the DataFrame.
+The `.info()` function in pandas returns information about a DataFrame.
 
-
-Setting the argument `verbose` to `True` prints the name of the columns, their length excluding `NULL` values, and their data type (`dtype`) in a table. The function lists the unique data types in the DataFrame, and it prints how much memory the DataFrame takes up.
+Setting the argument `verbose` to `True` prints the names of the columns, their lengths excluding `NULL` values, and their data types (`dtype`) in a table. The function lists the unique data types in the DataFrame, and it prints the amount of memory the DataFrame occupies.
 
 ```{python}
-mtcars.info(verbose=True)
+mtcars.info(verbose = True)
 ```
 
 Setting `verbose` to `False` excludes the table describing each column.
 
 ```{python}
-mtcars.info(verbose=False)
+mtcars.info(verbose = False)
 ```
 
 If a DataFrame has 100 or fewer columns, the `verbose` argument defaults to `True`. 
 
 #### R {-}
 
-The `str()` function in R lists the names of the variables, their type, the first few values, and the dimensions of the data frame.  
+The `str()` function in R lists the names of the variables, their types, the first few values of each, and the object dimensions.
 
 ```{r}
 str(mtcars)
@@ -70,7 +69,7 @@ dim(mtcars)
 How to select specific columns of data frames.
 
 #### Python {-}
-The period operator `.` provides access to a column in a DataFrame as a vector. This returns pandas Series. A pandas series can do everything a numpy array can do.
+The period operator `.` provides access to a column in a DataFrame as a vector. This returns a pandas Series. A pandas Series can do everything a NumPy array can do.
 
 ```{python}
 mtcars.mpg
@@ -82,28 +81,28 @@ Indexing also provides access to columns as a pandas Series. Single and double q
 mtcars['mpg']
 ```
 
-Operations on numpy arrays are faster than operations on pandas Series. But using pandas series should be fine, in terms of performance, in many cases. This is important for large data sets on which many operations are performed. The `.values` function returns a numpy array.
+Operations on NumPy arrays are faster than operations on pandas Series. But in many cases, using pandas Series is fine performance-wise. This consideration is primarily important for large data sets on which many operations are performed. The `.values` function returns a NumPy array from a pandas DataFrame.
 
 ```{python}
 mtcars['mpg'].values
 ```
 
-Double indexing returns a pandas DataFrame, instead of a numpy array or pandas series.
+Double indexing returns a pandas DataFrame instead of a NumPy array or pandas Series.
 
 ```{python}
 mtcars[['mpg']]
 ```
 
-The `head()` and `tail()` functions return the first 5 or last 5 values. Use the `n` argument to change the number of values. This function works on numpy arrays, pandas series and pandas DataFrames.
+The `head()` and `tail()` functions return the first five or last five values, respectively. Use the `n` argument to change the number of values. This function works on NumPy arrays, pandas Series and pandas DataFrames.
 
 ```{python}
-# first 6 values
+# First six values
 mtcars.mpg.head()
 ```
 
 ```{python}
-# last row of DataFrame
-mtcars.tail(n=1)
+# Last row of DataFrame
+mtcars.tail(n = 1)
 ```
 
 #### R {-}
@@ -130,7 +129,7 @@ mtcars["mpg"]
 Single-indexing brackets also allow selection of rows when used with a comma. The syntax is `rows, columns`
 
 ```{r}
-# first three rows
+# First three rows
 mtcars[1:3, "mpg"]
 ```
 
@@ -138,58 +137,58 @@ Finally single-indexing brackets allow us to select multiple columns. Request co
 
 ```{r}
 mtcars[c("mpg", "cyl")] 
-# same as mtcars[1:2] 
+# Equivalent to mtcars[1:2] 
 ```
 
-The `head()` and `tail()` functions return the first 6 or last 6 values. Use the `n` argument to change the number of values. They work with vectors or data frames.
+The `head()` and `tail()` functions return the first six or last six values, respectively. Use the `n` argument to change the number of values. These functions work with vectors, data frames, matrices, and more.
 
 ```{r}
-# first 6 values
+# First six values
 head(mtcars$mpg)
 ```
 
 ```{r}
-# last row of data frame
+# Last row of data frame
 tail(mtcars, n = 1)
 ```
 
 
 ## Filter/Subset variables
 
-How to view rows of a data frame that meet certain conditions.
+Selecting rows of a rectangular data set that meet certain conditions.
 
 #### Python {-}
 
-We can filter rows of a DataFrame based on a condition to subset. The data type returned depends on the filtration method.
+We can filter rows of a DataFrame based on subsetting conditions; the data type returned depends on the filtration method.
 
-The following code returns a DataFrame, not a Series, as there is more than one column selected from the DataFrame. Use a list, square brackets [], to subset more than one column.
+The following example returns a DataFrame, not a Series, as there is more than one column selected from the DataFrame. Use a list, square brackets [], to subset more than one column.
 
 ```{python}
 mtcars[mtcars["mpg"] > 30][["mpg", "cyl"]]
 ```
 
-Both pandas Series and NumPy arrays can be used for faster performance or vector operations. Many functions require a vector as input.
+Both pandas Series and NumPy arrays can be used for fast performance and vector operations. Many functions require a vector as input.
 
-The following code returns one column, mpg, as a pandas Series. A pandas Series is one column from a pandas DataFrame.
+The following code returns one column, `mpg`, as a pandas Series. A pandas Series is one column from a pandas DataFrame.
 
 ```{python}
 mtcars[mtcars["mpg"] > 30]["mpg"]
 ```
 
-The following code also returns a pandas Series, but using the `.` operator to select for a column, rather than square brackets [].
+The following code also returns a pandas Series, but it uses the `.` operator to select a column, rather than square brackets `[]`.
 
 ```{python}
 mtcars[mtcars["mpg"] > 30].mpg
 ```
 
-Both of the following lines of code return NumPy arrays using the `.values` function. `df1` is one dimension, for the one column, and `df1` is two dimensions, for the two columns.
+Both of the following lines of code return NumPy arrays using the `.values` function. `df1` is one dimension, reflecting just the `mpg` column, and `df2` is two dimensions, reflecting the `mpg` and `cyl` columns.
 
 ```{python}
 df1 = mtcars[mtcars["mpg"] > 30]["mpg"].values
 df2 = mtcars[mtcars["mpg"] > 30][["mpg", "cyl"]].values
 ```
 
-You can also filter with multiple row conditions.
+You can also filter using multiple row conditions:
 
 ```{python}
 mtcars[mtcars["mpg"] > 30][mtcars["hp"] < 66]
@@ -197,9 +196,7 @@ mtcars[mtcars["mpg"] > 30][mtcars["hp"] < 66]
 
 #### R {-}
 
-In base R, we can use subsetting brackets or the `subset()` function to select rows based on some condition. Below we demonstrate both approaches to view only those rows with "mpg" greater than 30. First we begin with subsetting brackets.
-
-The subsetting brackets take three arguments: 
+In base R, we can use subsetting brackets or the `subset()` function to select rows based on some condition. Below, we demonstrate both approaches, returning only those rows with `mpg` greater than 30. We begin with subsetting brackets, which take three arguments: 
 
 1. `i`: the condition to subset on.
 2. `j`: the columns to show. If none specified, all columns are returned
@@ -213,25 +210,25 @@ This example returns only the rows with mpg > 30 and all columns. Notice we need
 mtcars[mtcars$mpg > 30, ]
 ```
 
-We can select what columns to see in the second argument as a vector. Notice we only need to specify the column names as a character vector. We can also use numbers corresponding to the column number as well as conditional statements.
+We can select the columns to return in the second argument as a vector. Notice that we only need to specify the column names as a character vector. We can also use numbers corresponding to the column positions, as well as conditional statements.
 
 ```{r}
 mtcars[mtcars$mpg > 30, c("mpg", "wt", "gear")]
 ```
 
-Show first three columns.
+Show the first three columns:
 
 ```{r}
 mtcars[mtcars$mpg > 30, 1:3]
 ```
 
-Show columns with names consisting of only two characters. The `nchar()` function counts the number of characters in a string. The expression `nchar(names(mtcars)) == 2` returns a vector of TRUE/FALSE values where TRUE indicates the column name is only two characters in length.
+Show columns with names consisting of only two characters. The `nchar()` function counts the number of characters in a string. The expression `nchar(names(mtcars)) == 2` returns a vector of `TRUE`/`FALSE` values where `TRUE` indicates the column name is only two characters in length.
 
 ```{r}
 mtcars[mtcars$mpg > 30, nchar(names(mtcars)) == 2]
 ```
 
-Notice when we specify only one column, the brackets return a vector.
+Notice that when we specify only one column, the brackets return a vector.
 
 ```{r}
 mtcars[mtcars$mpg > 30, "mpg"]
@@ -243,7 +240,7 @@ To get a data frame, set the `drop` argument to FALSE.
 mtcars[mtcars$mpg > 30, "mpg", drop = FALSE]
 ```
 
-The `subset()` function allows us to refer to column names without using the `$` extractor function or quoting column names. It also has a drop argument but its default is FALSE. It has four arguments:
+The `subset()` function allows us to refer to column names without using the `$` extractor function or quoting column names. It also has a drop argument, but its default is `FALSE.` It has four arguments:
 
 1. `x`: the data frame to subset.
 2. `subset`: the condition to subset on.
@@ -255,36 +252,36 @@ We rarely type the first three argument names, `x`, `subset` and `select`, when 
 Below we replicate the previous examples using `subset()`.
 
 ```{r}
-# rows where mpg > 30 and all columns
+# Return rows where mpg > 30 and all columns
 subset(mtcars, mpg > 30)
 ```
 
 ```{r}
-# rows where mpg > 30 and the mpg, wt, and gear columns
+# Return rows where mpg > 30 and the mpg, wt, and gear columns
 subset(mtcars, mpg > 30, c(mpg, wt, gear))
 ```
 
 ```{r}
-# rows where mpg > 30 and the first three columns
+# Return rows where mpg > 30 and the first three columns
 subset(mtcars, mpg > 30, 1:3)
 ```
 
 ```{r}
-# rows where mpg > 30 and columns consisting of two characters
+# Return rows where mpg > 30 and columns consisting of two characters
 subset(mtcars, mpg > 30, nchar(names(mtcars)) == 2)
 ```
 
 ```{r}
-# rows where mpg > 30 and mpg column, as a vector
+# Return rows where mpg > 30 and mpg column, as a vector
 subset(mtcars, mpg > 30, mpg, drop = TRUE)
 ```
 
 ```{r}
-# rows where mpg > 30 and mpg column, as a data frame
+# Return rows where mpg > 30 and mpg column, as a data frame
 subset(mtcars, mpg > 30, mpg)
 ```
 
-Another difference between subsetting brackets and the `subset()` function is how they handle missing values. Subsetting brackets return missing values while `subset()` does not. We demonstrate with a toy data frame. Notice the "x" column has a missing value.
+Another difference between subsetting brackets and the `subset()` function is how they handle missing values. Subsetting brackets return missing values while `subset()` does not. We demonstrate below with a toy data frame. Notice the `x` column has a missing value.
 
 ```{r}
 dframe <- data.frame(x = c(1, NA, 5), 
@@ -292,10 +289,10 @@ dframe <- data.frame(x = c(1, NA, 5),
 dframe
 ```
 
-When we condition on x < 3, the subsetting bracket approach returns a row with NA values.
+When we condition on `x < 3`, the subsetting bracket approach returns a row with `NA` values.
 
 ```{r}
-dframe[dframe$x < 3,]
+dframe[dframe$x < 3, ]
 ```
 
 The `subset()` approach ignores the missing value.
@@ -304,7 +301,7 @@ The `subset()` approach ignores the missing value.
 subset(dframe, x < 3)
 ```
 
-To replicate the `subset()` result with the subsetting brackets, we need to include an additional condition to only show rows where x is NOT missing. We can do that with the `is.na()` function. The `is.na()` function returns TRUE if a value is missing and FALSE otherwise. If we preface with `!`, we get TRUE if a value is NOT missing and FALSE otherwise. 
+To replicate the `subset()` result with the subsetting brackets, we need to include an additional condition to only show rows where x is _not_ missing. We can do that with the `is.na()` function. The `is.na()` function returns `TRUE` if a value is missing and `FALSE` otherwise. If we preface with `!`, we get `TRUE` if a value is _not_ missing and `FALSE` otherwise. 
 
 ```{r}
 dframe[dframe$x < 3 & !is.na(dframe$x),]

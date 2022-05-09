@@ -23,7 +23,7 @@
 <meta name="author" content="Clay Ford, Jacob Goldstein-Greenwood, Oyinkansola Adenekan, Samantha Lomuscio" />
 
 
-<meta name="date" content="2022-05-04" />
+<meta name="date" content="2022-05-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -188,7 +188,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="4" data-path="data-manipulation.html"><a href="data-manipulation.html"><i class="fa fa-check"></i><b>4</b> Data Manipulation</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="data-manipulation.html"><a href="data-manipulation.html#names-of-variables-and-their-types"><i class="fa fa-check"></i><b>4.1</b> Names of variables and their types</a></li>
+<li class="chapter" data-level="4.1" data-path="data-manipulation.html"><a href="data-manipulation.html#view-variable-names-and-types"><i class="fa fa-check"></i><b>4.1</b> View variable names and types</a></li>
 <li class="chapter" data-level="4.2" data-path="data-manipulation.html"><a href="data-manipulation.html#select-variables"><i class="fa fa-check"></i><b>4.2</b> Select variables</a></li>
 <li class="chapter" data-level="4.3" data-path="data-manipulation.html"><a href="data-manipulation.html#filtersubset-variables"><i class="fa fa-check"></i><b>4.3</b> Filter/Subset variables</a></li>
 <li class="chapter" data-level="4.4" data-path="data-manipulation.html"><a href="data-manipulation.html#rename-variables"><i class="fa fa-check"></i><b>4.4</b> Rename variables</a></li>
@@ -264,7 +264,7 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="data-manipulation" class="section level1 hasAnchor" number="4">
 <h1><span class="header-section-number">Chapter 4</span> Data Manipulation<a href="data-manipulation.html#data-manipulation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This chapter looks at various strategies for filtering, selecting, modifying and deriving variables in data. Unless otherwise stated, examples are for DataFrames (Python) and data frames (R) and use the mtcars data frame that is included with R.</p>
+<p>This chapter discusses strategies for filtering, selecting, modifying, and deriving variables in data. Unless otherwise stated, examples are for DataFrames (Python) and data frames (R) and use the <code>mtcars</code> data frame that is included with R.</p>
 <div class="sourceCode" id="cb237"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb237-1"><a href="data-manipulation.html#cb237-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Python</span></span>
 <span id="cb237-2"><a href="data-manipulation.html#cb237-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas</span>
 <span id="cb237-3"><a href="data-manipulation.html#cb237-3" aria-hidden="true" tabindex="-1"></a>mtcars <span class="op">=</span> pandas.read_csv(<span class="st">&#39;data/mtcars.csv&#39;</span>)</span></code></pre></div>
@@ -272,14 +272,14 @@ div.csl-indent {
 <span id="cb238-2"><a href="data-manipulation.html#cb238-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
 <span id="cb238-3"><a href="data-manipulation.html#cb238-3" aria-hidden="true" tabindex="-1"></a><span class="co"># drop row names to match Python version of data</span></span>
 <span id="cb238-4"><a href="data-manipulation.html#cb238-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(mtcars) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span></code></pre></div>
-<div id="names-of-variables-and-their-types" class="section level2 hasAnchor" number="4.1">
-<h2><span class="header-section-number">4.1</span> Names of variables and their types<a href="data-manipulation.html#names-of-variables-and-their-types" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>View and inspect the names of variables and their type (numeric, string, logical, etc.) This is useful to ensure that variables have the expected type.</p>
+<div id="view-variable-names-and-types" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> View variable names and types<a href="data-manipulation.html#view-variable-names-and-types" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>View and inspect the names of variables and their types (numeric, string, logical, etc.).</p>
 <div id="python-17" class="section level4 unnumbered hasAnchor">
 <h4>Python<a href="data-manipulation.html#python-17" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>The <code>.info()</code> function in pandas lists information on the DataFrame.</p>
-<p>Setting the argument <code>verbose</code> to <code>True</code> prints the name of the columns, their length excluding <code>NULL</code> values, and their data type (<code>dtype</code>) in a table. The function lists the unique data types in the DataFrame, and it prints how much memory the DataFrame takes up.</p>
-<div class="sourceCode" id="cb239"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb239-1"><a href="data-manipulation.html#cb239-1" aria-hidden="true" tabindex="-1"></a>mtcars.info(verbose<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
+<p>The <code>.info()</code> function in pandas returns information about a DataFrame.</p>
+<p>Setting the argument <code>verbose</code> to <code>True</code> prints the names of the columns, their lengths excluding <code>NULL</code> values, and their data types (<code>dtype</code>) in a table. The function lists the unique data types in the DataFrame, and it prints the amount of memory the DataFrame occupies.</p>
+<div class="sourceCode" id="cb239"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb239-1"><a href="data-manipulation.html#cb239-1" aria-hidden="true" tabindex="-1"></a>mtcars.info(verbose <span class="op">=</span> <span class="va">True</span>)</span></code></pre></div>
 <pre><code>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 ## RangeIndex: 32 entries, 0 to 31
 ## Data columns (total 11 columns):
@@ -299,7 +299,7 @@ div.csl-indent {
 ## dtypes: float64(5), int64(6)
 ## memory usage: 2.9 KB</code></pre>
 <p>Setting <code>verbose</code> to <code>False</code> excludes the table describing each column.</p>
-<div class="sourceCode" id="cb241"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb241-1"><a href="data-manipulation.html#cb241-1" aria-hidden="true" tabindex="-1"></a>mtcars.info(verbose<span class="op">=</span><span class="va">False</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb241"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb241-1"><a href="data-manipulation.html#cb241-1" aria-hidden="true" tabindex="-1"></a>mtcars.info(verbose <span class="op">=</span> <span class="va">False</span>)</span></code></pre></div>
 <pre><code>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 ## RangeIndex: 32 entries, 0 to 31
 ## Columns: 11 entries, mpg to carb
@@ -309,7 +309,7 @@ div.csl-indent {
 </div>
 <div id="r-17" class="section level4 unnumbered hasAnchor">
 <h4>R<a href="data-manipulation.html#r-17" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>The <code>str()</code> function in R lists the names of the variables, their type, the first few values, and the dimensions of the data frame.</p>
+<p>The <code>str()</code> function in R lists the names of the variables, their types, the first few values of each, and the object dimensions.</p>
 <div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="data-manipulation.html#cb243-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(mtcars)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    32 obs. of  11 variables:
 ##  $ mpg : num  21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ...
@@ -336,7 +336,7 @@ div.csl-indent {
 <p>How to select specific columns of data frames.</p>
 <div id="python-18" class="section level4 unnumbered hasAnchor">
 <h4>Python<a href="data-manipulation.html#python-18" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>The period operator <code>.</code> provides access to a column in a DataFrame as a vector. This returns pandas Series. A pandas series can do everything a numpy array can do.</p>
+<p>The period operator <code>.</code> provides access to a column in a DataFrame as a vector. This returns a pandas Series. A pandas Series can do everything a NumPy array can do.</p>
 <div class="sourceCode" id="cb249"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb249-1"><a href="data-manipulation.html#cb249-1" aria-hidden="true" tabindex="-1"></a>mtcars.mpg</span></code></pre></div>
 <pre><code>## 0     21.0
 ## 1     21.0
@@ -406,12 +406,12 @@ div.csl-indent {
 ## 30    15.0
 ## 31    21.4
 ## Name: mpg, dtype: float64</code></pre>
-<p>Operations on numpy arrays are faster than operations on pandas Series. But using pandas series should be fine, in terms of performance, in many cases. This is important for large data sets on which many operations are performed. The <code>.values</code> function returns a numpy array.</p>
+<p>Operations on NumPy arrays are faster than operations on pandas Series. But in many cases, using pandas Series is fine performance-wise. This consideration is primarily important for large data sets on which many operations are performed. The <code>.values</code> function returns a NumPy array from a pandas DataFrame.</p>
 <div class="sourceCode" id="cb253"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb253-1"><a href="data-manipulation.html#cb253-1" aria-hidden="true" tabindex="-1"></a>mtcars[<span class="st">&#39;mpg&#39;</span>].values</span></code></pre></div>
 <pre><code>## array([21. , 21. , 22.8, 21.4, 18.7, 18.1, 14.3, 24.4, 22.8, 19.2, 17.8,
 ##        16.4, 17.3, 15.2, 10.4, 10.4, 14.7, 32.4, 30.4, 33.9, 21.5, 15.5,
 ##        15.2, 13.3, 19.2, 27.3, 26. , 30.4, 15.8, 19.7, 15. , 21.4])</code></pre>
-<p>Double indexing returns a pandas DataFrame, instead of a numpy array or pandas series.</p>
+<p>Double indexing returns a pandas DataFrame instead of a NumPy array or pandas Series.</p>
 <div class="sourceCode" id="cb255"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb255-1"><a href="data-manipulation.html#cb255-1" aria-hidden="true" tabindex="-1"></a>mtcars[[<span class="st">&#39;mpg&#39;</span>]]</span></code></pre></div>
 <pre><code>##      mpg
 ## 0   21.0
@@ -446,8 +446,8 @@ div.csl-indent {
 ## 29  19.7
 ## 30  15.0
 ## 31  21.4</code></pre>
-<p>The <code>head()</code> and <code>tail()</code> functions return the first 5 or last 5 values. Use the <code>n</code> argument to change the number of values. This function works on numpy arrays, pandas series and pandas DataFrames.</p>
-<div class="sourceCode" id="cb257"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb257-1"><a href="data-manipulation.html#cb257-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first 6 values</span></span>
+<p>The <code>head()</code> and <code>tail()</code> functions return the first five or last five values, respectively. Use the <code>n</code> argument to change the number of values. This function works on NumPy arrays, pandas Series and pandas DataFrames.</p>
+<div class="sourceCode" id="cb257"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb257-1"><a href="data-manipulation.html#cb257-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First six values</span></span>
 <span id="cb257-2"><a href="data-manipulation.html#cb257-2" aria-hidden="true" tabindex="-1"></a>mtcars.mpg.head()</span></code></pre></div>
 <pre><code>## 0    21.0
 ## 1    21.0
@@ -455,8 +455,8 @@ div.csl-indent {
 ## 3    21.4
 ## 4    18.7
 ## Name: mpg, dtype: float64</code></pre>
-<div class="sourceCode" id="cb259"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb259-1"><a href="data-manipulation.html#cb259-1" aria-hidden="true" tabindex="-1"></a><span class="co"># last row of DataFrame</span></span>
-<span id="cb259-2"><a href="data-manipulation.html#cb259-2" aria-hidden="true" tabindex="-1"></a>mtcars.tail(n<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb259"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb259-1"><a href="data-manipulation.html#cb259-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Last row of DataFrame</span></span>
+<span id="cb259-2"><a href="data-manipulation.html#cb259-2" aria-hidden="true" tabindex="-1"></a>mtcars.tail(n <span class="op">=</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>##      mpg  cyl   disp   hp  drat    wt  qsec  vs  am  gear  carb
 ## 31  21.4    4  121.0  109  4.11  2.78  18.6   1   1     4     2</code></pre>
 </div>
@@ -464,12 +464,10 @@ div.csl-indent {
 <h4>R<a href="data-manipulation.html#r-18" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The dollar sign operator, <code>$</code>, provides access to a column in a data frame as a vector.</p>
 <div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="data-manipulation.html#cb261-1" aria-hidden="true" tabindex="-1"></a>mtcars<span class="sc">$</span>mpg</span></code></pre></div>
-<pre><code>##  [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 17.8 16.4 17.3 15.2 10.4 10.4 14.7 32.4 30.4 33.9 21.5 15.5 15.2 13.3 19.2 27.3 26.0
-## [28] 30.4 15.8 19.7 15.0 21.4</code></pre>
+<pre><code>##  [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 17.8 16.4 17.3 15.2 10.4 10.4 14.7 32.4 30.4 33.9 21.5 15.5 15.2 13.3 19.2 27.3 26.0 30.4 15.8 19.7 15.0 21.4</code></pre>
 <p>Double-indexing brackets also provide access to columns as a vector.</p>
 <div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="data-manipulation.html#cb263-1" aria-hidden="true" tabindex="-1"></a>mtcars[[<span class="st">&quot;mpg&quot;</span>]]</span></code></pre></div>
-<pre><code>##  [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 17.8 16.4 17.3 15.2 10.4 10.4 14.7 32.4 30.4 33.9 21.5 15.5 15.2 13.3 19.2 27.3 26.0
-## [28] 30.4 15.8 19.7 15.0 21.4</code></pre>
+<pre><code>##  [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 17.8 16.4 17.3 15.2 10.4 10.4 14.7 32.4 30.4 33.9 21.5 15.5 15.2 13.3 19.2 27.3 26.0 30.4 15.8 19.7 15.0 21.4</code></pre>
 <p>Single-indexing brackets work as well, but they return a data frame instead of a vector (if used with a data frame).</p>
 <div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="data-manipulation.html#cb265-1" aria-hidden="true" tabindex="-1"></a>mtcars[<span class="st">&quot;mpg&quot;</span>]</span></code></pre></div>
 <pre><code>##     mpg
@@ -506,7 +504,7 @@ div.csl-indent {
 ## 31 15.0
 ## 32 21.4</code></pre>
 <p>Single-indexing brackets also allow selection of rows when used with a comma. The syntax is <code>rows, columns</code></p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="data-manipulation.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first three rows</span></span>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="data-manipulation.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First three rows</span></span>
 <span id="cb267-2"><a href="data-manipulation.html#cb267-2" aria-hidden="true" tabindex="-1"></a>mtcars[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="st">&quot;mpg&quot;</span>]</span></code></pre></div>
 <pre><code>## [1] 21.0 21.0 22.8</code></pre>
 <p>Finally single-indexing brackets allow us to select multiple columns. Request columns either by name or position using a vector.</p>
@@ -544,12 +542,12 @@ div.csl-indent {
 ## 30 19.7   6
 ## 31 15.0   8
 ## 32 21.4   4</code></pre>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="data-manipulation.html#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="co"># same as mtcars[1:2] </span></span></code></pre></div>
-<p>The <code>head()</code> and <code>tail()</code> functions return the first 6 or last 6 values. Use the <code>n</code> argument to change the number of values. They work with vectors or data frames.</p>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="data-manipulation.html#cb272-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first 6 values</span></span>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="data-manipulation.html#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Equivalent to mtcars[1:2] </span></span></code></pre></div>
+<p>The <code>head()</code> and <code>tail()</code> functions return the first six or last six values, respectively. Use the <code>n</code> argument to change the number of values. These functions work with vectors, data frames, matrices, and more.</p>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="data-manipulation.html#cb272-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First six values</span></span>
 <span id="cb272-2"><a href="data-manipulation.html#cb272-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mtcars<span class="sc">$</span>mpg)</span></code></pre></div>
 <pre><code>## [1] 21.0 21.0 22.8 21.4 18.7 18.1</code></pre>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="data-manipulation.html#cb274-1" aria-hidden="true" tabindex="-1"></a><span class="co"># last row of data frame</span></span>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="data-manipulation.html#cb274-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Last row of data frame</span></span>
 <span id="cb274-2"><a href="data-manipulation.html#cb274-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(mtcars, <span class="at">n =</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>##     mpg cyl disp  hp drat   wt qsec vs am gear carb
 ## 32 21.4   4  121 109 4.11 2.78 18.6  1  1    4    2</code></pre>
@@ -557,36 +555,36 @@ div.csl-indent {
 </div>
 <div id="filtersubset-variables" class="section level2 hasAnchor" number="4.3">
 <h2><span class="header-section-number">4.3</span> Filter/Subset variables<a href="data-manipulation.html#filtersubset-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>How to view rows of a data frame that meet certain conditions.</p>
+<p>Selecting rows of a rectangular data set that meet certain conditions.</p>
 <div id="python-19" class="section level4 unnumbered hasAnchor">
 <h4>Python<a href="data-manipulation.html#python-19" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>We can filter rows of a DataFrame based on a condition to subset. The data type returned depends on the filtration method.</p>
-<p>The following code returns a DataFrame, not a Series, as there is more than one column selected from the DataFrame. Use a list, square brackets [], to subset more than one column.</p>
+<p>We can filter rows of a DataFrame based on subsetting conditions; the data type returned depends on the filtration method.</p>
+<p>The following example returns a DataFrame, not a Series, as there is more than one column selected from the DataFrame. Use a list, square brackets [], to subset more than one column.</p>
 <div class="sourceCode" id="cb276"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb276-1"><a href="data-manipulation.html#cb276-1" aria-hidden="true" tabindex="-1"></a>mtcars[mtcars[<span class="st">&quot;mpg&quot;</span>] <span class="op">&gt;</span> <span class="dv">30</span>][[<span class="st">&quot;mpg&quot;</span>, <span class="st">&quot;cyl&quot;</span>]]</span></code></pre></div>
 <pre><code>##      mpg  cyl
 ## 17  32.4    4
 ## 18  30.4    4
 ## 19  33.9    4
 ## 27  30.4    4</code></pre>
-<p>Both pandas Series and NumPy arrays can be used for faster performance or vector operations. Many functions require a vector as input.</p>
-<p>The following code returns one column, mpg, as a pandas Series. A pandas Series is one column from a pandas DataFrame.</p>
+<p>Both pandas Series and NumPy arrays can be used for fast performance and vector operations. Many functions require a vector as input.</p>
+<p>The following code returns one column, <code>mpg</code>, as a pandas Series. A pandas Series is one column from a pandas DataFrame.</p>
 <div class="sourceCode" id="cb278"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb278-1"><a href="data-manipulation.html#cb278-1" aria-hidden="true" tabindex="-1"></a>mtcars[mtcars[<span class="st">&quot;mpg&quot;</span>] <span class="op">&gt;</span> <span class="dv">30</span>][<span class="st">&quot;mpg&quot;</span>]</span></code></pre></div>
 <pre><code>## 17    32.4
 ## 18    30.4
 ## 19    33.9
 ## 27    30.4
 ## Name: mpg, dtype: float64</code></pre>
-<p>The following code also returns a pandas Series, but using the <code>.</code> operator to select for a column, rather than square brackets [].</p>
+<p>The following code also returns a pandas Series, but it uses the <code>.</code> operator to select a column, rather than square brackets <code>[]</code>.</p>
 <div class="sourceCode" id="cb280"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb280-1"><a href="data-manipulation.html#cb280-1" aria-hidden="true" tabindex="-1"></a>mtcars[mtcars[<span class="st">&quot;mpg&quot;</span>] <span class="op">&gt;</span> <span class="dv">30</span>].mpg</span></code></pre></div>
 <pre><code>## 17    32.4
 ## 18    30.4
 ## 19    33.9
 ## 27    30.4
 ## Name: mpg, dtype: float64</code></pre>
-<p>Both of the following lines of code return NumPy arrays using the <code>.values</code> function. <code>df1</code> is one dimension, for the one column, and <code>df1</code> is two dimensions, for the two columns.</p>
+<p>Both of the following lines of code return NumPy arrays using the <code>.values</code> function. <code>df1</code> is one dimension, reflecting just the <code>mpg</code> column, and <code>df2</code> is two dimensions, reflecting the <code>mpg</code> and <code>cyl</code> columns.</p>
 <div class="sourceCode" id="cb282"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb282-1"><a href="data-manipulation.html#cb282-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> mtcars[mtcars[<span class="st">&quot;mpg&quot;</span>] <span class="op">&gt;</span> <span class="dv">30</span>][<span class="st">&quot;mpg&quot;</span>].values</span>
 <span id="cb282-2"><a href="data-manipulation.html#cb282-2" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> mtcars[mtcars[<span class="st">&quot;mpg&quot;</span>] <span class="op">&gt;</span> <span class="dv">30</span>][[<span class="st">&quot;mpg&quot;</span>, <span class="st">&quot;cyl&quot;</span>]].values</span></code></pre></div>
-<p>You can also filter with multiple row conditions.</p>
+<p>You can also filter using multiple row conditions:</p>
 <div class="sourceCode" id="cb283"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb283-1"><a href="data-manipulation.html#cb283-1" aria-hidden="true" tabindex="-1"></a>mtcars[mtcars[<span class="st">&quot;mpg&quot;</span>] <span class="op">&gt;</span> <span class="dv">30</span>][mtcars[<span class="st">&quot;hp&quot;</span>] <span class="op">&lt;</span> <span class="dv">66</span>]</span></code></pre></div>
 <pre><code>##      mpg  cyl  disp  hp  drat     wt   qsec  vs  am  gear  carb
 ## 18  30.4    4  75.7  52  4.93  1.615  18.52   1   1     4     2
@@ -596,8 +594,7 @@ div.csl-indent {
 </div>
 <div id="r-19" class="section level4 unnumbered hasAnchor">
 <h4>R<a href="data-manipulation.html#r-19" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>In base R, we can use subsetting brackets or the <code>subset()</code> function to select rows based on some condition. Below we demonstrate both approaches to view only those rows with “mpg” greater than 30. First we begin with subsetting brackets.</p>
-<p>The subsetting brackets take three arguments:</p>
+<p>In base R, we can use subsetting brackets or the <code>subset()</code> function to select rows based on some condition. Below, we demonstrate both approaches, returning only those rows with <code>mpg</code> greater than 30. We begin with subsetting brackets, which take three arguments:</p>
 <ol style="list-style-type: decimal">
 <li><code>i</code>: the condition to subset on.</li>
 <li><code>j</code>: the columns to show. If none specified, all columns are returned</li>
@@ -611,28 +608,28 @@ div.csl-indent {
 ## 19 30.4   4 75.7  52 4.93 1.615 18.52  1  1    4    2
 ## 20 33.9   4 71.1  65 4.22 1.835 19.90  1  1    4    1
 ## 28 30.4   4 95.1 113 3.77 1.513 16.90  1  1    5    2</code></pre>
-<p>We can select what columns to see in the second argument as a vector. Notice we only need to specify the column names as a character vector. We can also use numbers corresponding to the column number as well as conditional statements.</p>
+<p>We can select the columns to return in the second argument as a vector. Notice that we only need to specify the column names as a character vector. We can also use numbers corresponding to the column positions, as well as conditional statements.</p>
 <div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="data-manipulation.html#cb287-1" aria-hidden="true" tabindex="-1"></a>mtcars[mtcars<span class="sc">$</span>mpg <span class="sc">&gt;</span> <span class="dv">30</span>, <span class="fu">c</span>(<span class="st">&quot;mpg&quot;</span>, <span class="st">&quot;wt&quot;</span>, <span class="st">&quot;gear&quot;</span>)]</span></code></pre></div>
 <pre><code>##     mpg    wt gear
 ## 18 32.4 2.200    4
 ## 19 30.4 1.615    4
 ## 20 33.9 1.835    4
 ## 28 30.4 1.513    5</code></pre>
-<p>Show first three columns.</p>
+<p>Show the first three columns:</p>
 <div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="data-manipulation.html#cb289-1" aria-hidden="true" tabindex="-1"></a>mtcars[mtcars<span class="sc">$</span>mpg <span class="sc">&gt;</span> <span class="dv">30</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
 <pre><code>##     mpg cyl disp
 ## 18 32.4   4 78.7
 ## 19 30.4   4 75.7
 ## 20 33.9   4 71.1
 ## 28 30.4   4 95.1</code></pre>
-<p>Show columns with names consisting of only two characters. The <code>nchar()</code> function counts the number of characters in a string. The expression <code>nchar(names(mtcars)) == 2</code> returns a vector of TRUE/FALSE values where TRUE indicates the column name is only two characters in length.</p>
+<p>Show columns with names consisting of only two characters. The <code>nchar()</code> function counts the number of characters in a string. The expression <code>nchar(names(mtcars)) == 2</code> returns a vector of <code>TRUE</code>/<code>FALSE</code> values where <code>TRUE</code> indicates the column name is only two characters in length.</p>
 <div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="data-manipulation.html#cb291-1" aria-hidden="true" tabindex="-1"></a>mtcars[mtcars<span class="sc">$</span>mpg <span class="sc">&gt;</span> <span class="dv">30</span>, <span class="fu">nchar</span>(<span class="fu">names</span>(mtcars)) <span class="sc">==</span> <span class="dv">2</span>]</span></code></pre></div>
 <pre><code>##     hp    wt vs am
 ## 18  66 2.200  1  1
 ## 19  52 1.615  1  1
 ## 20  65 1.835  1  1
 ## 28 113 1.513  1  1</code></pre>
-<p>Notice when we specify only one column, the brackets return a vector.</p>
+<p>Notice that when we specify only one column, the brackets return a vector.</p>
 <div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="data-manipulation.html#cb293-1" aria-hidden="true" tabindex="-1"></a>mtcars[mtcars<span class="sc">$</span>mpg <span class="sc">&gt;</span> <span class="dv">30</span>, <span class="st">&quot;mpg&quot;</span>]</span></code></pre></div>
 <pre><code>## [1] 32.4 30.4 33.9 30.4</code></pre>
 <p>To get a data frame, set the <code>drop</code> argument to FALSE.</p>
@@ -642,7 +639,7 @@ div.csl-indent {
 ## 19 30.4
 ## 20 33.9
 ## 28 30.4</code></pre>
-<p>The <code>subset()</code> function allows us to refer to column names without using the <code>$</code> extractor function or quoting column names. It also has a drop argument but its default is FALSE. It has four arguments:</p>
+<p>The <code>subset()</code> function allows us to refer to column names without using the <code>$</code> extractor function or quoting column names. It also has a drop argument, but its default is <code>FALSE.</code> It has four arguments:</p>
 <ol style="list-style-type: decimal">
 <li><code>x</code>: the data frame to subset.</li>
 <li><code>subset</code>: the condition to subset on.</li>
@@ -651,45 +648,45 @@ div.csl-indent {
 </ol>
 <p>We rarely type the first three argument names, <code>x</code>, <code>subset</code> and <code>select</code>, when using <code>subset()</code>.</p>
 <p>Below we replicate the previous examples using <code>subset()</code>.</p>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="data-manipulation.html#cb297-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rows where mpg &gt; 30 and all columns</span></span>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="data-manipulation.html#cb297-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Return rows where mpg &gt; 30 and all columns</span></span>
 <span id="cb297-2"><a href="data-manipulation.html#cb297-2" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(mtcars, mpg <span class="sc">&gt;</span> <span class="dv">30</span>)</span></code></pre></div>
 <pre><code>##     mpg cyl disp  hp drat    wt  qsec vs am gear carb
 ## 18 32.4   4 78.7  66 4.08 2.200 19.47  1  1    4    1
 ## 19 30.4   4 75.7  52 4.93 1.615 18.52  1  1    4    2
 ## 20 33.9   4 71.1  65 4.22 1.835 19.90  1  1    4    1
 ## 28 30.4   4 95.1 113 3.77 1.513 16.90  1  1    5    2</code></pre>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="data-manipulation.html#cb299-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rows where mpg &gt; 30 and the mpg, wt, and gear columns</span></span>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="data-manipulation.html#cb299-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Return rows where mpg &gt; 30 and the mpg, wt, and gear columns</span></span>
 <span id="cb299-2"><a href="data-manipulation.html#cb299-2" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(mtcars, mpg <span class="sc">&gt;</span> <span class="dv">30</span>, <span class="fu">c</span>(mpg, wt, gear))</span></code></pre></div>
 <pre><code>##     mpg    wt gear
 ## 18 32.4 2.200    4
 ## 19 30.4 1.615    4
 ## 20 33.9 1.835    4
 ## 28 30.4 1.513    5</code></pre>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="data-manipulation.html#cb301-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rows where mpg &gt; 30 and the first three columns</span></span>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="data-manipulation.html#cb301-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Return rows where mpg &gt; 30 and the first three columns</span></span>
 <span id="cb301-2"><a href="data-manipulation.html#cb301-2" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(mtcars, mpg <span class="sc">&gt;</span> <span class="dv">30</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##     mpg cyl disp
 ## 18 32.4   4 78.7
 ## 19 30.4   4 75.7
 ## 20 33.9   4 71.1
 ## 28 30.4   4 95.1</code></pre>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="data-manipulation.html#cb303-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rows where mpg &gt; 30 and columns consisting of two characters</span></span>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="data-manipulation.html#cb303-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Return rows where mpg &gt; 30 and columns consisting of two characters</span></span>
 <span id="cb303-2"><a href="data-manipulation.html#cb303-2" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(mtcars, mpg <span class="sc">&gt;</span> <span class="dv">30</span>, <span class="fu">nchar</span>(<span class="fu">names</span>(mtcars)) <span class="sc">==</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>##     hp    wt vs am
 ## 18  66 2.200  1  1
 ## 19  52 1.615  1  1
 ## 20  65 1.835  1  1
 ## 28 113 1.513  1  1</code></pre>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="data-manipulation.html#cb305-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rows where mpg &gt; 30 and mpg column, as a vector</span></span>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="data-manipulation.html#cb305-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Return rows where mpg &gt; 30 and mpg column, as a vector</span></span>
 <span id="cb305-2"><a href="data-manipulation.html#cb305-2" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(mtcars, mpg <span class="sc">&gt;</span> <span class="dv">30</span>, mpg, <span class="at">drop =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] 32.4 30.4 33.9 30.4</code></pre>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="data-manipulation.html#cb307-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rows where mpg &gt; 30 and mpg column, as a data frame</span></span>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="data-manipulation.html#cb307-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Return rows where mpg &gt; 30 and mpg column, as a data frame</span></span>
 <span id="cb307-2"><a href="data-manipulation.html#cb307-2" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(mtcars, mpg <span class="sc">&gt;</span> <span class="dv">30</span>, mpg)</span></code></pre></div>
 <pre><code>##     mpg
 ## 18 32.4
 ## 19 30.4
 ## 20 33.9
 ## 28 30.4</code></pre>
-<p>Another difference between subsetting brackets and the <code>subset()</code> function is how they handle missing values. Subsetting brackets return missing values while <code>subset()</code> does not. We demonstrate with a toy data frame. Notice the “x” column has a missing value.</p>
+<p>Another difference between subsetting brackets and the <code>subset()</code> function is how they handle missing values. Subsetting brackets return missing values while <code>subset()</code> does not. We demonstrate below with a toy data frame. Notice the <code>x</code> column has a missing value.</p>
 <div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="data-manipulation.html#cb309-1" aria-hidden="true" tabindex="-1"></a>dframe <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="cn">NA</span>, <span class="dv">5</span>), </span>
 <span id="cb309-2"><a href="data-manipulation.html#cb309-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">21</span>, <span class="dv">34</span>))</span>
 <span id="cb309-3"><a href="data-manipulation.html#cb309-3" aria-hidden="true" tabindex="-1"></a>dframe</span></code></pre></div>
@@ -697,8 +694,8 @@ div.csl-indent {
 ## 1  1 12
 ## 2 NA 21
 ## 3  5 34</code></pre>
-<p>When we condition on x &lt; 3, the subsetting bracket approach returns a row with NA values.</p>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="data-manipulation.html#cb311-1" aria-hidden="true" tabindex="-1"></a>dframe[dframe<span class="sc">$</span>x <span class="sc">&lt;</span> <span class="dv">3</span>,]</span></code></pre></div>
+<p>When we condition on <code>x &lt; 3</code>, the subsetting bracket approach returns a row with <code>NA</code> values.</p>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="data-manipulation.html#cb311-1" aria-hidden="true" tabindex="-1"></a>dframe[dframe<span class="sc">$</span>x <span class="sc">&lt;</span> <span class="dv">3</span>, ]</span></code></pre></div>
 <pre><code>##     x  y
 ## 1   1 12
 ## NA NA NA</code></pre>
@@ -706,7 +703,7 @@ div.csl-indent {
 <div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="data-manipulation.html#cb313-1" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(dframe, x <span class="sc">&lt;</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##   x  y
 ## 1 1 12</code></pre>
-<p>To replicate the <code>subset()</code> result with the subsetting brackets, we need to include an additional condition to only show rows where x is NOT missing. We can do that with the <code>is.na()</code> function. The <code>is.na()</code> function returns TRUE if a value is missing and FALSE otherwise. If we preface with <code>!</code>, we get TRUE if a value is NOT missing and FALSE otherwise.</p>
+<p>To replicate the <code>subset()</code> result with the subsetting brackets, we need to include an additional condition to only show rows where x is <em>not</em> missing. We can do that with the <code>is.na()</code> function. The <code>is.na()</code> function returns <code>TRUE</code> if a value is missing and <code>FALSE</code> otherwise. If we preface with <code>!</code>, we get <code>TRUE</code> if a value is <em>not</em> missing and <code>FALSE</code> otherwise.</p>
 <div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="data-manipulation.html#cb315-1" aria-hidden="true" tabindex="-1"></a>dframe[dframe<span class="sc">$</span>x <span class="sc">&lt;</span> <span class="dv">3</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(dframe<span class="sc">$</span>x),]</span></code></pre></div>
 <pre><code>##   x  y
 ## 1 1 12</code></pre>
@@ -781,8 +778,7 @@ div.csl-indent {
 <pre><code>## [1] &quot;drat&quot;</code></pre>
 <div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="data-manipulation.html#cb327-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mtcars)[<span class="fu">names</span>(mtcars) <span class="sc">==</span> <span class="st">&quot;drat&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;axle_ratio&quot;</span></span>
 <span id="cb327-2"><a href="data-manipulation.html#cb327-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mtcars)</span></code></pre></div>
-<pre><code>##  [1] &quot;mpg&quot;        &quot;cylinders&quot;  &quot;disp&quot;       &quot;hp&quot;         &quot;axle_ratio&quot; &quot;wt&quot;         &quot;qsec&quot;       &quot;vs&quot;         &quot;am&quot;         &quot;gear&quot;      
-## [11] &quot;carb&quot;</code></pre>
+<pre><code>##  [1] &quot;mpg&quot;        &quot;cylinders&quot;  &quot;disp&quot;       &quot;hp&quot;         &quot;axle_ratio&quot; &quot;wt&quot;         &quot;qsec&quot;       &quot;vs&quot;         &quot;am&quot;         &quot;gear&quot;       &quot;carb&quot;</code></pre>
 <p>More than one variable name can be changed using a vector of positions or matches.</p>
 <div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="data-manipulation.html#cb329-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mtcars)[<span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">8</span>)] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;weight&quot;</span>, <span class="st">&quot;engine&quot;</span>)</span>
 <span id="cb329-2"><a href="data-manipulation.html#cb329-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -790,8 +786,7 @@ div.csl-indent {
 <span id="cb329-4"><a href="data-manipulation.html#cb329-4" aria-hidden="true" tabindex="-1"></a><span class="co"># names(mtcars)[names(mtcars) %in% c(&quot;wt&quot;, &quot;vs&quot;)] &lt;- c(&quot;weight&quot;, &quot;engine&quot;)</span></span>
 <span id="cb329-5"><a href="data-manipulation.html#cb329-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb329-6"><a href="data-manipulation.html#cb329-6" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mtcars)</span></code></pre></div>
-<pre><code>##  [1] &quot;mpg&quot;        &quot;cylinders&quot;  &quot;disp&quot;       &quot;hp&quot;         &quot;axle_ratio&quot; &quot;weight&quot;     &quot;qsec&quot;       &quot;engine&quot;     &quot;am&quot;         &quot;gear&quot;      
-## [11] &quot;carb&quot;</code></pre>
+<pre><code>##  [1] &quot;mpg&quot;        &quot;cylinders&quot;  &quot;disp&quot;       &quot;hp&quot;         &quot;axle_ratio&quot; &quot;weight&quot;     &quot;qsec&quot;       &quot;engine&quot;     &quot;am&quot;         &quot;gear&quot;       &quot;carb&quot;</code></pre>
 <p>See also the <code>rename()</code> function in the <a href="https://dplyr.tidyverse.org/"><strong>dplyr</strong></a>.</p>
 </div>
 </div>
@@ -1102,16 +1097,16 @@ div.csl-indent {
 <p>The <code>tolower()</code> and <code>toupper()</code> functions convert case to lower and upper, respectively.</p>
 <div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="data-manipulation.html#cb414-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mtcars) <span class="ot">&lt;-</span> <span class="fu">toupper</span>(<span class="fu">names</span>(mtcars))</span>
 <span id="cb414-2"><a href="data-manipulation.html#cb414-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mtcars)</span></code></pre></div>
-<pre><code>##  [1] &quot;MPG&quot;        &quot;CYLINDERS&quot;  &quot;DISP&quot;       &quot;HP&quot;         &quot;AXLE_RATIO&quot; &quot;WEIGHT&quot;     &quot;QSEC&quot;       &quot;ENGINE&quot;     &quot;AM&quot;         &quot;GEAR&quot;      
-## [11] &quot;CARB&quot;       &quot;AM_CH&quot;      &quot;AM_FAC&quot;</code></pre>
+<pre><code>##  [1] &quot;MPG&quot;        &quot;CYLINDERS&quot;  &quot;DISP&quot;       &quot;HP&quot;         &quot;AXLE_RATIO&quot; &quot;WEIGHT&quot;     &quot;QSEC&quot;       &quot;ENGINE&quot;     &quot;AM&quot;         &quot;GEAR&quot;       &quot;CARB&quot;       &quot;AM_CH&quot;     
+## [13] &quot;AM_FAC&quot;</code></pre>
 <div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="data-manipulation.html#cb416-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mtcars) <span class="ot">&lt;-</span> <span class="fu">tolower</span>(<span class="fu">names</span>(mtcars))</span>
 <span id="cb416-2"><a href="data-manipulation.html#cb416-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mtcars)</span></code></pre></div>
-<pre><code>##  [1] &quot;mpg&quot;        &quot;cylinders&quot;  &quot;disp&quot;       &quot;hp&quot;         &quot;axle_ratio&quot; &quot;weight&quot;     &quot;qsec&quot;       &quot;engine&quot;     &quot;am&quot;         &quot;gear&quot;      
-## [11] &quot;carb&quot;       &quot;am_ch&quot;      &quot;am_fac&quot;</code></pre>
+<pre><code>##  [1] &quot;mpg&quot;        &quot;cylinders&quot;  &quot;disp&quot;       &quot;hp&quot;         &quot;axle_ratio&quot; &quot;weight&quot;     &quot;qsec&quot;       &quot;engine&quot;     &quot;am&quot;         &quot;gear&quot;       &quot;carb&quot;       &quot;am_ch&quot;     
+## [13] &quot;am_fac&quot;</code></pre>
 <p>The <strong>stringr</strong> package provides a convenient title case conversion function, <code>str_to_title()</code>, which capitalizes the first letter of each string.</p>
 <div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="data-manipulation.html#cb418-1" aria-hidden="true" tabindex="-1"></a>stringr<span class="sc">::</span><span class="fu">str_to_title</span>(<span class="fu">names</span>(mtcars))</span></code></pre></div>
-<pre><code>##  [1] &quot;Mpg&quot;        &quot;Cylinders&quot;  &quot;Disp&quot;       &quot;Hp&quot;         &quot;Axle_ratio&quot; &quot;Weight&quot;     &quot;Qsec&quot;       &quot;Engine&quot;     &quot;Am&quot;         &quot;Gear&quot;      
-## [11] &quot;Carb&quot;       &quot;Am_ch&quot;      &quot;Am_fac&quot;</code></pre>
+<pre><code>##  [1] &quot;Mpg&quot;        &quot;Cylinders&quot;  &quot;Disp&quot;       &quot;Hp&quot;         &quot;Axle_ratio&quot; &quot;Weight&quot;     &quot;Qsec&quot;       &quot;Engine&quot;     &quot;Am&quot;         &quot;Gear&quot;       &quot;Carb&quot;       &quot;Am_ch&quot;     
+## [13] &quot;Am_fac&quot;</code></pre>
 </div>
 </div>
 <div id="drop-duplicate-rows" class="section level2 hasAnchor" number="4.11">
@@ -1182,7 +1177,7 @@ div.csl-indent {
 <p>To get today’s date, we can use the <code>date.today()</code> function:</p>
 <div class="sourceCode" id="cb435"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb435-1"><a href="data-manipulation.html#cb435-1" aria-hidden="true" tabindex="-1"></a>today <span class="op">=</span> dt.date.today()</span>
 <span id="cb435-2"><a href="data-manipulation.html#cb435-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(today)</span></code></pre></div>
-<pre><code>## 2022-05-04</code></pre>
+<pre><code>## 2022-05-09</code></pre>
 <p>Note that the output of both x and today are only year-month-day because they are date objects.</p>
 <p>We can extract each of these attributes (year, month, day) from the date object as follows:</p>
 <div class="sourceCode" id="cb437"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb437-1"><a href="data-manipulation.html#cb437-1" aria-hidden="true" tabindex="-1"></a>today.year </span></code></pre></div>
@@ -1190,7 +1185,7 @@ div.csl-indent {
 <div class="sourceCode" id="cb439"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb439-1"><a href="data-manipulation.html#cb439-1" aria-hidden="true" tabindex="-1"></a>today.month</span></code></pre></div>
 <pre><code>## 5</code></pre>
 <div class="sourceCode" id="cb441"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb441-1"><a href="data-manipulation.html#cb441-1" aria-hidden="true" tabindex="-1"></a>today.day</span></code></pre></div>
-<pre><code>## 4</code></pre>
+<pre><code>## 9</code></pre>
 <p>Next we will discuss the <code>time()</code> class. This class creates time objects containing information about only a time. The attributes that go into the <code>time()</code> class are hours, minutes, seconds in that order. Like the date class, these attributes must be inputted as integers.</p>
 <div class="sourceCode" id="cb443"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb443-1"><a href="data-manipulation.html#cb443-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> dt.time(<span class="dv">11</span>, <span class="dv">34</span>, <span class="dv">56</span>)</span>
 <span id="cb443-2"><a href="data-manipulation.html#cb443-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y)</span></code></pre></div>
@@ -1242,23 +1237,23 @@ div.csl-indent {
 <span id="cb469-3"><a href="data-manipulation.html#cb469-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d1)</span>
 <span id="cb469-4"><a href="data-manipulation.html#cb469-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb469-5"><a href="data-manipulation.html#cb469-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Add 550 days to our datetime object </span></span></code></pre></div>
-<pre><code>## 2022-05-04 10:25:59.129908</code></pre>
+<pre><code>## 2022-05-09 14:16:10.677942</code></pre>
 <div class="sourceCode" id="cb471"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb471-1"><a href="data-manipulation.html#cb471-1" aria-hidden="true" tabindex="-1"></a>d2 <span class="op">=</span> d1 <span class="op">+</span> dt.timedelta(days <span class="op">=</span> <span class="dv">550</span>)</span>
 <span id="cb471-2"><a href="data-manipulation.html#cb471-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d2)</span>
 <span id="cb471-3"><a href="data-manipulation.html#cb471-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb471-4"><a href="data-manipulation.html#cb471-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Subtract 5 hours from our datetime object </span></span></code></pre></div>
-<pre><code>## 2023-11-05 10:25:59.129908</code></pre>
+<pre><code>## 2023-11-10 14:16:10.677942</code></pre>
 <div class="sourceCode" id="cb473"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb473-1"><a href="data-manipulation.html#cb473-1" aria-hidden="true" tabindex="-1"></a>d3 <span class="op">=</span> d1 <span class="op">-</span> dt.timedelta(hours <span class="op">=</span> <span class="dv">5</span>)</span>
 <span id="cb473-2"><a href="data-manipulation.html#cb473-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d3)</span></code></pre></div>
-<pre><code>## 2022-05-04 05:25:59.129908</code></pre>
+<pre><code>## 2022-05-09 09:16:10.677942</code></pre>
 <p>Finally, we will discuss how to convert strings to datetime objects and vice versa.</p>
 <p>The attribute <code>strftime()</code> converts datetime objects to strings. In the argument of <code>strftime()</code> can specify the format you would like.</p>
 <div class="sourceCode" id="cb475"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb475-1"><a href="data-manipulation.html#cb475-1" aria-hidden="true" tabindex="-1"></a>d1</span></code></pre></div>
-<pre><code>## datetime.datetime(2022, 5, 4, 10, 25, 59, 129908)</code></pre>
+<pre><code>## datetime.datetime(2022, 5, 9, 14, 16, 10, 677942)</code></pre>
 <div class="sourceCode" id="cb477"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb477-1"><a href="data-manipulation.html#cb477-1" aria-hidden="true" tabindex="-1"></a>d1.strftime(<span class="st">&quot;%A %m %Y&quot;</span>)</span></code></pre></div>
-<pre><code>## &#39;Wednesday 05 2022&#39;</code></pre>
+<pre><code>## &#39;Monday 05 2022&#39;</code></pre>
 <div class="sourceCode" id="cb479"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb479-1"><a href="data-manipulation.html#cb479-1" aria-hidden="true" tabindex="-1"></a>d1.strftime(<span class="st">&quot;%a %m %y&quot;</span>)</span></code></pre></div>
-<pre><code>## &#39;Wed 05 22&#39;</code></pre>
+<pre><code>## &#39;Mon 05 22&#39;</code></pre>
 <p>The attribute <code>strptime()</code> converts strings into datetime objects. In the argument of <code>strptime()</code> you must specify the string and then the format of the string.</p>
 <div class="sourceCode" id="cb481"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb481-1"><a href="data-manipulation.html#cb481-1" aria-hidden="true" tabindex="-1"></a>d4 <span class="op">=</span> <span class="st">&quot;27/10/98 11:03:9.033&quot;</span></span>
 <span id="cb481-2"><a href="data-manipulation.html#cb481-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1329,12 +1324,14 @@ div.csl-indent {
 <p>To create a sample with a fixed number of rows, use the <code>n</code> argument.</p>
 <div class="sourceCode" id="cb503"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb503-1"><a href="data-manipulation.html#cb503-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sample 5 rows from mtcars</span></span>
 <span id="cb503-2"><a href="data-manipulation.html#cb503-2" aria-hidden="true" tabindex="-1"></a>mtcars.sample(n<span class="op">=</span><span class="dv">5</span>, replace<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
-<pre><code>##      MPG  CYL   DISP   HP  AXLE_RATIO    WT   QSEC  VS AM  GEAR  CARB       KPL
-## 2   22.8    4  108.0   93        3.85  2.32  18.61   1  1     4     1  4.846939
-## 8   22.8    4  140.8   95        3.92  3.15  22.90   1  0     4     2  4.846939
-## 0   21.0    6  160.0  110        3.90  2.62  16.46   0  1     4     4  4.464286
-## 9   19.2    6  167.6  123        3.92  3.44  18.30   1  0     4     4  4.081633
-## 30  15.0    8  301.0  335        3.54  3.57  14.60   0  1     5     8  3.188776</code></pre>
+<pre><code>##      MPG  CYL   DISP   HP  AXLE_RATIO  ...  VS  AM  GEAR CARB       KPL
+## 20  21.5    4  120.1   97        3.70  ...   1   0     3    1  4.570578
+## 29  19.7    6  145.0  175        3.62  ...   0   1     5    6  4.187925
+## 8   22.8    4  140.8   95        3.92  ...   1   0     4    2  4.846939
+## 6   14.3    8  360.0  245        3.21  ...   0   0     3    4  3.039966
+## 25  27.3    4   79.0   66        4.08  ...   1   1     4    1  5.803571
+## 
+## [5 rows x 12 columns]</code></pre>
 <p>To create a sample of a proportion, use the <code>frac</code> argument.</p>
 <div class="sourceCode" id="cb505"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb505-1"><a href="data-manipulation.html#cb505-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sample 20% of rows from mtcars</span></span>
 <span id="cb505-2"><a href="data-manipulation.html#cb505-2" aria-hidden="true" tabindex="-1"></a>mtcars.sample(frac <span class="op">=</span> <span class="fl">0.20</span>, random_state<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
@@ -1358,11 +1355,11 @@ div.csl-indent {
 <span id="cb507-7"><a href="data-manipulation.html#cb507-7" aria-hidden="true" tabindex="-1"></a><span class="co"># use random_sample to sample from mtcars</span></span>
 <span id="cb507-8"><a href="data-manipulation.html#cb507-8" aria-hidden="true" tabindex="-1"></a>mtcars.loc[random_sample,]</span></code></pre></div>
 <pre><code>##      MPG  CYL   DISP   HP  AXLE_RATIO  ...  VS  AM  GEAR CARB       KPL
-## 15  10.4    8  460.0  215        3.00  ...   0   0     3    4  2.210884
-## 12  17.3    8  275.8  180        3.07  ...   0   0     3    3  3.677721
+## 23  13.3    8  350.0  245        3.73  ...   0   0     3    4  2.827381
+## 16  14.7    8  440.0  230        3.23  ...   0   0     3    4  3.125000
+## 16  14.7    8  440.0  230        3.23  ...   0   0     3    4  3.125000
+## 24  19.2    8  400.0  175        3.08  ...   0   0     3    2  4.081633
 ## 17  32.4    4   78.7   66        4.08  ...   1   1     4    1  6.887755
-## 17  32.4    4   78.7   66        4.08  ...   1   1     4    1  6.887755
-## 25  27.3    4   79.0   66        4.08  ...   1   1     4    1  5.803571
 ## 
 ## [5 rows x 12 columns]</code></pre>
 <p>The random sample will change every time the code is run. To always generate the same “random” sample, use the <code>random.seed()</code> function with any positive integer.</p>
@@ -1385,20 +1382,20 @@ div.csl-indent {
 <div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb511-1"><a href="data-manipulation.html#cb511-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sample 5 rows from mtcars</span></span>
 <span id="cb511-2"><a href="data-manipulation.html#cb511-2" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">slice_sample</span>(mtcars, <span class="at">n =</span> <span class="dv">5</span>)</span></code></pre></div>
 <pre><code>##    mpg cylinders  disp  hp axle_ratio weight  qsec engine am gear carb am_ch    am_fac
-## 1 21.0         6 160.0 110       3.90  2.620 16.46      0  1    4    4     1    manual
-## 2 32.4         4  78.7  66       4.08  2.200 19.47      1  1    4    1     1    manual
-## 3 30.4         4  95.1 113       3.77  1.513 16.90      1  1    5    2     1    manual
-## 4 10.4         8 460.0 215       3.00  5.424 17.82      0  0    3    4     0 automatic
-## 5 19.7         6 145.0 175       3.62  2.770 15.50      0  1    5    6     1    manual</code></pre>
+## 1 17.8         6 167.6 123       3.92  3.440 18.90      1  0    4    4     0 automatic
+## 2 15.0         8 301.0 335       3.54  3.570 14.60      0  1    5    8     1    manual
+## 3 10.4         8 460.0 215       3.00  5.424 17.82      0  0    3    4     0 automatic
+## 4 19.7         6 145.0 175       3.62  2.770 15.50      0  1    5    6     1    manual
+## 5 15.5         8 318.0 150       2.76  3.520 16.87      0  0    3    2     0 automatic</code></pre>
 <div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb513-1"><a href="data-manipulation.html#cb513-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sample 20% of rows from mtcars</span></span>
 <span id="cb513-2"><a href="data-manipulation.html#cb513-2" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">slice_sample</span>(mtcars, <span class="at">prop =</span> <span class="fl">0.20</span>)</span></code></pre></div>
 <pre><code>##    mpg cylinders  disp  hp axle_ratio weight  qsec engine am gear carb am_ch    am_fac
-## 1 19.2         6 167.6 123       3.92  3.440 18.30      1  0    4    4     0 automatic
-## 2 33.9         4  71.1  65       4.22  1.835 19.90      1  1    4    1     1    manual
-## 3 18.1         6 225.0 105       2.76  3.460 20.22      1  0    3    1     0 automatic
-## 4 15.0         8 301.0 335       3.54  3.570 14.60      0  1    5    8     1    manual
-## 5 10.4         8 460.0 215       3.00  5.424 17.82      0  0    3    4     0 automatic
-## 6 21.4         6 258.0 110       3.08  3.215 19.44      1  0    3    1     0 automatic</code></pre>
+## 1 14.7         8 440.0 230       3.23  5.345 17.42      0  0    3    4     0 automatic
+## 2 22.8         4 108.0  93       3.85  2.320 18.61      1  1    4    1     1    manual
+## 3 16.4         8 275.8 180       3.07  4.070 17.40      0  0    3    3     0 automatic
+## 4 15.2         8 304.0 150       3.15  3.435 17.30      0  0    3    2     0 automatic
+## 5 21.0         6 160.0 110       3.90  2.875 17.02      0  1    4    4     1    manual
+## 6 19.7         6 145.0 175       3.62  2.770 15.50      0  1    5    6     1    manual</code></pre>
 <p>To sample with replacement, set <code>replace = TRUE</code>.</p>
 <p>The base R functions <code>sample()</code> and <code>runif()</code> can be combined to sample fixed sizes or approximate proportions.</p>
 <div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb515-1"><a href="data-manipulation.html#cb515-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sample 5 rows from mtcars</span></span>
@@ -1406,26 +1403,24 @@ div.csl-indent {
 <span id="cb515-3"><a href="data-manipulation.html#cb515-3" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(mtcars), <span class="at">size =</span> <span class="dv">5</span>)</span>
 <span id="cb515-4"><a href="data-manipulation.html#cb515-4" aria-hidden="true" tabindex="-1"></a><span class="co"># use i to select rows</span></span>
 <span id="cb515-5"><a href="data-manipulation.html#cb515-5" aria-hidden="true" tabindex="-1"></a>mtcars[i,]</span></code></pre></div>
-<pre><code>##     mpg cylinders  disp  hp axle_ratio weight  qsec engine am gear carb am_ch    am_fac
-## 20 33.9         4  71.1  65       4.22  1.835 19.90      1  1    4    1     1    manual
-## 1  21.0         6 160.0 110       3.90  2.620 16.46      0  1    4    4     1    manual
-## 17 14.7         8 440.0 230       3.23  5.345 17.42      0  0    3    4     0 automatic
-## 18 32.4         4  78.7  66       4.08  2.200 19.47      1  1    4    1     1    manual
-## 6  18.1         6 225.0 105       2.76  3.460 20.22      1  0    3    1     0 automatic</code></pre>
+<pre><code>##     mpg cylinders disp  hp axle_ratio weight  qsec engine am gear carb am_ch    am_fac
+## 24 13.3         8  350 245       3.73  3.840 15.41      0  0    3    4     0 automatic
+## 22 15.5         8  318 150       2.76  3.520 16.87      0  0    3    2     0 automatic
+## 15 10.4         8  472 205       2.93  5.250 17.98      0  0    3    4     0 automatic
+## 2  21.0         6  160 110       3.90  2.875 17.02      0  1    4    4     1    manual
+## 23 15.2         8  304 150       3.15  3.435 17.30      0  0    3    2     0 automatic</code></pre>
 <div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="data-manipulation.html#cb517-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sample about 20% of rows from mtcars</span></span>
 <span id="cb517-2"><a href="data-manipulation.html#cb517-2" aria-hidden="true" tabindex="-1"></a><span class="co"># generate random values on range of [0,1]</span></span>
 <span id="cb517-3"><a href="data-manipulation.html#cb517-3" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="fu">nrow</span>(mtcars))</span>
 <span id="cb517-4"><a href="data-manipulation.html#cb517-4" aria-hidden="true" tabindex="-1"></a><span class="co"># use i &lt; 0.20 logical vector to </span></span>
 <span id="cb517-5"><a href="data-manipulation.html#cb517-5" aria-hidden="true" tabindex="-1"></a><span class="co"># select rows that correspond to TRUE</span></span>
 <span id="cb517-6"><a href="data-manipulation.html#cb517-6" aria-hidden="true" tabindex="-1"></a>mtcars[i <span class="sc">&lt;</span> <span class="fl">0.20</span>,]</span></code></pre></div>
-<pre><code>##     mpg cylinders  disp  hp axle_ratio weight  qsec engine am gear carb am_ch    am_fac
-## 2  21.0         6 160.0 110       3.90  2.875 17.02      0  1    4    4     1    manual
-## 6  18.1         6 225.0 105       2.76  3.460 20.22      1  0    3    1     0 automatic
-## 10 19.2         6 167.6 123       3.92  3.440 18.30      1  0    4    4     0 automatic
-## 14 15.2         8 275.8 180       3.07  3.780 18.00      0  0    3    3     0 automatic
-## 22 15.5         8 318.0 150       2.76  3.520 16.87      0  0    3    2     0 automatic
-## 23 15.2         8 304.0 150       3.15  3.435 17.30      0  0    3    2     0 automatic
-## 26 27.3         4  79.0  66       4.08  1.935 18.90      1  1    4    1     1    manual</code></pre>
+<pre><code>##     mpg cylinders  disp  hp axle_ratio weight  qsec engine am gear carb am_ch am_fac
+## 3  22.8         4 108.0  93       3.85  2.320 18.61      1  1    4    1     1 manual
+## 19 30.4         4  75.7  52       4.93  1.615 18.52      1  1    4    2     1 manual
+## 30 19.7         6 145.0 175       3.62  2.770 15.50      0  1    5    6     1 manual
+## 31 15.0         8 301.0 335       3.54  3.570 14.60      0  1    5    8     1 manual
+## 32 21.4         4 121.0 109       4.11  2.780 18.60      1  1    4    2     1 manual</code></pre>
 <p>The random sample will change every time the code is run. To always generate the same “random” sample, use the <code>set.seed()</code> function with any positive integer.</p>
 <div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="data-manipulation.html#cb519-1" aria-hidden="true" tabindex="-1"></a><span class="co"># always get the same random sample</span></span>
 <span id="cb519-2"><a href="data-manipulation.html#cb519-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
