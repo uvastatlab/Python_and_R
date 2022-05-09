@@ -790,14 +790,14 @@ anyDuplicated(mtcars2)
 
 ## Format dates
 
-With formatted dates we can calculate elapsed time, extract components of a date, properly order names of months, and more. 
+With formatted dates, we can calculate elapsed times, extract components of a date, properly order the names of months, and more. 
 
 #### Python {-}
-The Python module `datetime` can be used to create various date and time objects. Here we will discuss 4 of the main classes within `datetime` that are most useful. 
+The Python module **datetime** can be used to create various date and time objects. Here, we discuss four of the main classes within **datetime** 
 
-The first class we will go over is the `date()` class. This creates a "date" object whose only attributes are year, month, day.
+The first class is the `date()` class. This creates a date object whose only attributes are year, month, and day.
 
-Here we create a date object using the date class. The attributes are specified as integers in the argument of `date()` in this order `date(year, month, day)`. 
+Below, we create a date object using the `date()` class. The attributes are specified as integers in the arguments of `date()` in the following order: `date(year, month, day)`. 
 
 ```{python}
 import datetime as dt 
@@ -813,7 +813,7 @@ today = dt.date.today()
 print(today)
 ```
 
-Note that the output of both x and today are only year-month-day because they are date objects. 
+Note that the output of both `x` and `today` are only year-month-day because they are date objects. 
 
 We can extract each of these attributes (year, month, day) from the date object as follows: 
 
@@ -823,15 +823,14 @@ today.month
 today.day
 ```
 
-
-Next we will discuss the `time()` class. This class creates time objects containing information about only a time. The attributes that go into the `time()` class are hours, minutes, seconds in that order. Like the date class, these attributes must be inputted as integers.  
+Next is the `time()` class. This class creates time objects containing information about only a time. The attributes that go into the `time()` class are hours, minutes, and seconds in that order. Like the date class, these attributes must be input as integers.  
 
 ```{python}
 y = dt.time(11, 34, 56)
 print(y)
 ```
 
-If you want a time object containing only hours and minutes, only seconds, etc. you can specify the attributes by name when creating the time object. 
+If you want a time object containing only hours and minutes, or only seconds, etc. you can specify the attributes by name when creating the time object. 
 
 ```{python}
 only_hrs = dt.time(hour = 10)
@@ -841,7 +840,7 @@ print(only_hrs)
 print(only_mins)
 ```
 
-Again similar to the date class, we can extract hour, minute, and second attributes from the time objects: 
+Again, similar to the date class, we can extract hour, minute, and second attributes from time-classed objects: 
 
 ```{python}
 y.hour
@@ -850,7 +849,7 @@ y.second
 y.microsecond
 ```
 
-Now we will talk about the `datetime()` class that creates a datetime object containing information about both date and time. The attributes must be inputted as integers and are year, month, day, hour, minute, second, in that order. Like the date and time classes, we can speficy specific attributes in the argument using the attrubute names as well. If we don't specify any time components, the datetime object defaults to time 00:00:00. 
+The `datetime()` class that creates a datetime object containing information about both date and time. The attributes must be input as integers wiht the following default order: year, month, day, hour, minute, and second. Like the date and time classes, we can specify specific attributes in the arguments using the names thereof. If we don't specify any time components, the datetime object defaults to time 00:00:00. 
 
 ```{python}
 # Input attributes in order
@@ -866,7 +865,7 @@ z3 = dt.datetime(1981, 4, 12)
 print(z3)
 ```
 
-Again, we can extract attributes in exactly the same way as the date and time classes. 
+Again, we can extract attributes in exactly the same way as we did for the date and time classes. 
 
 ```{python}
 z.year
@@ -874,29 +873,29 @@ z.day
 z.hour
 ```
 
-The final class we will discuss is the `timedelta` class. This class is used to store date/time differences between date objects. 
+The final class discussed here is the timedelta class. This class is used to store date/time differences between date objects. 
 
-The default settings for a timedelta object are as follows: `timedelta(weeks=0, days=0, hours=0,minutes=0, seconds=0, milliseconds=0, microseconds=0)`
+The default settings for a timedelta object are as follows: `timedelta(weeks = 0, days = 0, hours = 0, minutes = 0, seconds = 0, milliseconds = 0, microseconds = 0)`.
 
-Here is an example of howto add and subtract datesa and times using these objects.
+To add or subtract dates and times to/from these objects, we can use operators like `+` and `-`:
 
 ```{python}
-# Create a datetime object for the current time that we will increment
+# Create a datetime object for the current time
 d1 = dt.datetime.now()
 print(d1)
 
-# Add 550 days to our datetime object 
+# Add 550 days to the datetime object 
 d2 = d1 + dt.timedelta(days = 550)
 print(d2)
 
-# Subtract 5 hours from our datetime object 
+# Subtract five hours from the datetime object 
 d3 = d1 - dt.timedelta(hours = 5)
 print(d3)
 ```
 
 Finally, we will discuss how to convert strings to datetime objects and vice versa. 
 
-The attribute `strftime()` converts datetime objects to strings. In the argument of `strftime()` can specify the format you would like. 
+The attribute `strftime()` converts datetime objects to strings. In the argument of `strftime()`, you can specify the format you would like. 
 
 ```{python}
 d1
@@ -905,7 +904,7 @@ d1.strftime("%A %m %Y")
 d1.strftime("%a %m %y")
 ```
 
-The attribute `strptime()` converts strings into datetime objects. In the argument of `strptime()` you must specify the string and then the format of the string. 
+The attribute `strptime()` converts strings into datetime objects. In the argument of `strptime()`, you must specify the string and then the format of the string. 
 
 ```{python}
 d4 = "27/10/98 11:03:9.033"
@@ -914,7 +913,7 @@ d1.strptime(d4, "%d/%m/%y %H:%M:%S.%f")
 ```
 #### R {-}
 
-Dates in R can be stored as a Date class or a Date-Time class. Dates are stored as the number of days since January 1, 1970. Date-Times are stored as the number of seconds since January 1, 1970. With dates stored in this manner we can calculate elapsed time in units such as days, weeks, hours, minutes, and so forth.
+Dates in R can be stored as a Date class or a Date-Time class. Dates are stored as the number of days since January 1, 1970. Date-Times are stored as the number of seconds since January 1, 1970. With dates stored in this manner, we can calculate elapsed time in units such as days, weeks, hours, minutes, and so forth.
 
 Below are the dates of the first five NASA [Columbia Space Shuttle flights](https://en.wikipedia.org/wiki/List_of_Space_Shuttle_missions#Shuttle_flights) entered as a character vector.
 
@@ -926,20 +925,20 @@ date <- c("12 April 1981",
           "11 November 1982")
 ```
 
-R does not immediately recognize these as a Date class. To format as a Date class, we can either use the base R `as.Date()` function or one of the convenience functions in the **lubridate** package. The `as.Date()` function requires a specified POSIX conversion specification as documented in `?strptime`. Below the conversion code "%d %B %Y" says Date is entered as two digit day of month (%d), full month name (%B), and year with century (%Y).
+R does not immediately recognize these as a Date class. To format as a Date class, we can use either the base R `as.Date()` function or one of the convenience functions in the **lubridate** package. The `as.Date()` function requires a specified POSIX conversion specification as documented in `?strptime`. Below, the conversion code `%d %B %Y` indicates that the date is entered as a two-digit day of month (`%d`), a full month name (`%B`), and a year with century (`%Y`).
 
 ```{r}
 date1 <- as.Date(date, format = "%d %B %Y")
 date1
 ```
 
-The dates now print in year-month-date format, however they are stored internally as number of days since January 1, 1970. This can be seen by using `as.numeric()` on the "date1" vector.
+The dates now print in year-month-day format; however, they are stored internally as number of days since January 1, 1970. This can be seen by using `as.numeric()` on the `date1` vector.
 
 ```{r}
 as.numeric(date1)
 ```
 
-The **lubridate** package provides a series of functions that are permutations of the letters "m", "d", and "y" to represent the order of date components. To format the original "date" vector, we use the `dmy()` function since the date components are ordered as day, month and year. Notice we must load the **lubridate** package to use this function.
+The **lubridate** package provides a series of functions that are permutations of the letters "m", "d", and "y" to represent the order of date components. To format the original "date" vector, we use the `dmy()` function since the date components are ordered as day, month and year. We must load the **lubridate** package to use this function.
 
 ```{r message=FALSE}
 library(lubridate)
@@ -947,19 +946,19 @@ date2 <- dmy(date)
 date2
 ```
 
-When dates are formatted we can easily extract information such as day of week or month. For example to extract the day of week of the launches as an ordered factor, we can use the **lubridate** function `wday()` with `label=TRUE` and `abbr = FALSE`.
+When dates are formatted, we can easily extract information such as the day of week or the month. For example, to extract the day of week of the launches as an ordered factor, we can use the **lubridate** function `wday()` with `label = TRUE` and `abbr = FALSE`.
 
 ```{r}
 wday(date2, label = TRUE, abbr = FALSE)
 ```
 
-To calculate elapsed time between launches in days we can use the base R `diff()` function.
+To calculate elapsed time between launches in days, we can use the base R `diff()` function.
 
 ```{r}
 diff(date2)
 ```
 
-To store a date as a Date-Time class we need to include a time component. Below are the first five Columbia launch dates with times. UTC refers to [Universal Coordinated Time](https://en.wikipedia.org/wiki/Coordinated_Universal_Time).
+To store a date as a Date-Time class, we need to include a time component. Below are the first five Columbia launch dates with times. (UTC refers to [Universal Coordinated Time](https://en.wikipedia.org/wiki/Coordinated_Universal_Time).)
 
 ```{r}
 datetime <- c("12 April 1981 12:00:04 UTC",
@@ -969,7 +968,7 @@ datetime <- c("12 April 1981 12:00:04 UTC",
               "11 November 1982 12:19:00 UTC")
 ```
 
-To format as a Date-Time class we can use either the base R `as.POSIXct()` function or one of the convenience functions in the **lubridate** package. To use `as.POSIXct()` we need to include additional POSIX conversion specifications for the hour, minute and second of launch. The "%H:%M:%S" specification refers to hours, minutes and seconds. The `tz` argument specifies the time zone of the times. 
+To format as a Date-Time class, we can use either the base R `as.POSIXct()` function or one of the convenience functions in the **lubridate** package. To use `as.POSIXct()`, we need to include additional POSIX conversion specifications for the hour, minute, and second of launch. The `%H:%M:%S` specification refers to hours, minutes, and seconds. The `tz` argument specifies the time zone of the times. 
 
 ```{r}
 datetime1 <- as.POSIXct(datetime, 
@@ -978,20 +977,20 @@ datetime1 <- as.POSIXct(datetime,
 datetime1
 ```
 
-When we use `as.numeric()` on the "datetime1" vector we see it is stored as number of seconds since January 1, 1970.
+When we use `as.numeric()` on the `datetime1` vector, we see it is stored as number of seconds since January 1, 1970.
 
 ```{r}
 as.numeric(datetime1)
 ```
 
-Using **lubridate** we can append `_hms()` to any of the "mdy" functions to format dates with time components as a Date-Time class. Notice the default time zone in **lubridate** is UTC.
+Using **lubridate**, we can append `_hms()` to any of the "mdy" functions to format dates with time components as a Date-Time class. Notice the default time zone in **lubridate** is UTC.
 
 ```{r}
 datetime2 <- dmy_hms(datetime)
 datetime2
 ```
 
-To calculate elapsed time between launches in hours, we can use the **lubridate** function `time_length()` with the `unit` set to "hours". Below we use `diff()` and then pipe to `time_length()`.
+To calculate the elapsed time between launches in hours, we can use the **lubridate** function `time_length()` with `unit = "hours"`. Below, we use `diff()` and then pipe the result to `time_length()`.
 
 ```{r}
 diff(datetime2) |> time_length(unit = "hours")
