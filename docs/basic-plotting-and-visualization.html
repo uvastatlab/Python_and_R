@@ -296,7 +296,7 @@ div.csl-indent {
 <span id="cb632-7"><a href="basic-plotting-and-visualization.html#cb632-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;Bill Length (mm)&quot;</span>)</span>
 <span id="cb632-8"><a href="basic-plotting-and-visualization.html#cb632-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;Count&quot;</span>)</span>
 <span id="cb632-9"><a href="basic-plotting-and-visualization.html#cb632-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-300-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-286-1.png" width="672" /></p>
 </div>
 <div id="r-41" class="section level4 unnumbered hasAnchor">
 <h4>R<a href="basic-plotting-and-visualization.html#r-41" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -305,14 +305,14 @@ div.csl-indent {
 <span id="cb633-2"><a href="basic-plotting-and-visualization.html#cb633-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">60</span>),</span>
 <span id="cb633-3"><a href="basic-plotting-and-visualization.html#cb633-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&#39;Penguin Bill Lengths&#39;</span>, </span>
 <span id="cb633-4"><a href="basic-plotting-and-visualization.html#cb633-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&#39;Bill Length (mm)&#39;</span>, <span class="at">ylab =</span> <span class="st">&#39;Count&#39;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-301-3.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-287-3.png" width="672" /></p>
 <p>The <strong>ggplot2</strong> method for generating histograms follows the standard <strong>ggplot2</strong> syntax: Initialize a plot with <code>ggplot()</code>, and then add layers thereto. Here, the layer to add is <code>geom_histogram()</code>.</p>
 <div class="sourceCode" id="cb634"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb634-1"><a href="basic-plotting-and-visualization.html#cb634-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm)) <span class="sc">+</span></span>
 <span id="cb634-2"><a href="basic-plotting-and-visualization.html#cb634-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>, <span class="at">color =</span> <span class="st">&#39;black&#39;</span>, <span class="at">bins =</span> <span class="dv">25</span>) <span class="sc">+</span></span>
 <span id="cb634-3"><a href="basic-plotting-and-visualization.html#cb634-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">30</span>, <span class="dv">60</span>) <span class="sc">+</span> </span>
 <span id="cb634-4"><a href="basic-plotting-and-visualization.html#cb634-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&#39;Penguin Bill Lengths&#39;</span>, </span>
 <span id="cb634-5"><a href="basic-plotting-and-visualization.html#cb634-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&#39;Bill Length (mm)&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Count&#39;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-302-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-288-1.png" width="672" /></p>
 </div>
 </div>
 <div id="barplots" class="section level2 hasAnchor" number="7.2">
@@ -337,12 +337,12 @@ div.csl-indent {
 <span id="cb635-13"><a href="basic-plotting-and-visualization.html#cb635-13" aria-hidden="true" tabindex="-1"></a>plt.bar(spec,counts)</span></code></pre></div>
 <pre><code>## &lt;BarContainer object of 3 artists&gt;</code></pre>
 <div class="sourceCode" id="cb637"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb637-1"><a href="basic-plotting-and-visualization.html#cb637-1" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-303-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-289-1.png" width="672" /></p>
 <p>Our data is stored in a <code>pandas Dataframe</code>, which has its own built-in plotting module, <code>plot</code>. Here we create the same bar plot by using the pandas <code>bar()</code> function.</p>
 <div class="sourceCode" id="cb638"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb638-1"><a href="basic-plotting-and-visualization.html#cb638-1" aria-hidden="true" tabindex="-1"></a>plt.clf()</span>
 <span id="cb638-2"><a href="basic-plotting-and-visualization.html#cb638-2" aria-hidden="true" tabindex="-1"></a>penguins[<span class="st">&quot;species&quot;</span>].value_counts().plot.bar()</span>
 <span id="cb638-3"><a href="basic-plotting-and-visualization.html#cb638-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-304-3.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-290-3.png" width="672" /></p>
 <p>One thing to note here is that we generated the same bar plot as we first made with way less effort. Using the built-in pandas plotting routine proved to be the more efficient method here.</p>
 </div>
 <div id="r-42" class="section level4 unnumbered hasAnchor">
@@ -361,7 +361,7 @@ div.csl-indent {
 <span id="cb641-4"><a href="basic-plotting-and-visualization.html#cb641-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">xlab =</span> <span class="st">&#39;Species&#39;</span>, <span class="at">ylab =</span> <span class="st">&#39;Count&#39;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">200</span>))</span>
 <span id="cb641-5"><a href="basic-plotting-and-visualization.html#cb641-5" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> penguin_plot, <span class="at">y =</span> species_counts<span class="sc">$</span>Freq <span class="sc">+</span> <span class="dv">10</span>, </span>
 <span id="cb641-6"><a href="basic-plotting-and-visualization.html#cb641-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">labels =</span> species_counts<span class="sc">$</span>Freq)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-306-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-292-1.png" width="672" /></p>
 <p>To recreate the barplot above with <strong>ggplot2</strong>, one can add a <code>geom_bar()</code> layer to a plot initialized with <code>ggplot()</code>.</p>
 <div class="sourceCode" id="cb642"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb642-1"><a href="basic-plotting-and-visualization.html#cb642-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(species_counts, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> Freq)) <span class="sc">+</span></span>
 <span id="cb642-2"><a href="basic-plotting-and-visualization.html#cb642-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill =</span> species), <span class="at">stat =</span> <span class="st">&#39;identity&#39;</span>) <span class="sc">+</span></span>
@@ -376,7 +376,7 @@ div.csl-indent {
 <span id="cb642-11"><a href="basic-plotting-and-visualization.html#cb642-11" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb642-12"><a href="basic-plotting-and-visualization.html#cb642-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_text() is used here to add counts above the bars</span></span>
 <span id="cb642-13"><a href="basic-plotting-and-visualization.html#cb642-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Freq, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>)) </span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-307-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-293-1.png" width="672" /></p>
 </div>
 </div>
 <div id="scatterplot" class="section level2 hasAnchor" number="7.3">
@@ -403,7 +403,7 @@ div.csl-indent {
 <span id="cb643-16"><a href="basic-plotting-and-visualization.html#cb643-16" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Scatterplot of Body Mass and Flipper Length&#39;</span>)</span>
 <span id="cb643-17"><a href="basic-plotting-and-visualization.html#cb643-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb643-18"><a href="basic-plotting-and-visualization.html#cb643-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-308-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-294-1.png" width="672" /></p>
 </div>
 <div id="r-43" class="section level4 unnumbered hasAnchor">
 <h4>R<a href="basic-plotting-and-visualization.html#r-43" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -412,13 +412,13 @@ div.csl-indent {
 <span id="cb644-2"><a href="basic-plotting-and-visualization.html#cb644-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&#39;navy&#39;</span>, <span class="at">pch =</span> <span class="dv">20</span>,</span>
 <span id="cb644-3"><a href="basic-plotting-and-visualization.html#cb644-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&#39;Scatterplot of Body Mass and Flipper Length&#39;</span>, </span>
 <span id="cb644-4"><a href="basic-plotting-and-visualization.html#cb644-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&#39;Body Mass (g)&#39;</span>, <span class="at">ylab =</span> <span class="st">&#39;Flipper Length (mm)&#39;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-309-3.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-295-3.png" width="672" /></p>
 <p>To generate a scatterplot with <strong>ggplot2</strong>, initialize a plot with <code>ggplot()</code>, then add a layer of points with <code>geom_point()</code>.</p>
 <div class="sourceCode" id="cb645"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb645-1"><a href="basic-plotting-and-visualization.html#cb645-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> flipper_length_mm)) <span class="sc">+</span></span>
 <span id="cb645-2"><a href="basic-plotting-and-visualization.html#cb645-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&#39;navy&#39;</span>) <span class="sc">+</span></span>
 <span id="cb645-3"><a href="basic-plotting-and-visualization.html#cb645-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&#39;Scatterplot of Body Mass and Flipper Length&#39;</span>, </span>
 <span id="cb645-4"><a href="basic-plotting-and-visualization.html#cb645-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&#39;Body Mass (g)&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Flipper Length (mm)&#39;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-310-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-296-1.png" width="672" /></p>
 </div>
 </div>
 <div id="stripcharts" class="section level2 hasAnchor" number="7.4">
@@ -431,7 +431,7 @@ div.csl-indent {
 <span id="cb646-2"><a href="basic-plotting-and-visualization.html#cb646-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb646-3"><a href="basic-plotting-and-visualization.html#cb646-3" aria-hidden="true" tabindex="-1"></a>sns.stripplot(x<span class="op">=</span><span class="st">&quot;bill_depth_mm&quot;</span>, y<span class="op">=</span><span class="st">&quot;island&quot;</span>, data<span class="op">=</span>penguins)</span>
 <span id="cb646-4"><a href="basic-plotting-and-visualization.html#cb646-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-311-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-297-1.png" width="672" /></p>
 <p>The <a href="https://seaborn.pydata.org/generated/seaborn.stripplot.html">stripplot</a> help page provides more examples.</p>
 </div>
 <div id="r-44" class="section level4 unnumbered hasAnchor">
@@ -441,7 +441,7 @@ div.csl-indent {
 <span id="cb647-2"><a href="basic-plotting-and-visualization.html#cb647-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">method =</span> <span class="st">&#39;jitter&#39;</span>,</span>
 <span id="cb647-3"><a href="basic-plotting-and-visualization.html#cb647-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">ylab =</span> <span class="st">&#39;Island&#39;</span>, <span class="at">xlab =</span> <span class="st">&#39;Bill Depth (mm)&#39;</span>, </span>
 <span id="cb647-4"><a href="basic-plotting-and-visualization.html#cb647-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">main =</span> <span class="st">&#39;Stripchart of Bill Depth by Island&#39;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-312-3.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-298-3.png" width="672" /></p>
 <p>Stripcharts can also be made with <strong>ggplots2</strong>’s <code>geom_jitter()</code> function, as shown below. You can control the amount of jitter with a <code>position</code> argument in <code>geom_jitter()</code>.</p>
 <div class="sourceCode" id="cb648"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb648-1"><a href="basic-plotting-and-visualization.html#cb648-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> island, <span class="at">y =</span> bill_depth_mm)) <span class="sc">+</span></span>
 <span id="cb648-2"><a href="basic-plotting-and-visualization.html#cb648-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">color =</span> island), <span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="fl">0.1</span>)) <span class="sc">+</span></span>
@@ -453,7 +453,7 @@ div.csl-indent {
 <span id="cb648-8"><a href="basic-plotting-and-visualization.html#cb648-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&#39;Island&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Bill Depth (mm)&#39;</span>) <span class="sc">+</span></span>
 <span id="cb648-9"><a href="basic-plotting-and-visualization.html#cb648-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;none&#39;</span>)</span></code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-313-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-299-1.png" width="672" /></p>
 </div>
 </div>
 <div id="boxplots" class="section level2 hasAnchor" number="7.5">
@@ -470,7 +470,7 @@ div.csl-indent {
 <span id="cb650-6"><a href="basic-plotting-and-visualization.html#cb650-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;Bill Depth (mm)&quot;</span>)</span>
 <span id="cb650-7"><a href="basic-plotting-and-visualization.html#cb650-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&quot;Bill Depth by Island&quot;</span>)</span>
 <span id="cb650-8"><a href="basic-plotting-and-visualization.html#cb650-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-314-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-300-1.png" width="672" /></p>
 </div>
 <div id="r-45" class="section level4 unnumbered hasAnchor">
 <h4>R<a href="basic-plotting-and-visualization.html#r-45" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -479,7 +479,7 @@ div.csl-indent {
 <span id="cb651-2"><a href="basic-plotting-and-visualization.html#cb651-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&#39;lightblue&#39;</span>, <span class="st">&#39;cornflowerblue&#39;</span>, <span class="st">&#39;darkslateblue&#39;</span>),</span>
 <span id="cb651-3"><a href="basic-plotting-and-visualization.html#cb651-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&#39;Boxplot of Bill Depth by Island&#39;</span>, </span>
 <span id="cb651-4"><a href="basic-plotting-and-visualization.html#cb651-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&#39;Island&#39;</span>, <span class="at">ylab =</span> <span class="st">&#39;Bill Depth (mm)&#39;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-315-3.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-301-3.png" width="672" /></p>
 <p>To generate a boxplot with <strong>ggplot2</strong>, add a <code>geom_boxplot()</code> layer to a plot initialized with <code>ggplot()</code>.</p>
 <div class="sourceCode" id="cb652"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb652-1"><a href="basic-plotting-and-visualization.html#cb652-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> island, <span class="at">y =</span> bill_depth_mm)) <span class="sc">+</span></span>
 <span id="cb652-2"><a href="basic-plotting-and-visualization.html#cb652-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> island)) <span class="sc">+</span></span>
@@ -487,7 +487,7 @@ div.csl-indent {
 <span id="cb652-4"><a href="basic-plotting-and-visualization.html#cb652-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&#39;Boxplot of Bill Depth by Island&#39;</span>, </span>
 <span id="cb652-5"><a href="basic-plotting-and-visualization.html#cb652-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&#39;Island&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Bill Depth (mm)&#39;</span>) <span class="sc">+</span></span>
 <span id="cb652-6"><a href="basic-plotting-and-visualization.html#cb652-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;none&#39;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-316-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-302-1.png" width="672" /></p>
 </div>
 </div>
 <div id="facet-plots" class="section level2 hasAnchor" number="7.6">
@@ -500,19 +500,19 @@ div.csl-indent {
 <span id="cb653-2"><a href="basic-plotting-and-visualization.html#cb653-2" aria-hidden="true" tabindex="-1"></a>sns.lmplot(x <span class="op">=</span> <span class="st">&quot;bill_length_mm&quot;</span>, y <span class="op">=</span> <span class="st">&quot;bill_depth_mm&quot;</span>, </span>
 <span id="cb653-3"><a href="basic-plotting-and-visualization.html#cb653-3" aria-hidden="true" tabindex="-1"></a>           col <span class="op">=</span> <span class="st">&quot;species&quot;</span>,</span>
 <span id="cb653-4"><a href="basic-plotting-and-visualization.html#cb653-4" aria-hidden="true" tabindex="-1"></a>           data <span class="op">=</span> penguins, ci <span class="op">=</span> <span class="va">None</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-317-1.png" width="744" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-303-1.png" width="744" /></p>
 <p>To facet by two variables, provide variables to both the <code>col</code> and <code>row</code> arguments.</p>
 <div class="sourceCode" id="cb654"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb654-1"><a href="basic-plotting-and-visualization.html#cb654-1" aria-hidden="true" tabindex="-1"></a>plt.clf()</span>
 <span id="cb654-2"><a href="basic-plotting-and-visualization.html#cb654-2" aria-hidden="true" tabindex="-1"></a>sns.lmplot(x <span class="op">=</span> <span class="st">&quot;bill_length_mm&quot;</span>, y <span class="op">=</span> <span class="st">&quot;bill_depth_mm&quot;</span>, </span>
 <span id="cb654-3"><a href="basic-plotting-and-visualization.html#cb654-3" aria-hidden="true" tabindex="-1"></a>           col <span class="op">=</span> <span class="st">&quot;species&quot;</span>, row <span class="op">=</span> <span class="st">&quot;sex&quot;</span>,</span>
 <span id="cb654-4"><a href="basic-plotting-and-visualization.html#cb654-4" aria-hidden="true" tabindex="-1"></a>           data <span class="op">=</span> penguins, ci <span class="op">=</span> <span class="va">None</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-318-3.png" width="744" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-304-3.png" width="744" /></p>
 <p>Set <code>lowess = True</code> for smooth trend lines. Notice also that color can be mapped to the same variable used for faceting.</p>
 <div class="sourceCode" id="cb655"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb655-1"><a href="basic-plotting-and-visualization.html#cb655-1" aria-hidden="true" tabindex="-1"></a>plt.clf()</span>
 <span id="cb655-2"><a href="basic-plotting-and-visualization.html#cb655-2" aria-hidden="true" tabindex="-1"></a>sns.lmplot(x <span class="op">=</span> <span class="st">&quot;bill_length_mm&quot;</span>, y <span class="op">=</span> <span class="st">&quot;bill_depth_mm&quot;</span>, </span>
 <span id="cb655-3"><a href="basic-plotting-and-visualization.html#cb655-3" aria-hidden="true" tabindex="-1"></a>           col <span class="op">=</span> <span class="st">&quot;species&quot;</span>, hue <span class="op">=</span> <span class="st">&quot;species&quot;</span>,</span>
 <span id="cb655-4"><a href="basic-plotting-and-visualization.html#cb655-4" aria-hidden="true" tabindex="-1"></a>           data <span class="op">=</span> penguins, ci <span class="op">=</span> <span class="va">None</span>, lowess <span class="op">=</span> <span class="va">True</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-319-5.png" width="744" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-305-5.png" width="744" /></p>
 <p>The <a href="https://seaborn.pydata.org/generated/seaborn.lmplot.html#seaborn.lmplot">lmplot</a> help page showcases other examples.</p>
 </div>
 <div id="r-46" class="section level4 unnumbered hasAnchor">
@@ -522,20 +522,20 @@ div.csl-indent {
 <span id="cb656-2"><a href="basic-plotting-and-visualization.html#cb656-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> penguins,</span>
 <span id="cb656-3"><a href="basic-plotting-and-visualization.html#cb656-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">panel =</span> panel.smooth,</span>
 <span id="cb656-4"><a href="basic-plotting-and-visualization.html#cb656-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">rows =</span> <span class="dv">1</span>, <span class="at">col =</span> <span class="st">&quot;navy&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-320-7.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-306-7.png" width="672" /></p>
 <p>To condition on two variables, use formula notation with syntax: <code>y ~ x | grp_var1 * grp_var2</code>.</p>
 <div class="sourceCode" id="cb657"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb657-1"><a href="basic-plotting-and-visualization.html#cb657-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coplot</span>(bill_depth_mm <span class="sc">~</span> bill_length_mm <span class="sc">|</span> species <span class="sc">*</span> sex, </span>
 <span id="cb657-2"><a href="basic-plotting-and-visualization.html#cb657-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> penguins,</span>
 <span id="cb657-3"><a href="basic-plotting-and-visualization.html#cb657-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">panel =</span> panel.smooth,</span>
 <span id="cb657-4"><a href="basic-plotting-and-visualization.html#cb657-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="st">&quot;navy&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-321-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-307-1.png" width="672" /></p>
 <p>The labels of the conditioning variables unfortunately use a lot of real estate in the margins, and there is no easy way to modify that. However, this design works quite well when we condition on a <em>numeric variable</em>. The <code>coplot()</code> function automatically creates overlapping group intervals to condition on, and the stacked layout of the labels helps us visualize how the relationship between y and x changes between the groups. To manually set the number of groups, use the <code>number</code> argument. Below we specify 4 groups to be generated for “bill_length_mm”.</p>
 <div class="sourceCode" id="cb658"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb658-1"><a href="basic-plotting-and-visualization.html#cb658-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coplot</span>(flipper_length_mm <span class="sc">~</span> body_mass_g <span class="sc">|</span> bill_length_mm, </span>
 <span id="cb658-2"><a href="basic-plotting-and-visualization.html#cb658-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> penguins,</span>
 <span id="cb658-3"><a href="basic-plotting-and-visualization.html#cb658-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">panel =</span> panel.smooth,</span>
 <span id="cb658-4"><a href="basic-plotting-and-visualization.html#cb658-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">number =</span> <span class="dv">4</span>, </span>
 <span id="cb658-5"><a href="basic-plotting-and-visualization.html#cb658-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">rows =</span> <span class="dv">1</span>, <span class="at">col =</span> <span class="st">&quot;navy&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-322-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-308-1.png" width="672" /></p>
 <p>Alternatively, <strong>ggplot2</strong> provides a intuitive and easy-to-use method for generating facet plots: A user specifies the aesthetics of the plot using standard <strong>ggplot2</strong> syntax (i.e., as a series of added layers) and then adds an additional call, <code>facet_wrap()</code> (or <code>facet_grid()</code>; differences are discussed below), specifying the faceting variable(s) to split up the plots by.</p>
 <div class="sourceCode" id="cb659"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb659-1"><a href="basic-plotting-and-visualization.html#cb659-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm)) <span class="sc">+</span></span>
 <span id="cb659-2"><a href="basic-plotting-and-visualization.html#cb659-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&#39;navy&#39;</span>) <span class="sc">+</span></span>
@@ -548,7 +548,7 @@ div.csl-indent {
 <span id="cb659-9"><a href="basic-plotting-and-visualization.html#cb659-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># or vars(species)</span></span>
 <span id="cb659-10"><a href="basic-plotting-and-visualization.html#cb659-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> species)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-323-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-309-1.png" width="672" /></p>
 <p>The number of rows and columns can be manually specified with <code>nrow</code> and <code>ncol</code> arguments in <code>facet_wrap()</code>. By default, the x and y axes of all facet plots will be on the same scale. The axis ranges can be set to vary freely by adding <code>scales = 'free'</code> as an argument (or, alternatively, <code>scales = 'free_x'</code> or <code>scales = 'free_y'</code> to free just the x or y axis).</p>
 <p>Both <code>facet_wrap()</code> and <code>facet_grid()</code> can be used to make facet plots. When faceting based on multiple variables (e.g., species and sex), <code>facet_wrap()</code> will drop group combinations for which there are no data points, whereas <code>facet_grid()</code> will generate a plot for all possible group combinations:</p>
 <div class="sourceCode" id="cb661"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb661-1"><a href="basic-plotting-and-visualization.html#cb661-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm)) <span class="sc">+</span></span>
@@ -556,7 +556,7 @@ div.csl-indent {
 <span id="cb661-3"><a href="basic-plotting-and-visualization.html#cb661-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">se =</span> F, <span class="at">color =</span> <span class="st">&#39;salmon&#39;</span>) <span class="sc">+</span></span>
 <span id="cb661-4"><a href="basic-plotting-and-visualization.html#cb661-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(species, sex))</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-324-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-310-1.png" width="672" /></p>
 <div class="sourceCode" id="cb663"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb663-1"><a href="basic-plotting-and-visualization.html#cb663-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm)) <span class="sc">+</span></span>
 <span id="cb663-2"><a href="basic-plotting-and-visualization.html#cb663-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&#39;navy&#39;</span>) <span class="sc">+</span></span>
 <span id="cb663-3"><a href="basic-plotting-and-visualization.html#cb663-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">se =</span> F, <span class="at">color =</span> <span class="st">&#39;salmon&#39;</span>) <span class="sc">+</span></span>
@@ -565,7 +565,7 @@ div.csl-indent {
 <span id="cb663-6"><a href="basic-plotting-and-visualization.html#cb663-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># for specifying faceting variables</span></span>
 <span id="cb663-7"><a href="basic-plotting-and-visualization.html#cb663-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(sex), <span class="at">cols =</span> <span class="fu">vars</span>(species)) </span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-324-2.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-310-2.png" width="672" /></p>
 
 </div>
 </div>

@@ -311,36 +311,32 @@ See also the `filter()` function in the [**dplyr**](https://dplyr.tidyverse.org/
 
 ## Rename variables
 
-How to rename variables or "column headers".
-
 #### Python {-}
 
-Column names can be changed using the function `.rename()`. Below, we change the column names "cyl" and "wt" to "cylinder" and "WT", respectively.
+Column names can be changed using the function `.rename()`. Below, we change the column names `cyl` and `wt` to `cylinder` and `WT`, respectively.
 
 ```{python}
-mtcars.rename(columns={"cyl":"cylinder", "wt":"WT"})
+mtcars.rename(columns = {"cyl":"cylinder", "wt":"WT"})
 ```
 
-Alternatively, column names can be changed by replacing the vector of column names with a new vector. Below, we create a vector of columns that replaces "drat" with "axle_ratio" using conditional match and indexing and "disp" with "DISP" using indexing.
+Alternatively, column names can be changed by replacing the vector of column names with a new vector. Below, we create a vector of columns that replaces `drat` with `axle_ratio` using conditional match and that replaces `disp` with `DISP` using indexing.
 
 ```{python}
 column_names = mtcars.columns.values
 
-# using conditional match
+# Using conditional match
 column_names[column_names == "drat"] = "axle_ratio"
 
-# using indexing
+# Using indexing
 column_names[2] = "DISP"
 
 mtcars.columns = column_names
 mtcars.columns
 ```
 
-
-
 #### R {-}
 
-Variable names can be changed by their index (ie, order of columns in the data frame). Below the second column is "cyl". We change the name to "cylinders".
+Variable names can be changed by referencing their indexes (i.e., their positions among the columns in a data frame). Below the second column is `cyl`. We change the name to `cylinders.`
 
 ```{r}
 names(mtcars)[2]
@@ -348,7 +344,7 @@ names(mtcars)[2] <- "cylinders"
 names(mtcars)
 ```
 
-Variable names can also be changed by conditional match. Below we find the variable name that matches "drat" and change to "axle_ratio".
+Variable names can also be changed by conditional match. Below we find the variable name that matches `drat` and change it to `axle_ratio.`
 
 ```{r}
 names(mtcars)[names(mtcars) == "drat"]
@@ -360,68 +356,66 @@ More than one variable name can be changed using a vector of positions or matche
 
 ```{r}
 names(mtcars)[c(6,8)] <- c("weight", "engine")
-
-# or
-# names(mtcars)[names(mtcars) %in% c("wt", "vs")] <- c("weight", "engine")
+# Alternatively: names(mtcars)[names(mtcars) %in% c("wt", "vs")] <- c("weight", "engine")
 
 names(mtcars)
 ```
 
-See also the `rename()` function in the [**dplyr**](https://dplyr.tidyverse.org/). 
+See also the `rename()` function in the [**dplyr**](https://dplyr.tidyverse.org/) package.
 
 ## Create, replace and remove variables
 
-We often need to create variables that are functions of other variables, or replace existing variables with an updated version.
+We often need to create variables that are functions of other variables, or we need to replace existing variables with updated versions thereof.
 
 #### Python {-}
-Adding a new variable using the indexing notation and assigning a result adds a new column.
+
+Adding a new variable via indexing notation and assigning a result to it adds a new column.
 
 ```{python}
-# add column for Kilometer per liter
-mtcars['kpl'] = mtcars.mpg/2.352
+# Add column for kilometer per liter
+mtcars['kpl'] = mtcars.mpg / 2.352
 ```
 
-Doing the same with an _existing_ column name updates the values in a column.
+Doing the same with an _existing_ column updates the values in the column.
 
 ```{python}
 # update to liters per 100 Kilometers
-mtcars['kpl'] = 100/mtcars.kpl 
+mtcars['kpl'] = 100 / mtcars.kpl 
 ```
 
 Alternatively, the `.` notation can be used to update the values in a column.
 ```{python}
-# update to liters per 50 Kilometers
-mtcars.kpl = 50/mtcars.kpl 
+# Update to liters per 50 Kilometers
+mtcars.kpl = 50 / mtcars.kpl 
 ```
 
 To remove a column, use the `.drop()` function.
 
 ```{python}
-# drop the kpl variable
-mtcars.drop(columns=['kpl'])
+# Drop the kpl variable
+mtcars.drop(columns = ['kpl'])
 ```
-
 
 #### R {-}
 
-Adding a new variable name after the dollar sign notation and assigning a result adds a new column.
+Adding a new variable name after the dollar sign notation and assigning a result to it adds a new column.
 
 ```{r}
-# add column for Kilometer per liter
-mtcars$kpl <- mtcars$mpg/2.352
+# Add column for kilometer per liter
+mtcars$kpl <- mtcars$mpg / 2.352
 ```
 
 Doing the same with an _existing_ variable updates the values in a column. 
 
 ```{r}
-# update to liters per 100 Kilometers
-mtcars$kpl <- 100/mtcars$kpl 
+# Update to liters per 100 Kilometers
+mtcars$kpl <- 100 / mtcars$kpl 
 ```
 
 To remove a variable, assign it `NULL`.
 
 ```{r}
-# drop the kpl variable
+# Drop the kpl variable
 mtcars$kpl <- NULL
 ```
 
@@ -432,21 +426,22 @@ See also the `mutate()` function in the [**dplyr**](https://dplyr.tidyverse.org/
 You may have data that is numeric but that needs to be treated as a string. 
 
 #### Python {-}
+
 You can change the data type of a column in a DataFrame using the `astype` function.
 
 ```{python}
 mtcars['am'] = mtcars['am'].astype(str)
-type(mtcars.am[0]) # check the type of the first item in 'am' column
+type(mtcars.am[0]) # check the type of the first item in am column
 ```
 
-A potential number-to-string conversion task in Python might be formatting 5-digit American zip codes. Some zip codes begin with 0, but if stored as a numeric value, the 0 is dropped. For example, consider the following pandas DataFrame. Notice the leading 0 is dropped from two of the zip codes.
+A potential number-to-string conversion task in Python might be formatting 5-digit American ZIP Codes. Some zip codes begin with 0, but if stored as a numeric value, the 0 is dropped. For example, consider the following pandas DataFrame. Notice that the leading 0 is dropped from two of the ZIP Codes.
 
 ```{python}
 zc = pandas.read_csv('data/zc.csv')
 print(zc)
 ```
 
-One way to fix this is using the string `zfill()` method. First we convert the numeric column to string type using the method we just demonstrated. Then we access the "zip" column using `zc.zip` and the `zfill()` method using `str.zfill` with the width parameter set to 5. This pads the string with "0" on the left to make each value 5 characters wide. 
+One way to fix this is using the string `zfill()` method. First, we convert the numeric column to string type using the method we just demonstrated. Then we access the `zip` column using `zc.zip` and the `zfill()` method using `str.zfill` with the width parameter set to 5. This pads the string with `0` on the left as necessary to make each value five characters wide. 
 
 ```{python}
 zc['zip'] = zc['zip'].astype(str)
@@ -454,10 +449,10 @@ zc['zip'] = zc.zip.str.zfill(5)
 print(zc)
 ```
 
-If we knew we were importing zip codes using `read_csv`, we could also use the `dtype` argument to specify which storage type to use for the "zip" column. Below we pass a dictionary that maps the "str" type to the "zip" column. The result is a properly formatted zip code column.
+If we knew we were importing zip codes using `read_csv`, we could also use the `dtype` argument to specify which storage type to use for the `zip` column. Below, we pass a dictionary that maps the `str` type to the `zip` column. The result is a properly formatted ZIP Code column.
 
 ```{python}
-zc = pandas.read_csv('data/zc.csv', dtype = {'zip': 'str'})
+zc = pandas.read_csv('data/zc.csv', dtype = {'zip':'str'})
 print(zc)
 ```
 
@@ -471,27 +466,26 @@ head(mtcars$am)
 head(as.character(mtcars$am))
 ```
 
-Note we just demonstrated conversion. To save the conversion we need to _assign_ the result to the data frame.
+To save the results of this process---this conversion---we need to _assign_ the result to the data frame.
 
 ```{r}
-# add new string variable am_ch
+# Add new string variable am_ch
 mtcars$am_ch <- as.character(mtcars$am)
 head(mtcars$am_ch)
 ```
 
-
-The `factor()` function can also be used to convert a numeric vector into a  categorical variable. The result is not exactly a string, however. A factor is made of integers with character labels. Factors are useful for character data that have a fixed set of levels (eg, "grade 1", grade 2", etc)
+The `factor()` function can also be used to convert a numeric vector into a  categorical variable. However, the result is not exactly a string: A factor is made of integers with character labels. Factors are useful for character data that have a fixed set of levels (e.g., "grade 1," grade 2," etc.).
 
 ```{r}
-# convert to factor
+# Convert to factor
 head(mtcars$am)
 head(factor(mtcars$am))
 
-# convert to factor with labels
+# Convert to factor with labels
 head(factor(mtcars$am, labels = c("automatic", "manual")))
 ```
 
-Again we just demonstrated factor conversion. To save the conversion we need to assign to the data frame.
+As before, to save the results of this conversion to the data frame, we need to assign the results to a variable:
 
 ```{r}
 # create factor variable am_fac
@@ -499,21 +493,20 @@ mtcars$am_fac <- factor(mtcars$am, labels = c("automatic", "manual"))
 head(mtcars$am_fac)
 ```
 
-A common number-to-string conversion task in R is formatting 5-digit American zip codes. Some zip codes begin with 0, but if stored as a numeric value, the 0 is dropped. 
+A common number-to-string conversion task in R is formatting 5-digit American ZIP Codes as demonstrated above in Python. Some zip codes begin with 0, but if stored as a numeric value, the 0 is dropped.
 
 ```{r}
 zip_codes <- c(03766, 03748, 22901, 03264)
 zip_codes
 ```
 
-We need to store the zip code as a character value so the 0 is preserved. One way to do this is via the `sprintf()` function in base R. The first argument is the _format string_ or _conversion specification_. A conversion specification begins with "%". The following "0" and "5" says to format the zip_codes vector as a 5-digit string padded by zeroes on the left. The final "i" says we're working with integer values. 
+We need to store the zip code as a character value so the 0 is preserved. One way to do this is via the `sprintf()` function in base R. The first argument is the _format string_ or _conversion specification_. A conversion specification begins with `%`. The following `0` and `5` says to format the zip_codes vector as a 5-digit string padded by zeroes on the left. The final `i` says we're working with integer values. 
 
 ```{r}
 sprintf("%05i", zip_codes)
 ```
 
 See also the `str_pad()` function in the **stringr** package.
-
 
 ## Create numbers from strings
 
