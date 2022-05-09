@@ -855,11 +855,13 @@ The `datetime()` class that creates a datetime object containing information abo
 # Input attributes in order
 z = dt.datetime(1981, 4, 12, 11, 34, 56)
 print(z)
-
+```
+```{python}
 # Input attributes using attribute names (any order)
 z2= dt.datetime(year = 2021, day = 6, month = 12, hour = 6)
 print(z2)
-
+```
+```{python}
 # No time attributes
 z3 = dt.datetime(1981, 4, 12)
 print(z3)
@@ -883,11 +885,13 @@ To add or subtract dates and times to/from these objects, we can use operators l
 # Create a datetime object for the current time
 d1 = dt.datetime.now()
 print(d1)
-
+```
+```{python}
 # Add 550 days to the datetime object 
 d2 = d1 + dt.timedelta(days = 550)
 print(d2)
-
+```
+```{python}
 # Subtract five hours from the datetime object 
 d3 = d1 - dt.timedelta(hours = 5)
 print(d3)
@@ -1004,46 +1008,42 @@ How to take a random sample of rows from a data frame. The sample is usually eit
 
 #### Python {-}
 
-The pandas package provide a function for taking a sample of fixed size or a proportion. To sample with replacement, set `replace = TRUE`. 
+The pandas package provides a function for taking a sample of fixed size or a proportion, `sample()`. To sample with replacement, set `replace = TRUE`. 
 
-Additionally, the random sample will change every time the code is run. To always generate the same "random" sample, set `random_state` to any positive integer.
+By default, the random sample will change every time the code is run. To always generate the same "random" sample, set `random_state` to any positive integer.
 
 To create a sample with a fixed number of rows, use the `n` argument.
 ```{python}
-# sample 5 rows from mtcars
-mtcars.sample(n=5, replace=True)
+# Sample five rows from mtcars
+mtcars.sample(n = 5, replace = True)
 ```
 
 To create a sample of a proportion, use the `frac` argument.
 ```{python}
-# sample 20% of rows from mtcars
-mtcars.sample(frac = 0.20, random_state=1)
+# Sample 20% of the rows from mtcars
+mtcars.sample(frac = 0.20, random_state = 1)
 ```
 
-The numpy function `random.choice()` in combination with the `loc()` function can be used to sample from a DataFrame. 
+The NumPy function `random.choice()` in combination with the `loc()` function can be used to sample from a DataFrame. 
 
 The `random.choice()` function creates a random sample according to the given parameters. The `loc()` function is used to access rows and columns by index. 
 
 ```{python}
-# import the numpy package
 import numpy as np
 
-# create a random sample of size 5 with replacement
-random_sample = np.random.choice(len(mtcars), (5,), replace=True)
+# Create a random sample of size five with replacement
+random_sample = np.random.choice(len(mtcars), (5, ), replace=True)
 
-# use random_sample to sample from mtcars
-mtcars.loc[random_sample,]
+# Use random_sample to sample from mtcars
+mtcars.loc[random_sample, ]
 ```
 
-The random sample will change every time the code is run. To always generate the same "random" sample, use the `random.seed()` function with any positive integer.
+As before, setting `random.seed()` to a positive integer will ensure that the same "random" sample is generated each time the code is run.
 
 ```{python}
-# setting seed to always get same random sample
 np.random.seed(123)
-
-# create a random sample of size 5 with replacement
 sample = np.random.choice(len(mtcars), (5,), replace=True)
-mtcars.loc[sample,]
+mtcars.loc[sample, ]
 ```
 
 #### R {-}
@@ -1051,10 +1051,10 @@ mtcars.loc[sample,]
 There are many ways to sample rows from a data frame in R. The [**dplyr**](https://dplyr.tidyverse.org/) package provides a convenience function, `slice_sample()`, for taking either a fixed sample size or a proportion.
 
 ```{r}
-# sample 5 rows from mtcars
+# Sample five rows from mtcars
 dplyr::slice_sample(mtcars, n = 5)
 
-# sample 20% of rows from mtcars
+# Sample 20% of rows from mtcars
 dplyr::slice_sample(mtcars, prop = 0.20)
 
 ```
@@ -1064,28 +1064,25 @@ To sample with replacement, set `replace = TRUE`.
 The base R functions `sample()` and `runif()` can be combined to sample fixed sizes or approximate proportions.
 
 ```{r}
-# sample 5 rows from mtcars
-# get random row numbers
+# Sample five rows from mtcars
+# First, get five random row numbers
 i <- sample(nrow(mtcars), size = 5)
-# use i to select rows
-mtcars[i,]
+# Then, use i to subset those rows
+mtcars[i, ]
 ```
 
 ```{r}
-# sample about 20% of rows from mtcars
-# generate random values on range of [0,1]
+# Sample about 20% of rows from mtcars
+# First, generate random values on range of [0,1]
 i <- runif(nrow(mtcars))
-# use i < 0.20 logical vector to 
-# select rows that correspond to TRUE
-mtcars[i < 0.20,]
+# Then, use i < 0.20 logical vector to select rows that correspond to TRUE
+mtcars[i < 0.20, ]
 ```
 
 The random sample will change every time the code is run. To always generate the same "random" sample, use the `set.seed()` function with any positive integer.
 
 ```{r}
-# always get the same random sample
 set.seed(123)
 i <- runif(nrow(mtcars))
 mtcars[i < 0.20,]
 ```
-

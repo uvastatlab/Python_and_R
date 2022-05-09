@@ -1206,17 +1206,15 @@ div.csl-indent {
 <p>The <code>datetime()</code> class that creates a datetime object containing information about both date and time. The attributes must be input as integers wiht the following default order: year, month, day, hour, minute, and second. Like the date and time classes, we can specify specific attributes in the arguments using the names thereof. If we don’t specify any time components, the datetime object defaults to time 00:00:00.</p>
 <div class="sourceCode" id="cb457"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb457-1"><a href="data-manipulation.html#cb457-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Input attributes in order</span></span>
 <span id="cb457-2"><a href="data-manipulation.html#cb457-2" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> dt.datetime(<span class="dv">1981</span>, <span class="dv">4</span>, <span class="dv">12</span>, <span class="dv">11</span>, <span class="dv">34</span>, <span class="dv">56</span>)</span>
-<span id="cb457-3"><a href="data-manipulation.html#cb457-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(z)</span>
-<span id="cb457-4"><a href="data-manipulation.html#cb457-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb457-5"><a href="data-manipulation.html#cb457-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Input attributes using attribute names (any order)</span></span></code></pre></div>
+<span id="cb457-3"><a href="data-manipulation.html#cb457-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(z)</span></code></pre></div>
 <pre><code>## 1981-04-12 11:34:56</code></pre>
-<div class="sourceCode" id="cb459"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb459-1"><a href="data-manipulation.html#cb459-1" aria-hidden="true" tabindex="-1"></a>z2<span class="op">=</span> dt.datetime(year <span class="op">=</span> <span class="dv">2021</span>, day <span class="op">=</span> <span class="dv">6</span>, month <span class="op">=</span> <span class="dv">12</span>, hour <span class="op">=</span> <span class="dv">6</span>)</span>
-<span id="cb459-2"><a href="data-manipulation.html#cb459-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(z2)</span>
-<span id="cb459-3"><a href="data-manipulation.html#cb459-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb459-4"><a href="data-manipulation.html#cb459-4" aria-hidden="true" tabindex="-1"></a><span class="co"># No time attributes</span></span></code></pre></div>
+<div class="sourceCode" id="cb459"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb459-1"><a href="data-manipulation.html#cb459-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Input attributes using attribute names (any order)</span></span>
+<span id="cb459-2"><a href="data-manipulation.html#cb459-2" aria-hidden="true" tabindex="-1"></a>z2<span class="op">=</span> dt.datetime(year <span class="op">=</span> <span class="dv">2021</span>, day <span class="op">=</span> <span class="dv">6</span>, month <span class="op">=</span> <span class="dv">12</span>, hour <span class="op">=</span> <span class="dv">6</span>)</span>
+<span id="cb459-3"><a href="data-manipulation.html#cb459-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(z2)</span></code></pre></div>
 <pre><code>## 2021-12-06 06:00:00</code></pre>
-<div class="sourceCode" id="cb461"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb461-1"><a href="data-manipulation.html#cb461-1" aria-hidden="true" tabindex="-1"></a>z3 <span class="op">=</span> dt.datetime(<span class="dv">1981</span>, <span class="dv">4</span>, <span class="dv">12</span>)</span>
-<span id="cb461-2"><a href="data-manipulation.html#cb461-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(z3)</span></code></pre></div>
+<div class="sourceCode" id="cb461"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb461-1"><a href="data-manipulation.html#cb461-1" aria-hidden="true" tabindex="-1"></a><span class="co"># No time attributes</span></span>
+<span id="cb461-2"><a href="data-manipulation.html#cb461-2" aria-hidden="true" tabindex="-1"></a>z3 <span class="op">=</span> dt.datetime(<span class="dv">1981</span>, <span class="dv">4</span>, <span class="dv">12</span>)</span>
+<span id="cb461-3"><a href="data-manipulation.html#cb461-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(z3)</span></code></pre></div>
 <pre><code>## 1981-04-12 00:00:00</code></pre>
 <p>Again, we can extract attributes in exactly the same way as we did for the date and time classes.</p>
 <div class="sourceCode" id="cb463"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb463-1"><a href="data-manipulation.html#cb463-1" aria-hidden="true" tabindex="-1"></a>z.year</span></code></pre></div>
@@ -1230,22 +1228,20 @@ div.csl-indent {
 <p>To add or subtract dates and times to/from these objects, we can use operators like <code>+</code> and <code>-</code>:</p>
 <div class="sourceCode" id="cb469"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb469-1"><a href="data-manipulation.html#cb469-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a datetime object for the current time</span></span>
 <span id="cb469-2"><a href="data-manipulation.html#cb469-2" aria-hidden="true" tabindex="-1"></a>d1 <span class="op">=</span> dt.datetime.now()</span>
-<span id="cb469-3"><a href="data-manipulation.html#cb469-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d1)</span>
-<span id="cb469-4"><a href="data-manipulation.html#cb469-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb469-5"><a href="data-manipulation.html#cb469-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Add 550 days to the datetime object </span></span></code></pre></div>
-<pre><code>## 2022-05-09 15:51:51.079630</code></pre>
-<div class="sourceCode" id="cb471"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb471-1"><a href="data-manipulation.html#cb471-1" aria-hidden="true" tabindex="-1"></a>d2 <span class="op">=</span> d1 <span class="op">+</span> dt.timedelta(days <span class="op">=</span> <span class="dv">550</span>)</span>
-<span id="cb471-2"><a href="data-manipulation.html#cb471-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d2)</span>
-<span id="cb471-3"><a href="data-manipulation.html#cb471-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb471-4"><a href="data-manipulation.html#cb471-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Subtract five hours from the datetime object </span></span></code></pre></div>
-<pre><code>## 2023-11-10 15:51:51.079630</code></pre>
-<div class="sourceCode" id="cb473"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb473-1"><a href="data-manipulation.html#cb473-1" aria-hidden="true" tabindex="-1"></a>d3 <span class="op">=</span> d1 <span class="op">-</span> dt.timedelta(hours <span class="op">=</span> <span class="dv">5</span>)</span>
-<span id="cb473-2"><a href="data-manipulation.html#cb473-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d3)</span></code></pre></div>
-<pre><code>## 2022-05-09 10:51:51.079630</code></pre>
+<span id="cb469-3"><a href="data-manipulation.html#cb469-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d1)</span></code></pre></div>
+<pre><code>## 2022-05-09 15:59:25.592728</code></pre>
+<div class="sourceCode" id="cb471"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb471-1"><a href="data-manipulation.html#cb471-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add 550 days to the datetime object </span></span>
+<span id="cb471-2"><a href="data-manipulation.html#cb471-2" aria-hidden="true" tabindex="-1"></a>d2 <span class="op">=</span> d1 <span class="op">+</span> dt.timedelta(days <span class="op">=</span> <span class="dv">550</span>)</span>
+<span id="cb471-3"><a href="data-manipulation.html#cb471-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d2)</span></code></pre></div>
+<pre><code>## 2023-11-10 15:59:25.592728</code></pre>
+<div class="sourceCode" id="cb473"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb473-1"><a href="data-manipulation.html#cb473-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subtract five hours from the datetime object </span></span>
+<span id="cb473-2"><a href="data-manipulation.html#cb473-2" aria-hidden="true" tabindex="-1"></a>d3 <span class="op">=</span> d1 <span class="op">-</span> dt.timedelta(hours <span class="op">=</span> <span class="dv">5</span>)</span>
+<span id="cb473-3"><a href="data-manipulation.html#cb473-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d3)</span></code></pre></div>
+<pre><code>## 2022-05-09 10:59:25.592728</code></pre>
 <p>Finally, we will discuss how to convert strings to datetime objects and vice versa.</p>
 <p>The attribute <code>strftime()</code> converts datetime objects to strings. In the argument of <code>strftime()</code>, you can specify the format you would like.</p>
 <div class="sourceCode" id="cb475"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb475-1"><a href="data-manipulation.html#cb475-1" aria-hidden="true" tabindex="-1"></a>d1</span></code></pre></div>
-<pre><code>## datetime.datetime(2022, 5, 9, 15, 51, 51, 79630)</code></pre>
+<pre><code>## datetime.datetime(2022, 5, 9, 15, 59, 25, 592728)</code></pre>
 <div class="sourceCode" id="cb477"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb477-1"><a href="data-manipulation.html#cb477-1" aria-hidden="true" tabindex="-1"></a>d1.strftime(<span class="st">&quot;%A %m %Y&quot;</span>)</span></code></pre></div>
 <pre><code>## &#39;Monday 05 2022&#39;</code></pre>
 <div class="sourceCode" id="cb479"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb479-1"><a href="data-manipulation.html#cb479-1" aria-hidden="true" tabindex="-1"></a>d1.strftime(<span class="st">&quot;%a %m %y&quot;</span>)</span></code></pre></div>
@@ -1315,11 +1311,11 @@ div.csl-indent {
 <p>How to take a random sample of rows from a data frame. The sample is usually either a fixed size or a proportion.</p>
 <div id="python-29" class="section level4 unnumbered hasAnchor">
 <h4>Python<a href="data-manipulation.html#python-29" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>The pandas package provide a function for taking a sample of fixed size or a proportion. To sample with replacement, set <code>replace = TRUE</code>.</p>
-<p>Additionally, the random sample will change every time the code is run. To always generate the same “random” sample, set <code>random_state</code> to any positive integer.</p>
+<p>The pandas package provides a function for taking a sample of fixed size or a proportion, <code>sample()</code>. To sample with replacement, set <code>replace = TRUE</code>.</p>
+<p>By default, the random sample will change every time the code is run. To always generate the same “random” sample, set <code>random_state</code> to any positive integer.</p>
 <p>To create a sample with a fixed number of rows, use the <code>n</code> argument.</p>
-<div class="sourceCode" id="cb503"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb503-1"><a href="data-manipulation.html#cb503-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sample 5 rows from mtcars</span></span>
-<span id="cb503-2"><a href="data-manipulation.html#cb503-2" aria-hidden="true" tabindex="-1"></a>mtcars.sample(n<span class="op">=</span><span class="dv">5</span>, replace<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb503"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb503-1"><a href="data-manipulation.html#cb503-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample five rows from mtcars</span></span>
+<span id="cb503-2"><a href="data-manipulation.html#cb503-2" aria-hidden="true" tabindex="-1"></a>mtcars.sample(n <span class="op">=</span> <span class="dv">5</span>, replace <span class="op">=</span> <span class="va">True</span>)</span></code></pre></div>
 <pre><code>##      MPG  CYL   DISP   HP  AXLE_RATIO  ...  VS  AM  GEAR CARB       KPL
 ## 27  30.4    4   95.1  113        3.77  ...   1   1     5    2  6.462585
 ## 14  10.4    8  472.0  205        2.93  ...   0   0     3    4  2.210884
@@ -1329,8 +1325,8 @@ div.csl-indent {
 ## 
 ## [5 rows x 12 columns]</code></pre>
 <p>To create a sample of a proportion, use the <code>frac</code> argument.</p>
-<div class="sourceCode" id="cb505"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb505-1"><a href="data-manipulation.html#cb505-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sample 20% of rows from mtcars</span></span>
-<span id="cb505-2"><a href="data-manipulation.html#cb505-2" aria-hidden="true" tabindex="-1"></a>mtcars.sample(frac <span class="op">=</span> <span class="fl">0.20</span>, random_state<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb505"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb505-1"><a href="data-manipulation.html#cb505-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample 20% of the rows from mtcars</span></span>
+<span id="cb505-2"><a href="data-manipulation.html#cb505-2" aria-hidden="true" tabindex="-1"></a>mtcars.sample(frac <span class="op">=</span> <span class="fl">0.20</span>, random_state <span class="op">=</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>##      MPG  CYL   DISP   HP  AXLE_RATIO  ...  VS  AM  GEAR CARB       KPL
 ## 27  30.4    4   95.1  113        3.77  ...   1   1     5    2  6.462585
 ## 3   21.4    6  258.0  110        3.08  ...   1   0     3    1  4.549320
@@ -1340,29 +1336,25 @@ div.csl-indent {
 ## 17  32.4    4   78.7   66        4.08  ...   1   1     4    1  6.887755
 ## 
 ## [6 rows x 12 columns]</code></pre>
-<p>The numpy function <code>random.choice()</code> in combination with the <code>loc()</code> function can be used to sample from a DataFrame.</p>
+<p>The NumPy function <code>random.choice()</code> in combination with the <code>loc()</code> function can be used to sample from a DataFrame.</p>
 <p>The <code>random.choice()</code> function creates a random sample according to the given parameters. The <code>loc()</code> function is used to access rows and columns by index.</p>
-<div class="sourceCode" id="cb507"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb507-1"><a href="data-manipulation.html#cb507-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import the numpy package</span></span>
-<span id="cb507-2"><a href="data-manipulation.html#cb507-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb507-3"><a href="data-manipulation.html#cb507-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb507-4"><a href="data-manipulation.html#cb507-4" aria-hidden="true" tabindex="-1"></a><span class="co"># create a random sample of size 5 with replacement</span></span>
-<span id="cb507-5"><a href="data-manipulation.html#cb507-5" aria-hidden="true" tabindex="-1"></a>random_sample <span class="op">=</span> np.random.choice(<span class="bu">len</span>(mtcars), (<span class="dv">5</span>,), replace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb507-6"><a href="data-manipulation.html#cb507-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb507-7"><a href="data-manipulation.html#cb507-7" aria-hidden="true" tabindex="-1"></a><span class="co"># use random_sample to sample from mtcars</span></span>
-<span id="cb507-8"><a href="data-manipulation.html#cb507-8" aria-hidden="true" tabindex="-1"></a>mtcars.loc[random_sample,]</span></code></pre></div>
+<div class="sourceCode" id="cb507"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb507-1"><a href="data-manipulation.html#cb507-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb507-2"><a href="data-manipulation.html#cb507-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb507-3"><a href="data-manipulation.html#cb507-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a random sample of size five with replacement</span></span>
+<span id="cb507-4"><a href="data-manipulation.html#cb507-4" aria-hidden="true" tabindex="-1"></a>random_sample <span class="op">=</span> np.random.choice(<span class="bu">len</span>(mtcars), (<span class="dv">5</span>, ), replace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb507-5"><a href="data-manipulation.html#cb507-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb507-6"><a href="data-manipulation.html#cb507-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Use random_sample to sample from mtcars</span></span>
+<span id="cb507-7"><a href="data-manipulation.html#cb507-7" aria-hidden="true" tabindex="-1"></a>mtcars.loc[random_sample, ]</span></code></pre></div>
 <pre><code>##      MPG  CYL   DISP   HP  AXLE_RATIO    WT   QSEC  VS AM  GEAR  CARB       KPL
 ## 29  19.7    6  145.0  175        3.62  2.77  15.50   0  1     5     6  4.187925
 ## 14  10.4    8  472.0  205        2.93  5.25  17.98   0  0     3     4  2.210884
 ## 23  13.3    8  350.0  245        3.73  3.84  15.41   0  0     3     4  2.827381
 ## 31  21.4    4  121.0  109        4.11  2.78  18.60   1  1     4     2  4.549320
 ## 31  21.4    4  121.0  109        4.11  2.78  18.60   1  1     4     2  4.549320</code></pre>
-<p>The random sample will change every time the code is run. To always generate the same “random” sample, use the <code>random.seed()</code> function with any positive integer.</p>
-<div class="sourceCode" id="cb509"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb509-1"><a href="data-manipulation.html#cb509-1" aria-hidden="true" tabindex="-1"></a><span class="co"># setting seed to always get same random sample</span></span>
-<span id="cb509-2"><a href="data-manipulation.html#cb509-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">123</span>)</span>
-<span id="cb509-3"><a href="data-manipulation.html#cb509-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb509-4"><a href="data-manipulation.html#cb509-4" aria-hidden="true" tabindex="-1"></a><span class="co"># create a random sample of size 5 with replacement</span></span>
-<span id="cb509-5"><a href="data-manipulation.html#cb509-5" aria-hidden="true" tabindex="-1"></a>sample <span class="op">=</span> np.random.choice(<span class="bu">len</span>(mtcars), (<span class="dv">5</span>,), replace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb509-6"><a href="data-manipulation.html#cb509-6" aria-hidden="true" tabindex="-1"></a>mtcars.loc[sample,]</span></code></pre></div>
+<p>As before, setting <code>random.seed()</code> to a positive integer will ensure that the same “random” sample is generated each time the code is run.</p>
+<div class="sourceCode" id="cb509"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb509-1"><a href="data-manipulation.html#cb509-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">123</span>)</span>
+<span id="cb509-2"><a href="data-manipulation.html#cb509-2" aria-hidden="true" tabindex="-1"></a>sample <span class="op">=</span> np.random.choice(<span class="bu">len</span>(mtcars), (<span class="dv">5</span>,), replace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb509-3"><a href="data-manipulation.html#cb509-3" aria-hidden="true" tabindex="-1"></a>mtcars.loc[sample, ]</span></code></pre></div>
 <pre><code>##      MPG  CYL   DISP   HP  AXLE_RATIO    WT   QSEC  VS AM  GEAR  CARB       KPL
 ## 30  15.0    8  301.0  335        3.54  3.57  14.60   0  1     5     8  3.188776
 ## 13  15.2    8  275.8  180        3.07  3.78  18.00   0  0     3     3  3.231293
@@ -1373,7 +1365,7 @@ div.csl-indent {
 <div id="r-29" class="section level4 unnumbered hasAnchor">
 <h4>R<a href="data-manipulation.html#r-29" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>There are many ways to sample rows from a data frame in R. The <a href="https://dplyr.tidyverse.org/"><strong>dplyr</strong></a> package provides a convenience function, <code>slice_sample()</code>, for taking either a fixed sample size or a proportion.</p>
-<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb511-1"><a href="data-manipulation.html#cb511-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sample 5 rows from mtcars</span></span>
+<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb511-1"><a href="data-manipulation.html#cb511-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample five rows from mtcars</span></span>
 <span id="cb511-2"><a href="data-manipulation.html#cb511-2" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">slice_sample</span>(mtcars, <span class="at">n =</span> <span class="dv">5</span>)</span></code></pre></div>
 <pre><code>##    mpg cylinders  disp  hp axle_ratio weight  qsec engine am gear carb am_ch    am_fac
 ## 1 15.0         8 301.0 335       3.54  3.570 14.60      0  1    5    8     1    manual
@@ -1381,7 +1373,7 @@ div.csl-indent {
 ## 3 14.7         8 440.0 230       3.23  5.345 17.42      0  0    3    4     0 automatic
 ## 4 22.8         4 140.8  95       3.92  3.150 22.90      1  0    4    2     0 automatic
 ## 5 14.3         8 360.0 245       3.21  3.570 15.84      0  0    3    4     0 automatic</code></pre>
-<div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb513-1"><a href="data-manipulation.html#cb513-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sample 20% of rows from mtcars</span></span>
+<div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb513-1"><a href="data-manipulation.html#cb513-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample 20% of rows from mtcars</span></span>
 <span id="cb513-2"><a href="data-manipulation.html#cb513-2" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">slice_sample</span>(mtcars, <span class="at">prop =</span> <span class="fl">0.20</span>)</span></code></pre></div>
 <pre><code>##    mpg cylinders  disp  hp axle_ratio weight  qsec engine am gear carb am_ch    am_fac
 ## 1 15.2         8 304.0 150       3.15  3.435 17.30      0  0    3    2     0 automatic
@@ -1392,23 +1384,22 @@ div.csl-indent {
 ## 6 10.4         8 460.0 215       3.00  5.424 17.82      0  0    3    4     0 automatic</code></pre>
 <p>To sample with replacement, set <code>replace = TRUE</code>.</p>
 <p>The base R functions <code>sample()</code> and <code>runif()</code> can be combined to sample fixed sizes or approximate proportions.</p>
-<div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb515-1"><a href="data-manipulation.html#cb515-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sample 5 rows from mtcars</span></span>
-<span id="cb515-2"><a href="data-manipulation.html#cb515-2" aria-hidden="true" tabindex="-1"></a><span class="co"># get random row numbers</span></span>
+<div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb515-1"><a href="data-manipulation.html#cb515-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample five rows from mtcars</span></span>
+<span id="cb515-2"><a href="data-manipulation.html#cb515-2" aria-hidden="true" tabindex="-1"></a><span class="co"># First, get five random row numbers</span></span>
 <span id="cb515-3"><a href="data-manipulation.html#cb515-3" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(mtcars), <span class="at">size =</span> <span class="dv">5</span>)</span>
-<span id="cb515-4"><a href="data-manipulation.html#cb515-4" aria-hidden="true" tabindex="-1"></a><span class="co"># use i to select rows</span></span>
-<span id="cb515-5"><a href="data-manipulation.html#cb515-5" aria-hidden="true" tabindex="-1"></a>mtcars[i,]</span></code></pre></div>
+<span id="cb515-4"><a href="data-manipulation.html#cb515-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Then, use i to subset those rows</span></span>
+<span id="cb515-5"><a href="data-manipulation.html#cb515-5" aria-hidden="true" tabindex="-1"></a>mtcars[i, ]</span></code></pre></div>
 <pre><code>##     mpg cylinders  disp  hp axle_ratio weight  qsec engine am gear carb am_ch    am_fac
 ## 11 17.8         6 167.6 123       3.92  3.440 18.90      1  0    4    4     0 automatic
 ## 30 19.7         6 145.0 175       3.62  2.770 15.50      0  1    5    6     1    manual
 ## 10 19.2         6 167.6 123       3.92  3.440 18.30      1  0    4    4     0 automatic
 ## 7  14.3         8 360.0 245       3.21  3.570 15.84      0  0    3    4     0 automatic
 ## 28 30.4         4  95.1 113       3.77  1.513 16.90      1  1    5    2     1    manual</code></pre>
-<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="data-manipulation.html#cb517-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sample about 20% of rows from mtcars</span></span>
-<span id="cb517-2"><a href="data-manipulation.html#cb517-2" aria-hidden="true" tabindex="-1"></a><span class="co"># generate random values on range of [0,1]</span></span>
+<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="data-manipulation.html#cb517-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample about 20% of rows from mtcars</span></span>
+<span id="cb517-2"><a href="data-manipulation.html#cb517-2" aria-hidden="true" tabindex="-1"></a><span class="co"># First, generate random values on range of [0,1]</span></span>
 <span id="cb517-3"><a href="data-manipulation.html#cb517-3" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="fu">nrow</span>(mtcars))</span>
-<span id="cb517-4"><a href="data-manipulation.html#cb517-4" aria-hidden="true" tabindex="-1"></a><span class="co"># use i &lt; 0.20 logical vector to </span></span>
-<span id="cb517-5"><a href="data-manipulation.html#cb517-5" aria-hidden="true" tabindex="-1"></a><span class="co"># select rows that correspond to TRUE</span></span>
-<span id="cb517-6"><a href="data-manipulation.html#cb517-6" aria-hidden="true" tabindex="-1"></a>mtcars[i <span class="sc">&lt;</span> <span class="fl">0.20</span>,]</span></code></pre></div>
+<span id="cb517-4"><a href="data-manipulation.html#cb517-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Then, use i &lt; 0.20 logical vector to select rows that correspond to TRUE</span></span>
+<span id="cb517-5"><a href="data-manipulation.html#cb517-5" aria-hidden="true" tabindex="-1"></a>mtcars[i <span class="sc">&lt;</span> <span class="fl">0.20</span>, ]</span></code></pre></div>
 <pre><code>##     mpg cylinders  disp  hp axle_ratio weight  qsec engine am gear carb am_ch    am_fac
 ## 7  14.3         8 360.0 245       3.21   3.57 15.84      0  0    3    4     0 automatic
 ## 8  24.4         4 146.7  62       3.69   3.19 20.00      1  0    4    2     0 automatic
@@ -1416,10 +1407,9 @@ div.csl-indent {
 ## 24 13.3         8 350.0 245       3.73   3.84 15.41      0  0    3    4     0 automatic
 ## 31 15.0         8 301.0 335       3.54   3.57 14.60      0  1    5    8     1    manual</code></pre>
 <p>The random sample will change every time the code is run. To always generate the same “random” sample, use the <code>set.seed()</code> function with any positive integer.</p>
-<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="data-manipulation.html#cb519-1" aria-hidden="true" tabindex="-1"></a><span class="co"># always get the same random sample</span></span>
-<span id="cb519-2"><a href="data-manipulation.html#cb519-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb519-3"><a href="data-manipulation.html#cb519-3" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="fu">nrow</span>(mtcars))</span>
-<span id="cb519-4"><a href="data-manipulation.html#cb519-4" aria-hidden="true" tabindex="-1"></a>mtcars[i <span class="sc">&lt;</span> <span class="fl">0.20</span>,]</span></code></pre></div>
+<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="data-manipulation.html#cb519-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb519-2"><a href="data-manipulation.html#cb519-2" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="fu">nrow</span>(mtcars))</span>
+<span id="cb519-3"><a href="data-manipulation.html#cb519-3" aria-hidden="true" tabindex="-1"></a>mtcars[i <span class="sc">&lt;</span> <span class="fl">0.20</span>,]</span></code></pre></div>
 <pre><code>##     mpg cylinders  disp  hp axle_ratio weight  qsec engine am gear carb am_ch    am_fac
 ## 6  18.1         6 225.0 105       2.76   3.46 20.22      1  0    3    1     0 automatic
 ## 15 10.4         8 472.0 205       2.93   5.25 17.98      0  0    3    4     0 automatic
