@@ -324,7 +324,6 @@ animals_wide
 
 The merge/join examples below all make use of the following sample data frames:
 ```{r, echo = F}
-# initialize join data
 x <- data.frame(merge_var = c('a', 'b', 'c'), val_x = c(12, 94, 92))
 y <- data.frame(merge_var = c('c', 'd', 'e'), val_y = c(78, 32, 30))
 ```
@@ -393,10 +392,8 @@ pd.merge(x, y, how = 'inner')
 #### R {-}
 
 ```{r}
-# with its default arguments, merge() executes an inner join
-# (more specifically, a natural join, which is a kind of
-# inner join in which the merge-criterion column is not
-# repeated, despite being initially present in both tables)
+# With its default arguments, merge() executes an inner join (more specifically, a natural join, which is a kind of
+# inner join in which the merge-criterion column is not repeated, despite being initially present in both tables)
 merge(x, y, by = 'merge_var')
 ```
 

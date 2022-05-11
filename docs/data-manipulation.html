@@ -1231,19 +1231,19 @@ div.csl-indent {
 <div class="sourceCode" id="cb469"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb469-1"><a href="data-manipulation.html#cb469-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a datetime object for the current time</span></span>
 <span id="cb469-2"><a href="data-manipulation.html#cb469-2" aria-hidden="true" tabindex="-1"></a>d1 <span class="op">=</span> dt.datetime.now()</span>
 <span id="cb469-3"><a href="data-manipulation.html#cb469-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d1)</span></code></pre></div>
-<pre><code>## 2022-05-11 11:24:44.426553</code></pre>
+<pre><code>## 2022-05-11 11:28:10.723331</code></pre>
 <div class="sourceCode" id="cb471"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb471-1"><a href="data-manipulation.html#cb471-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add 550 days to the datetime object </span></span>
 <span id="cb471-2"><a href="data-manipulation.html#cb471-2" aria-hidden="true" tabindex="-1"></a>d2 <span class="op">=</span> d1 <span class="op">+</span> dt.timedelta(days <span class="op">=</span> <span class="dv">550</span>)</span>
 <span id="cb471-3"><a href="data-manipulation.html#cb471-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d2)</span></code></pre></div>
-<pre><code>## 2023-11-12 11:24:44.426553</code></pre>
+<pre><code>## 2023-11-12 11:28:10.723331</code></pre>
 <div class="sourceCode" id="cb473"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb473-1"><a href="data-manipulation.html#cb473-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subtract five hours from the datetime object </span></span>
 <span id="cb473-2"><a href="data-manipulation.html#cb473-2" aria-hidden="true" tabindex="-1"></a>d3 <span class="op">=</span> d1 <span class="op">-</span> dt.timedelta(hours <span class="op">=</span> <span class="dv">5</span>)</span>
 <span id="cb473-3"><a href="data-manipulation.html#cb473-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d3)</span></code></pre></div>
-<pre><code>## 2022-05-11 06:24:44.426553</code></pre>
+<pre><code>## 2022-05-11 06:28:10.723331</code></pre>
 <p>Finally, we will discuss how to convert strings to datetime objects and vice versa.</p>
 <p>The attribute <code>strftime()</code> converts datetime objects to strings. In the argument of <code>strftime()</code>, you can specify the format you would like.</p>
 <div class="sourceCode" id="cb475"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb475-1"><a href="data-manipulation.html#cb475-1" aria-hidden="true" tabindex="-1"></a>d1</span></code></pre></div>
-<pre><code>## datetime.datetime(2022, 5, 11, 11, 24, 44, 426553)</code></pre>
+<pre><code>## datetime.datetime(2022, 5, 11, 11, 28, 10, 723331)</code></pre>
 <div class="sourceCode" id="cb477"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb477-1"><a href="data-manipulation.html#cb477-1" aria-hidden="true" tabindex="-1"></a>d1.strftime(<span class="st">&quot;%A %m %Y&quot;</span>)</span></code></pre></div>
 <pre><code>## &#39;Wednesday 05 2022&#39;</code></pre>
 <div class="sourceCode" id="cb479"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb479-1"><a href="data-manipulation.html#cb479-1" aria-hidden="true" tabindex="-1"></a>d1.strftime(<span class="st">&quot;%a %m %y&quot;</span>)</span></code></pre></div>
