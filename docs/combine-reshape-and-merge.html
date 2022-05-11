@@ -528,11 +528,11 @@ div.csl-indent {
 <div id="python-33" class="section level4 unnumbered hasAnchor">
 <h4>Python<a href="combine-reshape-and-merge.html#python-33" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>To reshape a DataFrame from long to wide, we can use the pandas <code>pivot_table()</code> function.</p>
-<p>The following is an example of a long DataFrame.</p>
+<p>Consider the following long DataFrame:</p>
 <div class="sourceCode" id="cb549"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb549-1"><a href="combine-reshape-and-merge.html#cb549-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb549-2"><a href="combine-reshape-and-merge.html#cb549-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb549-3"><a href="combine-reshape-and-merge.html#cb549-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb549-4"><a href="combine-reshape-and-merge.html#cb549-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {<span class="st">&quot;id&quot;</span>: np.concatenate([([i]<span class="op">*</span><span class="dv">3</span>) <span class="cf">for</span> i <span class="kw">in</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]], axis<span class="op">=</span><span class="dv">0</span>),</span>
+<span id="cb549-4"><a href="combine-reshape-and-merge.html#cb549-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {<span class="st">&quot;id&quot;</span>: np.concatenate([([i]<span class="op">*</span><span class="dv">3</span>) <span class="cf">for</span> i <span class="kw">in</span> [<span class="dv">1</span>, <span class="dv">2</span> ,<span class="dv">3</span>]], axis<span class="op">=</span><span class="dv">0</span>),</span>
 <span id="cb549-5"><a href="combine-reshape-and-merge.html#cb549-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;week&quot;</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>] <span class="op">*</span> <span class="dv">3</span>,</span>
 <span id="cb549-6"><a href="combine-reshape-and-merge.html#cb549-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;observations&quot;</span>: np.random.choice(<span class="bu">range</span>(<span class="dv">20</span>), <span class="dv">9</span>)}</span>
 <span id="cb549-7"><a href="combine-reshape-and-merge.html#cb549-7" aria-hidden="true" tabindex="-1"></a></span>
@@ -548,11 +548,11 @@ div.csl-indent {
 ## 6   3     1            14
 ## 7   3     2             4
 ## 8   3     3             0</code></pre>
-<p>The following code uses the pandas <code>pivot_table()</code> function to reshape the DataFrame from long to wide.</p>
+<p>We can use <code>pivot_table()</code> to take the DataFrame from long to wide by specifying: the variable(s) that indicates each value’s source (<code>index</code>), the variable that indicates the context of each value (<code>columns</code>; e.g., “week 1,” “week 2,” etc.), and the variable containing the values to be widened (<code>values</code>).</p>
 <div class="sourceCode" id="cb551"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb551-1"><a href="combine-reshape-and-merge.html#cb551-1" aria-hidden="true" tabindex="-1"></a>df_wide <span class="op">=</span> pd.pivot_table(df_long,</span>
-<span id="cb551-2"><a href="combine-reshape-and-merge.html#cb551-2" aria-hidden="true" tabindex="-1"></a>          index<span class="op">=</span><span class="st">&#39;id&#39;</span>,</span>
-<span id="cb551-3"><a href="combine-reshape-and-merge.html#cb551-3" aria-hidden="true" tabindex="-1"></a>          columns<span class="op">=</span><span class="st">&#39;week&#39;</span>,</span>
-<span id="cb551-4"><a href="combine-reshape-and-merge.html#cb551-4" aria-hidden="true" tabindex="-1"></a>          values<span class="op">=</span><span class="st">&#39;observations&#39;</span>)</span>
+<span id="cb551-2"><a href="combine-reshape-and-merge.html#cb551-2" aria-hidden="true" tabindex="-1"></a>          index <span class="op">=</span> <span class="st">&#39;id&#39;</span>,</span>
+<span id="cb551-3"><a href="combine-reshape-and-merge.html#cb551-3" aria-hidden="true" tabindex="-1"></a>          columns <span class="op">=</span> <span class="st">&#39;week&#39;</span>,</span>
+<span id="cb551-4"><a href="combine-reshape-and-merge.html#cb551-4" aria-hidden="true" tabindex="-1"></a>          values <span class="op">=</span> <span class="st">&#39;observations&#39;</span>)</span>
 <span id="cb551-5"><a href="combine-reshape-and-merge.html#cb551-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_wide)</span></code></pre></div>
 <pre><code>## week   1   2   3
 ## id              
@@ -562,7 +562,7 @@ div.csl-indent {
 </div>
 <div id="r-33" class="section level4 unnumbered hasAnchor">
 <h4>R<a href="combine-reshape-and-merge.html#r-33" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Say we begin with a long data frame, <code>df_long</code>, that looks like this:</p>
+<p>Say that we begin with a long data frame, <code>df_long</code>, that looks like this:</p>
 <div class="sourceCode" id="cb553"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb553-1"><a href="combine-reshape-and-merge.html#cb553-1" aria-hidden="true" tabindex="-1"></a>df_long</span></code></pre></div>
 <pre><code>##       id sex week val
 ## 1.m.1  1   m    1  16
@@ -574,14 +574,18 @@ div.csl-indent {
 ## 1.m.3  1   m    3  15
 ## 2.m.3  2   m    3  10
 ## 3.f.3  3   f    3   7</code></pre>
-<p>To take data from long to wide with base R’s <code>reshape()</code>, a user would write:</p>
+<p>To take the data from long to wide with base R’s <code>reshape()</code> function, a user would write:</p>
 <div class="sourceCode" id="cb555"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb555-1"><a href="combine-reshape-and-merge.html#cb555-1" aria-hidden="true" tabindex="-1"></a>df_wide <span class="ot">&lt;-</span> <span class="fu">reshape</span>(df_long,</span>
 <span id="cb555-2"><a href="combine-reshape-and-merge.html#cb555-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">direction =</span> <span class="st">&#39;wide&#39;</span>,</span>
-<span id="cb555-3"><a href="combine-reshape-and-merge.html#cb555-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">idvar =</span> <span class="fu">c</span>(<span class="st">&#39;id&#39;</span>, <span class="st">&#39;sex&#39;</span>), <span class="co"># column(s) that determine which rows should be grouped together in the wide data</span></span>
-<span id="cb555-4"><a href="combine-reshape-and-merge.html#cb555-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">v.names =</span> <span class="st">&#39;val&#39;</span>, <span class="co"># column containing values to widen</span></span>
-<span id="cb555-5"><a href="combine-reshape-and-merge.html#cb555-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">timevar =</span> <span class="st">&#39;week&#39;</span>, <span class="co"># column from which resulting wide column names are pulled</span></span>
-<span id="cb555-6"><a href="combine-reshape-and-merge.html#cb555-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">sep =</span> <span class="st">&#39;_&#39;</span>) <span class="co"># the `sep` argument allows a user to specify how the contents of `timevar` should be joined with the name of the `v.names` variable to form wide column names</span></span>
-<span id="cb555-7"><a href="combine-reshape-and-merge.html#cb555-7" aria-hidden="true" tabindex="-1"></a>df_wide</span></code></pre></div>
+<span id="cb555-3"><a href="combine-reshape-and-merge.html#cb555-3" aria-hidden="true" tabindex="-1"></a>                   <span class="co"># Column(s) that determine which rows should be grouped together in the wide data</span></span>
+<span id="cb555-4"><a href="combine-reshape-and-merge.html#cb555-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">idvar =</span> <span class="fu">c</span>(<span class="st">&#39;id&#39;</span>, <span class="st">&#39;sex&#39;</span>),</span>
+<span id="cb555-5"><a href="combine-reshape-and-merge.html#cb555-5" aria-hidden="true" tabindex="-1"></a>                    <span class="co"># Column containing values to widen</span></span>
+<span id="cb555-6"><a href="combine-reshape-and-merge.html#cb555-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">v.names =</span> <span class="st">&#39;val&#39;</span>,</span>
+<span id="cb555-7"><a href="combine-reshape-and-merge.html#cb555-7" aria-hidden="true" tabindex="-1"></a>                   <span class="co"># Column from which resulting wide column names are pulled</span></span>
+<span id="cb555-8"><a href="combine-reshape-and-merge.html#cb555-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">timevar =</span> <span class="st">&#39;week&#39;</span>,</span>
+<span id="cb555-9"><a href="combine-reshape-and-merge.html#cb555-9" aria-hidden="true" tabindex="-1"></a>                   <span class="co"># The `sep` argument allows a user to specify how the contents of `timevar` should be joined with the name of the `v.names` variable to form wide column names</span></span>
+<span id="cb555-10"><a href="combine-reshape-and-merge.html#cb555-10" aria-hidden="true" tabindex="-1"></a>                   <span class="at">sep =</span> <span class="st">&#39;_&#39;</span>)</span>
+<span id="cb555-11"><a href="combine-reshape-and-merge.html#cb555-11" aria-hidden="true" tabindex="-1"></a>df_wide</span></code></pre></div>
 <pre><code>##       id sex val_1 val_2 val_3
 ## 1.m.1  1   m    16     7    15
 ## 2.m.1  2   m    12    19    10
@@ -600,7 +604,7 @@ div.csl-indent {
 ## 1     1 m         16      7     15
 ## 2     2 m         12     19     10
 ## 3     3 f          8     15      7</code></pre>
-<p><code>pivot_wider()</code> offers a lot of usability when widening relatively complicated long data structures. For example, say we want to widen both of the long versions of the animals data frame created above.</p>
+<p><code>pivot_wider()</code> provides a great deal of functonality when widening relatively complicated long data structures. For example, say we want to widen both of the long versions of the “animals” data frame created above.</p>
 <p>To widen the version of the long data that has a column for each of the measures (playfulness and excitement):</p>
 <div class="sourceCode" id="cb559"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb559-1"><a href="combine-reshape-and-merge.html#cb559-1" aria-hidden="true" tabindex="-1"></a>animals_long_1</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 5
@@ -618,11 +622,8 @@ div.csl-indent {
 <span id="cb561-4"><a href="combine-reshape-and-merge.html#cb561-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">values_from =</span> <span class="fu">c</span>(<span class="st">&#39;playfulness&#39;</span>,</span>
 <span id="cb561-5"><a href="combine-reshape-and-merge.html#cb561-5" aria-hidden="true" tabindex="-1"></a>                                            <span class="st">&#39;excitement&#39;</span>),</span>
 <span id="cb561-6"><a href="combine-reshape-and-merge.html#cb561-6" aria-hidden="true" tabindex="-1"></a>                            <span class="at">names_from =</span> <span class="st">&#39;month&#39;</span>,</span>
-<span id="cb561-7"><a href="combine-reshape-and-merge.html#cb561-7" aria-hidden="true" tabindex="-1"></a>                            <span class="at">names_glue =</span> <span class="st">&#39;{month}_{.value}&#39;</span>) </span>
-<span id="cb561-8"><a href="combine-reshape-and-merge.html#cb561-8" aria-hidden="true" tabindex="-1"></a>                            <span class="co"># `names_glue` allows for customization </span></span>
-<span id="cb561-9"><a href="combine-reshape-and-merge.html#cb561-9" aria-hidden="true" tabindex="-1"></a>                            <span class="co"># of column names using &quot;glue&quot;;</span></span>
-<span id="cb561-10"><a href="combine-reshape-and-merge.html#cb561-10" aria-hidden="true" tabindex="-1"></a>                            <span class="co"># see https://glue.tidyverse.org/</span></span>
-<span id="cb561-11"><a href="combine-reshape-and-merge.html#cb561-11" aria-hidden="true" tabindex="-1"></a>animals_wide</span></code></pre></div>
+<span id="cb561-7"><a href="combine-reshape-and-merge.html#cb561-7" aria-hidden="true" tabindex="-1"></a>                            <span class="at">names_glue =</span> <span class="st">&#39;{month}_{.value}&#39;</span>) <span class="co"># `names_glue` allows for customization of column names using &quot;glue&quot;; see https://glue.tidyverse.org/</span></span>
+<span id="cb561-8"><a href="combine-reshape-and-merge.html#cb561-8" aria-hidden="true" tabindex="-1"></a>animals_wide</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 6
 ##   animal    lives_in_water jan_playfulness feb_playfulness jan_excitement feb_excitement
 ##   &lt;chr&gt;     &lt;lgl&gt;                    &lt;dbl&gt;           &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;

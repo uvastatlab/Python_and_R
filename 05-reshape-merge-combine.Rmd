@@ -232,13 +232,13 @@ animals_long_2
 
 To reshape a DataFrame from long to wide, we can use the pandas `pivot_table()` function.
 
-The following is an example of a long DataFrame.
+Consider the following long DataFrame:
 
 ```{python}
 import numpy as np
 import pandas as pd
 
-data = {"id": np.concatenate([([i]*3) for i in [1,2,3]], axis=0),
+data = {"id": np.concatenate([([i]*3) for i in [1, 2 ,3]], axis=0),
         "week": [1, 2, 3] * 3,
         "observations": np.random.choice(range(20), 9)}
 
@@ -246,34 +246,37 @@ df_long = pd.DataFrame(data)
 print(df_long)
 ```
 
-The following code uses the pandas `pivot_table()` function to reshape the DataFrame from long to wide.
+We can use `pivot_table()` to take the DataFrame from long to wide by specifying: the variable(s) that indicates each value's source (`index`), the variable that indicates the context of each value (`columns`; e.g., "week 1," "week 2," etc.), and the variable containing the values to be widened (`values`).
 
 ```{python}
 df_wide = pd.pivot_table(df_long,
-          index='id',
-          columns='week',
-          values='observations')
+          index = 'id',
+          columns = 'week',
+          values = 'observations')
 print(df_wide)
 ```
 
-
 #### R {-}
 
-Say we begin with a long data frame, `df_long`, that looks like this:
+Say that we begin with a long data frame, `df_long`, that looks like this:
 
 ```{r}
 df_long
 ```
 
-To take data from long to wide with base R's `reshape()`, a user would write:
+To take the data from long to wide with base R's `reshape()` function, a user would write:
 
 ```{r}
 df_wide <- reshape(df_long,
                    direction = 'wide',
-                   idvar = c('id', 'sex'), # column(s) that determine which rows should be grouped together in the wide data
-                   v.names = 'val', # column containing values to widen
-                   timevar = 'week', # column from which resulting wide column names are pulled
-                   sep = '_') # the `sep` argument allows a user to specify how the contents of `timevar` should be joined with the name of the `v.names` variable to form wide column names
+                   # Column(s) that determine which rows should be grouped together in the wide data
+                   idvar = c('id', 'sex'),
+                    # Column containing values to widen
+                   v.names = 'val',
+                   # Column from which resulting wide column names are pulled
+                   timevar = 'week',
+                   # The `sep` argument allows a user to specify how the contents of `timevar` should be joined with the name of the `v.names` variable to form wide column names
+                   sep = '_')
 df_wide
 ```
 
@@ -289,7 +292,7 @@ df_wide_PW <- pivot_wider(df_long,
 df_wide_PW
 ```
 
-`pivot_wider()` offers a lot of usability when widening relatively complicated long data structures. For example, say we want to widen both of the long versions of the animals data frame created above.
+`pivot_wider()` provides a great deal of functonality when widening relatively complicated long data structures. For example, say we want to widen both of the long versions of the "animals" data frame created above.
 
 To widen the version of the long data that has a column for each of the measures (playfulness and excitement):
 
@@ -301,10 +304,7 @@ animals_wide <- pivot_wider(animals_long_1,
                             values_from = c('playfulness',
                                             'excitement'),
                             names_from = 'month',
-                            names_glue = '{month}_{.value}') 
-                            # `names_glue` allows for customization 
-                            # of column names using "glue";
-                            # see https://glue.tidyverse.org/
+                            names_glue = '{month}_{.value}') # `names_glue` allows for customization of column names using "glue"; see https://glue.tidyverse.org/
 animals_wide
 ```
 
