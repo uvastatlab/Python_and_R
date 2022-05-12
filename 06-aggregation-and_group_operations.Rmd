@@ -8,9 +8,9 @@ This chapter looks at manipulating and summarizing data by groups.
 
 ## Cross tabulation
 
-Cross tabulation is the process of determining frequencies per group (or determining values based on frequencies, like proportions), with groups delineated by one or more variables (e.g., nationality and sex).
+Cross tabulation is the process of determining frequencies per group (or determining values based on frequencies, like proportions), with groups defined by one or more variables (e.g., nationality and sex).
 
-The Python and R examples of cross tabulation below both make use of the following dataset, `dat`:
+The Python and R examples of cross tabulation below both make use of the following data set, `dat`:
 
 ```{r, echo = F}
 set.seed(100)
@@ -51,6 +51,7 @@ xtabs(formula = ~nationality + sex, data = dat)
 ## Group summaries
 
 Computing statistical summaries per group.
+
 ```{r echo=FALSE}
 rm(mtcars)
 data("mtcars")
@@ -61,7 +62,7 @@ mtcars = r.mtcars
 
 #### Python {-}
 
-The `groupby()` function from **Pandas** splits up a data set based on one or more grouping variables. Summarizing functions---like `mean()`, `sum()`, and so on---can then be applied to those groups. In the first example below, we use `groupby()` to group rows of the `mtcars` dataset by the number of cylinders each car has; from there, we select just the `mpg` column and call `mean()`, thus producing the average miles per gallon within each cylinder group. In the second example, we again group observations by `cyl`, but instead of then selecting just the `mpg` column, we directly call `mean()`; this gives the mean for each variable in the data set within each cylinder group. Finally, in the third example, we group by two variables---`cyl` and `vs`---and then use the `describe()` function to generate a set of descriptive statistics for `mpg` within each `cylinder`*`vs` group (e.g., mean, SD, minimum, etc.).
+The `groupby()` function from **pandas** splits up a data set based on one or more grouping variables. Summarizing functions---like `mean()`, `sum()`, and so on---can then be applied to those groups. In the first example below, we use `groupby()` to group rows of the `mtcars` data set by the number of cylinders each car has; from there, we select just the `mpg` column and call `mean()`, thus calculating the average miles per gallon within each cylinder group. In the second example, we again group observations by `cyl`, but instead of then selecting just the `mpg` column, we directly call `mean()`; this gives the mean for each variable in the data set within each cylinder group. Finally, in the third example, we group by two variables---`cyl` and `vs`---and then use the `describe()` function to generate a set of descriptive statistics for `mpg` within each `cylinder`*`vs` group (e.g., mean, SD, minimum, etc.).
 
 ```{python}
 import pandas as pd
@@ -88,14 +89,14 @@ aggregate(x = mtcars$mpg,
           FUN = "mean") 
 ```
 
-Adding `drop=FALSE` ensures all combinations of levels are returned even if no data exist at that combination. Below the final row is `NA` since there are no 8-cylinder cars with a "straight" engine (vs = 1).
+Adding `drop = FALSE` ensures that all combinations of levels are returned even if no data exist at that combination. The final row below is `NA` since there are no eight-cylinder cars with a "straight" engine (`vs = 1`).
 
 ```{r agg2}
 # Two or more grouping variables
 # Calculating max of `mpg` in each `cyl`*`vs` group
 aggregate(x = mtcars$mpg, 
           by = list(cyl = mtcars$cyl, vs = mtcars$vs), 
-          FUN = "max", drop = FALSE) 
+          FUN = 'max', drop = FALSE) 
 ```
 
 ```{r, eval = F}
@@ -121,12 +122,12 @@ mtcars %>%
             complicated_summary_calculation = 
               min(mpg)^0.5 * 
               mean(wt)^0.5 + 
-              mean(disp)^(1/mean(hp)))
+              mean(disp)^(1 / mean(hp)))
 ```
 
 ## Centering and Scaling
 
-_Centering_ refers to subtracting a constant, such as the mean, from every one of set of values. This is sometimes performed to aid interpretation of linear model coefficients.
+_Centering_ refers to subtracting a constant, such as the mean, from every value in a set. This is sometimes performed to aid interpretation of linear model coefficients.
 
 _Scaling_ refers to rescaling a column or vector of values such that their mean is zero and their standard deviation is one. This is sometimes performed to put multiple variables on the same scale and is often recommended for procedures such as principal components analysis (PCA).
 
