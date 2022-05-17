@@ -23,7 +23,7 @@
 <meta name="author" content="Clay Ford, Jacob Goldstein-Greenwood, Oyinkansola Adenekan, Samantha Lomuscio" />
 
 
-<meta name="date" content="2022-05-12" />
+<meta name="date" content="2022-05-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -464,12 +464,10 @@ div.csl-indent {
 <h4>R<a href="data-manipulation.html#r-18" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The dollar sign operator, <code>$</code>, provides access to a column in a data frame as a vector.</p>
 <div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="data-manipulation.html#cb261-1" aria-hidden="true" tabindex="-1"></a>mtcars<span class="sc">$</span>mpg</span></code></pre></div>
-<pre><code>##  [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 17.8 16.4 17.3 15.2 10.4 10.4 14.7 32.4 30.4 33.9 21.5 15.5 15.2 13.3 19.2 27.3 26.0 30.4 15.8
-## [30] 19.7 15.0 21.4</code></pre>
+<pre><code>##  [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 17.8 16.4 17.3 15.2 10.4 10.4 14.7 32.4 30.4 33.9 21.5 15.5 15.2 13.3 19.2 27.3 26.0 30.4 15.8 19.7 15.0 21.4</code></pre>
 <p>Double-indexing brackets also provide access to columns as a vector.</p>
 <div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="data-manipulation.html#cb263-1" aria-hidden="true" tabindex="-1"></a>mtcars[[<span class="st">&quot;mpg&quot;</span>]]</span></code></pre></div>
-<pre><code>##  [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 17.8 16.4 17.3 15.2 10.4 10.4 14.7 32.4 30.4 33.9 21.5 15.5 15.2 13.3 19.2 27.3 26.0 30.4 15.8
-## [30] 19.7 15.0 21.4</code></pre>
+<pre><code>##  [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 17.8 16.4 17.3 15.2 10.4 10.4 14.7 32.4 30.4 33.9 21.5 15.5 15.2 13.3 19.2 27.3 26.0 30.4 15.8 19.7 15.0 21.4</code></pre>
 <p>Single-indexing brackets work as well, but they return a data frame instead of a vector (if used with a data frame).</p>
 <div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="data-manipulation.html#cb265-1" aria-hidden="true" tabindex="-1"></a>mtcars[<span class="st">&quot;mpg&quot;</span>]</span></code></pre></div>
 <pre><code>##     mpg
@@ -1040,18 +1038,15 @@ div.csl-indent {
 <div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="data-manipulation.html#cb399-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace the first instance of a pattern (Co. --&gt; Company)</span></span>
 <span id="cb399-2"><a href="data-manipulation.html#cb399-2" aria-hidden="true" tabindex="-1"></a>revised <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="at">pattern =</span> <span class="st">&#39;Co</span><span class="sc">\\</span><span class="st">.&#39;</span>, <span class="at">replacement =</span> <span class="st">&#39;Company&#39;</span>, <span class="at">x =</span> statements)</span>
 <span id="cb399-3"><a href="data-manipulation.html#cb399-3" aria-hidden="true" tabindex="-1"></a>revised</span></code></pre></div>
-<pre><code>## [1] &quot;Great Pencil Company primarily sells pencils of the following grades: HB; B; and 3B.&quot;                            
-## [2] &quot;Great Pencil Company has its headquarters in Maine, and Great Pencil Co. has supplied the Northeast for decades.&quot;</code></pre>
+<pre><code>## [1] &quot;Great Pencil Company primarily sells pencils of the following grades: HB; B; and 3B.&quot;                             &quot;Great Pencil Company has its headquarters in Maine, and Great Pencil Co. has supplied the Northeast for decades.&quot;</code></pre>
 <div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="data-manipulation.html#cb401-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace all instances of a pattern (; --&gt; ,)</span></span>
 <span id="cb401-2"><a href="data-manipulation.html#cb401-2" aria-hidden="true" tabindex="-1"></a>revised2 <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="at">pattern =</span> <span class="st">&#39;;&#39;</span>, <span class="at">replacement =</span> <span class="st">&#39;,&#39;</span>, <span class="at">x =</span> revised)</span>
 <span id="cb401-3"><a href="data-manipulation.html#cb401-3" aria-hidden="true" tabindex="-1"></a>revised2</span></code></pre></div>
-<pre><code>## [1] &quot;Great Pencil Company primarily sells pencils of the following grades: HB, B, and 3B.&quot;                            
-## [2] &quot;Great Pencil Company has its headquarters in Maine, and Great Pencil Co. has supplied the Northeast for decades.&quot;</code></pre>
+<pre><code>## [1] &quot;Great Pencil Company primarily sells pencils of the following grades: HB, B, and 3B.&quot;                             &quot;Great Pencil Company has its headquarters in Maine, and Great Pencil Co. has supplied the Northeast for decades.&quot;</code></pre>
 <div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="data-manipulation.html#cb403-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find and replace a pattern using regex (3B --&gt; 2B)</span></span>
 <span id="cb403-2"><a href="data-manipulation.html#cb403-2" aria-hidden="true" tabindex="-1"></a>final <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="at">pattern =</span> <span class="st">&#39;</span><span class="sc">\\</span><span class="st">d{1}&#39;</span>, <span class="at">replacement =</span> <span class="st">&#39;2&#39;</span>, <span class="at">x =</span> revised2)</span>
 <span id="cb403-3"><a href="data-manipulation.html#cb403-3" aria-hidden="true" tabindex="-1"></a>final</span></code></pre></div>
-<pre><code>## [1] &quot;Great Pencil Company primarily sells pencils of the following grades: HB, B, and 2B.&quot;                            
-## [2] &quot;Great Pencil Company has its headquarters in Maine, and Great Pencil Co. has supplied the Northeast for decades.&quot;</code></pre>
+<pre><code>## [1] &quot;Great Pencil Company primarily sells pencils of the following grades: HB, B, and 2B.&quot;                             &quot;Great Pencil Company has its headquarters in Maine, and Great Pencil Co. has supplied the Northeast for decades.&quot;</code></pre>
 <p>Those functions can be used to trim excess (or all) white space in character strings.</p>
 <div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="data-manipulation.html#cb405-1" aria-hidden="true" tabindex="-1"></a>spaced_string <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;This      string    started  out with too    many    spaces.&#39;</span>)</span>
 <span id="cb405-2"><a href="data-manipulation.html#cb405-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace all instances of &gt;=2 spaces with single spaces</span></span>
@@ -1096,16 +1091,13 @@ div.csl-indent {
 <p>The <code>tolower()</code> and <code>toupper()</code> functions convert case to lower and upper, respectively.</p>
 <div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="data-manipulation.html#cb414-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mtcars) <span class="ot">&lt;-</span> <span class="fu">toupper</span>(<span class="fu">names</span>(mtcars))</span>
 <span id="cb414-2"><a href="data-manipulation.html#cb414-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mtcars)</span></code></pre></div>
-<pre><code>##  [1] &quot;MPG&quot;        &quot;CYLINDERS&quot;  &quot;DISP&quot;       &quot;HP&quot;         &quot;AXLE_RATIO&quot; &quot;WEIGHT&quot;     &quot;QSEC&quot;       &quot;ENGINE&quot;     &quot;AM&quot;         &quot;GEAR&quot;       &quot;CARB&quot;      
-## [12] &quot;AM_CH&quot;      &quot;AM_FAC&quot;</code></pre>
+<pre><code>##  [1] &quot;MPG&quot;        &quot;CYLINDERS&quot;  &quot;DISP&quot;       &quot;HP&quot;         &quot;AXLE_RATIO&quot; &quot;WEIGHT&quot;     &quot;QSEC&quot;       &quot;ENGINE&quot;     &quot;AM&quot;         &quot;GEAR&quot;       &quot;CARB&quot;       &quot;AM_CH&quot;      &quot;AM_FAC&quot;</code></pre>
 <div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="data-manipulation.html#cb416-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mtcars) <span class="ot">&lt;-</span> <span class="fu">tolower</span>(<span class="fu">names</span>(mtcars))</span>
 <span id="cb416-2"><a href="data-manipulation.html#cb416-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mtcars)</span></code></pre></div>
-<pre><code>##  [1] &quot;mpg&quot;        &quot;cylinders&quot;  &quot;disp&quot;       &quot;hp&quot;         &quot;axle_ratio&quot; &quot;weight&quot;     &quot;qsec&quot;       &quot;engine&quot;     &quot;am&quot;         &quot;gear&quot;       &quot;carb&quot;      
-## [12] &quot;am_ch&quot;      &quot;am_fac&quot;</code></pre>
+<pre><code>##  [1] &quot;mpg&quot;        &quot;cylinders&quot;  &quot;disp&quot;       &quot;hp&quot;         &quot;axle_ratio&quot; &quot;weight&quot;     &quot;qsec&quot;       &quot;engine&quot;     &quot;am&quot;         &quot;gear&quot;       &quot;carb&quot;       &quot;am_ch&quot;      &quot;am_fac&quot;</code></pre>
 <p>The <strong>stringr</strong> package provides a convenient title-case conversion function, <code>str_to_title()</code>, which capitalizes the first letter of each string.</p>
 <div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="data-manipulation.html#cb418-1" aria-hidden="true" tabindex="-1"></a>stringr<span class="sc">::</span><span class="fu">str_to_title</span>(<span class="fu">names</span>(mtcars))</span></code></pre></div>
-<pre><code>##  [1] &quot;Mpg&quot;        &quot;Cylinders&quot;  &quot;Disp&quot;       &quot;Hp&quot;         &quot;Axle_ratio&quot; &quot;Weight&quot;     &quot;Qsec&quot;       &quot;Engine&quot;     &quot;Am&quot;         &quot;Gear&quot;       &quot;Carb&quot;      
-## [12] &quot;Am_ch&quot;      &quot;Am_fac&quot;</code></pre>
+<pre><code>##  [1] &quot;Mpg&quot;        &quot;Cylinders&quot;  &quot;Disp&quot;       &quot;Hp&quot;         &quot;Axle_ratio&quot; &quot;Weight&quot;     &quot;Qsec&quot;       &quot;Engine&quot;     &quot;Am&quot;         &quot;Gear&quot;       &quot;Carb&quot;       &quot;Am_ch&quot;      &quot;Am_fac&quot;</code></pre>
 </div>
 </div>
 <div id="drop-duplicate-rows" class="section level2 hasAnchor" number="4.11">
@@ -1175,7 +1167,7 @@ div.csl-indent {
 <p>To get today’s date, we can use the <code>date.today()</code> function:</p>
 <div class="sourceCode" id="cb435"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb435-1"><a href="data-manipulation.html#cb435-1" aria-hidden="true" tabindex="-1"></a>today <span class="op">=</span> dt.date.today()</span>
 <span id="cb435-2"><a href="data-manipulation.html#cb435-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(today)</span></code></pre></div>
-<pre><code>## 2022-05-12</code></pre>
+<pre><code>## 2022-05-17</code></pre>
 <p>Note that the output of both <code>x</code> and <code>today</code> are only year-month-day because they are date objects.</p>
 <p>We can extract each of these attributes (year, month, day) from the date object as follows:</p>
 <div class="sourceCode" id="cb437"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb437-1"><a href="data-manipulation.html#cb437-1" aria-hidden="true" tabindex="-1"></a>today.year </span></code></pre></div>
@@ -1183,7 +1175,7 @@ div.csl-indent {
 <div class="sourceCode" id="cb439"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb439-1"><a href="data-manipulation.html#cb439-1" aria-hidden="true" tabindex="-1"></a>today.month</span></code></pre></div>
 <pre><code>## 5</code></pre>
 <div class="sourceCode" id="cb441"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb441-1"><a href="data-manipulation.html#cb441-1" aria-hidden="true" tabindex="-1"></a>today.day</span></code></pre></div>
-<pre><code>## 12</code></pre>
+<pre><code>## 17</code></pre>
 <p>Next is the <code>time()</code> class. This class creates time objects containing information about only a time. The attributes that go into the <code>time()</code> class are hours, minutes, and seconds in that order. Like the date class, these attributes must be input as integers.</p>
 <div class="sourceCode" id="cb443"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb443-1"><a href="data-manipulation.html#cb443-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> dt.time(<span class="dv">11</span>, <span class="dv">34</span>, <span class="dv">56</span>)</span>
 <span id="cb443-2"><a href="data-manipulation.html#cb443-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y)</span></code></pre></div>
@@ -1231,23 +1223,23 @@ div.csl-indent {
 <div class="sourceCode" id="cb469"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb469-1"><a href="data-manipulation.html#cb469-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a datetime object for the current time</span></span>
 <span id="cb469-2"><a href="data-manipulation.html#cb469-2" aria-hidden="true" tabindex="-1"></a>d1 <span class="op">=</span> dt.datetime.now()</span>
 <span id="cb469-3"><a href="data-manipulation.html#cb469-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d1)</span></code></pre></div>
-<pre><code>## 2022-05-12 10:25:53.471896</code></pre>
+<pre><code>## 2022-05-17 15:16:52.120177</code></pre>
 <div class="sourceCode" id="cb471"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb471-1"><a href="data-manipulation.html#cb471-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add 550 days to the datetime object </span></span>
 <span id="cb471-2"><a href="data-manipulation.html#cb471-2" aria-hidden="true" tabindex="-1"></a>d2 <span class="op">=</span> d1 <span class="op">+</span> dt.timedelta(days <span class="op">=</span> <span class="dv">550</span>)</span>
 <span id="cb471-3"><a href="data-manipulation.html#cb471-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d2)</span></code></pre></div>
-<pre><code>## 2023-11-13 10:25:53.471896</code></pre>
+<pre><code>## 2023-11-18 15:16:52.120177</code></pre>
 <div class="sourceCode" id="cb473"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb473-1"><a href="data-manipulation.html#cb473-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subtract five hours from the datetime object </span></span>
 <span id="cb473-2"><a href="data-manipulation.html#cb473-2" aria-hidden="true" tabindex="-1"></a>d3 <span class="op">=</span> d1 <span class="op">-</span> dt.timedelta(hours <span class="op">=</span> <span class="dv">5</span>)</span>
 <span id="cb473-3"><a href="data-manipulation.html#cb473-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d3)</span></code></pre></div>
-<pre><code>## 2022-05-12 05:25:53.471896</code></pre>
+<pre><code>## 2022-05-17 10:16:52.120177</code></pre>
 <p>Finally, we will discuss how to convert strings to datetime objects and vice versa.</p>
 <p>The attribute <code>strftime()</code> converts datetime objects to strings. In the argument of <code>strftime()</code>, you can specify the format you would like.</p>
 <div class="sourceCode" id="cb475"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb475-1"><a href="data-manipulation.html#cb475-1" aria-hidden="true" tabindex="-1"></a>d1</span></code></pre></div>
-<pre><code>## datetime.datetime(2022, 5, 12, 10, 25, 53, 471896)</code></pre>
+<pre><code>## datetime.datetime(2022, 5, 17, 15, 16, 52, 120177)</code></pre>
 <div class="sourceCode" id="cb477"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb477-1"><a href="data-manipulation.html#cb477-1" aria-hidden="true" tabindex="-1"></a>d1.strftime(<span class="st">&quot;%A %m %Y&quot;</span>)</span></code></pre></div>
-<pre><code>## &#39;Thursday 05 2022&#39;</code></pre>
+<pre><code>## &#39;Tuesday 05 2022&#39;</code></pre>
 <div class="sourceCode" id="cb479"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb479-1"><a href="data-manipulation.html#cb479-1" aria-hidden="true" tabindex="-1"></a>d1.strftime(<span class="st">&quot;%a %m %y&quot;</span>)</span></code></pre></div>
-<pre><code>## &#39;Thu 05 22&#39;</code></pre>
+<pre><code>## &#39;Tue 05 22&#39;</code></pre>
 <p>The attribute <code>strptime()</code> converts strings into datetime objects. In the argument of <code>strptime()</code>, you must specify the string and then the format of the string.</p>
 <div class="sourceCode" id="cb481"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb481-1"><a href="data-manipulation.html#cb481-1" aria-hidden="true" tabindex="-1"></a>d4 <span class="op">=</span> <span class="st">&quot;27/10/98 11:03:9.033&quot;</span></span>
 <span id="cb481-2"><a href="data-manipulation.html#cb481-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1319,11 +1311,11 @@ div.csl-indent {
 <div class="sourceCode" id="cb503"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb503-1"><a href="data-manipulation.html#cb503-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample five rows from mtcars</span></span>
 <span id="cb503-2"><a href="data-manipulation.html#cb503-2" aria-hidden="true" tabindex="-1"></a>mtcars.sample(n <span class="op">=</span> <span class="dv">5</span>, replace <span class="op">=</span> <span class="va">True</span>)</span></code></pre></div>
 <pre><code>##      MPG  CYL   DISP   HP  AXLE_RATIO  ...  VS  AM  GEAR CARB       KPL
-## 19  33.9    4   71.1   65        4.22  ...   1   1     4    1  7.206633
+## 27  30.4    4   95.1  113        3.77  ...   1   1     5    2  6.462585
+## 14  10.4    8  472.0  205        2.93  ...   0   0     3    4  2.210884
+## 13  15.2    8  275.8  180        3.07  ...   0   0     3    3  3.231293
 ## 21  15.5    8  318.0  150        2.76  ...   0   0     3    2  3.295068
-## 9   19.2    6  167.6  123        3.92  ...   1   0     4    4  4.081633
-## 31  21.4    4  121.0  109        4.11  ...   1   1     4    2  4.549320
-## 7   24.4    4  146.7   62        3.69  ...   1   0     4    2  5.187075
+## 20  21.5    4  120.1   97        3.70  ...   1   0     3    1  4.570578
 ## 
 ## [5 rows x 12 columns]</code></pre>
 <p>To create a sample of a proportion, use the <code>frac</code> argument.</p>
@@ -1347,12 +1339,12 @@ div.csl-indent {
 <span id="cb507-5"><a href="data-manipulation.html#cb507-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb507-6"><a href="data-manipulation.html#cb507-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Use random_sample to sample from mtcars</span></span>
 <span id="cb507-7"><a href="data-manipulation.html#cb507-7" aria-hidden="true" tabindex="-1"></a>mtcars.loc[random_sample, ]</span></code></pre></div>
-<pre><code>##      MPG  CYL   DISP   HP  AXLE_RATIO     WT  QSEC  VS AM  GEAR  CARB       KPL
-## 9   19.2    6  167.6  123        3.92  3.440  18.3   1  0     4     4  4.081633
-## 9   19.2    6  167.6  123        3.92  3.440  18.3   1  0     4     4  4.081633
-## 12  17.3    8  275.8  180        3.07  3.730  17.6   0  0     3     3  3.677721
-## 10  17.8    6  167.6  123        3.92  3.440  18.9   1  0     4     4  3.784014
-## 25  27.3    4   79.0   66        4.08  1.935  18.9   1  1     4     1  5.803571</code></pre>
+<pre><code>##      MPG  CYL   DISP   HP  AXLE_RATIO    WT   QSEC  VS AM  GEAR  CARB       KPL
+## 29  19.7    6  145.0  175        3.62  2.77  15.50   0  1     5     6  4.187925
+## 14  10.4    8  472.0  205        2.93  5.25  17.98   0  0     3     4  2.210884
+## 23  13.3    8  350.0  245        3.73  3.84  15.41   0  0     3     4  2.827381
+## 31  21.4    4  121.0  109        4.11  2.78  18.60   1  1     4     2  4.549320
+## 31  21.4    4  121.0  109        4.11  2.78  18.60   1  1     4     2  4.549320</code></pre>
 <p>As before, setting <code>random.seed()</code> to a positive integer will ensure that the same “random” sample is generated each time the code is run.</p>
 <div class="sourceCode" id="cb509"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb509-1"><a href="data-manipulation.html#cb509-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">123</span>)</span>
 <span id="cb509-2"><a href="data-manipulation.html#cb509-2" aria-hidden="true" tabindex="-1"></a>sample <span class="op">=</span> np.random.choice(<span class="bu">len</span>(mtcars), (<span class="dv">5</span>,), replace<span class="op">=</span><span class="va">True</span>)</span>
@@ -1370,20 +1362,20 @@ div.csl-indent {
 <div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb511-1"><a href="data-manipulation.html#cb511-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample five rows from mtcars</span></span>
 <span id="cb511-2"><a href="data-manipulation.html#cb511-2" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">slice_sample</span>(mtcars, <span class="at">n =</span> <span class="dv">5</span>)</span></code></pre></div>
 <pre><code>##    mpg cylinders  disp  hp axle_ratio weight  qsec engine am gear carb am_ch    am_fac
-## 1 19.2         6 167.6 123       3.92  3.440 18.30      1  0    4    4     0 automatic
-## 2 10.4         8 472.0 205       2.93  5.250 17.98      0  0    3    4     0 automatic
-## 3 21.0         6 160.0 110       3.90  2.875 17.02      0  1    4    4     1    manual
-## 4 21.4         4 121.0 109       4.11  2.780 18.60      1  1    4    2     1    manual
-## 5 10.4         8 460.0 215       3.00  5.424 17.82      0  0    3    4     0 automatic</code></pre>
+## 1 15.0         8 301.0 335       3.54  3.570 14.60      0  1    5    8     1    manual
+## 2 18.1         6 225.0 105       2.76  3.460 20.22      1  0    3    1     0 automatic
+## 3 14.7         8 440.0 230       3.23  5.345 17.42      0  0    3    4     0 automatic
+## 4 22.8         4 140.8  95       3.92  3.150 22.90      1  0    4    2     0 automatic
+## 5 14.3         8 360.0 245       3.21  3.570 15.84      0  0    3    4     0 automatic</code></pre>
 <div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb513-1"><a href="data-manipulation.html#cb513-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample 20% of rows from mtcars</span></span>
 <span id="cb513-2"><a href="data-manipulation.html#cb513-2" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">slice_sample</span>(mtcars, <span class="at">prop =</span> <span class="fl">0.20</span>)</span></code></pre></div>
 <pre><code>##    mpg cylinders  disp  hp axle_ratio weight  qsec engine am gear carb am_ch    am_fac
-## 1 24.4         4 146.7  62       3.69  3.190 20.00      1  0    4    2     0 automatic
-## 2 32.4         4  78.7  66       4.08  2.200 19.47      1  1    4    1     1    manual
+## 1 15.2         8 304.0 150       3.15  3.435 17.30      0  0    3    2     0 automatic
+## 2 30.4         4  75.7  52       4.93  1.615 18.52      1  1    4    2     1    manual
 ## 3 15.5         8 318.0 150       2.76  3.520 16.87      0  0    3    2     0 automatic
-## 4 30.4         4  95.1 113       3.77  1.513 16.90      1  1    5    2     1    manual
-## 5 30.4         4  75.7  52       4.93  1.615 18.52      1  1    4    2     1    manual
-## 6 19.7         6 145.0 175       3.62  2.770 15.50      0  1    5    6     1    manual</code></pre>
+## 4 32.4         4  78.7  66       4.08  2.200 19.47      1  1    4    1     1    manual
+## 5 27.3         4  79.0  66       4.08  1.935 18.90      1  1    4    1     1    manual
+## 6 10.4         8 460.0 215       3.00  5.424 17.82      0  0    3    4     0 automatic</code></pre>
 <p>To sample with replacement, set <code>replace = TRUE</code>.</p>
 <p>The base R functions <code>sample()</code> and <code>runif()</code> can be combined to sample fixed sizes or approximate proportions.</p>
 <div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb515-1"><a href="data-manipulation.html#cb515-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample five rows from mtcars</span></span>
@@ -1392,23 +1384,22 @@ div.csl-indent {
 <span id="cb515-4"><a href="data-manipulation.html#cb515-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Then, use i to subset those rows</span></span>
 <span id="cb515-5"><a href="data-manipulation.html#cb515-5" aria-hidden="true" tabindex="-1"></a>mtcars[i, ]</span></code></pre></div>
 <pre><code>##     mpg cylinders  disp  hp axle_ratio weight  qsec engine am gear carb am_ch    am_fac
-## 21 21.5         4 120.1  97       3.70  2.465 20.01      1  0    3    1     0 automatic
-## 31 15.0         8 301.0 335       3.54  3.570 14.60      0  1    5    8     1    manual
-## 9  22.8         4 140.8  95       3.92  3.150 22.90      1  0    4    2     0 automatic
-## 20 33.9         4  71.1  65       4.22  1.835 19.90      1  1    4    1     1    manual
-## 24 13.3         8 350.0 245       3.73  3.840 15.41      0  0    3    4     0 automatic</code></pre>
+## 11 17.8         6 167.6 123       3.92  3.440 18.90      1  0    4    4     0 automatic
+## 30 19.7         6 145.0 175       3.62  2.770 15.50      0  1    5    6     1    manual
+## 10 19.2         6 167.6 123       3.92  3.440 18.30      1  0    4    4     0 automatic
+## 7  14.3         8 360.0 245       3.21  3.570 15.84      0  0    3    4     0 automatic
+## 28 30.4         4  95.1 113       3.77  1.513 16.90      1  1    5    2     1    manual</code></pre>
 <div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="data-manipulation.html#cb517-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample about 20% of rows from mtcars</span></span>
 <span id="cb517-2"><a href="data-manipulation.html#cb517-2" aria-hidden="true" tabindex="-1"></a><span class="co"># First, generate random values on range of [0,1]</span></span>
 <span id="cb517-3"><a href="data-manipulation.html#cb517-3" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="fu">nrow</span>(mtcars))</span>
 <span id="cb517-4"><a href="data-manipulation.html#cb517-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Then, use i &lt; 0.20 logical vector to select rows that correspond to TRUE</span></span>
 <span id="cb517-5"><a href="data-manipulation.html#cb517-5" aria-hidden="true" tabindex="-1"></a>mtcars[i <span class="sc">&lt;</span> <span class="fl">0.20</span>, ]</span></code></pre></div>
-<pre><code>##     mpg cylinders disp  hp axle_ratio weight  qsec engine am gear carb am_ch    am_fac
-## 4  21.4         6  258 110       3.08  3.215 19.44      1  0    3    1     0 automatic
-## 5  18.7         8  360 175       3.15  3.440 17.02      0  0    3    2     0 automatic
-## 6  18.1         6  225 105       2.76  3.460 20.22      1  0    3    1     0 automatic
-## 15 10.4         8  472 205       2.93  5.250 17.98      0  0    3    4     0 automatic
-## 22 15.5         8  318 150       2.76  3.520 16.87      0  0    3    2     0 automatic
-## 29 15.8         8  351 264       4.22  3.170 14.50      0  1    5    4     1    manual</code></pre>
+<pre><code>##     mpg cylinders  disp  hp axle_ratio weight  qsec engine am gear carb am_ch    am_fac
+## 7  14.3         8 360.0 245       3.21   3.57 15.84      0  0    3    4     0 automatic
+## 8  24.4         4 146.7  62       3.69   3.19 20.00      1  0    4    2     0 automatic
+## 22 15.5         8 318.0 150       2.76   3.52 16.87      0  0    3    2     0 automatic
+## 24 13.3         8 350.0 245       3.73   3.84 15.41      0  0    3    4     0 automatic
+## 31 15.0         8 301.0 335       3.54   3.57 14.60      0  1    5    8     1    manual</code></pre>
 <p>The random sample will change every time the code is run. To always generate the same “random” sample, use the <code>set.seed()</code> function with any positive integer.</p>
 <div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="data-manipulation.html#cb519-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb519-2"><a href="data-manipulation.html#cb519-2" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="fu">nrow</span>(mtcars))</span>
