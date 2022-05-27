@@ -357,17 +357,17 @@ div.csl-indent {
 <h4>R<a href="basics.html#r-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The main repository for R packages is the <a href="https://cran.r-project.org/">Comprehensive R Archive Network</a> (CRAN). Another major repository is <a href="https://www.bioconductor.org/">Bioconductor</a>, which hosts packages for working with genomic data. Many packages are also distributed on <a href="https://github.com/">GitHub</a>.</p>
 <p>To install packages from CRAN use the <code>install.packages()</code> function. In RStudio, you can also go to <em>Tools…Install Packages…</em> to bring up a dialog box that will auto-complete package names as you type.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="basics.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install the vcd package, a package for Visualizing Categorical Data</span></span>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="basics.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install the vcd package, a package for Visualizing Categorical Data</span></span>
 <span id="cb25-2"><a href="basics.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;vcd&quot;</span>)</span>
 <span id="cb25-3"><a href="basics.html#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-4"><a href="basics.html#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># load the package</span></span>
+<span id="cb25-4"><a href="basics.html#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the package</span></span>
 <span id="cb25-5"><a href="basics.html#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vcd)</span>
 <span id="cb25-6"><a href="basics.html#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-7"><a href="basics.html#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co"># see which packages on your computer have updates available</span></span>
+<span id="cb25-7"><a href="basics.html#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co"># See which packages on your computer have updates available</span></span>
 <span id="cb25-8"><a href="basics.html#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="fu">old.packages</span>()</span>
 <span id="cb25-9"><a href="basics.html#cb25-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-10"><a href="basics.html#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="co"># download and install available package updates;</span></span>
-<span id="cb25-11"><a href="basics.html#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="co"># set ask = TRUE to verify installation of each package</span></span>
+<span id="cb25-10"><a href="basics.html#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Download and install available package updates;</span></span>
+<span id="cb25-11"><a href="basics.html#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Set ask = TRUE to verify installation of each package</span></span>
 <span id="cb25-12"><a href="basics.html#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="fu">update.packages</span>(<span class="at">ask =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>To install R packages from GitHub, use the <code>install_github()</code> function from the <strong>devtools</strong> package. You need to include the username of the repo owner followed by a forward slash and the name of the package. Typing two colons between a package and a function in the package allows you to use that function without attaching the package in your R environment. That’s how we access <code>install_github()</code> in the example below.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="basics.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
@@ -402,7 +402,7 @@ div.csl-indent {
 <p>Python and R have different operators for negation. Python uses <code>not</code>. R uses <code>!</code>.</p>
 <div id="python-4" class="section level4 unnumbered hasAnchor">
 <h4>Python<a href="basics.html#python-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Python’s relational operators can be used to compare arrays to single values or other arrays. The following operation returns an array containing <code>True</code> and <code>False</code> values.</p>
+<p>Python’s relational operators can be used to compare arrays to single values or other arrays. The following operation returns an <strong>NumPy</strong> array containing <code>True</code> and <code>False</code> values.</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="basics.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np </span>
 <span id="cb32-2"><a href="basics.html#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-3"><a href="basics.html#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparison of array to single value</span></span>
@@ -593,7 +593,7 @@ div.csl-indent {
 ## 
 ## $SEM
 ## [1] 0.7855339</code></pre>
-<p>Functions can also be created on-the-fly as “anonymous” functions. This simply means the functions are not saved as objects in memory. These are often used with R’s family of <code>apply</code> functions, which apply some function over a set of inputs. As before, the functions can be created with <code>function()</code>. We can also use the backslash <code>\</code> as a shorthand for <code>function()</code>. We demonstrate both below using the following example data.</p>
+<p>Functions can also be created on-the-fly as “anonymous” functions. This simply means the functions are not saved as objects in memory. These are often used with R’s family of <code>apply()</code> functions, which apply some function over a set of inputs. As before, the functions can be created with <code>function()</code>. We can also use the backslash <code>\</code> as a shorthand for <code>function()</code>. We demonstrate both below using the following example data.</p>
 <div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="basics.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate some example data</span></span>
 <span id="cb84-2"><a href="basics.html#cb84-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x1 =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">4</span>), <span class="at">x2 =</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">9</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">2</span>, <span class="dv">5</span>), <span class="at">x3 =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">9</span>, <span class="dv">9</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">4</span>))</span>
 <span id="cb84-3"><a href="basics.html#cb84-3" aria-hidden="true" tabindex="-1"></a>d</span></code></pre></div>

@@ -27,7 +27,7 @@ View and inspect the names of variables and their types (numeric, string, logica
 
 #### Python {-}
 
-The `.info()` function in pandas returns information about a DataFrame.
+The `.info()` function in **pandas** returns information about a DataFrame.
 
 Setting the argument `verbose` to `True` prints the names of the columns, their lengths excluding `NULL` values, and their data types (`dtype`) in a table. The function lists the unique data types in the DataFrame, and it prints the amount of memory the DataFrame occupies.
 
@@ -69,31 +69,31 @@ dim(mtcars)
 How to select specific columns of data frames.
 
 #### Python {-}
-The period operator `.` provides access to a column in a DataFrame as a vector. This returns a pandas Series. A pandas Series can do everything a NumPy array can do.
+The period operator `.` provides access to a column in a DataFrame as a vector. This returns a **pandas** Series. A **pandas** Series can do everything a **NumPy** array can do.
 
 ```{python}
 mtcars.mpg
 ```
 
-Indexing also provides access to columns as a pandas Series. Single and double quotations both work.
+Indexing also provides access to columns as a **pandas** Series. Single and double quotations both work.
 
 ```{python}
 mtcars['mpg']
 ```
 
-Operations on NumPy arrays are faster than operations on pandas Series. But in many cases, using pandas Series is fine performance-wise. This consideration is primarily important for large data sets on which many operations are performed. The `.values` function returns a NumPy array from a pandas DataFrame.
+Operations on **NumPy** arrays are faster than operations on **pandas** Series. But in many cases, using **pandas** Series is fine performance-wise. This consideration is primarily important for large data sets on which many operations are performed. The `.values` function returns a **NumPy** array from a **pandas** DataFrame.
 
 ```{python}
 mtcars['mpg'].values
 ```
 
-Double indexing returns a pandas DataFrame instead of a NumPy array or pandas Series.
+Double indexing returns a **pandas** DataFrame instead of a **NumPy** array or **pandas** Series.
 
 ```{python}
 mtcars[['mpg']]
 ```
 
-The `head()` and `tail()` functions return the first five or last five values, respectively. Use the `n` argument to change the number of values. This function works on NumPy arrays, pandas Series and pandas DataFrames.
+The `head()` and `tail()` functions return the first five or last five values, respectively. Use the `n` argument to change the number of values. This function works on **NumPy** arrays, **pandas** Series and **pandas** DataFrames.
 
 ```{python}
 # First six values
@@ -167,21 +167,21 @@ The following example returns a DataFrame, not a Series, as there is more than o
 mtcars[mtcars["mpg"] > 30][["mpg", "cyl"]]
 ```
 
-Both pandas Series and NumPy arrays can be used for fast performance and vector operations. Many functions require a vector as input.
+Both **pandas** Series and **NumPy** arrays can be used for fast performance and vector operations. Many functions require a vector as input.
 
-The following code returns one column, `mpg`, as a pandas Series. A pandas Series is one column from a pandas DataFrame.
+The following code returns one column, `mpg`, as a **pandas** Series. A **pandas** Series is one column from a **pandas** DataFrame.
 
 ```{python}
 mtcars[mtcars["mpg"] > 30]["mpg"]
 ```
 
-The following code also returns a pandas Series, but it uses the `.` operator to select a column, rather than square brackets `[]`.
+The following code also returns a **pandas** Series, but it uses the `.` operator to select a column, rather than square brackets `[]`.
 
 ```{python}
 mtcars[mtcars["mpg"] > 30].mpg
 ```
 
-Both of the following lines of code return NumPy arrays using the `.values` function. `df1` is one dimension, reflecting just the `mpg` column, and `df2` is two dimensions, reflecting the `mpg` and `cyl` columns.
+Both of the following lines of code return **NumPy** arrays using the `.values` function. `df1` is one dimension, reflecting just the `mpg` column, and `df2` is two dimensions, reflecting the `mpg` and `cyl` columns.
 
 ```{python}
 df1 = mtcars[mtcars["mpg"] > 30]["mpg"].values
@@ -434,7 +434,7 @@ mtcars['am'] = mtcars['am'].astype(str)
 type(mtcars.am[0]) # check the type of the first item in am column
 ```
 
-A potential number-to-string conversion task in Python might be formatting 5-digit American ZIP Codes. Some zip codes begin with 0, but if stored as a numeric value, the 0 is dropped. For example, consider the following pandas DataFrame. Notice that the leading 0 is dropped from two of the ZIP Codes.
+A potential number-to-string conversion task in Python might be formatting 5-digit American ZIP Codes. Some zip codes begin with 0, but if stored as a numeric value, the 0 is dropped. For example, consider the following **pandas** DataFrame. Notice that the leading 0 is dropped from two of the ZIP Codes.
 
 ```{python}
 zc = pandas.read_csv('data/zc.csv')
@@ -455,7 +455,6 @@ If we knew we were importing zip codes using `read_csv`, we could also use the `
 zc = pandas.read_csv('data/zc.csv', dtype = {'zip':'str'})
 print(zc)
 ```
-
 
 #### R {-}
 
@@ -516,14 +515,14 @@ String variables that ought to be numbers usually have some character data conta
 
 The `astype(float)` or `astype(int)` function will coerce strings to numerical representation.
 
-For demonstration, let's say we have the following NumPy array:
+For demonstration, let's say we have the following **NumPy** array:
 
 ```{python}
 import numpy as np
 weight = np.array(["125 lbs.", "132 lbs.", "156 lbs."])
 ```
 
-The `astype(float)` function throws an error due to the presence of strings. The `astype()` function is for NumPy arrays.
+The `astype(float)` function throws an error due to the presence of strings. The `astype()` function is for **NumPy** arrays.
 
 ```{python}
 try:
@@ -736,7 +735,7 @@ How to find and drop duplicate elements.
 
 The `duplicated()` function determines which rows of a DataFrame are duplicates of previous rows. 
 
-First, we create a DataFrame with a duplicate row by using the pandas `concat()` function. `concat()` combines DataFrames by rows or columns (by rows is the default).
+First, we create a DataFrame with a duplicate row by using the **pandas** `concat()` function. `concat()` combines DataFrames by rows or columns (by rows is the default).
 
 ```{python}
 # Create DataFrame with duplicate rows
@@ -749,7 +748,6 @@ The `duplicated()` function returns a logical vector. TRUE indicates a row is a 
 ```{python}
 mtcars2.duplicated()
 ```
-
 
 #### R {-}
 
@@ -1008,7 +1006,7 @@ How to take a random sample of rows from a data frame. The sample is usually eit
 
 #### Python {-}
 
-The pandas package provides a function for taking a sample of fixed size or a proportion, `sample()`. To sample with replacement, set `replace = TRUE`. 
+The **pandas** package provides a function for taking a sample of fixed size or a proportion, `sample()`. To sample with replacement, set `replace = TRUE`. 
 
 By default, the random sample will change every time the code is run. To always generate the same "random" sample, set `random_state` to any positive integer.
 
@@ -1024,7 +1022,7 @@ To create a sample of a proportion, use the `frac` argument.
 mtcars.sample(frac = 0.20, random_state = 1)
 ```
 
-The NumPy function `random.choice()` in combination with the `loc()` function can be used to sample from a DataFrame. 
+The **NumPy** function `random.choice()` in combination with the `loc()` function can be used to sample from a DataFrame. 
 
 The `random.choice()` function creates a random sample according to the given parameters. The `loc()` function is used to access rows and columns by index. 
 

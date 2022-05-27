@@ -270,7 +270,7 @@ div.csl-indent {
 <p>A one-dimensional data structure can be visualized as a column in a spreadsheet or as a list of values.</p>
 <div id="python-8" class="section level4 unnumbered hasAnchor">
 <h4>Python<a href="data-structures.html#python-8" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>There are many ways to organize one-dimensional data in Python. Three of the most common one-dimensional data structures are lists, NumPy arrays, and pandas Series. All three are ordered and mutable, and they can contain data of different types.</p>
+<p>There are many ways to organize one-dimensional data in Python. Three of the most common one-dimensional data structures are lists, <strong>NumPy</strong> arrays, and <strong>pandas</strong> Series. All three are ordered and mutable, and they can contain data of different types.</p>
 <p>Lists in Python do not need to be explicitly declared; they are indicated by the use of square brackets.</p>
 <div class="sourceCode" id="cb90"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb90-1"><a href="data-structures.html#cb90-1" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="st">&#39;hello&#39;</span>]</span></code></pre></div>
 <p>Values in lists can be accessed by using square brackets. Python indexing begins at 0, so to extract the first element, we would use the index 0. Python also allows for negative indexing; using an index of -1 will return the last value in the list. Indexing a range in Python is <em>not</em> inclusive of the last index.</p>
@@ -283,13 +283,13 @@ div.csl-indent {
 <div class="sourceCode" id="cb95"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb95-1"><a href="data-structures.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract second and third elements</span></span>
 <span id="cb95-2"><a href="data-structures.html#cb95-2" aria-hidden="true" tabindex="-1"></a>l[<span class="dv">1</span>:<span class="dv">3</span>]</span></code></pre></div>
 <pre><code>## [2, 3]</code></pre>
-<p>NumPy arrays, on the other hand, need to be declared using the <code>numpy.array()</code> function, and the <strong>NumPy</strong> package needs to be imported.</p>
+<p><strong>NumPy</strong> arrays, on the other hand, need to be declared using the <code>numpy.array()</code> function, and the <strong>NumPy</strong> package needs to be imported.</p>
 <div class="sourceCode" id="cb97"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb97-1"><a href="data-structures.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb97-2"><a href="data-structures.html#cb97-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb97-3"><a href="data-structures.html#cb97-3" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="st">&#39;hello&#39;</span>])</span>
 <span id="cb97-4"><a href="data-structures.html#cb97-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr)</span></code></pre></div>
 <pre><code>## [&#39;1&#39; &#39;2&#39; &#39;3&#39; &#39;hello&#39;]</code></pre>
-<p>Accessing data in a NumPy array is the same as indexing a list.</p>
+<p>Accessing data in a <strong>NumPy</strong> array is the same as indexing a list.</p>
 <div class="sourceCode" id="cb99"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb99-1"><a href="data-structures.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract first element </span></span>
 <span id="cb99-2"><a href="data-structures.html#cb99-2" aria-hidden="true" tabindex="-1"></a>arr[<span class="dv">0</span>]</span>
 <span id="cb99-3"><a href="data-structures.html#cb99-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -301,7 +301,7 @@ div.csl-indent {
 <pre><code>## &#39;hello&#39;</code></pre>
 <div class="sourceCode" id="cb103"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb103-1"><a href="data-structures.html#cb103-1" aria-hidden="true" tabindex="-1"></a>arr[<span class="dv">1</span>:<span class="dv">3</span>]</span></code></pre></div>
 <pre><code>## array([&#39;2&#39;, &#39;3&#39;], dtype=&#39;&lt;U21&#39;)</code></pre>
-<p>Pandas Series also need to be declared using the <code>pandas.Series()</code> function. Like <strong>NumPy</strong>, the <strong>pandas</strong> package must be imported as well. The pandas package is built on NumPy, so we can input data into a pandas Series using a NumPy array. We can extract data from a Series by indexing, similar to indexing a list or NumPy array.</p>
+<p><strong>pandas</strong> Series also need to be declared using the <code>pandas.Series()</code> function. Like <strong>NumPy</strong>, the <strong>pandas</strong> package must be imported as well. The <strong>pandas</strong> package is built on <strong>NumPy</strong>, so we can input data into a <strong>pandas</strong> Series using a <strong>NumPy</strong> array. We can extract data from a Series by indexing, similar to indexing a list or <strong>NumPy</strong> array.</p>
 <div class="sourceCode" id="cb105"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb105-1"><a href="data-structures.html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
 <span id="cb105-2"><a href="data-structures.html#cb105-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb105-3"><a href="data-structures.html#cb105-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -354,7 +354,7 @@ div.csl-indent {
 <div class="sourceCode" id="cb121"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb121-1"><a href="data-structures.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract element in row &quot;b&quot;</span></span>
 <span id="cb121-2"><a href="data-structures.html#cb121-2" aria-hidden="true" tabindex="-1"></a>ser2.b</span></code></pre></div>
 <pre><code>## &#39;2&#39;</code></pre>
-<p>Mathematical operations cannot be carried out on lists, but they can be carried out on NumPy arrays and pandas Series. In general, lists are better for short data sets that won’t be the targets of mathematical operations. NumPy arrays and pandas Series are better for long data sets and for data sets that will be operated on mathematically.</p>
+<p>Mathematical operations cannot be carried out on lists, but they can be carried out on <strong>NumPy</strong> arrays and <strong>pandas</strong> Series. In general, lists are better for short data sets that won’t be the targets of mathematical operations. <strong>NumPy</strong> arrays and <strong>pandas</strong> Series are better for long data sets and for data sets that will be operated on mathematically.</p>
 </div>
 <div id="r-8" class="section level4 unnumbered hasAnchor">
 <h4>R<a href="data-structures.html#r-8" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -380,15 +380,15 @@ div.csl-indent {
 <p>Two-dimensional data are rectangular in nature, consisting of rows and columns. These can be the type of data you might find in a spreadsheet with a mix of data types in the columns; they can also be matrices as you might encounter in matrix algebra.</p>
 <div id="python-9" class="section level4 unnumbered hasAnchor">
 <h4>Python<a href="data-structures.html#python-9" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>In Python, two common two-dimensional data structures are the NumPy array (introduced above in its one-dimensional form) and the pandas DataFrame.</p>
-<p>A two-dimensional NumPy array is made in a similar way to the one-dimensional array using the <code>numpy.array()</code> function.</p>
+<p>In Python, two common two-dimensional data structures are the <strong>NumPy</strong> array (introduced above in its one-dimensional form) and the <strong>pandas</strong> DataFrame.</p>
+<p>A two-dimensional <strong>NumPy</strong> array is made in a similar way to the one-dimensional array using the <code>numpy.array()</code> function.</p>
 <div class="sourceCode" id="cb131"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb131-1"><a href="data-structures.html#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb131-2"><a href="data-structures.html#cb131-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb131-3"><a href="data-structures.html#cb131-3" aria-hidden="true" tabindex="-1"></a>arr2d <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="st">&quot;hello&quot;</span>], [<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="st">&quot;world&quot;</span>]])</span>
 <span id="cb131-4"><a href="data-structures.html#cb131-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr2d)</span></code></pre></div>
 <pre><code>## [[&#39;1&#39; &#39;2&#39; &#39;3&#39; &#39;hello&#39;]
 ##  [&#39;4&#39; &#39;5&#39; &#39;6&#39; &#39;world&#39;]]</code></pre>
-<p>Data can be selected from a two-dimensional NumPy array via <code>[row, column]</code> indexing:</p>
+<p>Data can be selected from a two-dimensional <strong>NumPy</strong> array via <code>[row, column]</code> indexing:</p>
 <div class="sourceCode" id="cb133"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb133-1"><a href="data-structures.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb133-2"><a href="data-structures.html#cb133-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb133-3"><a href="data-structures.html#cb133-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract first element </span></span>
@@ -403,7 +403,7 @@ div.csl-indent {
 <div class="sourceCode" id="cb137"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb137-1"><a href="data-structures.html#cb137-1" aria-hidden="true" tabindex="-1"></a>arr2d[:, <span class="dv">1</span>:<span class="dv">3</span>]</span></code></pre></div>
 <pre><code>## array([[&#39;2&#39;, &#39;3&#39;],
 ##        [&#39;5&#39;, &#39;6&#39;]], dtype=&#39;&lt;U21&#39;)</code></pre>
-<p>A pandas DataFrame is made using the <code>pandas.DataFrame()</code> function, and it shares many functional similarities with the pandas Series.</p>
+<p>A <strong>pandas</strong> DataFrame is made using the <code>pandas.DataFrame()</code> function, and it shares many functional similarities with the <strong>pandas</strong> Series.</p>
 <div class="sourceCode" id="cb139"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb139-1"><a href="data-structures.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb139-2"><a href="data-structures.html#cb139-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb139-3"><a href="data-structures.html#cb139-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -413,7 +413,7 @@ div.csl-indent {
 <pre><code>##    0  1  2      3
 ## 0  1  2  3  hello
 ## 1  4  5  6  world</code></pre>
-<p>To select certain rows and columns from a pandas DataFrame based on their integer position, we can use <code>iloc[]</code> (as we did with the pandas Series above). The values inside the brackets following <code>iloc</code> reflect the rows and the columns, respectively.</p>
+<p>To select certain rows and columns from a <strong>pandas</strong> DataFrame based on their integer position, we can use <code>iloc[]</code> (as we did with the <strong>pandas</strong> Series above). The values inside the brackets following <code>iloc</code> reflect the rows and the columns, respectively.</p>
 <div class="sourceCode" id="cb141"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb141-1"><a href="data-structures.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract first element (first row, first column)</span></span>
 <span id="cb141-2"><a href="data-structures.html#cb141-2" aria-hidden="true" tabindex="-1"></a>df.loc[<span class="dv">0</span>, <span class="dv">0</span>]</span></code></pre></div>
 <pre><code>## &#39;1&#39;</code></pre>
@@ -429,7 +429,7 @@ div.csl-indent {
 <pre><code>## 0    2
 ## 1    5
 ## Name: 1, dtype: object</code></pre>
-<p>As we did with the pandas Series, we can change the indices and the column names of the DataFrame and use those to select certain data. We change the indices using the <code>index</code> attribute in <code>pandas.DataFrame()</code>, and we change the column names using the <code>columns</code> attribute. These new labels can be used with <code>loc[]</code> for subsetting. (And, as mentioned above, if a range is passed to <code>loc[]</code>, it’s treated as inclusive on both ends.)</p>
+<p>As we did with the <strong>pandas</strong> Series, we can change the indices and the column names of the DataFrame and use those to select certain data. We change the indices using the <code>index</code> attribute in <code>pandas.DataFrame()</code>, and we change the column names using the <code>columns</code> attribute. These new labels can be used with <code>loc[]</code> for subsetting. (And, as mentioned above, if a range is passed to <code>loc[]</code>, it’s treated as inclusive on both ends.)</p>
 <div class="sourceCode" id="cb147"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb147-1"><a href="data-structures.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb147-2"><a href="data-structures.html#cb147-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb147-3"><a href="data-structures.html#cb147-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -439,7 +439,7 @@ div.csl-indent {
 <pre><code>## a    1
 ## b    4
 ## Name: column 1, dtype: object</code></pre>
-<p>One thing to note is that NumPy arrays can actually have an arbitrary number of dimensions, whereas pandas DataFrames can only have two.</p>
+<p>One thing to note is that <strong>NumPy</strong> arrays can actually have an arbitrary number of dimensions, whereas <strong>pandas</strong> DataFrames can only have two.</p>
 </div>
 <div id="r-9" class="section level4 unnumbered hasAnchor">
 <h4>R<a href="data-structures.html#r-9" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -473,7 +473,7 @@ div.csl-indent {
 <p>Three-dimensional and higher data can be visualized as multiple rectangular structures stratified by extra variables. These are sometimes referred to as <em>arrays</em>. Analysts usually prefer two-dimensional data frames to arrays. Data frames can accommodate multidimensional data by including the additional dimensions as variables.</p>
 <div id="python-10" class="section level4 unnumbered hasAnchor">
 <h4>Python<a href="data-structures.html#python-10" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>To create a three-dimensional and higher data structure in Python, we again use a NumPy array. We can think of the three-dimensional array as a stack of two-dimensional arrays. We construct this in the same way as the one- and two-dimensional arrays.</p>
+<p>To create a three-dimensional and higher data structure in Python, we again use a <strong>NumPy</strong> array. We can think of the three-dimensional array as a stack of two-dimensional arrays. We construct this in the same way as the one- and two-dimensional arrays.</p>
 <div class="sourceCode" id="cb157"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb157-1"><a href="data-structures.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np </span>
 <span id="cb157-2"><a href="data-structures.html#cb157-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb157-3"><a href="data-structures.html#cb157-3" aria-hidden="true" tabindex="-1"></a>arr3d <span class="op">=</span> np.array([[[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>]], [[<span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>], [<span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">12</span>]]])</span>
@@ -483,7 +483,7 @@ div.csl-indent {
 ## 
 ##        [[ 7,  8,  9],
 ##         [10, 11, 12]]])</code></pre>
-<p>We can also construct a three-dimensional NumPy array using the <code>reshape</code> function on an existing array. The argument of <code>reshape</code> is where you input your desired dimensions: strata, rows, and then columns. Here, the <code>arange</code> function is used to create a NumPy array containing the numbers 1 through 12 (to recreate the same array shown above).</p>
+<p>We can also construct a three-dimensional <strong>NumPy</strong> array using the <code>reshape()</code> function on an existing array. The argument of <code>reshape()</code> is where you input your desired dimensions: strata, rows, and then columns. Here, the <code>arange()</code> function is used to create a <strong>NumPy</strong> array containing the numbers 1 through 12 (to recreate the same array shown above).</p>
 <div class="sourceCode" id="cb159"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb159-1"><a href="data-structures.html#cb159-1" aria-hidden="true" tabindex="-1"></a>arr3d_2 <span class="op">=</span> np.arange(<span class="dv">1</span>, <span class="dv">13</span>).reshape(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
 <span id="cb159-2"><a href="data-structures.html#cb159-2" aria-hidden="true" tabindex="-1"></a>arr3d_2</span></code></pre></div>
 <pre><code>## array([[[ 1,  2,  3],

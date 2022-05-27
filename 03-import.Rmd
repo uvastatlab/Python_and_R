@@ -61,7 +61,7 @@ d_xls <- read_excel("data/ny_math_test.xlsx")
 d_xls[1:3, c("Grade", "Year", "Mean Scale Score")]
 ```
 
-The result is a _tibble_, a [tidyverse data frame](https://tibble.tidyverse.org/). 
+The result is a _tibble_, a [**tidyverse** data frame](https://tibble.tidyverse.org/). 
 
 It's worth noting we can use the `range` argument to specify a range of cells to import. For example, if the top left corner of the data was B5 and the bottom right corner of the data was J54, we could enter `range="B5:J54"` to just import that section of data.
 
@@ -146,7 +146,7 @@ There are several ways to export/write/save files from Python and R. The followi
 
 #### Python {-}
 
-The pandas function `to_csv()` saves a pandas DataFrame as a csv file.
+The **pandas** function `to_csv()` saves a **pandas** DataFrame as a csv file.
 
 ```{python}
 # Pass a file name to the function

@@ -12,7 +12,7 @@ A one-dimensional data structure can be visualized as a column in a spreadsheet 
 
 #### Python {-}
 
-There are many ways to organize one-dimensional data in Python. Three of the most common one-dimensional data structures are lists, NumPy arrays, and pandas Series. All three are ordered and mutable, and they can contain data of different types. 
+There are many ways to organize one-dimensional data in Python. Three of the most common one-dimensional data structures are lists, **NumPy** arrays, and **pandas** Series. All three are ordered and mutable, and they can contain data of different types. 
 
 Lists in Python do not need to be explicitly declared; they are indicated by the use of square brackets.
 
@@ -35,7 +35,7 @@ l[-1]
 l[1:3]
 ```
 
-NumPy arrays, on the other hand, need to be declared using the `numpy.array()` function, and the **NumPy** package needs to be imported. 
+**NumPy** arrays, on the other hand, need to be declared using the `numpy.array()` function, and the **NumPy** package needs to be imported. 
 
 ```{python}
 import numpy as np
@@ -44,7 +44,7 @@ arr = np.array([1, 2, 3, 'hello'])
 print(arr)
 ```
 
-Accessing data in a NumPy array is the same as indexing a list. 
+Accessing data in a **NumPy** array is the same as indexing a list. 
 
 ```{python}
 # Extract first element 
@@ -57,7 +57,7 @@ arr[-1]
 arr[1:3]
 ```
 
-Pandas Series also need to be declared using the `pandas.Series()` function. Like **NumPy**, the **pandas** package must be imported as well. The pandas package is built on NumPy, so we can input data into a pandas Series using a NumPy array. We can extract data from a Series by indexing, similar to indexing a list or NumPy array.
+**pandas** Series also need to be declared using the `pandas.Series()` function. Like **NumPy**, the **pandas** package must be imported as well. The **pandas** package is built on **NumPy**, so we can input data into a **pandas** Series using a **NumPy** array. We can extract data from a Series by indexing, similar to indexing a list or **NumPy** array.
 
 ```{python}
 import pandas as pd 
@@ -111,7 +111,7 @@ ser2.d
 ser2.b
 ```
 
-Mathematical operations cannot be carried out on lists, but they can be carried out on NumPy arrays and pandas Series. In general, lists are better for short data sets that won't be the targets of mathematical operations. NumPy arrays and pandas Series are better for long data sets and for data sets that will be operated on mathematically.
+Mathematical operations cannot be carried out on lists, but they can be carried out on **NumPy** arrays and **pandas** Series. In general, lists are better for short data sets that won't be the targets of mathematical operations. **NumPy** arrays and **pandas** Series are better for long data sets and for data sets that will be operated on mathematically.
 
 #### R {-}
 
@@ -141,9 +141,9 @@ x1[2:3]
 Two-dimensional data are rectangular in nature, consisting of rows and columns. These can be the type of data you might find in a spreadsheet with a mix of data types in the columns; they can also be matrices as you might encounter in matrix algebra.
 
 #### Python {-}
-In Python, two common two-dimensional data structures are the NumPy array (introduced above in its one-dimensional form) and the pandas DataFrame.
+In Python, two common two-dimensional data structures are the **NumPy** array (introduced above in its one-dimensional form) and the **pandas** DataFrame.
 
-A two-dimensional NumPy array is made in a similar way to the one-dimensional array using the `numpy.array()` function. 
+A two-dimensional **NumPy** array is made in a similar way to the one-dimensional array using the `numpy.array()` function. 
 
 ```{python}
 import numpy as np
@@ -152,7 +152,7 @@ arr2d = np.array([[1, 2, 3, "hello"], [4, 5, 6, "world"]])
 print(arr2d)
 ```
 
-Data can be selected from a two-dimensional NumPy array via `[row, column]` indexing:
+Data can be selected from a two-dimensional **NumPy** array via `[row, column]` indexing:
 
 ```{python}
 import numpy as np
@@ -167,7 +167,7 @@ arr2d[-1, -1]
 arr2d[:, 1:3]
 ```
 
-A pandas DataFrame is made using the `pandas.DataFrame()` function, and it shares many functional similarities with the pandas Series.
+A **pandas** DataFrame is made using the `pandas.DataFrame()` function, and it shares many functional similarities with the **pandas** Series.
 
 ```{python}
 import pandas as pd
@@ -178,7 +178,7 @@ df = pd.DataFrame(data)
 print(df)
 ```
 
-To select certain rows and columns from a pandas DataFrame based on their integer position, we can use `iloc[]` (as we did with the pandas Series above). The values inside the brackets following `iloc` reflect the rows and the columns, respectively. 
+To select certain rows and columns from a **pandas** DataFrame based on their integer position, we can use `iloc[]` (as we did with the **pandas** Series above). The values inside the brackets following `iloc` reflect the rows and the columns, respectively. 
 
 ```{python}
 # Extract first element (first row, first column)
@@ -193,7 +193,7 @@ df.loc[0, :]
 df.loc[:, 1]
 ```
 
-As we did with the pandas Series, we can change the indices and the column names of the DataFrame and use those to select certain data. We change the indices using the `index` attribute in `pandas.DataFrame()`, and we change the column names using the `columns` attribute. These new labels can be used with `loc[]` for subsetting. (And, as mentioned above, if a range is passed to `loc[]`, it's treated as inclusive on both ends.)
+As we did with the **pandas** Series, we can change the indices and the column names of the DataFrame and use those to select certain data. We change the indices using the `index` attribute in `pandas.DataFrame()`, and we change the column names using the `columns` attribute. These new labels can be used with `loc[]` for subsetting. (And, as mentioned above, if a range is passed to `loc[]`, it's treated as inclusive on both ends.)
 
 ```{python}
 import pandas as pd
@@ -204,7 +204,7 @@ df = pd.DataFrame(data, index = ["a", "b"], columns = ["column 1", "column 2", "
 print(df.loc[["a", "b"], "column 1"])
 ```
 
-One thing to note is that NumPy arrays can actually have an arbitrary number of dimensions, whereas pandas DataFrames can only have two.
+One thing to note is that **NumPy** arrays can actually have an arbitrary number of dimensions, whereas **pandas** DataFrames can only have two.
 
 #### R {-}
 
@@ -239,7 +239,7 @@ Three-dimensional and higher data can be visualized as multiple rectangular stru
 
 #### Python {-}
 
-To create a three-dimensional and higher data structure in Python, we again use a NumPy array. We can think of the three-dimensional array as a stack of two-dimensional arrays. We construct this in the same way as the one- and two-dimensional arrays.
+To create a three-dimensional and higher data structure in Python, we again use a **NumPy** array. We can think of the three-dimensional array as a stack of two-dimensional arrays. We construct this in the same way as the one- and two-dimensional arrays.
 
 ```{python}
 import numpy as np 
@@ -248,7 +248,7 @@ arr3d = np.array([[[1, 2, 3], [4, 5, 6]], [[7, 8, 9], [10, 11, 12]]])
 arr3d
 ```
 
-We can also construct a three-dimensional NumPy array using the `reshape` function on an existing array. The argument of `reshape` is where you input your desired dimensions: strata, rows, and then columns. Here, the `arange` function is used to create a NumPy array containing the numbers 1 through 12 (to recreate the same array shown above). 
+We can also construct a three-dimensional **NumPy** array using the `reshape()` function on an existing array. The argument of `reshape()` is where you input your desired dimensions: strata, rows, and then columns. Here, the `arange()` function is used to create a **NumPy** array containing the numbers 1 through 12 (to recreate the same array shown above). 
 
 ```{python}
 arr3d_2 = np.arange(1, 13).reshape(2, 2, 3)
