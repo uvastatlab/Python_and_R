@@ -54,7 +54,7 @@ Our data are available as a **pandas** DataFrame. It's small enough to view in i
 ch8_d1
 ```
 
-A stripchart is one of many ways to visualize numeric data between two groups. Here, we use the seaborn function `stripplot()`. It appears that the treated group have higher scores.
+A stripchart is one of many ways to visualize numeric data between two groups. Here, we use the function `stripplot()` from **seaborn**. It appears that the treated group have higher scores on average.
 
 ```{python }
 import seaborn as sns
@@ -70,7 +70,7 @@ One way to perform a t test in Python is via the `CompareMeans()` function and i
 import statsmodels.stats.api as sms
 ```
 
-We first extract the data we want to compare as pandas Series.
+We first extract the data we want to compare as **pandas** Series.
 
 ```{python}
 d_control = ch8_d1.query('group == "control"')['score']
@@ -129,7 +129,7 @@ ch8_d2['mass'].groupby(ch8_d2['location']).mean()
 
 One way to perform an ANOVA in Python is via the `anova_oneway()` function, also available in the **statsmodels** package.
 
-The `anova_oneway()` function can perform an ANOVA on a pandas Dataframe, where the first argument specifies the numeric data and the second argument specifies the grouping variable. We also set `use_var = 'equal'` to replicate the R output below.
+The `anova_oneway()` function can perform an ANOVA on a **pandas** Dataframe, where the first argument specifies the numeric data and the second argument specifies the grouping variable. We also set `use_var = 'equal'` to replicate the R output below.
 
 ```{python}
 sms.anova_oneway(ch8_d2.mass, ch8_d2.location, use_var = 'equal')
@@ -321,9 +321,9 @@ whiteside = r.whiteside
 
 #### Python {-}
 
-The `ols()` function in the statsmodels package fits a linear model. In this example, we fit a linear model predicting gas consumption from insulation, temperature, and the interaction between insulation and temperature.
+The `ols()` function in the **statsmodels** package fits a linear model. In this example, we fit a linear model predicting gas consumption from insulation, temperature, and the interaction between insulation and temperature.
 
-The desired model can be specified as a formula: List the dependent variable (also called the "response" variable) first, then a tilde (`~`), and then the predictor variables separated by plus signs (`+`). Separating variables with colons instead of plus signs (`x:z`) fits an interaction term for those variables. The variables in the formula correspond to columns in a pandas DataFrame. Users specify the pandas DataFrame using the `data` argument.
+The desired model can be specified as a formula: List the dependent variable (also called the "response" variable) first, then a tilde (`~`), and then the predictor variables separated by plus signs (`+`). Separating variables with colons instead of plus signs (`x:z`) fits an interaction term for those variables. The variables in the formula correspond to columns in a **pandas** DataFrame. Users specify the **pandas** DataFrame using the `data` argument.
 
 ```{python}
 import statsmodels.api as sm
@@ -338,7 +338,7 @@ With a model in hand, you can extract information about it via several functions
 - `summary()`: return a summary of model coefficients with standard errors and test statistics
 - `params`: return the model coefficients
 - `conf_int()`: return the 95% confidence interval of each model coefficient
-- statsmodels also provides functions for diagnostic plots; a few examples are shown below
+- **statsmodels** also provides functions for diagnostic plots; a few examples are shown below
 
 The `summary()` function produces the kind of standard regression output one typically finds in a statistics textbook.
 
@@ -433,7 +433,6 @@ Once we fit a model and we're reasonably confident that it's a well-fitting, ass
 You need to first install the **ggeffects** package, as it does not come with the base R installation. Once installed, load using the `library()` function. Once loaded, we can get a basic visualization of our model by using the `plot()` and `ggpredict()` functions. This is particularly useful for models with interactions. Use the `terms` argument to specify which variables to plot. Below we list `Temp` first, which will plot `Temp` on the x axis. Then we list `Insul`, the grouping variable, to indicate we want a separate fit for each level of `Insul`.
 
 ```{r message=FALSE}
-# install.pacakges("ggeffects")
 library(ggeffects)
 plot(ggpredict(m, terms = c("Temp", "Insul")))
 ```
@@ -470,7 +469,7 @@ birthwt = r.birthwt
 
 #### Python {-}
 
-The Python library `statsmodels.formula.api` provides the `glm()` function for fitting generalized linear models. We specify the model as a formula string in the first argument of the `glm()` function. The format is as follows: dependent/response variable followed by a tilde (`~`), then the predictor variables separated by a plus sign (`+`). Separating variables with a colon (`a:b`) includes the interaction of those variables in the model. To fit a logistic regression, we specify `family = sm.families.Binomial()`, as our dependent variable is binary. We also specify our data set in the `data` argument as well.
+The Python library **statsmodels.formula.api** provides the `glm()` function for fitting generalized linear models. We specify the model as a formula string in the first argument of the `glm()` function. The format is as follows: dependent/response variable followed by a tilde (`~`), then the predictor variables separated by a plus sign (`+`). Separating variables with a colon (`a:b`) includes the interaction of those variables in the model. To fit a logistic regression, we specify `family = sm.families.Binomial()`, as our dependent variable is binary. We also specify our data set in the `data` argument as well.
 
 ```{python}
 import statsmodels.api as sm
@@ -510,7 +509,7 @@ ci = pred.conf_int()
 print(ci)
 ```
 
-Now, we use the matplotlib `errorbar()` function to create the plot. The `errorbar()` function requires _margin of error_, not the lower and upper limits. So, we have to do some subtraction to get the lower and upper margins of error.
+Now, we use the **Matplotlib** `errorbar()` function to create the plot. The `errorbar()` function requires _margin of error_, not the lower and upper limits. So, we have to do some subtraction to get the lower and upper margins of error.
 
 ```{python}
 lower = [prob[0] - ci[0,0], prob[1] - ci[1,0]]
@@ -586,7 +585,6 @@ Once **ggeffects** is installed and loaded, we can get a basic visualization of 
 Use the `terms` argument to specify which variables to plot. Below, we plot the probability of low infant birth weight depending on whether or not the mother had previous premature labors (1 = yes, 0 = no).
 
 ```{r}
-# install.packages("ggeffects")
 library(ggeffects)
 plot(ggpredict(mod, terms = "ptd"))
 ```

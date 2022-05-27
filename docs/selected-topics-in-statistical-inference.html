@@ -308,7 +308,7 @@ div.csl-indent {
 ## 27   79.0  treated
 ## 28   83.0  treated
 ## 29   87.0  treated</code></pre>
-<p>A stripchart is one of many ways to visualize numeric data between two groups. Here, we use the seaborn function <code>stripplot()</code>. It appears that the treated group have higher scores.</p>
+<p>A stripchart is one of many ways to visualize numeric data between two groups. Here, we use the function <code>stripplot()</code> from <strong>seaborn</strong>. It appears that the treated group have higher scores on average.</p>
 <div class="sourceCode" id="cb667"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb667-1"><a href="selected-topics-in-statistical-inference.html#cb667-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb667-2"><a href="selected-topics-in-statistical-inference.html#cb667-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb667-3"><a href="selected-topics-in-statistical-inference.html#cb667-3" aria-hidden="true" tabindex="-1"></a>plt.clf()</span>
@@ -317,7 +317,7 @@ div.csl-indent {
 <p><img src="_main_files/figure-html/unnamed-chunk-322-1.png" width="1440" /></p>
 <p>One way to perform a t test in Python is via the <code>CompareMeans()</code> function and its associated methods available in the <strong>statsmodels</strong> package. Below, we import <strong>statsmodels.stats.api</strong>.</p>
 <div class="sourceCode" id="cb668"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb668-1"><a href="selected-topics-in-statistical-inference.html#cb668-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.stats.api <span class="im">as</span> sms</span></code></pre></div>
-<p>We first extract the data we want to compare as pandas Series.</p>
+<p>We first extract the data we want to compare as <strong>pandas</strong> Series.</p>
 <div class="sourceCode" id="cb669"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb669-1"><a href="selected-topics-in-statistical-inference.html#cb669-1" aria-hidden="true" tabindex="-1"></a>d_control <span class="op">=</span> ch8_d1.query(<span class="st">&#39;group == &quot;control&quot;&#39;</span>)[<span class="st">&#39;score&#39;</span>]</span>
 <span id="cb669-2"><a href="selected-topics-in-statistical-inference.html#cb669-2" aria-hidden="true" tabindex="-1"></a>d_treated <span class="op">=</span> ch8_d1.query(<span class="st">&#39;group == &quot;treated&quot;&#39;</span>)[<span class="st">&#39;score&#39;</span>]</span></code></pre></div>
 <p>Next, we create Descriptive statistics objects using the <code>DescrStatsW()</code> function.</p>
@@ -374,7 +374,7 @@ div.csl-indent {
 ## 3    6.12
 ## Name: mass, dtype: float64</code></pre>
 <p>One way to perform an ANOVA in Python is via the <code>anova_oneway()</code> function, also available in the <strong>statsmodels</strong> package.</p>
-<p>The <code>anova_oneway()</code> function can perform an ANOVA on a pandas Dataframe, where the first argument specifies the numeric data and the second argument specifies the grouping variable. We also set <code>use_var = 'equal'</code> to replicate the R output below.</p>
+<p>The <code>anova_oneway()</code> function can perform an ANOVA on a <strong>pandas</strong> Dataframe, where the first argument specifies the numeric data and the second argument specifies the grouping variable. We also set <code>use_var = 'equal'</code> to replicate the R output below.</p>
 <div class="sourceCode" id="cb683"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb683-1"><a href="selected-topics-in-statistical-inference.html#cb683-1" aria-hidden="true" tabindex="-1"></a>sms.anova_oneway(ch8_d2.mass, ch8_d2.location, use_var <span class="op">=</span> <span class="st">&#39;equal&#39;</span>)</span></code></pre></div>
 <pre><code>## &lt;class &#39;statsmodels.stats.base.HolderTuple&#39;&gt;
 ## statistic = 50.085429769392036
@@ -562,8 +562,8 @@ div.csl-indent {
 <p>We demonstrate how to model <code>Gas</code> as a function of <code>Insul</code>, <code>Temp</code>, and their interaction. This is, of course, not a comprehensive treatment of linear modeling; the focus is on implementation in Python and R.</p>
 <div id="python-49" class="section level4 unnumbered hasAnchor">
 <h4>Python<a href="selected-topics-in-statistical-inference.html#python-49" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>The <code>ols()</code> function in the statsmodels package fits a linear model. In this example, we fit a linear model predicting gas consumption from insulation, temperature, and the interaction between insulation and temperature.</p>
-<p>The desired model can be specified as a formula: List the dependent variable (also called the “response” variable) first, then a tilde (<code>~</code>), and then the predictor variables separated by plus signs (<code>+</code>). Separating variables with colons instead of plus signs (<code>x:z</code>) fits an interaction term for those variables. The variables in the formula correspond to columns in a pandas DataFrame. Users specify the pandas DataFrame using the <code>data</code> argument.</p>
+<p>The <code>ols()</code> function in the <strong>statsmodels</strong> package fits a linear model. In this example, we fit a linear model predicting gas consumption from insulation, temperature, and the interaction between insulation and temperature.</p>
+<p>The desired model can be specified as a formula: List the dependent variable (also called the “response” variable) first, then a tilde (<code>~</code>), and then the predictor variables separated by plus signs (<code>+</code>). Separating variables with colons instead of plus signs (<code>x:z</code>) fits an interaction term for those variables. The variables in the formula correspond to columns in a <strong>pandas</strong> DataFrame. Users specify the <strong>pandas</strong> DataFrame using the <code>data</code> argument.</p>
 <div class="sourceCode" id="cb720"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb720-1"><a href="selected-topics-in-statistical-inference.html#cb720-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
 <span id="cb720-2"><a href="selected-topics-in-statistical-inference.html#cb720-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
 <span id="cb720-3"><a href="selected-topics-in-statistical-inference.html#cb720-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -574,7 +574,7 @@ div.csl-indent {
 <li><code>summary()</code>: return a summary of model coefficients with standard errors and test statistics</li>
 <li><code>params</code>: return the model coefficients</li>
 <li><code>conf_int()</code>: return the 95% confidence interval of each model coefficient</li>
-<li>statsmodels also provides functions for diagnostic plots; a few examples are shown below</li>
+<li><strong>statsmodels</strong> also provides functions for diagnostic plots; a few examples are shown below</li>
 </ul>
 <p>The <code>summary()</code> function produces the kind of standard regression output one typically finds in a statistics textbook.</p>
 <div class="sourceCode" id="cb721"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb721-1"><a href="selected-topics-in-statistical-inference.html#cb721-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results.summary())</span></code></pre></div>
@@ -584,7 +584,7 @@ div.csl-indent {
 ## Model:                            OLS   Adj. R-squared:                  0.924
 ## Method:                 Least Squares   F-statistic:                     222.3
 ## Date:                Fri, 27 May 2022   Prob (F-statistic):           1.23e-29
-## Time:                        10:57:58   Log-Likelihood:                -14.100
+## Time:                        11:10:12   Log-Likelihood:                -14.100
 ## No. Observations:                  56   AIC:                             36.20
 ## Df Residuals:                      52   BIC:                             44.30
 ## Df Model:                           3                                         
@@ -691,9 +691,8 @@ div.csl-indent {
 <p><img src="_main_files/figure-html/unnamed-chunk-360-1.png" width="672" /></p>
 <p>Once we fit a model and we’re reasonably confident that it’s a well-fitting, assumption-satisfying model, we may want to visualize it. Three packages in R that help with this are <strong>emmeans</strong>, <strong>effects</strong>, and <strong>ggeffects</strong>. Below, we give a demonstration of how to use the <strong>ggeffects</strong> package to visualize the predictive effects of a model.</p>
 <p>You need to first install the <strong>ggeffects</strong> package, as it does not come with the base R installation. Once installed, load using the <code>library()</code> function. Once loaded, we can get a basic visualization of our model by using the <code>plot()</code> and <code>ggpredict()</code> functions. This is particularly useful for models with interactions. Use the <code>terms</code> argument to specify which variables to plot. Below we list <code>Temp</code> first, which will plot <code>Temp</code> on the x axis. Then we list <code>Insul</code>, the grouping variable, to indicate we want a separate fit for each level of <code>Insul</code>.</p>
-<div class="sourceCode" id="cb729"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb729-1"><a href="selected-topics-in-statistical-inference.html#cb729-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.pacakges(&quot;ggeffects&quot;)</span></span>
-<span id="cb729-2"><a href="selected-topics-in-statistical-inference.html#cb729-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggeffects)</span>
-<span id="cb729-3"><a href="selected-topics-in-statistical-inference.html#cb729-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">ggpredict</span>(m, <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">&quot;Temp&quot;</span>, <span class="st">&quot;Insul&quot;</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb729"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb729-1"><a href="selected-topics-in-statistical-inference.html#cb729-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggeffects)</span>
+<span id="cb729-2"><a href="selected-topics-in-statistical-inference.html#cb729-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">ggpredict</span>(m, <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">&quot;Temp&quot;</span>, <span class="st">&quot;Insul&quot;</span>)))</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-361-1.png" width="672" /></p>
 <p>We see that after installing insulation, gas consumption fell considerably and the effect of temperature on gas consumption was less pronounced.</p>
 </div>
@@ -717,7 +716,7 @@ div.csl-indent {
 <p>Below we show how one can model <code>low</code> as a function of all other predictors. The focus here is on implementing the model in Python and R; this isn’t a comprehensive treatment of logistic regression.</p>
 <div id="python-50" class="section level4 unnumbered hasAnchor">
 <h4>Python<a href="selected-topics-in-statistical-inference.html#python-50" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>The Python library <code>statsmodels.formula.api</code> provides the <code>glm()</code> function for fitting generalized linear models. We specify the model as a formula string in the first argument of the <code>glm()</code> function. The format is as follows: dependent/response variable followed by a tilde (<code>~</code>), then the predictor variables separated by a plus sign (<code>+</code>). Separating variables with a colon (<code>a:b</code>) includes the interaction of those variables in the model. To fit a logistic regression, we specify <code>family = sm.families.Binomial()</code>, as our dependent variable is binary. We also specify our data set in the <code>data</code> argument as well.</p>
+<p>The Python library <strong>statsmodels.formula.api</strong> provides the <code>glm()</code> function for fitting generalized linear models. We specify the model as a formula string in the first argument of the <code>glm()</code> function. The format is as follows: dependent/response variable followed by a tilde (<code>~</code>), then the predictor variables separated by a plus sign (<code>+</code>). Separating variables with a colon (<code>a:b</code>) includes the interaction of those variables in the model. To fit a logistic regression, we specify <code>family = sm.families.Binomial()</code>, as our dependent variable is binary. We also specify our data set in the <code>data</code> argument as well.</p>
 <div class="sourceCode" id="cb730"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb730-1"><a href="selected-topics-in-statistical-inference.html#cb730-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
 <span id="cb730-2"><a href="selected-topics-in-statistical-inference.html#cb730-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
 <span id="cb730-3"><a href="selected-topics-in-statistical-inference.html#cb730-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -733,7 +732,7 @@ div.csl-indent {
 ## Link Function:                  Logit   Scale:                          1.0000
 ## Method:                          IRLS   Log-Likelihood:                -97.738
 ## Date:                Fri, 27 May 2022   Deviance:                       195.48
-## Time:                        10:58:00   Pearson chi2:                     179.
+## Time:                        11:10:14   Pearson chi2:                     179.
 ## No. Iterations:                     5   Pseudo R-squ. (CS):             0.1873
 ## Covariance Type:            nonrobust                                         
 ## =================================================================================
@@ -769,7 +768,7 @@ div.csl-indent {
 <span id="cb735-2"><a href="selected-topics-in-statistical-inference.html#cb735-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ci)</span></code></pre></div>
 <pre><code>## [[0.05166761 0.26746827]
 ##  [0.12724595 0.66722908]]</code></pre>
-<p>Now, we use the matplotlib <code>errorbar()</code> function to create the plot. The <code>errorbar()</code> function requires <em>margin of error</em>, not the lower and upper limits. So, we have to do some subtraction to get the lower and upper margins of error.</p>
+<p>Now, we use the <strong>Matplotlib</strong> <code>errorbar()</code> function to create the plot. The <code>errorbar()</code> function requires <em>margin of error</em>, not the lower and upper limits. So, we have to do some subtraction to get the lower and upper margins of error.</p>
 <div class="sourceCode" id="cb737"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb737-1"><a href="selected-topics-in-statistical-inference.html#cb737-1" aria-hidden="true" tabindex="-1"></a>lower <span class="op">=</span> [prob[<span class="dv">0</span>] <span class="op">-</span> ci[<span class="dv">0</span>,<span class="dv">0</span>], prob[<span class="dv">1</span>] <span class="op">-</span> ci[<span class="dv">1</span>,<span class="dv">0</span>]]</span>
 <span id="cb737-2"><a href="selected-topics-in-statistical-inference.html#cb737-2" aria-hidden="true" tabindex="-1"></a>upper <span class="op">=</span> [ci[<span class="dv">0</span>,<span class="dv">1</span>] <span class="op">-</span> prob[<span class="dv">0</span>], ci[<span class="dv">1</span>,<span class="dv">1</span>] <span class="op">-</span> prob[<span class="dv">1</span>]]</span></code></pre></div>
 <p>Finally we can make the plot:</p>
@@ -848,9 +847,8 @@ div.csl-indent {
 <p>Once we fit a model and are reasonably confident that it’s a good model, we may want to visualize it. The <strong>emmeans</strong>, <strong>effects</strong>, and <strong>ggeffects</strong> packages all help visualize the predictive effects of regressions; we demonstrate the <strong>ggeffects</strong> package below.</p>
 <p>Once <strong>ggeffects</strong> is installed and loaded, we can get a basic visualization of our model by using the <code>plot()</code> and <code>ggpredict()</code> functions. This is particularly useful for logistic regression models because it produces model predictions on a probability scale.</p>
 <p>Use the <code>terms</code> argument to specify which variables to plot. Below, we plot the probability of low infant birth weight depending on whether or not the mother had previous premature labors (1 = yes, 0 = no).</p>
-<div class="sourceCode" id="cb749"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb749-1"><a href="selected-topics-in-statistical-inference.html#cb749-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;ggeffects&quot;)</span></span>
-<span id="cb749-2"><a href="selected-topics-in-statistical-inference.html#cb749-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggeffects)</span>
-<span id="cb749-3"><a href="selected-topics-in-statistical-inference.html#cb749-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">ggpredict</span>(mod, <span class="at">terms =</span> <span class="st">&quot;ptd&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb749"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb749-1"><a href="selected-topics-in-statistical-inference.html#cb749-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggeffects)</span>
+<span id="cb749-2"><a href="selected-topics-in-statistical-inference.html#cb749-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">ggpredict</span>(mod, <span class="at">terms =</span> <span class="st">&quot;ptd&quot;</span>))</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-375-1.png" width="672" /></p>
 <p>It looks like the probability of low infant birth weight jumps from about 12% to over 35% for mothers who previously experienced premature labors, though the error bars on the expected values are quite large.</p>
 

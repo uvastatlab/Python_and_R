@@ -307,11 +307,13 @@ div.csl-indent {
 <span id="cb633-4"><a href="basic-plotting-and-visualization.html#cb633-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&#39;Bill Length (mm)&#39;</span>, <span class="at">ylab =</span> <span class="st">&#39;Count&#39;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-294-3.png" width="672" /></p>
 <p>The <strong>ggplot2</strong> method for generating histograms follows the standard <strong>ggplot2</strong> syntax: Initialize a plot with <code>ggplot()</code>, then add layers thereto. Here, the layer to add is <code>geom_histogram()</code>.</p>
-<div class="sourceCode" id="cb634"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb634-1"><a href="basic-plotting-and-visualization.html#cb634-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm)) <span class="sc">+</span></span>
-<span id="cb634-2"><a href="basic-plotting-and-visualization.html#cb634-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>, <span class="at">color =</span> <span class="st">&#39;black&#39;</span>, <span class="at">bins =</span> <span class="dv">25</span>) <span class="sc">+</span></span>
-<span id="cb634-3"><a href="basic-plotting-and-visualization.html#cb634-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">30</span>, <span class="dv">60</span>) <span class="sc">+</span> </span>
-<span id="cb634-4"><a href="basic-plotting-and-visualization.html#cb634-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&#39;Penguin Bill Lengths&#39;</span>,</span>
-<span id="cb634-5"><a href="basic-plotting-and-visualization.html#cb634-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&#39;Bill Length (mm)&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Count&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb634"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb634-1"><a href="basic-plotting-and-visualization.html#cb634-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb634-2"><a href="basic-plotting-and-visualization.html#cb634-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb634-3"><a href="basic-plotting-and-visualization.html#cb634-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm)) <span class="sc">+</span></span>
+<span id="cb634-4"><a href="basic-plotting-and-visualization.html#cb634-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>, <span class="at">color =</span> <span class="st">&#39;black&#39;</span>, <span class="at">bins =</span> <span class="dv">25</span>) <span class="sc">+</span></span>
+<span id="cb634-5"><a href="basic-plotting-and-visualization.html#cb634-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">30</span>, <span class="dv">60</span>) <span class="sc">+</span> </span>
+<span id="cb634-6"><a href="basic-plotting-and-visualization.html#cb634-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&#39;Penguin Bill Lengths&#39;</span>,</span>
+<span id="cb634-7"><a href="basic-plotting-and-visualization.html#cb634-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&#39;Bill Length (mm)&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Count&#39;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-295-1.png" width="672" /></p>
 </div>
 </div>
@@ -440,7 +442,7 @@ div.csl-indent {
 <span id="cb647-3"><a href="basic-plotting-and-visualization.html#cb647-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">ylab =</span> <span class="st">&#39;Island&#39;</span>, <span class="at">xlab =</span> <span class="st">&#39;Bill Depth (mm)&#39;</span>, </span>
 <span id="cb647-4"><a href="basic-plotting-and-visualization.html#cb647-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">main =</span> <span class="st">&#39;Stripchart of Bill Depth by Island&#39;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-305-3.png" width="672" /></p>
-<p>Stripcharts can also be made with <strong>ggplots2</strong>’s <code>geom_jitter()</code> function, as shown below. You can control the amount of jitter with a <code>position</code> argument in <code>geom_jitter()</code>.</p>
+<p>Stripcharts can also be made with <strong>ggplot2</strong>’s <code>geom_jitter()</code> function, as shown below. You can control the amount of jitter with a <code>position</code> argument in <code>geom_jitter()</code>.</p>
 <div class="sourceCode" id="cb648"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb648-1"><a href="basic-plotting-and-visualization.html#cb648-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> island, <span class="at">y =</span> bill_depth_mm)) <span class="sc">+</span></span>
 <span id="cb648-2"><a href="basic-plotting-and-visualization.html#cb648-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">color =</span> island), <span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="fl">0.1</span>)) <span class="sc">+</span></span>
 <span id="cb648-3"><a href="basic-plotting-and-visualization.html#cb648-3" aria-hidden="true" tabindex="-1"></a>  </span>
@@ -460,7 +462,7 @@ div.csl-indent {
 <p>Visualizing the relationship between a numeric variable and a categorical variable via five-number summaries.</p>
 <div id="python-45" class="section level4 unnumbered hasAnchor">
 <h4>Python<a href="basic-plotting-and-visualization.html#python-45" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>The <code>boxplot()</code> function in <strong>seaborn</strong> generates boxplots, and functions from <strong>matplotlib</strong>, like <code>xlabel()</code> and <code>ylabel()</code>, can be used to control the aesthetics of the plot.</p>
+<p>The <code>boxplot()</code> function in <strong>seaborn</strong> generates boxplots, and functions from <strong>Matplotlib</strong>, like <code>xlabel()</code> and <code>ylabel()</code>, can be used to control the aesthetics of the plot.</p>
 <div class="sourceCode" id="cb650"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb650-1"><a href="basic-plotting-and-visualization.html#cb650-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb650-2"><a href="basic-plotting-and-visualization.html#cb650-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb650-3"><a href="basic-plotting-and-visualization.html#cb650-3" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
@@ -495,10 +497,11 @@ div.csl-indent {
 <div id="python-46" class="section level4 unnumbered hasAnchor">
 <h4>Python<a href="basic-plotting-and-visualization.html#python-46" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The <strong>seaborn</strong> package provides several functions for creating facet plots, including <code>relplot()</code>, <code>displot()</code>, <code>catplot()</code>, and <code>lmplot()</code>. Below we demonstrate the <code>lmplot()</code> function, which allows a user to create scatterplots at certain levels of categorical variable. A user specifies the x and y variables as character strings using the <code>x</code> and <code>y</code> arguments, respectively. The grouping variable is identified with either the <code>col</code> or <code>row</code> arguments. By default, a least-squares lines is added to each plot. Setting <code>ci = None</code> suppresses the confidence interval ribbon.</p>
-<div class="sourceCode" id="cb653"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb653-1"><a href="basic-plotting-and-visualization.html#cb653-1" aria-hidden="true" tabindex="-1"></a>plt.clf()</span>
-<span id="cb653-2"><a href="basic-plotting-and-visualization.html#cb653-2" aria-hidden="true" tabindex="-1"></a>sns.lmplot(x <span class="op">=</span> <span class="st">&quot;bill_length_mm&quot;</span>, y <span class="op">=</span> <span class="st">&quot;bill_depth_mm&quot;</span>, </span>
-<span id="cb653-3"><a href="basic-plotting-and-visualization.html#cb653-3" aria-hidden="true" tabindex="-1"></a>           col <span class="op">=</span> <span class="st">&quot;species&quot;</span>,</span>
-<span id="cb653-4"><a href="basic-plotting-and-visualization.html#cb653-4" aria-hidden="true" tabindex="-1"></a>           data <span class="op">=</span> penguins, ci <span class="op">=</span> <span class="va">None</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb653"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb653-1"><a href="basic-plotting-and-visualization.html#cb653-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb653-2"><a href="basic-plotting-and-visualization.html#cb653-2" aria-hidden="true" tabindex="-1"></a>plt.clf()</span>
+<span id="cb653-3"><a href="basic-plotting-and-visualization.html#cb653-3" aria-hidden="true" tabindex="-1"></a>sns.lmplot(x <span class="op">=</span> <span class="st">&quot;bill_length_mm&quot;</span>, y <span class="op">=</span> <span class="st">&quot;bill_depth_mm&quot;</span>, </span>
+<span id="cb653-4"><a href="basic-plotting-and-visualization.html#cb653-4" aria-hidden="true" tabindex="-1"></a>           col <span class="op">=</span> <span class="st">&quot;species&quot;</span>,</span>
+<span id="cb653-5"><a href="basic-plotting-and-visualization.html#cb653-5" aria-hidden="true" tabindex="-1"></a>           data <span class="op">=</span> penguins, ci <span class="op">=</span> <span class="va">None</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-310-1.png" width="744" /></p>
 <p>To facet by two variables, provide variables to both the <code>col</code> and <code>row</code> arguments.</p>
 <div class="sourceCode" id="cb654"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb654-1"><a href="basic-plotting-and-visualization.html#cb654-1" aria-hidden="true" tabindex="-1"></a>plt.clf()</span>
@@ -512,7 +515,7 @@ div.csl-indent {
 <span id="cb655-3"><a href="basic-plotting-and-visualization.html#cb655-3" aria-hidden="true" tabindex="-1"></a>           col <span class="op">=</span> <span class="st">&quot;species&quot;</span>, hue <span class="op">=</span> <span class="st">&quot;species&quot;</span>,</span>
 <span id="cb655-4"><a href="basic-plotting-and-visualization.html#cb655-4" aria-hidden="true" tabindex="-1"></a>           data <span class="op">=</span> penguins, ci <span class="op">=</span> <span class="va">None</span>, lowess <span class="op">=</span> <span class="va">True</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-312-5.png" width="744" /></p>
-<p>The <a href="https://seaborn.pydata.org/generated/seaborn.lmplot.html#seaborn.lmplot">lmplot</a> help page showcases other examples.</p>
+<p>The <a href="https://seaborn.pydata.org/generated/seaborn.lmplot.html#seaborn.lmplot">1lmplot()1</a> help page showcases other examples.</p>
 </div>
 <div id="r-46" class="section level4 unnumbered hasAnchor">
 <h4>R<a href="basic-plotting-and-visualization.html#r-46" class="anchor-section" aria-label="Anchor link to header"></a></h4>

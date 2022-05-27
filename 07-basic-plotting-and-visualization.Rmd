@@ -63,6 +63,8 @@ hist(penguins$bill_length_mm, breaks = 25, col = 'lightblue',
 The **ggplot2** method for generating histograms follows the standard **ggplot2** syntax: Initialize a plot with `ggplot()`, then add layers thereto. Here, the layer to add is `geom_histogram()`.
 
 ```{r, warning = F}
+library(ggplot2)
+
 ggplot(penguins, aes(x = bill_length_mm)) +
   geom_histogram(fill = 'lightblue', color = 'black', bins = 25) +
   xlim(30, 60) + 
@@ -220,7 +222,7 @@ stripchart(bill_depth_mm ~ island, data = penguins,
            main = 'Stripchart of Bill Depth by Island')
 ```
 
-Stripcharts can also be made with **ggplots2**'s  `geom_jitter()` function, as shown below. You can control the amount of jitter with a `position` argument in `geom_jitter()`.
+Stripcharts can also be made with **ggplot2**'s  `geom_jitter()` function, as shown below. You can control the amount of jitter with a `position` argument in `geom_jitter()`.
 
 ```{r}
 ggplot(penguins, aes(x = island, y = bill_depth_mm)) +
@@ -241,7 +243,7 @@ Visualizing the relationship between a numeric variable and a categorical variab
 
 #### Python {-}
 
-The `boxplot()` function in **seaborn** generates boxplots, and functions from **matplotlib**, like `xlabel()` and `ylabel()`, can be used to control the aesthetics of the plot.
+The `boxplot()` function in **seaborn** generates boxplots, and functions from **Matplotlib**, like `xlabel()` and `ylabel()`, can be used to control the aesthetics of the plot.
 
 ```{python}
 import seaborn as sns
@@ -285,6 +287,7 @@ Facet plots (also called trellis plots, lattice plots, and conditional plots) ar
 The **seaborn** package provides several functions for creating facet plots, including `relplot()`, `displot()`, `catplot()`, and `lmplot()`. Below we demonstrate the `lmplot()` function, which allows a user to create scatterplots at certain levels of categorical variable. A user specifies the x and y variables as character strings using the `x` and `y` arguments, respectively. The grouping variable is identified with either the `col` or `row` arguments. By default, a least-squares lines is added to each plot. Setting `ci = None` suppresses the confidence interval ribbon.
 
 ```{python}
+import seaborn as sns
 plt.clf()
 sns.lmplot(x = "bill_length_mm", y = "bill_depth_mm", 
            col = "species",
@@ -310,7 +313,7 @@ sns.lmplot(x = "bill_length_mm", y = "bill_depth_mm",
 ```
 
 
-The [lmplot](https://seaborn.pydata.org/generated/seaborn.lmplot.html#seaborn.lmplot) help page showcases other examples.
+The [1lmplot()1](https://seaborn.pydata.org/generated/seaborn.lmplot.html#seaborn.lmplot) help page showcases other examples.
 
 #### R {-}
 
