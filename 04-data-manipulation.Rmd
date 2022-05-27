@@ -16,7 +16,7 @@ mtcars = pandas.read_csv('data/mtcars.csv')
 ```{r}
 # R
 data(mtcars)
-# drop row names to match Python version of data
+# Drop row names to match Python version of data
 rownames(mtcars) <- NULL
 ```
 

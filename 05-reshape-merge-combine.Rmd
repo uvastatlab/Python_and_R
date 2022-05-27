@@ -12,7 +12,7 @@ Combining rows can be thought of as "stacking" rectangular data structures.
 
 #### Python {-}
 
-The pandas function `concat()` binds rows together. It takes a list of pandas DataFrame objects. The second argument, `axis`, specifies a row bind when set to `0` and a column bind when set to `1`. The default value is `0`. The column names of the DataFrames should match; otherwise, the DataFrame fills with `NaN`s. You can bind rows with different column types.
+The **pandas** function `concat()` binds rows together. It takes a list of **pandas** DataFrame objects. The second argument, `axis`, specifies a row bind when set to `0` and a column bind when set to `1`. The default value is `0`. The column names of the DataFrames should match; otherwise, the DataFrame fills with `NaN`s. You can bind rows with different column types.
 
 ```{python}
 import pandas as pd
@@ -113,7 +113,7 @@ Shifting between these two data formats is often necessary for implementing cert
 
 #### Python {-}
 
-To reshape a DataFrame from wide to long, we can use the pandas `melt()` function.
+To reshape a DataFrame from wide to long, we can use the **pandas** `melt()` function.
 
 Consider the wide DataFrame below:
 
@@ -174,8 +174,8 @@ df_long <- reshape(df_wide,
 df_long
 ```
 
-The **tidyverse** function for taking data from wide to long is `pivot_longer()`. To lengthen `df_wide` using `pivot_longer()`, a user would write:
-  
+The **tidyverse** function for taking data from wide to long is `pivot_longer()` (technically housed in the **tidyr** package). To lengthen `df_wide` using `pivot_longer()`, a user would write:
+
 ```{r, message = F}
 library(tidyverse)
 df_long_PL <- pivot_longer(df_wide,
@@ -230,7 +230,7 @@ animals_long_2
 
 #### Python {-}
 
-To reshape a DataFrame from long to wide, we can use the pandas `pivot_table()` function.
+To reshape a DataFrame from long to wide, we can use the **pandas** `pivot_table()` function.
 
 Consider the following long DataFrame:
 
@@ -368,6 +368,7 @@ knitr::include_graphics('images/right_join.png')
 import pandas as pd
 pd.merge(x, y, how = 'right')
 ```
+
 #### R {-}
 ```{r}
 # all.y = T results in a right join

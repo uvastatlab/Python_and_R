@@ -270,7 +270,7 @@ div.csl-indent {
 <p>Combining rows can be thought of as “stacking” rectangular data structures.</p>
 <div id="python-30" class="section level4 unnumbered hasAnchor">
 <h4>Python<a href="combine-reshape-and-merge.html#python-30" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>The pandas function <code>concat()</code> binds rows together. It takes a list of pandas DataFrame objects. The second argument, <code>axis</code>, specifies a row bind when set to <code>0</code> and a column bind when set to <code>1</code>. The default value is <code>0</code>. The column names of the DataFrames should match; otherwise, the DataFrame fills with <code>NaN</code>s. You can bind rows with different column types.</p>
+<p>The <strong>pandas</strong> function <code>concat()</code> binds rows together. It takes a list of <strong>pandas</strong> DataFrame objects. The second argument, <code>axis</code>, specifies a row bind when set to <code>0</code> and a column bind when set to <code>1</code>. The default value is <code>0</code>. The column names of the DataFrames should match; otherwise, the DataFrame fills with <code>NaN</code>s. You can bind rows with different column types.</p>
 <div class="sourceCode" id="cb521"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb521-1"><a href="combine-reshape-and-merge.html#cb521-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb521-2"><a href="combine-reshape-and-merge.html#cb521-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb521-3"><a href="combine-reshape-and-merge.html#cb521-3" aria-hidden="true" tabindex="-1"></a>d1 <span class="op">=</span> pd.DataFrame({<span class="st">&#39;x&#39;</span>:[<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>], <span class="st">&#39;y&#39;</span>:[<span class="st">&#39;a&#39;</span>, <span class="st">&#39;b&#39;</span>, <span class="st">&#39;c&#39;</span>]})</span>
@@ -388,7 +388,7 @@ div.csl-indent {
 <h3><span class="header-section-number">5.3.1</span> Wide to long<a href="combine-reshape-and-merge.html#wide-to-long" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="python-32" class="section level4 unnumbered hasAnchor">
 <h4>Python<a href="combine-reshape-and-merge.html#python-32" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>To reshape a DataFrame from wide to long, we can use the pandas <code>melt()</code> function.</p>
+<p>To reshape a DataFrame from wide to long, we can use the <strong>pandas</strong> <code>melt()</code> function.</p>
 <p>Consider the wide DataFrame below:</p>
 <div class="sourceCode" id="cb535"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb535-1"><a href="combine-reshape-and-merge.html#cb535-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb535-2"><a href="combine-reshape-and-merge.html#cb535-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -454,7 +454,7 @@ div.csl-indent {
 ## 1.m.3  1   m    3  15
 ## 2.m.3  2   m    3  10
 ## 3.f.3  3   f    3   7</code></pre>
-<p>The <strong>tidyverse</strong> function for taking data from wide to long is <code>pivot_longer()</code>. To lengthen <code>df_wide</code> using <code>pivot_longer()</code>, a user would write:</p>
+<p>The <strong>tidyverse</strong> function for taking data from wide to long is <code>pivot_longer()</code> (technically housed in the <strong>tidyr</strong> package). To lengthen <code>df_wide</code> using <code>pivot_longer()</code>, a user would write:</p>
 <div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb542-1"><a href="combine-reshape-and-merge.html#cb542-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb542-2"><a href="combine-reshape-and-merge.html#cb542-2" aria-hidden="true" tabindex="-1"></a>df_long_PL <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(df_wide,</span>
 <span id="cb542-3"><a href="combine-reshape-and-merge.html#cb542-3" aria-hidden="true" tabindex="-1"></a>                           <span class="co"># Columns that contain the values to be lengthened (can use -c() to negate variables)</span></span>
@@ -527,7 +527,7 @@ div.csl-indent {
 <h3><span class="header-section-number">5.3.2</span> Long to wide<a href="combine-reshape-and-merge.html#long-to-wide" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="python-33" class="section level4 unnumbered hasAnchor">
 <h4>Python<a href="combine-reshape-and-merge.html#python-33" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>To reshape a DataFrame from long to wide, we can use the pandas <code>pivot_table()</code> function.</p>
+<p>To reshape a DataFrame from long to wide, we can use the <strong>pandas</strong> <code>pivot_table()</code> function.</p>
 <p>Consider the following long DataFrame:</p>
 <div class="sourceCode" id="cb549"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb549-1"><a href="combine-reshape-and-merge.html#cb549-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb549-2"><a href="combine-reshape-and-merge.html#cb549-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>

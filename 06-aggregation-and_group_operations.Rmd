@@ -133,7 +133,7 @@ _Scaling_ refers to rescaling a column or vector of values such that their mean 
 
 #### Python {-}
 
-The `scale()` function from the **preprocessing** module of the **scikit-learn** package provides one-step centering and scaling. To center a variable at zero without scaling it, use `scale()` with `with_mean = True` and `with_std = False` (both are `True` by default).
+The `scale()` function from the **preprocessing** module of the **scikit-learn** (**sklearn**) package provides one-step centering and scaling. To center a variable at zero without scaling it, use `scale()` with `with_mean = True` and `with_std = False` (both are `True` by default).
 
 ```{python}
 from sklearn import preprocessing
