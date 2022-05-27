@@ -442,13 +442,11 @@ We see that after installing insulation, gas consumption fell considerably and t
 
 ## Logistic regression
 
-Logistic regression attempts to assess if or how the variability a binary variable depends on one or more predictor variables. It is a type of Generalized Linear Model and is commonly used to model the _probability_ of an event occurring. While it is relatively easy to "fit a model" and generate lots of output, the model we fit may not be very good. There are many decisions we have to make when proposing a model. Which predictors do we include? Will they interact? Do we allow for non-linear effects? Answering these kinds of questions require subject matter expertise.
+Logistic regression attempts to assess if or how the variability a binary variable depends on one or more predictor variables. It is a type of "generalized linear model" and is commonly used to model the _probability_ of an event occurring. As with linear regression, it's easy to "fit a model" and generate lots of output, but the model we fit may not be particularly good. The same kinds of questions germane to developing a standard linear regression are relevant when developing a logistic regression: Which predictors do we include? Will they interact? Will we include non-linear effects?
 
-We walk through a basic example using data on low infant birth weight. The data is courtesy of the R package **MASS** [@MASS]. According to the documentation, "the data were collected at Baystate Medical Center, Springfield, Mass during 1986." 
+We walk through a basic example below using data on low infant birth weight. The data are courtesy of the R package **MASS** [@MASS]. Per the documentation, "the data were collected at Baystate Medical Center, Springfield, Mass during 1986." 
 
-We use the data as prepared in the example code found at `?birthwt`. 
-
-The `birthwt` data frame has 189 rows and 9 columns:
+The data are contained in the data frame `birthwt` (see `?birthwt` for additional details). `birthwt` has 189 rows and 9 columns:
 
 - `low`: 1 if birth weight less than 2.5 kg, 0 otherwise
 - `age`: mother's age in years
@@ -460,9 +458,7 @@ The `birthwt` data frame has 189 rows and 9 columns:
 - `ui`: presence of uterine irritability (1 = yes, 0 = no)
 - `ftv`: number of physician visits during the first trimester (0, 1, 2+)
 
-Below we demonstrate modeling `low` as a function of all other predictors.
-
-Obviously this is not a comprehensive treatment of logistic regression. 
+Below we show how one can model `low` as a function of all other predictors. The focus here is on implementing the model in Python and R; this isn't a comprehensive treatment of logistic regression.
 
 ```{r echo=FALSE, message=FALSE}
 birthwt <- readRDS("data/bwt.Rds")
@@ -474,78 +470,73 @@ birthwt = r.birthwt
 
 #### Python {-}
 
-The Python statistics library `statsmodels.formula.api` provides the `glm` function for fitting generalized linear models. We specify how we want to model our data as a formula string in the first argument of the `glm` function. The format is as follows: dependent/response variable followed by a tilde (`~`), then the predictor variables separated by a plus sign (`+`). To indicate we want to fit a logistic regression model we specify `family=sm.families.Binomial()` since our dependent variable is binary. We also specify our data set in the argument as well.
+The Python library `statsmodels.formula.api` provides the `glm()` function for fitting generalized linear models. We specify the model as a formula string in the first argument of the `glm()` function. The format is as follows: dependent/response variable followed by a tilde (`~`), then the predictor variables separated by a plus sign (`+`). Separating variables with a colon (`a:b`) includes the interaction of those variables in the model. To fit a logistic regression, we specify `family = sm.families.Binomial()`, as our dependent variable is binary. We also specify our data set in the `data` argument as well.
 
 ```{python}
 import statsmodels.api as sm
 import statsmodels.formula.api as smf
 import pandas as pd
 formula = "low ~ age + lwt + race + smoke + ptd + ht + ui + ftv"
-mod1 = smf.glm(formula=formula, data=birthwt,
-               family=sm.families.Binomial()).fit()
+mod1 = smf.glm(formula = formula, data = birthwt,
+               family = sm.families.Binomial()).fit()
 print(mod1.summary())
 ```
 
+Once we fit a model and are reasonably confident that it’s a good model, we may want to visualize it. For example, we can visualize how `ptd` is associated with the probability of low infant birth weight, holding other predictors constant.
 
-Once we fit a model and we’re reasonably confident that it’s a good model, we may want to visualize it. For example, how does `ptd` affect the probability of low infant birth weight?
-
-To begin, we create a Pandas DataFrame for our predictors. This needs to be a Pandas DataFrame since we used the formula option when fitting the model. Notice the only variable that changes is `ptd`. All other variables are held constant. What values you choose to hold them at is up to you, but typical choices are means or medians for numeric predictors, and most populous group for categorical predictors.
+To begin, we create a **pandas** DataFrame containing our predictors: Notice the only variable with multiple values is `ptd`. All other variables are held constant. What values you choose to hold them at is up to you, but typical choices are means or medians for numeric predictors and most populous group for categorical predictors. (This needs to be a **pandas** DataFrame since we used the formula option when fitting the model.)
 
 ```{python}
-# create dictionary of values
+# Create dictionary of values
 d = {'age': 23, 'lwt': 123, 'race': "white",
      'smoke' : "0", 'ptd' : ["0","1"], 'ht': "0", 
      'ui': "0", 'ftv': "0"}
-# convert dictionary to Pandas DataFrame.
-nd = pd.DataFrame(data=d)
+# Convert dictionary to pandas DataFrame.
+nd = pd.DataFrame(data = d)
 ```
 
-Now plug in our new data (nd) into our model using the `get_prediction` method. See [this page](https://www.statsmodels.org/devel/generated/statsmodels.genmod.generalized_linear_model.GLMResults.html#statsmodels.genmod.generalized_linear_model.GLMResults). This returns the predictions as a `PredictionResults` class. We can access the predicted probabilities using the `predicted_mean` property. See [this page](https://www.statsmodels.org/devel/generated/statsmodels.tsa.base.prediction.PredictionResults.html). 
-
+Now plug in our new data (`nd`) into our model using the `get_prediction()` method. See [this page](https://www.statsmodels.org/devel/generated/statsmodels.genmod.generalized_linear_model.GLMResults.html#statsmodels.genmod.generalized_linear_model.GLMResults) for further details. This returns the predictions as a `PredictionResults` object. We can access the predicted probabilities using the `predicted_mean` property. See [this page](https://www.statsmodels.org/devel/generated/statsmodels.tsa.base.prediction.PredictionResults.html). 
 
 ```{python}
-pred = mod1.get_prediction(exog=nd)
+pred = mod1.get_prediction(exog = nd)
 prob = pred.predicted_mean
 print(prob)
 ```
 
-We can use the `conf_int` method to extract the confidence intervals for the predicted probabilities.
+We can use the `conf_int()` method to extract the confidence intervals for the predicted probabilities.
 
 ```{python}
 ci = pred.conf_int()
 print(ci)
 ```
 
-Now we use the matplotlib `errorbar` function to create the plot. The `errorbar` function requires _margin of error_, not the lower and upper limits. So we have to do some subtraction to get the lower and upper margin of errors.
+Now, we use the matplotlib `errorbar()` function to create the plot. The `errorbar()` function requires _margin of error_, not the lower and upper limits. So, we have to do some subtraction to get the lower and upper margins of error.
 
 ```{python}
 lower = [prob[0] - ci[0,0], prob[1] - ci[1,0]]
 upper = [ci[0,1] - prob[0], ci[1,1] - prob[1]]
 ```
 
-Finally we can make the plot.
-
+Finally we can make the plot:
 
 ```{python message=FALSE}
 import matplotlib.pyplot as plt
 plt.clf()
 plt.errorbar(x = ["0","1"], y = prob, 
-             yerr=[lower, upper], fmt='ok')
+             yerr = [lower, upper], fmt = 'ok')
 plt.xlabel('ptd')
 plt.ylabel('low')
 plt.title('Predicted probabilities of low')
 plt.show()
 ```
 
-
-
 #### R {-}
 
-The `glm()` function fits a generalized linear model in R using whatever model we propose. We specify models using a special syntax. The basic construction is to first list your dependent or response variable, then a tilde (`~`), and then your predictor variables, or terms, separated by plus operators (`+`). Listing two variables separated by a colon (`:`) indicates we wish to fit an interaction for those variables. See `?formula` for further details on formula syntax.
+The `glm()` function fits a generalized linear model in R using whatever model we propose. We specify models using formula syntax: List your dependent (response) variable, then a tile `~`, and then your predictor variables separated by plus operators (`+`). Listing two variables separated by a colon (`:`) indicates we wish to fit an interaction for those variables. See `?formula` for further details on formula syntax.
 
-In addition, `glm()` requires we specify a family argument to specify the error distribution for the dependent variable. The default is `gaussian`. For a logistic regression model, we need to specify `binomial` since our dependent variable is binary. 
+In addition, `glm()` requires that we specify a `family` argument to specify the error distribution for the dependent variable. The default is `gaussian` (normal, as in standard linear regression). For a logistic regression model, we need to specify `binomial` since our dependent variable is binary.
 
-It's considered best practice to reference variables in a data frame and indicate the data frame using the `data` argument. Though not required, you'll almost always want to save the result to an object for further inquiry.
+Indicate the data frame from which variables are sourced using the `data` argument. You'll generally want to save the result to an object for further inquiry.
 
 ```{r}
 mod <- glm(low ~ age + lwt + race + 
@@ -554,7 +545,7 @@ mod <- glm(low ~ age + lwt + race +
            data = birthwt, family = binomial)
 ```
 
-Since we're modeling `low` as a function of all other variables in the data frame, we could have used the following syntax, where the period symbolizes all other remaining variables:
+Since we're modeling `low` as a function of all other variables in the data frame, we also could have used the following syntax, where the period symbolizes all other remaining variables:
 
 ```{r eval=FALSE}
 mod <- glm(low ~ ., data = birthwt, family = binomial)
@@ -562,11 +553,11 @@ mod <- glm(low ~ ., data = birthwt, family = binomial)
 
 Once you fit your logistic regression model, you can extract information about it using several functions. The most commonly used include:
 
-- `summary()`: summary of model coefficients with standard errors and test statistics
-- `coef()`: model coefficients
-- `confint()`: 95% confidence interval of model coefficients
+- `summary()`: return a summary of model coefficients with standard errors and test statistics
+- `coef()`: return the model coefficients
+- `confint()`: return the 95% confidence interval of each model coefficient
 
-The `summary()` function produces the standard regression summary one typically finds described in a statistics textbook.
+The `summary()` function produces a regression summary table, like those typically found in statistics textbooks.
 
 ```{r}
 summary(mod)
@@ -578,23 +569,21 @@ Exponentiating coefficients in a logistic regression model produces odds ratios.
 exp(coef(mod)["ptd1"])
 ```
 
-This says the odds of having an infant with low birth weight are about 3.8 times higher for women who experienced previous premature labors versus women who did not, assuming all other variables equal.
+This indicates that the odds of having an infant with low birth weight are about 3.8 times higher for women who experienced previous premature labors versus women who did not, assuming all other variables are held constant.
 
 The 3.8 value is just an estimate. We can use the `confint()` function to get a 95% confidence interval on the odds ratio.
 
 ```{r message=FALSE}
-exp(confint(mod)["ptd1",])
+exp(confint(mod)["ptd1", ])
 ```
 
-It appears the odds ratio is at least 1.5, possibly as high as 10.1 (assuming we believe this model).
+The confidence interval suggests that the data are compatible with an odds ratio of at least 1.5---and possibly as high as 10.1.
 
-Once we fit a model and we're reasonably confident that it's a good model, we may want to visualize it. Three packages in R that help with this are **emmeans**, **effects**, and **ggeffects**. We briefly demonstrate the **ggeffects** package.
+Once we fit a model and are reasonably confident that it's a good model, we may want to visualize it. The **emmeans**, **effects**, and **ggeffects** packages all help visualize the predictive effects of regressions; we demonstrate the **ggeffects** package below.
 
-You need to first install the **ggeffects** package as it does not come with the base R installation. Once installed, load using the `library()` function.
+Once **ggeffects** is installed and loaded, we can get a basic visualization of our model by using the `plot()` and `ggpredict()` functions. This is particularly useful for logistic regression models because it produces model predictions on a probability scale. 
 
-Once loaded, we can get a basic visualization of our model by using the `plot()` and `ggpredict()` functions. This is particularly useful for logistic regression models because it produces model predictions on a probability scale. 
-
-Use the `terms` argument to specify which variables to plot. Below we plot the probability of low infant birth weight versus whether or not the mother had previous premature labors (1 = yes, 0 = no).
+Use the `terms` argument to specify which variables to plot. Below, we plot the probability of low infant birth weight depending on whether or not the mother had previous premature labors (1 = yes, 0 = no).
 
 ```{r}
 # install.packages("ggeffects")
@@ -602,6 +591,4 @@ library(ggeffects)
 plot(ggpredict(mod, terms = "ptd"))
 ```
 
-It looks like the probability of low infant birth weight jumps from about 12% to over 35% for mothers who previously experienced premature labors, though the error bars on the expected values are quite large. 
-
-
+It looks like the probability of low infant birth weight jumps from about 12% to over 35% for mothers who previously experienced premature labors, though the error bars on the expected values are quite large.
