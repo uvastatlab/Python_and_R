@@ -5,25 +5,25 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 Basic Plotting and Visualization | Python and R</title>
-  <meta name="description" content="This book provides parallel examples in Python and R to help users of one platform more easily transition to the other." />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="description" content="This book provides parallel code examples in Python and R to help analysts and researchers translate between and learn the languages." />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Basic Plotting and Visualization | Python and R" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="This book provides parallel examples in Python and R to help users of one platform more easily transition to the other." />
+  <meta property="og:description" content="This book provides parallel code examples in Python and R to help analysts and researchers translate between and learn the languages." />
   <meta name="github-repo" content="uvastatlab/Python_and_R" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 7 Basic Plotting and Visualization | Python and R" />
   
-  <meta name="twitter:description" content="This book provides parallel examples in Python and R to help users of one platform more easily transition to the other." />
+  <meta name="twitter:description" content="This book provides parallel code examples in Python and R to help analysts and researchers translate between and learn the languages." />
   
 
 <meta name="author" content="Clay Ford, Jacob Goldstein-Greenwood, Oyinkansola Adenekan, Samantha Lomuscio" />
 
 
-<meta name="date" content="2022-04-21" />
+<meta name="date" content="2023-03-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -92,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -269,16 +269,16 @@ div.csl-indent {
 <p>For the R sections below, we show how to make each plot with base R and with <strong>ggplot2</strong>.</p>
 <p>Here’s a glimpse at the data set:</p>
 <div class="sourceCode" id="cb627"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb627-1"><a href="basic-plotting-and-visualization.html#cb627-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(penguins)</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 8
-##   species island bill_length_mm bill_depth_mm flipper_length_~ body_mass_g sex  
-##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
-## 1 Adelie  Torge~           39.1          18.7              181        3750 male 
-## 2 Adelie  Torge~           39.5          17.4              186        3800 fema~
-## 3 Adelie  Torge~           40.3          18                195        3250 fema~
-## 4 Adelie  Torge~           NA            NA                 NA          NA &lt;NA&gt; 
-## 5 Adelie  Torge~           36.7          19.3              193        3450 fema~
-## 6 Adelie  Torge~           39.3          20.6              190        3650 male 
-## # ... with 1 more variable: year &lt;int&gt;</code></pre>
+<pre><code>## # A tibble: 6 × 8
+##   species island    bill_length_mm bill_depth_mm flipper_l…¹ body_…² sex    year
+##   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;       &lt;int&gt;   &lt;int&gt; &lt;fct&gt; &lt;int&gt;
+## 1 Adelie  Torgersen           39.1          18.7         181    3750 male   2007
+## 2 Adelie  Torgersen           39.5          17.4         186    3800 fema…  2007
+## 3 Adelie  Torgersen           40.3          18           195    3250 fema…  2007
+## 4 Adelie  Torgersen           NA            NA            NA      NA &lt;NA&gt;   2007
+## 5 Adelie  Torgersen           36.7          19.3         193    3450 fema…  2007
+## 6 Adelie  Torgersen           39.3          20.6         190    3650 male   2007
+## # … with abbreviated variable names ¹​flipper_length_mm, ²​body_mass_g</code></pre>
 <div id="histograms" class="section level2 hasAnchor" number="7.1">
 <h2><span class="header-section-number">7.1</span> Histograms<a href="basic-plotting-and-visualization.html#histograms" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Visualizing the distribution of numeric data.</p>
@@ -453,7 +453,7 @@ div.csl-indent {
 <span id="cb645-7"><a href="basic-plotting-and-visualization.html#cb645-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&#39;Stripchart of Bill Depth by Island&#39;</span>, </span>
 <span id="cb645-8"><a href="basic-plotting-and-visualization.html#cb645-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&#39;Island&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Bill Depth (mm)&#39;</span>) <span class="sc">+</span></span>
 <span id="cb645-9"><a href="basic-plotting-and-visualization.html#cb645-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;none&#39;</span>)</span></code></pre></div>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (`geom_point()`).</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-287-1.png" width="672" /></p>
 </div>
 </div>
@@ -548,7 +548,7 @@ div.csl-indent {
 <span id="cb656-8"><a href="basic-plotting-and-visualization.html#cb656-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># specify faceting variables; e.g., ~species, c(&#39;species&#39;), </span></span>
 <span id="cb656-9"><a href="basic-plotting-and-visualization.html#cb656-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># or vars(species)</span></span>
 <span id="cb656-10"><a href="basic-plotting-and-visualization.html#cb656-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> species)</span></code></pre></div>
-<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-297-1.png" width="672" /></p>
 <p>The number of rows and columns can be manually specified with <code>nrow</code> and <code>ncol</code> arguments in <code>facet_wrap()</code>. By default, the x and y axes of all facet plots will be on the same scale. The axis ranges can be set to vary freely by adding <code>scales = 'free'</code> as an argument (or, alternatively, <code>scales = 'free_x'</code> or <code>scales = 'free_y'</code> to free just the x or y axis).</p>
 <p>Both <code>facet_wrap()</code> and <code>facet_grid()</code> can be used to make facet plots. When faceting based on multiple variables (e.g., species and sex), <code>facet_wrap()</code> will drop group combinations for which there are no data points, whereas <code>facet_grid()</code> will generate a plot for all possible group combinations:</p>
@@ -556,7 +556,7 @@ div.csl-indent {
 <span id="cb658-2"><a href="basic-plotting-and-visualization.html#cb658-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&#39;navy&#39;</span>) <span class="sc">+</span></span>
 <span id="cb658-3"><a href="basic-plotting-and-visualization.html#cb658-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">se =</span> F, <span class="at">color =</span> <span class="st">&#39;salmon&#39;</span>) <span class="sc">+</span></span>
 <span id="cb658-4"><a href="basic-plotting-and-visualization.html#cb658-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(species, sex))</span></code></pre></div>
-<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-298-1.png" width="672" /></p>
 <div class="sourceCode" id="cb660"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb660-1"><a href="basic-plotting-and-visualization.html#cb660-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm)) <span class="sc">+</span></span>
 <span id="cb660-2"><a href="basic-plotting-and-visualization.html#cb660-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&#39;navy&#39;</span>) <span class="sc">+</span></span>
@@ -565,7 +565,7 @@ div.csl-indent {
 <span id="cb660-5"><a href="basic-plotting-and-visualization.html#cb660-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Note that facet_grid() has separate `rows` and `cols` arguments </span></span>
 <span id="cb660-6"><a href="basic-plotting-and-visualization.html#cb660-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># for specifying faceting variables</span></span>
 <span id="cb660-7"><a href="basic-plotting-and-visualization.html#cb660-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(sex), <span class="at">cols =</span> <span class="fu">vars</span>(species)) </span></code></pre></div>
-<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-298-2.png" width="672" /></p>
 
 </div>
@@ -594,7 +594,7 @@ gitbook.start({
 "sharing": {
 "github": false,
 "facebook": false,
-"twitter": true,
+"twitter": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
@@ -619,7 +619,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["_main.pdf", "_main.epub"],
+"download": null,
 "search": {
 "engine": "fuse",
 "options": null

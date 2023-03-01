@@ -7,7 +7,7 @@ documentclass: book
 bibliography: ["book.bib", "packages.bib"]
 # url: your book url like https://bookdown.org/yihui/bookdown
 # cover-image: path to the social sharing image like images/cover.jpg
-description: "This book provides parallel examples in Python and R to help users of one platform more easily transition to the other."
+description: "This book provides parallel code examples in Python and R to help analysts and researchers translate between and learn the languages."
 link-citations: yes
 github-repo: uvastatlab/Python_and_R
 nocite: |
@@ -16,7 +16,7 @@ nocite: |
 
 # Welcome {-}
 
-This book provides parallel examples in Python and R to help users of one platform more easily learn how the other platform "works" when it comes to data analysis.
+This book provides parallel code examples in Python and R to help analysts and researchers translate between and learn the languages.
 
 ---
 

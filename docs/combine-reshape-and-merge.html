@@ -5,25 +5,25 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Combine, Reshape and Merge | Python and R</title>
-  <meta name="description" content="This book provides parallel examples in Python and R to help users of one platform more easily transition to the other." />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="description" content="This book provides parallel code examples in Python and R to help analysts and researchers translate between and learn the languages." />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Combine, Reshape and Merge | Python and R" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="This book provides parallel examples in Python and R to help users of one platform more easily transition to the other." />
+  <meta property="og:description" content="This book provides parallel code examples in Python and R to help analysts and researchers translate between and learn the languages." />
   <meta name="github-repo" content="uvastatlab/Python_and_R" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 5 Combine, Reshape and Merge | Python and R" />
   
-  <meta name="twitter:description" content="This book provides parallel examples in Python and R to help users of one platform more easily transition to the other." />
+  <meta name="twitter:description" content="This book provides parallel code examples in Python and R to help analysts and researchers translate between and learn the languages." />
   
 
 <meta name="author" content="Clay Ford, Jacob Goldstein-Greenwood, Oyinkansola Adenekan, Samantha Lomuscio" />
 
 
-<meta name="date" content="2022-04-21" />
+<meta name="date" content="2023-03-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -92,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -481,7 +481,7 @@ div.csl-indent {
 <span id="cb539-14"><a href="combine-reshape-and-merge.html#cb539-14" aria-hidden="true" tabindex="-1"></a>                           <span class="co"># that will contain values</span></span>
 <span id="cb539-15"><a href="combine-reshape-and-merge.html#cb539-15" aria-hidden="true" tabindex="-1"></a>                           <span class="at">values_to =</span> <span class="st">&#39;val&#39;</span>) </span>
 <span id="cb539-16"><a href="combine-reshape-and-merge.html#cb539-16" aria-hidden="true" tabindex="-1"></a>df_long_PL</span></code></pre></div>
-<pre><code>## # A tibble: 9 x 4
+<pre><code>## # A tibble: 9 × 4
 ##      id sex   week    val
 ##   &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt;
 ## 1     1 m     wk1      16
@@ -516,7 +516,7 @@ div.csl-indent {
 <span id="cb542-10"><a href="combine-reshape-and-merge.html#cb542-10" aria-hidden="true" tabindex="-1"></a>                             <span class="co"># will be extracted</span></span>
 <span id="cb542-11"><a href="combine-reshape-and-merge.html#cb542-11" aria-hidden="true" tabindex="-1"></a>                             <span class="at">names_pattern =</span> <span class="st">&#39;(.+)_(.+)&#39;</span>) </span>
 <span id="cb542-12"><a href="combine-reshape-and-merge.html#cb542-12" aria-hidden="true" tabindex="-1"></a>animals_long_1</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 5
+<pre><code>## # A tibble: 6 × 5
 ##   animal    lives_in_water month playfulness excitement
 ##   &lt;chr&gt;     &lt;lgl&gt;          &lt;chr&gt;       &lt;dbl&gt;      &lt;dbl&gt;
 ## 1 dolphin   TRUE           jan           6          7  
@@ -532,7 +532,7 @@ div.csl-indent {
 <span id="cb544-4"><a href="combine-reshape-and-merge.html#cb544-4" aria-hidden="true" tabindex="-1"></a>                               <span class="at">names_pattern =</span> <span class="st">&#39;(.+)_(.+)&#39;</span>,</span>
 <span id="cb544-5"><a href="combine-reshape-and-merge.html#cb544-5" aria-hidden="true" tabindex="-1"></a>                               <span class="at">values_to =</span> <span class="st">&#39;val&#39;</span>)</span>
 <span id="cb544-6"><a href="combine-reshape-and-merge.html#cb544-6" aria-hidden="true" tabindex="-1"></a>animals_long_2</span></code></pre></div>
-<pre><code>## # A tibble: 12 x 5
+<pre><code>## # A tibble: 12 × 5
 ##    animal    lives_in_water month measure       val
 ##    &lt;chr&gt;     &lt;lgl&gt;          &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;
 ##  1 dolphin   TRUE           jan   playfulness   6  
@@ -620,7 +620,7 @@ div.csl-indent {
 <span id="cb554-5"><a href="combine-reshape-and-merge.html#cb554-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">names_from =</span> <span class="st">&#39;week&#39;</span>,</span>
 <span id="cb554-6"><a href="combine-reshape-and-merge.html#cb554-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">names_prefix =</span> <span class="st">&#39;week_&#39;</span>) <span class="co"># `names_prefix` specifies a string to paste in front of the contents of &#39;week&#39; in the resulting wide column names</span></span>
 <span id="cb554-7"><a href="combine-reshape-and-merge.html#cb554-7" aria-hidden="true" tabindex="-1"></a>df_wide_PW</span></code></pre></div>
-<pre><code>## # A tibble: 3 x 5
+<pre><code>## # A tibble: 3 × 5
 ##      id sex   week_1 week_2 week_3
 ##   &lt;int&gt; &lt;chr&gt;  &lt;int&gt;  &lt;int&gt;  &lt;int&gt;
 ## 1     1 m         16      7     15
@@ -629,7 +629,7 @@ div.csl-indent {
 <p><code>pivot_wider()</code> offers a lot of usability when widening relatively complicated long data structures. For example, say we want to widen both of the long versions of the animals data frame created above.</p>
 <p>To widen the version of the long data that has a column for each of the measures (playfulness and excitement):</p>
 <div class="sourceCode" id="cb556"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb556-1"><a href="combine-reshape-and-merge.html#cb556-1" aria-hidden="true" tabindex="-1"></a>animals_long_1</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 5
+<pre><code>## # A tibble: 6 × 5
 ##   animal    lives_in_water month playfulness excitement
 ##   &lt;chr&gt;     &lt;lgl&gt;          &lt;chr&gt;       &lt;dbl&gt;      &lt;dbl&gt;
 ## 1 dolphin   TRUE           jan           6          7  
@@ -649,16 +649,16 @@ div.csl-indent {
 <span id="cb558-9"><a href="combine-reshape-and-merge.html#cb558-9" aria-hidden="true" tabindex="-1"></a>                            <span class="co"># of column names using &quot;glue&quot;;</span></span>
 <span id="cb558-10"><a href="combine-reshape-and-merge.html#cb558-10" aria-hidden="true" tabindex="-1"></a>                            <span class="co"># see https://glue.tidyverse.org/</span></span>
 <span id="cb558-11"><a href="combine-reshape-and-merge.html#cb558-11" aria-hidden="true" tabindex="-1"></a>animals_wide</span></code></pre></div>
-<pre><code>## # A tibble: 3 x 6
-##   animal    lives_in_water jan_playfulness feb_playfulness jan_excitement
-##   &lt;chr&gt;     &lt;lgl&gt;                    &lt;dbl&gt;           &lt;dbl&gt;          &lt;dbl&gt;
-## 1 dolphin   TRUE                       6               5.5            7  
-## 2 porcupine FALSE                      3.5             4.5            3.5
-## 3 capybara  FALSE                      4               5              4  
-## # ... with 1 more variable: feb_excitement &lt;dbl&gt;</code></pre>
+<pre><code>## # A tibble: 3 × 6
+##   animal    lives_in_water jan_playfulness feb_playfulness jan_excitem…¹ feb_e…²
+##   &lt;chr&gt;     &lt;lgl&gt;                    &lt;dbl&gt;           &lt;dbl&gt;         &lt;dbl&gt;   &lt;dbl&gt;
+## 1 dolphin   TRUE                       6               5.5           7       7  
+## 2 porcupine FALSE                      3.5             4.5           3.5     3.5
+## 3 capybara  FALSE                      4               5             4       4  
+## # … with abbreviated variable names ¹​jan_excitement, ²​feb_excitement</code></pre>
 <p>To widen the version of the long data that has one column containing all the values of playfulness and excitement together:</p>
 <div class="sourceCode" id="cb560"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb560-1"><a href="combine-reshape-and-merge.html#cb560-1" aria-hidden="true" tabindex="-1"></a>animals_long_2</span></code></pre></div>
-<pre><code>## # A tibble: 12 x 5
+<pre><code>## # A tibble: 12 × 5
 ##    animal    lives_in_water month measure       val
 ##    &lt;chr&gt;     &lt;lgl&gt;          &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;
 ##  1 dolphin   TRUE           jan   playfulness   6  
@@ -679,13 +679,13 @@ div.csl-indent {
 <span id="cb562-4"><a href="combine-reshape-and-merge.html#cb562-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">names_from =</span> <span class="fu">c</span>(<span class="st">&#39;month&#39;</span>, <span class="st">&#39;measure&#39;</span>),</span>
 <span id="cb562-5"><a href="combine-reshape-and-merge.html#cb562-5" aria-hidden="true" tabindex="-1"></a>                            <span class="at">names_sep =</span> <span class="st">&#39;_&#39;</span>)</span>
 <span id="cb562-6"><a href="combine-reshape-and-merge.html#cb562-6" aria-hidden="true" tabindex="-1"></a>animals_wide</span></code></pre></div>
-<pre><code>## # A tibble: 3 x 6
-##   animal    lives_in_water jan_playfulness feb_playfulness jan_excitement
-##   &lt;chr&gt;     &lt;lgl&gt;                    &lt;dbl&gt;           &lt;dbl&gt;          &lt;dbl&gt;
-## 1 dolphin   TRUE                       6               5.5            7  
-## 2 porcupine FALSE                      3.5             4.5            3.5
-## 3 capybara  FALSE                      4               5              4  
-## # ... with 1 more variable: feb_excitement &lt;dbl&gt;</code></pre>
+<pre><code>## # A tibble: 3 × 6
+##   animal    lives_in_water jan_playfulness feb_playfulness jan_excitem…¹ feb_e…²
+##   &lt;chr&gt;     &lt;lgl&gt;                    &lt;dbl&gt;           &lt;dbl&gt;         &lt;dbl&gt;   &lt;dbl&gt;
+## 1 dolphin   TRUE                       6               5.5           7       7  
+## 2 porcupine FALSE                      3.5             4.5           3.5     3.5
+## 3 capybara  FALSE                      4               5             4       4  
+## # … with abbreviated variable names ¹​jan_excitement, ²​feb_excitement</code></pre>
 </div>
 </div>
 </div>
@@ -823,7 +823,7 @@ gitbook.start({
 "sharing": {
 "github": false,
 "facebook": false,
-"twitter": true,
+"twitter": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
@@ -848,7 +848,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["_main.pdf", "_main.epub"],
+"download": null,
 "search": {
 "engine": "fuse",
 "options": null
