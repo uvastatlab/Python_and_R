@@ -8,44 +8,42 @@ This chapter looks at various strategies for combining, reshaping, and merging d
 
 ## Combine rows
 
-Combining rows may be thought of as "stacking" rectangular data structures.
+Combining rows can be thought of as "stacking" rectangular data structures.
 
 #### Python {-}
 
-The pandas function `concat` function "binds" rows. It takes a list of pandas DataFrame objects. The second argument `axis` specifies a row bind when 0 and a column bind when 1. The default value is 0. The column names of the DataFrames should match, otherwise the DataFrame fills with NaNs. You can bind rows with different column types.
+The **pandas** function `concat()` binds rows together. It takes a list of **pandas** DataFrame objects. The second argument, `axis`, specifies a row bind when set to `0` and a column bind when set to `1`. The default value is `0`. The column names of the DataFrames should match; otherwise, the DataFrame fills with `NaN`s. You can bind rows with different column types.
 
 ```{python}
 import pandas as pd
 
-d1 = pd.DataFrame({'x':[4,5,6], 'y':['a','b','c']})
-d2 = pd.DataFrame({'x':[3,2,1], 'y':['d','e','f']})
+d1 = pd.DataFrame({'x':[4, 5, 6], 'y':['a', 'b', 'c']})
+d2 = pd.DataFrame({'x':[3, 2, 1], 'y':['d', 'e', 'f']})
 
-# create list of DataFrame objects
+# Create list of DataFrame objects
 frames = [d1, d2]
 combined_df = pd.concat(frames)
 
 combined_df
 ```
 
-The following code is an example of when column names do not match, resulting in NaNs in the DataFrame.
+The following code is an example of when column names do not match, resulting in `NaN`s in the DataFrame.
 
 ```{python}
-
 # DataFrame with different column names
 d1 = pd.DataFrame({'x':[4,5,6], 'z':['a','b','c']})
 d2 = pd.DataFrame({'x':[3,2,1], 'y':['d','e','f']})
 
-# create list of DataFrame objects
+# Create list of DataFrame objects
 frames = [d1, d2]
 combined_df = pd.concat(frames)
 
 combined_df
 ```
 
-
 #### R {-}
 
-The `rbind()` function "binds" rows. It takes two or more objects. To row bind data frames, the column names must match, otherwise an error is returned. If  columns being stacked have differing variable types, the values will be coerced according to `logical` < `integer` < `double` < `complex` < `character`. (E.g., if you stack a set of rows with type `logical` in column _J_ on a set of rows with type `character` in column _J_, the output will have column _J_ as type `character`.)
+As its name suggets, the `rbind()` function binds rows. It takes two or more objects as arguments. To row bind data frames, the column names must match, otherwise an error is returned. If the columns being stacked in the row bind have differing variable types, the values will be coerced according to the followig hierarchy: `logical` < `integer` < `double` < `complex` < `character`. (E.g., if you stack a set of rows with type `logical` in column _J_ on a set of rows with type `character` in column _J_, the output will have column _J_ as type `character`.)
 
 ```{r}
 d1 <- data.frame(x = 4:6, y = letters[1:3])
@@ -57,18 +55,17 @@ See also the `bind_rows()` function in the **dplyr** package.
 
 ## Combine columns
 
-Combining columns may be thought of as setting rectangular data structures next to each other.
+Combining columns can be thought of as setting rectangular data structures next to each other.
 
 #### Python {-}
 
-The `concat` function also "binds" columns. It takes two or more objects. The second argument `axis` specifies a row bind when 0 and a column bind when 1. The default value is 0. To column bind data frames, the number of rows must match; otherwise, the function throws an error.
+The `concat()` function can be used to bind columns. Whereas we set `axis` to `0` above in order to bind rows, we set `axis` to `1` in order to bind columns. To column bind data frames, the number of rows must match; otherwise, the function throws an error.
 
 ```{python}
+d1 = pd.DataFrame({'x':[4, 5, 6], 'y':['a', 'b', 'c']})
+d2 = pd.DataFrame({'z':[3, 2, 1], 'a':['d', 'e', 'f']})
 
-d1 = pd.DataFrame({'x':[4,5,6], 'y':['a','b','c']})
-d2 = pd.DataFrame({'z':[3,2,1], 'a':['d','e','f']})
-
-# create list of DataFrame objects
+# Create list of DataFrame objects
 frames = [d1, d2]
 combined_df = pd.concat(frames, axis=1)
 
@@ -77,18 +74,18 @@ combined_df
 
 #### R {-}
 
-The `cbind()` function "binds" columns. It takes two or more objects. To column bind data frames, the number of rows must match; otherwise, the object with fewer rows will have rows "recycled" (if possible) or an error will be returned.
+The `cbind()` function binds columns. It takes two or more objects as arguments. To column bind data frames, the number of rows must match; otherwise, the object with fewer rows will have rows "recycled" (if possible) or an error will be returned.
 
 ```{r}
 d1 <- data.frame(x = 10:13, y = letters[1:4])
-d2 <- data.frame(x = c(23,34,45,44))
+d2 <- data.frame(x = c(23, 34, 45, 44))
 cbind(d1, d2)
 ```
 
 ```{r}
-# example of recycled rows (d1 is repeated twice)
+# Example of recycled rows (d1 is repeated twice)
 d1 <- data.frame(x = 10:13, y = letters[1:4])
-d2 <- data.frame(x = c(23,34,45,44,99,99,99,99))
+d2 <- data.frame(x = c(23, 34, 45, 44, 99, 99, 99, 99))
 cbind(d1, d2)
 ```
 
@@ -116,9 +113,9 @@ Shifting between these two data formats is often necessary for implementing cert
 
 #### Python {-}
 
-To reshape a DataFrame from wide to long, we can use the pandas `melt()` function.
+To reshape a DataFrame from wide to long, we can use the **pandas** `melt()` function.
 
-The following is an example of a wide DataFrame.
+Consider the wide DataFrame below:
 
 ```{python}
 import numpy as np
@@ -133,18 +130,15 @@ df_wide = pd.DataFrame(data)
 print(df_wide)
 ```
 
-The following code uses the pandas `melt()` function to reshape the DataFrame from wide to long.
+To take the DataFrame from wide to long with `melt()`, we specify the column(s) that uniquely identifies each row (`id_vars`), the variables containing the values to be lengthened (`value_vars`), and the name of the to-be-created column containing the lengthened values (`value_name`).
 
 ```{python}
 dataL = pd.melt(df_wide,
-
-                # column(s) that uniquely identifies/y each row
+                # Column(s) that uniquely identifies/y each row
                 id_vars = ["id"],
-                
-                # variables that contain the values to be lengthened
+                # Variables that contain the values to be lengthened
                 value_vars = ["wk1", "wk2", "wk3"],
-                
-                # desired name of column in long data that will contain values
+                # Desired name of column in long data that will contain values
                 value_name = "observations")
 print(dataL)
 ```
@@ -169,39 +163,27 @@ To lengthen a data frame using `reshape()`, a user provides arguments specifying
 ```{r}
 df_long <- reshape(df_wide,
                    direction = 'long',
-                   
-                   # column(s) that uniquely identifies/y each row
+                   # Column(s) that uniquely identifies/y each row
                    idvar = c('id', 'sex'), 
-                   
-                   # variables that contain the values to be lengthened
-                   varying = c('wk1', 'wk2', 'wk3'), 
-                   
-                   # desired name of column in long data that will contain values
-                   v.names = 'val', 
-                   
-                   # desired name of column in long data that will 
-                   # identify each value's context
+                   # Variables that contain the values to be lengthened
+                   varying = c('wk1', 'wk2', 'wk3'),
+                   # Desired name of column in long data that will contain values
+                   v.names = 'val',
+                   # Desired name of column in long data that will identify each value's context
                    timevar = 'week')
 df_long
 ```
 
-The **tidyverse** function for taking data from wide to long is `pivot_longer()`. To lengthen `df_wide` using `pivot_longer()`, a user would write:
-  
+The **tidyverse** function for taking data from wide to long is `pivot_longer()` (technically housed in the **tidyr** package). To lengthen `df_wide` using `pivot_longer()`, a user would write:
+
 ```{r, message = F}
 library(tidyverse)
 df_long_PL <- pivot_longer(df_wide,
-                           
-                           # columns that contain the 
-                           # values to be lengthened 
-                           # (can use -c() to negate variables)
+                           # Columns that contain the values to be lengthened (can use -c() to negate variables)
                            cols = -c('id', 'sex'), 
-                           
-                           # desired name of column in long data 
-                           # that will identify each value's context
+                           # Desired name of column in long data that will identify each value's context
                            names_to = 'week',
-                           
-                           # desired name of column in long data 
-                           # that will contain values
+                           # Desired name of column in long data that will contain values
                            values_to = 'val') 
 df_long_PL
 ```
@@ -226,14 +208,9 @@ animals_wide
 ```{r}
 animals_long_1 <- pivot_longer(animals_wide,
                              cols = -c('animal', 'lives_in_water'),
-                             
-                             # ".value" is placeholder for strings 
-                             # that will be extracted from wide column names 
+                             # ".value" is placeholder for strings that will be extracted from wide column names 
                              names_to = c('month', '.value'),
-                             
-                             # specify structure of wide column names 
-                             # with regex from which long column names 
-                             # will be extracted
+                             # Specify structure of wide column names from which long column names will be extracted using regex
                              names_pattern = '(.+)_(.+)') 
 animals_long_1
 ```
@@ -253,15 +230,15 @@ animals_long_2
 
 #### Python {-}
 
-To reshape a DataFrame from long to wide, we can use the pandas `pivot_table()` function.
+To reshape a DataFrame from long to wide, we can use the **pandas** `pivot_table()` function.
 
-The following is an example of a long DataFrame.
+Consider the following long DataFrame:
 
 ```{python}
 import numpy as np
 import pandas as pd
 
-data = {"id": np.concatenate([([i]*3) for i in [1,2,3]], axis=0),
+data = {"id": np.concatenate([([i]*3) for i in [1, 2 ,3]], axis=0),
         "week": [1, 2, 3] * 3,
         "observations": np.random.choice(range(20), 9)}
 
@@ -269,34 +246,37 @@ df_long = pd.DataFrame(data)
 print(df_long)
 ```
 
-The following code uses the pandas `pivot_table()` function to reshape the DataFrame from long to wide.
+We can use `pivot_table()` to take the DataFrame from long to wide by specifying: the variable(s) that indicates each value's source (`index`), the variable that indicates the context of each value (`columns`; e.g., "week 1," "week 2," etc.), and the variable containing the values to be widened (`values`).
 
 ```{python}
 df_wide = pd.pivot_table(df_long,
-          index='id',
-          columns='week',
-          values='observations')
+          index = 'id',
+          columns = 'week',
+          values = 'observations')
 print(df_wide)
 ```
 
-
 #### R {-}
 
-Say we begin with a long data frame, `df_long`, that looks like this:
+Say that we begin with a long data frame, `df_long`, that looks like this:
 
 ```{r}
 df_long
 ```
 
-To take data from long to wide with base R's `reshape()`, a user would write:
+To take the data from long to wide with base R's `reshape()` function, a user would write:
 
 ```{r}
 df_wide <- reshape(df_long,
                    direction = 'wide',
-                   idvar = c('id', 'sex'), # column(s) that determine which rows should be grouped together in the wide data
-                   v.names = 'val', # column containing values to widen
-                   timevar = 'week', # column from which resulting wide column names are pulled
-                   sep = '_') # the `sep` argument allows a user to specify how the contents of `timevar` should be joined with the name of the `v.names` variable to form wide column names
+                   # Column(s) that determine which rows should be grouped together in the wide data
+                   idvar = c('id', 'sex'),
+                    # Column containing values to widen
+                   v.names = 'val',
+                   # Column from which resulting wide column names are pulled
+                   timevar = 'week',
+                   # The `sep` argument allows a user to specify how the contents of `timevar` should be joined with the name of the `v.names` variable to form wide column names
+                   sep = '_')
 df_wide
 ```
 
@@ -312,7 +292,7 @@ df_wide_PW <- pivot_wider(df_long,
 df_wide_PW
 ```
 
-`pivot_wider()` offers a lot of usability when widening relatively complicated long data structures. For example, say we want to widen both of the long versions of the animals data frame created above.
+`pivot_wider()` provides a great deal of functonality when widening relatively complicated long data structures. For example, say we want to widen both of the long versions of the "animals" data frame created above.
 
 To widen the version of the long data that has a column for each of the measures (playfulness and excitement):
 
@@ -324,10 +304,7 @@ animals_wide <- pivot_wider(animals_long_1,
                             values_from = c('playfulness',
                                             'excitement'),
                             names_from = 'month',
-                            names_glue = '{month}_{.value}') 
-                            # `names_glue` allows for customization 
-                            # of column names using "glue";
-                            # see https://glue.tidyverse.org/
+                            names_glue = '{month}_{.value}') # `names_glue` allows for customization of column names using "glue"; see https://glue.tidyverse.org/
 animals_wide
 ```
 
@@ -347,7 +324,6 @@ animals_wide
 
 The merge/join examples below all make use of the following sample data frames:
 ```{r, echo = F}
-# initialize join data
 x <- data.frame(merge_var = c('a', 'b', 'c'), val_x = c(12, 94, 92))
 y <- data.frame(merge_var = c('c', 'd', 'e'), val_y = c(78, 32, 30))
 ```
@@ -392,6 +368,7 @@ knitr::include_graphics('images/right_join.png')
 import pandas as pd
 pd.merge(x, y, how = 'right')
 ```
+
 #### R {-}
 ```{r}
 # all.y = T results in a right join
@@ -416,10 +393,8 @@ pd.merge(x, y, how = 'inner')
 #### R {-}
 
 ```{r}
-# with its default arguments, merge() executes an inner join
-# (more specifically, a natural join, which is a kind of
-# inner join in which the merge-criterion column is not
-# repeated, despite being initially present in both tables)
+# With its default arguments, merge() executes an inner join (more specifically, a natural join, which is a kind of
+# inner join in which the merge-criterion column is not repeated, despite being initially present in both tables)
 merge(x, y, by = 'merge_var')
 ```
 

@@ -4,23 +4,22 @@
 knitr::opts_chunk$set(comment = '##', prompt = FALSE, collapse = FALSE)
 ```
 
-This chapter looks at performing selected statistical analyses. It is not comprehensive. The focus is on implementation using Python and R. Good statistical practice is more than knowing which function to use. At a minimum we recommend reading the article, [Ten Simple Rules for Effective Statistical Practice](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004961) [@kass_caffo_davidian_meng_yu_reid_2016].
+This chapter looks at performing selected statistical analyses. It is not comprehensive. The focus is on implementation using Python and R. Good statistical practice is more than knowing which function to use, and at a minimum, we recommend reading the article [_Ten Simple Rules for Effective Statistical Practice_](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004961) [@kass_caffo_davidian_meng_yu_reid_2016].
 
 ## Comparing group means
 
-Many research studies compare mean values of some quantity of interest between two or more groups. A t test analyzes two group means. An Analysis of Variance, or ANOVA, analyzes three or more group means. Both the t test and ANOVA are special cases of a linear model.
+Many research studies compare mean values of some quantity of interest between two or more groups. A _t_-test analyzes two group means. An Analysis of Variance, or ANOVA, analyzes three or more group means. Both the _t_-test and ANOVA are special cases of a linear model.
 
-To demonstrate the t test, we examine fictitious data on 15 scores between two groups of subjects. The "control" group was tested as-is while the "treated" group experienced a particular intervention. Of interest is (1) whether or not the mean scores differ meaningfully between the treated and control groups, and (2) if they do differ, how are they different?
+To demonstrate the _t_-test, we examine fictitious data comprised of 15 scores each for two groups of subjects. The "control" group was tested as-is while the "treated" group experienced a particular intervention. Of interest is (1) whether or not the mean scores differ meaningfully between the treated and control groups, and (2) if they do differ, how are they different?
 
-To demonstrate the ANOVA test, we use data from _The Analysis of Biological Data (3rd ed)_[@whitlock_schluter_2020] on the mass of pine cones (in grams) from three different environments in North America. Of interest is (1) whether or not the mean mass of pine cones differ meaningfully between the three locations, and (2) if they do differ, how are they different?
+To demonstrate ANOVA, we use data from _The Analysis of Biological Data (3rd ed)_[@whitlock_schluter_2020] on the mass of pine cones (in grams) from three different environments in North America. Of interest is (1) whether or not the mean mass of pine cones differs meaningfully between the three locations, and (2) if they do differ, how are they different?
 
-We usually assess the first question in each scenario with a hypothesis test and p-value. The null hypothesis is no difference between the means. The p-value is the probability of the observed differences between the groups (or more extreme differences) assuming the null hypothesis is true. A small p-value, traditionally less then 0.05, provides evidence against the null. For example, a p-value of 0.01 says there's a 1% chance of sampling data as different as this (or more different) if there really was no difference between the groups. Note that p-values don't tell you how two or more statistics differ. See [the ASA Statement on p-values](https://www.tandfonline.com/doi/full/10.1080/00031305.2016.1154108#_i28).
+We usually assess the first question in each scenario with a hypothesis test and _p_-value. The null hypothesis is that there is no difference between the means. The _p_-value is the probability of obtaining the observed differences between the groups (or more extreme differences) _assuming that the null hypothesis is true_. A small _p_-value, traditionally less then 0.05, provides evidence against the null. For example, a _p_-value of 0.01 indicates that there is a 1% chance of observing a mean difference at least as the large as the difference you observed if there really was no difference between the groups. Note that _p_-values don't tell you how two or more statistics differ. See [the ASA Statement on _p_-values](https://www.tandfonline.com/doi/full/10.1080/00031305.2016.1154108#_i28) for further discussion.
 
-We assess the second question in each scenario by calculating confidence intervals on the difference in means. This is more informative than a p-value. A confidence interval gives us information on the uncertainty, direction and magnitude of a difference in means. For example, a 95% confidence interval of [2, 15] tells us the data is consistent with a difference anywhere between 2 and 15 and that the mean of one group appears to be at least 2 units larger than the mean of the other group. Note that a 95% confidence interval does not mean there is a 95% probability that the true value is in the interval. The confidence interval either captured the true value or it did not. We don't know. However the _process_ of calculating the confidence interval works roughly 95% of the time.
-
+We assess the second question in each scenario by calculating confidence intervals for the difference(s) in means. Confidence intervals are more informative than _p_-values: A confidence interval gives us information on the uncertainty, direction, and magnitude of a difference in means. For example, a 95% confidence interval of [2, 15] tells us that the data are consistent with a true difference of anywhere between 2 and 15 units and that the mean of one group appears to be at least 2 units larger than the mean of the other group. Note that a 95% confidence interval does not mean there is a 95% probability that the true value is in the interval: A confidence interval either captures the true value or it doesn't; we don't know. However, the _process_ of calculating a 95% confidence interval is such that the confidence interval will capture the true difference in roughly 95% of repeated samples.
 
 ```{r echo=FALSE}
-# toy data for t-test
+# Toy data for t-test
 set.seed(1)
 s1 <- round(rnorm(n = 15, mean = 80, sd = 4))
 s2 <- round(rnorm(n = 15, mean = 85, sd = 4))
@@ -30,8 +29,8 @@ ch8_d1 <- data.frame(
 )
 rm(s1,s2)
 
-# data from The Analysis of Biological Data, 3 ed. 
-# Ch 15 assignment problem, p. 498
+# Data from The Analysis of Biological Data, 3rd ed. 
+# Chapter 15 assignment problem, p. 498
 ch8_d2 <- data.frame(mass = c(9.6, 9.4, 8.9, 8.8, 8.5, 8.2,
                               6.8, 6.6, 6.0, 5.7, 5.3,
                               6.7, 6.4, 6.2, 5.7, 5.6),
@@ -40,202 +39,185 @@ ch8_d2 <- data.frame(mass = c(9.6, 9.4, 8.9, 8.8, 8.5, 8.2,
 
 ```
 
-
-
 ```{python echo = FALSE}
 ch8_d1 = r.ch8_d1
 ch8_d2 = r.ch8_d2
 ```
 
-
-
 #### Python {-}
 
-**t-test**
+**_t_-test**
 
-Our data is available as a **Pandas** dataframe. It's small enough to view in its entirety.
+Our data are available as a **pandas** DataFrame. It's small enough to view in its entirety:
 
 ```{python}
 ch8_d1
 ```
 
-
-A stripchart is one of many ways to visualize numeric data between two groups. Here we use the seaborn function `stripplot()`. It appears the treated group had higher scores.
+A stripchart is one of many ways to visualize numeric data between two groups. Here, we use the function `stripplot()` from **seaborn**. It appears that the treated group have higher scores on average.
 
 ```{python }
 import seaborn as sns
 import matplotlib.pyplot as plt
 plt.clf()
-sns.stripplot(x="score", y="group", data=ch8_d1)
+sns.stripplot(x = "score", y = "group", data = ch8_d1)
 plt.show()
 ```
 
-
-One way to perform a t test in Python is via the `CompareMeans()` function and its associated methods available in the **statsmodels** package. Below we import **statsmodels.stats.api** as "sms".
+One way to perform a t test in Python is via the `CompareMeans()` function and its associated methods available in the **statsmodels** package. Below, we import **statsmodels.stats.api**.
 
 ```{python}
 import statsmodels.stats.api as sms
 ```
 
-We first extract the data we want to compare as pandas Series.
+We first extract the data we want to compare as **pandas** Series.
 
 ```{python}
 d_control = ch8_d1.query('group == "control"')['score']
 d_treated = ch8_d1.query('group == "treated"')['score']
 ```
 
-Next we create Descriptive statistics objects using the `DescrStatsW()` function.
+Next, we create Descriptive statistics objects using the `DescrStatsW()` function.
 
 ```{python}
 control = sms.DescrStatsW(d_control)
 treated = sms.DescrStatsW(d_treated)
 ```
 
-Descriptive statistics objects have attributes such as `mean` and `std` (standard deviation). Below we print the mean and standard deviation of each group. We also round the standard deviation to three decimal places and place a line break before printing the standard deviation.
+Descriptive statistics objects have attributes such as `mean` and `std` (standard deviation). Below, we print the mean and standard deviation of each group. We also round the standard deviation to three decimal places and place a line break before printing the standard deviation.
 
 ```{python}
 print("control mean:", control.mean, "\ncontrol std:", round(control.std, 3))
 print("treated mean:", treated.mean, "\ntreated std:", round(treated.std, 3))
 ```
 
-Next we create a CompareMeans means object using the `CompareMeans()` function. The required inputs are Descriptive statistics objects. We save the result as "ttest".
+Next, we create a CompareMeans means object using the `CompareMeans()` function. The required inputs are Descriptive statistics objects. We save the result as `ttest`.
 
 ```{python}
 ttest = sms.CompareMeans(control, treated)
 ```
 
-Now we can use various methods with the "ttest" object. To see the result of a two sample t test assuming unequal variances, along with a confidence interval on the differences, use the `summary` method with `usevar='unequal'`. 
+We can now use various methods with the `ttest` object: To see the result of a two sample _t_-test assuming unequal variances, along with a confidence interval for the difference, use the `summary` method with `usevar = 'unequal'`. 
 
 ```{python}
-print(ttest.summary(usevar='unequal'))
+print(ttest.summary(usevar = 'unequal'))
 ```
 
-The p-value of 0.001 is small, providing good evidence that the difference in means we witnessed reflects a real difference in the population. The confidence interval on the difference in means tells us the data is consistent with a difference between -7 and -2. It appears we can expect the control group to score at least 2 points lower than the treated group.
-
+The p-value of 0.001 is small, suggesting that the difference we observed would be unlikely if there was no real mean difference in the population. The confidence interval on the difference in means tells us that the data are consistent with a difference between -7 and -2. It appears that we can expect the control group to score at least 2 points lower on average than the treated group.
 
 **ANOVA**
 
-Our data is available as a **Pandas** dataframe. It's small enough to view in its entirety.
+Our data are available as a **pandas** DataFrame. We can view the data in their entirety:
 
 ```{python}
 ch8_d2
 ```
 
-Again we use a stripchart to visualize the three groups of data. It appears the pine cones in location 1 have a higher mass.
+As with the _t_-test above, we use a stripchart to visualize the three groups of data. It appears that the pine cones in location 1 have a higher mass.
 
 ```{python}
 plt.clf()
-sns.stripplot(x="mass", y="location", data=ch8_d2)
+sns.stripplot(x = "mass", y = "location", data = ch8_d2)
 plt.show()
 ```
 
-
-
-We can calculate means using the `groupby` and `mean` methods.
+We can calculate group means using the `groupby` and `mean` methods.
 
 ```{python}
 ch8_d2['mass'].groupby(ch8_d2['location']).mean()
 ```
 
-One way to perform an ANOVA test in Python is via the `anova_oneway()` function, also available in the **statsmodels** package.
+One way to perform an ANOVA in Python is via the `anova_oneway()` function, also available in the **statsmodels** package.
 
-The `anova_oneway()` function can perform an ANOVA on a pandas Dataframe with the first argument specifying the numeric data and the second argument the grouping variable. We also set `use_var='equal'` to replicate the R output below.
+The `anova_oneway()` function can perform an ANOVA on a **pandas** Dataframe, where the first argument specifies the numeric data and the second argument specifies the grouping variable. We also set `use_var = 'equal'` to replicate the R output below.
 
 ```{python}
-sms.anova_oneway(ch8_d2.mass, ch8_d2.location, use_var='equal')
+sms.anova_oneway(ch8_d2.mass, ch8_d2.location, use_var = 'equal')
 ```
 
-The small p-value of 0.0000007 provides strong evidence that the difference in means we witnessed reflects a real difference in the population.
+The small p-value of 0.0000007 provides strong evidence that if there were no true mean differences between groups in the population, we'd be unlikely to observe data with the differences we did.
 
-A common follow-up to an ANOVA is Tukey's Honestly Significant Differences (HSD), which computes differences between all possible pairs and returns adjusted p-values and confidence intervals to account for the multiple comparisons. To carry this out in the **statsmodels** package, we need to first create a MultiComparison object using the `multicomp.MultiComparison()` function. Then we use the `tukeyhsd()` method to compare the means with corrected p-values.
+A common follow-up to an ANOVA is Tukey's Honestly Significant Differences (HSD) procedure, which computes differences between all possible pairs and returns adjusted _p_-values and confidence intervals to account for the multiple comparisons. To carry this out in the **statsmodels** package, we need to first create a MultiComparison object using the `multicomp.MultiComparison()` function. We then use the `tukeyhsd()` method to compare the means with corrected _p_-values.
 
 ```{python}
 mc = sms.multicomp.MultiComparison(ch8_d2.mass, ch8_d2.location)
 print(mc.tukeyhsd())
 ```
 
-The difference in means between locations 2 and 1 (2 - 1) and locations 3 and 1 (3 - 1) are about -2.8. The difference in means between locations 3 and 2 (3 - 2) is inconclusive. It seems to be small but we're not sure if the difference is positive or negative.
+The difference in means between locations 2 and 1 (2 - 1) and locations 3 and 1 (3 - 1) are about -2.8. The difference in means between locations 3 and 2 (3 - 2) is inconclusive. It seems to be small, but we're not sure if the difference is positive or negative.
 
 #### R {-}
 
-
-
 **t-test**
 
-The `str()` function allows to take a quick look at the data frame `ch8_d1`. One column contains the scores, the other column indicates which group the subject was in (control vs treated).
+The `str()` function allows to take a quick look at the data frame `ch8_d1`. One column contains the scores; the other column indicates which group the subject was in (control vs. treated).
 
 ```{r}
 str(ch8_d1)
 ```
 
-A stripchart is one of many ways to visualize numeric data between two groups. Here we use the base R function `stripchart()`. The formula `score ~ group` says to plot score by group. The `las = 1` argument says to rotate the y-axis labels. The `method = "jitter"` arguments says to randomly scatter the points vertically so they don't overplot. It appears the treated group had higher scores.
+A stripchart is one of many ways to visualize numeric data between two groups. Here, we use the base R function `stripchart()`. The formula `score ~ group` plots scores by group. The `las = 1` argument just rotates the y-axis labels. The `method = "jitter"` argument adds some random vertical scatter to the points so that there's less overlap between them. It appears the treated group has a higher average score than the untreated group.
 
 ```{r}
 stripchart(score ~ group, data = ch8_d1, las = 1, method = "jitter")
 ```
 
-To calculate the means between the two groups we can use the `aggregate()` function. Again the formula `score ~ group` says to aggregate score by group. We specify `mean` so that we calculate the mean between the two groups. Some other functions we could specify include `median`, `sd`, or `sum`. The sample mean of the treated group is about 5 points higher than the control group.
+To calculate the means between the two groups, we can use the `aggregate()` function. Again, the formula `score ~ group` says to aggregate scores by group. We specify `mean` to calculate the mean between the two groups. Some other functions we could specify include `median`, `sd`, or `sum`. The sample mean of the treated group is about 5 points higher than the control group.
 
 ```{r}
 aggregate(score ~ group, data = ch8_d1, mean)
 ```
 
-Is this difference meaningful? What if we took more samples? Would each sample result in similar differences in the means? A t test attempts to answer this. 
+Is this difference meaningful? What if we took more samples? Would each sample result in similar differences in the means? A _t_-test attempts to answer this. 
 
-The `t.test()` function accommodates formula notation allowing us to specify that we want to calculate mean score by group.
+The `t.test()` function accommodates formula notation, allowing us to specify that we want to calculate mean score by group.
 
 ```{r}
 t.test(score ~ group, data = ch8_d1)
 ```
 
-The p-value of 0.0015 is small, providing good evidence that the difference in means we witnessed reflects a real difference in the population. The confidence interval on the difference in means tells us the data is consistent with a difference between -7 and -2. It appears we can expect the control group to score at least 2 points lower than the treated group. 
-
+The p-value of 0.0015 is small, suggesting that we'd be unlikely to observe a difference at least as large as the one we did if there was no actual difference between the groups in the population. The confidence interval on the difference in means tells us the data are consistent with a difference between -7 and -2. It appears we can expect the control group to score at least 2 points lower than the treated group. 
 
 **ANOVA**
 
-The `str()` function allows to take a quick look at the data frame `ch8_d2`. One column contains the mass of the pine cones, the other column indicates which location the pine cone was found.
-
+The `str()` function lets us quickly get a glimpse of the data frame `ch8_d2`. One column contains the mass of the pine cones; the other column indicates which location the pine cone was found.
 
 ```{r}
 str(ch8_d2)
 ```
 
-Again we use a stripchart to visualize the three groups of data. It appears the pine cones in location 1 have a higher mass.
+We can use a stripchart to visualize the three groups of data. It appears the pine cones in location 1 have a higher mass than the pinecones in locations 2 and 3.
 
 ```{r}
 stripchart(mass ~ location, data = ch8_d2, las = 1, method = "jitter")
 ```
 
-To calculate the means between the three groups we can use the `aggregate()` function. Again the formula `mass ~ location` says to aggregate mass by location. We specify `mean` so that we calculate the mean between the three groups. 
+To calculate the means between the three groups, we can use the `aggregate()` function. The formula `mass ~ location` says to aggregate mass by location. We specify `mean` so that we calculate the mean between the three groups. 
 
 ```{r}
 aggregate(mass ~ location, data = ch8_d2, mean)
 ```
 
-Is this difference meaningful? ANOVA attempts to answer this. 
-
-The `aov()` function carries out the ANOVA test and also accommodates formula notation. It's usually preferable to save the ANOVA result into an object and call `summary()` on the object.
+To estimate how likely we'd to observe differences like these in the sample if there were no true differences in the population, we can perform an ANOVA. The `aov()` function carries out an ANOVA test. It accommodates formula notation. It's usually preferable to save the ANOVA result into an object and call `summary()` on the object to view the results in full.
 
 ```{r}
 aov1 <- aov(mass ~ location, data = ch8_d2)
 summary(aov1)
 ```
 
-The small p-value of 0.0000007 provides strong evidence that the difference in means we witnessed reflects a real difference in the population.
+The small p-value of 0.0000007 provides strong evidence that we'd be unlikely to observe differences as large as those we did if there were no true population-level differences.
 
-Unlike the `t.test()` output, the `aov()` summary does not provide confidence intervals on differences in means. That's because there are many kinds of differences we might want to assess. A common and easy procedure is Tukey's Honestly Significant Differences (HSD), which computes differences between all possible pairs and returns adjusted p-values and confidence intervals to account for the multiple comparisons. Base R provides the `TukeyHSD()` function for this task. Call it on the ANOVA object.
+Unlike the `t.test()` output, the `aov()` summary does not provide confidence intervals on differences in means. That's because there are many kinds of differences we might want to assess. A common and easy procedure is Tukey's Honestly Significant Differences (HSD), which computes differences between all possible pairs and returns adjusted _p_-values and confidence intervals to account for the multiple comparisons. Base R provides the `TukeyHSD()` function for this task.
 
 ```{r}
 TukeyHSD(aov1)
 ```
 
-The difference in means between locations 2 and 1 (2 - 1) and locations 3 and 1 (3 - 1) are about -2.8. The difference in means between locations 3 and 2 (3 - 2) is inconclusive. It seems to be small but we're not sure if the difference is positive or negative.
-
+The difference in means between locations 2 and 1 (2 - 1) and locations 3 and 1 (3 - 1) are about -2.8. The difference in means between locations 3 and 2 (3 - 2) is inconclusive. It seems to be small, but we're not sure if the difference is positive or negative.
 
 ## Comparing group proportions
 
-It is often of interest to compare proportions between two groups. Sometimes this is referred to as a two-sample proportion test. To demonstrate we use an exercise from the text _Introductory Statistics with R_ [@Dalgaard_2020] (p.154). We are told that 210 out of 747 patients died of Rocky Mountain spotted fever in the western United States. That's a proportion of `r round(210/747, 3)`. In the eastern United States, 122 out 661 patients died. That's a proportion of `r round(122/661, 3)`. Is the difference in proportions statistically significant? In other words, assuming there is no difference in the fatality rate between the two regions, is this difference in proportions surprising?
-
+It is often of interest to compare proportions between two groups. This is sometimes referred to as a two-sample proportion test. To demonstrate, we use an exercise from the text _Introductory Statistics with R_ [@Dalgaard_2020] (p. 154). We are told that 210 out of 747 patients died of Rocky Mountain spotted fever in the western United States. That's a proportion of `r round(210/747, 3)`. In the eastern United States, 122 out 661 patients died. That's a proportion of `r round(122/661, 3)`. Is the difference in proportions statistically significant? In other words: Assuming that there is no true difference in the fatality rate between the two regions, is the observed difference in proportions surprising?
 
 #### Python {-}
 
@@ -255,28 +237,27 @@ ptest.pvalue
 ```
 
 ```{python}
-# rounded to 4 decimal places
+# Rounded to 4 decimal places
 round(ptest.diff, 4)
 ```
 
-To calculate a 95% confidence interval for the difference in proportions we need to use the `confint_proportions_2indep()` function.
+To calculate a 95% confidence interval for the difference in proportions, we need to use the `confint_proportions_2indep()` function.
 
 ```{python}
 pdiff = sms.confint_proportions_2indep(210, 747, 122, 661)
 pdiff
 ```
 
-The result is returned as a tuple with an extreme amount of precision. We recommend rounding these values to few decimal places. Here's one way using f strings. Notice we extract each element of the "pdiff" tuple and round to 5 decimal places.
+The result is returned as a tuple with an extreme amount of precision. We recommend rounding these values to few decimal places. Below, we show one way of doing so using _f strings_. Notice that we extract each element of the `pdiff` tuple and round each to 5 decimal places.
 
 ```{python}
-print(f"({round(pdiff[0],5)}, {round(pdiff[1],5)})")
+print(f"({round(pdiff[0], 5)}, {round(pdiff[1], 5)})")
 ```
 
 This results are slightly different from the R example below. That's because the `test_proportions_2indep()` and `confint_proportions_2indep()` functions use different methods. See their respective help pages to learn more about the methods available and other function arguments.
 
 [test_proportions_2indep](https://www.statsmodels.org/dev/generated/statsmodels.stats.proportion.test_proportions_2indep.html#statsmodels.stats.proportion.test_proportions_2indep) help page   
 [confint_proportions_2indep](https://www.statsmodels.org/dev/generated/statsmodels.stats.proportion.confint_proportions_2indep.html#statsmodels.stats.proportion.confint_proportions_2indep) help page   
-
 
 #### R {-}
 
@@ -286,9 +267,9 @@ A two-sample proportion test in R can be carried out with the `prop.test()` func
 prop.test(x = c(210, 122), n = c(747, 661))
 ```
 
-The proportion of patients who died in the western US is about 0.28. The proportion who died in the eastern US is about 0.18. The small p-value says there is a very small chance of seeing a difference as large as this (or larger) if there really was no difference in the proportions. The confidence interval on the difference of proportions ranges from 0.05 to 0.14, indicating that this fever seems to kill at least 5% more patients in the western US.
+The proportion of patients who died in the western US is about 0.28. The proportion who died in the eastern US is about 0.18. The small _p_-value suggests that there is a very small chance of seeing a difference at least as large as this if there is really no difference in the true proportions. The confidence interval on the difference of proportions ranges from 0.05 to 0.14, indicating that Rocky Mountain spotted fever seems to kill at least 5% more patients in the western US.
 
-Sometimes data is presented in a 2-way table with successes and failures. We can present the preceding data in a table as follows using the `matrix()` function. 
+Data of this sort are sometimes presented in a two-way table with successes and failures. We can present the preceding data in a table using the `matrix()` function:
 
 ```{r}
 fever <- matrix(c(210, 122,
@@ -298,7 +279,7 @@ colnames(fever) <- c("died", "lived")
 fever
 ```
 
-When the table is constructed in this fashion with "successes" in the first column and "failures" in the second column, we can feed the table directly to the `prop.test()` function. (Obviously "success" here means "experienced the event of interest".)
+When the table is constructed in this fashion with "successes" in the first column and "failures" in the second column, we can feed the table directly to the `prop.test()` function. ("Success," here, obviously means "experienced the event of interest.")
 
 ```{r}
 prop.test(fever)
@@ -310,14 +291,13 @@ The chi-squared test statistic is reported as `X-squared = 17.612`. This is the 
 chisq.test(fever)
 ```
 
-This tests the null hypothesis of no association between location in the US and fatality of the fever. The result is identical to `prop.test()` output, however there is no indication of the nature of association.
-
+This tests the null hypothesis of no association between location in the US and fatality of the fever. The result is identical to the `prop.test()` output; however, there is no indication as to the nature of association.
 
 ## Linear modeling
 
-Linear modeling attempts to assess if or how the variability a numeric variable depends on one or more predictor variables. This is often referred to as _regression modeling_ or _multiple regression_. While it is relatively easy to "fit a model" and generate lots of output, the model we fit may not be very good. There are many decisions we have to make when proposing a model. Which predictors do we include? Will they interact? Do we allow for non-linear effects? Answering these kinds of questions require subject matter expertise. 
+Linear modeling attempts to assess if and how the variability in a numeric variable depends on one or more predictor variables. This is often referred to as _regression modeling_ or _multiple regression_. While it is relatively easy to "fit a model" and generate lots of output, the model we fit may not be very good. There are many decisions we have to make when proposing a model: Which predictors do we include? Will they interact? Do we allow for non-linear effects? Answering these kinds of questions require subject matter expertise. 
 
-We walk through a somewhat simple example using data on weekly gas consumption. The data is courtesy of the R package **MASS** [@MASS]. The documentation describes the data as follows:
+Below, we walk through a simple example using data on weekly gas consumption. The data is courtesy of the R package **MASS** [@MASS]. The documentation describes the data as follows:
 
 "Mr Derek Whiteside of the UK Building Research Station recorded the weekly gas consumption and average external temperature at his own house in south-east England for two heating seasons, one of 26 weeks before, and one of 30 weeks after cavity-wall insulation was installed. The object of the exercise was to assess the effect of the insulation on gas consumption."
 
@@ -327,9 +307,7 @@ The `whiteside` data frame has 56 rows and 3 columns:
 - `Temp`: average outside temperature in degrees Celsius.
 - `Gas`: weekly gas consumption in 1000s of cubic feet.
 
-Below we demonstrate modeling `Gas` as a function of `Insul`, `Temp`, and their interaction.
-
-Obviously this is not a comprehensive treatment of linear modeling. 
+We demonstrate how to model `Gas` as a function of `Insul`, `Temp`, and their interaction. This is, of course, not a comprehensive treatment of linear modeling; the focus is on implementation in Python and R.
 
 ```{r echo=FALSE, message=FALSE}
 library(MASS)
@@ -341,37 +319,34 @@ data("whiteside")
 whiteside = r.whiteside
 ```
 
-
 #### Python {-}
 
-In Python, the `OLS()` function in the statsmodels package fits a linear model. 
+The `ols()` function in the **statsmodels** package fits a linear model. In this example, we fit a linear model predicting gas consumption from insulation, temperature, and the interaction between insulation and temperature.
 
-In this example, we fit a linear model to predict gas prices from insulation, temperature, and the interaction between insulation and temperature.
-
-The basic construction is to first list your dependent or response variable, then a tilde (`~`), and then your predictor variables, or terms, separated by plus operators (`+`). Listing two variables separated by a colon (`:`) indicates we wish to fit an interaction for those variables. The variables in the formula correspond to columns in a pandas DataFrame. Users specify the pandas DataFrame using the `data` argument.
+The desired model can be specified as a formula: List the dependent variable (also called the "response" variable) first, then a tilde (`~`), and then the predictor variables separated by plus signs (`+`). Separating variables with colons instead of plus signs (`x:z`) fits an interaction term for those variables. The variables in the formula correspond to columns in a **pandas** DataFrame. Users specify the **pandas** DataFrame using the `data` argument.
 
 ```{python}
 import statsmodels.api as sm
 import statsmodels.formula.api as smf
 
-model = smf.ols('Gas ~ Insul + Temp + Insul:Temp', data=whiteside)
-results = model.fit() # fit the linear model
+model = smf.ols('Gas ~ Insul + Temp + Insul:Temp', data = whiteside)
+results = model.fit() # Fit the linear model
 ```
 
-Once you fit your model, you can extract information about it using several functions. The most commonly used include:
+With a model in hand, you can extract information about it via several functions, including:
 
-- `summary()`: summary of model coefficients with standard errors and test statistics
-- `params`: model coefficients
-- `conf_int()`: 95% confidence interval of model coefficients
-- statsmodels provides functions for diagnostic plots. A few examples are shown below.
+- `summary()`: return a summary of model coefficients with standard errors and test statistics
+- `params`: return the model coefficients
+- `conf_int()`: return the 95% confidence interval of each model coefficient
+- **statsmodels** also provides functions for diagnostic plots; a few examples are shown below
 
-The `summary()` function produces the standard regression summary one typically finds in a statistics textbook.
+The `summary()` function produces the kind of standard regression output one typically finds in a statistics textbook.
 
 ```{python}
 print(results.summary())
 ```
 
-The following code produces a fitted vs residual plot for the model.
+The following code produces a plot of fitted values against residuals for the model---a key plot for model diagnostics:
 
 ```{python}
 plt.figure()
@@ -384,14 +359,14 @@ plt.title("residuals vs fitted")
 plt.show()
 ```
 
-The following code plots model predictions. Each line of the plot represents a level of the variable "Insul".
+We can also plot model predictions to visualize the predictive effects in the model. Each line of the plot represents a level of the variable `Insul`.
 
 ```{python}
 import numpy as np
 import pandas as pd
 from statsmodels.sandbox.predict_functional import predict_functional
 
-# create DataFrame (wrt Inusl == "Before") to pass into predict function
+# Create DataFrame (wrt Inusl == "Before") to pass into predict function
 temp = np.linspace(whiteside["Temp"].min(), whiteside["Temp"].max())
 insul_before = ["Before"]*temp.shape[0]
 # whiteside_before = pd.DataFrame({"Temp": temp, "Insul": insul_before})
@@ -401,14 +376,14 @@ before_predict_object = results.get_prediction(whiteside_before)
 before_predictions = before_predict_object.predicted_mean
 before_ci = before_predict_object.conf_int()
 
-# create DataFrame (wrt Inusl == "After") to pass into predict function
+# Create DataFrame (wrt Inusl == "After") to pass into predict function
 insul_after = ["After"]*temp.shape[0]
 whiteside_after = pd.DataFrame({"Temp": temp, "Insul": insul_after, "Insul:Temp":temp})
 after_predictions_object = results.get_prediction(whiteside_after)
 after_predictions = after_predictions_object.predicted_mean
 after_ci = after_predictions_object.conf_int()
 
-# plot results
+# Plot results
 plt.figure()
 plt.plot(temp, before_predictions, color = "red", label="Before")
 plt.fill_between(temp, before_ci[:,0], before_ci[:,1], color = "red", alpha = 0.1)
@@ -421,60 +396,56 @@ plt.ylabel("Gas")
 plt.show()
 ```
 
-We see that after installing insulation, gas consumption fell considerably, and that the effect of temperature on gas consumption is less pronounced.
+The plot suggests that after installing insulation, gas consumption fell and the effect of temperature on gas consumption was less pronounced.
 
 #### R {-}
 
-The `lm()` function fits a linear model in R using whatever model we propose. We specify models using a special syntax. The basic construction is to first list your dependent or response variable, then a tilde (`~`), and then your predictor variables, or terms, separated by plus operators (`+`). Listing two variables separated by a colon (`:`) indicates we wish to fit an interaction for those variables. See `?formula` for further details on formula syntax.
+The `lm()` function fits a linear model in R using whatever model we propose. We specify models using a special syntax. The basic construction is to list your dependent (response) variable, then a tilde (`~`), and then your predictor variables separated by plus operators (`+`). Listing two variables separated by a colon (`:`) indicates we wish to fit an interaction for those variables. (Alternatively, listing variables as `x*z` is equivalent to `x + z + x:z`.) See `?formula` for further details on formula syntax.
 
 It's considered best practice to reference variables in a data frame and indicate the data frame using the `data` argument. Though not required, you'll almost always want to save the result to an object for further inquiry.
 
 ```{r}
 m <- lm(Gas ~ Insul + Temp + Insul:Temp, data = whiteside)
+# Equivalently: lm(Gas ~ Insul*Temp, data = whiteside)
 ```
 
-Once you fit your model, you can extract information about it using several functions. The most commonly used include:
+Once you fit your model, you can extract information about it using several functions. Commonly used functions include:
 
-- `summary()`: summary of model coefficients with standard errors and test statistics
-- `coef()`: model coefficients
-- `confint()`: 95% confidence interval of model coefficients
-- `plot()`: a set of four diagnostic plots
+- `summary()`: return a summary of model coefficients with standard errors and test statistics
+- `coef()`: return the model coefficients
+- `confint()`: return a 95% confidence interval of model coefficients
+- `plot()`: return a set of four diagnostic plots
 
-The `summary()` function produces the standard regression summary one typically finds described in a statistics textbook.
+The `summary()` function produces the standard regression summary table one typically finds described in a statistics textbook.
 
 ```{r}
 summary(m)
 ```
 
-Calling `plot()` on a model object produces four different diagnostic plots by default. Using the `which` argument we can specify which of six possible plots to create. The first one checks the constant variance assumption (ie, that our model is not dramatically over- or under-predicting values.) We hope to see residuals evenly scattered around 0. (See `?plot.lm` for more details on the diagnostic plots.)
+Calling `plot()` on a model object produces four different diagnostic plots by default. Using the `which` argument, we can specify which of six possible plots to generate. The first plot---of fitted values against residuals---helps the modeler assess the constant variance assumption (i.e., that our model is not dramatically over- or under-predicting values). We hope to see residuals evenly scattered around 0. (See `?plot.lm` for more details on the diagnostic plots.)
 
 ```{r}
 plot(m, which = 1)
 ```
 
-Once we fit a model and we're reasonably confident that it's a good model, we may want to visualize it. Three packages in R that help with this are **emmeans**, **effects**, and **ggeffects**. We briefly demonstrate the **ggeffects** package.
+Once we fit a model and we're reasonably confident that it's a well-fitting, assumption-satisfying model, we may want to visualize it. Three packages in R that help with this are **emmeans**, **effects**, and **ggeffects**. Below, we give a demonstration of how to use the **ggeffects** package to visualize the predictive effects of a model.
 
-You need to first install the **ggeffects** package as it does not come with the base R installation. Once installed, load using the `library()` function.
-
-Once loaded, we can get a basic visualization of our model by using the `plot()` and `ggpredict()` functions. This is particularly useful for models with interactions. Use the `terms` argument to specify which variables to plot. Below we list "Temp" first, which will plot "Temp" on the x axis. Then we list "Insul", the grouping variable, to indicate we want a separate fit for each level of "Insul".
+You need to first install the **ggeffects** package, as it does not come with the base R installation. Once installed, load using the `library()` function. Once loaded, we can get a basic visualization of our model by using the `plot()` and `ggpredict()` functions. This is particularly useful for models with interactions. Use the `terms` argument to specify which variables to plot. Below we list `Temp` first, which will plot `Temp` on the x axis. Then we list `Insul`, the grouping variable, to indicate we want a separate fit for each level of `Insul`.
 
 ```{r message=FALSE}
-# install.pacakges("ggeffects")
 library(ggeffects)
 plot(ggpredict(m, terms = c("Temp", "Insul")))
 ```
 
-We see that after installing insulation, gas consumption fell considerably, and that the effect of temperature on gas consumption is less pronounced.
+We see that after installing insulation, gas consumption fell considerably and the effect of temperature on gas consumption was less pronounced.
 
 ## Logistic regression
 
-Logistic regression attempts to assess if or how the variability a binary variable depends on one or more predictor variables. It is a type of Generalized Linear Model and is commonly used to model the _probability_ of an event occurring. While it is relatively easy to "fit a model" and generate lots of output, the model we fit may not be very good. There are many decisions we have to make when proposing a model. Which predictors do we include? Will they interact? Do we allow for non-linear effects? Answering these kinds of questions require subject matter expertise.
+Logistic regression attempts to assess if or how the variability a binary variable depends on one or more predictor variables. It is a type of "generalized linear model" and is commonly used to model the _probability_ of an event occurring. As with linear regression, it's easy to "fit a model" and generate lots of output, but the model we fit may not be particularly good. The same kinds of questions germane to developing a standard linear regression are relevant when developing a logistic regression: Which predictors do we include? Will they interact? Will we include non-linear effects?
 
-We walk through a basic example using data on low infant birth weight. The data is courtesy of the R package **MASS** [@MASS]. According to the documentation, "the data were collected at Baystate Medical Center, Springfield, Mass during 1986." 
+We walk through a basic example below using data on low infant birth weight. The data are courtesy of the R package **MASS** [@MASS]. Per the documentation, "the data were collected at Baystate Medical Center, Springfield, Mass during 1986." 
 
-We use the data as prepared in the example code found at `?birthwt`. 
-
-The `birthwt` data frame has 189 rows and 9 columns:
+The data are contained in the data frame `birthwt` (see `?birthwt` for additional details). `birthwt` has 189 rows and 9 columns:
 
 - `low`: 1 if birth weight less than 2.5 kg, 0 otherwise
 - `age`: mother's age in years
@@ -486,9 +457,7 @@ The `birthwt` data frame has 189 rows and 9 columns:
 - `ui`: presence of uterine irritability (1 = yes, 0 = no)
 - `ftv`: number of physician visits during the first trimester (0, 1, 2+)
 
-Below we demonstrate modeling `low` as a function of all other predictors.
-
-Obviously this is not a comprehensive treatment of logistic regression. 
+Below we show how one can model `low` as a function of all other predictors. The focus here is on implementing the model in Python and R; this isn't a comprehensive treatment of logistic regression.
 
 ```{r echo=FALSE, message=FALSE}
 birthwt <- readRDS("data/bwt.Rds")
@@ -498,81 +467,75 @@ birthwt <- readRDS("data/bwt.Rds")
 birthwt = r.birthwt
 ```
 
-
 #### Python {-}
 
-The Python statistics library `statsmodels.formula.api` provides the `glm` function for fitting generalized linear models. We specify how we want to model our data as a formula string in the first argument of the `glm` function. The format is as follows: dependent/response variable followed by a tilde (`~`), then the predictor variables separated by a plus sign (`+`). To indicate we want to fit a logistic regression model we specify `family=sm.families.Binomial()` since our dependent variable is binary. We also specify our data set in the argument as well.
+The Python library **statsmodels.formula.api** provides the `glm()` function for fitting generalized linear models. We specify the model as a formula string in the first argument of the `glm()` function. The format is as follows: dependent/response variable followed by a tilde (`~`), then the predictor variables separated by a plus sign (`+`). Separating variables with a colon (`a:b`) includes the interaction of those variables in the model. To fit a logistic regression, we specify `family = sm.families.Binomial()`, as our dependent variable is binary. We also specify our data set in the `data` argument as well.
 
 ```{python}
 import statsmodels.api as sm
 import statsmodels.formula.api as smf
 import pandas as pd
 formula = "low ~ age + lwt + race + smoke + ptd + ht + ui + ftv"
-mod1 = smf.glm(formula=formula, data=birthwt,
-               family=sm.families.Binomial()).fit()
+mod1 = smf.glm(formula = formula, data = birthwt,
+               family = sm.families.Binomial()).fit()
 print(mod1.summary())
 ```
 
+Once we fit a model and are reasonably confident that it’s a good model, we may want to visualize it. For example, we can visualize how `ptd` is associated with the probability of low infant birth weight, holding other predictors constant.
 
-Once we fit a model and we’re reasonably confident that it’s a good model, we may want to visualize it. For example, how does `ptd` affect the probability of low infant birth weight?
-
-To begin, we create a Pandas DataFrame for our predictors. This needs to be a Pandas DataFrame since we used the formula option when fitting the model. Notice the only variable that changes is `ptd`. All other variables are held constant. What values you choose to hold them at is up to you, but typical choices are means or medians for numeric predictors, and most populous group for categorical predictors.
+To begin, we create a **pandas** DataFrame containing our predictors: Notice the only variable with multiple values is `ptd`. All other variables are held constant. What values you choose to hold them at is up to you, but typical choices are means or medians for numeric predictors and most populous group for categorical predictors. (This needs to be a **pandas** DataFrame since we used the formula option when fitting the model.)
 
 ```{python}
-# create dictionary of values
+# Create dictionary of values
 d = {'age': 23, 'lwt': 123, 'race': "white",
      'smoke' : "0", 'ptd' : ["0","1"], 'ht': "0", 
      'ui': "0", 'ftv': "0"}
-# convert dictionary to Pandas DataFrame.
-nd = pd.DataFrame(data=d)
+# Convert dictionary to pandas DataFrame.
+nd = pd.DataFrame(data = d)
 ```
 
-Now plug in our new data (nd) into our model using the `get_prediction` method. See [this page](https://www.statsmodels.org/devel/generated/statsmodels.genmod.generalized_linear_model.GLMResults.html#statsmodels.genmod.generalized_linear_model.GLMResults). This returns the predictions as a `PredictionResults` class. We can access the predicted probabilities using the `predicted_mean` property. See [this page](https://www.statsmodels.org/devel/generated/statsmodels.tsa.base.prediction.PredictionResults.html). 
-
+Now plug in our new data (`nd`) into our model using the `get_prediction()` method. See [this page](https://www.statsmodels.org/devel/generated/statsmodels.genmod.generalized_linear_model.GLMResults.html#statsmodels.genmod.generalized_linear_model.GLMResults) for further details. This returns the predictions as a `PredictionResults` object. We can access the predicted probabilities using the `predicted_mean` property. See [this page](https://www.statsmodels.org/devel/generated/statsmodels.tsa.base.prediction.PredictionResults.html). 
 
 ```{python}
-pred = mod1.get_prediction(exog=nd)
+pred = mod1.get_prediction(exog = nd)
 prob = pred.predicted_mean
 print(prob)
 ```
 
-We can use the `conf_int` method to extract the confidence intervals for the predicted probabilities.
+We can use the `conf_int()` method to extract the confidence intervals for the predicted probabilities.
 
 ```{python}
 ci = pred.conf_int()
 print(ci)
 ```
 
-Now we use the matplotlib `errorbar` function to create the plot. The `errorbar` function requires _margin of error_, not the lower and upper limits. So we have to do some subtraction to get the lower and upper margin of errors.
+Now, we use the **Matplotlib** `errorbar()` function to create the plot. The `errorbar()` function requires _margin of error_, not the lower and upper limits. So, we have to do some subtraction to get the lower and upper margins of error.
 
 ```{python}
 lower = [prob[0] - ci[0,0], prob[1] - ci[1,0]]
 upper = [ci[0,1] - prob[0], ci[1,1] - prob[1]]
 ```
 
-Finally we can make the plot.
-
+Finally we can make the plot:
 
 ```{python message=FALSE}
 import matplotlib.pyplot as plt
 plt.clf()
 plt.errorbar(x = ["0","1"], y = prob, 
-             yerr=[lower, upper], fmt='ok')
+             yerr = [lower, upper], fmt = 'ok')
 plt.xlabel('ptd')
 plt.ylabel('low')
 plt.title('Predicted probabilities of low')
 plt.show()
 ```
 
-
-
 #### R {-}
 
-The `glm()` function fits a generalized linear model in R using whatever model we propose. We specify models using a special syntax. The basic construction is to first list your dependent or response variable, then a tilde (`~`), and then your predictor variables, or terms, separated by plus operators (`+`). Listing two variables separated by a colon (`:`) indicates we wish to fit an interaction for those variables. See `?formula` for further details on formula syntax.
+The `glm()` function fits a generalized linear model in R using whatever model we propose. We specify models using formula syntax: List your dependent (response) variable, then a tile `~`, and then your predictor variables separated by plus operators (`+`). Listing two variables separated by a colon (`:`) indicates we wish to fit an interaction for those variables. See `?formula` for further details on formula syntax.
 
-In addition, `glm()` requires we specify a family argument to specify the error distribution for the dependent variable. The default is `gaussian`. For a logistic regression model, we need to specify `binomial` since our dependent variable is binary. 
+In addition, `glm()` requires that we specify a `family` argument to specify the error distribution for the dependent variable. The default is `gaussian` (normal, as in standard linear regression). For a logistic regression model, we need to specify `binomial` since our dependent variable is binary.
 
-It's considered best practice to reference variables in a data frame and indicate the data frame using the `data` argument. Though not required, you'll almost always want to save the result to an object for further inquiry.
+Indicate the data frame from which variables are sourced using the `data` argument. You'll generally want to save the result to an object for further inquiry.
 
 ```{r}
 mod <- glm(low ~ age + lwt + race + 
@@ -581,7 +544,7 @@ mod <- glm(low ~ age + lwt + race +
            data = birthwt, family = binomial)
 ```
 
-Since we're modeling `low` as a function of all other variables in the data frame, we could have used the following syntax, where the period symbolizes all other remaining variables:
+Since we're modeling `low` as a function of all other variables in the data frame, we also could have used the following syntax, where the period symbolizes all other remaining variables:
 
 ```{r eval=FALSE}
 mod <- glm(low ~ ., data = birthwt, family = binomial)
@@ -589,11 +552,11 @@ mod <- glm(low ~ ., data = birthwt, family = binomial)
 
 Once you fit your logistic regression model, you can extract information about it using several functions. The most commonly used include:
 
-- `summary()`: summary of model coefficients with standard errors and test statistics
-- `coef()`: model coefficients
-- `confint()`: 95% confidence interval of model coefficients
+- `summary()`: return a summary of model coefficients with standard errors and test statistics
+- `coef()`: return the model coefficients
+- `confint()`: return the 95% confidence interval of each model coefficient
 
-The `summary()` function produces the standard regression summary one typically finds described in a statistics textbook.
+The `summary()` function produces a regression summary table, like those typically found in statistics textbooks.
 
 ```{r}
 summary(mod)
@@ -605,30 +568,25 @@ Exponentiating coefficients in a logistic regression model produces odds ratios.
 exp(coef(mod)["ptd1"])
 ```
 
-This says the odds of having an infant with low birth weight are about 3.8 times higher for women who experienced previous premature labors versus women who did not, assuming all other variables equal.
+This indicates that the odds of having an infant with low birth weight are about 3.8 times higher for women who experienced previous premature labors versus women who did not, assuming all other variables are held constant.
 
 The 3.8 value is just an estimate. We can use the `confint()` function to get a 95% confidence interval on the odds ratio.
 
 ```{r message=FALSE}
-exp(confint(mod)["ptd1",])
+exp(confint(mod)["ptd1", ])
 ```
 
-It appears the odds ratio is at least 1.5, possibly as high as 10.1 (assuming we believe this model).
+The confidence interval suggests that the data are compatible with an odds ratio of at least 1.5---and possibly as high as 10.1.
 
-Once we fit a model and we're reasonably confident that it's a good model, we may want to visualize it. Three packages in R that help with this are **emmeans**, **effects**, and **ggeffects**. We briefly demonstrate the **ggeffects** package.
+Once we fit a model and are reasonably confident that it's a good model, we may want to visualize it. The **emmeans**, **effects**, and **ggeffects** packages all help visualize the predictive effects of regressions; we demonstrate the **ggeffects** package below.
 
-You need to first install the **ggeffects** package as it does not come with the base R installation. Once installed, load using the `library()` function.
+Once **ggeffects** is installed and loaded, we can get a basic visualization of our model by using the `plot()` and `ggpredict()` functions. This is particularly useful for logistic regression models because it produces model predictions on a probability scale. 
 
-Once loaded, we can get a basic visualization of our model by using the `plot()` and `ggpredict()` functions. This is particularly useful for logistic regression models because it produces model predictions on a probability scale. 
-
-Use the `terms` argument to specify which variables to plot. Below we plot the probability of low infant birth weight versus whether or not the mother had previous premature labors (1 = yes, 0 = no).
+Use the `terms` argument to specify which variables to plot. Below, we plot the probability of low infant birth weight depending on whether or not the mother had previous premature labors (1 = yes, 0 = no).
 
 ```{r}
-# install.packages("ggeffects")
 library(ggeffects)
 plot(ggpredict(mod, terms = "ptd"))
 ```
 
-It looks like the probability of low infant birth weight jumps from about 12% to over 35% for mothers who previously experienced premature labors, though the error bars on the expected values are quite large. 
-
-
+It looks like the probability of low infant birth weight jumps from about 12% to over 35% for mothers who previously experienced premature labors, though the error bars on the expected values are quite large.

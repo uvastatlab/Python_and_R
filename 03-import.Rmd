@@ -4,7 +4,7 @@
 knitr::opts_chunk$set(comment = '##', prompt = FALSE, collapse = FALSE)
 ```
 
-This chapter reviews importing external data into Python and R, including CSV, Excel, and other structured data files. There is often more than one way to import data into Python and R. Each example below highlights one way per file type.
+This chapter reviews importing external data into Python and R, including CSV files, Excel files, and other structured data files. There is often more than one way to import data into Python and R; each example below highlights one method per file type.
 
 The data set we use for demonstration is the New York State Math Test Results by Grade from 2006 - 2011, downloaded from [data.gov](https://catalog.data.gov/dataset/2006-2011-nys-math-test-results-by-grade-citywide-by-race-ethnicity) on September 30, 2021.
 
@@ -24,41 +24,36 @@ d = pd.read_csv('data/ny_math_test.csv')
 d.loc[0:2, ["Grade", "Year", "Mean Scale Score"]]
 ```
 
-
 #### R {-}
 
-There are many ways to import a csv file. A common way is to use the base R function `read.csv()`.
+The most-common way of importing a CSV file into R is with the base R function `read.csv()`.
 
 ```{r}
 d <- read.csv("data/ny_math_test.csv")
 d[1:3, c("Grade", "Year", "Mean.Scale.Score")]
 ```
 
-Notice the spaces in the column names have been replaced with periods. 
+Notice that the spaces in the column names have been automatically replaced with periods.
 
-Two packages that provide alternatives to `read.csv()` are **readr** and **data.table**. The **readr** function `read_csv()` returns a [tibble](https://r4ds.had.co.nz/tibbles.html). The **data.table** function `fread()` returns a [data.table](https://rdatatable.gitlab.io/data.table/articles/datatable-intro.html). 
-
+Two packages that provide alternatives to `read.csv()` are **readr** and **data.table**. The function `read_csv()` from **readr** returns a [tibble](https://r4ds.had.co.nz/tibbles.html), and the function `fread()` from **data.table** returns a [data.table](https://rdatatable.gitlab.io/data.table/articles/datatable-intro.html). 
 
 ## XLS/XLSX (Excel)
 
-Excel files are native to Microsoft Excel. Prior to 2007, Excel files had an extension of XLS. With the launch of Excel 2007, the extension was changed to XLSX. Excel files can have multiple sheets of data. This needs to be accounted for when importing into Python and R.
-
+Excel files are native to Microsoft Excel. Prior to 2007, Excel files had an extension of XLS. With the launch of Excel 2007, the extension was changed to XLSX. Excel files can have multiple sheets of data---a complexity that needs to be accounted for when importing XLS(X) data into Python and R.
 
 #### Python {-}
 
-The **pandas** function `read_excel()` is a common approach to importing Excel files into Python. The `sheet_name` argument allows you to specify which sheet you want to import. You can specify sheet by its (zero-indexed) ordering or by its name. Since this Excel file only has one sheet we do not need to use the argument. In addition, specifying `sheet_name=None` will read in all sheets and return a dict data structure where the _key_ is the sheet name and the _value_ is a DataFrame.
+The **pandas** function `read_excel()` is a common approach to importing Excel files into Python. The `sheet_name` argument allows you to specify which sheet you want to import; you can specify a sheet by its (zero-indexed) ordering or by its name. Since this Excel file only has one sheet, we do not need to use the argument. In addition, specifying `sheet_name = None` will read in all sheets and return a "dict" data structure where the _key_ is the sheet name and the _value_ is a DataFrame.
 
 ```{python, eval = F}
 import pandas as pd  
 d = pd.read_excel('data/ny_math_test.xlsx')  
 d.loc[0:2, ["Grade", "Year", "Mean Scale Score"]]  
-
 ```
-
 
 #### R {-}
 
-**readxl** is a well-documented and actively maintained package for importing Excel files into R. The workhorse function is `read_excel()`. The `sheet` argument allows you to specify which sheet you want to import. You can specify sheet by its ordering or by its name. Since this Excel file only has one sheet we do not need to use the argument.
+**readxl** is a well-documented and actively maintained package for importing Excel files into R. The workhorse function from the package is `read_excel()`. The `sheet` argument allows you to specify which sheet you want to import by position or by name. Since this Excel file has only one sheet, we can omit the argument.
 
 ```{r}
 library(readxl)
@@ -66,34 +61,28 @@ d_xls <- read_excel("data/ny_math_test.xlsx")
 d_xls[1:3, c("Grade", "Year", "Mean Scale Score")]
 ```
 
-The result is a _tibble_, a [tidyverse data frame](https://tibble.tidyverse.org/). 
+The result is a _tibble_, a [**tidyverse** data frame](https://tibble.tidyverse.org/). 
 
 It's worth noting we can use the `range` argument to specify a range of cells to import. For example, if the top left corner of the data was B5 and the bottom right corner of the data was J54, we could enter `range="B5:J54"` to just import that section of data.
 
 ## JSON
 
-JSON (**J**ava**S**cript **O**bject **N**otation) is a flexible format for storing data. JSON files are text and can be viewed in any text editor. Because of their flexibility JSON files can be quite complex in the way they store data. Therefore there is no one-size-fits-all method for importing JSON files into Python or R.
-
-
+JSON (**J**ava**S**cript **O**bject **N**otation) is a flexible format for storing data. JSON files are composed of text and can be viewed in any text editor. Because of their flexibility, the data stored in a JSON files can be quite complex---and consequently, there's is no one-size-fits-all method for importing JSON files into Python or R.
 
 #### Python {-}
 
-Below is one approach to importing our "ny_math_test.json" example file. We first import Python's built-in **json** package and use its `loads()` function to read in the lines of the json file. The file is accessed using the `open` function and its associated `read` method. 
-
-Next we use the **pandas** function `json_normalize()` to convert the 'data' structure of the json data into a DataFrame.
-
-Finally we add column names to the DataFrame.
+Below is one approach to importing a JSON file. We first import Python's built-in **json** package and use its `loads()` function to read in the lines of the JSON file. The file is accessed using the `open()` function and its associated `read` method. Next we use the **pandas** function `json_normalize()` to convert the 'data' structure of the JSON data into a DataFrame. Finally we add column names to the DataFrame.
 
 ```{python}
 import json
-# load data using Python JSON module
-with open('data/ny_math_test.json','r') as f:
+# Load data using Python JSON module
+with open('data/ny_math_test.json', 'r') as f:
     data = json.loads(f.read())
 
 import pandas as pd  
 d_json = pd.json_normalize(data, record_path =['data'])
 
-# add column names
+# Add column names
 names = list()
 for i in range(23): 
   names.append(data['meta']['view']['columns'][i]['name'])
@@ -121,24 +110,20 @@ d_json <- as.data.frame(d_json$data)
 d_json[1:3,c("grade", "year", "mean_scale_score")]
 ```
 
-
-
 ## XML
 
-XML (e**X**tensible **M**arkup **L**anguage) is a markup language that was designed to store data. XML files are text and can be viewed in any text editor or a web browser. Because of their flexibility, XML files can be quite complex in the way they store data. Therefore there is no one-size-fits-all approach for importing XML files into Python or R.
-
+XML (e**X**tensible **M**arkup **L**anguage) is a markup language that was designed to store data. Like JSON files, XML files are text and can be viewed in a text editor or web browser, and this flexibility allows them to house complex data.
 
 #### Python {-}
 
-The **pandas** library provides the `read_xml` function for importing XML files. The `ny_math_test.xml` file identifies records with nodes named "row". The 168 rows are nested in one node also called "row". Therefore we use the `xpath` argument to specify that we want to elect all row elements that are descendant of the single row element.
+The **pandas** library provides the `read_xml()` function for importing XML files. The records in the `ny_math_test.xml` file are identified as nodes named "row". The 168 rows are nested in one outer node also called "row". We use the `xpath` argument `row//row` to specify that we want to elect all row elements that are descendant of the single row element.
 
 ```{python}
 import pandas as pd
-d_xml = pd.read_xml('data/ny_math_test.xml', xpath="row//row")
+d_xml = pd.read_xml('data/ny_math_test.xml', xpath = "row//row")
 
 d_xml.loc[0:2, ["grade", "year", "mean_scale_score"]]  
 ```
-
 
 #### R {-}
 
@@ -150,11 +135,10 @@ d_xml <- read_xml('data/ny_math_test.xml')
 d_list <- as_list(d_xml)
 d <- dplyr::bind_rows(d_list$response$row)
 d[] <- lapply(d, unlist)
-d[1:3,c("grade", "year", "mean_scale_score")]
+d[1:3, c("grade", "year", "mean_scale_score")]
 ```
 
 The result is a _tibble_, a [tidyverse data frame](https://tibble.tidyverse.org/). We would most likely want to proceed to converting certain columns to numeric. 
-
 
 ## Exporting/Writing/Saving data and variables
 
@@ -162,49 +146,48 @@ There are several ways to export/write/save files from Python and R. The followi
 
 #### Python {-}
 
-The pandas function `to_csv()` saves a pandas DataFrame as a csv file.
+The **pandas** function `to_csv()` saves a **pandas** DataFrame as a csv file.
 
 ```{python}
-# pass a file name to the function
+# Pass a file name to the function
 d.to_csv("data.csv")
 ```
 
 The Python package **pickle** allows you to write (save) any object from the Python environment and read (load) any object you have written into the Python environment.
 
-The following code writes to a pickle file. The first line opens the file object being written to. In the `open` function, 'file_name' specifies the file path of the file object. Then, 'wb' stands for 'write binary', which means the file is being written in binary form (1s and 0s). After the _as_ keyword, 'file_', is the user selected name of the file object.
+The code below writes to a pickle file. The first line opens the file object being written to. In the `open` function, 'file_name' specifies the file path of the file object. Then, 'wb' stands for 'write binary', which means the file is being written in binary form (1s and 0s). After the _as_ keyword, 'file_', is the user selected name of the file object.
 
 The second line uses the `pickle.dump()` function. This function requires two arguments: the object being written and the name of the file object.
 
 ```{python}
 import pickle
 
-# define the file name
+# Define the file name
 file_name = 'data.pickle'
 
-# write the variable to the file system
+# Write the variable to the file system
 with open(file_name, 'wb') as file_:
     pickle.dump(d, file_)
 ```
 
-The following code reads to a pickle file. The first line opens the file object being read from. In the `open` function, 'data.pickle' specifies the file path of the file object. Then, 'rb' stands for 'read binary', which means the file is being read in binary form (1s and 0s). After the _as_ keyword, 'my_file', is the user selected name of the file object.
+Conversely, the code below _reads from_ a pickle file. The first line opens the file object being read from. In the `open` function, `data.pickle` specifies the file path of the file object. Then, `rb` stands for "read binary," which means the file is being read in binary form (1s and 0s). The `as` argument (`my_file` in the example below), is the user-selected name of the file object.
 
 The second line uses the `pickle.load()` function. This function requires one argument: the name of the file object.
 ```{python}
-
-# read the specified file from the file system and load into variable
+# Read the specified file from the file system and load into variable
 with open('data.pickle', 'rb') as my_file:
     d = pickle.load(my_file)
 ```
 
 #### R {-}
 
-To export a matrix or data frame to a CSV file, use the `write.csv()` function. To export to a file with a different field separator, such as a tab, use `write.table()`. The minimal arguments for `write.csv()` are the object and the file name. To export a data frame named `dat` to a file named `dat.csv` to your current working directory:
+To export a matrix or data frame to a CSV file, use the `write.csv()` function. To export to a file with a different field separator, such as a tab, use `write.table()`. The minimal arguments for `write.csv()` are the object and the file name. To export a data frame named `dat` as a file named `dat.csv` to your current working directory, you'd use:
 
 ```{r eval=FALSE}
 write.csv(dat, file = "dat.csv")
 ```
 
-By default a column for row names or numbers is included in the exported csv file. To turn that off, set `row.names = FALSE`, like so:
+By default, a column for row names or numbers is included in the exported csv file. To turn that off, set `row.names = FALSE`, like so:
 
 ```{r eval=FALSE}
 write.csv(dat, file = "dat.csv", row.names = FALSE)

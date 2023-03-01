@@ -4,7 +4,7 @@
 knitr::opts_chunk$set(comment = '##', prompt = FALSE, collapse = FALSE)
 ```
 
-This chapter looks at various strategies for filtering, selecting, modifying and deriving variables in data. Unless otherwise stated, examples are for DataFrames (Python) and data frames (R) and use the mtcars data frame that is included with R.
+This chapter discusses strategies for filtering, selecting, modifying, and deriving variables in data. Unless otherwise stated, examples are for DataFrames (Python) and data frames (R) and use the `mtcars` data frame that is included with R.
 
 ```{python}
 # Python
@@ -16,37 +16,36 @@ mtcars = pandas.read_csv('data/mtcars.csv')
 ```{r}
 # R
 data(mtcars)
-# drop row names to match Python version of data
+# Drop row names to match Python version of data
 rownames(mtcars) <- NULL
 ```
 
 
-## Names of variables and their types
+## View variable names and types
 
-View and inspect the names of variables and their type (numeric, string, logical, etc.) This is useful to ensure that variables have the expected type. 
+View and inspect the names of variables and their types (numeric, string, logical, etc.).
 
 #### Python {-}
 
-The `.info()` function in pandas lists information on the DataFrame.
+The `.info()` function in **pandas** returns information about a DataFrame.
 
-
-Setting the argument `verbose` to `True` prints the name of the columns, their length excluding `NULL` values, and their data type (`dtype`) in a table. The function lists the unique data types in the DataFrame, and it prints how much memory the DataFrame takes up.
+Setting the argument `verbose` to `True` prints the names of the columns, their lengths excluding `NULL` values, and their data types (`dtype`) in a table. The function lists the unique data types in the DataFrame, and it prints the amount of memory the DataFrame occupies.
 
 ```{python}
-mtcars.info(verbose=True)
+mtcars.info(verbose = True)
 ```
 
 Setting `verbose` to `False` excludes the table describing each column.
 
 ```{python}
-mtcars.info(verbose=False)
+mtcars.info(verbose = False)
 ```
 
 If a DataFrame has 100 or fewer columns, the `verbose` argument defaults to `True`. 
 
 #### R {-}
 
-The `str()` function in R lists the names of the variables, their type, the first few values, and the dimensions of the data frame.  
+The `str()` function in R lists the names of the variables, their types, the first few values of each, and the object dimensions.
 
 ```{r}
 str(mtcars)
@@ -70,40 +69,40 @@ dim(mtcars)
 How to select specific columns of data frames.
 
 #### Python {-}
-The period operator `.` provides access to a column in a DataFrame as a vector. This returns pandas Series. A pandas series can do everything a numpy array can do.
+The period operator `.` provides access to a column in a DataFrame as a vector. This returns a **pandas** Series. A **pandas** Series can do everything a **NumPy** array can do.
 
 ```{python}
 mtcars.mpg
 ```
 
-Indexing also provides access to columns as a pandas Series. Single and double quotations both work.
+Indexing also provides access to columns as a **pandas** Series. Single and double quotations both work.
 
 ```{python}
 mtcars['mpg']
 ```
 
-Operations on numpy arrays are faster than operations on pandas Series. But using pandas series should be fine, in terms of performance, in many cases. This is important for large data sets on which many operations are performed. The `.values` function returns a numpy array.
+Operations on **NumPy** arrays are faster than operations on **pandas** Series. But in many cases, using **pandas** Series is fine performance-wise. This consideration is primarily important for large data sets on which many operations are performed. The `.values` function returns a **NumPy** array from a **pandas** DataFrame.
 
 ```{python}
 mtcars['mpg'].values
 ```
 
-Double indexing returns a pandas DataFrame, instead of a numpy array or pandas series.
+Double indexing returns a **pandas** DataFrame instead of a **NumPy** array or **pandas** Series.
 
 ```{python}
 mtcars[['mpg']]
 ```
 
-The `head()` and `tail()` functions return the first 5 or last 5 values. Use the `n` argument to change the number of values. This function works on numpy arrays, pandas series and pandas DataFrames.
+The `head()` and `tail()` functions return the first five or last five values, respectively. Use the `n` argument to change the number of values. This function works on **NumPy** arrays, **pandas** Series and **pandas** DataFrames.
 
 ```{python}
-# first 6 values
+# First six values
 mtcars.mpg.head()
 ```
 
 ```{python}
-# last row of DataFrame
-mtcars.tail(n=1)
+# Last row of DataFrame
+mtcars.tail(n = 1)
 ```
 
 #### R {-}
@@ -130,7 +129,7 @@ mtcars["mpg"]
 Single-indexing brackets also allow selection of rows when used with a comma. The syntax is `rows, columns`
 
 ```{r}
-# first three rows
+# First three rows
 mtcars[1:3, "mpg"]
 ```
 
@@ -138,58 +137,58 @@ Finally single-indexing brackets allow us to select multiple columns. Request co
 
 ```{r}
 mtcars[c("mpg", "cyl")] 
-# same as mtcars[1:2] 
+# Equivalent to mtcars[1:2] 
 ```
 
-The `head()` and `tail()` functions return the first 6 or last 6 values. Use the `n` argument to change the number of values. They work with vectors or data frames.
+The `head()` and `tail()` functions return the first six or last six values, respectively. Use the `n` argument to change the number of values. These functions work with vectors, data frames, matrices, and more.
 
 ```{r}
-# first 6 values
+# First six values
 head(mtcars$mpg)
 ```
 
 ```{r}
-# last row of data frame
+# Last row of data frame
 tail(mtcars, n = 1)
 ```
 
 
 ## Filter/Subset variables
 
-How to view rows of a data frame that meet certain conditions.
+Selecting rows of a rectangular data set that meet certain conditions.
 
 #### Python {-}
 
-We can filter rows of a DataFrame based on a condition to subset. The data type returned depends on the filtration method.
+We can filter rows of a DataFrame based on subsetting conditions; the data type returned depends on the filtration method.
 
-The following code returns a DataFrame, not a Series, as there is more than one column selected from the DataFrame. Use a list, square brackets [], to subset more than one column.
+The following example returns a DataFrame, not a Series, as there is more than one column selected from the DataFrame. Use a list, square brackets [], to subset more than one column.
 
 ```{python}
 mtcars[mtcars["mpg"] > 30][["mpg", "cyl"]]
 ```
 
-Both pandas Series and NumPy arrays can be used for faster performance or vector operations. Many functions require a vector as input.
+Both **pandas** Series and **NumPy** arrays can be used for fast performance and vector operations. Many functions require a vector as input.
 
-The following code returns one column, mpg, as a pandas Series. A pandas Series is one column from a pandas DataFrame.
+The following code returns one column, `mpg`, as a **pandas** Series. A **pandas** Series is one column from a **pandas** DataFrame.
 
 ```{python}
 mtcars[mtcars["mpg"] > 30]["mpg"]
 ```
 
-The following code also returns a pandas Series, but using the `.` operator to select for a column, rather than square brackets [].
+The following code also returns a **pandas** Series, but it uses the `.` operator to select a column, rather than square brackets `[]`.
 
 ```{python}
 mtcars[mtcars["mpg"] > 30].mpg
 ```
 
-Both of the following lines of code return NumPy arrays using the `.values` function. `df1` is one dimension, for the one column, and `df1` is two dimensions, for the two columns.
+Both of the following lines of code return **NumPy** arrays using the `.values` function. `df1` is one dimension, reflecting just the `mpg` column, and `df2` is two dimensions, reflecting the `mpg` and `cyl` columns.
 
 ```{python}
 df1 = mtcars[mtcars["mpg"] > 30]["mpg"].values
 df2 = mtcars[mtcars["mpg"] > 30][["mpg", "cyl"]].values
 ```
 
-You can also filter with multiple row conditions.
+You can also filter using multiple row conditions:
 
 ```{python}
 mtcars[mtcars["mpg"] > 30][mtcars["hp"] < 66]
@@ -197,9 +196,7 @@ mtcars[mtcars["mpg"] > 30][mtcars["hp"] < 66]
 
 #### R {-}
 
-In base R, we can use subsetting brackets or the `subset()` function to select rows based on some condition. Below we demonstrate both approaches to view only those rows with "mpg" greater than 30. First we begin with subsetting brackets.
-
-The subsetting brackets take three arguments: 
+In base R, we can use subsetting brackets or the `subset()` function to select rows based on some condition. Below, we demonstrate both approaches, returning only those rows with `mpg` greater than 30. We begin with subsetting brackets, which take three arguments: 
 
 1. `i`: the condition to subset on.
 2. `j`: the columns to show. If none specified, all columns are returned
@@ -213,25 +210,25 @@ This example returns only the rows with mpg > 30 and all columns. Notice we need
 mtcars[mtcars$mpg > 30, ]
 ```
 
-We can select what columns to see in the second argument as a vector. Notice we only need to specify the column names as a character vector. We can also use numbers corresponding to the column number as well as conditional statements.
+We can select the columns to return in the second argument as a vector. Notice that we only need to specify the column names as a character vector. We can also use numbers corresponding to the column positions, as well as conditional statements.
 
 ```{r}
 mtcars[mtcars$mpg > 30, c("mpg", "wt", "gear")]
 ```
 
-Show first three columns.
+Show the first three columns:
 
 ```{r}
 mtcars[mtcars$mpg > 30, 1:3]
 ```
 
-Show columns with names consisting of only two characters. The `nchar()` function counts the number of characters in a string. The expression `nchar(names(mtcars)) == 2` returns a vector of TRUE/FALSE values where TRUE indicates the column name is only two characters in length.
+Show columns with names consisting of only two characters. The `nchar()` function counts the number of characters in a string. The expression `nchar(names(mtcars)) == 2` returns a vector of `TRUE`/`FALSE` values where `TRUE` indicates the column name is only two characters in length.
 
 ```{r}
 mtcars[mtcars$mpg > 30, nchar(names(mtcars)) == 2]
 ```
 
-Notice when we specify only one column, the brackets return a vector.
+Notice that when we specify only one column, the brackets return a vector.
 
 ```{r}
 mtcars[mtcars$mpg > 30, "mpg"]
@@ -243,7 +240,7 @@ To get a data frame, set the `drop` argument to FALSE.
 mtcars[mtcars$mpg > 30, "mpg", drop = FALSE]
 ```
 
-The `subset()` function allows us to refer to column names without using the `$` extractor function or quoting column names. It also has a drop argument but its default is FALSE. It has four arguments:
+The `subset()` function allows us to refer to column names without using the `$` extractor function or quoting column names. It also has a drop argument, but its default is `FALSE.` It has four arguments:
 
 1. `x`: the data frame to subset.
 2. `subset`: the condition to subset on.
@@ -255,36 +252,36 @@ We rarely type the first three argument names, `x`, `subset` and `select`, when 
 Below we replicate the previous examples using `subset()`.
 
 ```{r}
-# rows where mpg > 30 and all columns
+# Return rows where mpg > 30 and all columns
 subset(mtcars, mpg > 30)
 ```
 
 ```{r}
-# rows where mpg > 30 and the mpg, wt, and gear columns
+# Return rows where mpg > 30 and the mpg, wt, and gear columns
 subset(mtcars, mpg > 30, c(mpg, wt, gear))
 ```
 
 ```{r}
-# rows where mpg > 30 and the first three columns
+# Return rows where mpg > 30 and the first three columns
 subset(mtcars, mpg > 30, 1:3)
 ```
 
 ```{r}
-# rows where mpg > 30 and columns consisting of two characters
+# Return rows where mpg > 30 and columns consisting of two characters
 subset(mtcars, mpg > 30, nchar(names(mtcars)) == 2)
 ```
 
 ```{r}
-# rows where mpg > 30 and mpg column, as a vector
+# Return rows where mpg > 30 and mpg column, as a vector
 subset(mtcars, mpg > 30, mpg, drop = TRUE)
 ```
 
 ```{r}
-# rows where mpg > 30 and mpg column, as a data frame
+# Return rows where mpg > 30 and mpg column, as a data frame
 subset(mtcars, mpg > 30, mpg)
 ```
 
-Another difference between subsetting brackets and the `subset()` function is how they handle missing values. Subsetting brackets return missing values while `subset()` does not. We demonstrate with a toy data frame. Notice the "x" column has a missing value.
+Another difference between subsetting brackets and the `subset()` function is how they handle missing values. Subsetting brackets return missing values while `subset()` does not. We demonstrate below with a toy data frame. Notice the `x` column has a missing value.
 
 ```{r}
 dframe <- data.frame(x = c(1, NA, 5), 
@@ -292,10 +289,10 @@ dframe <- data.frame(x = c(1, NA, 5),
 dframe
 ```
 
-When we condition on x < 3, the subsetting bracket approach returns a row with NA values.
+When we condition on `x < 3`, the subsetting bracket approach returns a row with `NA` values.
 
 ```{r}
-dframe[dframe$x < 3,]
+dframe[dframe$x < 3, ]
 ```
 
 The `subset()` approach ignores the missing value.
@@ -304,7 +301,7 @@ The `subset()` approach ignores the missing value.
 subset(dframe, x < 3)
 ```
 
-To replicate the `subset()` result with the subsetting brackets, we need to include an additional condition to only show rows where x is NOT missing. We can do that with the `is.na()` function. The `is.na()` function returns TRUE if a value is missing and FALSE otherwise. If we preface with `!`, we get TRUE if a value is NOT missing and FALSE otherwise. 
+To replicate the `subset()` result with the subsetting brackets, we need to include an additional condition to only show rows where x is _not_ missing. We can do that with the `is.na()` function. The `is.na()` function returns `TRUE` if a value is missing and `FALSE` otherwise. If we preface with `!`, we get `TRUE` if a value is _not_ missing and `FALSE` otherwise. 
 
 ```{r}
 dframe[dframe$x < 3 & !is.na(dframe$x),]
@@ -314,36 +311,32 @@ See also the `filter()` function in the [**dplyr**](https://dplyr.tidyverse.org/
 
 ## Rename variables
 
-How to rename variables or "column headers".
-
 #### Python {-}
 
-Column names can be changed using the function `.rename()`. Below, we change the column names "cyl" and "wt" to "cylinder" and "WT", respectively.
+Column names can be changed using the function `.rename()`. Below, we change the column names `cyl` and `wt` to `cylinder` and `WT`, respectively.
 
 ```{python}
-mtcars.rename(columns={"cyl":"cylinder", "wt":"WT"})
+mtcars.rename(columns = {"cyl":"cylinder", "wt":"WT"})
 ```
 
-Alternatively, column names can be changed by replacing the vector of column names with a new vector. Below, we create a vector of columns that replaces "drat" with "axle_ratio" using conditional match and indexing and "disp" with "DISP" using indexing.
+Alternatively, column names can be changed by replacing the vector of column names with a new vector. Below, we create a vector of columns that replaces `drat` with `axle_ratio` using conditional match and that replaces `disp` with `DISP` using indexing.
 
 ```{python}
 column_names = mtcars.columns.values
 
-# using conditional match
+# Using conditional match
 column_names[column_names == "drat"] = "axle_ratio"
 
-# using indexing
+# Using indexing
 column_names[2] = "DISP"
 
 mtcars.columns = column_names
 mtcars.columns
 ```
 
-
-
 #### R {-}
 
-Variable names can be changed by their index (ie, order of columns in the data frame). Below the second column is "cyl". We change the name to "cylinders".
+Variable names can be changed by referencing their indexes (i.e., their positions among the columns in a data frame). Below the second column is `cyl`. We change the name to `cylinders.`
 
 ```{r}
 names(mtcars)[2]
@@ -351,7 +344,7 @@ names(mtcars)[2] <- "cylinders"
 names(mtcars)
 ```
 
-Variable names can also be changed by conditional match. Below we find the variable name that matches "drat" and change to "axle_ratio".
+Variable names can also be changed by conditional match. Below we find the variable name that matches `drat` and change it to `axle_ratio.`
 
 ```{r}
 names(mtcars)[names(mtcars) == "drat"]
@@ -363,68 +356,66 @@ More than one variable name can be changed using a vector of positions or matche
 
 ```{r}
 names(mtcars)[c(6,8)] <- c("weight", "engine")
-
-# or
-# names(mtcars)[names(mtcars) %in% c("wt", "vs")] <- c("weight", "engine")
+# Alternatively: names(mtcars)[names(mtcars) %in% c("wt", "vs")] <- c("weight", "engine")
 
 names(mtcars)
 ```
 
-See also the `rename()` function in the [**dplyr**](https://dplyr.tidyverse.org/). 
+See also the `rename()` function in the [**dplyr**](https://dplyr.tidyverse.org/) package.
 
 ## Create, replace and remove variables
 
-We often need to create variables that are functions of other variables, or replace existing variables with an updated version.
+We often need to create variables that are functions of other variables, or we need to replace existing variables with updated versions thereof.
 
 #### Python {-}
-Adding a new variable using the indexing notation and assigning a result adds a new column.
+
+Adding a new variable via indexing notation and assigning a result to it adds a new column.
 
 ```{python}
-# add column for Kilometer per liter
-mtcars['kpl'] = mtcars.mpg/2.352
+# Add column for kilometer per liter
+mtcars['kpl'] = mtcars.mpg / 2.352
 ```
 
-Doing the same with an _existing_ column name updates the values in a column.
+Doing the same with an _existing_ column updates the values in the column.
 
 ```{python}
-# update to liters per 100 Kilometers
-mtcars['kpl'] = 100/mtcars.kpl 
+# Update to liters per 100 kilometers
+mtcars['kpl'] = 100 / mtcars.kpl 
 ```
 
 Alternatively, the `.` notation can be used to update the values in a column.
 ```{python}
-# update to liters per 50 Kilometers
-mtcars.kpl = 50/mtcars.kpl 
+# Update to liters per 50 Kilometers
+mtcars.kpl = 50 / mtcars.kpl 
 ```
 
 To remove a column, use the `.drop()` function.
 
 ```{python}
-# drop the kpl variable
-mtcars.drop(columns=['kpl'])
+# Drop the kpl variable
+mtcars.drop(columns = ['kpl'])
 ```
-
 
 #### R {-}
 
-Adding a new variable name after the dollar sign notation and assigning a result adds a new column.
+Adding a new variable name after the dollar sign notation and assigning a result to it adds a new column.
 
 ```{r}
-# add column for Kilometer per liter
-mtcars$kpl <- mtcars$mpg/2.352
+# Add column for kilometer per liter
+mtcars$kpl <- mtcars$mpg / 2.352
 ```
 
 Doing the same with an _existing_ variable updates the values in a column. 
 
 ```{r}
-# update to liters per 100 Kilometers
-mtcars$kpl <- 100/mtcars$kpl 
+# Update to liters per 100 Kilometers
+mtcars$kpl <- 100 / mtcars$kpl 
 ```
 
 To remove a variable, assign it `NULL`.
 
 ```{r}
-# drop the kpl variable
+# Drop the kpl variable
 mtcars$kpl <- NULL
 ```
 
@@ -435,21 +426,22 @@ See also the `mutate()` function in the [**dplyr**](https://dplyr.tidyverse.org/
 You may have data that is numeric but that needs to be treated as a string. 
 
 #### Python {-}
+
 You can change the data type of a column in a DataFrame using the `astype` function.
 
 ```{python}
 mtcars['am'] = mtcars['am'].astype(str)
-type(mtcars.am[0]) # check the type of the first item in 'am' column
+type(mtcars.am[0]) # check the type of the first item in am column
 ```
 
-A potential number-to-string conversion task in Python might be formatting 5-digit American zip codes. Some zip codes begin with 0, but if stored as a numeric value, the 0 is dropped. For example, consider the following pandas DataFrame. Notice the leading 0 is dropped from two of the zip codes.
+A potential number-to-string conversion task in Python might be formatting 5-digit American ZIP Codes. Some zip codes begin with 0, but if stored as a numeric value, the 0 is dropped. For example, consider the following **pandas** DataFrame. Notice that the leading 0 is dropped from two of the ZIP Codes.
 
 ```{python}
 zc = pandas.read_csv('data/zc.csv')
 print(zc)
 ```
 
-One way to fix this is using the string `zfill()` method. First we convert the numeric column to string type using the method we just demonstrated. Then we access the "zip" column using `zc.zip` and the `zfill()` method using `str.zfill` with the width parameter set to 5. This pads the string with "0" on the left to make each value 5 characters wide. 
+One way to fix this is using the string `zfill()` method. First, we convert the numeric column to string type using the method we just demonstrated. Then we access the `zip` column using `zc.zip` and the `zfill()` method using `str.zfill` with the width parameter set to 5. This pads the string with `0` on the left as necessary to make each value five characters wide. 
 
 ```{python}
 zc['zip'] = zc['zip'].astype(str)
@@ -457,13 +449,12 @@ zc['zip'] = zc.zip.str.zfill(5)
 print(zc)
 ```
 
-If we knew we were importing zip codes using `read_csv`, we could also use the `dtype` argument to specify which storage type to use for the "zip" column. Below we pass a dictionary that maps the "str" type to the "zip" column. The result is a properly formatted zip code column.
+If we knew we were importing zip codes using `read_csv`, we could also use the `dtype` argument to specify which storage type to use for the `zip` column. Below, we pass a dictionary that maps the `str` type to the `zip` column. The result is a properly formatted ZIP Code column.
 
 ```{python}
-zc = pandas.read_csv('data/zc.csv', dtype = {'zip': 'str'})
+zc = pandas.read_csv('data/zc.csv', dtype = {'zip':'str'})
 print(zc)
 ```
-
 
 #### R {-}
 
@@ -474,42 +465,41 @@ head(mtcars$am)
 head(as.character(mtcars$am))
 ```
 
-Note we just demonstrated conversion. To save the conversion we need to _assign_ the result to the data frame.
+To save the results of this process---this conversion---we need to _assign_ the result to the data frame.
 
 ```{r}
-# add new string variable am_ch
+# Add new string variable am_ch
 mtcars$am_ch <- as.character(mtcars$am)
 head(mtcars$am_ch)
 ```
 
-
-The `factor()` function can also be used to convert a numeric vector into a  categorical variable. The result is not exactly a string, however. A factor is made of integers with character labels. Factors are useful for character data that have a fixed set of levels (eg, "grade 1", grade 2", etc)
+The `factor()` function can also be used to convert a numeric vector into a  categorical variable. However, the result is not exactly a string: A factor is made of integers with character labels. Factors are useful for character data that have a fixed set of levels (e.g., "grade 1," grade 2," etc.).
 
 ```{r}
-# convert to factor
+# Convert to factor
 head(mtcars$am)
 head(factor(mtcars$am))
 
-# convert to factor with labels
+# Convert to factor with labels
 head(factor(mtcars$am, labels = c("automatic", "manual")))
 ```
 
-Again we just demonstrated factor conversion. To save the conversion we need to assign to the data frame.
+As before, to save the results of this conversion to the data frame, we need to assign the results to a variable:
 
 ```{r}
-# create factor variable am_fac
+# Create factor variable am_fac
 mtcars$am_fac <- factor(mtcars$am, labels = c("automatic", "manual"))
 head(mtcars$am_fac)
 ```
 
-A common number-to-string conversion task in R is formatting 5-digit American zip codes. Some zip codes begin with 0, but if stored as a numeric value, the 0 is dropped. 
+A common number-to-string conversion task in R is formatting 5-digit American ZIP Codes as demonstrated above in Python. Some zip codes begin with 0, but if stored as a numeric value, the 0 is dropped.
 
 ```{r}
 zip_codes <- c(03766, 03748, 22901, 03264)
 zip_codes
 ```
 
-We need to store the zip code as a character value so the 0 is preserved. One way to do this is via the `sprintf()` function in base R. The first argument is the _format string_ or _conversion specification_. A conversion specification begins with "%". The following "0" and "5" says to format the zip_codes vector as a 5-digit string padded by zeroes on the left. The final "i" says we're working with integer values. 
+We need to store the zip code as a character value so the 0 is preserved. One way to do this is via the `sprintf()` function in base R. The first argument is the _format string_ or _conversion specification_. A conversion specification begins with `%`. The following `0` and `5` says to format the zip_codes vector as a 5-digit string padded by zeroes on the left. The final `i` says we're working with integer values. 
 
 ```{r}
 sprintf("%05i", zip_codes)
@@ -517,22 +507,22 @@ sprintf("%05i", zip_codes)
 
 See also the `str_pad()` function in the **stringr** package.
 
-
 ## Create numbers from strings
 
-String variables that ought to be numbers usually have some character data in the values such as units (eg, "4 cm"). To create numbers from strings it's important to remove any character data that cannot be converted to a number.
+String variables that ought to be numbers usually have some character data contained in the values, such as units (e.g., "4 cm"). To create numbers from strings, it's important to remove any character data that cannot be converted to a number.
 
 #### Python {-}
+
 The `astype(float)` or `astype(int)` function will coerce strings to numerical representation.
 
-For demonstration, let's say we have the following numpy array.
+For demonstration, let's say we have the following **NumPy** array:
 
 ```{python}
 import numpy as np
 weight = np.array(["125 lbs.", "132 lbs.", "156 lbs."])
 ```
 
-The `astype(float)` function throws an error due to the presence of strings. The `astype()` function is for numpy arrays.
+The `astype(float)` function throws an error due to the presence of strings. The `astype()` function is for **NumPy** arrays.
 
 ```{python}
 try:
@@ -557,9 +547,9 @@ weight.astype(float)
 
 #### R {-}
 
-The `as.numeric()` function will attempt to coerce strings to numeric type _if possible_. Any non-numeric values are coerced to NA.
+The `as.numeric()` function will attempt to coerce strings to numeric type _if possible_. Any non-numeric values are coerced to `NA`.
 
-For demonstration, let's say we have the following vector.
+For demonstration, say we have the following vector:
 
 ```{r}
 weight <- c("125 lbs.", "132 lbs.", "156 lbs.")
@@ -571,10 +561,10 @@ The `as.numeric()` function returns all NA due to presence of character data.
 as.numeric(weight)
 ```
 
-There are many ways to approach this. A common approach is to first remove the characters and then use `as.numeric()`. Below we use the `gsub()` function to find "lbs." and replace with nothing (find-and-replace procedures are discussed more below).
+There are many ways to approach this. A common approach is to first remove the characters and then use `as.numeric()`. Below, we use the `gsub()` function to find "lbs." and replace it with nothing (find-and-replace procedures are discussed more below).
 
 ```{r}
-weightN <- gsub("lbs.", "", weight)
+weightN <- gsub(" lbs.", "", weight)
 as.numeric(weightN)
 ```
 
@@ -586,7 +576,7 @@ readr::parse_number(weight)
 
 ## Combine strings
 
-String concatenation---turning 'Jane' and 'Smith' into 'Jane Smith'---is easily done in both languages.
+String concatenation---turning "Jane" and "Smith" into "Jane Smith"---is easily done in both languages.
 
 #### Python {-}
 
@@ -619,7 +609,7 @@ statement2
 
 ## Finding and replacing patterns within strings
 
-This section reviews key functions in Python and R for finding and replacing character patterns. The functions we discuss can search for fixed character patterns (e.g., "Meredith Rollins" to case-sensitively match that name and that name alone) or regular expression (regex) patterns (e.g., `\w+` to capture all instances of >=1 word character). Note that in R, meta characters, like `w` (to match word characters) and `d` (to match digits), are escaped with _two_ backslashes (e.g., `\\w` and `\\d`). In Python, regex patterns are generally headed by `r`, which allows meta characters in the regex itself to be escaped with just one `\` (e.g., `r"\w+"`). Regex is an enormous topic, and we don't discuss it at any length here, but you can learn more about regular expressions---and how they're implemented in different programming languages---at these resources: https://www.regular-expressions.info/; https://regexone.com/
+This section reviews key functions in Python and R for finding and replacing character patterns. The functions we discuss can search for fixed character patterns (e.g., "Meredith Rollins" to case-sensitively match that name and that name alone) or regular expression (regex) patterns (e.g., `\w+` to capture all instances of >=1 alphabetic character). Note that in R, meta characters like `w` (to match word characters) and `d` (to match digits) are escaped with _two_ backslashes (e.g., `\\w` and `\\d`). In Python, regex patterns are generally headed by `r`, which allows meta characters in the regex itself to be escaped with just one `\` (e.g., `r"\w+"`). Regex is an enormous topic, and we don't discuss it at any length here, but you can learn more about regular expressions---and how they're implemented in different programming languages---at these websites: https://www.regular-expressions.info/; https://regexone.com/
 
 #### Python {-}
 
@@ -634,34 +624,38 @@ search_result1 = re.search(pattern = "HB", string = statement)
 print(search_result1)
 search_result2 = re.search(pattern = r"[H,B]{2}", string = statement)
 print(search_result2)
-
+```
+```{python}
 # Replace all instances of "HB"
 all_replaced = re.sub(pattern = 'HB', repl = 'HB (hard black)', string = statement)
 print(all_replaced)
-
+```
+```{python}
 # Replace just the first instance of HB
 one_replaced = re.sub(pattern = 'HB', repl = 'HB (hard black)', string = statement, count = 1)
 print(one_replaced)
-
+```
+```{python}
 # Search and replace using a regex pattern instead of a fixed string
+# (Replace a space after a period with a line break)
 regex_replaced = re.sub(pattern = r'(?<=\.)\s{1}', repl = '\n', string = statement)
 print(regex_replaced)
 ```
 
 #### R {-}
 
-The standard-issue string-search function is `grep()`; it returns the index of the elements in a set of one or more strings for which a pattern match was found. (`grepl()` acts similarly but returns a vector of `TRUE`/`FALSE` indicating whether a match was found in each string passed to the function.) The functions `sub()` and `gsub()` can be used to find and replace instances of a pattern: The former replaces just the first instance; the latter replaces all instances. The search pattern can be provided as a raw character string or as a regular expression.
+The standard-issue string-search function in base R is `grep()`; it returns the index of the elements in a set of one or more strings for which a pattern match was found. (`grepl()` acts similarly but returns a vector of `TRUE`/`FALSE` indicating whether a match was found in each string passed to the function.) The functions `sub()` and `gsub()` can be used to find and replace instances of a pattern: The former replaces just the first instance; the latter replaces all instances. The search pattern can be provided as a raw character string or as a regular expression.
 
 ```{r}
 statements <- c('Great Pencil Co. primarily sells pencils of the following grades: HB; B; and 3B.',
                 'Great Pencil Co. has its headquarters in Maine, and Great Pencil Co. has supplied the Northeast for decades.')
 
-# Search for pattern and return indexex of elements for which match is found
-grep(pattern = 'pencil', x = statements) # When searched for case sensitively, "pencil" is only found in the first string
-grep(pattern = '(?i)pencil', x = statements) # When searched for case insensitively, "P/pencil" is found in both strings
+# Search for a pattern and return the indexes of elements for which a match is found
+grep(pattern = 'pencil', x = statements, fixed = TRUE) # use `fixed = T` to search for exactly the declared string: "pencil" in all lowercase, which is only found in one string
+grep(pattern = '(?i)pencil', x = statements) # using regex allows for flexible searches, such as a case-insensitive search for "P/pencil", which, unlike "pencil" is found in in both strings
 
 # Replace the first instance of a pattern (Co. --> Company)
-revised <- sub(pattern = 'Co.', replacement = 'Company', x = statements)
+revised <- sub(pattern = 'Co\\.', replacement = 'Company', x = statements)
 revised
 
 # Replace all instances of a pattern (; --> ,)
@@ -688,12 +682,15 @@ The package **stringi** also provides an array of string-search and string-manip
 
 ```{r}
 library(stringi)
-user_dat <- data.frame(name = c('Shire, Jane E', 'Winchester, Marcus L', 'Fox, Sal'), id_number = c('aaa101', 'aaa102', 'aaa103'))
+user_dat <- data.frame(name = c('Shire, Jane E', 'Winchester, Marcus L', 'Fox, Sal'),
+                       id_number = c('aaa101', 'aaa102', 'aaa103'))
 user_dat
-# Say we want to use regex patterns and the stringi package to eliminate the 'aaa' patterns from
-# the user IDs and then add middle initials---for those users who have them---to the data frame
-user_dat$id_number <- stri_replace(user_dat$id_number, regex = '\\w{3}(?=\\d+)', replacement = '')
-user_dat$middle_initial <- stri_extract(user_dat$name, regex = '\\b\\w{1}\\b')
+
+# Say we want to to eliminate the 'aaa' patterns from the user IDs and then add
+# middle initials---for those users who have them---to the data frame
+user_dat$id_number <- stri_replace(user_dat$id_number, regex = '^\\w{3}(?=\\d+)', replacement = '') # alternatively: stri_extract(user_dat$id_number, regex = '(?<=\\w{3})\\d+$')
+
+user_dat$middle_initial <- stri_extract(user_dat$name, regex = '\\b\\w{1}$')
 user_dat
 ```
 
@@ -703,7 +700,7 @@ How to change the case of strings. The most common case transformations are lowe
 
 #### Python {-}
 
-The `lower()`, `upper()`, and `title()` functions convert case to lower, upper, and title, respectively. We can use a list comprehension to apply these functions to each string in a list.
+The `lower()`, `upper()`, and `title()` functions convert strings to lower, upper, and title case, respectively. We can use a list comprehension to apply these functions to each string in a list.
 
 ```{python}
 col_names = [col.upper() for col in mtcars.columns]
@@ -724,7 +721,7 @@ names(mtcars) <- tolower(names(mtcars))
 names(mtcars)
 ```
 
-The **stringr** package provides a convenient title case conversion function, `str_to_title()`, which capitalizes the first letter of each string.
+The **stringr** package provides a convenient title-case conversion function, `str_to_title()`, which capitalizes the first letter of each string.
 
 ```{r}
 stringr::str_to_title(names(mtcars))
@@ -738,10 +735,10 @@ How to find and drop duplicate elements.
 
 The `duplicated()` function determines which rows of a DataFrame are duplicates of previous rows. 
 
-First, we create a DataFrame with a duplicate row by using the pandas `concat()` function. `concat()` combines DataFrames by rows or columns, row by default.
+First, we create a DataFrame with a duplicate row by using the **pandas** `concat()` function. `concat()` combines DataFrames by rows or columns (by rows is the default).
 
 ```{python}
-# create DataFrame with duplicate rows
+# Create DataFrame with duplicate rows
 import pandas as pd
 mtcars2 = pd.concat([mtcars.iloc[0:3,0:6], mtcars.iloc[0:1,0:6]])
 ```
@@ -749,40 +746,38 @@ mtcars2 = pd.concat([mtcars.iloc[0:3,0:6], mtcars.iloc[0:1,0:6]])
 The `duplicated()` function returns a logical vector. TRUE indicates a row is a duplicate of a previous row.
 
 ```{python}
-# create DataFrame with duplicate rows
 mtcars2.duplicated()
 ```
 
-
 #### R {-}
 
-The `duplicated()` function "determines which elements of a vector or data frame are duplicates of elements with smaller subscripts". (from `?duplicated`)
+The `duplicated()` function "determines which elements of a vector or data frame are duplicates of elements with smaller subscripts" (from `?duplicated`).
 
 ```{r}
-# create data frame with duplicate rows
+# Create data frame with duplicate rows
 mtcars2 <- rbind(mtcars[1:3,1:6], mtcars[1,1:6])
-# last row is duplicate of first
+# Last row is duplicate of first
 mtcars2
 ```
 
-The `duplicated()` function returns a logical vector. TRUE indicates a row is a duplicate of a previous row.
+The `duplicated()` function returns a logical vector. `TRUE` indicates that a given element is a duplicate of a previous one (and here, element = row).
 
 ```{r}
-# last row is duplicate
+# The last row is a duplicate
 duplicated(mtcars2)
 ```
 
-The TRUE/FALSE vector can be used to extract or drop duplicate rows. Since TRUE in indexing brackets will keep a row, we can use `!` to negate the logicals and keep those that are "NOT TRUE"
+The `TRUE`/`FALSE` vector can be used to extract or drop duplicate rows. Since `TRUE` in indexing brackets will keep a row, we can use `!` to negate the logicals and keep those that are _not_ `TRUE.`
 
 ```{r}
-# drop the duplicate and update the data frame
-mtcars3 <- mtcars2[!duplicated(mtcars2),]
+# Drop the duplicate and update the data frame
+mtcars3 <- mtcars2[!duplicated(mtcars2), ]
 mtcars3
 ```
 
 ```{r}
-# extract and investigate the duplicate row
-mtcars2[duplicated(mtcars2),]
+# Extract and investigate the duplicate row
+mtcars2[duplicated(mtcars2), ]
 ```
 
 The `anyDuplicated()` function returns the row number of duplicate rows.
@@ -791,17 +786,16 @@ The `anyDuplicated()` function returns the row number of duplicate rows.
 anyDuplicated(mtcars2)
 ```
 
-
 ## Format dates
 
-With formatted dates we can calculate elapsed time, extract components of a date, properly order names of months, and more. 
+With formatted dates, we can calculate elapsed times, extract components of a date, properly order the names of months, and more. 
 
 #### Python {-}
-The Python module `datetime` can be used to create various date and time objects. Here we will discuss 4 of the main classes within `datetime` that are most useful. 
+The Python module **datetime** can be used to create various date and time objects. Here, we discuss four of the main classes within **datetime** 
 
-The first class we will go over is the `date()` class. This creates a "date" object whose only attributes are year, month, day.
+The first class is the `date()` class. This creates a date object whose only attributes are year, month, and day.
 
-Here we create a date object using the date class. The attributes are specified as integers in the argument of `date()` in this order `date(year, month, day)`. 
+Below, we create a date object using the `date()` class. The attributes are specified as integers in the arguments of `date()` in the following order: `date(year, month, day)`. 
 
 ```{python}
 import datetime as dt 
@@ -817,7 +811,7 @@ today = dt.date.today()
 print(today)
 ```
 
-Note that the output of both x and today are only year-month-day because they are date objects. 
+Note that the output of both `x` and `today` are only year-month-day because they are date objects. 
 
 We can extract each of these attributes (year, month, day) from the date object as follows: 
 
@@ -827,15 +821,14 @@ today.month
 today.day
 ```
 
-
-Next we will discuss the `time()` class. This class creates time objects containing information about only a time. The attributes that go into the `time()` class are hours, minutes, seconds in that order. Like the date class, these attributes must be inputted as integers.  
+Next is the `time()` class. This class creates time objects containing information about only a time. The attributes that go into the `time()` class are hours, minutes, and seconds in that order. Like the date class, these attributes must be input as integers.  
 
 ```{python}
 y = dt.time(11, 34, 56)
 print(y)
 ```
 
-If you want a time object containing only hours and minutes, only seconds, etc. you can specify the attributes by name when creating the time object. 
+If you want a time object containing only hours and minutes, or only seconds, etc. you can specify the attributes by name when creating the time object. 
 
 ```{python}
 only_hrs = dt.time(hour = 10)
@@ -845,7 +838,7 @@ print(only_hrs)
 print(only_mins)
 ```
 
-Again similar to the date class, we can extract hour, minute, and second attributes from the time objects: 
+Again, similar to the date class, we can extract hour, minute, and second attributes from time-classed objects: 
 
 ```{python}
 y.hour
@@ -854,23 +847,25 @@ y.second
 y.microsecond
 ```
 
-Now we will talk about the `datetime()` class that creates a datetime object containing information about both date and time. The attributes must be inputted as integers and are year, month, day, hour, minute, second, in that order. Like the date and time classes, we can speficy specific attributes in the argument using the attrubute names as well. If we don't specify any time components, the datetime object defaults to time 00:00:00. 
+The `datetime()` class that creates a datetime object containing information about both date and time. The attributes must be input as integers wiht the following default order: year, month, day, hour, minute, and second. Like the date and time classes, we can specify specific attributes in the arguments using the names thereof. If we don't specify any time components, the datetime object defaults to time 00:00:00. 
 
 ```{python}
 # Input attributes in order
 z = dt.datetime(1981, 4, 12, 11, 34, 56)
 print(z)
-
+```
+```{python}
 # Input attributes using attribute names (any order)
 z2= dt.datetime(year = 2021, day = 6, month = 12, hour = 6)
 print(z2)
-
+```
+```{python}
 # No time attributes
 z3 = dt.datetime(1981, 4, 12)
 print(z3)
 ```
 
-Again, we can extract attributes in exactly the same way as the date and time classes. 
+Again, we can extract attributes in exactly the same way as we did for the date and time classes. 
 
 ```{python}
 z.year
@@ -878,29 +873,31 @@ z.day
 z.hour
 ```
 
-The final class we will discuss is the `timedelta` class. This class is used to store date/time differences between date objects. 
+The final class discussed here is the timedelta class. This class is used to store date/time differences between date objects. 
 
-The default settings for a timedelta object are as follows: `timedelta(weeks=0, days=0, hours=0,minutes=0, seconds=0, milliseconds=0, microseconds=0)`
+The default settings for a timedelta object are as follows: `timedelta(weeks = 0, days = 0, hours = 0, minutes = 0, seconds = 0, milliseconds = 0, microseconds = 0)`.
 
-Here is an example of howto add and subtract datesa and times using these objects.
+To add or subtract dates and times to/from these objects, we can use operators like `+` and `-`:
 
 ```{python}
-# Create a datetime object for the current time that we will increment
+# Create a datetime object for the current time
 d1 = dt.datetime.now()
 print(d1)
-
-# Add 550 days to our datetime object 
+```
+```{python}
+# Add 550 days to the datetime object 
 d2 = d1 + dt.timedelta(days = 550)
 print(d2)
-
-# Subtract 5 hours from our datetime object 
+```
+```{python}
+# Subtract five hours from the datetime object 
 d3 = d1 - dt.timedelta(hours = 5)
 print(d3)
 ```
 
 Finally, we will discuss how to convert strings to datetime objects and vice versa. 
 
-The attribute `strftime()` converts datetime objects to strings. In the argument of `strftime()` can specify the format you would like. 
+The attribute `strftime()` converts datetime objects to strings. In the argument of `strftime()`, you can specify the format you would like. 
 
 ```{python}
 d1
@@ -909,7 +906,7 @@ d1.strftime("%A %m %Y")
 d1.strftime("%a %m %y")
 ```
 
-The attribute `strptime()` converts strings into datetime objects. In the argument of `strptime()` you must specify the string and then the format of the string. 
+The attribute `strptime()` converts strings into datetime objects. In the argument of `strptime()`, you must specify the string and then the format of the string. 
 
 ```{python}
 d4 = "27/10/98 11:03:9.033"
@@ -918,7 +915,7 @@ d1.strptime(d4, "%d/%m/%y %H:%M:%S.%f")
 ```
 #### R {-}
 
-Dates in R can be stored as a Date class or a Date-Time class. Dates are stored as the number of days since January 1, 1970. Date-Times are stored as the number of seconds since January 1, 1970. With dates stored in this manner we can calculate elapsed time in units such as days, weeks, hours, minutes, and so forth.
+Dates in R can be stored as a Date class or a Date-Time class. Dates are stored as the number of days since January 1, 1970. Date-Times are stored as the number of seconds since January 1, 1970. With dates stored in this manner, we can calculate elapsed time in units such as days, weeks, hours, minutes, and so forth.
 
 Below are the dates of the first five NASA [Columbia Space Shuttle flights](https://en.wikipedia.org/wiki/List_of_Space_Shuttle_missions#Shuttle_flights) entered as a character vector.
 
@@ -930,20 +927,20 @@ date <- c("12 April 1981",
           "11 November 1982")
 ```
 
-R does not immediately recognize these as a Date class. To format as a Date class, we can either use the base R `as.Date()` function or one of the convenience functions in the **lubridate** package. The `as.Date()` function requires a specified POSIX conversion specification as documented in `?strptime`. Below the conversion code "%d %B %Y" says Date is entered as two digit day of month (%d), full month name (%B), and year with century (%Y).
+R does not immediately recognize these as a Date class. To format as a Date class, we can use either the base R `as.Date()` function or one of the convenience functions in the **lubridate** package. The `as.Date()` function requires a specified POSIX conversion specification as documented in `?strptime`. Below, the conversion code `%d %B %Y` indicates that the date is entered as a two-digit day of month (`%d`), a full month name (`%B`), and a year with century (`%Y`).
 
 ```{r}
 date1 <- as.Date(date, format = "%d %B %Y")
 date1
 ```
 
-The dates now print in year-month-date format, however they are stored internally as number of days since January 1, 1970. This can be seen by using `as.numeric()` on the "date1" vector.
+The dates now print in year-month-day format; however, they are stored internally as number of days since January 1, 1970. This can be seen by using `as.numeric()` on the `date1` vector.
 
 ```{r}
 as.numeric(date1)
 ```
 
-The **lubridate** package provides a series of functions that are permutations of the letters "m", "d", and "y" to represent the order of date components. To format the original "date" vector, we use the `dmy()` function since the date components are ordered as day, month and year. Notice we must load the **lubridate** package to use this function.
+The **lubridate** package provides a series of functions that are permutations of the letters "m", "d", and "y" to represent the order of date components. To format the original "date" vector, we use the `dmy()` function since the date components are ordered as day, month and year. We must load the **lubridate** package to use this function.
 
 ```{r message=FALSE}
 library(lubridate)
@@ -951,19 +948,19 @@ date2 <- dmy(date)
 date2
 ```
 
-When dates are formatted we can easily extract information such as day of week or month. For example to extract the day of week of the launches as an ordered factor, we can use the **lubridate** function `wday()` with `label=TRUE` and `abbr = FALSE`.
+When dates are formatted, we can easily extract information such as the day of week or the month. For example, to extract the day of week of the launches as an ordered factor, we can use the **lubridate** function `wday()` with `label = TRUE` and `abbr = FALSE`.
 
 ```{r}
 wday(date2, label = TRUE, abbr = FALSE)
 ```
 
-To calculate elapsed time between launches in days we can use the base R `diff()` function.
+To calculate elapsed time between launches in days, we can use the base R `diff()` function.
 
 ```{r}
 diff(date2)
 ```
 
-To store a date as a Date-Time class we need to include a time component. Below are the first five Columbia launch dates with times. UTC refers to [Universal Coordinated Time](https://en.wikipedia.org/wiki/Coordinated_Universal_Time).
+To store a date as a Date-Time class, we need to include a time component. Below are the first five Columbia launch dates with times. (UTC refers to [Universal Coordinated Time](https://en.wikipedia.org/wiki/Coordinated_Universal_Time).)
 
 ```{r}
 datetime <- c("12 April 1981 12:00:04 UTC",
@@ -973,7 +970,7 @@ datetime <- c("12 April 1981 12:00:04 UTC",
               "11 November 1982 12:19:00 UTC")
 ```
 
-To format as a Date-Time class we can use either the base R `as.POSIXct()` function or one of the convenience functions in the **lubridate** package. To use `as.POSIXct()` we need to include additional POSIX conversion specifications for the hour, minute and second of launch. The "%H:%M:%S" specification refers to hours, minutes and seconds. The `tz` argument specifies the time zone of the times. 
+To format as a Date-Time class, we can use either the base R `as.POSIXct()` function or one of the convenience functions in the **lubridate** package. To use `as.POSIXct()`, we need to include additional POSIX conversion specifications for the hour, minute, and second of launch. The `%H:%M:%S` specification refers to hours, minutes, and seconds. The `tz` argument specifies the time zone of the times. 
 
 ```{r}
 datetime1 <- as.POSIXct(datetime, 
@@ -982,20 +979,20 @@ datetime1 <- as.POSIXct(datetime,
 datetime1
 ```
 
-When we use `as.numeric()` on the "datetime1" vector we see it is stored as number of seconds since January 1, 1970.
+When we use `as.numeric()` on the `datetime1` vector, we see it is stored as number of seconds since January 1, 1970.
 
 ```{r}
 as.numeric(datetime1)
 ```
 
-Using **lubridate** we can append `_hms()` to any of the "mdy" functions to format dates with time components as a Date-Time class. Notice the default time zone in **lubridate** is UTC.
+Using **lubridate**, we can append `_hms()` to any of the "mdy" functions to format dates with time components as a Date-Time class. Notice the default time zone in **lubridate** is UTC.
 
 ```{r}
 datetime2 <- dmy_hms(datetime)
 datetime2
 ```
 
-To calculate elapsed time between launches in hours, we can use the **lubridate** function `time_length()` with the `unit` set to "hours". Below we use `diff()` and then pipe to `time_length()`.
+To calculate the elapsed time between launches in hours, we can use the **lubridate** function `time_length()` with `unit = "hours"`. Below, we use `diff()` and then pipe the result to `time_length()`.
 
 ```{r}
 diff(datetime2) |> time_length(unit = "hours")
@@ -1009,46 +1006,42 @@ How to take a random sample of rows from a data frame. The sample is usually eit
 
 #### Python {-}
 
-The pandas package provide a function for taking a sample of fixed size or a proportion. To sample with replacement, set `replace = TRUE`. 
+The **pandas** package provides a function for taking a sample of fixed size or a proportion, `sample()`. To sample with replacement, set `replace = TRUE`. 
 
-Additionally, the random sample will change every time the code is run. To always generate the same "random" sample, set `random_state` to any positive integer.
+By default, the random sample will change every time the code is run. To always generate the same "random" sample, set `random_state` to any positive integer.
 
 To create a sample with a fixed number of rows, use the `n` argument.
 ```{python}
-# sample 5 rows from mtcars
-mtcars.sample(n=5, replace=True)
+# Sample five rows from mtcars
+mtcars.sample(n = 5, replace = True)
 ```
 
 To create a sample of a proportion, use the `frac` argument.
 ```{python}
-# sample 20% of rows from mtcars
-mtcars.sample(frac = 0.20, random_state=1)
+# Sample 20% of the rows from mtcars
+mtcars.sample(frac = 0.20, random_state = 1)
 ```
 
-The numpy function `random.choice()` in combination with the `loc()` function can be used to sample from a DataFrame. 
+The **NumPy** function `random.choice()` in combination with the `loc()` function can be used to sample from a DataFrame. 
 
 The `random.choice()` function creates a random sample according to the given parameters. The `loc()` function is used to access rows and columns by index. 
 
 ```{python}
-# import the numpy package
 import numpy as np
 
-# create a random sample of size 5 with replacement
-random_sample = np.random.choice(len(mtcars), (5,), replace=True)
+# Create a random sample of size five with replacement
+random_sample = np.random.choice(len(mtcars), (5, ), replace=True)
 
-# use random_sample to sample from mtcars
-mtcars.loc[random_sample,]
+# Use random_sample to sample from mtcars
+mtcars.loc[random_sample, ]
 ```
 
-The random sample will change every time the code is run. To always generate the same "random" sample, use the `random.seed()` function with any positive integer.
+As before, setting `random.seed()` to a positive integer will ensure that the same "random" sample is generated each time the code is run.
 
 ```{python}
-# setting seed to always get same random sample
 np.random.seed(123)
-
-# create a random sample of size 5 with replacement
 sample = np.random.choice(len(mtcars), (5,), replace=True)
-mtcars.loc[sample,]
+mtcars.loc[sample, ]
 ```
 
 #### R {-}
@@ -1056,10 +1049,10 @@ mtcars.loc[sample,]
 There are many ways to sample rows from a data frame in R. The [**dplyr**](https://dplyr.tidyverse.org/) package provides a convenience function, `slice_sample()`, for taking either a fixed sample size or a proportion.
 
 ```{r}
-# sample 5 rows from mtcars
+# Sample five rows from mtcars
 dplyr::slice_sample(mtcars, n = 5)
 
-# sample 20% of rows from mtcars
+# Sample 20% of rows from mtcars
 dplyr::slice_sample(mtcars, prop = 0.20)
 
 ```
@@ -1069,28 +1062,25 @@ To sample with replacement, set `replace = TRUE`.
 The base R functions `sample()` and `runif()` can be combined to sample fixed sizes or approximate proportions.
 
 ```{r}
-# sample 5 rows from mtcars
-# get random row numbers
+# Sample five rows from mtcars
+# First, get five random row numbers
 i <- sample(nrow(mtcars), size = 5)
-# use i to select rows
-mtcars[i,]
+# Then, use i to subset those rows
+mtcars[i, ]
 ```
 
 ```{r}
-# sample about 20% of rows from mtcars
-# generate random values on range of [0,1]
+# Sample about 20% of rows from mtcars
+# First, generate random values on range of [0,1]
 i <- runif(nrow(mtcars))
-# use i < 0.20 logical vector to 
-# select rows that correspond to TRUE
-mtcars[i < 0.20,]
+# Then, use i < 0.20 logical vector to select rows that correspond to TRUE
+mtcars[i < 0.20, ]
 ```
 
 The random sample will change every time the code is run. To always generate the same "random" sample, use the `set.seed()` function with any positive integer.
 
 ```{r}
-# always get the same random sample
 set.seed(123)
 i <- runif(nrow(mtcars))
 mtcars[i < 0.20,]
 ```
-
