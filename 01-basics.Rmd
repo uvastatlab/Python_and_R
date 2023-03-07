@@ -8,37 +8,29 @@ This chapter covers the very basics of Python and R.
 
 ## Math
 
-Mathematical operators are the same in both languages except for exponents, integer division, and remainder division (modulo).
+The mathematical operators for addition (`+`), subtraction (`-`), multiplication (`*`), and division (`/`) are the same in both languages. However, the operators for exponentiation, integer division, and remainder division (modulo) differ:
+
+| Operation | Python | R |
+|---|---|---|
+| Exponentiation | `**` | `^` | 
+| Integer division | `//`  | `%/%` |
+| Remainder division (modulo) | `%` | `%%` |
 
 #### Python {-}
 
-Python uses `**` for exponentiation, `//` for integer division, and `%` for remainder division.
-
 ```{python}
-3**2
-5 // 2
-5 % 2
+3**2; 5 // 2; 5 % 2
 ```
-
-In Python, the `+` operator can also be used to combine strings. **See this TBD section.**
 
 #### R {-}
 
-Python uses `^` for exponentiation, `%/%` for integer division, and `%%` for remainder division.
-
 ```{r}
-3^2
-5 %/% 2
-5 %% 2
+3^2; 5 %/% 2; 5 %% 2
 ```
-
-## Missing values
-
-Python and R represent missing values differently, and the distinction is worth keeping in mind, as missing values appear throughout this book---some code examples intake or output data that are entirely or partially missing. In Python, a standard indicator for a missing value in a data set is `NaN`. In R, missing values are generally indicated by `NA`. `NaN` does appear in R as well, but R reserves `NaN` to indicate values that, while not technically absent, are undefined and/or can't be represented with numbers (e.g., `Inf/Inf`).
 
 ## Assignment
 
-Python uses `=` for assignment, while R can use either `=` or `<-` for assignment. The latter "assignment arrow" is preferred in most R style guides to distinguish between assignment and setting the value of a function argument. According to R's documentation, "The operator `<-` can be used anywhere, whereas the operator `=` is only allowed at the top level (e.g., in the complete expression typed at the command prompt) or as one of the subexpressions in a braced list of expressions." (See `?assignOps` in R.)
+For simple assignment (associating a value with a name), Python uses `=`, while R can use either `=` or `<-`. The latter "assignment arrow" is preferred in most R style guides to distinguish between assignment and setting the value of a function argument. Per R's documentation, "The operator `<-` can be used anywhere, whereas the operator `=` is only allowed at the top level (e.g., in the complete expression typed at the command prompt) or as one of the subexpressions in a braced list of expressions" (see `?assignOps` in R).
 
 #### Python {-}
 
@@ -54,12 +46,12 @@ x <- 12
 
 ## Printing a value
 
-To see the value of an object created via assignment, you can simply enter the object name in the console and hit enter in both Python and R. It is common in Python, however, to explicitly use the `print()` function.
+To see the value of an object, you can enter the object name in the console and hit enter in both Python and R. It is common in Python, however, to explicitly use the `print()` function.
 
 #### Python {-}
 
 ```{python}
-x
+print(x)
 ```
 
 #### R {-}
@@ -70,64 +62,68 @@ x
 
 ## Packages
 
-User-created functions can be bundled and distributed as packages. Packages need to be installed only once. Thereafter they're "imported" (Python) or "attached" (R) in each new session when needed.
+Functions can be bundled and distributed as packages for installation. After installation, they're "imported" (Python) or "attached" (R) in each new session when needed.
 
-Packages with large user bases are often updated to add functionality and to fix bugs. The updates are not automatically installed. Staying apprised of library/package updates can be challenging. To stay up to date, you might consider signing up for newsletters, following developers on Twitter, or periodically checking to see what updates are available.
+Packages with large user bases are often updated to add functionality and fix bugs. Updates are not automatically installed. Staying apprised of library/package updates can be challenging; to stay up to date, you might consider signing up for newsletters, following developers on social media, or periodically checking to see what updates are available.
 
-Packages often depend on other packages. These are known as "dependencies." Packages are sometimes updated to accommodate changes to other packages they depend on.
+Packages often depend on other packages. These interconnections are known as "dependencies." Packages are sometimes updated to accommodate changes to packages they depend on.
 
 #### Python {-}
 
-When you download Python, you gain access to the Python Standard Library. This library includes several data types and functions for storing data, performing mathematical operations, and beyond. Commonly used data types include _lists_ and _ranges_. As you can see below, you do not need to import data types from the Python Standard Library.
+When you download Python, you gain access to the Python Standard Library. This library includes several data types and functions for storing data, performing mathematical operations, and beyond. Commonly used data types include _lists_, _tuples_, and _sets_. You do not need to import data types from the Python Standard Library.
 
 ```{python}
 my_list = []
+
 for idx in range(5):
   my_list.append(idx)
+
 print(my_list)
+print(type(my_list))
 ```
 
-Libraries contain modules---groups of functions. To use functions from modules in the Python Standard Library, users must import the appropriate module. Examples include **math** and **itertools**.
+Libraries contain modules---groups of functions collected in `.py` scrips. To use functions from modules in the Python Standard Library, users must import the appropriate module. Examples include **math** and **itertools**.
 
 ```{python}
 import math
+
 one = 1
 two = 2
+
 print(math.pow(two, one))
 ```
 
-Users can also download hundreds of libraries outside of the Python Standard Library. Python libraries are also called packages. Popular libraries include **NumPy**, which provides functions for operating on arrays/vectors, and **pandas**, which provides functions for data analysis. The following code gives an example of importing a Python library, **NumPy**, into a Python script, and using one of its functions to create an array (a data structure discussed in Chapter 2).
+Users can download hundreds of libraries (a broader term for packages and other bundles of functionally related software) beyond the Python Standard Library. Popular libraries include **NumPy**, which provides functions for operating on arrays/vectors, and **pandas**, which provides functions for data analysis. The following code gives an example of importing a Python library, **NumPy**, into a Python script, and using one of its functions to create an array (a data structure discussed in Chapter 2).
 
 ```{python}
 import numpy as np
 
 my_array = np.array([1, 2, 3])
+
 print(my_array)
 ```
 
-To use Python libraries outside the Python Standard Library, you must install them. Package managers help shepherd along the process. _Anaconda_, for example, is a popular distribution of Python that includes a package manager called _conda_. Anaconda allows you to use and create Python environments and install libraries to these environments. A Python virtual environment is a collection of libraries isolated from other virtual environments. These environments allow users to seamlessly organize programming projects.
+To use Python libraries beyond the Python Standard Library, you must install them. Package managers help shepherd the installation process. _Anaconda_, for example, is a popular distribution of Python that includes a package manager called _conda_. Anaconda allows you to use and create Python environments and install libraries to these environments. A Python virtual environment is a collection of libraries isolated from other virtual environments. These environments allow users to seamlessly organize programming projects.
 
 You can download Anaconda from the following link: https://www.anaconda.com/products/individual. When you download Anaconda, you have access to the Anaconda Navigator, a graphical user interface, and the Anaconda Prompt, a command prompt. Anaconda comes with an automatic environment called "base."
 
-The following screenshot illustrates how to install a library to an environment using the Anaconda GUI. Using the drop down menu, navigate to "Not installed." Then, select the desired library from the list. You can use the search bar to search for libraries by name. Finally, click the green "Apply" button to install the package.
+The following screenshot illustrates how to install a library to an environment using the Anaconda GUI. Using the drop down menu, navigate to "Not installed." Then, select the desired library from the list. (You can use the search bar to search for libraries by name.) Finally, click "Apply" to install the package.
 
-```{r, echo = F}
+```{r, echo = F, fig.width = 4}
 knitr::include_graphics('images/anaconda_gui_install.png')
 ```
 
 The following screenshot illustrates how to install a library to the "base" environment using the Anaconda Command Prompt.
 
-```{r, echo = F}
+```{r, echo = F, fig.width = 4}
 knitr::include_graphics('images/anaconda_command_install.png')
 ```
-
-Sometimes, the commands to download libraries are not as simple as in the example above. The Anaconda website provides commands for how to download popular Python libraries.
 
 #### R {-}
 
 The main repository for R packages is the [Comprehensive R Archive Network](https://cran.r-project.org/) (CRAN). Another major repository is [Bioconductor](https://www.bioconductor.org/), which hosts packages for working with genomic data. Many packages are also distributed on [GitHub](https://github.com/).
 
-To install packages from CRAN use the `install.packages()` function. In RStudio, you can also go to _Tools...Install Packages..._ to bring up a dialog box that will auto-complete package names as you type.
+To install packages from CRAN, use the `install.packages()` function. In RStudio, you can also go to _Tools &#8594; Install Packages..._ to bring up a dialog box that will auto-complete package names as you type.
 
 ```{r eval=FALSE}
 # Install the vcd package, a package for Visualizing Categorical Data
@@ -139,19 +135,19 @@ library(vcd)
 # See which packages on your computer have updates available
 old.packages()
 
-# Download and install available package updates;
+# Download and install available package updates
 # Set ask = TRUE to verify installation of each package
 update.packages(ask = FALSE)
 ```
 
-To install R packages from GitHub, use the `install_github()` function from the **devtools** package. You need to include the username of the repo owner followed by a forward slash and the name of the package. Typing two colons between a package and a function in the package allows you to use that function without attaching the package in your R environment. That's how we access `install_github()` in the example below.
+To install R packages from GitHub, use the `install_github()` function from the **devtools** package. You need to include the username of the repo owner followed by a forward slash and the name of the package. Typing two colons between a package name and a function in the package allows you to use that function without attaching the package in your R environment. That's how we access `install_github()` in the example below.
 
 ```{r eval=FALSE}
 install.packages("devtools")
 devtools::install_github("username/packagename")
 ```
 
-When installing package updates, you will occasionally be asked, "Do you want to install from sources the package(s) which need(s) compilation?" R packages on CRAN are _compiled_ for Mac and Windows operating systems. That can take a day or two after a package has been submitted to CRAN. If you try to install a package that has not yet been compiled, you'll be asked the question above. If you click _Yes_, R will try to compile the package on your computer. This will only work if you have the required build tools on your computer. For Windows, this means having [Rtools](https://cran.r-project.org/bin/windows/Rtools/) installed. Mac users should already have the necessary build tools. Unless you absolutely need the latest version of a package, it's generally fine to click _No_.
+When installing package updates, you will occasionally be asked, "Do you want to install from sources the package(s) which need(s) compilation?" R packages on CRAN are _compiled_ for Mac and Windows operating systems. That can take a day or two after a package has been submitted to CRAN. If you try to install a package that has not yet been compiled, you'll be asked the question above. If you click _Yes_, R will try to compile the package on your computer. This will only work if you have the required build tools on your computer. For Windows, this means having [Rtools](https://cran.r-project.org/bin/windows/Rtools/) installed. **Mac users should already have the necessary build tools. [CHECK. TRUE?] ** Unless you absolutely need the latest version of a package, it's generally fine to click _No_.
 
 ## Logic
 
@@ -164,23 +160,28 @@ Python and R share the same relational operators for making comparisons:
 - `>` (greater than)
 - `>=` (greater than or equal to)
 
-Likewise they share the same operators for logical AND and OR:
+**Section should be rewritten/clarified with input from our Python folks: `&` and `|` behavior isn't directly comparable. R converts arguments to & and | to logical values and then evaluates. Python performs actual bitwise operations (e.g., PY `4 & 4` gives `4`; R `4 & 4` gives `TRUE`. I rewrote the short-circuiting section.**
+
+Likewise they share the same operators for ~~logical~~ AND and OR:
 
 - `&` (AND)
 - `|` (OR)
 
-However R also has `&&` and `||` operators for programming control-flow. These operators _short-circuit_ and return the first result of a set of logical evaluations. For example:
+Both languages have "short-circuiting" operators: `and` and `or` in Python; `&&` and `||` in R. Short-circuit operators only evaluate a set of logical expressions until a result is determined (proceeding left to right). For example: The first line of R code below (using `&`) fails because the right-hand expression throws an error, so the left-hand and right-hand expressions can't be jointly evaluated for truth. The second line, however (using `&&`) succeeds because the code _short-circuits_ after evaluating the left-hand expression: Since `(1 == 2)` is `FALSE`, the entire line must be false, and the right-hand material is not evaluated.
 
-```{r}
-c(1, 9, 9) && c(1, 8, 8) == 1
-c(1, 9, 9) & c(1, 8, 8) == 1
+```{r, eval = F}
+(0 == 1) & (sum('0', 1) == sum(0, 1))
+# sum('0', 1) can't be computed, so the whole line fails
+
+(0 == 1) && (sum('0', 1) == sum(0, 1))
+# sum('0', 1) is never computed, because (0 == 1) is FALSE, so the whole statement is therefore FALSE
 ```
 
-Python and R have different operators for negation. Python uses `not`. R uses `!`.
+Python and R have different operators for negation: Python uses `not`; R uses `!`. For exclusive or (XOR), Python uses `^` (e.g., `True^False`), whereas R uses `xor()` (e.g., `xor(TRUE, FALSE)`).
 
 #### Python {-}
 
-Python's relational operators can be used to compare arrays to single values or other arrays. The following operation returns an **NumPy** array containing `True` and `False` values. 
+Python's relational operators can be used to compare arrays to single values or other arrays. The following operation returns a **NumPy** array containing `True` and `False` values. 
 
 ```{python}
 import numpy as np 
@@ -194,14 +195,13 @@ x2 = np.array([2, 4, 6, 14, 15, 7])
 x1 > x2
 ```
 
-We can make multiple comparisons with the `and` and `or` operators. An important thing to note is that the `and` operator is inclusive, meaning that all statements must be true to return `True`. The `or` operator is exclusive, meaning that just one of the statements joined by `or` must be true to return `True`. 
+We can make multiple comparisons with the `and` and `or` operators. For a compound expression created with the `and` operator to return `True`, all component expressions must be true; for a compound expression created with the `or` operator to return `True`, one or more of the component expressions must be `True`.
 
 ```{python}
-x = 5 
+x = 5
 y = 4
 
 x > 6 and y < 10
-
 x > 6 or y < 10
 ```
 
@@ -243,7 +243,7 @@ x2 > 3 & x2 < 10
 x2 < 3 | x2 > 10
 ```
 
-`TRUE`/`FALSE` values in R have numeric values of 1 and 0, respectively. This allows us to sum and average them. (An average of 0 and 1 values is the proportion of 1's.)
+`TRUE`/`FALSE` values in R have numeric values of 1 and 0, respectively. This allows us to perform mathematical operations with logical values. (For example, an average of `TRUE` (`1`) and `FALSE` (`0`) values is a proportion.)
 
 ```{r}
 # Sum of values greater than 10
@@ -271,7 +271,7 @@ In Python, one option for generating a sequence of values is `arange()` from **N
 ```{python}
 import numpy as np
 x = np.arange(start = 1, stop = 11, step = 2)
-x
+print(x)
 ```
 
 #### R {-}
@@ -412,7 +412,7 @@ sem <- function(x) {
 sem(c(1, 4, 6, "a"))
 ```
 
-R functions can also return more than one result. Below, we return a list that holds the mean and SEM of input data. We could also return a vector, a data frame, or other data structure. Notice we also add an additional argument to the function, `...`, known as the three dots argument. This allows us to pass arguments for `sd` and `mean` directly through our own function. We pass through the additional argument `na.rm = TRUE` to drop missing values from the input data.
+R functions can also return more than one result. Below, we return a list that holds the mean and SEM of input data. We could also return a vector, a data frame, or other data structure. Notice we also add an additional argument to the function, `...`, known as the three dots argument. This allows us to pass arguments to `sd()` and `mean()` (which are called inside of `sem()`) directly through our own function. We pass through the additional argument `na.rm = TRUE` to both `sd()` and `mean()` to drop missing values from the input data.
  
 ```{r}
 sem <- function(x, ...) {

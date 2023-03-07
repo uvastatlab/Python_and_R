@@ -5,7 +5,7 @@ date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: ["book.bib", "packages.bib"]
-# url: your book url like https://bookdown.org/yihui/bookdown
+# url: https://uvastatlab.github.io/Python_and_R/
 # cover-image: path to the social sharing image like images/cover.jpg
 description: "This book provides parallel code examples in Python and R to help analysts and researchers translate between and learn the languages."
 link-citations: yes
