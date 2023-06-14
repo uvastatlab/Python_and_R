@@ -169,11 +169,13 @@ Likewise they share the same operators for logical AND and OR:
 - `&` (AND)
 - `|` (OR)
 
-However R also has `&&` and `||` operators for programming control-flow. These operators _short-circuit_ and return the first result of a set of logical evaluations. For example:
+However R also has `&&` and `||` operators for programming control-flow.  These evaluate left to right, proceeding only until the result is determined. For example, the last comparison below is not evaluated because one of the first two comparisons is TRUE. A result of TRUE is returned even though the object `xxx` does not exist.
 
 ```{r}
-c(1, 9, 9) && c(1, 8, 8) == 1
-c(1, 9, 9) & c(1, 8, 8) == 1
+x <- 2
+y <- 4
+(x < 3) || (y < 5) || (xxx > 2)
+rm(x, y)
 ```
 
 Python and R have different operators for negation. Python uses `not`. R uses `!`.

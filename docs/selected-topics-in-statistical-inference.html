@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 8 Selected Topics in Statistical Inference | Python and R</title>
   <meta name="description" content="This book provides parallel code examples in Python and R to help analysts and researchers translate between and learn the languages." />
-  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 8 Selected Topics in Statistical Inference | Python and R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Clay Ford, Jacob Goldstein-Greenwood, Oyinkansola Adenekan, Samantha Lomuscio" />
 
 
-<meta name="date" content="2023-03-01" />
+<meta name="date" content="2023-06-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -119,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 <style type="text/css">
 /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
 div.csl-bib-body { }
@@ -264,19 +268,19 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="selected-topics-in-statistical-inference" class="section level1 hasAnchor" number="8">
 <h1><span class="header-section-number">Chapter 8</span> Selected Topics in Statistical Inference<a href="selected-topics-in-statistical-inference.html#selected-topics-in-statistical-inference" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This chapter looks at performing selected statistical analyses. It is not comprehensive. The focus is on implementation using Python and R. Good statistical practice is more than knowing which function to use, and at a minimum, we recommend reading the article <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004961"><em>Ten Simple Rules for Effective Statistical Practice</em></a> <span class="citation">(<a href="#ref-kass_caffo_davidian_meng_yu_reid_2016" role="doc-biblioref">Kass et al. 2016</a>)</span>.</p>
+<p>This chapter looks at performing selected statistical analyses. It is not comprehensive. The focus is on implementation using Python and R. Good statistical practice is more than knowing which function to use, and at a minimum, we recommend reading the article <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004961"><em>Ten Simple Rules for Effective Statistical Practice</em></a> <span class="citation">(<a href="#ref-kass_caffo_davidian_meng_yu_reid_2016">Kass et al. 2016</a>)</span>.</p>
 <div id="comparing-group-means" class="section level2 hasAnchor" number="8.1">
 <h2><span class="header-section-number">8.1</span> Comparing group means<a href="selected-topics-in-statistical-inference.html#comparing-group-means" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Many research studies compare mean values of some quantity of interest between two or more groups. A <em>t</em>-test analyzes two group means. An Analysis of Variance, or ANOVA, analyzes three or more group means. Both the <em>t</em>-test and ANOVA are special cases of a linear model.</p>
 <p>To demonstrate the <em>t</em>-test, we examine fictitious data comprised of 15 scores each for two groups of subjects. The “control” group was tested as-is while the “treated” group experienced a particular intervention. Of interest is (1) whether or not the mean scores differ meaningfully between the treated and control groups, and (2) if they do differ, how are they different?</p>
-<p>To demonstrate ANOVA, we use data from <em>The Analysis of Biological Data (3rd ed)</em><span class="citation">(<a href="#ref-whitlock_schluter_2020" role="doc-biblioref">Whitlock and Schluter 2020</a>)</span> on the mass of pine cones (in grams) from three different environments in North America. Of interest is (1) whether or not the mean mass of pine cones differs meaningfully between the three locations, and (2) if they do differ, how are they different?</p>
+<p>To demonstrate ANOVA, we use data from <em>The Analysis of Biological Data (3rd ed)</em><span class="citation">(<a href="#ref-whitlock_schluter_2020">Whitlock and Schluter 2020</a>)</span> on the mass of pine cones (in grams) from three different environments in North America. Of interest is (1) whether or not the mean mass of pine cones differs meaningfully between the three locations, and (2) if they do differ, how are they different?</p>
 <p>We usually assess the first question in each scenario with a hypothesis test and <em>p</em>-value. The null hypothesis is that there is no difference between the means. The <em>p</em>-value is the probability of obtaining the observed differences between the groups (or more extreme differences) <em>assuming that the null hypothesis is true</em>. A small <em>p</em>-value, traditionally less then 0.05, provides evidence against the null. For example, a <em>p</em>-value of 0.01 indicates that there is a 1% chance of observing a mean difference at least as the large as the difference you observed if there really was no difference between the groups. Note that <em>p</em>-values don’t tell you how two or more statistics differ. See <a href="https://www.tandfonline.com/doi/full/10.1080/00031305.2016.1154108#_i28">the ASA Statement on <em>p</em>-values</a> for further discussion.</p>
 <p>We assess the second question in each scenario by calculating confidence intervals for the difference(s) in means. Confidence intervals are more informative than <em>p</em>-values: A confidence interval gives us information on the uncertainty, direction, and magnitude of a difference in means. For example, a 95% confidence interval of [2, 15] tells us that the data are consistent with a true difference of anywhere between 2 and 15 units and that the mean of one group appears to be at least 2 units larger than the mean of the other group. Note that a 95% confidence interval does not mean there is a 95% probability that the true value is in the interval: A confidence interval either captures the true value or it doesn’t; we don’t know. However, the <em>process</em> of calculating a 95% confidence interval is such that the confidence interval will capture the true difference in roughly 95% of repeated samples.</p>
 <div id="python-47" class="section level4 unnumbered hasAnchor">
 <h4>Python<a href="selected-topics-in-statistical-inference.html#python-47" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong><em>t</em>-test</strong></p>
 <p>Our data are available as a <strong>pandas</strong> DataFrame. It’s small enough to view in its entirety:</p>
-<div class="sourceCode" id="cb665"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb665-1"><a href="selected-topics-in-statistical-inference.html#cb665-1" aria-hidden="true" tabindex="-1"></a>ch8_d1</span></code></pre></div>
+<div class="sourceCode" id="cb664"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb664-1"><a href="selected-topics-in-statistical-inference.html#cb664-1" tabindex="-1"></a>ch8_d1</span></code></pre></div>
 <pre><code>##     score    group
 ## 0    77.0  control
 ## 1    81.0  control
@@ -309,31 +313,31 @@ div.csl-indent {
 ## 28   83.0  treated
 ## 29   87.0  treated</code></pre>
 <p>A stripchart is one of many ways to visualize numeric data between two groups. Here, we use the function <code>stripplot()</code> from <strong>seaborn</strong>. It appears that the treated group have higher scores on average.</p>
-<div class="sourceCode" id="cb667"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb667-1"><a href="selected-topics-in-statistical-inference.html#cb667-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb667-2"><a href="selected-topics-in-statistical-inference.html#cb667-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb667-3"><a href="selected-topics-in-statistical-inference.html#cb667-3" aria-hidden="true" tabindex="-1"></a>plt.clf()</span>
-<span id="cb667-4"><a href="selected-topics-in-statistical-inference.html#cb667-4" aria-hidden="true" tabindex="-1"></a>sns.stripplot(x <span class="op">=</span> <span class="st">&quot;score&quot;</span>, y <span class="op">=</span> <span class="st">&quot;group&quot;</span>, data <span class="op">=</span> ch8_d1)</span>
-<span id="cb667-5"><a href="selected-topics-in-statistical-inference.html#cb667-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="sourceCode" id="cb666"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb666-1"><a href="selected-topics-in-statistical-inference.html#cb666-1" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb666-2"><a href="selected-topics-in-statistical-inference.html#cb666-2" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb666-3"><a href="selected-topics-in-statistical-inference.html#cb666-3" tabindex="-1"></a>plt.clf()</span>
+<span id="cb666-4"><a href="selected-topics-in-statistical-inference.html#cb666-4" tabindex="-1"></a>sns.stripplot(x <span class="op">=</span> <span class="st">&quot;score&quot;</span>, y <span class="op">=</span> <span class="st">&quot;group&quot;</span>, data <span class="op">=</span> ch8_d1)</span>
+<span id="cb666-5"><a href="selected-topics-in-statistical-inference.html#cb666-5" tabindex="-1"></a>plt.show()</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-322-1.png" width="1440" /></p>
 <p>One way to perform a t test in Python is via the <code>CompareMeans()</code> function and its associated methods available in the <strong>statsmodels</strong> package. Below, we import <strong>statsmodels.stats.api</strong>.</p>
-<div class="sourceCode" id="cb668"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb668-1"><a href="selected-topics-in-statistical-inference.html#cb668-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.stats.api <span class="im">as</span> sms</span></code></pre></div>
+<div class="sourceCode" id="cb667"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb667-1"><a href="selected-topics-in-statistical-inference.html#cb667-1" tabindex="-1"></a><span class="im">import</span> statsmodels.stats.api <span class="im">as</span> sms</span></code></pre></div>
 <p>We first extract the data we want to compare as <strong>pandas</strong> Series.</p>
-<div class="sourceCode" id="cb669"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb669-1"><a href="selected-topics-in-statistical-inference.html#cb669-1" aria-hidden="true" tabindex="-1"></a>d_control <span class="op">=</span> ch8_d1.query(<span class="st">&#39;group == &quot;control&quot;&#39;</span>)[<span class="st">&#39;score&#39;</span>]</span>
-<span id="cb669-2"><a href="selected-topics-in-statistical-inference.html#cb669-2" aria-hidden="true" tabindex="-1"></a>d_treated <span class="op">=</span> ch8_d1.query(<span class="st">&#39;group == &quot;treated&quot;&#39;</span>)[<span class="st">&#39;score&#39;</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb668"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb668-1"><a href="selected-topics-in-statistical-inference.html#cb668-1" tabindex="-1"></a>d_control <span class="op">=</span> ch8_d1.query(<span class="st">&#39;group == &quot;control&quot;&#39;</span>)[<span class="st">&#39;score&#39;</span>]</span>
+<span id="cb668-2"><a href="selected-topics-in-statistical-inference.html#cb668-2" tabindex="-1"></a>d_treated <span class="op">=</span> ch8_d1.query(<span class="st">&#39;group == &quot;treated&quot;&#39;</span>)[<span class="st">&#39;score&#39;</span>]</span></code></pre></div>
 <p>Next, we create Descriptive statistics objects using the <code>DescrStatsW()</code> function.</p>
-<div class="sourceCode" id="cb670"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb670-1"><a href="selected-topics-in-statistical-inference.html#cb670-1" aria-hidden="true" tabindex="-1"></a>control <span class="op">=</span> sms.DescrStatsW(d_control)</span>
-<span id="cb670-2"><a href="selected-topics-in-statistical-inference.html#cb670-2" aria-hidden="true" tabindex="-1"></a>treated <span class="op">=</span> sms.DescrStatsW(d_treated)</span></code></pre></div>
+<div class="sourceCode" id="cb669"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb669-1"><a href="selected-topics-in-statistical-inference.html#cb669-1" tabindex="-1"></a>control <span class="op">=</span> sms.DescrStatsW(d_control)</span>
+<span id="cb669-2"><a href="selected-topics-in-statistical-inference.html#cb669-2" tabindex="-1"></a>treated <span class="op">=</span> sms.DescrStatsW(d_treated)</span></code></pre></div>
 <p>Descriptive statistics objects have attributes such as <code>mean</code> and <code>std</code> (standard deviation). Below, we print the mean and standard deviation of each group. We also round the standard deviation to three decimal places and place a line break before printing the standard deviation.</p>
-<div class="sourceCode" id="cb671"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb671-1"><a href="selected-topics-in-statistical-inference.html#cb671-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;control mean:&quot;</span>, control.mean, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">control std:&quot;</span>, <span class="bu">round</span>(control.std, <span class="dv">3</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb670"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb670-1"><a href="selected-topics-in-statistical-inference.html#cb670-1" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;control mean:&quot;</span>, control.mean, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">control std:&quot;</span>, <span class="bu">round</span>(control.std, <span class="dv">3</span>))</span></code></pre></div>
 <pre><code>## control mean: 80.4 
 ## control std: 3.844</code></pre>
-<div class="sourceCode" id="cb673"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb673-1"><a href="selected-topics-in-statistical-inference.html#cb673-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;treated mean:&quot;</span>, treated.mean, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">treated std:&quot;</span>, <span class="bu">round</span>(treated.std, <span class="dv">3</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb672"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb672-1"><a href="selected-topics-in-statistical-inference.html#cb672-1" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;treated mean:&quot;</span>, treated.mean, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">treated std:&quot;</span>, <span class="bu">round</span>(treated.std, <span class="dv">3</span>))</span></code></pre></div>
 <pre><code>## treated mean: 85.2 
 ## treated std: 3.331</code></pre>
 <p>Next, we create a CompareMeans means object using the <code>CompareMeans()</code> function. The required inputs are Descriptive statistics objects. We save the result as <code>ttest</code>.</p>
-<div class="sourceCode" id="cb675"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb675-1"><a href="selected-topics-in-statistical-inference.html#cb675-1" aria-hidden="true" tabindex="-1"></a>ttest <span class="op">=</span> sms.CompareMeans(control, treated)</span></code></pre></div>
+<div class="sourceCode" id="cb674"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb674-1"><a href="selected-topics-in-statistical-inference.html#cb674-1" tabindex="-1"></a>ttest <span class="op">=</span> sms.CompareMeans(control, treated)</span></code></pre></div>
 <p>We can now use various methods with the <code>ttest</code> object: To see the result of a two sample <em>t</em>-test assuming unequal variances, along with a confidence interval for the difference, use the <code>summary</code> method with <code>usevar = 'unequal'</code>.</p>
-<div class="sourceCode" id="cb676"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb676-1"><a href="selected-topics-in-statistical-inference.html#cb676-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ttest.summary(usevar <span class="op">=</span> <span class="st">&#39;unequal&#39;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb675"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb675-1"><a href="selected-topics-in-statistical-inference.html#cb675-1" tabindex="-1"></a><span class="bu">print</span>(ttest.summary(usevar <span class="op">=</span> <span class="st">&#39;unequal&#39;</span>))</span></code></pre></div>
 <pre><code>##                           Test for equality of means                          
 ## ==============================================================================
 ##                  coef    std err          t      P&gt;|t|      [0.025      0.975]
@@ -343,7 +347,7 @@ div.csl-indent {
 <p>The p-value of 0.001 is small, suggesting that the difference we observed would be unlikely if there was no real mean difference in the population. The confidence interval on the difference in means tells us that the data are consistent with a difference between -7 and -2. It appears that we can expect the control group to score at least 2 points lower on average than the treated group.</p>
 <p><strong>ANOVA</strong></p>
 <p>Our data are available as a <strong>pandas</strong> DataFrame. We can view the data in their entirety:</p>
-<div class="sourceCode" id="cb678"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb678-1"><a href="selected-topics-in-statistical-inference.html#cb678-1" aria-hidden="true" tabindex="-1"></a>ch8_d2</span></code></pre></div>
+<div class="sourceCode" id="cb677"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb677-1"><a href="selected-topics-in-statistical-inference.html#cb677-1" tabindex="-1"></a>ch8_d2</span></code></pre></div>
 <pre><code>##     mass location
 ## 0    9.6        1
 ## 1    9.4        1
@@ -362,12 +366,12 @@ div.csl-indent {
 ## 14   5.7        3
 ## 15   5.6        3</code></pre>
 <p>As with the <em>t</em>-test above, we use a stripchart to visualize the three groups of data. It appears that the pine cones in location 1 have a higher mass.</p>
-<div class="sourceCode" id="cb680"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb680-1"><a href="selected-topics-in-statistical-inference.html#cb680-1" aria-hidden="true" tabindex="-1"></a>plt.clf()</span>
-<span id="cb680-2"><a href="selected-topics-in-statistical-inference.html#cb680-2" aria-hidden="true" tabindex="-1"></a>sns.stripplot(x <span class="op">=</span> <span class="st">&quot;mass&quot;</span>, y <span class="op">=</span> <span class="st">&quot;location&quot;</span>, data <span class="op">=</span> ch8_d2)</span>
-<span id="cb680-3"><a href="selected-topics-in-statistical-inference.html#cb680-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="sourceCode" id="cb679"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb679-1"><a href="selected-topics-in-statistical-inference.html#cb679-1" tabindex="-1"></a>plt.clf()</span>
+<span id="cb679-2"><a href="selected-topics-in-statistical-inference.html#cb679-2" tabindex="-1"></a>sns.stripplot(x <span class="op">=</span> <span class="st">&quot;mass&quot;</span>, y <span class="op">=</span> <span class="st">&quot;location&quot;</span>, data <span class="op">=</span> ch8_d2)</span>
+<span id="cb679-3"><a href="selected-topics-in-statistical-inference.html#cb679-3" tabindex="-1"></a>plt.show()</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-330-3.png" width="1440" /></p>
 <p>We can calculate group means using the <code>groupby</code> and <code>mean</code> methods.</p>
-<div class="sourceCode" id="cb681"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb681-1"><a href="selected-topics-in-statistical-inference.html#cb681-1" aria-hidden="true" tabindex="-1"></a>ch8_d2[<span class="st">&#39;mass&#39;</span>].groupby(ch8_d2[<span class="st">&#39;location&#39;</span>]).mean()</span></code></pre></div>
+<div class="sourceCode" id="cb680"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb680-1"><a href="selected-topics-in-statistical-inference.html#cb680-1" tabindex="-1"></a>ch8_d2[<span class="st">&#39;mass&#39;</span>].groupby(ch8_d2[<span class="st">&#39;location&#39;</span>]).mean()</span></code></pre></div>
 <pre><code>## location
 ## 1    8.90
 ## 2    6.08
@@ -375,7 +379,7 @@ div.csl-indent {
 ## Name: mass, dtype: float64</code></pre>
 <p>One way to perform an ANOVA in Python is via the <code>anova_oneway()</code> function, also available in the <strong>statsmodels</strong> package.</p>
 <p>The <code>anova_oneway()</code> function can perform an ANOVA on a <strong>pandas</strong> Dataframe, where the first argument specifies the numeric data and the second argument specifies the grouping variable. We also set <code>use_var = 'equal'</code> to replicate the R output below.</p>
-<div class="sourceCode" id="cb683"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb683-1"><a href="selected-topics-in-statistical-inference.html#cb683-1" aria-hidden="true" tabindex="-1"></a>sms.anova_oneway(ch8_d2.mass, ch8_d2.location, use_var <span class="op">=</span> <span class="st">&#39;equal&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb682"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb682-1"><a href="selected-topics-in-statistical-inference.html#cb682-1" tabindex="-1"></a>sms.anova_oneway(ch8_d2.mass, ch8_d2.location, use_var <span class="op">=</span> <span class="st">&#39;equal&#39;</span>)</span></code></pre></div>
 <pre><code>## &lt;class &#39;statsmodels.stats.base.HolderTuple&#39;&gt;
 ## statistic = 50.085429769392036
 ## pvalue = 7.786760128813737e-07
@@ -392,8 +396,8 @@ div.csl-indent {
 ## tuple = (50.085429769392036, 7.786760128813737e-07)</code></pre>
 <p>The small p-value of 0.0000007 provides strong evidence that if there were no true mean differences between groups in the population, we’d be unlikely to observe data with the differences we did.</p>
 <p>A common follow-up to an ANOVA is Tukey’s Honestly Significant Differences (HSD) procedure, which computes differences between all possible pairs and returns adjusted <em>p</em>-values and confidence intervals to account for the multiple comparisons. To carry this out in the <strong>statsmodels</strong> package, we need to first create a MultiComparison object using the <code>multicomp.MultiComparison()</code> function. We then use the <code>tukeyhsd()</code> method to compare the means with corrected <em>p</em>-values.</p>
-<div class="sourceCode" id="cb685"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb685-1"><a href="selected-topics-in-statistical-inference.html#cb685-1" aria-hidden="true" tabindex="-1"></a>mc <span class="op">=</span> sms.multicomp.MultiComparison(ch8_d2.mass, ch8_d2.location)</span>
-<span id="cb685-2"><a href="selected-topics-in-statistical-inference.html#cb685-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mc.tukeyhsd())</span></code></pre></div>
+<div class="sourceCode" id="cb684"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb684-1"><a href="selected-topics-in-statistical-inference.html#cb684-1" tabindex="-1"></a>mc <span class="op">=</span> sms.multicomp.MultiComparison(ch8_d2.mass, ch8_d2.location)</span>
+<span id="cb684-2"><a href="selected-topics-in-statistical-inference.html#cb684-2" tabindex="-1"></a><span class="bu">print</span>(mc.tukeyhsd())</span></code></pre></div>
 <pre><code>## Multiple Comparison of Means - Tukey HSD, FWER=0.05 
 ## ====================================================
 ## group1 group2 meandiff p-adj   lower   upper  reject
@@ -408,21 +412,21 @@ div.csl-indent {
 <h4>R<a href="selected-topics-in-statistical-inference.html#r-47" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong>t-test</strong></p>
 <p>The <code>str()</code> function allows to take a quick look at the data frame <code>ch8_d1</code>. One column contains the scores; the other column indicates which group the subject was in (control vs. treated).</p>
-<div class="sourceCode" id="cb687"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb687-1"><a href="selected-topics-in-statistical-inference.html#cb687-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(ch8_d1)</span></code></pre></div>
+<div class="sourceCode" id="cb686"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb686-1"><a href="selected-topics-in-statistical-inference.html#cb686-1" tabindex="-1"></a><span class="fu">str</span>(ch8_d1)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    30 obs. of  2 variables:
 ##  $ score: num  77 81 77 86 81 77 82 83 82 79 ...
 ##  $ group: chr  &quot;control&quot; &quot;control&quot; &quot;control&quot; &quot;control&quot; ...</code></pre>
 <p>A stripchart is one of many ways to visualize numeric data between two groups. Here, we use the base R function <code>stripchart()</code>. The formula <code>score ~ group</code> plots scores by group. The <code>las = 1</code> argument just rotates the y-axis labels. The <code>method = "jitter"</code> argument adds some random vertical scatter to the points so that there’s less overlap between them. It appears the treated group has a higher average score than the untreated group.</p>
-<div class="sourceCode" id="cb689"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb689-1"><a href="selected-topics-in-statistical-inference.html#cb689-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(score <span class="sc">~</span> group, <span class="at">data =</span> ch8_d1, <span class="at">las =</span> <span class="dv">1</span>, <span class="at">method =</span> <span class="st">&quot;jitter&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb688"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb688-1"><a href="selected-topics-in-statistical-inference.html#cb688-1" tabindex="-1"></a><span class="fu">stripchart</span>(score <span class="sc">~</span> group, <span class="at">data =</span> ch8_d1, <span class="at">las =</span> <span class="dv">1</span>, <span class="at">method =</span> <span class="st">&quot;jitter&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-335-1.png" width="672" /></p>
 <p>To calculate the means between the two groups, we can use the <code>aggregate()</code> function. Again, the formula <code>score ~ group</code> says to aggregate scores by group. We specify <code>mean</code> to calculate the mean between the two groups. Some other functions we could specify include <code>median</code>, <code>sd</code>, or <code>sum</code>. The sample mean of the treated group is about 5 points higher than the control group.</p>
-<div class="sourceCode" id="cb690"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb690-1"><a href="selected-topics-in-statistical-inference.html#cb690-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(score <span class="sc">~</span> group, <span class="at">data =</span> ch8_d1, mean)</span></code></pre></div>
+<div class="sourceCode" id="cb689"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb689-1"><a href="selected-topics-in-statistical-inference.html#cb689-1" tabindex="-1"></a><span class="fu">aggregate</span>(score <span class="sc">~</span> group, <span class="at">data =</span> ch8_d1, mean)</span></code></pre></div>
 <pre><code>##     group score
 ## 1 control  80.4
 ## 2 treated  85.2</code></pre>
 <p>Is this difference meaningful? What if we took more samples? Would each sample result in similar differences in the means? A <em>t</em>-test attempts to answer this.</p>
 <p>The <code>t.test()</code> function accommodates formula notation, allowing us to specify that we want to calculate mean score by group.</p>
-<div class="sourceCode" id="cb692"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb692-1"><a href="selected-topics-in-statistical-inference.html#cb692-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(score <span class="sc">~</span> group, <span class="at">data =</span> ch8_d1)</span></code></pre></div>
+<div class="sourceCode" id="cb691"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb691-1"><a href="selected-topics-in-statistical-inference.html#cb691-1" tabindex="-1"></a><span class="fu">t.test</span>(score <span class="sc">~</span> group, <span class="at">data =</span> ch8_d1)</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -437,22 +441,22 @@ div.csl-indent {
 <p>The p-value of 0.0015 is small, suggesting that we’d be unlikely to observe a difference at least as large as the one we did if there was no actual difference between the groups in the population. The confidence interval on the difference in means tells us the data are consistent with a difference between -7 and -2. It appears we can expect the control group to score at least 2 points lower than the treated group.</p>
 <p><strong>ANOVA</strong></p>
 <p>The <code>str()</code> function lets us quickly get a glimpse of the data frame <code>ch8_d2</code>. One column contains the mass of the pine cones; the other column indicates which location the pine cone was found.</p>
-<div class="sourceCode" id="cb694"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb694-1"><a href="selected-topics-in-statistical-inference.html#cb694-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(ch8_d2)</span></code></pre></div>
+<div class="sourceCode" id="cb693"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb693-1"><a href="selected-topics-in-statistical-inference.html#cb693-1" tabindex="-1"></a><span class="fu">str</span>(ch8_d2)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    16 obs. of  2 variables:
 ##  $ mass    : num  9.6 9.4 8.9 8.8 8.5 8.2 6.8 6.6 6 5.7 ...
 ##  $ location: chr  &quot;1&quot; &quot;1&quot; &quot;1&quot; &quot;1&quot; ...</code></pre>
 <p>We can use a stripchart to visualize the three groups of data. It appears the pine cones in location 1 have a higher mass than the pinecones in locations 2 and 3.</p>
-<div class="sourceCode" id="cb696"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb696-1"><a href="selected-topics-in-statistical-inference.html#cb696-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(mass <span class="sc">~</span> location, <span class="at">data =</span> ch8_d2, <span class="at">las =</span> <span class="dv">1</span>, <span class="at">method =</span> <span class="st">&quot;jitter&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb695"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb695-1"><a href="selected-topics-in-statistical-inference.html#cb695-1" tabindex="-1"></a><span class="fu">stripchart</span>(mass <span class="sc">~</span> location, <span class="at">data =</span> ch8_d2, <span class="at">las =</span> <span class="dv">1</span>, <span class="at">method =</span> <span class="st">&quot;jitter&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-339-1.png" width="672" /></p>
 <p>To calculate the means between the three groups, we can use the <code>aggregate()</code> function. The formula <code>mass ~ location</code> says to aggregate mass by location. We specify <code>mean</code> so that we calculate the mean between the three groups.</p>
-<div class="sourceCode" id="cb697"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb697-1"><a href="selected-topics-in-statistical-inference.html#cb697-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(mass <span class="sc">~</span> location, <span class="at">data =</span> ch8_d2, mean)</span></code></pre></div>
+<div class="sourceCode" id="cb696"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb696-1"><a href="selected-topics-in-statistical-inference.html#cb696-1" tabindex="-1"></a><span class="fu">aggregate</span>(mass <span class="sc">~</span> location, <span class="at">data =</span> ch8_d2, mean)</span></code></pre></div>
 <pre><code>##   location mass
 ## 1        1 8.90
 ## 2        2 6.08
 ## 3        3 6.12</code></pre>
 <p>To estimate how likely we’d to observe differences like these in the sample if there were no true differences in the population, we can perform an ANOVA. The <code>aov()</code> function carries out an ANOVA test. It accommodates formula notation. It’s usually preferable to save the ANOVA result into an object and call <code>summary()</code> on the object to view the results in full.</p>
-<div class="sourceCode" id="cb699"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb699-1"><a href="selected-topics-in-statistical-inference.html#cb699-1" aria-hidden="true" tabindex="-1"></a>aov1 <span class="ot">&lt;-</span> <span class="fu">aov</span>(mass <span class="sc">~</span> location, <span class="at">data =</span> ch8_d2)</span>
-<span id="cb699-2"><a href="selected-topics-in-statistical-inference.html#cb699-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(aov1)</span></code></pre></div>
+<div class="sourceCode" id="cb698"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb698-1"><a href="selected-topics-in-statistical-inference.html#cb698-1" tabindex="-1"></a>aov1 <span class="ot">&lt;-</span> <span class="fu">aov</span>(mass <span class="sc">~</span> location, <span class="at">data =</span> ch8_d2)</span>
+<span id="cb698-2"><a href="selected-topics-in-statistical-inference.html#cb698-2" tabindex="-1"></a><span class="fu">summary</span>(aov1)</span></code></pre></div>
 <pre><code>##             Df Sum Sq Mean Sq F value   Pr(&gt;F)    
 ## location     2 29.404  14.702   50.09 7.79e-07 ***
 ## Residuals   13  3.816   0.294                     
@@ -460,7 +464,7 @@ div.csl-indent {
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>The small p-value of 0.0000007 provides strong evidence that we’d be unlikely to observe differences as large as those we did if there were no true population-level differences.</p>
 <p>Unlike the <code>t.test()</code> output, the <code>aov()</code> summary does not provide confidence intervals on differences in means. That’s because there are many kinds of differences we might want to assess. A common and easy procedure is Tukey’s Honestly Significant Differences (HSD), which computes differences between all possible pairs and returns adjusted <em>p</em>-values and confidence intervals to account for the multiple comparisons. Base R provides the <code>TukeyHSD()</code> function for this task.</p>
-<div class="sourceCode" id="cb701"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb701-1"><a href="selected-topics-in-statistical-inference.html#cb701-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(aov1)</span></code></pre></div>
+<div class="sourceCode" id="cb700"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb700-1"><a href="selected-topics-in-statistical-inference.html#cb700-1" tabindex="-1"></a><span class="fu">TukeyHSD</span>(aov1)</span></code></pre></div>
 <pre><code>##   Tukey multiple comparisons of means
 ##     95% family-wise confidence level
 ## 
@@ -476,25 +480,25 @@ div.csl-indent {
 </div>
 <div id="comparing-group-proportions" class="section level2 hasAnchor" number="8.2">
 <h2><span class="header-section-number">8.2</span> Comparing group proportions<a href="selected-topics-in-statistical-inference.html#comparing-group-proportions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>It is often of interest to compare proportions between two groups. This is sometimes referred to as a two-sample proportion test. To demonstrate, we use an exercise from the text <em>Introductory Statistics with R</em> <span class="citation">(<a href="#ref-Dalgaard_2020" role="doc-biblioref">Dalgaard 2008</a>)</span> (p. 154). We are told that 210 out of 747 patients died of Rocky Mountain spotted fever in the western United States. That’s a proportion of 0.281. In the eastern United States, 122 out 661 patients died. That’s a proportion of 0.185. Is the difference in proportions statistically significant? In other words: Assuming that there is no true difference in the fatality rate between the two regions, is the observed difference in proportions surprising?</p>
+<p>It is often of interest to compare proportions between two groups. This is sometimes referred to as a two-sample proportion test. To demonstrate, we use an exercise from the text <em>Introductory Statistics with R</em> <span class="citation">(<a href="#ref-Dalgaard_2020">Dalgaard 2008</a>)</span> (p. 154). We are told that 210 out of 747 patients died of Rocky Mountain spotted fever in the western United States. That’s a proportion of 0.281. In the eastern United States, 122 out 661 patients died. That’s a proportion of 0.185. Is the difference in proportions statistically significant? In other words: Assuming that there is no true difference in the fatality rate between the two regions, is the observed difference in proportions surprising?</p>
 <div id="python-48" class="section level4 unnumbered hasAnchor">
 <h4>Python<a href="selected-topics-in-statistical-inference.html#python-48" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>A two-sample proportion test can be carried out in Python using the <code>test_proportions_2indep()</code> function from the <strong>statsmodels</strong> package. The two proportions being compared must be independent.</p>
 <p>The first argument is the number of successes or occurrences for the first proportion. The second argument is the number of total trials for the first group. The third and fourth arguments are the occurrences and total number of trials for the second group, respectively.</p>
-<div class="sourceCode" id="cb703"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb703-1"><a href="selected-topics-in-statistical-inference.html#cb703-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.stats.api <span class="im">as</span> sms</span>
-<span id="cb703-2"><a href="selected-topics-in-statistical-inference.html#cb703-2" aria-hidden="true" tabindex="-1"></a>ptest <span class="op">=</span> sms.test_proportions_2indep(<span class="dv">210</span>, <span class="dv">747</span>, <span class="dv">122</span>, <span class="dv">661</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb702"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb702-1"><a href="selected-topics-in-statistical-inference.html#cb702-1" tabindex="-1"></a><span class="im">import</span> statsmodels.stats.api <span class="im">as</span> sms</span>
+<span id="cb702-2"><a href="selected-topics-in-statistical-inference.html#cb702-2" tabindex="-1"></a>ptest <span class="op">=</span> sms.test_proportions_2indep(<span class="dv">210</span>, <span class="dv">747</span>, <span class="dv">122</span>, <span class="dv">661</span>)</span></code></pre></div>
 <p>We can extract the p-value of the test and the difference in proportions using the <code>pvalue</code> and <code>diff</code> attributes, respectively.</p>
-<div class="sourceCode" id="cb704"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb704-1"><a href="selected-topics-in-statistical-inference.html#cb704-1" aria-hidden="true" tabindex="-1"></a>ptest.pvalue</span></code></pre></div>
+<div class="sourceCode" id="cb703"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb703-1"><a href="selected-topics-in-statistical-inference.html#cb703-1" tabindex="-1"></a>ptest.pvalue</span></code></pre></div>
 <pre><code>## 1.632346798072468e-05</code></pre>
-<div class="sourceCode" id="cb706"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb706-1"><a href="selected-topics-in-statistical-inference.html#cb706-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rounded to 4 decimal places</span></span>
-<span id="cb706-2"><a href="selected-topics-in-statistical-inference.html#cb706-2" aria-hidden="true" tabindex="-1"></a><span class="bu">round</span>(ptest.diff, <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb705"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb705-1"><a href="selected-topics-in-statistical-inference.html#cb705-1" tabindex="-1"></a><span class="co"># Rounded to 4 decimal places</span></span>
+<span id="cb705-2"><a href="selected-topics-in-statistical-inference.html#cb705-2" tabindex="-1"></a><span class="bu">round</span>(ptest.diff, <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## 0.0966</code></pre>
 <p>To calculate a 95% confidence interval for the difference in proportions, we need to use the <code>confint_proportions_2indep()</code> function.</p>
-<div class="sourceCode" id="cb708"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb708-1"><a href="selected-topics-in-statistical-inference.html#cb708-1" aria-hidden="true" tabindex="-1"></a>pdiff <span class="op">=</span> sms.confint_proportions_2indep(<span class="dv">210</span>, <span class="dv">747</span>, <span class="dv">122</span>, <span class="dv">661</span>)</span>
-<span id="cb708-2"><a href="selected-topics-in-statistical-inference.html#cb708-2" aria-hidden="true" tabindex="-1"></a>pdiff</span></code></pre></div>
+<div class="sourceCode" id="cb707"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb707-1"><a href="selected-topics-in-statistical-inference.html#cb707-1" tabindex="-1"></a>pdiff <span class="op">=</span> sms.confint_proportions_2indep(<span class="dv">210</span>, <span class="dv">747</span>, <span class="dv">122</span>, <span class="dv">661</span>)</span>
+<span id="cb707-2"><a href="selected-topics-in-statistical-inference.html#cb707-2" tabindex="-1"></a>pdiff</span></code></pre></div>
 <pre><code>## (0.05241555145475882, 0.13988087590630482)</code></pre>
 <p>The result is returned as a tuple with an extreme amount of precision. We recommend rounding these values to few decimal places. Below, we show one way of doing so using <em>f strings</em>. Notice that we extract each element of the <code>pdiff</code> tuple and round each to 5 decimal places.</p>
-<div class="sourceCode" id="cb710"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb710-1"><a href="selected-topics-in-statistical-inference.html#cb710-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;(</span><span class="sc">{</span><span class="bu">round</span>(pdiff[<span class="dv">0</span>], <span class="dv">5</span>)<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span><span class="bu">round</span>(pdiff[<span class="dv">1</span>], <span class="dv">5</span>)<span class="sc">}</span><span class="ss">)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb709"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb709-1"><a href="selected-topics-in-statistical-inference.html#cb709-1" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;(</span><span class="sc">{</span><span class="bu">round</span>(pdiff[<span class="dv">0</span>], <span class="dv">5</span>)<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span><span class="bu">round</span>(pdiff[<span class="dv">1</span>], <span class="dv">5</span>)<span class="sc">}</span><span class="ss">)&quot;</span>)</span></code></pre></div>
 <pre><code>## (0.05242, 0.13988)</code></pre>
 <p>This results are slightly different from the R example below. That’s because the <code>test_proportions_2indep()</code> and <code>confint_proportions_2indep()</code> functions use different methods. See their respective help pages to learn more about the methods available and other function arguments.</p>
 <p><a href="https://www.statsmodels.org/dev/generated/statsmodels.stats.proportion.test_proportions_2indep.html#statsmodels.stats.proportion.test_proportions_2indep">test_proportions_2indep</a> help page<br />
@@ -503,7 +507,7 @@ div.csl-indent {
 <div id="r-48" class="section level4 unnumbered hasAnchor">
 <h4>R<a href="selected-topics-in-statistical-inference.html#r-48" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>A two-sample proportion test in R can be carried out with the <code>prop.test()</code> function. The first argument, <code>x</code>, is the number of “successes” or “occurrences” of some event for each group. The second argument, <code>n</code>, is the number of total trials for each group.</p>
-<div class="sourceCode" id="cb712"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb712-1"><a href="selected-topics-in-statistical-inference.html#cb712-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">210</span>, <span class="dv">122</span>), <span class="at">n =</span> <span class="fu">c</span>(<span class="dv">747</span>, <span class="dv">661</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb711"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb711-1"><a href="selected-topics-in-statistical-inference.html#cb711-1" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">210</span>, <span class="dv">122</span>), <span class="at">n =</span> <span class="fu">c</span>(<span class="dv">747</span>, <span class="dv">661</span>))</span></code></pre></div>
 <pre><code>## 
 ##  2-sample test for equality of proportions with continuity correction
 ## 
@@ -517,16 +521,16 @@ div.csl-indent {
 ## 0.2811245 0.1845688</code></pre>
 <p>The proportion of patients who died in the western US is about 0.28. The proportion who died in the eastern US is about 0.18. The small <em>p</em>-value suggests that there is a very small chance of seeing a difference at least as large as this if there is really no difference in the true proportions. The confidence interval on the difference of proportions ranges from 0.05 to 0.14, indicating that Rocky Mountain spotted fever seems to kill at least 5% more patients in the western US.</p>
 <p>Data of this sort are sometimes presented in a two-way table with successes and failures. We can present the preceding data in a table using the <code>matrix()</code> function:</p>
-<div class="sourceCode" id="cb714"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb714-1"><a href="selected-topics-in-statistical-inference.html#cb714-1" aria-hidden="true" tabindex="-1"></a>fever <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">210</span>, <span class="dv">122</span>,</span>
-<span id="cb714-2"><a href="selected-topics-in-statistical-inference.html#cb714-2" aria-hidden="true" tabindex="-1"></a>                  <span class="dv">747-210</span>, <span class="dv">661-122</span>), <span class="at">ncol =</span> <span class="dv">2</span>)</span>
-<span id="cb714-3"><a href="selected-topics-in-statistical-inference.html#cb714-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(fever) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;western US&quot;</span>, <span class="st">&quot;eastern US&quot;</span>)</span>
-<span id="cb714-4"><a href="selected-topics-in-statistical-inference.html#cb714-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(fever) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;died&quot;</span>, <span class="st">&quot;lived&quot;</span>)</span>
-<span id="cb714-5"><a href="selected-topics-in-statistical-inference.html#cb714-5" aria-hidden="true" tabindex="-1"></a>fever</span></code></pre></div>
+<div class="sourceCode" id="cb713"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb713-1"><a href="selected-topics-in-statistical-inference.html#cb713-1" tabindex="-1"></a>fever <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">210</span>, <span class="dv">122</span>,</span>
+<span id="cb713-2"><a href="selected-topics-in-statistical-inference.html#cb713-2" tabindex="-1"></a>                  <span class="dv">747-210</span>, <span class="dv">661-122</span>), <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb713-3"><a href="selected-topics-in-statistical-inference.html#cb713-3" tabindex="-1"></a><span class="fu">rownames</span>(fever) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;western US&quot;</span>, <span class="st">&quot;eastern US&quot;</span>)</span>
+<span id="cb713-4"><a href="selected-topics-in-statistical-inference.html#cb713-4" tabindex="-1"></a><span class="fu">colnames</span>(fever) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;died&quot;</span>, <span class="st">&quot;lived&quot;</span>)</span>
+<span id="cb713-5"><a href="selected-topics-in-statistical-inference.html#cb713-5" tabindex="-1"></a>fever</span></code></pre></div>
 <pre><code>##            died lived
 ## western US  210   537
 ## eastern US  122   539</code></pre>
 <p>When the table is constructed in this fashion with “successes” in the first column and “failures” in the second column, we can feed the table directly to the <code>prop.test()</code> function. (“Success,” here, obviously means “experienced the event of interest.”)</p>
-<div class="sourceCode" id="cb716"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb716-1"><a href="selected-topics-in-statistical-inference.html#cb716-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(fever)</span></code></pre></div>
+<div class="sourceCode" id="cb715"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb715-1"><a href="selected-topics-in-statistical-inference.html#cb715-1" tabindex="-1"></a><span class="fu">prop.test</span>(fever)</span></code></pre></div>
 <pre><code>## 
 ##  2-sample test for equality of proportions with continuity correction
 ## 
@@ -539,7 +543,7 @@ div.csl-indent {
 ##    prop 1    prop 2 
 ## 0.2811245 0.1845688</code></pre>
 <p>The chi-squared test statistic is reported as <code>X-squared = 17.612</code>. This is the same statistic reported if we ran a chi-squared test of association using the <code>chisq.test()</code> function.</p>
-<div class="sourceCode" id="cb718"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb718-1"><a href="selected-topics-in-statistical-inference.html#cb718-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(fever)</span></code></pre></div>
+<div class="sourceCode" id="cb717"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb717-1"><a href="selected-topics-in-statistical-inference.html#cb717-1" tabindex="-1"></a><span class="fu">chisq.test</span>(fever)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
 ## 
@@ -551,7 +555,7 @@ div.csl-indent {
 <div id="linear-modeling" class="section level2 hasAnchor" number="8.3">
 <h2><span class="header-section-number">8.3</span> Linear modeling<a href="selected-topics-in-statistical-inference.html#linear-modeling" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Linear modeling attempts to assess if and how the variability in a numeric variable depends on one or more predictor variables. This is often referred to as <em>regression modeling</em> or <em>multiple regression</em>. While it is relatively easy to “fit a model” and generate lots of output, the model we fit may not be very good. There are many decisions we have to make when proposing a model: Which predictors do we include? Will they interact? Do we allow for non-linear effects? Answering these kinds of questions require subject matter expertise.</p>
-<p>Below, we walk through a simple example using data on weekly gas consumption. The data is courtesy of the R package <strong>MASS</strong> <span class="citation">(<a href="#ref-MASS" role="doc-biblioref">Venables and Ripley 2002a</a>)</span>. The documentation describes the data as follows:</p>
+<p>Below, we walk through a simple example using data on weekly gas consumption. The data is courtesy of the R package <strong>MASS</strong> <span class="citation">(<a href="#ref-MASS">Venables and Ripley 2002a</a>)</span>. The documentation describes the data as follows:</p>
 <p>“Mr Derek Whiteside of the UK Building Research Station recorded the weekly gas consumption and average external temperature at his own house in south-east England for two heating seasons, one of 26 weeks before, and one of 30 weeks after cavity-wall insulation was installed. The object of the exercise was to assess the effect of the insulation on gas consumption.”</p>
 <p>The <code>whiteside</code> data frame has 56 rows and 3 columns:</p>
 <ul>
@@ -564,11 +568,11 @@ div.csl-indent {
 <h4>Python<a href="selected-topics-in-statistical-inference.html#python-49" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The <code>ols()</code> function in the <strong>statsmodels</strong> package fits a linear model. In this example, we fit a linear model predicting gas consumption from insulation, temperature, and the interaction between insulation and temperature.</p>
 <p>The desired model can be specified as a formula: List the dependent variable (also called the “response” variable) first, then a tilde (<code>~</code>), and then the predictor variables separated by plus signs (<code>+</code>). Separating variables with colons instead of plus signs (<code>x:z</code>) fits an interaction term for those variables. The variables in the formula correspond to columns in a <strong>pandas</strong> DataFrame. Users specify the <strong>pandas</strong> DataFrame using the <code>data</code> argument.</p>
-<div class="sourceCode" id="cb720"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb720-1"><a href="selected-topics-in-statistical-inference.html#cb720-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
-<span id="cb720-2"><a href="selected-topics-in-statistical-inference.html#cb720-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
-<span id="cb720-3"><a href="selected-topics-in-statistical-inference.html#cb720-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb720-4"><a href="selected-topics-in-statistical-inference.html#cb720-4" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> smf.ols(<span class="st">&#39;Gas ~ Insul + Temp + Insul:Temp&#39;</span>, data <span class="op">=</span> whiteside)</span>
-<span id="cb720-5"><a href="selected-topics-in-statistical-inference.html#cb720-5" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> model.fit() <span class="co"># Fit the linear model</span></span></code></pre></div>
+<div class="sourceCode" id="cb719"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb719-1"><a href="selected-topics-in-statistical-inference.html#cb719-1" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb719-2"><a href="selected-topics-in-statistical-inference.html#cb719-2" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
+<span id="cb719-3"><a href="selected-topics-in-statistical-inference.html#cb719-3" tabindex="-1"></a></span>
+<span id="cb719-4"><a href="selected-topics-in-statistical-inference.html#cb719-4" tabindex="-1"></a>model <span class="op">=</span> smf.ols(<span class="st">&#39;Gas ~ Insul + Temp + Insul:Temp&#39;</span>, data <span class="op">=</span> whiteside)</span>
+<span id="cb719-5"><a href="selected-topics-in-statistical-inference.html#cb719-5" tabindex="-1"></a>results <span class="op">=</span> model.fit() <span class="co"># Fit the linear model</span></span></code></pre></div>
 <p>With a model in hand, you can extract information about it via several functions, including:</p>
 <ul>
 <li><code>summary()</code>: return a summary of model coefficients with standard errors and test statistics</li>
@@ -577,14 +581,14 @@ div.csl-indent {
 <li><strong>statsmodels</strong> also provides functions for diagnostic plots; a few examples are shown below</li>
 </ul>
 <p>The <code>summary()</code> function produces the kind of standard regression output one typically finds in a statistics textbook.</p>
-<div class="sourceCode" id="cb721"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb721-1"><a href="selected-topics-in-statistical-inference.html#cb721-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results.summary())</span></code></pre></div>
+<div class="sourceCode" id="cb720"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb720-1"><a href="selected-topics-in-statistical-inference.html#cb720-1" tabindex="-1"></a><span class="bu">print</span>(results.summary())</span></code></pre></div>
 <pre><code>##                             OLS Regression Results                            
 ## ==============================================================================
 ## Dep. Variable:                    Gas   R-squared:                       0.928
 ## Model:                            OLS   Adj. R-squared:                  0.924
 ## Method:                 Least Squares   F-statistic:                     222.3
-## Date:                Wed, 01 Mar 2023   Prob (F-statistic):           1.23e-29
-## Time:                        11:32:30   Log-Likelihood:                -14.100
+## Date:                Wed, 14 Jun 2023   Prob (F-statistic):           1.23e-29
+## Time:                        13:21:51   Log-Likelihood:                -14.100
 ## No. Observations:                  56   AIC:                             36.20
 ## Df Residuals:                      52   BIC:                             44.30
 ## Df Model:                           3                                         
@@ -606,48 +610,48 @@ div.csl-indent {
 ## Notes:
 ## [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</code></pre>
 <p>The following code produces a plot of fitted values against residuals for the model—a key plot for model diagnostics:</p>
-<div class="sourceCode" id="cb723"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb723-1"><a href="selected-topics-in-statistical-inference.html#cb723-1" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
-<span id="cb723-2"><a href="selected-topics-in-statistical-inference.html#cb723-2" aria-hidden="true" tabindex="-1"></a>smoothed_line <span class="op">=</span> sm.nonparametric.lowess(results.resid, results.fittedvalues)</span>
-<span id="cb723-3"><a href="selected-topics-in-statistical-inference.html#cb723-3" aria-hidden="true" tabindex="-1"></a>plt.plot(results.fittedvalues, results.resid, <span class="st">&quot;.&quot;</span>)</span>
-<span id="cb723-4"><a href="selected-topics-in-statistical-inference.html#cb723-4" aria-hidden="true" tabindex="-1"></a>plt.plot(smoothed_line[:,<span class="dv">0</span>], smoothed_line[:,<span class="dv">1</span>],color <span class="op">=</span> <span class="st">&#39;r&#39;</span>)</span>
-<span id="cb723-5"><a href="selected-topics-in-statistical-inference.html#cb723-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;fitted values&quot;</span>)</span>
-<span id="cb723-6"><a href="selected-topics-in-statistical-inference.html#cb723-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;residuals&quot;</span>)</span>
-<span id="cb723-7"><a href="selected-topics-in-statistical-inference.html#cb723-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&quot;residuals vs fitted&quot;</span>)</span>
-<span id="cb723-8"><a href="selected-topics-in-statistical-inference.html#cb723-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="sourceCode" id="cb722"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb722-1"><a href="selected-topics-in-statistical-inference.html#cb722-1" tabindex="-1"></a>plt.figure()</span>
+<span id="cb722-2"><a href="selected-topics-in-statistical-inference.html#cb722-2" tabindex="-1"></a>smoothed_line <span class="op">=</span> sm.nonparametric.lowess(results.resid, results.fittedvalues)</span>
+<span id="cb722-3"><a href="selected-topics-in-statistical-inference.html#cb722-3" tabindex="-1"></a>plt.plot(results.fittedvalues, results.resid, <span class="st">&quot;.&quot;</span>)</span>
+<span id="cb722-4"><a href="selected-topics-in-statistical-inference.html#cb722-4" tabindex="-1"></a>plt.plot(smoothed_line[:,<span class="dv">0</span>], smoothed_line[:,<span class="dv">1</span>],color <span class="op">=</span> <span class="st">&#39;r&#39;</span>)</span>
+<span id="cb722-5"><a href="selected-topics-in-statistical-inference.html#cb722-5" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;fitted values&quot;</span>)</span>
+<span id="cb722-6"><a href="selected-topics-in-statistical-inference.html#cb722-6" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;residuals&quot;</span>)</span>
+<span id="cb722-7"><a href="selected-topics-in-statistical-inference.html#cb722-7" tabindex="-1"></a>plt.title(<span class="st">&quot;residuals vs fitted&quot;</span>)</span>
+<span id="cb722-8"><a href="selected-topics-in-statistical-inference.html#cb722-8" tabindex="-1"></a>plt.show()</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-356-1.png" width="672" /></p>
 <p>We can also plot model predictions to visualize the predictive effects in the model. Each line of the plot represents a level of the variable <code>Insul</code>.</p>
-<div class="sourceCode" id="cb724"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb724-1"><a href="selected-topics-in-statistical-inference.html#cb724-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb724-2"><a href="selected-topics-in-statistical-inference.html#cb724-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb724-3"><a href="selected-topics-in-statistical-inference.html#cb724-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.sandbox.predict_functional <span class="im">import</span> predict_functional</span>
-<span id="cb724-4"><a href="selected-topics-in-statistical-inference.html#cb724-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb724-5"><a href="selected-topics-in-statistical-inference.html#cb724-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create DataFrame (wrt Inusl == &quot;Before&quot;) to pass into predict function</span></span>
-<span id="cb724-6"><a href="selected-topics-in-statistical-inference.html#cb724-6" aria-hidden="true" tabindex="-1"></a>temp <span class="op">=</span> np.linspace(whiteside[<span class="st">&quot;Temp&quot;</span>].<span class="bu">min</span>(), whiteside[<span class="st">&quot;Temp&quot;</span>].<span class="bu">max</span>())</span>
-<span id="cb724-7"><a href="selected-topics-in-statistical-inference.html#cb724-7" aria-hidden="true" tabindex="-1"></a>insul_before <span class="op">=</span> [<span class="st">&quot;Before&quot;</span>]<span class="op">*</span>temp.shape[<span class="dv">0</span>]</span>
-<span id="cb724-8"><a href="selected-topics-in-statistical-inference.html#cb724-8" aria-hidden="true" tabindex="-1"></a><span class="co"># whiteside_before = pd.DataFrame({&quot;Temp&quot;: temp, &quot;Insul&quot;: insul_before})</span></span>
-<span id="cb724-9"><a href="selected-topics-in-statistical-inference.html#cb724-9" aria-hidden="true" tabindex="-1"></a>whiteside_before <span class="op">=</span> {<span class="st">&quot;Temp&quot;</span>: temp, <span class="st">&quot;Insul&quot;</span>: insul_before, <span class="st">&quot;Insul:Temp&quot;</span>:[<span class="dv">0</span>]<span class="op">*</span>temp.shape[<span class="dv">0</span>]}</span>
-<span id="cb724-10"><a href="selected-topics-in-statistical-inference.html#cb724-10" aria-hidden="true" tabindex="-1"></a><span class="co"># pr, cb, fv = predict_functional(results, &quot;Temp&quot;, values=whiteside_before, ci_method=&#39;scheffe&#39;)</span></span>
-<span id="cb724-11"><a href="selected-topics-in-statistical-inference.html#cb724-11" aria-hidden="true" tabindex="-1"></a>before_predict_object <span class="op">=</span> results.get_prediction(whiteside_before)</span>
-<span id="cb724-12"><a href="selected-topics-in-statistical-inference.html#cb724-12" aria-hidden="true" tabindex="-1"></a>before_predictions <span class="op">=</span> before_predict_object.predicted_mean</span>
-<span id="cb724-13"><a href="selected-topics-in-statistical-inference.html#cb724-13" aria-hidden="true" tabindex="-1"></a>before_ci <span class="op">=</span> before_predict_object.conf_int()</span>
-<span id="cb724-14"><a href="selected-topics-in-statistical-inference.html#cb724-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb724-15"><a href="selected-topics-in-statistical-inference.html#cb724-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Create DataFrame (wrt Inusl == &quot;After&quot;) to pass into predict function</span></span>
-<span id="cb724-16"><a href="selected-topics-in-statistical-inference.html#cb724-16" aria-hidden="true" tabindex="-1"></a>insul_after <span class="op">=</span> [<span class="st">&quot;After&quot;</span>]<span class="op">*</span>temp.shape[<span class="dv">0</span>]</span>
-<span id="cb724-17"><a href="selected-topics-in-statistical-inference.html#cb724-17" aria-hidden="true" tabindex="-1"></a>whiteside_after <span class="op">=</span> pd.DataFrame({<span class="st">&quot;Temp&quot;</span>: temp, <span class="st">&quot;Insul&quot;</span>: insul_after, <span class="st">&quot;Insul:Temp&quot;</span>:temp})</span>
-<span id="cb724-18"><a href="selected-topics-in-statistical-inference.html#cb724-18" aria-hidden="true" tabindex="-1"></a>after_predictions_object <span class="op">=</span> results.get_prediction(whiteside_after)</span>
-<span id="cb724-19"><a href="selected-topics-in-statistical-inference.html#cb724-19" aria-hidden="true" tabindex="-1"></a>after_predictions <span class="op">=</span> after_predictions_object.predicted_mean</span>
-<span id="cb724-20"><a href="selected-topics-in-statistical-inference.html#cb724-20" aria-hidden="true" tabindex="-1"></a>after_ci <span class="op">=</span> after_predictions_object.conf_int()</span>
-<span id="cb724-21"><a href="selected-topics-in-statistical-inference.html#cb724-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb724-22"><a href="selected-topics-in-statistical-inference.html#cb724-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot results</span></span>
-<span id="cb724-23"><a href="selected-topics-in-statistical-inference.html#cb724-23" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
-<span id="cb724-24"><a href="selected-topics-in-statistical-inference.html#cb724-24" aria-hidden="true" tabindex="-1"></a>plt.plot(temp, before_predictions, color <span class="op">=</span> <span class="st">&quot;red&quot;</span>, label<span class="op">=</span><span class="st">&quot;Before&quot;</span>)</span>
-<span id="cb724-25"><a href="selected-topics-in-statistical-inference.html#cb724-25" aria-hidden="true" tabindex="-1"></a>plt.fill_between(temp, before_ci[:,<span class="dv">0</span>], before_ci[:,<span class="dv">1</span>], color <span class="op">=</span> <span class="st">&quot;red&quot;</span>, alpha <span class="op">=</span> <span class="fl">0.1</span>)</span>
-<span id="cb724-26"><a href="selected-topics-in-statistical-inference.html#cb724-26" aria-hidden="true" tabindex="-1"></a>plt.plot(temp, after_predictions, color<span class="op">=</span><span class="st">&quot;blue&quot;</span>, label<span class="op">=</span><span class="st">&quot;After&quot;</span>)</span>
-<span id="cb724-27"><a href="selected-topics-in-statistical-inference.html#cb724-27" aria-hidden="true" tabindex="-1"></a>plt.fill_between(temp, after_ci[:,<span class="dv">0</span>], after_ci[:,<span class="dv">1</span>], color <span class="op">=</span> <span class="st">&quot;blue&quot;</span>, alpha <span class="op">=</span> <span class="fl">0.1</span>)</span>
-<span id="cb724-28"><a href="selected-topics-in-statistical-inference.html#cb724-28" aria-hidden="true" tabindex="-1"></a>plt.legend(title<span class="op">=</span><span class="st">&quot;Insul&quot;</span>)</span>
-<span id="cb724-29"><a href="selected-topics-in-statistical-inference.html#cb724-29" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&quot;Predicted values of Gas&quot;</span>)</span>
-<span id="cb724-30"><a href="selected-topics-in-statistical-inference.html#cb724-30" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;Temp&quot;</span>)</span>
-<span id="cb724-31"><a href="selected-topics-in-statistical-inference.html#cb724-31" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;Gas&quot;</span>)</span>
-<span id="cb724-32"><a href="selected-topics-in-statistical-inference.html#cb724-32" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="sourceCode" id="cb723"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb723-1"><a href="selected-topics-in-statistical-inference.html#cb723-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb723-2"><a href="selected-topics-in-statistical-inference.html#cb723-2" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb723-3"><a href="selected-topics-in-statistical-inference.html#cb723-3" tabindex="-1"></a><span class="im">from</span> statsmodels.sandbox.predict_functional <span class="im">import</span> predict_functional</span>
+<span id="cb723-4"><a href="selected-topics-in-statistical-inference.html#cb723-4" tabindex="-1"></a></span>
+<span id="cb723-5"><a href="selected-topics-in-statistical-inference.html#cb723-5" tabindex="-1"></a><span class="co"># Create DataFrame (wrt Inusl == &quot;Before&quot;) to pass into predict function</span></span>
+<span id="cb723-6"><a href="selected-topics-in-statistical-inference.html#cb723-6" tabindex="-1"></a>temp <span class="op">=</span> np.linspace(whiteside[<span class="st">&quot;Temp&quot;</span>].<span class="bu">min</span>(), whiteside[<span class="st">&quot;Temp&quot;</span>].<span class="bu">max</span>())</span>
+<span id="cb723-7"><a href="selected-topics-in-statistical-inference.html#cb723-7" tabindex="-1"></a>insul_before <span class="op">=</span> [<span class="st">&quot;Before&quot;</span>]<span class="op">*</span>temp.shape[<span class="dv">0</span>]</span>
+<span id="cb723-8"><a href="selected-topics-in-statistical-inference.html#cb723-8" tabindex="-1"></a><span class="co"># whiteside_before = pd.DataFrame({&quot;Temp&quot;: temp, &quot;Insul&quot;: insul_before})</span></span>
+<span id="cb723-9"><a href="selected-topics-in-statistical-inference.html#cb723-9" tabindex="-1"></a>whiteside_before <span class="op">=</span> {<span class="st">&quot;Temp&quot;</span>: temp, <span class="st">&quot;Insul&quot;</span>: insul_before, <span class="st">&quot;Insul:Temp&quot;</span>:[<span class="dv">0</span>]<span class="op">*</span>temp.shape[<span class="dv">0</span>]}</span>
+<span id="cb723-10"><a href="selected-topics-in-statistical-inference.html#cb723-10" tabindex="-1"></a><span class="co"># pr, cb, fv = predict_functional(results, &quot;Temp&quot;, values=whiteside_before, ci_method=&#39;scheffe&#39;)</span></span>
+<span id="cb723-11"><a href="selected-topics-in-statistical-inference.html#cb723-11" tabindex="-1"></a>before_predict_object <span class="op">=</span> results.get_prediction(whiteside_before)</span>
+<span id="cb723-12"><a href="selected-topics-in-statistical-inference.html#cb723-12" tabindex="-1"></a>before_predictions <span class="op">=</span> before_predict_object.predicted_mean</span>
+<span id="cb723-13"><a href="selected-topics-in-statistical-inference.html#cb723-13" tabindex="-1"></a>before_ci <span class="op">=</span> before_predict_object.conf_int()</span>
+<span id="cb723-14"><a href="selected-topics-in-statistical-inference.html#cb723-14" tabindex="-1"></a></span>
+<span id="cb723-15"><a href="selected-topics-in-statistical-inference.html#cb723-15" tabindex="-1"></a><span class="co"># Create DataFrame (wrt Inusl == &quot;After&quot;) to pass into predict function</span></span>
+<span id="cb723-16"><a href="selected-topics-in-statistical-inference.html#cb723-16" tabindex="-1"></a>insul_after <span class="op">=</span> [<span class="st">&quot;After&quot;</span>]<span class="op">*</span>temp.shape[<span class="dv">0</span>]</span>
+<span id="cb723-17"><a href="selected-topics-in-statistical-inference.html#cb723-17" tabindex="-1"></a>whiteside_after <span class="op">=</span> pd.DataFrame({<span class="st">&quot;Temp&quot;</span>: temp, <span class="st">&quot;Insul&quot;</span>: insul_after, <span class="st">&quot;Insul:Temp&quot;</span>:temp})</span>
+<span id="cb723-18"><a href="selected-topics-in-statistical-inference.html#cb723-18" tabindex="-1"></a>after_predictions_object <span class="op">=</span> results.get_prediction(whiteside_after)</span>
+<span id="cb723-19"><a href="selected-topics-in-statistical-inference.html#cb723-19" tabindex="-1"></a>after_predictions <span class="op">=</span> after_predictions_object.predicted_mean</span>
+<span id="cb723-20"><a href="selected-topics-in-statistical-inference.html#cb723-20" tabindex="-1"></a>after_ci <span class="op">=</span> after_predictions_object.conf_int()</span>
+<span id="cb723-21"><a href="selected-topics-in-statistical-inference.html#cb723-21" tabindex="-1"></a></span>
+<span id="cb723-22"><a href="selected-topics-in-statistical-inference.html#cb723-22" tabindex="-1"></a><span class="co"># Plot results</span></span>
+<span id="cb723-23"><a href="selected-topics-in-statistical-inference.html#cb723-23" tabindex="-1"></a>plt.figure()</span>
+<span id="cb723-24"><a href="selected-topics-in-statistical-inference.html#cb723-24" tabindex="-1"></a>plt.plot(temp, before_predictions, color <span class="op">=</span> <span class="st">&quot;red&quot;</span>, label<span class="op">=</span><span class="st">&quot;Before&quot;</span>)</span>
+<span id="cb723-25"><a href="selected-topics-in-statistical-inference.html#cb723-25" tabindex="-1"></a>plt.fill_between(temp, before_ci[:,<span class="dv">0</span>], before_ci[:,<span class="dv">1</span>], color <span class="op">=</span> <span class="st">&quot;red&quot;</span>, alpha <span class="op">=</span> <span class="fl">0.1</span>)</span>
+<span id="cb723-26"><a href="selected-topics-in-statistical-inference.html#cb723-26" tabindex="-1"></a>plt.plot(temp, after_predictions, color<span class="op">=</span><span class="st">&quot;blue&quot;</span>, label<span class="op">=</span><span class="st">&quot;After&quot;</span>)</span>
+<span id="cb723-27"><a href="selected-topics-in-statistical-inference.html#cb723-27" tabindex="-1"></a>plt.fill_between(temp, after_ci[:,<span class="dv">0</span>], after_ci[:,<span class="dv">1</span>], color <span class="op">=</span> <span class="st">&quot;blue&quot;</span>, alpha <span class="op">=</span> <span class="fl">0.1</span>)</span>
+<span id="cb723-28"><a href="selected-topics-in-statistical-inference.html#cb723-28" tabindex="-1"></a>plt.legend(title<span class="op">=</span><span class="st">&quot;Insul&quot;</span>)</span>
+<span id="cb723-29"><a href="selected-topics-in-statistical-inference.html#cb723-29" tabindex="-1"></a>plt.title(<span class="st">&quot;Predicted values of Gas&quot;</span>)</span>
+<span id="cb723-30"><a href="selected-topics-in-statistical-inference.html#cb723-30" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;Temp&quot;</span>)</span>
+<span id="cb723-31"><a href="selected-topics-in-statistical-inference.html#cb723-31" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;Gas&quot;</span>)</span>
+<span id="cb723-32"><a href="selected-topics-in-statistical-inference.html#cb723-32" tabindex="-1"></a>plt.show()</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-357-3.png" width="672" /></p>
 <p>The plot suggests that after installing insulation, gas consumption fell and the effect of temperature on gas consumption was less pronounced.</p>
 </div>
@@ -655,8 +659,8 @@ div.csl-indent {
 <h4>R<a href="selected-topics-in-statistical-inference.html#r-49" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The <code>lm()</code> function fits a linear model in R using whatever model we propose. We specify models using a special syntax. The basic construction is to list your dependent (response) variable, then a tilde (<code>~</code>), and then your predictor variables separated by plus operators (<code>+</code>). Listing two variables separated by a colon (<code>:</code>) indicates we wish to fit an interaction for those variables. (Alternatively, listing variables as <code>x*z</code> is equivalent to <code>x + z + x:z</code>.) See <code>?formula</code> for further details on formula syntax.</p>
 <p>It’s considered best practice to reference variables in a data frame and indicate the data frame using the <code>data</code> argument. Though not required, you’ll almost always want to save the result to an object for further inquiry.</p>
-<div class="sourceCode" id="cb725"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb725-1"><a href="selected-topics-in-statistical-inference.html#cb725-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(Gas <span class="sc">~</span> Insul <span class="sc">+</span> Temp <span class="sc">+</span> Insul<span class="sc">:</span>Temp, <span class="at">data =</span> whiteside)</span>
-<span id="cb725-2"><a href="selected-topics-in-statistical-inference.html#cb725-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Equivalently: lm(Gas ~ Insul*Temp, data = whiteside)</span></span></code></pre></div>
+<div class="sourceCode" id="cb724"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb724-1"><a href="selected-topics-in-statistical-inference.html#cb724-1" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(Gas <span class="sc">~</span> Insul <span class="sc">+</span> Temp <span class="sc">+</span> Insul<span class="sc">:</span>Temp, <span class="at">data =</span> whiteside)</span>
+<span id="cb724-2"><a href="selected-topics-in-statistical-inference.html#cb724-2" tabindex="-1"></a><span class="co"># Equivalently: lm(Gas ~ Insul*Temp, data = whiteside)</span></span></code></pre></div>
 <p>Once you fit your model, you can extract information about it using several functions. Commonly used functions include:</p>
 <ul>
 <li><code>summary()</code>: return a summary of model coefficients with standard errors and test statistics</li>
@@ -665,7 +669,7 @@ div.csl-indent {
 <li><code>plot()</code>: return a set of four diagnostic plots</li>
 </ul>
 <p>The <code>summary()</code> function produces the standard regression summary table one typically finds described in a statistics textbook.</p>
-<div class="sourceCode" id="cb726"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb726-1"><a href="selected-topics-in-statistical-inference.html#cb726-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m)</span></code></pre></div>
+<div class="sourceCode" id="cb725"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb725-1"><a href="selected-topics-in-statistical-inference.html#cb725-1" tabindex="-1"></a><span class="fu">summary</span>(m)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Gas ~ Insul + Temp + Insul:Temp, data = whiteside)
@@ -687,12 +691,12 @@ div.csl-indent {
 ## Multiple R-squared:  0.9277, Adjusted R-squared:  0.9235 
 ## F-statistic: 222.3 on 3 and 52 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Calling <code>plot()</code> on a model object produces four different diagnostic plots by default. Using the <code>which</code> argument, we can specify which of six possible plots to generate. The first plot—of fitted values against residuals—helps the modeler assess the constant variance assumption (i.e., that our model is not dramatically over- or under-predicting values). We hope to see residuals evenly scattered around 0. (See <code>?plot.lm</code> for more details on the diagnostic plots.)</p>
-<div class="sourceCode" id="cb728"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb728-1"><a href="selected-topics-in-statistical-inference.html#cb728-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m, <span class="at">which =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb727"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb727-1"><a href="selected-topics-in-statistical-inference.html#cb727-1" tabindex="-1"></a><span class="fu">plot</span>(m, <span class="at">which =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-360-1.png" width="672" /></p>
 <p>Once we fit a model and we’re reasonably confident that it’s a well-fitting, assumption-satisfying model, we may want to visualize it. Three packages in R that help with this are <strong>emmeans</strong>, <strong>effects</strong>, and <strong>ggeffects</strong>. Below, we give a demonstration of how to use the <strong>ggeffects</strong> package to visualize the predictive effects of a model.</p>
 <p>You need to first install the <strong>ggeffects</strong> package, as it does not come with the base R installation. Once installed, load using the <code>library()</code> function. Once loaded, we can get a basic visualization of our model by using the <code>plot()</code> and <code>ggpredict()</code> functions. This is particularly useful for models with interactions. Use the <code>terms</code> argument to specify which variables to plot. Below we list <code>Temp</code> first, which will plot <code>Temp</code> on the x axis. Then we list <code>Insul</code>, the grouping variable, to indicate we want a separate fit for each level of <code>Insul</code>.</p>
-<div class="sourceCode" id="cb729"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb729-1"><a href="selected-topics-in-statistical-inference.html#cb729-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggeffects)</span>
-<span id="cb729-2"><a href="selected-topics-in-statistical-inference.html#cb729-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">ggpredict</span>(m, <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">&quot;Temp&quot;</span>, <span class="st">&quot;Insul&quot;</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb728"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb728-1"><a href="selected-topics-in-statistical-inference.html#cb728-1" tabindex="-1"></a><span class="fu">library</span>(ggeffects)</span>
+<span id="cb728-2"><a href="selected-topics-in-statistical-inference.html#cb728-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">ggpredict</span>(m, <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">&quot;Temp&quot;</span>, <span class="st">&quot;Insul&quot;</span>)))</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-361-1.png" width="672" /></p>
 <p>We see that after installing insulation, gas consumption fell considerably and the effect of temperature on gas consumption was less pronounced.</p>
 </div>
@@ -700,7 +704,7 @@ div.csl-indent {
 <div id="logistic-regression" class="section level2 hasAnchor" number="8.4">
 <h2><span class="header-section-number">8.4</span> Logistic regression<a href="selected-topics-in-statistical-inference.html#logistic-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Logistic regression attempts to assess if or how the variability a binary variable depends on one or more predictor variables. It is a type of “generalized linear model” and is commonly used to model the <em>probability</em> of an event occurring. As with linear regression, it’s easy to “fit a model” and generate lots of output, but the model we fit may not be particularly good. The same kinds of questions germane to developing a standard linear regression are relevant when developing a logistic regression: Which predictors do we include? Will they interact? Will we include non-linear effects?</p>
-<p>We walk through a basic example below using data on low infant birth weight. The data are courtesy of the R package <strong>MASS</strong> <span class="citation">(<a href="#ref-MASS" role="doc-biblioref">Venables and Ripley 2002a</a>)</span>. Per the documentation, “the data were collected at Baystate Medical Center, Springfield, Mass during 1986.”</p>
+<p>We walk through a basic example below using data on low infant birth weight. The data are courtesy of the R package <strong>MASS</strong> <span class="citation">(<a href="#ref-MASS">Venables and Ripley 2002a</a>)</span>. Per the documentation, “the data were collected at Baystate Medical Center, Springfield, Mass during 1986.”</p>
 <p>The data are contained in the data frame <code>birthwt</code> (see <code>?birthwt</code> for additional details). <code>birthwt</code> has 189 rows and 9 columns:</p>
 <ul>
 <li><code>low</code>: 1 if birth weight less than 2.5 kg, 0 otherwise</li>
@@ -717,13 +721,13 @@ div.csl-indent {
 <div id="python-50" class="section level4 unnumbered hasAnchor">
 <h4>Python<a href="selected-topics-in-statistical-inference.html#python-50" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The Python library <strong>statsmodels.formula.api</strong> provides the <code>glm()</code> function for fitting generalized linear models. We specify the model as a formula string in the first argument of the <code>glm()</code> function. The format is as follows: dependent/response variable followed by a tilde (<code>~</code>), then the predictor variables separated by a plus sign (<code>+</code>). Separating variables with a colon (<code>a:b</code>) includes the interaction of those variables in the model. To fit a logistic regression, we specify <code>family = sm.families.Binomial()</code>, as our dependent variable is binary. We also specify our data set in the <code>data</code> argument as well.</p>
-<div class="sourceCode" id="cb730"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb730-1"><a href="selected-topics-in-statistical-inference.html#cb730-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
-<span id="cb730-2"><a href="selected-topics-in-statistical-inference.html#cb730-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
-<span id="cb730-3"><a href="selected-topics-in-statistical-inference.html#cb730-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb730-4"><a href="selected-topics-in-statistical-inference.html#cb730-4" aria-hidden="true" tabindex="-1"></a>formula <span class="op">=</span> <span class="st">&quot;low ~ age + lwt + race + smoke + ptd + ht + ui + ftv&quot;</span></span>
-<span id="cb730-5"><a href="selected-topics-in-statistical-inference.html#cb730-5" aria-hidden="true" tabindex="-1"></a>mod1 <span class="op">=</span> smf.glm(formula <span class="op">=</span> formula, data <span class="op">=</span> birthwt,</span>
-<span id="cb730-6"><a href="selected-topics-in-statistical-inference.html#cb730-6" aria-hidden="true" tabindex="-1"></a>               family <span class="op">=</span> sm.families.Binomial()).fit()</span>
-<span id="cb730-7"><a href="selected-topics-in-statistical-inference.html#cb730-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mod1.summary())</span></code></pre></div>
+<div class="sourceCode" id="cb729"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb729-1"><a href="selected-topics-in-statistical-inference.html#cb729-1" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb729-2"><a href="selected-topics-in-statistical-inference.html#cb729-2" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
+<span id="cb729-3"><a href="selected-topics-in-statistical-inference.html#cb729-3" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb729-4"><a href="selected-topics-in-statistical-inference.html#cb729-4" tabindex="-1"></a>formula <span class="op">=</span> <span class="st">&quot;low ~ age + lwt + race + smoke + ptd + ht + ui + ftv&quot;</span></span>
+<span id="cb729-5"><a href="selected-topics-in-statistical-inference.html#cb729-5" tabindex="-1"></a>mod1 <span class="op">=</span> smf.glm(formula <span class="op">=</span> formula, data <span class="op">=</span> birthwt,</span>
+<span id="cb729-6"><a href="selected-topics-in-statistical-inference.html#cb729-6" tabindex="-1"></a>               family <span class="op">=</span> sm.families.Binomial()).fit()</span>
+<span id="cb729-7"><a href="selected-topics-in-statistical-inference.html#cb729-7" tabindex="-1"></a><span class="bu">print</span>(mod1.summary())</span></code></pre></div>
 <pre><code>##                  Generalized Linear Model Regression Results                  
 ## ==============================================================================
 ## Dep. Variable:                    low   No. Observations:                  189
@@ -731,8 +735,8 @@ div.csl-indent {
 ## Model Family:                Binomial   Df Model:                           10
 ## Link Function:                  Logit   Scale:                          1.0000
 ## Method:                          IRLS   Log-Likelihood:                -97.738
-## Date:                Wed, 01 Mar 2023   Deviance:                       195.48
-## Time:                        11:32:34   Pearson chi2:                     179.
+## Date:                Wed, 14 Jun 2023   Deviance:                       195.48
+## Time:                        13:21:57   Pearson chi2:                     179.
 ## No. Iterations:                     5   Pseudo R-squ. (CS):             0.1873
 ## Covariance Type:            nonrobust                                         
 ## =================================================================================
@@ -752,35 +756,35 @@ div.csl-indent {
 ## =================================================================================</code></pre>
 <p>Once we fit a model and are reasonably confident that it’s a good model, we may want to visualize it. For example, we can visualize how <code>ptd</code> is associated with the probability of low infant birth weight, holding other predictors constant.</p>
 <p>To begin, we create a <strong>pandas</strong> DataFrame containing our predictors: Notice the only variable with multiple values is <code>ptd</code>. All other variables are held constant. What values you choose to hold them at is up to you, but typical choices are means or medians for numeric predictors and most populous group for categorical predictors. (This needs to be a <strong>pandas</strong> DataFrame since we used the formula option when fitting the model.)</p>
-<div class="sourceCode" id="cb732"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb732-1"><a href="selected-topics-in-statistical-inference.html#cb732-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create dictionary of values</span></span>
-<span id="cb732-2"><a href="selected-topics-in-statistical-inference.html#cb732-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="st">&#39;age&#39;</span>: <span class="dv">23</span>, <span class="st">&#39;lwt&#39;</span>: <span class="dv">123</span>, <span class="st">&#39;race&#39;</span>: <span class="st">&quot;white&quot;</span>,</span>
-<span id="cb732-3"><a href="selected-topics-in-statistical-inference.html#cb732-3" aria-hidden="true" tabindex="-1"></a>     <span class="st">&#39;smoke&#39;</span> : <span class="st">&quot;0&quot;</span>, <span class="st">&#39;ptd&#39;</span> : [<span class="st">&quot;0&quot;</span>,<span class="st">&quot;1&quot;</span>], <span class="st">&#39;ht&#39;</span>: <span class="st">&quot;0&quot;</span>, </span>
-<span id="cb732-4"><a href="selected-topics-in-statistical-inference.html#cb732-4" aria-hidden="true" tabindex="-1"></a>     <span class="st">&#39;ui&#39;</span>: <span class="st">&quot;0&quot;</span>, <span class="st">&#39;ftv&#39;</span>: <span class="st">&quot;0&quot;</span>}</span>
-<span id="cb732-5"><a href="selected-topics-in-statistical-inference.html#cb732-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert dictionary to pandas DataFrame.</span></span>
-<span id="cb732-6"><a href="selected-topics-in-statistical-inference.html#cb732-6" aria-hidden="true" tabindex="-1"></a>nd <span class="op">=</span> pd.DataFrame(data <span class="op">=</span> d)</span></code></pre></div>
+<div class="sourceCode" id="cb731"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb731-1"><a href="selected-topics-in-statistical-inference.html#cb731-1" tabindex="-1"></a><span class="co"># Create dictionary of values</span></span>
+<span id="cb731-2"><a href="selected-topics-in-statistical-inference.html#cb731-2" tabindex="-1"></a>d <span class="op">=</span> {<span class="st">&#39;age&#39;</span>: <span class="dv">23</span>, <span class="st">&#39;lwt&#39;</span>: <span class="dv">123</span>, <span class="st">&#39;race&#39;</span>: <span class="st">&quot;white&quot;</span>,</span>
+<span id="cb731-3"><a href="selected-topics-in-statistical-inference.html#cb731-3" tabindex="-1"></a>     <span class="st">&#39;smoke&#39;</span> : <span class="st">&quot;0&quot;</span>, <span class="st">&#39;ptd&#39;</span> : [<span class="st">&quot;0&quot;</span>,<span class="st">&quot;1&quot;</span>], <span class="st">&#39;ht&#39;</span>: <span class="st">&quot;0&quot;</span>, </span>
+<span id="cb731-4"><a href="selected-topics-in-statistical-inference.html#cb731-4" tabindex="-1"></a>     <span class="st">&#39;ui&#39;</span>: <span class="st">&quot;0&quot;</span>, <span class="st">&#39;ftv&#39;</span>: <span class="st">&quot;0&quot;</span>}</span>
+<span id="cb731-5"><a href="selected-topics-in-statistical-inference.html#cb731-5" tabindex="-1"></a><span class="co"># Convert dictionary to pandas DataFrame.</span></span>
+<span id="cb731-6"><a href="selected-topics-in-statistical-inference.html#cb731-6" tabindex="-1"></a>nd <span class="op">=</span> pd.DataFrame(data <span class="op">=</span> d)</span></code></pre></div>
 <p>Now plug in our new data (<code>nd</code>) into our model using the <code>get_prediction()</code> method. See <a href="https://www.statsmodels.org/devel/generated/statsmodels.genmod.generalized_linear_model.GLMResults.html#statsmodels.genmod.generalized_linear_model.GLMResults">this page</a> for further details. This returns the predictions as a <code>PredictionResults</code> object. We can access the predicted probabilities using the <code>predicted_mean</code> property. See <a href="https://www.statsmodels.org/devel/generated/statsmodels.tsa.base.prediction.PredictionResults.html">this page</a>.</p>
-<div class="sourceCode" id="cb733"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb733-1"><a href="selected-topics-in-statistical-inference.html#cb733-1" aria-hidden="true" tabindex="-1"></a>pred <span class="op">=</span> mod1.get_prediction(exog <span class="op">=</span> nd)</span>
-<span id="cb733-2"><a href="selected-topics-in-statistical-inference.html#cb733-2" aria-hidden="true" tabindex="-1"></a>prob <span class="op">=</span> pred.predicted_mean</span>
-<span id="cb733-3"><a href="selected-topics-in-statistical-inference.html#cb733-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(prob)</span></code></pre></div>
+<div class="sourceCode" id="cb732"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb732-1"><a href="selected-topics-in-statistical-inference.html#cb732-1" tabindex="-1"></a>pred <span class="op">=</span> mod1.get_prediction(exog <span class="op">=</span> nd)</span>
+<span id="cb732-2"><a href="selected-topics-in-statistical-inference.html#cb732-2" tabindex="-1"></a>prob <span class="op">=</span> pred.predicted_mean</span>
+<span id="cb732-3"><a href="selected-topics-in-statistical-inference.html#cb732-3" tabindex="-1"></a><span class="bu">print</span>(prob)</span></code></pre></div>
 <pre><code>## [0.12360891 0.35093623]</code></pre>
 <p>We can use the <code>conf_int()</code> method to extract the confidence intervals for the predicted probabilities.</p>
-<div class="sourceCode" id="cb735"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb735-1"><a href="selected-topics-in-statistical-inference.html#cb735-1" aria-hidden="true" tabindex="-1"></a>ci <span class="op">=</span> pred.conf_int()</span>
-<span id="cb735-2"><a href="selected-topics-in-statistical-inference.html#cb735-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ci)</span></code></pre></div>
+<div class="sourceCode" id="cb734"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb734-1"><a href="selected-topics-in-statistical-inference.html#cb734-1" tabindex="-1"></a>ci <span class="op">=</span> pred.conf_int()</span>
+<span id="cb734-2"><a href="selected-topics-in-statistical-inference.html#cb734-2" tabindex="-1"></a><span class="bu">print</span>(ci)</span></code></pre></div>
 <pre><code>## [[0.05166761 0.26746827]
 ##  [0.12724595 0.66722908]]</code></pre>
 <p>Now, we use the <strong>Matplotlib</strong> <code>errorbar()</code> function to create the plot. The <code>errorbar()</code> function requires <em>margin of error</em>, not the lower and upper limits. So, we have to do some subtraction to get the lower and upper margins of error.</p>
-<div class="sourceCode" id="cb737"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb737-1"><a href="selected-topics-in-statistical-inference.html#cb737-1" aria-hidden="true" tabindex="-1"></a>lower <span class="op">=</span> [prob[<span class="dv">0</span>] <span class="op">-</span> ci[<span class="dv">0</span>,<span class="dv">0</span>], prob[<span class="dv">1</span>] <span class="op">-</span> ci[<span class="dv">1</span>,<span class="dv">0</span>]]</span>
-<span id="cb737-2"><a href="selected-topics-in-statistical-inference.html#cb737-2" aria-hidden="true" tabindex="-1"></a>upper <span class="op">=</span> [ci[<span class="dv">0</span>,<span class="dv">1</span>] <span class="op">-</span> prob[<span class="dv">0</span>], ci[<span class="dv">1</span>,<span class="dv">1</span>] <span class="op">-</span> prob[<span class="dv">1</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb736"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb736-1"><a href="selected-topics-in-statistical-inference.html#cb736-1" tabindex="-1"></a>lower <span class="op">=</span> [prob[<span class="dv">0</span>] <span class="op">-</span> ci[<span class="dv">0</span>,<span class="dv">0</span>], prob[<span class="dv">1</span>] <span class="op">-</span> ci[<span class="dv">1</span>,<span class="dv">0</span>]]</span>
+<span id="cb736-2"><a href="selected-topics-in-statistical-inference.html#cb736-2" tabindex="-1"></a>upper <span class="op">=</span> [ci[<span class="dv">0</span>,<span class="dv">1</span>] <span class="op">-</span> prob[<span class="dv">0</span>], ci[<span class="dv">1</span>,<span class="dv">1</span>] <span class="op">-</span> prob[<span class="dv">1</span>]]</span></code></pre></div>
 <p>Finally we can make the plot:</p>
-<div class="sourceCode" id="cb738"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb738-1"><a href="selected-topics-in-statistical-inference.html#cb738-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb738-2"><a href="selected-topics-in-statistical-inference.html#cb738-2" aria-hidden="true" tabindex="-1"></a>plt.clf()</span>
-<span id="cb738-3"><a href="selected-topics-in-statistical-inference.html#cb738-3" aria-hidden="true" tabindex="-1"></a>plt.errorbar(x <span class="op">=</span> [<span class="st">&quot;0&quot;</span>,<span class="st">&quot;1&quot;</span>], y <span class="op">=</span> prob, </span>
-<span id="cb738-4"><a href="selected-topics-in-statistical-inference.html#cb738-4" aria-hidden="true" tabindex="-1"></a>             yerr <span class="op">=</span> [lower, upper], fmt <span class="op">=</span> <span class="st">&#39;ok&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb737"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb737-1"><a href="selected-topics-in-statistical-inference.html#cb737-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb737-2"><a href="selected-topics-in-statistical-inference.html#cb737-2" tabindex="-1"></a>plt.clf()</span>
+<span id="cb737-3"><a href="selected-topics-in-statistical-inference.html#cb737-3" tabindex="-1"></a>plt.errorbar(x <span class="op">=</span> [<span class="st">&quot;0&quot;</span>,<span class="st">&quot;1&quot;</span>], y <span class="op">=</span> prob, </span>
+<span id="cb737-4"><a href="selected-topics-in-statistical-inference.html#cb737-4" tabindex="-1"></a>             yerr <span class="op">=</span> [lower, upper], fmt <span class="op">=</span> <span class="st">&#39;ok&#39;</span>)</span></code></pre></div>
 <pre><code>## &lt;ErrorbarContainer object of 3 artists&gt;</code></pre>
-<div class="sourceCode" id="cb740"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb740-1"><a href="selected-topics-in-statistical-inference.html#cb740-1" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;ptd&#39;</span>)</span>
-<span id="cb740-2"><a href="selected-topics-in-statistical-inference.html#cb740-2" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;low&#39;</span>)</span>
-<span id="cb740-3"><a href="selected-topics-in-statistical-inference.html#cb740-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Predicted probabilities of low&#39;</span>)</span>
-<span id="cb740-4"><a href="selected-topics-in-statistical-inference.html#cb740-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="sourceCode" id="cb739"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb739-1"><a href="selected-topics-in-statistical-inference.html#cb739-1" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;ptd&#39;</span>)</span>
+<span id="cb739-2"><a href="selected-topics-in-statistical-inference.html#cb739-2" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;low&#39;</span>)</span>
+<span id="cb739-3"><a href="selected-topics-in-statistical-inference.html#cb739-3" tabindex="-1"></a>plt.title(<span class="st">&#39;Predicted probabilities of low&#39;</span>)</span>
+<span id="cb739-4"><a href="selected-topics-in-statistical-inference.html#cb739-4" tabindex="-1"></a>plt.show()</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-369-1.png" width="672" /></p>
 </div>
 <div id="r-50" class="section level4 unnumbered hasAnchor">
@@ -788,12 +792,12 @@ div.csl-indent {
 <p>The <code>glm()</code> function fits a generalized linear model in R using whatever model we propose. We specify models using formula syntax: List your dependent (response) variable, then a tile <code>~</code>, and then your predictor variables separated by plus operators (<code>+</code>). Listing two variables separated by a colon (<code>:</code>) indicates we wish to fit an interaction for those variables. See <code>?formula</code> for further details on formula syntax.</p>
 <p>In addition, <code>glm()</code> requires that we specify a <code>family</code> argument to specify the error distribution for the dependent variable. The default is <code>gaussian</code> (normal, as in standard linear regression). For a logistic regression model, we need to specify <code>binomial</code> since our dependent variable is binary.</p>
 <p>Indicate the data frame from which variables are sourced using the <code>data</code> argument. You’ll generally want to save the result to an object for further inquiry.</p>
-<div class="sourceCode" id="cb741"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb741-1"><a href="selected-topics-in-statistical-inference.html#cb741-1" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">glm</span>(low <span class="sc">~</span> age <span class="sc">+</span> lwt <span class="sc">+</span> race <span class="sc">+</span> </span>
-<span id="cb741-2"><a href="selected-topics-in-statistical-inference.html#cb741-2" aria-hidden="true" tabindex="-1"></a>             smoke <span class="sc">+</span> ptd <span class="sc">+</span> ht <span class="sc">+</span> </span>
-<span id="cb741-3"><a href="selected-topics-in-statistical-inference.html#cb741-3" aria-hidden="true" tabindex="-1"></a>             ui <span class="sc">+</span> ftv, </span>
-<span id="cb741-4"><a href="selected-topics-in-statistical-inference.html#cb741-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">data =</span> birthwt, <span class="at">family =</span> binomial)</span></code></pre></div>
+<div class="sourceCode" id="cb740"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb740-1"><a href="selected-topics-in-statistical-inference.html#cb740-1" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">glm</span>(low <span class="sc">~</span> age <span class="sc">+</span> lwt <span class="sc">+</span> race <span class="sc">+</span> </span>
+<span id="cb740-2"><a href="selected-topics-in-statistical-inference.html#cb740-2" tabindex="-1"></a>             smoke <span class="sc">+</span> ptd <span class="sc">+</span> ht <span class="sc">+</span> </span>
+<span id="cb740-3"><a href="selected-topics-in-statistical-inference.html#cb740-3" tabindex="-1"></a>             ui <span class="sc">+</span> ftv, </span>
+<span id="cb740-4"><a href="selected-topics-in-statistical-inference.html#cb740-4" tabindex="-1"></a>           <span class="at">data =</span> birthwt, <span class="at">family =</span> binomial)</span></code></pre></div>
 <p>Since we’re modeling <code>low</code> as a function of all other variables in the data frame, we also could have used the following syntax, where the period symbolizes all other remaining variables:</p>
-<div class="sourceCode" id="cb742"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb742-1"><a href="selected-topics-in-statistical-inference.html#cb742-1" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">glm</span>(low <span class="sc">~</span> ., <span class="at">data =</span> birthwt, <span class="at">family =</span> binomial)</span></code></pre></div>
+<div class="sourceCode" id="cb741"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb741-1"><a href="selected-topics-in-statistical-inference.html#cb741-1" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">glm</span>(low <span class="sc">~</span> ., <span class="at">data =</span> birthwt, <span class="at">family =</span> binomial)</span></code></pre></div>
 <p>Once you fit your logistic regression model, you can extract information about it using several functions. The most commonly used include:</p>
 <ul>
 <li><code>summary()</code>: return a summary of model coefficients with standard errors and test statistics</li>
@@ -801,15 +805,11 @@ div.csl-indent {
 <li><code>confint()</code>: return the 95% confidence interval of each model coefficient</li>
 </ul>
 <p>The <code>summary()</code> function produces a regression summary table, like those typically found in statistics textbooks.</p>
-<div class="sourceCode" id="cb743"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb743-1"><a href="selected-topics-in-statistical-inference.html#cb743-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod)</span></code></pre></div>
+<div class="sourceCode" id="cb742"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb742-1"><a href="selected-topics-in-statistical-inference.html#cb742-1" tabindex="-1"></a><span class="fu">summary</span>(mod)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = low ~ age + lwt + race + smoke + ptd + ht + ui + 
 ##     ftv, family = binomial, data = birthwt)
-## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -1.7038  -0.8068  -0.5008   0.8835   2.2152  
 ## 
 ## Coefficients:
 ##             Estimate Std. Error z value Pr(&gt;|z|)   
@@ -835,20 +835,20 @@ div.csl-indent {
 ## 
 ## Number of Fisher Scoring iterations: 4</code></pre>
 <p>Exponentiating coefficients in a logistic regression model produces odds ratios. To get the odds ratio for the previous premature labors variable, <code>ptd</code>, we do the following:</p>
-<div class="sourceCode" id="cb745"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb745-1"><a href="selected-topics-in-statistical-inference.html#cb745-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(mod)[<span class="st">&quot;ptd1&quot;</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb744"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb744-1"><a href="selected-topics-in-statistical-inference.html#cb744-1" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(mod)[<span class="st">&quot;ptd1&quot;</span>])</span></code></pre></div>
 <pre><code>##     ptd1 
 ## 3.833443</code></pre>
 <p>This indicates that the odds of having an infant with low birth weight are about 3.8 times higher for women who experienced previous premature labors versus women who did not, assuming all other variables are held constant.</p>
 <p>The 3.8 value is just an estimate. We can use the <code>confint()</code> function to get a 95% confidence interval on the odds ratio.</p>
-<div class="sourceCode" id="cb747"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb747-1"><a href="selected-topics-in-statistical-inference.html#cb747-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">confint</span>(mod)[<span class="st">&quot;ptd1&quot;</span>, ])</span></code></pre></div>
+<div class="sourceCode" id="cb746"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb746-1"><a href="selected-topics-in-statistical-inference.html#cb746-1" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">confint</span>(mod)[<span class="st">&quot;ptd1&quot;</span>, ])</span></code></pre></div>
 <pre><code>##     2.5 %    97.5 % 
 ##  1.516837 10.128974</code></pre>
 <p>The confidence interval suggests that the data are compatible with an odds ratio of at least 1.5—and possibly as high as 10.1.</p>
 <p>Once we fit a model and are reasonably confident that it’s a good model, we may want to visualize it. The <strong>emmeans</strong>, <strong>effects</strong>, and <strong>ggeffects</strong> packages all help visualize the predictive effects of regressions; we demonstrate the <strong>ggeffects</strong> package below.</p>
 <p>Once <strong>ggeffects</strong> is installed and loaded, we can get a basic visualization of our model by using the <code>plot()</code> and <code>ggpredict()</code> functions. This is particularly useful for logistic regression models because it produces model predictions on a probability scale.</p>
 <p>Use the <code>terms</code> argument to specify which variables to plot. Below, we plot the probability of low infant birth weight depending on whether or not the mother had previous premature labors (1 = yes, 0 = no).</p>
-<div class="sourceCode" id="cb749"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb749-1"><a href="selected-topics-in-statistical-inference.html#cb749-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggeffects)</span>
-<span id="cb749-2"><a href="selected-topics-in-statistical-inference.html#cb749-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">ggpredict</span>(mod, <span class="at">terms =</span> <span class="st">&quot;ptd&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb748"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb748-1"><a href="selected-topics-in-statistical-inference.html#cb748-1" tabindex="-1"></a><span class="fu">library</span>(ggeffects)</span>
+<span id="cb748-2"><a href="selected-topics-in-statistical-inference.html#cb748-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">ggpredict</span>(mod, <span class="at">terms =</span> <span class="st">&quot;ptd&quot;</span>))</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-375-1.png" width="672" /></p>
 <p>It looks like the probability of low infant birth weight jumps from about 12% to over 35% for mothers who previously experienced premature labors, though the error bars on the expected values are quite large.</p>
 

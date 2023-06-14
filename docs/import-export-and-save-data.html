@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Import, Export, and Save Data | Python and R</title>
   <meta name="description" content="This book provides parallel code examples in Python and R to help analysts and researchers translate between and learn the languages." />
-  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Import, Export, and Save Data | Python and R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Clay Ford, Jacob Goldstein-Greenwood, Oyinkansola Adenekan, Samantha Lomuscio" />
 
 
-<meta name="date" content="2023-03-01" />
+<meta name="date" content="2023-06-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -119,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 <style type="text/css">
 /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
 div.csl-bib-body { }
@@ -273,9 +277,9 @@ div.csl-indent {
 <div id="python-12" class="section level4 unnumbered hasAnchor">
 <h4>Python<a href="import-export-and-save-data.html#python-12" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The <strong>pandas</strong> function <code>read_csv()</code> is a common approach to importing CSV files into Python.</p>
-<div class="sourceCode" id="cb211"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb211-1"><a href="import-export-and-save-data.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb211-2"><a href="import-export-and-save-data.html#cb211-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> pd.read_csv(<span class="st">&#39;data/ny_math_test.csv&#39;</span>)</span>
-<span id="cb211-3"><a href="import-export-and-save-data.html#cb211-3" aria-hidden="true" tabindex="-1"></a>d.loc[<span class="dv">0</span>:<span class="dv">2</span>, [<span class="st">&quot;Grade&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Mean Scale Score&quot;</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb209-1"><a href="import-export-and-save-data.html#cb209-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb209-2"><a href="import-export-and-save-data.html#cb209-2" tabindex="-1"></a>d <span class="op">=</span> pd.read_csv(<span class="st">&#39;data/ny_math_test.csv&#39;</span>)</span>
+<span id="cb209-3"><a href="import-export-and-save-data.html#cb209-3" tabindex="-1"></a>d.loc[<span class="dv">0</span>:<span class="dv">2</span>, [<span class="st">&quot;Grade&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Mean Scale Score&quot;</span>]]</span></code></pre></div>
 <pre><code>##   Grade  Year  Mean Scale Score
 ## 0     3  2006               700
 ## 1     4  2006               699
@@ -284,8 +288,8 @@ div.csl-indent {
 <div id="r-12" class="section level4 unnumbered hasAnchor">
 <h4>R<a href="import-export-and-save-data.html#r-12" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The most-common way of importing a CSV file into R is with the base R function <code>read.csv()</code>.</p>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="import-export-and-save-data.html#cb213-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/ny_math_test.csv&quot;</span>)</span>
-<span id="cb213-2"><a href="import-export-and-save-data.html#cb213-2" aria-hidden="true" tabindex="-1"></a>d[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="fu">c</span>(<span class="st">&quot;Grade&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Mean.Scale.Score&quot;</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="import-export-and-save-data.html#cb211-1" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/ny_math_test.csv&quot;</span>)</span>
+<span id="cb211-2"><a href="import-export-and-save-data.html#cb211-2" tabindex="-1"></a>d[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="fu">c</span>(<span class="st">&quot;Grade&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Mean.Scale.Score&quot;</span>)]</span></code></pre></div>
 <pre><code>##   Grade Year Mean.Scale.Score
 ## 1     3 2006              700
 ## 2     4 2006              699
@@ -300,16 +304,16 @@ div.csl-indent {
 <div id="python-13" class="section level4 unnumbered hasAnchor">
 <h4>Python<a href="import-export-and-save-data.html#python-13" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The <strong>pandas</strong> function <code>read_excel()</code> is a common approach to importing Excel files into Python. The <code>sheet_name</code> argument allows you to specify which sheet you want to import; you can specify a sheet by its (zero-indexed) ordering or by its name. Since this Excel file only has one sheet, we do not need to use the argument. In addition, specifying <code>sheet_name = None</code> will read in all sheets and return a “dict” data structure where the <em>key</em> is the sheet name and the <em>value</em> is a DataFrame.</p>
-<div class="sourceCode" id="cb215"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb215-1"><a href="import-export-and-save-data.html#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd  </span>
-<span id="cb215-2"><a href="import-export-and-save-data.html#cb215-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> pd.read_excel(<span class="st">&#39;data/ny_math_test.xlsx&#39;</span>)  </span>
-<span id="cb215-3"><a href="import-export-and-save-data.html#cb215-3" aria-hidden="true" tabindex="-1"></a>d.loc[<span class="dv">0</span>:<span class="dv">2</span>, [<span class="st">&quot;Grade&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Mean Scale Score&quot;</span>]]  </span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb213-1"><a href="import-export-and-save-data.html#cb213-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd  </span>
+<span id="cb213-2"><a href="import-export-and-save-data.html#cb213-2" tabindex="-1"></a>d <span class="op">=</span> pd.read_excel(<span class="st">&#39;data/ny_math_test.xlsx&#39;</span>)  </span>
+<span id="cb213-3"><a href="import-export-and-save-data.html#cb213-3" tabindex="-1"></a>d.loc[<span class="dv">0</span>:<span class="dv">2</span>, [<span class="st">&quot;Grade&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Mean Scale Score&quot;</span>]]  </span></code></pre></div>
 </div>
 <div id="r-13" class="section level4 unnumbered hasAnchor">
 <h4>R<a href="import-export-and-save-data.html#r-13" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong>readxl</strong> is a well-documented and actively maintained package for importing Excel files into R. The workhorse function from the package is <code>read_excel()</code>. The <code>sheet</code> argument allows you to specify which sheet you want to import by position or by name. Since this Excel file has only one sheet, we can omit the argument.</p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="import-export-and-save-data.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb216-2"><a href="import-export-and-save-data.html#cb216-2" aria-hidden="true" tabindex="-1"></a>d_xls <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/ny_math_test.xlsx&quot;</span>)</span>
-<span id="cb216-3"><a href="import-export-and-save-data.html#cb216-3" aria-hidden="true" tabindex="-1"></a>d_xls[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="fu">c</span>(<span class="st">&quot;Grade&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Mean Scale Score&quot;</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="import-export-and-save-data.html#cb214-1" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb214-2"><a href="import-export-and-save-data.html#cb214-2" tabindex="-1"></a>d_xls <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/ny_math_test.xlsx&quot;</span>)</span>
+<span id="cb214-3"><a href="import-export-and-save-data.html#cb214-3" tabindex="-1"></a>d_xls[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="fu">c</span>(<span class="st">&quot;Grade&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Mean Scale Score&quot;</span>)]</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 3
 ##   Grade  Year `Mean Scale Score`
 ##   &lt;chr&gt; &lt;dbl&gt;              &lt;dbl&gt;
@@ -326,21 +330,21 @@ div.csl-indent {
 <div id="python-14" class="section level4 unnumbered hasAnchor">
 <h4>Python<a href="import-export-and-save-data.html#python-14" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Below is one approach to importing a JSON file. We first import Python’s built-in <strong>json</strong> package and use its <code>loads()</code> function to read in the lines of the JSON file. The file is accessed using the <code>open()</code> function and its associated <code>read</code> method. Next we use the <strong>pandas</strong> function <code>json_normalize()</code> to convert the ‘data’ structure of the JSON data into a DataFrame. Finally we add column names to the DataFrame.</p>
-<div class="sourceCode" id="cb218"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb218-1"><a href="import-export-and-save-data.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
-<span id="cb218-2"><a href="import-export-and-save-data.html#cb218-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data using Python JSON module</span></span>
-<span id="cb218-3"><a href="import-export-and-save-data.html#cb218-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&#39;data/ny_math_test.json&#39;</span>, <span class="st">&#39;r&#39;</span>) <span class="im">as</span> f:</span>
-<span id="cb218-4"><a href="import-export-and-save-data.html#cb218-4" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> json.loads(f.read())</span>
-<span id="cb218-5"><a href="import-export-and-save-data.html#cb218-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb218-6"><a href="import-export-and-save-data.html#cb218-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd  </span>
-<span id="cb218-7"><a href="import-export-and-save-data.html#cb218-7" aria-hidden="true" tabindex="-1"></a>d_json <span class="op">=</span> pd.json_normalize(data, record_path <span class="op">=</span>[<span class="st">&#39;data&#39;</span>])</span>
-<span id="cb218-8"><a href="import-export-and-save-data.html#cb218-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb218-9"><a href="import-export-and-save-data.html#cb218-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Add column names</span></span>
-<span id="cb218-10"><a href="import-export-and-save-data.html#cb218-10" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> <span class="bu">list</span>()</span>
-<span id="cb218-11"><a href="import-export-and-save-data.html#cb218-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">23</span>): </span>
-<span id="cb218-12"><a href="import-export-and-save-data.html#cb218-12" aria-hidden="true" tabindex="-1"></a>  names.append(data[<span class="st">&#39;meta&#39;</span>][<span class="st">&#39;view&#39;</span>][<span class="st">&#39;columns&#39;</span>][i][<span class="st">&#39;name&#39;</span>])</span>
-<span id="cb218-13"><a href="import-export-and-save-data.html#cb218-13" aria-hidden="true" tabindex="-1"></a>d_json.columns <span class="op">=</span> names</span>
-<span id="cb218-14"><a href="import-export-and-save-data.html#cb218-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb218-15"><a href="import-export-and-save-data.html#cb218-15" aria-hidden="true" tabindex="-1"></a>d_json.loc[<span class="dv">0</span>:<span class="dv">2</span>, [<span class="st">&quot;Grade&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Mean Scale Score&quot;</span>]]  </span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb216-1"><a href="import-export-and-save-data.html#cb216-1" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb216-2"><a href="import-export-and-save-data.html#cb216-2" tabindex="-1"></a><span class="co"># Load data using Python JSON module</span></span>
+<span id="cb216-3"><a href="import-export-and-save-data.html#cb216-3" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&#39;data/ny_math_test.json&#39;</span>, <span class="st">&#39;r&#39;</span>) <span class="im">as</span> f:</span>
+<span id="cb216-4"><a href="import-export-and-save-data.html#cb216-4" tabindex="-1"></a>    data <span class="op">=</span> json.loads(f.read())</span>
+<span id="cb216-5"><a href="import-export-and-save-data.html#cb216-5" tabindex="-1"></a></span>
+<span id="cb216-6"><a href="import-export-and-save-data.html#cb216-6" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd  </span>
+<span id="cb216-7"><a href="import-export-and-save-data.html#cb216-7" tabindex="-1"></a>d_json <span class="op">=</span> pd.json_normalize(data, record_path <span class="op">=</span>[<span class="st">&#39;data&#39;</span>])</span>
+<span id="cb216-8"><a href="import-export-and-save-data.html#cb216-8" tabindex="-1"></a></span>
+<span id="cb216-9"><a href="import-export-and-save-data.html#cb216-9" tabindex="-1"></a><span class="co"># Add column names</span></span>
+<span id="cb216-10"><a href="import-export-and-save-data.html#cb216-10" tabindex="-1"></a>names <span class="op">=</span> <span class="bu">list</span>()</span>
+<span id="cb216-11"><a href="import-export-and-save-data.html#cb216-11" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">23</span>): </span>
+<span id="cb216-12"><a href="import-export-and-save-data.html#cb216-12" tabindex="-1"></a>  names.append(data[<span class="st">&#39;meta&#39;</span>][<span class="st">&#39;view&#39;</span>][<span class="st">&#39;columns&#39;</span>][i][<span class="st">&#39;name&#39;</span>])</span>
+<span id="cb216-13"><a href="import-export-and-save-data.html#cb216-13" tabindex="-1"></a>d_json.columns <span class="op">=</span> names</span>
+<span id="cb216-14"><a href="import-export-and-save-data.html#cb216-14" tabindex="-1"></a></span>
+<span id="cb216-15"><a href="import-export-and-save-data.html#cb216-15" tabindex="-1"></a>d_json.loc[<span class="dv">0</span>:<span class="dv">2</span>, [<span class="st">&quot;Grade&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Mean Scale Score&quot;</span>]]  </span></code></pre></div>
 <pre><code>##   Grade  Year Mean Scale Score
 ## 0     3  2006              700
 ## 1     4  2006              699
@@ -350,12 +354,12 @@ div.csl-indent {
 <div id="r-14" class="section level4 unnumbered hasAnchor">
 <h4>R<a href="import-export-and-save-data.html#r-14" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong>jsonlite</strong> is one of several R packages available for importing JSON files into R. The <code>read_json()</code> function takes a JSON file and returns a list or data frame depending on the structure of the data file and its arguments. We set <code>simplifyVector = TRUE</code> so the data is simplified into a matrix.</p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="import-export-and-save-data.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jsonlite)</span>
-<span id="cb220-2"><a href="import-export-and-save-data.html#cb220-2" aria-hidden="true" tabindex="-1"></a>d_json <span class="ot">&lt;-</span> <span class="fu">read_json</span>(<span class="st">&#39;data/ny_math_test.json&#39;</span>, <span class="at">simplifyVector =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="import-export-and-save-data.html#cb218-1" tabindex="-1"></a><span class="fu">library</span>(jsonlite)</span>
+<span id="cb218-2"><a href="import-export-and-save-data.html#cb218-2" tabindex="-1"></a>d_json <span class="ot">&lt;-</span> <span class="fu">read_json</span>(<span class="st">&#39;data/ny_math_test.json&#39;</span>, <span class="at">simplifyVector =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>The <code>d_json</code> object is a list with two elements: “meta” and “data”. The “data” element is a matrix that contains the data of interest. The “meta” element contains the column names for the data (among much else). Notice we had to “drill down” in the list to find the column names. We assign column names to the matrix using the <code>colnames()</code> function and then convert the matrix to a data frame using the <code>as.data.frame()</code> function.</p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="import-export-and-save-data.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(d_json<span class="sc">$</span>data) <span class="ot">&lt;-</span> d_json<span class="sc">$</span>meta<span class="sc">$</span>view<span class="sc">$</span>columns<span class="sc">$</span>fieldName</span>
-<span id="cb221-2"><a href="import-export-and-save-data.html#cb221-2" aria-hidden="true" tabindex="-1"></a>d_json <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(d_json<span class="sc">$</span>data)</span>
-<span id="cb221-3"><a href="import-export-and-save-data.html#cb221-3" aria-hidden="true" tabindex="-1"></a>d_json[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="fu">c</span>(<span class="st">&quot;grade&quot;</span>, <span class="st">&quot;year&quot;</span>, <span class="st">&quot;mean_scale_score&quot;</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="import-export-and-save-data.html#cb219-1" tabindex="-1"></a><span class="fu">colnames</span>(d_json<span class="sc">$</span>data) <span class="ot">&lt;-</span> d_json<span class="sc">$</span>meta<span class="sc">$</span>view<span class="sc">$</span>columns<span class="sc">$</span>fieldName</span>
+<span id="cb219-2"><a href="import-export-and-save-data.html#cb219-2" tabindex="-1"></a>d_json <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(d_json<span class="sc">$</span>data)</span>
+<span id="cb219-3"><a href="import-export-and-save-data.html#cb219-3" tabindex="-1"></a>d_json[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="fu">c</span>(<span class="st">&quot;grade&quot;</span>, <span class="st">&quot;year&quot;</span>, <span class="st">&quot;mean_scale_score&quot;</span>)]</span></code></pre></div>
 <pre><code>##   grade year mean_scale_score
 ## 1     3 2006              700
 ## 2     4 2006              699
@@ -368,10 +372,10 @@ div.csl-indent {
 <div id="python-15" class="section level4 unnumbered hasAnchor">
 <h4>Python<a href="import-export-and-save-data.html#python-15" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The <strong>pandas</strong> library provides the <code>read_xml()</code> function for importing XML files. The records in the <code>ny_math_test.xml</code> file are identified as nodes named “row”. The 168 rows are nested in one outer node also called “row”. We use the <code>xpath</code> argument <code>row//row</code> to specify that we want to elect all row elements that are descendant of the single row element.</p>
-<div class="sourceCode" id="cb223"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb223-1"><a href="import-export-and-save-data.html#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb223-2"><a href="import-export-and-save-data.html#cb223-2" aria-hidden="true" tabindex="-1"></a>d_xml <span class="op">=</span> pd.read_xml(<span class="st">&#39;data/ny_math_test.xml&#39;</span>, xpath <span class="op">=</span> <span class="st">&quot;row//row&quot;</span>)</span>
-<span id="cb223-3"><a href="import-export-and-save-data.html#cb223-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb223-4"><a href="import-export-and-save-data.html#cb223-4" aria-hidden="true" tabindex="-1"></a>d_xml.loc[<span class="dv">0</span>:<span class="dv">2</span>, [<span class="st">&quot;grade&quot;</span>, <span class="st">&quot;year&quot;</span>, <span class="st">&quot;mean_scale_score&quot;</span>]]  </span></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb221-1"><a href="import-export-and-save-data.html#cb221-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb221-2"><a href="import-export-and-save-data.html#cb221-2" tabindex="-1"></a>d_xml <span class="op">=</span> pd.read_xml(<span class="st">&#39;data/ny_math_test.xml&#39;</span>, xpath <span class="op">=</span> <span class="st">&quot;row//row&quot;</span>)</span>
+<span id="cb221-3"><a href="import-export-and-save-data.html#cb221-3" tabindex="-1"></a></span>
+<span id="cb221-4"><a href="import-export-and-save-data.html#cb221-4" tabindex="-1"></a>d_xml.loc[<span class="dv">0</span>:<span class="dv">2</span>, [<span class="st">&quot;grade&quot;</span>, <span class="st">&quot;year&quot;</span>, <span class="st">&quot;mean_scale_score&quot;</span>]]  </span></code></pre></div>
 <pre><code>##   grade  year  mean_scale_score
 ## 0     3  2006               700
 ## 1     4  2006               699
@@ -380,12 +384,12 @@ div.csl-indent {
 <div id="r-15" class="section level4 unnumbered hasAnchor">
 <h4>R<a href="import-export-and-save-data.html#r-15" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong>xml2</strong> is a relatively small but powerful package for importing and working with XML files. The <code>read_xml()</code> function imports an XML file and returns a list of <em>pointers</em> to XML <em>nodes</em>. There are a number of ways to proceed once you import an XML file, such as using the <code>xml_find_all()</code> function to find nodes that match an <a href="https://www.w3schools.com/xml/xpath_intro.asp">xpath</a> expression. Below we take a simple approach and convert the XML nodes into a list using the <code>as_list()</code> function that is part of the <strong>xml2</strong> package. Once we have the XML nodes in a list, we can use the <code>bind_rows()</code> function in the <strong>dplyr</strong> package to create a data frame. Notice we have to drill down into the list to select the element that contains the data. After this we need to do one more thing: <em>unlist</em> each the columns into vectors. We do this by applying the <code>unlist</code> function to each column of <code>d</code>. We save the result by assigning to <code>d[]</code>, which overwrites each element (or column) of <code>d</code> with the unlisted result.</p>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="import-export-and-save-data.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(xml2)</span>
-<span id="cb225-2"><a href="import-export-and-save-data.html#cb225-2" aria-hidden="true" tabindex="-1"></a>d_xml <span class="ot">&lt;-</span> <span class="fu">read_xml</span>(<span class="st">&#39;data/ny_math_test.xml&#39;</span>)</span>
-<span id="cb225-3"><a href="import-export-and-save-data.html#cb225-3" aria-hidden="true" tabindex="-1"></a>d_list <span class="ot">&lt;-</span> <span class="fu">as_list</span>(d_xml)</span>
-<span id="cb225-4"><a href="import-export-and-save-data.html#cb225-4" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">bind_rows</span>(d_list<span class="sc">$</span>response<span class="sc">$</span>row)</span>
-<span id="cb225-5"><a href="import-export-and-save-data.html#cb225-5" aria-hidden="true" tabindex="-1"></a>d[] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(d, unlist)</span>
-<span id="cb225-6"><a href="import-export-and-save-data.html#cb225-6" aria-hidden="true" tabindex="-1"></a>d[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="fu">c</span>(<span class="st">&quot;grade&quot;</span>, <span class="st">&quot;year&quot;</span>, <span class="st">&quot;mean_scale_score&quot;</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="import-export-and-save-data.html#cb223-1" tabindex="-1"></a><span class="fu">library</span>(xml2)</span>
+<span id="cb223-2"><a href="import-export-and-save-data.html#cb223-2" tabindex="-1"></a>d_xml <span class="ot">&lt;-</span> <span class="fu">read_xml</span>(<span class="st">&#39;data/ny_math_test.xml&#39;</span>)</span>
+<span id="cb223-3"><a href="import-export-and-save-data.html#cb223-3" tabindex="-1"></a>d_list <span class="ot">&lt;-</span> <span class="fu">as_list</span>(d_xml)</span>
+<span id="cb223-4"><a href="import-export-and-save-data.html#cb223-4" tabindex="-1"></a>d <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">bind_rows</span>(d_list<span class="sc">$</span>response<span class="sc">$</span>row)</span>
+<span id="cb223-5"><a href="import-export-and-save-data.html#cb223-5" tabindex="-1"></a>d[] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(d, unlist)</span>
+<span id="cb223-6"><a href="import-export-and-save-data.html#cb223-6" tabindex="-1"></a>d[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="fu">c</span>(<span class="st">&quot;grade&quot;</span>, <span class="st">&quot;year&quot;</span>, <span class="st">&quot;mean_scale_score&quot;</span>)]</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 3
 ##   grade year  mean_scale_score
 ##   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;           
@@ -401,31 +405,31 @@ div.csl-indent {
 <div id="python-16" class="section level4 unnumbered hasAnchor">
 <h4>Python<a href="import-export-and-save-data.html#python-16" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The <strong>pandas</strong> function <code>to_csv()</code> saves a <strong>pandas</strong> DataFrame as a csv file.</p>
-<div class="sourceCode" id="cb227"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb227-1"><a href="import-export-and-save-data.html#cb227-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pass a file name to the function</span></span>
-<span id="cb227-2"><a href="import-export-and-save-data.html#cb227-2" aria-hidden="true" tabindex="-1"></a>d.to_csv(<span class="st">&quot;data.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb225-1"><a href="import-export-and-save-data.html#cb225-1" tabindex="-1"></a><span class="co"># Pass a file name to the function</span></span>
+<span id="cb225-2"><a href="import-export-and-save-data.html#cb225-2" tabindex="-1"></a>d.to_csv(<span class="st">&quot;data.csv&quot;</span>)</span></code></pre></div>
 <p>The Python package <strong>pickle</strong> allows you to write (save) any object from the Python environment and read (load) any object you have written into the Python environment.</p>
 <p>The code below writes to a pickle file. The first line opens the file object being written to. In the <code>open</code> function, ‘file_name’ specifies the file path of the file object. Then, ‘wb’ stands for ‘write binary’, which means the file is being written in binary form (1s and 0s). After the <em>as</em> keyword, ‘file_’, is the user selected name of the file object.</p>
 <p>The second line uses the <code>pickle.dump()</code> function. This function requires two arguments: the object being written and the name of the file object.</p>
-<div class="sourceCode" id="cb228"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb228-1"><a href="import-export-and-save-data.html#cb228-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pickle</span>
-<span id="cb228-2"><a href="import-export-and-save-data.html#cb228-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb228-3"><a href="import-export-and-save-data.html#cb228-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the file name</span></span>
-<span id="cb228-4"><a href="import-export-and-save-data.html#cb228-4" aria-hidden="true" tabindex="-1"></a>file_name <span class="op">=</span> <span class="st">&#39;data.pickle&#39;</span></span>
-<span id="cb228-5"><a href="import-export-and-save-data.html#cb228-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb228-6"><a href="import-export-and-save-data.html#cb228-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the variable to the file system</span></span>
-<span id="cb228-7"><a href="import-export-and-save-data.html#cb228-7" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(file_name, <span class="st">&#39;wb&#39;</span>) <span class="im">as</span> file_:</span>
-<span id="cb228-8"><a href="import-export-and-save-data.html#cb228-8" aria-hidden="true" tabindex="-1"></a>    pickle.dump(d, file_)</span></code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb226-1"><a href="import-export-and-save-data.html#cb226-1" tabindex="-1"></a><span class="im">import</span> pickle</span>
+<span id="cb226-2"><a href="import-export-and-save-data.html#cb226-2" tabindex="-1"></a></span>
+<span id="cb226-3"><a href="import-export-and-save-data.html#cb226-3" tabindex="-1"></a><span class="co"># Define the file name</span></span>
+<span id="cb226-4"><a href="import-export-and-save-data.html#cb226-4" tabindex="-1"></a>file_name <span class="op">=</span> <span class="st">&#39;data.pickle&#39;</span></span>
+<span id="cb226-5"><a href="import-export-and-save-data.html#cb226-5" tabindex="-1"></a></span>
+<span id="cb226-6"><a href="import-export-and-save-data.html#cb226-6" tabindex="-1"></a><span class="co"># Write the variable to the file system</span></span>
+<span id="cb226-7"><a href="import-export-and-save-data.html#cb226-7" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(file_name, <span class="st">&#39;wb&#39;</span>) <span class="im">as</span> file_:</span>
+<span id="cb226-8"><a href="import-export-and-save-data.html#cb226-8" tabindex="-1"></a>    pickle.dump(d, file_)</span></code></pre></div>
 <p>Conversely, the code below <em>reads from</em> a pickle file. The first line opens the file object being read from. In the <code>open</code> function, <code>data.pickle</code> specifies the file path of the file object. Then, <code>rb</code> stands for “read binary,” which means the file is being read in binary form (1s and 0s). The <code>as</code> argument (<code>my_file</code> in the example below), is the user-selected name of the file object.</p>
 <p>The second line uses the <code>pickle.load()</code> function. This function requires one argument: the name of the file object.</p>
-<div class="sourceCode" id="cb229"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb229-1"><a href="import-export-and-save-data.html#cb229-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the specified file from the file system and load into variable</span></span>
-<span id="cb229-2"><a href="import-export-and-save-data.html#cb229-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&#39;data.pickle&#39;</span>, <span class="st">&#39;rb&#39;</span>) <span class="im">as</span> my_file:</span>
-<span id="cb229-3"><a href="import-export-and-save-data.html#cb229-3" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> pickle.load(my_file)</span></code></pre></div>
+<div class="sourceCode" id="cb227"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb227-1"><a href="import-export-and-save-data.html#cb227-1" tabindex="-1"></a><span class="co"># Read the specified file from the file system and load into variable</span></span>
+<span id="cb227-2"><a href="import-export-and-save-data.html#cb227-2" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&#39;data.pickle&#39;</span>, <span class="st">&#39;rb&#39;</span>) <span class="im">as</span> my_file:</span>
+<span id="cb227-3"><a href="import-export-and-save-data.html#cb227-3" tabindex="-1"></a>    d <span class="op">=</span> pickle.load(my_file)</span></code></pre></div>
 </div>
 <div id="r-16" class="section level4 unnumbered hasAnchor">
 <h4>R<a href="import-export-and-save-data.html#r-16" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>To export a matrix or data frame to a CSV file, use the <code>write.csv()</code> function. To export to a file with a different field separator, such as a tab, use <code>write.table()</code>. The minimal arguments for <code>write.csv()</code> are the object and the file name. To export a data frame named <code>dat</code> as a file named <code>dat.csv</code> to your current working directory, you’d use:</p>
-<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="import-export-and-save-data.html#cb230-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(dat, <span class="at">file =</span> <span class="st">&quot;dat.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="import-export-and-save-data.html#cb228-1" tabindex="-1"></a><span class="fu">write.csv</span>(dat, <span class="at">file =</span> <span class="st">&quot;dat.csv&quot;</span>)</span></code></pre></div>
 <p>By default, a column for row names or numbers is included in the exported csv file. To turn that off, set <code>row.names = FALSE</code>, like so:</p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="import-export-and-save-data.html#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(dat, <span class="at">file =</span> <span class="st">&quot;dat.csv&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="import-export-and-save-data.html#cb229-1" tabindex="-1"></a><span class="fu">write.csv</span>(dat, <span class="at">file =</span> <span class="st">&quot;dat.csv&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>To append a matrix or data frame to an existing csv file, set <code>append = TRUE</code>.</p>
 <p>See also <code>sink()</code>, <code>cat()</code>, and <code>writeLines()</code> for sending text and output to a file.</p>
 <p>To save and load R objects for future use in R, there are two options:</p>
@@ -436,19 +440,19 @@ div.csl-indent {
 <div id="save-and-load-a-single-object" class="section level5 unnumbered hasAnchor">
 <h5>Save and load a single object<a href="import-export-and-save-data.html#save-and-load-a-single-object" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>The minimal arguments for <code>saveRDS()</code> are the object and a file name with an <code>.rds</code> extension. For example, to save a single data frame named <code>dat</code> to your current working directory as <code>dat.rds</code>:</p>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="import-export-and-save-data.html#cb232-1" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(dat, <span class="at">file =</span> <span class="st">&quot;dat.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="import-export-and-save-data.html#cb230-1" tabindex="-1"></a><span class="fu">saveRDS</span>(dat, <span class="at">file =</span> <span class="st">&quot;dat.rds&quot;</span>)</span></code></pre></div>
 <p>To load the rds file into R from your current working directory, use the <code>readRDS()</code> function. Notice we must assign the result of <code>readRDS()</code> to an object. The object name need not match the file name.</p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="import-export-and-save-data.html#cb233-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;dat.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="import-export-and-save-data.html#cb231-1" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;dat.rds&quot;</span>)</span></code></pre></div>
 <p>The advantage of saving and loading native R objects is the preservation of characteristics such as factors, attributes, classes, etc. Any object can be saved, including model objects, functions, vectors, lists, etc.</p>
 </div>
 <div id="save-multiple-objects" class="section level5 unnumbered hasAnchor">
 <h5>Save multiple objects<a href="import-export-and-save-data.html#save-multiple-objects" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>The minimal arguments for <code>save()</code> are the objects to save and a file name with a <code>.rda</code> extension. Objects can also be specified as a character vector to the <code>list</code> argument. For example, to save a data frame named <code>dat</code>, a model object named <code>m</code>, and a plot object called <code>p</code>, to your current working directory as <code>work.rda</code>:</p>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="import-export-and-save-data.html#cb234-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(dat, m, p, <span class="at">file =</span> <span class="st">&quot;work.rda&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="import-export-and-save-data.html#cb232-1" tabindex="-1"></a><span class="fu">save</span>(dat, m, p, <span class="at">file =</span> <span class="st">&quot;work.rda&quot;</span>)</span></code></pre></div>
 <p>Or with objects specified as a character vector:</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="import-export-and-save-data.html#cb235-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(<span class="at">list =</span> <span class="fu">c</span>(<span class="st">&quot;dat&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;p&quot;</span>), <span class="at">file =</span> <span class="st">&quot;work.rda&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="import-export-and-save-data.html#cb233-1" tabindex="-1"></a><span class="fu">save</span>(<span class="at">list =</span> <span class="fu">c</span>(<span class="st">&quot;dat&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;p&quot;</span>), <span class="at">file =</span> <span class="st">&quot;work.rda&quot;</span>)</span></code></pre></div>
 <p>To load the rda file from your current working directory, use the <code>load()</code> function. Notice we do not assign the result to an object name. The result of the <code>load()</code> function is to load the objects into your global environment.</p>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="import-export-and-save-data.html#cb236-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;work.rda&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="import-export-and-save-data.html#cb234-1" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;work.rda&quot;</span>)</span></code></pre></div>
 <p>Upon successful execution of the <code>load()</code> function, the <code>dat</code>, <code>m</code>, and <code>p</code> objects will be loaded into your global environment. Any objects already in your global environment with the same name will be overwritten without warning.</p>
 <p>You can also save <em>everything</em> in your global environment into a <code>rda</code> file using the <code>save.image()</code> function. It works just like the <code>save()</code> function except you do not specify which objects to save. You simply provide a file name. If you do not specify a file name, a default name of <code>.Rdata</code> is used. To load the file use the <code>load()</code> function. Again, all objects will be loaded into the gloabal environment, overwriting any existing objects with the same name.</p>
 
