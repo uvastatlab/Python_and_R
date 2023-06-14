@@ -281,37 +281,37 @@ div.csl-indent {
 <p><strong><em>t</em>-test</strong></p>
 <p>Our data are available as a <strong>pandas</strong> DataFrame. It’s small enough to view in its entirety:</p>
 <div class="sourceCode" id="cb664"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb664-1"><a href="selected-topics-in-statistical-inference.html#cb664-1" tabindex="-1"></a>ch8_d1</span></code></pre></div>
-<pre><code>##     score    group
-## 0    77.0  control
-## 1    81.0  control
-## 2    77.0  control
-## 3    86.0  control
-## 4    81.0  control
-## 5    77.0  control
-## 6    82.0  control
-## 7    83.0  control
-## 8    82.0  control
-## 9    79.0  control
-## 10   86.0  control
-## 11   82.0  control
-## 12   78.0  control
-## 13   71.0  control
-## 14   84.0  control
-## 15   85.0  treated
-## 16   85.0  treated
-## 17   89.0  treated
-## 18   88.0  treated
-## 19   87.0  treated
-## 20   89.0  treated
-## 21   88.0  treated
-## 22   85.0  treated
-## 23   77.0  treated
-## 24   87.0  treated
-## 25   85.0  treated
-## 26   84.0  treated
-## 27   79.0  treated
-## 28   83.0  treated
-## 29   87.0  treated</code></pre>
+<pre><code>    score    group
+0    77.0  control
+1    81.0  control
+2    77.0  control
+3    86.0  control
+4    81.0  control
+5    77.0  control
+6    82.0  control
+7    83.0  control
+8    82.0  control
+9    79.0  control
+10   86.0  control
+11   82.0  control
+12   78.0  control
+13   71.0  control
+14   84.0  control
+15   85.0  treated
+16   85.0  treated
+17   89.0  treated
+18   88.0  treated
+19   87.0  treated
+20   89.0  treated
+21   88.0  treated
+22   85.0  treated
+23   77.0  treated
+24   87.0  treated
+25   85.0  treated
+26   84.0  treated
+27   79.0  treated
+28   83.0  treated
+29   87.0  treated</code></pre>
 <p>A stripchart is one of many ways to visualize numeric data between two groups. Here, we use the function <code>stripplot()</code> from <strong>seaborn</strong>. It appears that the treated group have higher scores on average.</p>
 <div class="sourceCode" id="cb666"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb666-1"><a href="selected-topics-in-statistical-inference.html#cb666-1" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb666-2"><a href="selected-topics-in-statistical-inference.html#cb666-2" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -329,42 +329,42 @@ div.csl-indent {
 <span id="cb669-2"><a href="selected-topics-in-statistical-inference.html#cb669-2" tabindex="-1"></a>treated <span class="op">=</span> sms.DescrStatsW(d_treated)</span></code></pre></div>
 <p>Descriptive statistics objects have attributes such as <code>mean</code> and <code>std</code> (standard deviation). Below, we print the mean and standard deviation of each group. We also round the standard deviation to three decimal places and place a line break before printing the standard deviation.</p>
 <div class="sourceCode" id="cb670"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb670-1"><a href="selected-topics-in-statistical-inference.html#cb670-1" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;control mean:&quot;</span>, control.mean, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">control std:&quot;</span>, <span class="bu">round</span>(control.std, <span class="dv">3</span>))</span></code></pre></div>
-<pre><code>## control mean: 80.4 
-## control std: 3.844</code></pre>
+<pre><code>control mean: 80.4 
+control std: 3.844</code></pre>
 <div class="sourceCode" id="cb672"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb672-1"><a href="selected-topics-in-statistical-inference.html#cb672-1" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;treated mean:&quot;</span>, treated.mean, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">treated std:&quot;</span>, <span class="bu">round</span>(treated.std, <span class="dv">3</span>))</span></code></pre></div>
-<pre><code>## treated mean: 85.2 
-## treated std: 3.331</code></pre>
+<pre><code>treated mean: 85.2 
+treated std: 3.331</code></pre>
 <p>Next, we create a CompareMeans means object using the <code>CompareMeans()</code> function. The required inputs are Descriptive statistics objects. We save the result as <code>ttest</code>.</p>
 <div class="sourceCode" id="cb674"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb674-1"><a href="selected-topics-in-statistical-inference.html#cb674-1" tabindex="-1"></a>ttest <span class="op">=</span> sms.CompareMeans(control, treated)</span></code></pre></div>
 <p>We can now use various methods with the <code>ttest</code> object: To see the result of a two sample <em>t</em>-test assuming unequal variances, along with a confidence interval for the difference, use the <code>summary</code> method with <code>usevar = 'unequal'</code>.</p>
 <div class="sourceCode" id="cb675"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb675-1"><a href="selected-topics-in-statistical-inference.html#cb675-1" tabindex="-1"></a><span class="bu">print</span>(ttest.summary(usevar <span class="op">=</span> <span class="st">&#39;unequal&#39;</span>))</span></code></pre></div>
-<pre><code>##                           Test for equality of means                          
-## ==============================================================================
-##                  coef    std err          t      P&gt;|t|      [0.025      0.975]
-## ------------------------------------------------------------------------------
-## subset #1     -4.8000      1.359     -3.531      0.001      -7.587      -2.013
-## ==============================================================================</code></pre>
+<pre><code>                          Test for equality of means                          
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+subset #1     -4.8000      1.359     -3.531      0.001      -7.587      -2.013
+==============================================================================</code></pre>
 <p>The p-value of 0.001 is small, suggesting that the difference we observed would be unlikely if there was no real mean difference in the population. The confidence interval on the difference in means tells us that the data are consistent with a difference between -7 and -2. It appears that we can expect the control group to score at least 2 points lower on average than the treated group.</p>
 <p><strong>ANOVA</strong></p>
 <p>Our data are available as a <strong>pandas</strong> DataFrame. We can view the data in their entirety:</p>
 <div class="sourceCode" id="cb677"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb677-1"><a href="selected-topics-in-statistical-inference.html#cb677-1" tabindex="-1"></a>ch8_d2</span></code></pre></div>
-<pre><code>##     mass location
-## 0    9.6        1
-## 1    9.4        1
-## 2    8.9        1
-## 3    8.8        1
-## 4    8.5        1
-## 5    8.2        1
-## 6    6.8        2
-## 7    6.6        2
-## 8    6.0        2
-## 9    5.7        2
-## 10   5.3        2
-## 11   6.7        3
-## 12   6.4        3
-## 13   6.2        3
-## 14   5.7        3
-## 15   5.6        3</code></pre>
+<pre><code>    mass location
+0    9.6        1
+1    9.4        1
+2    8.9        1
+3    8.8        1
+4    8.5        1
+5    8.2        1
+6    6.8        2
+7    6.6        2
+8    6.0        2
+9    5.7        2
+10   5.3        2
+11   6.7        3
+12   6.4        3
+13   6.2        3
+14   5.7        3
+15   5.6        3</code></pre>
 <p>As with the <em>t</em>-test above, we use a stripchart to visualize the three groups of data. It appears that the pine cones in location 1 have a higher mass.</p>
 <div class="sourceCode" id="cb679"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb679-1"><a href="selected-topics-in-statistical-inference.html#cb679-1" tabindex="-1"></a>plt.clf()</span>
 <span id="cb679-2"><a href="selected-topics-in-statistical-inference.html#cb679-2" tabindex="-1"></a>sns.stripplot(x <span class="op">=</span> <span class="st">&quot;mass&quot;</span>, y <span class="op">=</span> <span class="st">&quot;location&quot;</span>, data <span class="op">=</span> ch8_d2)</span>
@@ -372,40 +372,40 @@ div.csl-indent {
 <p><img src="_main_files/figure-html/unnamed-chunk-330-3.png" width="1440" /></p>
 <p>We can calculate group means using the <code>groupby</code> and <code>mean</code> methods.</p>
 <div class="sourceCode" id="cb680"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb680-1"><a href="selected-topics-in-statistical-inference.html#cb680-1" tabindex="-1"></a>ch8_d2[<span class="st">&#39;mass&#39;</span>].groupby(ch8_d2[<span class="st">&#39;location&#39;</span>]).mean()</span></code></pre></div>
-<pre><code>## location
-## 1    8.90
-## 2    6.08
-## 3    6.12
-## Name: mass, dtype: float64</code></pre>
+<pre><code>location
+1    8.90
+2    6.08
+3    6.12
+Name: mass, dtype: float64</code></pre>
 <p>One way to perform an ANOVA in Python is via the <code>anova_oneway()</code> function, also available in the <strong>statsmodels</strong> package.</p>
 <p>The <code>anova_oneway()</code> function can perform an ANOVA on a <strong>pandas</strong> Dataframe, where the first argument specifies the numeric data and the second argument specifies the grouping variable. We also set <code>use_var = 'equal'</code> to replicate the R output below.</p>
 <div class="sourceCode" id="cb682"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb682-1"><a href="selected-topics-in-statistical-inference.html#cb682-1" tabindex="-1"></a>sms.anova_oneway(ch8_d2.mass, ch8_d2.location, use_var <span class="op">=</span> <span class="st">&#39;equal&#39;</span>)</span></code></pre></div>
-<pre><code>## &lt;class &#39;statsmodels.stats.base.HolderTuple&#39;&gt;
-## statistic = 50.085429769392036
-## pvalue = 7.786760128813737e-07
-## df = (2.0, 13.0)
-## df_num = 2.0
-## df_denom = 13.0
-## nobs_t = 16.0
-## n_groups = 3
-## means = array([8.9 , 6.08, 6.12])
-## nobs = array([6., 5., 5.])
-## vars_ = array([0.28 , 0.387, 0.217])
-## use_var = &#39;equal&#39;
-## welch_correction = True
-## tuple = (50.085429769392036, 7.786760128813737e-07)</code></pre>
+<pre><code>&lt;class &#39;statsmodels.stats.base.HolderTuple&#39;&gt;
+statistic = 50.085429769392036
+pvalue = 7.786760128813737e-07
+df = (2.0, 13.0)
+df_num = 2.0
+df_denom = 13.0
+nobs_t = 16.0
+n_groups = 3
+means = array([8.9 , 6.08, 6.12])
+nobs = array([6., 5., 5.])
+vars_ = array([0.28 , 0.387, 0.217])
+use_var = &#39;equal&#39;
+welch_correction = True
+tuple = (50.085429769392036, 7.786760128813737e-07)</code></pre>
 <p>The small p-value of 0.0000007 provides strong evidence that if there were no true mean differences between groups in the population, we’d be unlikely to observe data with the differences we did.</p>
 <p>A common follow-up to an ANOVA is Tukey’s Honestly Significant Differences (HSD) procedure, which computes differences between all possible pairs and returns adjusted <em>p</em>-values and confidence intervals to account for the multiple comparisons. To carry this out in the <strong>statsmodels</strong> package, we need to first create a MultiComparison object using the <code>multicomp.MultiComparison()</code> function. We then use the <code>tukeyhsd()</code> method to compare the means with corrected <em>p</em>-values.</p>
 <div class="sourceCode" id="cb684"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb684-1"><a href="selected-topics-in-statistical-inference.html#cb684-1" tabindex="-1"></a>mc <span class="op">=</span> sms.multicomp.MultiComparison(ch8_d2.mass, ch8_d2.location)</span>
 <span id="cb684-2"><a href="selected-topics-in-statistical-inference.html#cb684-2" tabindex="-1"></a><span class="bu">print</span>(mc.tukeyhsd())</span></code></pre></div>
-<pre><code>## Multiple Comparison of Means - Tukey HSD, FWER=0.05 
-## ====================================================
-## group1 group2 meandiff p-adj   lower   upper  reject
-## ----------------------------------------------------
-##      1      2    -2.82    0.0 -3.6863 -1.9537   True
-##      1      3    -2.78    0.0 -3.6463 -1.9137   True
-##      2      3     0.04 0.9925 -0.8648  0.9448  False
-## ----------------------------------------------------</code></pre>
+<pre><code>Multiple Comparison of Means - Tukey HSD, FWER=0.05 
+====================================================
+group1 group2 meandiff p-adj   lower   upper  reject
+----------------------------------------------------
+     1      2    -2.82    0.0 -3.6863 -1.9537   True
+     1      3    -2.78    0.0 -3.6463 -1.9137   True
+     2      3     0.04 0.9925 -0.8648  0.9448  False
+----------------------------------------------------</code></pre>
 <p>The difference in means between locations 2 and 1 (2 - 1) and locations 3 and 1 (3 - 1) are about -2.8. The difference in means between locations 3 and 2 (3 - 2) is inconclusive. It seems to be small, but we’re not sure if the difference is positive or negative.</p>
 </div>
 <div id="r-47" class="section level4 unnumbered hasAnchor">
@@ -413,68 +413,68 @@ div.csl-indent {
 <p><strong>t-test</strong></p>
 <p>The <code>str()</code> function allows to take a quick look at the data frame <code>ch8_d1</code>. One column contains the scores; the other column indicates which group the subject was in (control vs. treated).</p>
 <div class="sourceCode" id="cb686"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb686-1"><a href="selected-topics-in-statistical-inference.html#cb686-1" tabindex="-1"></a><span class="fu">str</span>(ch8_d1)</span></code></pre></div>
-<pre><code>## &#39;data.frame&#39;:    30 obs. of  2 variables:
-##  $ score: num  77 81 77 86 81 77 82 83 82 79 ...
-##  $ group: chr  &quot;control&quot; &quot;control&quot; &quot;control&quot; &quot;control&quot; ...</code></pre>
+<pre><code>&#39;data.frame&#39;:   30 obs. of  2 variables:
+ $ score: num  77 81 77 86 81 77 82 83 82 79 ...
+ $ group: chr  &quot;control&quot; &quot;control&quot; &quot;control&quot; &quot;control&quot; ...</code></pre>
 <p>A stripchart is one of many ways to visualize numeric data between two groups. Here, we use the base R function <code>stripchart()</code>. The formula <code>score ~ group</code> plots scores by group. The <code>las = 1</code> argument just rotates the y-axis labels. The <code>method = "jitter"</code> argument adds some random vertical scatter to the points so that there’s less overlap between them. It appears the treated group has a higher average score than the untreated group.</p>
 <div class="sourceCode" id="cb688"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb688-1"><a href="selected-topics-in-statistical-inference.html#cb688-1" tabindex="-1"></a><span class="fu">stripchart</span>(score <span class="sc">~</span> group, <span class="at">data =</span> ch8_d1, <span class="at">las =</span> <span class="dv">1</span>, <span class="at">method =</span> <span class="st">&quot;jitter&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-335-1.png" width="672" /></p>
 <p>To calculate the means between the two groups, we can use the <code>aggregate()</code> function. Again, the formula <code>score ~ group</code> says to aggregate scores by group. We specify <code>mean</code> to calculate the mean between the two groups. Some other functions we could specify include <code>median</code>, <code>sd</code>, or <code>sum</code>. The sample mean of the treated group is about 5 points higher than the control group.</p>
 <div class="sourceCode" id="cb689"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb689-1"><a href="selected-topics-in-statistical-inference.html#cb689-1" tabindex="-1"></a><span class="fu">aggregate</span>(score <span class="sc">~</span> group, <span class="at">data =</span> ch8_d1, mean)</span></code></pre></div>
-<pre><code>##     group score
-## 1 control  80.4
-## 2 treated  85.2</code></pre>
+<pre><code>    group score
+1 control  80.4
+2 treated  85.2</code></pre>
 <p>Is this difference meaningful? What if we took more samples? Would each sample result in similar differences in the means? A <em>t</em>-test attempts to answer this.</p>
 <p>The <code>t.test()</code> function accommodates formula notation, allowing us to specify that we want to calculate mean score by group.</p>
 <div class="sourceCode" id="cb691"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb691-1"><a href="selected-topics-in-statistical-inference.html#cb691-1" tabindex="-1"></a><span class="fu">t.test</span>(score <span class="sc">~</span> group, <span class="at">data =</span> ch8_d1)</span></code></pre></div>
-<pre><code>## 
-##  Welch Two Sample t-test
-## 
-## data:  score by group
-## t = -3.5313, df = 27.445, p-value = 0.001482
-## alternative hypothesis: true difference in means between group control and group treated is not equal to 0
-## 95 percent confidence interval:
-##  -7.586883 -2.013117
-## sample estimates:
-## mean in group control mean in group treated 
-##                  80.4                  85.2</code></pre>
+<pre><code>
+    Welch Two Sample t-test
+
+data:  score by group
+t = -3.5313, df = 27.445, p-value = 0.001482
+alternative hypothesis: true difference in means between group control and group treated is not equal to 0
+95 percent confidence interval:
+ -7.586883 -2.013117
+sample estimates:
+mean in group control mean in group treated 
+                 80.4                  85.2 </code></pre>
 <p>The p-value of 0.0015 is small, suggesting that we’d be unlikely to observe a difference at least as large as the one we did if there was no actual difference between the groups in the population. The confidence interval on the difference in means tells us the data are consistent with a difference between -7 and -2. It appears we can expect the control group to score at least 2 points lower than the treated group.</p>
 <p><strong>ANOVA</strong></p>
 <p>The <code>str()</code> function lets us quickly get a glimpse of the data frame <code>ch8_d2</code>. One column contains the mass of the pine cones; the other column indicates which location the pine cone was found.</p>
 <div class="sourceCode" id="cb693"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb693-1"><a href="selected-topics-in-statistical-inference.html#cb693-1" tabindex="-1"></a><span class="fu">str</span>(ch8_d2)</span></code></pre></div>
-<pre><code>## &#39;data.frame&#39;:    16 obs. of  2 variables:
-##  $ mass    : num  9.6 9.4 8.9 8.8 8.5 8.2 6.8 6.6 6 5.7 ...
-##  $ location: chr  &quot;1&quot; &quot;1&quot; &quot;1&quot; &quot;1&quot; ...</code></pre>
+<pre><code>&#39;data.frame&#39;:   16 obs. of  2 variables:
+ $ mass    : num  9.6 9.4 8.9 8.8 8.5 8.2 6.8 6.6 6 5.7 ...
+ $ location: chr  &quot;1&quot; &quot;1&quot; &quot;1&quot; &quot;1&quot; ...</code></pre>
 <p>We can use a stripchart to visualize the three groups of data. It appears the pine cones in location 1 have a higher mass than the pinecones in locations 2 and 3.</p>
 <div class="sourceCode" id="cb695"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb695-1"><a href="selected-topics-in-statistical-inference.html#cb695-1" tabindex="-1"></a><span class="fu">stripchart</span>(mass <span class="sc">~</span> location, <span class="at">data =</span> ch8_d2, <span class="at">las =</span> <span class="dv">1</span>, <span class="at">method =</span> <span class="st">&quot;jitter&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-339-1.png" width="672" /></p>
 <p>To calculate the means between the three groups, we can use the <code>aggregate()</code> function. The formula <code>mass ~ location</code> says to aggregate mass by location. We specify <code>mean</code> so that we calculate the mean between the three groups.</p>
 <div class="sourceCode" id="cb696"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb696-1"><a href="selected-topics-in-statistical-inference.html#cb696-1" tabindex="-1"></a><span class="fu">aggregate</span>(mass <span class="sc">~</span> location, <span class="at">data =</span> ch8_d2, mean)</span></code></pre></div>
-<pre><code>##   location mass
-## 1        1 8.90
-## 2        2 6.08
-## 3        3 6.12</code></pre>
+<pre><code>  location mass
+1        1 8.90
+2        2 6.08
+3        3 6.12</code></pre>
 <p>To estimate how likely we’d to observe differences like these in the sample if there were no true differences in the population, we can perform an ANOVA. The <code>aov()</code> function carries out an ANOVA test. It accommodates formula notation. It’s usually preferable to save the ANOVA result into an object and call <code>summary()</code> on the object to view the results in full.</p>
 <div class="sourceCode" id="cb698"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb698-1"><a href="selected-topics-in-statistical-inference.html#cb698-1" tabindex="-1"></a>aov1 <span class="ot">&lt;-</span> <span class="fu">aov</span>(mass <span class="sc">~</span> location, <span class="at">data =</span> ch8_d2)</span>
 <span id="cb698-2"><a href="selected-topics-in-statistical-inference.html#cb698-2" tabindex="-1"></a><span class="fu">summary</span>(aov1)</span></code></pre></div>
-<pre><code>##             Df Sum Sq Mean Sq F value   Pr(&gt;F)    
-## location     2 29.404  14.702   50.09 7.79e-07 ***
-## Residuals   13  3.816   0.294                     
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre><code>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+location     2 29.404  14.702   50.09 7.79e-07 ***
+Residuals   13  3.816   0.294                     
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>The small p-value of 0.0000007 provides strong evidence that we’d be unlikely to observe differences as large as those we did if there were no true population-level differences.</p>
 <p>Unlike the <code>t.test()</code> output, the <code>aov()</code> summary does not provide confidence intervals on differences in means. That’s because there are many kinds of differences we might want to assess. A common and easy procedure is Tukey’s Honestly Significant Differences (HSD), which computes differences between all possible pairs and returns adjusted <em>p</em>-values and confidence intervals to account for the multiple comparisons. Base R provides the <code>TukeyHSD()</code> function for this task.</p>
 <div class="sourceCode" id="cb700"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb700-1"><a href="selected-topics-in-statistical-inference.html#cb700-1" tabindex="-1"></a><span class="fu">TukeyHSD</span>(aov1)</span></code></pre></div>
-<pre><code>##   Tukey multiple comparisons of means
-##     95% family-wise confidence level
-## 
-## Fit: aov(formula = mass ~ location, data = ch8_d2)
-## 
-## $location
-##      diff        lwr        upr     p adj
-## 2-1 -2.82 -3.6862516 -1.9537484 0.0000028
-## 3-1 -2.78 -3.6462516 -1.9137484 0.0000033
-## 3-2  0.04 -0.8647703  0.9447703 0.9925198</code></pre>
+<pre><code>  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = mass ~ location, data = ch8_d2)
+
+$location
+     diff        lwr        upr     p adj
+2-1 -2.82 -3.6862516 -1.9537484 0.0000028
+3-1 -2.78 -3.6462516 -1.9137484 0.0000033
+3-2  0.04 -0.8647703  0.9447703 0.9925198</code></pre>
 <p>The difference in means between locations 2 and 1 (2 - 1) and locations 3 and 1 (3 - 1) are about -2.8. The difference in means between locations 3 and 2 (3 - 2) is inconclusive. It seems to be small, but we’re not sure if the difference is positive or negative.</p>
 </div>
 </div>
@@ -489,17 +489,17 @@ div.csl-indent {
 <span id="cb702-2"><a href="selected-topics-in-statistical-inference.html#cb702-2" tabindex="-1"></a>ptest <span class="op">=</span> sms.test_proportions_2indep(<span class="dv">210</span>, <span class="dv">747</span>, <span class="dv">122</span>, <span class="dv">661</span>)</span></code></pre></div>
 <p>We can extract the p-value of the test and the difference in proportions using the <code>pvalue</code> and <code>diff</code> attributes, respectively.</p>
 <div class="sourceCode" id="cb703"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb703-1"><a href="selected-topics-in-statistical-inference.html#cb703-1" tabindex="-1"></a>ptest.pvalue</span></code></pre></div>
-<pre><code>## 1.632346798072468e-05</code></pre>
+<pre><code>1.632346798072468e-05</code></pre>
 <div class="sourceCode" id="cb705"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb705-1"><a href="selected-topics-in-statistical-inference.html#cb705-1" tabindex="-1"></a><span class="co"># Rounded to 4 decimal places</span></span>
 <span id="cb705-2"><a href="selected-topics-in-statistical-inference.html#cb705-2" tabindex="-1"></a><span class="bu">round</span>(ptest.diff, <span class="dv">4</span>)</span></code></pre></div>
-<pre><code>## 0.0966</code></pre>
+<pre><code>0.0966</code></pre>
 <p>To calculate a 95% confidence interval for the difference in proportions, we need to use the <code>confint_proportions_2indep()</code> function.</p>
 <div class="sourceCode" id="cb707"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb707-1"><a href="selected-topics-in-statistical-inference.html#cb707-1" tabindex="-1"></a>pdiff <span class="op">=</span> sms.confint_proportions_2indep(<span class="dv">210</span>, <span class="dv">747</span>, <span class="dv">122</span>, <span class="dv">661</span>)</span>
 <span id="cb707-2"><a href="selected-topics-in-statistical-inference.html#cb707-2" tabindex="-1"></a>pdiff</span></code></pre></div>
-<pre><code>## (0.05241555145475882, 0.13988087590630482)</code></pre>
+<pre><code>(0.05241555145475882, 0.13988087590630482)</code></pre>
 <p>The result is returned as a tuple with an extreme amount of precision. We recommend rounding these values to few decimal places. Below, we show one way of doing so using <em>f strings</em>. Notice that we extract each element of the <code>pdiff</code> tuple and round each to 5 decimal places.</p>
 <div class="sourceCode" id="cb709"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb709-1"><a href="selected-topics-in-statistical-inference.html#cb709-1" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;(</span><span class="sc">{</span><span class="bu">round</span>(pdiff[<span class="dv">0</span>], <span class="dv">5</span>)<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span><span class="bu">round</span>(pdiff[<span class="dv">1</span>], <span class="dv">5</span>)<span class="sc">}</span><span class="ss">)&quot;</span>)</span></code></pre></div>
-<pre><code>## (0.05242, 0.13988)</code></pre>
+<pre><code>(0.05242, 0.13988)</code></pre>
 <p>This results are slightly different from the R example below. That’s because the <code>test_proportions_2indep()</code> and <code>confint_proportions_2indep()</code> functions use different methods. See their respective help pages to learn more about the methods available and other function arguments.</p>
 <p><a href="https://www.statsmodels.org/dev/generated/statsmodels.stats.proportion.test_proportions_2indep.html#statsmodels.stats.proportion.test_proportions_2indep">test_proportions_2indep</a> help page<br />
 <a href="https://www.statsmodels.org/dev/generated/statsmodels.stats.proportion.confint_proportions_2indep.html#statsmodels.stats.proportion.confint_proportions_2indep">confint_proportions_2indep</a> help page</p>
@@ -508,17 +508,17 @@ div.csl-indent {
 <h4>R<a href="selected-topics-in-statistical-inference.html#r-48" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>A two-sample proportion test in R can be carried out with the <code>prop.test()</code> function. The first argument, <code>x</code>, is the number of “successes” or “occurrences” of some event for each group. The second argument, <code>n</code>, is the number of total trials for each group.</p>
 <div class="sourceCode" id="cb711"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb711-1"><a href="selected-topics-in-statistical-inference.html#cb711-1" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">210</span>, <span class="dv">122</span>), <span class="at">n =</span> <span class="fu">c</span>(<span class="dv">747</span>, <span class="dv">661</span>))</span></code></pre></div>
-<pre><code>## 
-##  2-sample test for equality of proportions with continuity correction
-## 
-## data:  c(210, 122) out of c(747, 661)
-## X-squared = 17.612, df = 1, p-value = 2.709e-05
-## alternative hypothesis: two.sided
-## 95 percent confidence interval:
-##  0.05138139 0.14172994
-## sample estimates:
-##    prop 1    prop 2 
-## 0.2811245 0.1845688</code></pre>
+<pre><code>
+    2-sample test for equality of proportions with continuity correction
+
+data:  c(210, 122) out of c(747, 661)
+X-squared = 17.612, df = 1, p-value = 2.709e-05
+alternative hypothesis: two.sided
+95 percent confidence interval:
+ 0.05138139 0.14172994
+sample estimates:
+   prop 1    prop 2 
+0.2811245 0.1845688 </code></pre>
 <p>The proportion of patients who died in the western US is about 0.28. The proportion who died in the eastern US is about 0.18. The small <em>p</em>-value suggests that there is a very small chance of seeing a difference at least as large as this if there is really no difference in the true proportions. The confidence interval on the difference of proportions ranges from 0.05 to 0.14, indicating that Rocky Mountain spotted fever seems to kill at least 5% more patients in the western US.</p>
 <p>Data of this sort are sometimes presented in a two-way table with successes and failures. We can present the preceding data in a table using the <code>matrix()</code> function:</p>
 <div class="sourceCode" id="cb713"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb713-1"><a href="selected-topics-in-statistical-inference.html#cb713-1" tabindex="-1"></a>fever <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">210</span>, <span class="dv">122</span>,</span>
@@ -526,29 +526,29 @@ div.csl-indent {
 <span id="cb713-3"><a href="selected-topics-in-statistical-inference.html#cb713-3" tabindex="-1"></a><span class="fu">rownames</span>(fever) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;western US&quot;</span>, <span class="st">&quot;eastern US&quot;</span>)</span>
 <span id="cb713-4"><a href="selected-topics-in-statistical-inference.html#cb713-4" tabindex="-1"></a><span class="fu">colnames</span>(fever) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;died&quot;</span>, <span class="st">&quot;lived&quot;</span>)</span>
 <span id="cb713-5"><a href="selected-topics-in-statistical-inference.html#cb713-5" tabindex="-1"></a>fever</span></code></pre></div>
-<pre><code>##            died lived
-## western US  210   537
-## eastern US  122   539</code></pre>
+<pre><code>           died lived
+western US  210   537
+eastern US  122   539</code></pre>
 <p>When the table is constructed in this fashion with “successes” in the first column and “failures” in the second column, we can feed the table directly to the <code>prop.test()</code> function. (“Success,” here, obviously means “experienced the event of interest.”)</p>
 <div class="sourceCode" id="cb715"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb715-1"><a href="selected-topics-in-statistical-inference.html#cb715-1" tabindex="-1"></a><span class="fu">prop.test</span>(fever)</span></code></pre></div>
-<pre><code>## 
-##  2-sample test for equality of proportions with continuity correction
-## 
-## data:  fever
-## X-squared = 17.612, df = 1, p-value = 2.709e-05
-## alternative hypothesis: two.sided
-## 95 percent confidence interval:
-##  0.05138139 0.14172994
-## sample estimates:
-##    prop 1    prop 2 
-## 0.2811245 0.1845688</code></pre>
+<pre><code>
+    2-sample test for equality of proportions with continuity correction
+
+data:  fever
+X-squared = 17.612, df = 1, p-value = 2.709e-05
+alternative hypothesis: two.sided
+95 percent confidence interval:
+ 0.05138139 0.14172994
+sample estimates:
+   prop 1    prop 2 
+0.2811245 0.1845688 </code></pre>
 <p>The chi-squared test statistic is reported as <code>X-squared = 17.612</code>. This is the same statistic reported if we ran a chi-squared test of association using the <code>chisq.test()</code> function.</p>
 <div class="sourceCode" id="cb717"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb717-1"><a href="selected-topics-in-statistical-inference.html#cb717-1" tabindex="-1"></a><span class="fu">chisq.test</span>(fever)</span></code></pre></div>
-<pre><code>## 
-##  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
-## 
-## data:  fever
-## X-squared = 17.612, df = 1, p-value = 2.709e-05</code></pre>
+<pre><code>
+    Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
+
+data:  fever
+X-squared = 17.612, df = 1, p-value = 2.709e-05</code></pre>
 <p>This tests the null hypothesis of no association between location in the US and fatality of the fever. The result is identical to the <code>prop.test()</code> output; however, there is no indication as to the nature of association.</p>
 </div>
 </div>
@@ -582,33 +582,33 @@ div.csl-indent {
 </ul>
 <p>The <code>summary()</code> function produces the kind of standard regression output one typically finds in a statistics textbook.</p>
 <div class="sourceCode" id="cb720"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb720-1"><a href="selected-topics-in-statistical-inference.html#cb720-1" tabindex="-1"></a><span class="bu">print</span>(results.summary())</span></code></pre></div>
-<pre><code>##                             OLS Regression Results                            
-## ==============================================================================
-## Dep. Variable:                    Gas   R-squared:                       0.928
-## Model:                            OLS   Adj. R-squared:                  0.924
-## Method:                 Least Squares   F-statistic:                     222.3
-## Date:                Wed, 14 Jun 2023   Prob (F-statistic):           1.23e-29
-## Time:                        13:33:47   Log-Likelihood:                -14.100
-## No. Observations:                  56   AIC:                             36.20
-## Df Residuals:                      52   BIC:                             44.30
-## Df Model:                           3                                         
-## Covariance Type:            nonrobust                                         
-## =======================================================================================
-##                           coef    std err          t      P&gt;|t|      [0.025      0.975]
-## ---------------------------------------------------------------------------------------
-## Intercept               6.8538      0.136     50.409      0.000       6.581       7.127
-## Insul[T.After]         -2.1300      0.180    -11.827      0.000      -2.491      -1.769
-## Temp                   -0.3932      0.022    -17.487      0.000      -0.438      -0.348
-## Insul[T.After]:Temp     0.1153      0.032      3.591      0.001       0.051       0.180
-## ==============================================================================
-## Omnibus:                        6.016   Durbin-Watson:                   1.854
-## Prob(Omnibus):                  0.049   Jarque-Bera (JB):                4.998
-## Skew:                          -0.626   Prob(JB):                       0.0822
-## Kurtosis:                       3.757   Cond. No.                         31.6
-## ==============================================================================
-## 
-## Notes:
-## [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</code></pre>
+<pre><code>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                    Gas   R-squared:                       0.928
+Model:                            OLS   Adj. R-squared:                  0.924
+Method:                 Least Squares   F-statistic:                     222.3
+Date:                Wed, 14 Jun 2023   Prob (F-statistic):           1.23e-29
+Time:                        13:45:19   Log-Likelihood:                -14.100
+No. Observations:                  56   AIC:                             36.20
+Df Residuals:                      52   BIC:                             44.30
+Df Model:                           3                                         
+Covariance Type:            nonrobust                                         
+=======================================================================================
+                          coef    std err          t      P&gt;|t|      [0.025      0.975]
+---------------------------------------------------------------------------------------
+Intercept               6.8538      0.136     50.409      0.000       6.581       7.127
+Insul[T.After]         -2.1300      0.180    -11.827      0.000      -2.491      -1.769
+Temp                   -0.3932      0.022    -17.487      0.000      -0.438      -0.348
+Insul[T.After]:Temp     0.1153      0.032      3.591      0.001       0.051       0.180
+==============================================================================
+Omnibus:                        6.016   Durbin-Watson:                   1.854
+Prob(Omnibus):                  0.049   Jarque-Bera (JB):                4.998
+Skew:                          -0.626   Prob(JB):                       0.0822
+Kurtosis:                       3.757   Cond. No.                         31.6
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</code></pre>
 <p>The following code produces a plot of fitted values against residuals for the model—a key plot for model diagnostics:</p>
 <div class="sourceCode" id="cb722"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb722-1"><a href="selected-topics-in-statistical-inference.html#cb722-1" tabindex="-1"></a>plt.figure()</span>
 <span id="cb722-2"><a href="selected-topics-in-statistical-inference.html#cb722-2" tabindex="-1"></a>smoothed_line <span class="op">=</span> sm.nonparametric.lowess(results.resid, results.fittedvalues)</span>
@@ -670,26 +670,26 @@ div.csl-indent {
 </ul>
 <p>The <code>summary()</code> function produces the standard regression summary table one typically finds described in a statistics textbook.</p>
 <div class="sourceCode" id="cb725"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb725-1"><a href="selected-topics-in-statistical-inference.html#cb725-1" tabindex="-1"></a><span class="fu">summary</span>(m)</span></code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = Gas ~ Insul + Temp + Insul:Temp, data = whiteside)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -0.97802 -0.18011  0.03757  0.20930  0.63803 
-## 
-## Coefficients:
-##                 Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)      6.85383    0.13596  50.409  &lt; 2e-16 ***
-## InsulAfter      -2.12998    0.18009 -11.827 2.32e-16 ***
-## Temp            -0.39324    0.02249 -17.487  &lt; 2e-16 ***
-## InsulAfter:Temp  0.11530    0.03211   3.591 0.000731 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 0.323 on 52 degrees of freedom
-## Multiple R-squared:  0.9277, Adjusted R-squared:  0.9235 
-## F-statistic: 222.3 on 3 and 52 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre><code>
+Call:
+lm(formula = Gas ~ Insul + Temp + Insul:Temp, data = whiteside)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.97802 -0.18011  0.03757  0.20930  0.63803 
+
+Coefficients:
+                Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)      6.85383    0.13596  50.409  &lt; 2e-16 ***
+InsulAfter      -2.12998    0.18009 -11.827 2.32e-16 ***
+Temp            -0.39324    0.02249 -17.487  &lt; 2e-16 ***
+InsulAfter:Temp  0.11530    0.03211   3.591 0.000731 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.323 on 52 degrees of freedom
+Multiple R-squared:  0.9277,    Adjusted R-squared:  0.9235 
+F-statistic: 222.3 on 3 and 52 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Calling <code>plot()</code> on a model object produces four different diagnostic plots by default. Using the <code>which</code> argument, we can specify which of six possible plots to generate. The first plot—of fitted values against residuals—helps the modeler assess the constant variance assumption (i.e., that our model is not dramatically over- or under-predicting values). We hope to see residuals evenly scattered around 0. (See <code>?plot.lm</code> for more details on the diagnostic plots.)</p>
 <div class="sourceCode" id="cb727"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb727-1"><a href="selected-topics-in-statistical-inference.html#cb727-1" tabindex="-1"></a><span class="fu">plot</span>(m, <span class="at">which =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-360-1.png" width="672" /></p>
@@ -728,32 +728,32 @@ div.csl-indent {
 <span id="cb729-5"><a href="selected-topics-in-statistical-inference.html#cb729-5" tabindex="-1"></a>mod1 <span class="op">=</span> smf.glm(formula <span class="op">=</span> formula, data <span class="op">=</span> birthwt,</span>
 <span id="cb729-6"><a href="selected-topics-in-statistical-inference.html#cb729-6" tabindex="-1"></a>               family <span class="op">=</span> sm.families.Binomial()).fit()</span>
 <span id="cb729-7"><a href="selected-topics-in-statistical-inference.html#cb729-7" tabindex="-1"></a><span class="bu">print</span>(mod1.summary())</span></code></pre></div>
-<pre><code>##                  Generalized Linear Model Regression Results                  
-## ==============================================================================
-## Dep. Variable:                    low   No. Observations:                  189
-## Model:                            GLM   Df Residuals:                      178
-## Model Family:                Binomial   Df Model:                           10
-## Link Function:                  Logit   Scale:                          1.0000
-## Method:                          IRLS   Log-Likelihood:                -97.738
-## Date:                Wed, 14 Jun 2023   Deviance:                       195.48
-## Time:                        13:33:53   Pearson chi2:                     179.
-## No. Iterations:                     5   Pseudo R-squ. (CS):             0.1873
-## Covariance Type:            nonrobust                                         
-## =================================================================================
-##                     coef    std err          z      P&gt;|z|      [0.025      0.975]
-## ---------------------------------------------------------------------------------
-## Intercept         0.8230      1.245      0.661      0.508      -1.617       3.263
-## race[T.black]     1.1924      0.536      2.225      0.026       0.142       2.243
-## race[T.other]     0.7407      0.462      1.604      0.109      -0.164       1.646
-## smoke[T.1]        0.7555      0.425      1.778      0.075      -0.078       1.589
-## ptd[T.1]          1.3438      0.481      2.796      0.005       0.402       2.286
-## ht[T.1]           1.9132      0.721      2.654      0.008       0.501       3.326
-## ui[T.1]           0.6802      0.464      1.465      0.143      -0.230       1.590
-## ftv[T.1]         -0.4364      0.479     -0.910      0.363      -1.376       0.503
-## ftv[T.2+]         0.1790      0.456      0.392      0.695      -0.715       1.074
-## age              -0.0372      0.039     -0.962      0.336      -0.113       0.039
-## lwt              -0.0157      0.007     -2.211      0.027      -0.030      -0.002
-## =================================================================================</code></pre>
+<pre><code>                 Generalized Linear Model Regression Results                  
+==============================================================================
+Dep. Variable:                    low   No. Observations:                  189
+Model:                            GLM   Df Residuals:                      178
+Model Family:                Binomial   Df Model:                           10
+Link Function:                  Logit   Scale:                          1.0000
+Method:                          IRLS   Log-Likelihood:                -97.738
+Date:                Wed, 14 Jun 2023   Deviance:                       195.48
+Time:                        13:45:24   Pearson chi2:                     179.
+No. Iterations:                     5   Pseudo R-squ. (CS):             0.1873
+Covariance Type:            nonrobust                                         
+=================================================================================
+                    coef    std err          z      P&gt;|z|      [0.025      0.975]
+---------------------------------------------------------------------------------
+Intercept         0.8230      1.245      0.661      0.508      -1.617       3.263
+race[T.black]     1.1924      0.536      2.225      0.026       0.142       2.243
+race[T.other]     0.7407      0.462      1.604      0.109      -0.164       1.646
+smoke[T.1]        0.7555      0.425      1.778      0.075      -0.078       1.589
+ptd[T.1]          1.3438      0.481      2.796      0.005       0.402       2.286
+ht[T.1]           1.9132      0.721      2.654      0.008       0.501       3.326
+ui[T.1]           0.6802      0.464      1.465      0.143      -0.230       1.590
+ftv[T.1]         -0.4364      0.479     -0.910      0.363      -1.376       0.503
+ftv[T.2+]         0.1790      0.456      0.392      0.695      -0.715       1.074
+age              -0.0372      0.039     -0.962      0.336      -0.113       0.039
+lwt              -0.0157      0.007     -2.211      0.027      -0.030      -0.002
+=================================================================================</code></pre>
 <p>Once we fit a model and are reasonably confident that it’s a good model, we may want to visualize it. For example, we can visualize how <code>ptd</code> is associated with the probability of low infant birth weight, holding other predictors constant.</p>
 <p>To begin, we create a <strong>pandas</strong> DataFrame containing our predictors: Notice the only variable with multiple values is <code>ptd</code>. All other variables are held constant. What values you choose to hold them at is up to you, but typical choices are means or medians for numeric predictors and most populous group for categorical predictors. (This needs to be a <strong>pandas</strong> DataFrame since we used the formula option when fitting the model.)</p>
 <div class="sourceCode" id="cb731"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb731-1"><a href="selected-topics-in-statistical-inference.html#cb731-1" tabindex="-1"></a><span class="co"># Create dictionary of values</span></span>
@@ -766,12 +766,12 @@ div.csl-indent {
 <div class="sourceCode" id="cb732"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb732-1"><a href="selected-topics-in-statistical-inference.html#cb732-1" tabindex="-1"></a>pred <span class="op">=</span> mod1.get_prediction(exog <span class="op">=</span> nd)</span>
 <span id="cb732-2"><a href="selected-topics-in-statistical-inference.html#cb732-2" tabindex="-1"></a>prob <span class="op">=</span> pred.predicted_mean</span>
 <span id="cb732-3"><a href="selected-topics-in-statistical-inference.html#cb732-3" tabindex="-1"></a><span class="bu">print</span>(prob)</span></code></pre></div>
-<pre><code>## [0.12360891 0.35093623]</code></pre>
+<pre><code>[0.12360891 0.35093623]</code></pre>
 <p>We can use the <code>conf_int()</code> method to extract the confidence intervals for the predicted probabilities.</p>
 <div class="sourceCode" id="cb734"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb734-1"><a href="selected-topics-in-statistical-inference.html#cb734-1" tabindex="-1"></a>ci <span class="op">=</span> pred.conf_int()</span>
 <span id="cb734-2"><a href="selected-topics-in-statistical-inference.html#cb734-2" tabindex="-1"></a><span class="bu">print</span>(ci)</span></code></pre></div>
-<pre><code>## [[0.05166761 0.26746827]
-##  [0.12724595 0.66722908]]</code></pre>
+<pre><code>[[0.05166761 0.26746827]
+ [0.12724595 0.66722908]]</code></pre>
 <p>Now, we use the <strong>Matplotlib</strong> <code>errorbar()</code> function to create the plot. The <code>errorbar()</code> function requires <em>margin of error</em>, not the lower and upper limits. So, we have to do some subtraction to get the lower and upper margins of error.</p>
 <div class="sourceCode" id="cb736"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb736-1"><a href="selected-topics-in-statistical-inference.html#cb736-1" tabindex="-1"></a>lower <span class="op">=</span> [prob[<span class="dv">0</span>] <span class="op">-</span> ci[<span class="dv">0</span>,<span class="dv">0</span>], prob[<span class="dv">1</span>] <span class="op">-</span> ci[<span class="dv">1</span>,<span class="dv">0</span>]]</span>
 <span id="cb736-2"><a href="selected-topics-in-statistical-inference.html#cb736-2" tabindex="-1"></a>upper <span class="op">=</span> [ci[<span class="dv">0</span>,<span class="dv">1</span>] <span class="op">-</span> prob[<span class="dv">0</span>], ci[<span class="dv">1</span>,<span class="dv">1</span>] <span class="op">-</span> prob[<span class="dv">1</span>]]</span></code></pre></div>
@@ -780,7 +780,7 @@ div.csl-indent {
 <span id="cb737-2"><a href="selected-topics-in-statistical-inference.html#cb737-2" tabindex="-1"></a>plt.clf()</span>
 <span id="cb737-3"><a href="selected-topics-in-statistical-inference.html#cb737-3" tabindex="-1"></a>plt.errorbar(x <span class="op">=</span> [<span class="st">&quot;0&quot;</span>,<span class="st">&quot;1&quot;</span>], y <span class="op">=</span> prob, </span>
 <span id="cb737-4"><a href="selected-topics-in-statistical-inference.html#cb737-4" tabindex="-1"></a>             yerr <span class="op">=</span> [lower, upper], fmt <span class="op">=</span> <span class="st">&#39;ok&#39;</span>)</span></code></pre></div>
-<pre><code>## &lt;ErrorbarContainer object of 3 artists&gt;</code></pre>
+<pre><code>&lt;ErrorbarContainer object of 3 artists&gt;</code></pre>
 <div class="sourceCode" id="cb739"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb739-1"><a href="selected-topics-in-statistical-inference.html#cb739-1" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;ptd&#39;</span>)</span>
 <span id="cb739-2"><a href="selected-topics-in-statistical-inference.html#cb739-2" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;low&#39;</span>)</span>
 <span id="cb739-3"><a href="selected-topics-in-statistical-inference.html#cb739-3" tabindex="-1"></a>plt.title(<span class="st">&#39;Predicted probabilities of low&#39;</span>)</span>
@@ -806,43 +806,43 @@ div.csl-indent {
 </ul>
 <p>The <code>summary()</code> function produces a regression summary table, like those typically found in statistics textbooks.</p>
 <div class="sourceCode" id="cb742"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb742-1"><a href="selected-topics-in-statistical-inference.html#cb742-1" tabindex="-1"></a><span class="fu">summary</span>(mod)</span></code></pre></div>
-<pre><code>## 
-## Call:
-## glm(formula = low ~ age + lwt + race + smoke + ptd + ht + ui + 
-##     ftv, family = binomial, data = birthwt)
-## 
-## Coefficients:
-##             Estimate Std. Error z value Pr(&gt;|z|)   
-## (Intercept)  0.82302    1.24471   0.661  0.50848   
-## age         -0.03723    0.03870  -0.962  0.33602   
-## lwt         -0.01565    0.00708  -2.211  0.02705 * 
-## raceblack    1.19241    0.53597   2.225  0.02609 * 
-## raceother    0.74069    0.46174   1.604  0.10869   
-## smoke1       0.75553    0.42502   1.778  0.07546 . 
-## ptd1         1.34376    0.48062   2.796  0.00518 **
-## ht1          1.91317    0.72074   2.654  0.00794 **
-## ui1          0.68019    0.46434   1.465  0.14296   
-## ftv1        -0.43638    0.47939  -0.910  0.36268   
-## ftv2+        0.17901    0.45638   0.392  0.69488   
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## (Dispersion parameter for binomial family taken to be 1)
-## 
-##     Null deviance: 234.67  on 188  degrees of freedom
-## Residual deviance: 195.48  on 178  degrees of freedom
-## AIC: 217.48
-## 
-## Number of Fisher Scoring iterations: 4</code></pre>
+<pre><code>
+Call:
+glm(formula = low ~ age + lwt + race + smoke + ptd + ht + ui + 
+    ftv, family = binomial, data = birthwt)
+
+Coefficients:
+            Estimate Std. Error z value Pr(&gt;|z|)   
+(Intercept)  0.82302    1.24471   0.661  0.50848   
+age         -0.03723    0.03870  -0.962  0.33602   
+lwt         -0.01565    0.00708  -2.211  0.02705 * 
+raceblack    1.19241    0.53597   2.225  0.02609 * 
+raceother    0.74069    0.46174   1.604  0.10869   
+smoke1       0.75553    0.42502   1.778  0.07546 . 
+ptd1         1.34376    0.48062   2.796  0.00518 **
+ht1          1.91317    0.72074   2.654  0.00794 **
+ui1          0.68019    0.46434   1.465  0.14296   
+ftv1        -0.43638    0.47939  -0.910  0.36268   
+ftv2+        0.17901    0.45638   0.392  0.69488   
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 234.67  on 188  degrees of freedom
+Residual deviance: 195.48  on 178  degrees of freedom
+AIC: 217.48
+
+Number of Fisher Scoring iterations: 4</code></pre>
 <p>Exponentiating coefficients in a logistic regression model produces odds ratios. To get the odds ratio for the previous premature labors variable, <code>ptd</code>, we do the following:</p>
 <div class="sourceCode" id="cb744"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb744-1"><a href="selected-topics-in-statistical-inference.html#cb744-1" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(mod)[<span class="st">&quot;ptd1&quot;</span>])</span></code></pre></div>
-<pre><code>##     ptd1 
-## 3.833443</code></pre>
+<pre><code>    ptd1 
+3.833443 </code></pre>
 <p>This indicates that the odds of having an infant with low birth weight are about 3.8 times higher for women who experienced previous premature labors versus women who did not, assuming all other variables are held constant.</p>
 <p>The 3.8 value is just an estimate. We can use the <code>confint()</code> function to get a 95% confidence interval on the odds ratio.</p>
 <div class="sourceCode" id="cb746"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb746-1"><a href="selected-topics-in-statistical-inference.html#cb746-1" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">confint</span>(mod)[<span class="st">&quot;ptd1&quot;</span>, ])</span></code></pre></div>
-<pre><code>##     2.5 %    97.5 % 
-##  1.516837 10.128974</code></pre>
+<pre><code>    2.5 %    97.5 % 
+ 1.516837 10.128974 </code></pre>
 <p>The confidence interval suggests that the data are compatible with an odds ratio of at least 1.5—and possibly as high as 10.1.</p>
 <p>Once we fit a model and are reasonably confident that it’s a good model, we may want to visualize it. The <strong>emmeans</strong>, <strong>effects</strong>, and <strong>ggeffects</strong> packages all help visualize the predictive effects of regressions; we demonstrate the <strong>ggeffects</strong> package below.</p>
 <p>Once <strong>ggeffects</strong> is installed and loaded, we can get a basic visualization of our model by using the <code>plot()</code> and <code>ggpredict()</code> functions. This is particularly useful for logistic regression models because it produces model predictions on a probability scale.</p>

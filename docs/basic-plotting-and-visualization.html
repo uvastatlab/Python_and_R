@@ -273,16 +273,16 @@ div.csl-indent {
 <p>For the R sections below, we show how to make each plot with base R and with <strong>ggplot2</strong>.</p>
 <p>Here’s a glimpse at the data set:</p>
 <div class="sourceCode" id="cb629"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb629-1"><a href="basic-plotting-and-visualization.html#cb629-1" tabindex="-1"></a><span class="fu">head</span>(penguins)</span></code></pre></div>
-<pre><code>## # A tibble: 6 × 8
-##   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
-##   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
-## 1 Adelie  Torgersen           39.1          18.7               181        3750
-## 2 Adelie  Torgersen           39.5          17.4               186        3800
-## 3 Adelie  Torgersen           40.3          18                 195        3250
-## 4 Adelie  Torgersen           NA            NA                  NA          NA
-## 5 Adelie  Torgersen           36.7          19.3               193        3450
-## 6 Adelie  Torgersen           39.3          20.6               190        3650
-## # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+<pre><code># A tibble: 6 × 8
+  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+1 Adelie  Torgersen           39.1          18.7               181        3750
+2 Adelie  Torgersen           39.5          17.4               186        3800
+3 Adelie  Torgersen           40.3          18                 195        3250
+4 Adelie  Torgersen           NA            NA                  NA          NA
+5 Adelie  Torgersen           36.7          19.3               193        3450
+6 Adelie  Torgersen           39.3          20.6               190        3650
+# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
 <div id="histograms" class="section level2 hasAnchor" number="7.1">
 <h2><span class="header-section-number">7.1</span> Histograms<a href="basic-plotting-and-visualization.html#histograms" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Visualizing the distribution of numeric data.</p>
@@ -342,7 +342,7 @@ div.csl-indent {
 <span id="cb634-11"><a href="basic-plotting-and-visualization.html#cb634-11" tabindex="-1"></a></span>
 <span id="cb634-12"><a href="basic-plotting-and-visualization.html#cb634-12" tabindex="-1"></a>plt.clf()</span>
 <span id="cb634-13"><a href="basic-plotting-and-visualization.html#cb634-13" tabindex="-1"></a>plt.bar(spec, counts)</span></code></pre></div>
-<pre><code>## &lt;BarContainer object of 3 artists&gt;</code></pre>
+<pre><code>&lt;BarContainer object of 3 artists&gt;</code></pre>
 <div class="sourceCode" id="cb636"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb636-1"><a href="basic-plotting-and-visualization.html#cb636-1" tabindex="-1"></a>plt.show()</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-296-1.png" width="672" /></p>
 <p>The data are stored in a <strong>pandas</strong> Dataframe, which has its own built-in plotting module, <code>plot</code>. As an alternative approach to the one above, we can use the <strong>pandas</strong> <code>bar()</code> function to recreate the barplot.</p>
@@ -357,10 +357,10 @@ div.csl-indent {
 <p>To form barplots, we’ll first create a summary data frame containing the statistics we’re looking to plot. Here, that’s simply the sample size of each species in the data set.</p>
 <div class="sourceCode" id="cb638"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb638-1"><a href="basic-plotting-and-visualization.html#cb638-1" tabindex="-1"></a>species_counts <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">xtabs</span>(<span class="sc">~</span> species, <span class="at">data =</span> penguins))</span>
 <span id="cb638-2"><a href="basic-plotting-and-visualization.html#cb638-2" tabindex="-1"></a>species_counts</span></code></pre></div>
-<pre><code>##     species Freq
-## 1    Adelie  152
-## 2 Chinstrap   68
-## 3    Gentoo  124</code></pre>
+<pre><code>    species Freq
+1    Adelie  152
+2 Chinstrap   68
+3    Gentoo  124</code></pre>
 <p>We can plot those values using the <code>barplot()</code> function in base R, specifying arguments along the way to customize the title/axis labeling, bar colors, and range of the y axis. To add values above the bars, we can follow <code>barplot()</code> with a <code>text()</code> call as below.</p>
 <div class="sourceCode" id="cb640"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb640-1"><a href="basic-plotting-and-visualization.html#cb640-1" tabindex="-1"></a>penguin_plot <span class="ot">&lt;-</span> <span class="fu">barplot</span>(Freq <span class="sc">~</span> species, <span class="at">data =</span> species_counts, </span>
 <span id="cb640-2"><a href="basic-plotting-and-visualization.html#cb640-2" tabindex="-1"></a>                        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&#39;lightblue&#39;</span>, <span class="st">&#39;cornflowerblue&#39;</span>, <span class="st">&#39;darkslateblue&#39;</span>),</span>
@@ -458,7 +458,7 @@ div.csl-indent {
 <span id="cb647-8"><a href="basic-plotting-and-visualization.html#cb647-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&#39;Stripchart of Bill Depth by Island&#39;</span>, </span>
 <span id="cb647-9"><a href="basic-plotting-and-visualization.html#cb647-9" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&#39;Island&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Bill Depth (mm)&#39;</span>) <span class="sc">+</span></span>
 <span id="cb647-10"><a href="basic-plotting-and-visualization.html#cb647-10" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;none&#39;</span>)</span></code></pre></div>
-<pre><code>## Warning: Removed 2 rows containing missing values (`geom_point()`).</code></pre>
+<pre><code>Warning: Removed 2 rows containing missing values (`geom_point()`).</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-306-1.png" width="672" /></p>
 </div>
 </div>
@@ -554,7 +554,7 @@ div.csl-indent {
 <span id="cb658-8"><a href="basic-plotting-and-visualization.html#cb658-8" tabindex="-1"></a>  <span class="co"># specify faceting variables; e.g., ~species, c(&#39;species&#39;), </span></span>
 <span id="cb658-9"><a href="basic-plotting-and-visualization.html#cb658-9" tabindex="-1"></a>  <span class="co"># or vars(species)</span></span>
 <span id="cb658-10"><a href="basic-plotting-and-visualization.html#cb658-10" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> species)</span></code></pre></div>
-<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<pre><code>`geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-316-1.png" width="672" /></p>
 <p>The number of rows and columns can be manually specified with <code>nrow</code> and <code>ncol</code> arguments in <code>facet_wrap()</code>. By default, the x and y axes of all facet plots will be on the same scale. The axis ranges can be set to vary freely by adding <code>scales = 'free'</code> as an argument (or, alternatively, <code>scales = 'free_x'</code> or <code>scales = 'free_y'</code> to free just the x or y axis).</p>
 <p>Both <code>facet_wrap()</code> and <code>facet_grid()</code> can be used to make facet plots. When faceting based on multiple variables (e.g., species and sex), <code>facet_wrap()</code> will drop group combinations for which there are no data points, whereas <code>facet_grid()</code> will generate a plot for all possible group combinations:</p>
@@ -562,7 +562,7 @@ div.csl-indent {
 <span id="cb660-2"><a href="basic-plotting-and-visualization.html#cb660-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&#39;navy&#39;</span>) <span class="sc">+</span></span>
 <span id="cb660-3"><a href="basic-plotting-and-visualization.html#cb660-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">se =</span> F, <span class="at">color =</span> <span class="st">&#39;salmon&#39;</span>) <span class="sc">+</span></span>
 <span id="cb660-4"><a href="basic-plotting-and-visualization.html#cb660-4" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(species, sex))</span></code></pre></div>
-<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<pre><code>`geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-317-1.png" width="672" /></p>
 <div class="sourceCode" id="cb662"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb662-1"><a href="basic-plotting-and-visualization.html#cb662-1" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm)) <span class="sc">+</span></span>
 <span id="cb662-2"><a href="basic-plotting-and-visualization.html#cb662-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&#39;navy&#39;</span>) <span class="sc">+</span></span>
@@ -571,7 +571,7 @@ div.csl-indent {
 <span id="cb662-5"><a href="basic-plotting-and-visualization.html#cb662-5" tabindex="-1"></a>  <span class="co"># Note that facet_grid() has separate `rows` and `cols` arguments </span></span>
 <span id="cb662-6"><a href="basic-plotting-and-visualization.html#cb662-6" tabindex="-1"></a>  <span class="co"># for specifying faceting variables</span></span>
 <span id="cb662-7"><a href="basic-plotting-and-visualization.html#cb662-7" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(sex), <span class="at">cols =</span> <span class="fu">vars</span>(species)) </span></code></pre></div>
-<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<pre><code>`geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-317-2.png" width="672" /></p>
 
 </div>

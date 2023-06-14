@@ -285,13 +285,13 @@ div.csl-indent {
 <span id="cb519-8"><a href="combine-reshape-and-merge.html#cb519-8" tabindex="-1"></a>combined_df <span class="op">=</span> pd.concat(frames)</span>
 <span id="cb519-9"><a href="combine-reshape-and-merge.html#cb519-9" tabindex="-1"></a></span>
 <span id="cb519-10"><a href="combine-reshape-and-merge.html#cb519-10" tabindex="-1"></a>combined_df</span></code></pre></div>
-<pre><code>##    x  y
-## 0  4  a
-## 1  5  b
-## 2  6  c
-## 0  3  d
-## 1  2  e
-## 2  1  f</code></pre>
+<pre><code>   x  y
+0  4  a
+1  5  b
+2  6  c
+0  3  d
+1  2  e
+2  1  f</code></pre>
 <p>The following code is an example of when column names do not match, resulting in <code>NaN</code>s in the DataFrame.</p>
 <div class="sourceCode" id="cb521"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb521-1"><a href="combine-reshape-and-merge.html#cb521-1" tabindex="-1"></a><span class="co"># DataFrame with different column names</span></span>
 <span id="cb521-2"><a href="combine-reshape-and-merge.html#cb521-2" tabindex="-1"></a>d1 <span class="op">=</span> pd.DataFrame({<span class="st">&#39;x&#39;</span>:[<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>], <span class="st">&#39;z&#39;</span>:[<span class="st">&#39;a&#39;</span>,<span class="st">&#39;b&#39;</span>,<span class="st">&#39;c&#39;</span>]})</span>
@@ -302,13 +302,13 @@ div.csl-indent {
 <span id="cb521-7"><a href="combine-reshape-and-merge.html#cb521-7" tabindex="-1"></a>combined_df <span class="op">=</span> pd.concat(frames)</span>
 <span id="cb521-8"><a href="combine-reshape-and-merge.html#cb521-8" tabindex="-1"></a></span>
 <span id="cb521-9"><a href="combine-reshape-and-merge.html#cb521-9" tabindex="-1"></a>combined_df</span></code></pre></div>
-<pre><code>##    x    z    y
-## 0  4    a  NaN
-## 1  5    b  NaN
-## 2  6    c  NaN
-## 0  3  NaN    d
-## 1  2  NaN    e
-## 2  1  NaN    f</code></pre>
+<pre><code>   x    z    y
+0  4    a  NaN
+1  5    b  NaN
+2  6    c  NaN
+0  3  NaN    d
+1  2  NaN    e
+2  1  NaN    f</code></pre>
 </div>
 <div id="r-30" class="section level4 unnumbered hasAnchor">
 <h4>R<a href="combine-reshape-and-merge.html#r-30" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -316,13 +316,13 @@ div.csl-indent {
 <div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="combine-reshape-and-merge.html#cb523-1" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">y =</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span>
 <span id="cb523-2"><a href="combine-reshape-and-merge.html#cb523-2" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">y =</span> letters[<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>])</span>
 <span id="cb523-3"><a href="combine-reshape-and-merge.html#cb523-3" tabindex="-1"></a><span class="fu">rbind</span>(d1, d2)</span></code></pre></div>
-<pre><code>##   x y
-## 1 4 a
-## 2 5 b
-## 3 6 c
-## 4 3 d
-## 5 2 e
-## 6 1 f</code></pre>
+<pre><code>  x y
+1 4 a
+2 5 b
+3 6 c
+4 3 d
+5 2 e
+6 1 f</code></pre>
 <p>See also the <code>bind_rows()</code> function in the <strong>dplyr</strong> package.</p>
 </div>
 </div>
@@ -340,10 +340,10 @@ div.csl-indent {
 <span id="cb525-6"><a href="combine-reshape-and-merge.html#cb525-6" tabindex="-1"></a>combined_df <span class="op">=</span> pd.concat(frames, axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb525-7"><a href="combine-reshape-and-merge.html#cb525-7" tabindex="-1"></a></span>
 <span id="cb525-8"><a href="combine-reshape-and-merge.html#cb525-8" tabindex="-1"></a>combined_df</span></code></pre></div>
-<pre><code>##    x  y  z  a
-## 0  4  a  3  d
-## 1  5  b  2  e
-## 2  6  c  1  f</code></pre>
+<pre><code>   x  y  z  a
+0  4  a  3  d
+1  5  b  2  e
+2  6  c  1  f</code></pre>
 </div>
 <div id="r-31" class="section level4 unnumbered hasAnchor">
 <h4>R<a href="combine-reshape-and-merge.html#r-31" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -351,42 +351,42 @@ div.csl-indent {
 <div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="combine-reshape-and-merge.html#cb527-1" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">10</span><span class="sc">:</span><span class="dv">13</span>, <span class="at">y =</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>])</span>
 <span id="cb527-2"><a href="combine-reshape-and-merge.html#cb527-2" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">34</span>, <span class="dv">45</span>, <span class="dv">44</span>))</span>
 <span id="cb527-3"><a href="combine-reshape-and-merge.html#cb527-3" tabindex="-1"></a><span class="fu">cbind</span>(d1, d2)</span></code></pre></div>
-<pre><code>##    x y  x
-## 1 10 a 23
-## 2 11 b 34
-## 3 12 c 45
-## 4 13 d 44</code></pre>
+<pre><code>   x y  x
+1 10 a 23
+2 11 b 34
+3 12 c 45
+4 13 d 44</code></pre>
 <div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="combine-reshape-and-merge.html#cb529-1" tabindex="-1"></a><span class="co"># Example of recycled rows (d1 is repeated twice)</span></span>
 <span id="cb529-2"><a href="combine-reshape-and-merge.html#cb529-2" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">10</span><span class="sc">:</span><span class="dv">13</span>, <span class="at">y =</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>])</span>
 <span id="cb529-3"><a href="combine-reshape-and-merge.html#cb529-3" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">34</span>, <span class="dv">45</span>, <span class="dv">44</span>, <span class="dv">99</span>, <span class="dv">99</span>, <span class="dv">99</span>, <span class="dv">99</span>))</span>
 <span id="cb529-4"><a href="combine-reshape-and-merge.html#cb529-4" tabindex="-1"></a><span class="fu">cbind</span>(d1, d2)</span></code></pre></div>
-<pre><code>##    x y  x
-## 1 10 a 23
-## 2 11 b 34
-## 3 12 c 45
-## 4 13 d 44
-## 5 10 a 99
-## 6 11 b 99
-## 7 12 c 99
-## 8 13 d 99</code></pre>
+<pre><code>   x y  x
+1 10 a 23
+2 11 b 34
+3 12 c 45
+4 13 d 44
+5 10 a 99
+6 11 b 99
+7 12 c 99
+8 13 d 99</code></pre>
 <p>See also the <code>bind_cols()</code> function in the <strong>dplyr</strong> package.</p>
 </div>
 </div>
 <div id="reshaping-data" class="section level2 hasAnchor" number="5.3">
 <h2><span class="header-section-number">5.3</span> Reshaping data<a href="combine-reshape-and-merge.html#reshaping-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The next two sections discuss how to reshape data from wide to long and from long to wide. “Wide” data are structured such that multiple values associated with a given unit (e.g., a person, a cell culture, etc.) are placed in the same row:</p>
-<pre><code>##    name time_1_score time_2_score
-## 1 larry            3            0
-## 2   moe            6            3
-## 3 curly            2            1</code></pre>
+<pre><code>   name time_1_score time_2_score
+1 larry            3            0
+2   moe            6            3
+3 curly            2            1</code></pre>
 <p><em>Long</em> data, conversely, are structured such that all values are contained in one column, with another column identifying what value is given in any particular row (“time 1,” “time 2,” etc.):</p>
-<pre><code>##      id time score
-## 1 larry    1     3
-## 2 larry    2     0
-## 3   moe    1     6
-## 4   moe    2     3
-## 5 curly    1     2
-## 6 curly    2     1</code></pre>
+<pre><code>     id time score
+1 larry    1     3
+2 larry    2     0
+3   moe    1     6
+4   moe    2     3
+5 curly    1     2
+6 curly    2     1</code></pre>
 <p>Shifting between these two data formats is often necessary for implementing certain statistical techniques or representing data with particular visualizations.</p>
 <div id="wide-to-long" class="section level3 hasAnchor" number="5.3.1">
 <h3><span class="header-section-number">5.3.1</span> Wide to long<a href="combine-reshape-and-merge.html#wide-to-long" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -404,10 +404,10 @@ div.csl-indent {
 <span id="cb533-8"><a href="combine-reshape-and-merge.html#cb533-8" tabindex="-1"></a></span>
 <span id="cb533-9"><a href="combine-reshape-and-merge.html#cb533-9" tabindex="-1"></a>df_wide <span class="op">=</span> pd.DataFrame(data)</span>
 <span id="cb533-10"><a href="combine-reshape-and-merge.html#cb533-10" tabindex="-1"></a><span class="bu">print</span>(df_wide)</span></code></pre></div>
-<pre><code>##    id  wk1  wk2  wk3
-## 0   1    2   19    0
-## 1   2    6   10   17
-## 2   3   17    1   15</code></pre>
+<pre><code>   id  wk1  wk2  wk3
+0   1    2   19    0
+1   2    6   10   17
+2   3   17    1   15</code></pre>
 <p>To take the DataFrame from wide to long with <code>melt()</code>, we specify the column(s) that uniquely identifies each row (<code>id_vars</code>), the variables containing the values to be lengthened (<code>value_vars</code>), and the name of the to-be-created column containing the lengthened values (<code>value_name</code>).</p>
 <div class="sourceCode" id="cb535"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb535-1"><a href="combine-reshape-and-merge.html#cb535-1" tabindex="-1"></a>dataL <span class="op">=</span> pd.melt(df_wide,</span>
 <span id="cb535-2"><a href="combine-reshape-and-merge.html#cb535-2" tabindex="-1"></a>                <span class="co"># Column(s) that uniquely identifies/y each row</span></span>
@@ -417,25 +417,25 @@ div.csl-indent {
 <span id="cb535-6"><a href="combine-reshape-and-merge.html#cb535-6" tabindex="-1"></a>                <span class="co"># Desired name of column in long data that will contain values</span></span>
 <span id="cb535-7"><a href="combine-reshape-and-merge.html#cb535-7" tabindex="-1"></a>                value_name <span class="op">=</span> <span class="st">&quot;observations&quot;</span>)</span>
 <span id="cb535-8"><a href="combine-reshape-and-merge.html#cb535-8" tabindex="-1"></a><span class="bu">print</span>(dataL)</span></code></pre></div>
-<pre><code>##    id variable  observations
-## 0   1      wk1             2
-## 1   2      wk1             6
-## 2   3      wk1            17
-## 3   1      wk2            19
-## 4   2      wk2            10
-## 5   3      wk2             1
-## 6   1      wk3             0
-## 7   2      wk3            17
-## 8   3      wk3            15</code></pre>
+<pre><code>   id variable  observations
+0   1      wk1             2
+1   2      wk1             6
+2   3      wk1            17
+3   1      wk2            19
+4   2      wk2            10
+5   3      wk2             1
+6   1      wk3             0
+7   2      wk3            17
+8   3      wk3            15</code></pre>
 </div>
 <div id="r-32" class="section level4 unnumbered hasAnchor">
 <h4>R<a href="combine-reshape-and-merge.html#r-32" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>In base R, the <code>reshape()</code> function can take data from wide to long or long to wide. The <strong>tidyverse</strong> also provides reshaping functions: <code>pivot_longer()</code> and <code>pivot_wider()</code>. The <strong>tidyverse</strong> functions have a degree of intuitiveness and usability that may make them the go-to reshaping tools for many R users. We give examples below using both base R and <strong>tidyverse</strong>.</p>
 <p>Say we begin with a wide data frame, <code>df_wide</code>, that looks like this:</p>
-<pre><code>##   id sex wk1 wk2 wk3
-## 1  1   m  16   7  15
-## 2  2   m  12  19  10
-## 3  3   f   8  15   7</code></pre>
+<pre><code>  id sex wk1 wk2 wk3
+1  1   m  16   7  15
+2  2   m  12  19  10
+3  3   f   8  15   7</code></pre>
 <p>To lengthen a data frame using <code>reshape()</code>, a user provides arguments specifying the columns that identify values’ origins (person, cell culture, etc.), the columns containing values to be lengthened, and the desired names for new columns in long data:</p>
 <div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb538-1"><a href="combine-reshape-and-merge.html#cb538-1" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> <span class="fu">reshape</span>(df_wide,</span>
 <span id="cb538-2"><a href="combine-reshape-and-merge.html#cb538-2" tabindex="-1"></a>                   <span class="at">direction =</span> <span class="st">&#39;long&#39;</span>,</span>
@@ -448,16 +448,16 @@ div.csl-indent {
 <span id="cb538-9"><a href="combine-reshape-and-merge.html#cb538-9" tabindex="-1"></a>                   <span class="co"># Desired name of column in long data that will identify each value&#39;s context</span></span>
 <span id="cb538-10"><a href="combine-reshape-and-merge.html#cb538-10" tabindex="-1"></a>                   <span class="at">timevar =</span> <span class="st">&#39;week&#39;</span>)</span>
 <span id="cb538-11"><a href="combine-reshape-and-merge.html#cb538-11" tabindex="-1"></a>df_long</span></code></pre></div>
-<pre><code>##       id sex week val
-## 1.m.1  1   m    1  16
-## 2.m.1  2   m    1  12
-## 3.f.1  3   f    1   8
-## 1.m.2  1   m    2   7
-## 2.m.2  2   m    2  19
-## 3.f.2  3   f    2  15
-## 1.m.3  1   m    3  15
-## 2.m.3  2   m    3  10
-## 3.f.3  3   f    3   7</code></pre>
+<pre><code>      id sex week val
+1.m.1  1   m    1  16
+2.m.1  2   m    1  12
+3.f.1  3   f    1   8
+1.m.2  1   m    2   7
+2.m.2  2   m    2  19
+3.f.2  3   f    2  15
+1.m.3  1   m    3  15
+2.m.3  2   m    3  10
+3.f.3  3   f    3   7</code></pre>
 <p>The <strong>tidyverse</strong> function for taking data from wide to long is <code>pivot_longer()</code> (technically housed in the <strong>tidyr</strong> package). To lengthen <code>df_wide</code> using <code>pivot_longer()</code>, a user would write:</p>
 <div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb540-1"><a href="combine-reshape-and-merge.html#cb540-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb540-2"><a href="combine-reshape-and-merge.html#cb540-2" tabindex="-1"></a>df_long_PL <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(df_wide,</span>
@@ -468,28 +468,28 @@ div.csl-indent {
 <span id="cb540-7"><a href="combine-reshape-and-merge.html#cb540-7" tabindex="-1"></a>                           <span class="co"># Desired name of column in long data that will contain values</span></span>
 <span id="cb540-8"><a href="combine-reshape-and-merge.html#cb540-8" tabindex="-1"></a>                           <span class="at">values_to =</span> <span class="st">&#39;val&#39;</span>) </span>
 <span id="cb540-9"><a href="combine-reshape-and-merge.html#cb540-9" tabindex="-1"></a>df_long_PL</span></code></pre></div>
-<pre><code>## # A tibble: 9 × 4
-##      id sex   week    val
-##   &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt;
-## 1     1 m     wk1      16
-## 2     1 m     wk2       7
-## 3     1 m     wk3      15
-## 4     2 m     wk1      12
-## 5     2 m     wk2      19
-## 6     2 m     wk3      10
-## 7     3 f     wk1       8
-## 8     3 f     wk2      15
-## 9     3 f     wk3       7</code></pre>
+<pre><code># A tibble: 9 × 4
+     id sex   week    val
+  &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt;
+1     1 m     wk1      16
+2     1 m     wk2       7
+3     1 m     wk3      15
+4     2 m     wk1      12
+5     2 m     wk2      19
+6     2 m     wk3      10
+7     3 f     wk1       8
+8     3 f     wk2      15
+9     3 f     wk3       7</code></pre>
 <p><code>pivot_longer()</code> is particularly useful (a) when dealing with wide data that contain multiple sets of repeated measures in each row that need to be lengthened separately (e.g., two monthly height measurements and two monthly weight measurements for each person) and (b) when column names and/or column values in the long data need to be extracted from column names of the wide data using regular expressions.</p>
 <p>For example, say we begin with a wide data frame, <code>animals_wide</code>, in which every row contains two values for each of two different measures:</p>
-<pre><code>##      animal lives_in_water jan_playfulness feb_playfulness jan_excitement
-## 1   dolphin           TRUE             6.0             5.5            7.0
-## 2 porcupine          FALSE             3.5             4.5            3.5
-## 3  capybara          FALSE             4.0             5.0            4.0
-##   feb_excitement
-## 1            7.0
-## 2            3.5
-## 3            4.0</code></pre>
+<pre><code>     animal lives_in_water jan_playfulness feb_playfulness jan_excitement
+1   dolphin           TRUE             6.0             5.5            7.0
+2 porcupine          FALSE             3.5             4.5            3.5
+3  capybara          FALSE             4.0             5.0            4.0
+  feb_excitement
+1            7.0
+2            3.5
+3            4.0</code></pre>
 <p><code>pivot_longer()</code> can be used to convert this data frame to a long format where there is one column for each of the measures, playfulness and excitement:</p>
 <div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb543-1"><a href="combine-reshape-and-merge.html#cb543-1" tabindex="-1"></a>animals_long_1 <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(animals_wide,</span>
 <span id="cb543-2"><a href="combine-reshape-and-merge.html#cb543-2" tabindex="-1"></a>                             <span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(<span class="st">&#39;animal&#39;</span>, <span class="st">&#39;lives_in_water&#39;</span>),</span>
@@ -498,15 +498,15 @@ div.csl-indent {
 <span id="cb543-5"><a href="combine-reshape-and-merge.html#cb543-5" tabindex="-1"></a>                             <span class="co"># Specify structure of wide column names from which long column names will be extracted using regex</span></span>
 <span id="cb543-6"><a href="combine-reshape-and-merge.html#cb543-6" tabindex="-1"></a>                             <span class="at">names_pattern =</span> <span class="st">&#39;(.+)_(.+)&#39;</span>) </span>
 <span id="cb543-7"><a href="combine-reshape-and-merge.html#cb543-7" tabindex="-1"></a>animals_long_1</span></code></pre></div>
-<pre><code>## # A tibble: 6 × 5
-##   animal    lives_in_water month playfulness excitement
-##   &lt;chr&gt;     &lt;lgl&gt;          &lt;chr&gt;       &lt;dbl&gt;      &lt;dbl&gt;
-## 1 dolphin   TRUE           jan           6          7  
-## 2 dolphin   TRUE           feb           5.5        7  
-## 3 porcupine FALSE          jan           3.5        3.5
-## 4 porcupine FALSE          feb           4.5        3.5
-## 5 capybara  FALSE          jan           4          4  
-## 6 capybara  FALSE          feb           5          4</code></pre>
+<pre><code># A tibble: 6 × 5
+  animal    lives_in_water month playfulness excitement
+  &lt;chr&gt;     &lt;lgl&gt;          &lt;chr&gt;       &lt;dbl&gt;      &lt;dbl&gt;
+1 dolphin   TRUE           jan           6          7  
+2 dolphin   TRUE           feb           5.5        7  
+3 porcupine FALSE          jan           3.5        3.5
+4 porcupine FALSE          feb           4.5        3.5
+5 capybara  FALSE          jan           4          4  
+6 capybara  FALSE          feb           5          4  </code></pre>
 <p>Alternatively, <code>pivot_longer()</code> can be used to convert this data frame to a long format where there is one column containing all the playfulness and excitement values:</p>
 <div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb545-1"><a href="combine-reshape-and-merge.html#cb545-1" tabindex="-1"></a>animals_long_2 <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(animals_wide,</span>
 <span id="cb545-2"><a href="combine-reshape-and-merge.html#cb545-2" tabindex="-1"></a>                               <span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(<span class="st">&#39;animal&#39;</span>, <span class="st">&#39;lives_in_water&#39;</span>),</span>
@@ -514,21 +514,21 @@ div.csl-indent {
 <span id="cb545-4"><a href="combine-reshape-and-merge.html#cb545-4" tabindex="-1"></a>                               <span class="at">names_pattern =</span> <span class="st">&#39;(.+)_(.+)&#39;</span>,</span>
 <span id="cb545-5"><a href="combine-reshape-and-merge.html#cb545-5" tabindex="-1"></a>                               <span class="at">values_to =</span> <span class="st">&#39;val&#39;</span>)</span>
 <span id="cb545-6"><a href="combine-reshape-and-merge.html#cb545-6" tabindex="-1"></a>animals_long_2</span></code></pre></div>
-<pre><code>## # A tibble: 12 × 5
-##    animal    lives_in_water month measure       val
-##    &lt;chr&gt;     &lt;lgl&gt;          &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;
-##  1 dolphin   TRUE           jan   playfulness   6  
-##  2 dolphin   TRUE           feb   playfulness   5.5
-##  3 dolphin   TRUE           jan   excitement    7  
-##  4 dolphin   TRUE           feb   excitement    7  
-##  5 porcupine FALSE          jan   playfulness   3.5
-##  6 porcupine FALSE          feb   playfulness   4.5
-##  7 porcupine FALSE          jan   excitement    3.5
-##  8 porcupine FALSE          feb   excitement    3.5
-##  9 capybara  FALSE          jan   playfulness   4  
-## 10 capybara  FALSE          feb   playfulness   5  
-## 11 capybara  FALSE          jan   excitement    4  
-## 12 capybara  FALSE          feb   excitement    4</code></pre>
+<pre><code># A tibble: 12 × 5
+   animal    lives_in_water month measure       val
+   &lt;chr&gt;     &lt;lgl&gt;          &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;
+ 1 dolphin   TRUE           jan   playfulness   6  
+ 2 dolphin   TRUE           feb   playfulness   5.5
+ 3 dolphin   TRUE           jan   excitement    7  
+ 4 dolphin   TRUE           feb   excitement    7  
+ 5 porcupine FALSE          jan   playfulness   3.5
+ 6 porcupine FALSE          feb   playfulness   4.5
+ 7 porcupine FALSE          jan   excitement    3.5
+ 8 porcupine FALSE          feb   excitement    3.5
+ 9 capybara  FALSE          jan   playfulness   4  
+10 capybara  FALSE          feb   playfulness   5  
+11 capybara  FALSE          jan   excitement    4  
+12 capybara  FALSE          feb   excitement    4  </code></pre>
 </div>
 </div>
 <div id="long-to-wide" class="section level3 hasAnchor" number="5.3.2">
@@ -546,42 +546,42 @@ div.csl-indent {
 <span id="cb547-7"><a href="combine-reshape-and-merge.html#cb547-7" tabindex="-1"></a></span>
 <span id="cb547-8"><a href="combine-reshape-and-merge.html#cb547-8" tabindex="-1"></a>df_long <span class="op">=</span> pd.DataFrame(data)</span>
 <span id="cb547-9"><a href="combine-reshape-and-merge.html#cb547-9" tabindex="-1"></a><span class="bu">print</span>(df_long)</span></code></pre></div>
-<pre><code>##    id  week  observations
-## 0   1     1             9
-## 1   1     2             0
-## 2   1     3            14
-## 3   2     1             0
-## 4   2     2            15
-## 5   2     3            19
-## 6   3     1            14
-## 7   3     2             4
-## 8   3     3             0</code></pre>
+<pre><code>   id  week  observations
+0   1     1             9
+1   1     2             0
+2   1     3            14
+3   2     1             0
+4   2     2            15
+5   2     3            19
+6   3     1            14
+7   3     2             4
+8   3     3             0</code></pre>
 <p>We can use <code>pivot_table()</code> to take the DataFrame from long to wide by specifying: the variable(s) that indicates each value’s source (<code>index</code>), the variable that indicates the context of each value (<code>columns</code>; e.g., “week 1,” “week 2,” etc.), and the variable containing the values to be widened (<code>values</code>).</p>
 <div class="sourceCode" id="cb549"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb549-1"><a href="combine-reshape-and-merge.html#cb549-1" tabindex="-1"></a>df_wide <span class="op">=</span> pd.pivot_table(df_long,</span>
 <span id="cb549-2"><a href="combine-reshape-and-merge.html#cb549-2" tabindex="-1"></a>          index <span class="op">=</span> <span class="st">&#39;id&#39;</span>,</span>
 <span id="cb549-3"><a href="combine-reshape-and-merge.html#cb549-3" tabindex="-1"></a>          columns <span class="op">=</span> <span class="st">&#39;week&#39;</span>,</span>
 <span id="cb549-4"><a href="combine-reshape-and-merge.html#cb549-4" tabindex="-1"></a>          values <span class="op">=</span> <span class="st">&#39;observations&#39;</span>)</span>
 <span id="cb549-5"><a href="combine-reshape-and-merge.html#cb549-5" tabindex="-1"></a><span class="bu">print</span>(df_wide)</span></code></pre></div>
-<pre><code>## week   1   2   3
-## id              
-## 1      9   0  14
-## 2      0  15  19
-## 3     14   4   0</code></pre>
+<pre><code>week   1   2   3
+id              
+1      9   0  14
+2      0  15  19
+3     14   4   0</code></pre>
 </div>
 <div id="r-33" class="section level4 unnumbered hasAnchor">
 <h4>R<a href="combine-reshape-and-merge.html#r-33" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Say that we begin with a long data frame, <code>df_long</code>, that looks like this:</p>
 <div class="sourceCode" id="cb551"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb551-1"><a href="combine-reshape-and-merge.html#cb551-1" tabindex="-1"></a>df_long</span></code></pre></div>
-<pre><code>##       id sex week val
-## 1.m.1  1   m    1  16
-## 2.m.1  2   m    1  12
-## 3.f.1  3   f    1   8
-## 1.m.2  1   m    2   7
-## 2.m.2  2   m    2  19
-## 3.f.2  3   f    2  15
-## 1.m.3  1   m    3  15
-## 2.m.3  2   m    3  10
-## 3.f.3  3   f    3   7</code></pre>
+<pre><code>      id sex week val
+1.m.1  1   m    1  16
+2.m.1  2   m    1  12
+3.f.1  3   f    1   8
+1.m.2  1   m    2   7
+2.m.2  2   m    2  19
+3.f.2  3   f    2  15
+1.m.3  1   m    3  15
+2.m.3  2   m    3  10
+3.f.3  3   f    3   7</code></pre>
 <p>To take the data from long to wide with base R’s <code>reshape()</code> function, a user would write:</p>
 <div class="sourceCode" id="cb553"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb553-1"><a href="combine-reshape-and-merge.html#cb553-1" tabindex="-1"></a>df_wide <span class="ot">&lt;-</span> <span class="fu">reshape</span>(df_long,</span>
 <span id="cb553-2"><a href="combine-reshape-and-merge.html#cb553-2" tabindex="-1"></a>                   <span class="at">direction =</span> <span class="st">&#39;wide&#39;</span>,</span>
@@ -594,10 +594,10 @@ div.csl-indent {
 <span id="cb553-9"><a href="combine-reshape-and-merge.html#cb553-9" tabindex="-1"></a>                   <span class="co"># The `sep` argument allows a user to specify how the contents of `timevar` should be joined with the name of the `v.names` variable to form wide column names</span></span>
 <span id="cb553-10"><a href="combine-reshape-and-merge.html#cb553-10" tabindex="-1"></a>                   <span class="at">sep =</span> <span class="st">&#39;_&#39;</span>)</span>
 <span id="cb553-11"><a href="combine-reshape-and-merge.html#cb553-11" tabindex="-1"></a>df_wide</span></code></pre></div>
-<pre><code>##       id sex val_1 val_2 val_3
-## 1.m.1  1   m    16     7    15
-## 2.m.1  2   m    12    19    10
-## 3.f.1  3   f     8    15     7</code></pre>
+<pre><code>      id sex val_1 val_2 val_3
+1.m.1  1   m    16     7    15
+2.m.1  2   m    12    19    10
+3.f.1  3   f     8    15     7</code></pre>
 <p>The <strong>tidyverse</strong> function for taking data from long to wide is <code>pivot_wider()</code>. To widen <code>df_long</code> using <code>pivot_longer()</code>, a user would write:</p>
 <div class="sourceCode" id="cb555"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb555-1"><a href="combine-reshape-and-merge.html#cb555-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb555-2"><a href="combine-reshape-and-merge.html#cb555-2" tabindex="-1"></a>df_wide_PW <span class="ot">&lt;-</span> <span class="fu">pivot_wider</span>(df_long,</span>
@@ -606,24 +606,24 @@ div.csl-indent {
 <span id="cb555-5"><a href="combine-reshape-and-merge.html#cb555-5" tabindex="-1"></a>                          <span class="at">names_from =</span> <span class="st">&#39;week&#39;</span>,</span>
 <span id="cb555-6"><a href="combine-reshape-and-merge.html#cb555-6" tabindex="-1"></a>                          <span class="at">names_prefix =</span> <span class="st">&#39;week_&#39;</span>) <span class="co"># `names_prefix` specifies a string to paste in front of the contents of &#39;week&#39; in the resulting wide column names</span></span>
 <span id="cb555-7"><a href="combine-reshape-and-merge.html#cb555-7" tabindex="-1"></a>df_wide_PW</span></code></pre></div>
-<pre><code>## # A tibble: 3 × 5
-##      id sex   week_1 week_2 week_3
-##   &lt;int&gt; &lt;chr&gt;  &lt;int&gt;  &lt;int&gt;  &lt;int&gt;
-## 1     1 m         16      7     15
-## 2     2 m         12     19     10
-## 3     3 f          8     15      7</code></pre>
+<pre><code># A tibble: 3 × 5
+     id sex   week_1 week_2 week_3
+  &lt;int&gt; &lt;chr&gt;  &lt;int&gt;  &lt;int&gt;  &lt;int&gt;
+1     1 m         16      7     15
+2     2 m         12     19     10
+3     3 f          8     15      7</code></pre>
 <p><code>pivot_wider()</code> provides a great deal of functonality when widening relatively complicated long data structures. For example, say we want to widen both of the long versions of the “animals” data frame created above.</p>
 <p>To widen the version of the long data that has a column for each of the measures (playfulness and excitement):</p>
 <div class="sourceCode" id="cb557"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb557-1"><a href="combine-reshape-and-merge.html#cb557-1" tabindex="-1"></a>animals_long_1</span></code></pre></div>
-<pre><code>## # A tibble: 6 × 5
-##   animal    lives_in_water month playfulness excitement
-##   &lt;chr&gt;     &lt;lgl&gt;          &lt;chr&gt;       &lt;dbl&gt;      &lt;dbl&gt;
-## 1 dolphin   TRUE           jan           6          7  
-## 2 dolphin   TRUE           feb           5.5        7  
-## 3 porcupine FALSE          jan           3.5        3.5
-## 4 porcupine FALSE          feb           4.5        3.5
-## 5 capybara  FALSE          jan           4          4  
-## 6 capybara  FALSE          feb           5          4</code></pre>
+<pre><code># A tibble: 6 × 5
+  animal    lives_in_water month playfulness excitement
+  &lt;chr&gt;     &lt;lgl&gt;          &lt;chr&gt;       &lt;dbl&gt;      &lt;dbl&gt;
+1 dolphin   TRUE           jan           6          7  
+2 dolphin   TRUE           feb           5.5        7  
+3 porcupine FALSE          jan           3.5        3.5
+4 porcupine FALSE          feb           4.5        3.5
+5 capybara  FALSE          jan           4          4  
+6 capybara  FALSE          feb           5          4  </code></pre>
 <div class="sourceCode" id="cb559"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb559-1"><a href="combine-reshape-and-merge.html#cb559-1" tabindex="-1"></a>animals_wide <span class="ot">&lt;-</span> <span class="fu">pivot_wider</span>(animals_long_1,</span>
 <span id="cb559-2"><a href="combine-reshape-and-merge.html#cb559-2" tabindex="-1"></a>                            <span class="at">id_cols =</span> <span class="fu">c</span>(<span class="st">&#39;animal&#39;</span>, </span>
 <span id="cb559-3"><a href="combine-reshape-and-merge.html#cb559-3" tabindex="-1"></a>                                        <span class="st">&#39;lives_in_water&#39;</span>),</span>
@@ -632,43 +632,43 @@ div.csl-indent {
 <span id="cb559-6"><a href="combine-reshape-and-merge.html#cb559-6" tabindex="-1"></a>                            <span class="at">names_from =</span> <span class="st">&#39;month&#39;</span>,</span>
 <span id="cb559-7"><a href="combine-reshape-and-merge.html#cb559-7" tabindex="-1"></a>                            <span class="at">names_glue =</span> <span class="st">&#39;{month}_{.value}&#39;</span>) <span class="co"># `names_glue` allows for customization of column names using &quot;glue&quot;; see https://glue.tidyverse.org/</span></span>
 <span id="cb559-8"><a href="combine-reshape-and-merge.html#cb559-8" tabindex="-1"></a>animals_wide</span></code></pre></div>
-<pre><code>## # A tibble: 3 × 6
-##   animal    lives_in_water jan_playfulness feb_playfulness jan_excitement
-##   &lt;chr&gt;     &lt;lgl&gt;                    &lt;dbl&gt;           &lt;dbl&gt;          &lt;dbl&gt;
-## 1 dolphin   TRUE                       6               5.5            7  
-## 2 porcupine FALSE                      3.5             4.5            3.5
-## 3 capybara  FALSE                      4               5              4  
-## # ℹ 1 more variable: feb_excitement &lt;dbl&gt;</code></pre>
+<pre><code># A tibble: 3 × 6
+  animal    lives_in_water jan_playfulness feb_playfulness jan_excitement
+  &lt;chr&gt;     &lt;lgl&gt;                    &lt;dbl&gt;           &lt;dbl&gt;          &lt;dbl&gt;
+1 dolphin   TRUE                       6               5.5            7  
+2 porcupine FALSE                      3.5             4.5            3.5
+3 capybara  FALSE                      4               5              4  
+# ℹ 1 more variable: feb_excitement &lt;dbl&gt;</code></pre>
 <p>To widen the version of the long data that has one column containing all the values of playfulness and excitement together:</p>
 <div class="sourceCode" id="cb561"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb561-1"><a href="combine-reshape-and-merge.html#cb561-1" tabindex="-1"></a>animals_long_2</span></code></pre></div>
-<pre><code>## # A tibble: 12 × 5
-##    animal    lives_in_water month measure       val
-##    &lt;chr&gt;     &lt;lgl&gt;          &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;
-##  1 dolphin   TRUE           jan   playfulness   6  
-##  2 dolphin   TRUE           feb   playfulness   5.5
-##  3 dolphin   TRUE           jan   excitement    7  
-##  4 dolphin   TRUE           feb   excitement    7  
-##  5 porcupine FALSE          jan   playfulness   3.5
-##  6 porcupine FALSE          feb   playfulness   4.5
-##  7 porcupine FALSE          jan   excitement    3.5
-##  8 porcupine FALSE          feb   excitement    3.5
-##  9 capybara  FALSE          jan   playfulness   4  
-## 10 capybara  FALSE          feb   playfulness   5  
-## 11 capybara  FALSE          jan   excitement    4  
-## 12 capybara  FALSE          feb   excitement    4</code></pre>
+<pre><code># A tibble: 12 × 5
+   animal    lives_in_water month measure       val
+   &lt;chr&gt;     &lt;lgl&gt;          &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;
+ 1 dolphin   TRUE           jan   playfulness   6  
+ 2 dolphin   TRUE           feb   playfulness   5.5
+ 3 dolphin   TRUE           jan   excitement    7  
+ 4 dolphin   TRUE           feb   excitement    7  
+ 5 porcupine FALSE          jan   playfulness   3.5
+ 6 porcupine FALSE          feb   playfulness   4.5
+ 7 porcupine FALSE          jan   excitement    3.5
+ 8 porcupine FALSE          feb   excitement    3.5
+ 9 capybara  FALSE          jan   playfulness   4  
+10 capybara  FALSE          feb   playfulness   5  
+11 capybara  FALSE          jan   excitement    4  
+12 capybara  FALSE          feb   excitement    4  </code></pre>
 <div class="sourceCode" id="cb563"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb563-1"><a href="combine-reshape-and-merge.html#cb563-1" tabindex="-1"></a>animals_wide <span class="ot">&lt;-</span> <span class="fu">pivot_wider</span>(animals_long_2,</span>
 <span id="cb563-2"><a href="combine-reshape-and-merge.html#cb563-2" tabindex="-1"></a>                            <span class="at">id_cols =</span> <span class="fu">c</span>(<span class="st">&#39;animal&#39;</span>, <span class="st">&#39;lives_in_water&#39;</span>),</span>
 <span id="cb563-3"><a href="combine-reshape-and-merge.html#cb563-3" tabindex="-1"></a>                            <span class="at">values_from =</span> <span class="st">&#39;val&#39;</span>,</span>
 <span id="cb563-4"><a href="combine-reshape-and-merge.html#cb563-4" tabindex="-1"></a>                            <span class="at">names_from =</span> <span class="fu">c</span>(<span class="st">&#39;month&#39;</span>, <span class="st">&#39;measure&#39;</span>),</span>
 <span id="cb563-5"><a href="combine-reshape-and-merge.html#cb563-5" tabindex="-1"></a>                            <span class="at">names_sep =</span> <span class="st">&#39;_&#39;</span>)</span>
 <span id="cb563-6"><a href="combine-reshape-and-merge.html#cb563-6" tabindex="-1"></a>animals_wide</span></code></pre></div>
-<pre><code>## # A tibble: 3 × 6
-##   animal    lives_in_water jan_playfulness feb_playfulness jan_excitement
-##   &lt;chr&gt;     &lt;lgl&gt;                    &lt;dbl&gt;           &lt;dbl&gt;          &lt;dbl&gt;
-## 1 dolphin   TRUE                       6               5.5            7  
-## 2 porcupine FALSE                      3.5             4.5            3.5
-## 3 capybara  FALSE                      4               5              4  
-## # ℹ 1 more variable: feb_excitement &lt;dbl&gt;</code></pre>
+<pre><code># A tibble: 3 × 6
+  animal    lives_in_water jan_playfulness feb_playfulness jan_excitement
+  &lt;chr&gt;     &lt;lgl&gt;                    &lt;dbl&gt;           &lt;dbl&gt;          &lt;dbl&gt;
+1 dolphin   TRUE                       6               5.5            7  
+2 porcupine FALSE                      3.5             4.5            3.5
+3 capybara  FALSE                      4               5              4  
+# ℹ 1 more variable: feb_excitement &lt;dbl&gt;</code></pre>
 </div>
 </div>
 </div>
@@ -676,15 +676,15 @@ div.csl-indent {
 <h2><span class="header-section-number">5.4</span> Merge/Join<a href="combine-reshape-and-merge.html#mergejoin" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The merge/join examples below all make use of the following sample data frames:</p>
 <div class="sourceCode" id="cb565"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb565-1"><a href="combine-reshape-and-merge.html#cb565-1" tabindex="-1"></a>x</span></code></pre></div>
-<pre><code>##   merge_var val_x
-## 1         a    12
-## 2         b    94
-## 3         c    92</code></pre>
+<pre><code>  merge_var val_x
+1         a    12
+2         b    94
+3         c    92</code></pre>
 <div class="sourceCode" id="cb567"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb567-1"><a href="combine-reshape-and-merge.html#cb567-1" tabindex="-1"></a>y</span></code></pre></div>
-<pre><code>##   merge_var val_y
-## 1         c    78
-## 2         d    32
-## 3         e    30</code></pre>
+<pre><code>  merge_var val_y
+1         c    78
+2         d    32
+3         e    30</code></pre>
 <div id="left-join" class="section level3 hasAnchor" number="5.4.1">
 <h3><span class="header-section-number">5.4.1</span> Left Join<a href="combine-reshape-and-merge.html#left-join" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A left join of <em>x</em> and <em>y</em> keeps all rows of <em>x</em> and merges rows of <em>y</em> into <em>x</em> where possible based on the merge criterion:</p>
@@ -693,19 +693,19 @@ div.csl-indent {
 <h4>Python<a href="combine-reshape-and-merge.html#python-34" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div class="sourceCode" id="cb569"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb569-1"><a href="combine-reshape-and-merge.html#cb569-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb569-2"><a href="combine-reshape-and-merge.html#cb569-2" tabindex="-1"></a>pd.merge(x, y, how <span class="op">=</span> <span class="st">&#39;left&#39;</span>)</span></code></pre></div>
-<pre><code>##   merge_var  val_x  val_y
-## 0         a   12.0    NaN
-## 1         b   94.0    NaN
-## 2         c   92.0   78.0</code></pre>
+<pre><code>  merge_var  val_x  val_y
+0         a   12.0    NaN
+1         b   94.0    NaN
+2         c   92.0   78.0</code></pre>
 </div>
 <div id="r-34" class="section level4 unnumbered hasAnchor">
 <h4>R<a href="combine-reshape-and-merge.html#r-34" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div class="sourceCode" id="cb571"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb571-1"><a href="combine-reshape-and-merge.html#cb571-1" tabindex="-1"></a><span class="co"># all.x = T results in a left join</span></span>
 <span id="cb571-2"><a href="combine-reshape-and-merge.html#cb571-2" tabindex="-1"></a><span class="fu">merge</span>(x, y, <span class="at">by =</span> <span class="st">&#39;merge_var&#39;</span>, <span class="at">all.x =</span> T)</span></code></pre></div>
-<pre><code>##   merge_var val_x val_y
-## 1         a    12    NA
-## 2         b    94    NA
-## 3         c    92    78</code></pre>
+<pre><code>  merge_var val_x val_y
+1         a    12    NA
+2         b    94    NA
+3         c    92    78</code></pre>
 </div>
 </div>
 <div id="right-join" class="section level3 hasAnchor" number="5.4.2">
@@ -716,19 +716,19 @@ div.csl-indent {
 <h4>Python<a href="combine-reshape-and-merge.html#python-35" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div class="sourceCode" id="cb573"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb573-1"><a href="combine-reshape-and-merge.html#cb573-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb573-2"><a href="combine-reshape-and-merge.html#cb573-2" tabindex="-1"></a>pd.merge(x, y, how <span class="op">=</span> <span class="st">&#39;right&#39;</span>)</span></code></pre></div>
-<pre><code>##   merge_var  val_x  val_y
-## 0         c   92.0   78.0
-## 1         d    NaN   32.0
-## 2         e    NaN   30.0</code></pre>
+<pre><code>  merge_var  val_x  val_y
+0         c   92.0   78.0
+1         d    NaN   32.0
+2         e    NaN   30.0</code></pre>
 </div>
 <div id="r-35" class="section level4 unnumbered hasAnchor">
 <h4>R<a href="combine-reshape-and-merge.html#r-35" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div class="sourceCode" id="cb575"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb575-1"><a href="combine-reshape-and-merge.html#cb575-1" tabindex="-1"></a><span class="co"># all.y = T results in a right join</span></span>
 <span id="cb575-2"><a href="combine-reshape-and-merge.html#cb575-2" tabindex="-1"></a><span class="fu">merge</span>(x, y, <span class="at">by =</span> <span class="st">&#39;merge_var&#39;</span>, <span class="at">all.y =</span> T)</span></code></pre></div>
-<pre><code>##   merge_var val_x val_y
-## 1         c    92    78
-## 2         d    NA    32
-## 3         e    NA    30</code></pre>
+<pre><code>  merge_var val_x val_y
+1         c    92    78
+2         d    NA    32
+3         e    NA    30</code></pre>
 </div>
 </div>
 <div id="inner-join" class="section level3 hasAnchor" number="5.4.3">
@@ -739,16 +739,16 @@ div.csl-indent {
 <h4>Python<a href="combine-reshape-and-merge.html#python-36" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div class="sourceCode" id="cb577"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb577-1"><a href="combine-reshape-and-merge.html#cb577-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb577-2"><a href="combine-reshape-and-merge.html#cb577-2" tabindex="-1"></a>pd.merge(x, y, how <span class="op">=</span> <span class="st">&#39;inner&#39;</span>)</span></code></pre></div>
-<pre><code>##   merge_var  val_x  val_y
-## 0         c   92.0   78.0</code></pre>
+<pre><code>  merge_var  val_x  val_y
+0         c   92.0   78.0</code></pre>
 </div>
 <div id="r-36" class="section level4 unnumbered hasAnchor">
 <h4>R<a href="combine-reshape-and-merge.html#r-36" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div class="sourceCode" id="cb579"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb579-1"><a href="combine-reshape-and-merge.html#cb579-1" tabindex="-1"></a><span class="co"># With its default arguments, merge() executes an inner join (more specifically, a natural join, which is a kind of</span></span>
 <span id="cb579-2"><a href="combine-reshape-and-merge.html#cb579-2" tabindex="-1"></a><span class="co"># inner join in which the merge-criterion column is not repeated, despite being initially present in both tables)</span></span>
 <span id="cb579-3"><a href="combine-reshape-and-merge.html#cb579-3" tabindex="-1"></a><span class="fu">merge</span>(x, y, <span class="at">by =</span> <span class="st">&#39;merge_var&#39;</span>)</span></code></pre></div>
-<pre><code>##   merge_var val_x val_y
-## 1         c    92    78</code></pre>
+<pre><code>  merge_var val_x val_y
+1         c    92    78</code></pre>
 </div>
 </div>
 <div id="outer-join" class="section level3 hasAnchor" number="5.4.4">
@@ -759,23 +759,23 @@ div.csl-indent {
 <h4>Python<a href="combine-reshape-and-merge.html#python-37" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div class="sourceCode" id="cb581"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb581-1"><a href="combine-reshape-and-merge.html#cb581-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb581-2"><a href="combine-reshape-and-merge.html#cb581-2" tabindex="-1"></a>pd.merge(x, y, how <span class="op">=</span> <span class="st">&#39;outer&#39;</span>)</span></code></pre></div>
-<pre><code>##   merge_var  val_x  val_y
-## 0         a   12.0    NaN
-## 1         b   94.0    NaN
-## 2         c   92.0   78.0
-## 3         d    NaN   32.0
-## 4         e    NaN   30.0</code></pre>
+<pre><code>  merge_var  val_x  val_y
+0         a   12.0    NaN
+1         b   94.0    NaN
+2         c   92.0   78.0
+3         d    NaN   32.0
+4         e    NaN   30.0</code></pre>
 </div>
 <div id="r-37" class="section level4 unnumbered hasAnchor">
 <h4>R<a href="combine-reshape-and-merge.html#r-37" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb583-1"><a href="combine-reshape-and-merge.html#cb583-1" tabindex="-1"></a><span class="co"># all = T (or all.x = T AND all.y = T) results in an outer join</span></span>
 <span id="cb583-2"><a href="combine-reshape-and-merge.html#cb583-2" tabindex="-1"></a><span class="fu">merge</span>(x, y, <span class="at">by =</span> <span class="st">&#39;merge_var&#39;</span>, <span class="at">all =</span> T)</span></code></pre></div>
-<pre><code>##   merge_var val_x val_y
-## 1         a    12    NA
-## 2         b    94    NA
-## 3         c    92    78
-## 4         d    NA    32
-## 5         e    NA    30</code></pre>
+<pre><code>  merge_var val_x val_y
+1         a    12    NA
+2         b    94    NA
+3         c    92    78
+4         d    NA    32
+5         e    NA    30</code></pre>
 
 </div>
 </div>

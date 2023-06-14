@@ -274,56 +274,56 @@ div.csl-indent {
 <p>Cross tabulation is the process of determining frequencies per group (or determining values based on frequencies, like proportions), with groups defined by one or more variables (e.g., nationality and sex).</p>
 <p>The Python and R examples of cross tabulation below both make use of the following data set, <code>dat</code>:</p>
 <div class="sourceCode" id="cb585"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb585-1"><a href="aggregation-and-group-operations.html#cb585-1" tabindex="-1"></a>dat</span></code></pre></div>
-<pre><code>##   nationality sex
-## 1    Canadian   m
-## 2      French   f
-## 3      French   f
-## 4    Egyptian   m
-## 5    Canadian   f</code></pre>
+<pre><code>  nationality sex
+1    Canadian   m
+2      French   f
+3      French   f
+4    Egyptian   m
+5    Canadian   f</code></pre>
 <div id="python-38" class="section level4 unnumbered hasAnchor">
 <h4>Python<a href="aggregation-and-group-operations.html#python-38" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The <strong>pandas</strong> package contains a <code>crosstab()</code> function for cross tabulation with two or more variables. Alternatively, the <code>groupby()</code> function, also in <strong>pandas</strong>, facilitates cross tabulation by one or more variables when used in combination with <code>count()</code>.</p>
 <div class="sourceCode" id="cb587"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb587-1"><a href="aggregation-and-group-operations.html#cb587-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb587-2"><a href="aggregation-and-group-operations.html#cb587-2" tabindex="-1"></a>pd.crosstab(dat.nationality, dat.sex)</span></code></pre></div>
-<pre><code>## sex          f  m
-## nationality      
-## Canadian     1  1
-## Egyptian     0  1
-## French       2  0</code></pre>
+<pre><code>sex          f  m
+nationality      
+Canadian     1  1
+Egyptian     0  1
+French       2  0</code></pre>
 <div class="sourceCode" id="cb589"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb589-1"><a href="aggregation-and-group-operations.html#cb589-1" tabindex="-1"></a>dat.groupby(by <span class="op">=</span> <span class="st">&#39;nationality&#39;</span>).nationality.count()</span></code></pre></div>
-<pre><code>## nationality
-## Canadian    2
-## Egyptian    1
-## French      2
-## Name: nationality, dtype: int64</code></pre>
+<pre><code>nationality
+Canadian    2
+Egyptian    1
+French      2
+Name: nationality, dtype: int64</code></pre>
 <div class="sourceCode" id="cb591"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb591-1"><a href="aggregation-and-group-operations.html#cb591-1" tabindex="-1"></a>dat.groupby(by <span class="op">=</span> [<span class="st">&#39;nationality&#39;</span>, <span class="st">&#39;sex&#39;</span>]).nationality.count()</span></code></pre></div>
-<pre><code>## nationality  sex
-## Canadian     f      1
-##              m      1
-## Egyptian     m      1
-## French       f      2
-## Name: nationality, dtype: int64</code></pre>
+<pre><code>nationality  sex
+Canadian     f      1
+             m      1
+Egyptian     m      1
+French       f      2
+Name: nationality, dtype: int64</code></pre>
 <div class="sourceCode" id="cb593"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb593-1"><a href="aggregation-and-group-operations.html#cb593-1" tabindex="-1"></a><span class="co"># Or: dat.groupby(by = [&#39;nationality&#39;, &#39;sex&#39;]).sex.count()</span></span></code></pre></div>
 </div>
 <div id="r-38" class="section level4 unnumbered hasAnchor">
 <h4>R<a href="aggregation-and-group-operations.html#r-38" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The <code>table()</code> function performs cross tabulation in R. A user can enter a single grouping variable or enter multiple grouping variables separated by a comma(s). The <code>xtabs()</code> function also computes cross-tabs; a user enters the variables to be used for grouping in formula notation.</p>
 <div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb594-1"><a href="aggregation-and-group-operations.html#cb594-1" tabindex="-1"></a><span class="fu">table</span>(dat<span class="sc">$</span>nationality)</span></code></pre></div>
-<pre><code>## 
-## Canadian Egyptian   French 
-##        2        1        2</code></pre>
+<pre><code>
+Canadian Egyptian   French 
+       2        1        2 </code></pre>
 <div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb596-1"><a href="aggregation-and-group-operations.html#cb596-1" tabindex="-1"></a><span class="fu">table</span>(dat<span class="sc">$</span>nationality, dat<span class="sc">$</span>sex)</span></code></pre></div>
-<pre><code>##           
-##            f m
-##   Canadian 1 1
-##   Egyptian 0 1
-##   French   2 0</code></pre>
+<pre><code>          
+           f m
+  Canadian 1 1
+  Egyptian 0 1
+  French   2 0</code></pre>
 <div class="sourceCode" id="cb598"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb598-1"><a href="aggregation-and-group-operations.html#cb598-1" tabindex="-1"></a><span class="fu">xtabs</span>(<span class="at">formula =</span> <span class="sc">~</span>nationality <span class="sc">+</span> sex, <span class="at">data =</span> dat)</span></code></pre></div>
-<pre><code>##            sex
-## nationality f m
-##    Canadian 1 1
-##    Egyptian 0 1
-##    French   2 0</code></pre>
+<pre><code>           sex
+nationality f m
+   Canadian 1 1
+   Egyptian 0 1
+   French   2 0</code></pre>
 </div>
 </div>
 <div id="group-summaries" class="section level2 hasAnchor" number="6.2">
@@ -336,29 +336,29 @@ div.csl-indent {
 <span id="cb600-2"><a href="aggregation-and-group-operations.html#cb600-2" tabindex="-1"></a></span>
 <span id="cb600-3"><a href="aggregation-and-group-operations.html#cb600-3" tabindex="-1"></a>mean_mpg_by_cyl <span class="op">=</span> mtcars.groupby(by <span class="op">=</span> <span class="st">&#39;cyl&#39;</span>)[<span class="st">&#39;mpg&#39;</span>].mean()</span>
 <span id="cb600-4"><a href="aggregation-and-group-operations.html#cb600-4" tabindex="-1"></a><span class="bu">print</span>(mean_mpg_by_cyl)</span></code></pre></div>
-<pre><code>## cyl
-## 4.0    26.663636
-## 6.0    19.742857
-## 8.0    15.100000
-## Name: mpg, dtype: float64</code></pre>
+<pre><code>cyl
+4.0    26.663636
+6.0    19.742857
+8.0    15.100000
+Name: mpg, dtype: float64</code></pre>
 <div class="sourceCode" id="cb602"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb602-1"><a href="aggregation-and-group-operations.html#cb602-1" tabindex="-1"></a>means_all_vars <span class="op">=</span> mtcars.groupby(by <span class="op">=</span> <span class="st">&#39;cyl&#39;</span>).mean()</span>
 <span id="cb602-2"><a href="aggregation-and-group-operations.html#cb602-2" tabindex="-1"></a><span class="bu">print</span>(means_all_vars)</span></code></pre></div>
-<pre><code>##            mpg        disp          hp  ...        am      gear      carb
-## cyl                                     ...                              
-## 4.0  26.663636  105.136364   82.636364  ...  0.727273  4.090909  1.545455
-## 6.0  19.742857  183.314286  122.285714  ...  0.428571  3.857143  3.428571
-## 8.0  15.100000  353.100000  209.214286  ...  0.142857  3.285714  3.500000
-## 
-## [3 rows x 10 columns]</code></pre>
+<pre><code>           mpg        disp          hp  ...        am      gear      carb
+cyl                                     ...                              
+4.0  26.663636  105.136364   82.636364  ...  0.727273  4.090909  1.545455
+6.0  19.742857  183.314286  122.285714  ...  0.428571  3.857143  3.428571
+8.0  15.100000  353.100000  209.214286  ...  0.142857  3.285714  3.500000
+
+[3 rows x 10 columns]</code></pre>
 <div class="sourceCode" id="cb604"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb604-1"><a href="aggregation-and-group-operations.html#cb604-1" tabindex="-1"></a>mpg_by_cyl_vs <span class="op">=</span> mtcars.groupby(by <span class="op">=</span> [<span class="st">&#39;cyl&#39;</span>, <span class="st">&#39;vs&#39;</span>])[<span class="st">&#39;mpg&#39;</span>].describe()</span>
 <span id="cb604-2"><a href="aggregation-and-group-operations.html#cb604-2" tabindex="-1"></a><span class="bu">print</span>(mpg_by_cyl_vs)</span></code></pre></div>
-<pre><code>##          count       mean       std   min     25%    50%    75%   max
-## cyl vs                                                               
-## 4.0 0.0    1.0  26.000000       NaN  26.0  26.000  26.00  26.00  26.0
-##     1.0   10.0  26.730000  4.748111  21.4  22.800  25.85  30.40  33.9
-## 6.0 0.0    3.0  20.566667  0.750555  19.7  20.350  21.00  21.00  21.0
-##     1.0    4.0  19.125000  1.631717  17.8  18.025  18.65  19.75  21.4
-## 8.0 0.0   14.0  15.100000  2.560048  10.4  14.400  15.20  16.25  19.2</code></pre>
+<pre><code>         count       mean       std   min     25%    50%    75%   max
+cyl vs                                                               
+4.0 0.0    1.0  26.000000       NaN  26.0  26.000  26.00  26.00  26.0
+    1.0   10.0  26.730000  4.748111  21.4  22.800  25.85  30.40  33.9
+6.0 0.0    3.0  20.566667  0.750555  19.7  20.350  21.00  21.00  21.0
+    1.0    4.0  19.125000  1.631717  17.8  18.025  18.65  19.75  21.4
+8.0 0.0   14.0  15.100000  2.560048  10.4  14.400  15.20  16.25  19.2</code></pre>
 </div>
 <div id="r-39" class="section level4 unnumbered hasAnchor">
 <h4>R<a href="aggregation-and-group-operations.html#r-39" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -368,23 +368,23 @@ div.csl-indent {
 <span id="cb606-3"><a href="aggregation-and-group-operations.html#cb606-3" tabindex="-1"></a><span class="fu">aggregate</span>(<span class="at">x =</span> mtcars<span class="sc">$</span>mpg, </span>
 <span id="cb606-4"><a href="aggregation-and-group-operations.html#cb606-4" tabindex="-1"></a>          <span class="at">by =</span> <span class="fu">list</span>(<span class="at">cyl =</span> mtcars<span class="sc">$</span>cyl), </span>
 <span id="cb606-5"><a href="aggregation-and-group-operations.html#cb606-5" tabindex="-1"></a>          <span class="at">FUN =</span> <span class="st">&quot;mean&quot;</span>) </span></code></pre></div>
-<pre><code>##   cyl        x
-## 1   4 26.66364
-## 2   6 19.74286
-## 3   8 15.10000</code></pre>
+<pre><code>  cyl        x
+1   4 26.66364
+2   6 19.74286
+3   8 15.10000</code></pre>
 <p>Adding <code>drop = FALSE</code> ensures that all combinations of levels are returned even if no data exist at that combination. The final row below is <code>NA</code> since there are no eight-cylinder cars with a “straight” engine (<code>vs = 1</code>).</p>
 <div class="sourceCode" id="cb608"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb608-1"><a href="aggregation-and-group-operations.html#cb608-1" tabindex="-1"></a><span class="co"># Two or more grouping variables</span></span>
 <span id="cb608-2"><a href="aggregation-and-group-operations.html#cb608-2" tabindex="-1"></a><span class="co"># Calculating max of `mpg` in each `cyl`*`vs` group</span></span>
 <span id="cb608-3"><a href="aggregation-and-group-operations.html#cb608-3" tabindex="-1"></a><span class="fu">aggregate</span>(<span class="at">x =</span> mtcars<span class="sc">$</span>mpg, </span>
 <span id="cb608-4"><a href="aggregation-and-group-operations.html#cb608-4" tabindex="-1"></a>          <span class="at">by =</span> <span class="fu">list</span>(<span class="at">cyl =</span> mtcars<span class="sc">$</span>cyl, <span class="at">vs =</span> mtcars<span class="sc">$</span>vs), </span>
 <span id="cb608-5"><a href="aggregation-and-group-operations.html#cb608-5" tabindex="-1"></a>          <span class="at">FUN =</span> <span class="st">&#39;max&#39;</span>, <span class="at">drop =</span> <span class="cn">FALSE</span>) </span></code></pre></div>
-<pre><code>##   cyl vs    x
-## 1   4  0 26.0
-## 2   6  0 21.0
-## 3   8  0 19.2
-## 4   4  1 33.9
-## 5   6  1 21.4
-## 6   8  1   NA</code></pre>
+<pre><code>  cyl vs    x
+1   4  0 26.0
+2   6  0 21.0
+3   8  0 19.2
+4   4  1 33.9
+5   6  1 21.4
+6   8  1   NA</code></pre>
 <div class="sourceCode" id="cb610"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb610-1"><a href="aggregation-and-group-operations.html#cb610-1" tabindex="-1"></a><span class="co"># Or, specify the variable to summarize and the grouping variables in formula notation</span></span>
 <span id="cb610-2"><a href="aggregation-and-group-operations.html#cb610-2" tabindex="-1"></a><span class="fu">aggregate</span>(mpg <span class="sc">~</span> cyl <span class="sc">+</span> vs, <span class="at">data =</span> mtcars, <span class="at">FUN =</span> max)</span></code></pre></div>
 <p>The <strong>tidyverse</strong> also offers a summarizing function, <code>summarize()</code> (or <code>summarise()</code>, for the Britons), which is in the <strong>dplyr</strong> package. After grouping a data frame/tibble (with, e.g., <strong>dplyr</strong>’s <code>group_by()</code> function), a user passes it to <code>summarize()</code>, specifying in the function call how the summary statistic should be calculated.</p>
@@ -392,17 +392,17 @@ div.csl-indent {
 <span id="cb611-2"><a href="aggregation-and-group-operations.html#cb611-2" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span> </span>
 <span id="cb611-3"><a href="aggregation-and-group-operations.html#cb611-3" tabindex="-1"></a>  <span class="fu">group_by</span>(cyl, vs) <span class="sc">%&gt;%</span> </span>
 <span id="cb611-4"><a href="aggregation-and-group-operations.html#cb611-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg_mpg =</span> <span class="fu">mean</span>(mpg))</span></code></pre></div>
-<pre><code>## `summarise()` has grouped output by &#39;cyl&#39;. You can override using the
-## `.groups` argument.</code></pre>
-<pre><code>## # A tibble: 5 × 3
-## # Groups:   cyl [3]
-##     cyl    vs avg_mpg
-##   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
-## 1     4     0    26  
-## 2     4     1    26.7
-## 3     6     0    20.6
-## 4     6     1    19.1
-## 5     8     0    15.1</code></pre>
+<pre><code>`summarise()` has grouped output by &#39;cyl&#39;. You can override using the
+`.groups` argument.</code></pre>
+<pre><code># A tibble: 5 × 3
+# Groups:   cyl [3]
+    cyl    vs avg_mpg
+  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+1     4     0    26  
+2     4     1    26.7
+3     6     0    20.6
+4     6     1    19.1
+5     8     0    15.1</code></pre>
 <p><code>summarize()</code> makes it easy to specify relatively complicated summary calculations without needing to write an external function.</p>
 <div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="aggregation-and-group-operations.html#cb614-1" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span> </span>
 <span id="cb614-2"><a href="aggregation-and-group-operations.html#cb614-2" tabindex="-1"></a>  <span class="fu">group_by</span>(cyl, vs) <span class="sc">%&gt;%</span> </span>
@@ -411,17 +411,17 @@ div.csl-indent {
 <span id="cb614-5"><a href="aggregation-and-group-operations.html#cb614-5" tabindex="-1"></a>              <span class="fu">min</span>(mpg)<span class="sc">^</span><span class="fl">0.5</span> <span class="sc">*</span> </span>
 <span id="cb614-6"><a href="aggregation-and-group-operations.html#cb614-6" tabindex="-1"></a>              <span class="fu">mean</span>(wt)<span class="sc">^</span><span class="fl">0.5</span> <span class="sc">+</span> </span>
 <span id="cb614-7"><a href="aggregation-and-group-operations.html#cb614-7" tabindex="-1"></a>              <span class="fu">mean</span>(disp)<span class="sc">^</span>(<span class="dv">1</span> <span class="sc">/</span> <span class="fu">mean</span>(hp)))</span></code></pre></div>
-<pre><code>## `summarise()` has grouped output by &#39;cyl&#39;. You can override using the
-## `.groups` argument.</code></pre>
-<pre><code>## # A tibble: 5 × 4
-## # Groups:   cyl [3]
-##     cyl    vs avg_mpg complicated_summary_calculation
-##   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;                           &lt;dbl&gt;
-## 1     4     0    26                              8.51
-## 2     4     1    26.7                            8.07
-## 3     6     0    20.6                            8.41
-## 4     6     1    19.1                            8.81
-## 5     8     0    15.1                            7.48</code></pre>
+<pre><code>`summarise()` has grouped output by &#39;cyl&#39;. You can override using the
+`.groups` argument.</code></pre>
+<pre><code># A tibble: 5 × 4
+# Groups:   cyl [3]
+    cyl    vs avg_mpg complicated_summary_calculation
+  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;                           &lt;dbl&gt;
+1     4     0    26                              8.51
+2     4     1    26.7                            8.07
+3     6     0    20.6                            8.41
+4     6     1    19.1                            8.81
+5     8     0    15.1                            7.48</code></pre>
 </div>
 </div>
 <div id="centering-and-scaling" class="section level2 hasAnchor" number="6.3">
@@ -435,15 +435,15 @@ div.csl-indent {
 <span id="cb617-2"><a href="aggregation-and-group-operations.html#cb617-2" tabindex="-1"></a></span>
 <span id="cb617-3"><a href="aggregation-and-group-operations.html#cb617-3" tabindex="-1"></a>centered_mpg <span class="op">=</span> preprocessing.scale(mtcars.mpg, with_mean <span class="op">=</span> <span class="va">True</span>, with_std <span class="op">=</span> <span class="va">False</span>)</span>
 <span id="cb617-4"><a href="aggregation-and-group-operations.html#cb617-4" tabindex="-1"></a>centered_mpg.mean()</span></code></pre></div>
-<pre><code>## -3.1086244689504383e-15</code></pre>
+<pre><code>-3.1086244689504383e-15</code></pre>
 <p>To scale a variable after centering it (so that its mean is zero and its standard deviation is one), use <code>scale()</code> with <code>with_mean = True</code> and <code>with_std = True</code>.</p>
 <div class="sourceCode" id="cb619"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb619-1"><a href="aggregation-and-group-operations.html#cb619-1" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> preprocessing</span>
 <span id="cb619-2"><a href="aggregation-and-group-operations.html#cb619-2" tabindex="-1"></a></span>
 <span id="cb619-3"><a href="aggregation-and-group-operations.html#cb619-3" tabindex="-1"></a>scaled_mpg <span class="op">=</span> preprocessing.scale(mtcars.mpg, with_mean <span class="op">=</span> <span class="va">True</span>, with_std <span class="op">=</span> <span class="va">True</span>)</span>
 <span id="cb619-4"><a href="aggregation-and-group-operations.html#cb619-4" tabindex="-1"></a>scaled_mpg.mean()</span></code></pre></div>
-<pre><code>## -4.996003610813204e-16</code></pre>
+<pre><code>-4.996003610813204e-16</code></pre>
 <div class="sourceCode" id="cb621"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb621-1"><a href="aggregation-and-group-operations.html#cb621-1" tabindex="-1"></a>scaled_mpg.std()</span></code></pre></div>
-<pre><code>## 1.0</code></pre>
+<pre><code>1.0</code></pre>
 </div>
 <div id="r-40" class="section level4 unnumbered hasAnchor">
 <h4>R<a href="aggregation-and-group-operations.html#r-40" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -451,13 +451,13 @@ div.csl-indent {
 <p>To center a variable without scaling it, call <code>scale()</code> with the <code>center</code> argument set to <code>TRUE</code> and the <code>scale</code> argument set to <code>FALSE</code>. The variable’s mean will be subtracted off of each of the variable values. (Note: If desired, the <code>center</code> argument can be set to a numeric value instead of <code>TRUE</code>/<code>FALSE</code>; in that case, each variable value will have the argument value subtracted off of it.)</p>
 <div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb623-1"><a href="aggregation-and-group-operations.html#cb623-1" tabindex="-1"></a>centered_mpg <span class="ot">&lt;-</span> <span class="fu">scale</span>(mtcars<span class="sc">$</span>mpg, <span class="at">center =</span> T, <span class="at">scale =</span> F)</span>
 <span id="cb623-2"><a href="aggregation-and-group-operations.html#cb623-2" tabindex="-1"></a><span class="fu">mean</span>(centered_mpg)</span></code></pre></div>
-<pre><code>## [1] 4.440892e-16</code></pre>
+<pre><code>[1] 4.440892e-16</code></pre>
 <p>To scale a variable (while also centering it), call <code>scale()</code> with the <code>center</code> and <code>scale</code> arguments set to <code>TRUE</code> (these are the default argument values). The variable’s mean will be subtracted off of each of the variable values, and each value will then be divided by the variable’s standard deviation. (Note: As with the <code>center</code> argument, the <code>scale</code> argument can also be set to a numeric value instead of <code>TRUE</code>/<code>FALSE</code>; in that case, the divisor will be the argument value instead of the standard deviation.)</p>
 <div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb625-1"><a href="aggregation-and-group-operations.html#cb625-1" tabindex="-1"></a>scaled_mpg <span class="ot">&lt;-</span> <span class="fu">scale</span>(mtcars<span class="sc">$</span>mpg, <span class="at">center =</span> T, <span class="at">scale =</span> T)</span>
 <span id="cb625-2"><a href="aggregation-and-group-operations.html#cb625-2" tabindex="-1"></a><span class="fu">mean</span>(scaled_mpg)</span></code></pre></div>
-<pre><code>## [1] 7.112366e-17</code></pre>
+<pre><code>[1] 7.112366e-17</code></pre>
 <div class="sourceCode" id="cb627"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb627-1"><a href="aggregation-and-group-operations.html#cb627-1" tabindex="-1"></a><span class="fu">sd</span>(scaled_mpg)</span></code></pre></div>
-<pre><code>## [1] 1</code></pre>
+<pre><code>[1] 1</code></pre>
 
 </div>
 </div>
