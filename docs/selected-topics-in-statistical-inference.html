@@ -273,7 +273,7 @@ div.csl-indent {
 <h2><span class="header-section-number">8.1</span> Comparing group means<a href="selected-topics-in-statistical-inference.html#comparing-group-means" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Many research studies compare mean values of some quantity of interest between two or more groups. A <em>t</em>-test analyzes two group means. An Analysis of Variance, or ANOVA, analyzes three or more group means. Both the <em>t</em>-test and ANOVA are special cases of a linear model.</p>
 <p>To demonstrate the <em>t</em>-test, we examine fictitious data comprised of 15 scores each for two groups of subjects. The “control” group was tested as-is while the “treated” group experienced a particular intervention. Of interest is (1) whether or not the mean scores differ meaningfully between the treated and control groups, and (2) if they do differ, how are they different?</p>
-<p>To demonstrate ANOVA, we use data from <em>The Analysis of Biological Data (3rd ed)</em><span class="citation">(<a href="#ref-whitlock_schluter_2020">Whitlock and Schluter 2020</a>)</span> on the mass of pine cones (in grams) from three different environments in North America. Of interest is (1) whether or not the mean mass of pine cones differs meaningfully between the three locations, and (2) if they do differ, how are they different?</p>
+<p>To demonstrate ANOVA, we use data from <em>The Analysis of Biological Data (3rd ed)</em> <span class="citation">(<a href="#ref-whitlock_schluter_2020">Whitlock and Schluter 2020</a>)</span> on the mass of pine cones (in grams) from three different environments in North America. Of interest is (1) whether or not the mean mass of pine cones differs meaningfully between the three locations, and (2) if they do differ, how are they different?</p>
 <p>We usually assess the first question in each scenario with a hypothesis test and <em>p</em>-value. The null hypothesis is that there is no difference between the means. The <em>p</em>-value is the probability of obtaining the observed differences between the groups (or more extreme differences) <em>assuming that the null hypothesis is true</em>. A small <em>p</em>-value, traditionally less then 0.05, provides evidence against the null. For example, a <em>p</em>-value of 0.01 indicates that there is a 1% chance of observing a mean difference at least as the large as the difference you observed if there really was no difference between the groups. Note that <em>p</em>-values don’t tell you how two or more statistics differ. See <a href="https://www.tandfonline.com/doi/full/10.1080/00031305.2016.1154108#_i28">the ASA Statement on <em>p</em>-values</a> for further discussion.</p>
 <p>We assess the second question in each scenario by calculating confidence intervals for the difference(s) in means. Confidence intervals are more informative than <em>p</em>-values: A confidence interval gives us information on the uncertainty, direction, and magnitude of a difference in means. For example, a 95% confidence interval of [2, 15] tells us that the data are consistent with a true difference of anywhere between 2 and 15 units and that the mean of one group appears to be at least 2 units larger than the mean of the other group. Note that a 95% confidence interval does not mean there is a 95% probability that the true value is in the interval: A confidence interval either captures the true value or it doesn’t; we don’t know. However, the <em>process</em> of calculating a 95% confidence interval is such that the confidence interval will capture the true difference in roughly 95% of repeated samples.</p>
 <div id="python-47" class="section level4 unnumbered hasAnchor">
@@ -588,7 +588,7 @@ div.csl-indent {
 ## Model:                            OLS   Adj. R-squared:                  0.924
 ## Method:                 Least Squares   F-statistic:                     222.3
 ## Date:                Wed, 14 Jun 2023   Prob (F-statistic):           1.23e-29
-## Time:                        13:21:51   Log-Likelihood:                -14.100
+## Time:                        13:33:47   Log-Likelihood:                -14.100
 ## No. Observations:                  56   AIC:                             36.20
 ## Df Residuals:                      52   BIC:                             44.30
 ## Df Model:                           3                                         
@@ -736,7 +736,7 @@ div.csl-indent {
 ## Link Function:                  Logit   Scale:                          1.0000
 ## Method:                          IRLS   Log-Likelihood:                -97.738
 ## Date:                Wed, 14 Jun 2023   Deviance:                       195.48
-## Time:                        13:21:57   Pearson chi2:                     179.
+## Time:                        13:33:53   Pearson chi2:                     179.
 ## No. Iterations:                     5   Pseudo R-squ. (CS):             0.1873
 ## Covariance Type:            nonrobust                                         
 ## =================================================================================

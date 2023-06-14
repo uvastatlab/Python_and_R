@@ -1,7 +1,7 @@
 # Combine, Reshape and Merge
 
 ```{r,echo=FALSE}
-knitr::opts_chunk$set(comment = '##', prompt = FALSE, collapse = FALSE)
+knitr::opts_chunk$set(comment = '', prompt = FALSE, collapse = FALSE)
 ```
 
 This chapter looks at various strategies for combining, reshaping, and merging data.

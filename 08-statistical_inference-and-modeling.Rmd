@@ -1,7 +1,7 @@
 # Selected Topics in Statistical Inference
 
 ```{r,echo=FALSE}
-knitr::opts_chunk$set(comment = '##', prompt = FALSE, collapse = FALSE)
+knitr::opts_chunk$set(comment = '', prompt = FALSE, collapse = FALSE)
 ```
 
 This chapter looks at performing selected statistical analyses. It is not comprehensive. The focus is on implementation using Python and R. Good statistical practice is more than knowing which function to use, and at a minimum, we recommend reading the article [_Ten Simple Rules for Effective Statistical Practice_](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004961) [@kass_caffo_davidian_meng_yu_reid_2016].
@@ -12,7 +12,7 @@ Many research studies compare mean values of some quantity of interest between t
 
 To demonstrate the _t_-test, we examine fictitious data comprised of 15 scores each for two groups of subjects. The "control" group was tested as-is while the "treated" group experienced a particular intervention. Of interest is (1) whether or not the mean scores differ meaningfully between the treated and control groups, and (2) if they do differ, how are they different?
 
-To demonstrate ANOVA, we use data from _The Analysis of Biological Data (3rd ed)_[@whitlock_schluter_2020] on the mass of pine cones (in grams) from three different environments in North America. Of interest is (1) whether or not the mean mass of pine cones differs meaningfully between the three locations, and (2) if they do differ, how are they different?
+To demonstrate ANOVA, we use data from _The Analysis of Biological Data (3rd ed)_ [@whitlock_schluter_2020] on the mass of pine cones (in grams) from three different environments in North America. Of interest is (1) whether or not the mean mass of pine cones differs meaningfully between the three locations, and (2) if they do differ, how are they different?
 
 We usually assess the first question in each scenario with a hypothesis test and _p_-value. The null hypothesis is that there is no difference between the means. The _p_-value is the probability of obtaining the observed differences between the groups (or more extreme differences) _assuming that the null hypothesis is true_. A small _p_-value, traditionally less then 0.05, provides evidence against the null. For example, a _p_-value of 0.01 indicates that there is a 1% chance of observing a mean difference at least as the large as the difference you observed if there really was no difference between the groups. Note that _p_-values don't tell you how two or more statistics differ. See [the ASA Statement on _p_-values](https://www.tandfonline.com/doi/full/10.1080/00031305.2016.1154108#_i28) for further discussion.
 

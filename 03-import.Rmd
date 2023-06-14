@@ -1,7 +1,7 @@
 # Import, Export, and Save Data
 
 ```{r,echo=FALSE}
-knitr::opts_chunk$set(comment = '##', prompt = FALSE, collapse = FALSE)
+knitr::opts_chunk$set(comment = '', prompt = FALSE, collapse = FALSE)
 ```
 
 This chapter reviews importing external data into Python and R, including CSV files, Excel files, and other structured data files. There is often more than one way to import data into Python and R; each example below highlights one method per file type.
